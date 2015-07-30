@@ -1,0 +1,802 @@
+// TITLES FOR HALF-LIFE: SUBTITLES MOD
+// Position command $position x y 
+// x & y are from 0 to 1 to be screen resolution independent
+// -1 means center in each dimension
+// Effect command $effect <effect number>
+// effect 0 is fade in/fade out
+// effect 1 is flickery credits
+// effect 2 is write out (training room)
+// Add 16 to effect number to use VGUI system
+// Text color r g b command $color
+// fadein time fadeout time / hold time
+// $fadein (message fade in time - per character in effect 2)
+// $fadeout (message fade out time)
+// $holdtime (stay on the screen for this long)
+
+//INTRO TITLES
+// All centered for now
+$position -1 -1
+$effect 18
+// This is the final color
+$color 140 140 140
+// This is the highlight color
+$color2 240 110 0
+// This is the time it takes to fade each character
+$fadein 0.01
+// This is the amount of time the highlight lags behind the leading edge of the text
+$fxtime 0.25
+// How long to hold the message on the screen (after it scans out)
+$holdtime 3.5
+// How long it takes to fade out the message after holding
+$fadeout 1.5
+
+$chained SM_INTRO_CR_01
+CR27
+{
+Oúrodek Badawczy Black Mesa
+Black Mesa, Nowy Meksyk, USA
+}
+
+//INTRO CREDITS
+// Test values -- JAY
+// Lower left
+$position 0.1 0.7
+$effect 17
+// Final fade-in color
+$color 128 128 128
+// This is the highlight/flash color
+$color2 0 0 0
+$fadein 1.5
+$fadeout 0.5
+$holdtime 1.2
+
+CR1
+{
+Ted Backman
+}
+
+CR2
+{
+TK Backman
+}
+
+CR3
+{
+Kelly Bailey
+}
+
+CR4
+{
+Yahn Bernier
+}
+
+CR5
+{
+Ken Birdwell
+}
+
+CR6
+{
+Steve Bond
+}
+
+CR7
+{
+Dario Casali
+}
+
+CR8
+{
+John Cook
+}
+
+CR9
+{
+Greg Coomer
+}
+
+CR10
+{
+Wes Cumberland
+}
+
+CR11
+{
+John Guthrie
+}
+
+CR12
+{
+Mona Lisa Guthrie
+}
+
+CR13
+{
+Mike Harrington
+}
+
+CR14
+{
+Monica Harrington
+}
+
+CR15
+{
+Brett Johnson
+}
+
+CR16
+{
+Chuck Jones
+}
+
+CR17
+{
+Marc Laidlaw
+}
+
+CR18
+{
+Karen Laur
+}
+
+CR19
+{
+Randy Lundeen
+}
+
+CR20
+{
+Yatsze Mark
+}
+
+CR21
+{
+Lisa Mennet
+}
+
+CR22
+{
+Gabe Newell
+}
+
+CR23
+{
+Dave Riller
+}
+
+CR24
+{
+Aaron Stackpole
+}
+
+CR25
+{
+Jay Stelly
+}
+
+CR26
+{
+Harry Teasley 
+}
+
+CR35
+{
+Steve Theodore
+}
+
+CR36
+{
+Bill Van Buren
+}
+
+CR37
+{
+Robin Walker
+}
+
+CR38
+{
+Douglas R. Wood
+}
+
+//END CREDITS
+$position -1 -1
+$effect 16
+// Final fade-in color
+$color 128 128 128
+// This is the highlight/flash color
+$color2 0 0 0
+$fadein 0.5
+$fadeout 0.5
+$holdtime 4
+
+VALVEIS
+{
+ZespÛ≥ Valve:
+}
+
+END1
+{
+Ted Backman
+TK Backman
+Kelly Bailey
+Yahn Bernier
+Ken Birdwell
+Steve Bond
+Dario Casali
+John Cook
+Greg Coomer
+Wes Cumberland
+}
+
+END2
+{
+John Guthrie
+Mona Lisa Guthrie
+Mike Harrington
+Monica Harrington
+Brett Johnson
+Chuck Jones
+Marc Laidlaw
+Karen Laur
+Randy Lundeen
+Yatsze Mark
+}
+
+$chained SM_OUTRO_CR_01
+END3
+{
+Lisa Mennet
+Gabe Newell
+Dave Riller
+Aaron Stackpole
+Jay Stelly
+Harry Teasley
+Steve Theodore
+Bill Van Buren
+Robin Walker
+Douglas R. Wood
+}
+
+//INTRO TITLES
+// All centered for now
+$position -1 -1
+$effect 18
+// This is the final color
+$color 140 140 140
+// This is the highlight color
+$color2 240 110 0
+// This is the time it takes to fade each character
+$fadein 0.01
+// This is the amount of time the highlight lags behind the leading edge of the text
+$fxtime 0.25
+// How long to hold the message on the screen (after it scans out)
+$holdtime 3.5
+// How long it takes to fade out the message after holding
+$fadeout 1.5
+
+CR28
+{
+PODMIOT:
+Gordon Freeman
+MÍøczyzna, lat 27
+}
+
+CR29
+{
+WYKSZTA£CENIE:
+Doktor nauk fizycznych, studia na MIT, specjalnoúÊ Fizyka Teoretyczna
+}
+
+CR30
+{
+STANOWISKO:
+Pracownik naukowy
+}
+
+CR31
+{
+PRZYDZIA£:
+Pracownia Materia≥Ûw Anomalnych
+}
+
+CR32
+{
+CERTYFIKAT BEZPIECZE—STWA:
+Poziom 3
+}
+
+CR33
+{
+NADZORCA ADMINISTRACYJNY:
+Utajniony
+}
+
+CR34
+{
+PRIORYTET RATUNKOWY:
+Uznaniowy
+}
+
+$fadein 0.03
+$holdtime 9
+
+GAMEOVER
+{
+PODMIOT:  FREEMAN
+
+STATUS:  EWALUACJA ZAKO—CZONA
+
+POST MORTEM - ANALIZA PRZYCZYN NIEPOWODZENIA:
+Podmiotowi nie uda≥o siÍ efektywnie wykorzystaÊ
+posiadanych atutÛw na drodze do osiπgniÍcia celu.
+}
+
+$fadein 0.03
+$holdtime 9
+TRAITOR
+{
+PODMIOT:  FREEMAN
+
+STATUS:  ZATRUDNIONY
+
+OCZEKIWANIE NA PRZYDZIA£
+}
+
+
+$fadein 0.03
+$holdtime 9
+LOSER
+{
+PODMIOT:  FREEMAN
+
+STATUS:  OBSERWACJA PRZERWANA
+
+POST MORTEM - ANALIZA PRZYCZYN NIEPOWODZENIA:
+Podmiot odrzuci≥ ofertÍ zatrudnienia.
+}
+
+//CHAPTER TITLES
+
+$fadein 0.01
+$position -1 0.4
+$holdtime 3.5
+T0A0TITLE
+{
+SZKOLENIE - KURS PRZETRWANIA
+}
+
+$position -1 0.65
+C0A0TITLE
+{
+PRZYBYCIE DO KOMPLEKSU BLACK MESA
+}
+
+OPENTITLE3
+{
+
+}
+
+OPENTITLE4
+{
+
+}
+
+C0A1TITLE
+{
+MATERIA£Y ANOMALNE
+}
+
+C1A1TITLE
+{
+NIEPRZEWIDZIANE KONSEKWENCJE
+}
+
+C1A2TITLE
+{
+KOMPLEKS BIUROWY
+}
+
+C1A3TITLE
+{
+"DOSTRZEØONO WROG”W"
+}
+
+C1A4TITLE
+{
+OGNISTY PODMUCH
+}
+
+C2A1TITLE
+{
+ZASILANIE
+}
+
+C2A2TITLE
+{
+NA SZYNIE
+}
+
+C2A3TITLE
+{
+SCHWYTANIE
+}
+
+C2A4TITLE1
+{
+PRZETWARZANIE ODPAD”W
+}
+
+C2A4TITLE2
+{
+W•TPLIWA ETYKA
+}
+
+C2A5TITLE
+{
+NAPI CIE POWIERZCHNIOWE
+}
+
+C3A1TITLE
+{
+"ZAPOMNIJCIE O FREEMANIE!"
+}
+
+C3A2TITLE
+{
+RDZE— LAMBDA
+}
+
+C4A1TITLE
+{
+XEN - åWIAT GRANICZNY
+}
+
+C4A1ATITLE
+{
+INTRUZ
+}
+
+C4A1BTITLE
+{
+
+}
+
+C4A1CTITLE
+{
+
+}
+
+C4A1ETITLE
+{
+
+}
+
+C4A1FTITLE
+{
+
+}
+
+C4A2TITLE
+{
+LEØE GONARCHY
+}
+
+C4A3TITLE
+{
+NIHILANTH
+}
+
+C5TITLE
+{
+KO—COWA ROZGRYWKA
+}
+
+// In-Game messages
+$position -1 0.65
+$effect 18
+// This is the final color
+$color 140 140 140
+// This is the highlight color
+$color2 240 110 0
+// This is the time it takes to fade each character
+$fadein 0.01
+// This is the amount of time the highlight lags behind the leading edge of the text
+$fxtime 0.25
+// How long to hold the message on the screen (after it scans out)
+$holdtime 2.0
+// How long it takes to fade out the message after holding
+$fadeout 0.5
+
+GAMESAVED
+{
+Zapisano...
+}
+
+// Game title
+// This is a placeholder to hold the effects controls for the "Half-Life" title
+$position -1 -1
+// Only effect 0 is supported for game title (plus 16 for the VGUI)
+$effect 16
+// This is the final color
+$color 200 200 200
+// Not used color2
+$color2 0 0 0
+// This is the time it takes to fade in the title
+$fadein 1.0
+// How long to hold the message on the screen (after it scans out)
+$holdtime 3.0
+// How long it takes to fade out the message after holding
+$fadeout 1.5
+
+GAMETITLE
+{
+Half-Life
+}
+
+//HAZARD COURSE TEXT
+
+// Test values -- JAY
+$position -1 0.65
+// Scan-out text effect
+$effect 18
+// This is the final color
+$color 140 140 140
+// This is the highlight color
+$color2 0 200 50
+// This is the time it takes to fade each character
+$fadein 0.005
+// This is the amount of time the highlight lags behind the leading edge of the text
+$fxtime 0.5
+// How long to hold the message on the screen (after it scans out)
+$holdtime 3.5
+// How long it takes to fade out the message after holding
+$fadeout 1.5
+
+$position -1 0.3
+HZBUTTON1
+{
+WCIåNIJ KLAWISZ "UØYJ", ØEBY NACISN•∆ PRZYCISK.
+}
+
+$position -1 0.65
+HZBUTTON2
+{
+WCIåNIJ KLAWISZ "UØYJ", ØEBY NACISN•∆ PRZYCISK.
+}
+
+HZMOVE
+{
+DO PRZODU PORUSZASZ SI  KLAWISZEM "RUCH NAPRZ”D".
+DO TY£U PORUSZASZ SI  KLAWISZEM "RUCH WSTECZ".
+W LEWO PORUSZASZ SI  KLAWISZEM "RUCH W LEWO (UNIK)".
+W PRAWO PORUSZASZ SI  KLAWISZEM "RUCH W PRAWO (UNIK)".
+}
+
+HZJUMP
+{
+WCIåNIJ KLAWISZ "RUCH NAPRZ”D", ABY BIEC PRZED SIEBIE.
+W CELU ODDANIA SKOKU WCIåNIJ KLAWISZ "SKOK".
+}
+
+HZDUCK
+{
+WCIåNIJ KLAWISZ "RUCH NAPRZ”D", ABY BIEC PRZED SIEBIE.
+ABY UKUCN•∆ WCIåNIJ KLAWISZ "KUCNI CIE".
+WCISKAJ•C JEDNOCZEåNIE "RUCH NAPRZ”D" I "KUCNI CIE" 
+MOØESZ PORUSZA∆ SI  PO CICHU (UKRYWA∆ SI ).
+}
+
+HZCOMBO
+{
+WCIåNIJ KLAWISZ "RUCH NAPRZ”D", ABY BIEC PRZED SIEBIE.
+WCIåNIJ KLAWISZ "SKOK", ABY PODSKOCZY∆.
+WCIåNIJ KLAWISZ "KUCNI CIE", ABY PRZYKUCN•∆.
+WCIåNIJ KLAWISZ "SKOK", ABY PODSKOCZY∆.
+}
+
+HZDUCKJUMP
+{
+WCIåNIJ JEDNOCZEåNIE "RUCH NAPRZ”D" ORAZ "SKOK",
+A NAST PNIE KLAWISZ "KUCNI CIE".
+}
+
+HZLADDER
+{
+WCIåNIJ "RUCH NAPRZ”D", ABY WEJå∆ DO G”RY PO DRABINIE.
+WCIåNIJ "RUCH WSTECZ", ABY ZEJå∆ NA D”£ PO DRABINIE.
+}
+
+HZLJUMP
+{
+PORUSZAJ•C SI  PRZED SIEBIE
+PRZYTRZYMAJ KLAWISZ "KUCNI CIE",
+A WTEDY WCIåNIJ "SKOK".
+}
+
+$position -1 0.3
+HZLMOD
+{
+UPEWNIJ SI , ØE PODNIOS£Eå JUØ MODU£ DALEKIEGO SKOKU,
+ZANIM PRZEJDZIESZ DO POKONANIA KOLEJNEJ PRZESZKODY.
+}
+
+$position -1 0.65
+HZMEDKIT
+{
+WYKORZYSTUJ ZESTAWY MEDYCZNE WCISKAJ•C KLAWISZ "UØYJ".
+PRZYTRZYMAJ KLAWISZ "UØYJ", AØ DO CZASU, KIEDY STAN ZDROWIA OSCI•GNIE 100%, 
+ALBO WYCZERPI• SI  ZASOBY DANEGO ZESTAWU.
+}
+
+HZMOMENT
+{
+POKR T£AMI ORAZ INNEGO RODZAJU KO£AMI STEROWYMI
+MANIPULUJESZ PRZYTRZYMUJ•C KLAWISZ "UØYJ".
+PRZYTRZYMUJ "UØYJ", DOP”KI K£ADKA NIE ZNAJDZIE SI  WE W£AåCIWEJ POZYCJI.
+}
+
+HZPUSH
+{
+WCIåNIJ KLAWISZ "RUCH NAPRZ”D", ABY PRZEMIEåCI∆ SI  I STAN•∆ TUØ OBOK SKRZYNI;
+NIE PRZESTAWAJ WCISKA∆ "RUCH NAPRZ”D", ABY PCHA∆ J• WPROST PRZED SOB•.
+}
+
+HZPULL
+{
+WCIåNIJ JEDNOCZEåNIE KLAWISZE "UØYJ" ORAZ "RUCH WSTECZ",
+ØEBY PRZECI•GA∆ ZNAJDUJ•C• SI  PRZED SOB• SKRZYNI  DO TY£U.
+}
+
+HZCROWBAR
+{
+PODEJDè I ZABIERZ £OM.
+WCISKAJ KLAWISZ "ATAK G£”WNY", ØEBY NISZCZY∆ OBIEKTY.
+}
+ 
+HZLITEON
+{
+WCIåNIJ KLAWISZ "LATARKA",
+ØEBY W£•CZY∆ OåWIETLENIE.
+}
+
+HZLITEOFF
+{
+PONOWNIE WCIåNIJ KLAWISZ "LATARKA",
+ØEBY WY£•CZY∆ OåWIETLENIE.
+}
+
+HZWEAPON
+{
+ZBLIØ SI  DO BRONI, ØEBY J• PODNIEå∆.
+}
+
+HZFIREWEAP
+{
+WCIåNIJ KLAWISZ "ATAK G£”WNY", ABY WYKONA∆ PODSTAWOWY ATAK.
+WCIåNIJ KLAWISZ "ATAK DODATKOWY", ABY WYKONA∆ ALTERNATYWNY ATAK.
+WCIåNIJ KLAWISZ "PRZE£ADUJ BRO—", ABY PRZE£ADOWA∆ AMUNICJ .
+}
+
+HZARMOR
+{
+WCIåNIJ I PRZYTRZYMAJ KLAWISZ "UØYJ";
+TRZYMAJ GO, AØ DO PE£NEGO NA£ADOWANIA PANCERZA
+LUB DO CZASU CA£KOWITEGO WYCZERPANIA ZASOB”W £ADOWARKI.
+}
+
+HZSWIM
+{
+WCISKAJ KLAWISZ "RUCH NAPRZ”D".
+RUCHEM MYSZKI WSKAZUJESZ KIERUNEK W JAKIM P£YNIESZ.
+WYNURZ SI , JEØELI ZACZNIESZ TRACI∆ PUNKTY ZDROWIA;
+POZOSTA— NA POWIERZCHNI DOP”KI PASEK STANU ZDROWIA
+NIE WR”CI DO POPRZEDNIEGO POZIOMU.
+}
+
+HZDAMAGE
+{
+OKREåLONE RODZAJE USZKODZE— ZOSTAN• ZAREJESTROWANE
+I WYåWIETLONE NA EKRANIE TWOJEGO WYåWIETLACZA HUD.
+KIERUNEK, Z KT”REGO DOZNAJESZ TYCH OBRAØE— WSKAZUJ• 
+CZERWONE ROZB£YSKI WIDOCZNE NA åRODKU TWOJEGO EKRANU.
+}
+
+HZHAZARD
+{
+ZAGROØENIA ZWI•ZANE Z PROMIENIOWANIEM
+AKTYWUJ• LICZNIK GEIGERA.
+}
+
+HZSCIENTIST
+{
+PODEJDè DO NAUKOWCA
+WCIåNIJ KLAWISZ "UØYJ", ABY OTRZYMA∆ OD NIEGO PUNKTY ZDROWIA.
+}
+
+HZBARNEY
+{
+PODEJDè DO PRACOWNIKA S£UØBY OCHRONY;
+WCIåNIJ KLAWISZ "UØYJ", ABY UZYSKA∆ JEGO POMOC.
+PODEJDè Z NIM DO DRZWI,
+A STRAØNIK AKTYWUJE JE NACISKAJ•C ODPOWIEDNIE PRZYCISKI.
+}
+
+HZTRAIN
+{
+WCIåNIJ KLAWISZ "UØYJ", ØEBY POPROWADZI∆ POCI•G.
+WCISKNIJ KLAWISZ "RUCH NAPRZ”D", ABY PRZYåPIESZY∆.
+WCISKNIJ KLAWISZ "RUCH WSTECZ", ABY ZWOLNI∆.
+PONOWNIE WCIåNIJ KLAWISZ "UØYJ", ØEBY OPUåCI∆ POCI•G.
+}
+
+HZDONE
+{
+GRATULACJE!
+W£AåNIE UKO—CZY£Eå SZKOLENIE, 
+KURS PRZETRWANIA BLACK MESA.
+ZAPRASZAMY PONOWNIE :)
+}
+
+// SM INTRO CREDITS
+$position -0.05 0.05
+$effect 17
+$color 140 140 140
+$color2 0 0 0
+$fadein 1.5
+$holdtime 5
+$fadeout 0.5
+
+$chained SM_INTRO_CR_02
+SM_INTRO_CR_01
+{
+Modyfikacja - Subtitles MOD stworzona przez:
+Marek "Fograin92" Apostel
+Vit_amiN (znany goúÊ)
+
+Polska wersja jÍzykowa:
+Witold "Klasyku" Piniarski - t≥umaczenie, polonizacja
+}
+
+$chained SM_INTRO_CR_03
+SM_INTRO_CR_02
+{
+Specjalne podziÍkowania dla:
+AN70N, Black Hancza, Grace, Wonderlust King, Zibi;
+Half-Life: Paranoia mod team (bazowy kod napisÛw)
+combineoverwiki.net (cytaty z gier serii Half-Life)
+half-life.wikia.com (kwestie Nihilantha)
+}
+
+//SM OUTRO CREDITS
+$position -1 -1
+$effect 16
+$color 140 140 140
+$color2 0 0 0
+$fadein 0.5
+$fadeout 0.5
+$holdtime 8
+
+$chained SM_OUTRO_CR_02
+SM_OUTRO_CR_01
+{
+Half-Life: Subtitles MOD
+Version: 3.0 [PL]
+}
+
+SM_OUTRO_CR_02
+{
+ZespÛ≥ Subtitles MOD:
+Marek "Fograin92" Apostel - lider projektu / junior programista / ang. napisy
+Vit_amiN (znany goúÊ) - wspÛ≥lider / g≥Ûwny programista / CA£A MASA POPRAWEK
+
+Polska wersja jÍzykowa:
+Witold "Klasyku" Piniarski - t≥umaczenie, polonizacja
+
+Specjalne podziÍkowania dla:
+AN70N, Black Hancza, Grace, Wonderlust King, Zibi;
+Half-Life: Paranoia mod team - podstawowy kod napisÛw
+combineoverwiki.net - wiele cytatÛw z gier serii Half-Life
+half-life.wikia.com - kwestie wypowiadane przez Nihilantha
+}
