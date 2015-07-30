@@ -1,0 +1,802 @@
+// TITLES FOR HALF-LIFE: SUBTITLES MOD
+// Position command $position x y 
+// x & y are from 0 to 1 to be screen resolution independent
+// -1 means center in each dimension
+// Effect command $effect <effect number>
+// effect 0 is fade in/fade out
+// effect 1 is flickery credits
+// effect 2 is write out (training room)
+// Add 16 to effect number to use VGUI system
+// Text color r g b command $color
+// fadein time fadeout time / hold time
+// $fadein (message fade in time - per character in effect 2)
+// $fadeout (message fade out time)
+// $holdtime (stay on the screen for this long)
+
+//INTRO TITLES
+// All centered for now
+$position -1 -1
+$effect 18
+// This is the final color
+$color 140 140 140
+// This is the highlight color
+$color2 240 110 0
+// This is the time it takes to fade each character
+$fadein 0.01
+// This is the amount of time the highlight lags behind the leading edge of the text
+$fxtime 0.25
+// How long to hold the message on the screen (after it scans out)
+$holdtime 3.5
+// How long it takes to fade out the message after holding
+$fadeout 1.5
+
+$chained SM_INTRO_CR_01
+CR27
+{
+Fekete Szurdok Kutató Intézet
+Kekete Szurdok, Új Mexikó
+}
+
+
+//INTRO CREDITS
+// Test values -- JAY
+// Lower left
+$position 0.1 0.7
+$effect 17
+// Final fade-in color
+$color 128 128 128
+// This is the highlight/flash color
+$color2 0 0 0
+$fadein 1.5
+$fadeout 0.5
+$holdtime 1.2
+
+CR1
+{
+Ted Backman
+}
+
+CR2
+{
+TK Backman
+}
+
+CR3
+{
+Kelly Bailey
+}
+
+CR4
+{
+Yahn Bernier
+}
+
+CR5
+{
+Ken Birdwell
+}
+
+CR6
+{
+Steve Bond
+}
+
+CR7
+{
+Dario Casali
+}
+
+CR8
+{
+John Cook
+}
+
+CR9
+{
+Greg Coomer
+}
+
+CR10
+{
+Wes Cumberland
+}
+
+CR11
+{
+John Guthrie
+}
+
+CR12
+{
+Mona Lisa Guthrie
+}
+
+CR13
+{
+Mike Harrington
+}
+
+CR14
+{
+Monica Harrington
+}
+
+CR15
+{
+Brett Johnson
+}
+
+CR16
+{
+Chuck Jones
+}
+
+CR17
+{
+Marc Laidlaw
+}
+
+CR18
+{
+Karen Laur
+}
+
+CR19
+{
+Randy Lundeen
+}
+
+CR20
+{
+Yatsze Mark
+}
+
+CR21
+{
+Lisa Mennet
+}
+
+CR22
+{
+Gabe Newell
+}
+
+CR23
+{
+Dave Riller
+}
+
+CR24
+{
+Aaron Stackpole
+}
+
+CR25
+{
+Jay Stelly
+}
+
+CR26
+{
+Harry Teasley 
+}
+
+CR35
+{
+Steve Theodore
+}
+
+CR36
+{
+Bill Van Buren
+}
+
+CR37
+{
+Robin Walker
+}
+
+CR38
+{
+Douglas R. Wood
+}
+
+//END CREDITS
+$position -1 -1
+$effect 16
+// Final fade-in color
+$color 128 128 128
+// This is the highlight/flash color
+$color2 0 0 0
+$fadein 0.5
+$fadeout 0.5
+$holdtime 4
+
+VALVEIS
+{
+Valve:
+}
+
+END1
+{
+Ted Backman
+TK Backman
+Kelly Bailey
+Yahn Bernier
+Ken Birdwell
+Steve Bond
+Dario Casali
+John Cook
+Greg Coomer
+Wes Cumberland
+}
+
+END2
+{
+John Guthrie
+Mona Lisa Guthrie
+Mike Harrington
+Monica Harrington
+Brett Johnson
+Chuck Jones
+Marc Laidlaw
+Karen Laur
+Randy Lundeen
+Yatsze Mark
+}
+
+$chained SM_OUTRO_CR_01
+END3
+{
+Lisa Mennet
+Gabe Newell
+Dave Riller
+Aaron Stackpole
+Jay Stelly
+Harry Teasley
+Steve Theodore
+Bill Van Buren
+Robin Walker
+Douglas R. Wood
+}
+
+//INTRO TITLES
+// All centered for now
+$position -1 -1
+$effect 18
+// This is the final color
+$color 140 140 140
+// This is the highlight color
+$color2 240 110 0
+// This is the time it takes to fade each character
+$fadein 0.01
+// This is the amount of time the highlight lags behind the leading edge of the text
+$fxtime 0.25
+// How long to hold the message on the screen (after it scans out)
+$holdtime 3.5
+// How long it takes to fade out the message after holding
+$fadeout 1.5
+
+
+CR28
+{
+ALANY:
+Gordon Freeman
+Férfi, 27 éves
+}
+
+CR29
+{
+TANULMÁNYOK:
+Professzor, MIT, Elméleti Fizika
+}
+
+CR30
+{
+POZÍCIÓ:
+Kutatási Aszisztens
+}
+
+CR31
+{
+BEOSZTÁS:
+Rendellenes Anyagok Laboratóriuma
+}
+
+CR32
+{
+HOZZÁFÉRÉS:
+3-as Szint
+}
+
+CR33
+{
+TÁMOGATÓ:
+Titkosítva
+}
+
+CR34
+{
+MENEKÍTÉSI ELSÕBBSÉG:
+Megitélés Szerint
+}
+
+$fadein 0.03
+$holdtime 9
+
+GAMEOVER
+{
+ALANY:  FREEMAN
+
+STÁTUSZ: MEGFIGYELÉS FELFÜGGESZTVE
+
+HALOTTSZEMLE:
+Alany képtelen a rendelkezésére álló eszközök
+kihasználásárára a kitûzött cél elérése érdekében.
+}
+
+$fadein 0.03
+$holdtime 9
+TRAITOR
+{
+ALANY:  FREEMAN
+
+STÁTUSZ:  FELFOGADVA
+
+MEGBÍZATÁSRA VÁR
+}
+
+
+$fadein 0.03
+$holdtime 9
+LOSER
+{
+ALANY:  FREEMAN
+
+STÁTUSZ: MEGFIGYELÉS FELFÜGGESZTVE
+
+HALOTTSZEMLE:
+Alany visszautasította a megbízatást.
+}
+
+//CHAPTER TITLES
+
+$fadein 0.01
+$position -1 0.4
+$holdtime 3.5
+T0A0TITLE
+{
+AKADÁLYFUTÁS
+}
+
+$position -1 0.65
+C0A0TITLE
+{
+FEKETE SZURDOK KÖVETKEZIK
+}
+
+OPENTITLE3
+{
+
+}
+
+OPENTITLE4
+{
+
+}
+
+C0A1TITLE
+{
+RENDELLENES ANYAGOK
+}
+
+C1A1TITLE
+{
+VÁRATLAN KÖVETKEZMÉNYEK
+}
+
+C1A2TITLE
+{
+IRODAKOMPLEXUM
+}
+
+C1A3TITLE
+{
+"ELLENSÉGEKET KAPTUNK!"
+}
+
+C1A4TITLE
+{
+LOBBANÁSPONT
+}
+
+C2A1TITLE
+{
+FELVILLANYOZVA
+}
+
+C2A2TITLE
+{
+SÍNEN VAGYUNK
+}
+
+C2A3TITLE
+{
+BALJÓS ELÕÉRZET
+}
+
+C2A4TITLE1
+{
+MARADÉK ELDOLGOZÓ
+}
+
+C2A4TITLE2
+{
+VITATHATÓ ETIKÁK
+}
+
+C2A5TITLE
+{
+FELSZÍNI FESZÜLTSÉG
+}
+
+C3A1TITLE
+{
+"FELEJTSÉTEK EL FREEMANT!"
+}
+
+C3A2TITLE
+{
+LAMBDA MAG
+}
+
+C4A1TITLE
+{
+XEN
+}
+
+C4A1ATITLE
+{
+BETOLAKODÓ
+}
+
+C4A1BTITLE
+{
+
+}
+
+C4A1CTITLE
+{
+
+}
+
+C4A1ETITLE
+{
+
+}
+
+C4A1FTITLE
+{
+
+}
+
+C4A2TITLE
+{
+GONARCH LÉTRÁJA
+}
+
+C4A3TITLE
+{
+NIHILANTH
+}
+
+C5TITLE
+{
+VÉGJÁTÉK
+}
+
+
+// In-Game messages
+$position -1 0.65
+$effect 18
+// This is the final color
+$color 140 140 140
+// This is the highlight color
+$color2 240 110 0
+// This is the time it takes to fade each character
+$fadein 0.01
+// This is the amount of time the highlight lags behind the leading edge of the text
+$fxtime 0.25
+// How long to hold the message on the screen (after it scans out)
+$holdtime 2.0
+// How long it takes to fade out the message after holding
+$fadeout 0.5
+
+GAMESAVED
+{
+Mentve...
+}
+
+// Game title
+// This is a placeholder to hold the effects controls for the "Half-Life" title
+$position -1 -1
+// Only effect 0 is supported for game title (plus 16 for the VGUI)
+$effect 16
+// This is the final color
+$color 200 200 200
+// Not used color2
+$color2 0 0 0
+// This is the time it takes to fade in the title
+$fadein 1.0
+// How long to hold the message on the screen (after it scans out)
+$holdtime 3.0
+// How long it takes to fade out the message after holding
+$fadeout 1.5
+
+GAMETITLE
+{
+Half-Life
+}
+
+//HAZARD COURSE TEXT
+
+// Test values -- JAY
+$position -1 0.65
+// Scan-out text effect
+$effect 18
+// This is the final color
+$color 140 140 140
+// This is the highlight color
+$color2 0 200 50
+// This is the time it takes to fade each character
+$fadein 0.005
+// This is the amount of time the highlight lags behind the leading edge of the text
+$fxtime 0.5
+// How long to hold the message on the screen (after it scans out)
+$holdtime 3.5
+// How long it takes to fade out the message after holding
+$fadeout 1.5
+
+$position -1 0.3
+HZBUTTON1
+{
+NYOMD MEG A HASZNÁL GOMBOT A BEKAPCSOLÁSHOZ
+}
+
+$position -1 0.65
+HZBUTTON2
+{
+NYOMD MEG A HASZNÁL GOMBOT A BEKAPCSOLÁSHOZ
+}
+
+HZMOVE
+{
+NYOMD MEG AZ ELÕRRE GOMBOT AZ ELÕRRE HALADÁSHOZ
+NYOMD MEG A HÁTRA GOMBOT A HÁTRA HALADÁSHOZ
+NYOMD MEG A JOBBRA GOMBOT A JOBBRA HALADÁSHOZ
+NYOMD MEG A BALRA GOMBOT A BALRA HALADÁSHOZ
+}
+
+HZJUMP
+{
+NYOMD MEG AZ ELÕRRE GOMBOT A FUTÁSHOZ
+NYOMD MEG AZ UGRÁS GOMBOT AZ UGRÁSHOZ
+}
+
+HZDUCK
+{
+NYOMD MEG AZ ELÕRRE GOMBOT A FUTÁSHOZ
+NYOMD MEG A GUGOLÁS GOMBOT A LEGUGOLÁSHOZ
+NYOMD MEG AZ ELÕRRE + GUGOLÁS GOMBOT EGYÜTT
+HOGY LOPAKODÓ MÓDBA VÁLTS
+}
+
+HZCOMBO
+{
+NYOMD MEG AZ ELÕRRE GOMBOT A FUTÁSHOZ
+NYOMD MEG AZ UGRÁS GOMBOT AZ UGRÁSHOZ
+NYOMD MEG A GUGOLÁS GOMBOT A LEGUGOLÁSHOZ
+NYOMD MEG AZ UGRÁS GOMBOT AZ UGRÁSHOZ
+}
+
+HZDUCKJUMP
+{
+NYOMD MEG AZ ELÕRRE + UGRÁS GOMBOT EGYÜTT,
+AZTÁN A GUGOLÁS GOMBOT
+}
+
+HZLADDER
+{
+NYOMD MEG AZ ELÕRRE GOMBOT A FELFELÉ HALADÁSHOZ
+NYOMD MEG A HÁTRA GOMBOT A LEFELÉ HALADÁSHOZ
+}
+
+HZLJUMP
+{
+AHOGY ELÕRRE HALADSZ,
+TARTS LENYOMVA A GUGOLÁS GOMBOT--
+AZTÁN NYOMD MEG AZ UGRÁS GOMBOT
+}
+
+$position -1 0.3
+HZLMOD
+{
+GYÕZÖDJ MEG A TÁVOLUGRÓMODUL MEGLÉTÉRÕL
+MIELÕTT A KÖVETKEZÕ AKADÁLYT MEGKEZDENÉD
+}
+
+$position -1 0.65
+HZMEDKIT
+{
+HASZNÁLD AZ ORVOSI KÉSZLETET A HASZNÁL GOMBBAL
+TARTS LENYOMVA AMÍG AZ ÉLET NEM LESZ 100
+VAGY A KÉSZLET KI NEM MERÜL
+}
+
+HZMOMENT
+{
+KEREKEK ÉS TÁRCSÁK AKTIVÁLÁSÁHOZ 
+TARTSD LENYOMVA A HASZNÁL GOMBOT
+TARTSD LENYOMVA AMÍG A HÍD NEM LESZ JÓ POZÍCIÓBA
+}
+
+HZPUSH
+{
+NYOMD MEG AZ ELÕRRE GOMBOT A DOBOZIG
+TARTSD LENYOMVA AMÍG A DOBOZT TOLNI AKAROD
+}
+
+HZPULL
+{
+NYOMD MEG A HASZNÁL + HÁTRA GOMBOT EGYÜTT
+A DOBOZ HÁTRAHÚZÁSÁHOZ
+}
+
+HZCROWBAR
+{
+MOZOGJ A FESZÍTÕVASHOZ
+HASZNÁLD AZ ELSÕDLEGES TÛZET A TÖRÉSHEZ
+}
+ 
+HZLITEON
+{
+NYOMD MEG A ZSEBLÁMPA GOMBOT 
+A ZSEBLÁMPA BEKAPCSOLÁSHOZ
+}
+
+HZLITEOFF
+{
+NYOMD MEG MEGINT A ZSEBLÁMPA GOMBOT 
+A ZSEBLÁMPA KIKAPCSOLÁSHOZ
+}
+
+HZWEAPON
+{
+MOZOGJ A FEGYVERHEZ HOGY FELVEHESD
+}
+
+HZFIREWEAP
+{
+NYOMD LE AZ ELSÕDLEGES TÛZ GOMBOT A TÜZELÉSHEZ
+NYOMDB LE A MÁSODLAGOS TÛZ GOMBOT A MÁSODLAGOS TÛZHÖZ
+NYOMDB LE AZ ÚJRATÖLT GOMBOT AZ ÚJRATÖLTÉSHEZ
+}
+
+HZARMOR
+{
+NYOMD ÉS TESD LENYOMVA A HASZNÁL GOMBOT
+TARTSD LENYOMVA AMIG A RUHA FEL NEM TÖLTÕDIK
+VAGY AMIG A TÖLTÕ KI NEM MERÜL
+}
+
+HZSWIM
+{
+NYOMD AZ ELÕRRE GOMBOT
+CÉLOZZ AZ EGÉRREL AZ ÚSZÁS ALATT
+TALÁLJ LEVEGÕT HA ELKEZD ESNI AZ ÉLETED
+VÁRJ A LEVEGÕN ADDIG AMIG AZ ÉLETED 
+VISSZA NEM TÉR A KEZDETI SZINTRE
+}
+
+HZDAMAGE
+{
+KÜLÖNBÖZÕ SÉRÜLÉSEK JELENHETNEK MEG A
+KIJELZÕDÖN.
+A SÉRÜLÉS IRÁNY PIROS NYILLAL JELEZVE 
+VILLOGNI FOG A KÉPERNYÕD KÖZEPÉN
+}
+
+HZHAZARD
+{
+SUGÁRZÁS VESZÉLY 
+AKTIVÁLD A GEIGER SZÁMLÁLÓT
+}
+
+HZSCIENTIST
+{
+MENJ A TUDÓSHOZ
+NYOMD MEG A HASZBÁL GOMBOT ÉS ÉLETET AD 
+}
+
+HZBARNEY
+{
+MENJ A BIZTONSÁGI ÕRHÖZ
+NYOMDJ MEG A HASZBÁL GOMBOT HOGY SEGÍTSÉGET KÉRJ
+MENJ VELE AZ AJTÓHOZ
+AKTIVÁLNI FOGJA A KAPCSOLÓKAT
+}
+
+HZTRAIN
+{
+NYOMD MEG A HASZNÁL GOMBOT A VONAT KEZELÕ ELÉRÉSHEZ
+NYOMD MEG AZ ELÕRRE GOMBOT A GYORSÍTÁSHOZ
+NYOMD MEG A HÁTRA GOMBOT A LASSÍTÁSHOZ
+NYOMD MEG A HASZNÁL GOMBOT MEGINT A VONAT ELHAGYÁSHOZ
+}
+
+HZDONE
+{
+GRATULÁLUNK!
+ELVÉGEZTED A FEKETE SZURDOK 
+AKADÁLYFUTÁST.
+GYERE VISSZA BÁRMIKOR.
+}
+
+// SM INTRO CREDITS
+$position -0.05 0.05
+$effect 17
+$color 140 140 140
+$color2 0 0 0
+$fadein 1.5
+$holdtime 5
+$fadeout 0.5
+
+$chained SM_INTRO_CR_02
+SM_INTRO_CR_01
+{
+Half-Life: Subtitles Mod by:
+Mark "Fograin92" Apostel
+Vit_amiN (You know this guy)
+}
+
+$chained SM_INTRO_CR_03
+SM_INTRO_CR_02
+{
+
+}
+
+SM_INTRO_CR_03
+{
+Special thanks to:
+Half-Life: Paranoia mod team (base subtitles code)
+combineoverwiki.net (Quotes from HL games)
+half-life.wikia.com (Nihilanth quotes)
+}
+
+// SM OUTRO CREDITS
+$position -1 -1
+$effect 16
+$color 140 140 140
+$color2 0 0 0
+$fadein 0.5
+$fadeout 0.5
+$holdtime 4
+
+$chained SM_OUTRO_CR_02
+SM_OUTRO_CR_01
+{
+Half-Life: Subtitles Mod
+Version: 3.0
+}
+
+SM_OUTRO_CR_02
+{
+Subtitles MOD team:
+Mark "Fograin92" Apostel - Leader / Junior Coder / ENG Subtitles
+Vit_amiN (You know this guy) - Leader / Master Coder / TONS OF FIXES
+
+Special thanks to:
+Half-Life: Paranoia mod team - Base subtitle code
+combineoverwiki.net - A lot of quotes from HL games
+half-life.wikia.com - Nihilanth quotes 
+}

@@ -1,0 +1,5901 @@
+//====================================================
+// Half-Life Subtitles MOD 3.0 - Localization file
+//====================================================
+// Parameters info:
+// $effect X 			<= Used by mod to assign messages
+// $color2 R G B 		<= Text highlight color
+// $color R G B 		<= Text final color
+// $fadein SECONDS		<= Time it takes to fade each character
+// $fxtime SECONDS		<= This is the amount of time the highlight lags behind the leading edge of the text
+// $fadeout SECONDS		<= How long it takes to fade out the message after holding
+//====================================================
+// Additional info:
+// Font = Arial narrow 16
+//===========================================================
+// Language: Hungarian
+// Writen by: SoulStorm™
+// Edits by: self
+//===========================================================
+
+// Global subtitles settings
+$effect 18
+$position 0 0
+$fadein 0.01
+$fxtime 0.25
+$fadeout 0.5
+
+//==============================================================================================================
+// Train ride
+//==============================================================================================================
+$color  255 255 255
+$color2 128 128 128
+
+$holdtime 11.5
+!TR_GMORN
+{
+Jó reggelt, és köszöntjük Fekete Szurdok Utazási Rendszeren. Ez az automatizált vasút a Fekete Szurdok Kutató Intézet személyzete biztonságát és kényelmét szolgálja.
+}
+
+$holdtime 20.5
+!TR_TIME
+{
+Az idõ 8:47, délelõtt. Jelenlegi felszíni hõmérséklet 93 fok, ami elõrre láthatóan 105-ön tetõzik. Fekete Szurdok Intézet kényelmes 68 fokon van tartva minden idõben.
+}
+
+$holdtime 24
+$chained !TR_DEST_PT2
+!TR_DEST
+{
+Ez a vonat a 3-as szintû Hálótermektõl a C szektor Teszt Laborok és Vezérlõ Épületek felé tart. Ha az ön szándékozott iránya egy biztonsági terület a C szektor alatt, vissza kell térnie a 9-es szintû központi tranzit állomásra, és át kell szállnia egy biztonsági vonatra.
+}
+
+$holdtime 14
+!TR_DEST_PT2
+{
+Ha még nem azonosította magát a retina ellenörzõ rendszeren, jelentkezzen a Fekete Szurdok személyzeténél, mielõtt tovább haladna az utazási rendszer biztonsági ágán.
+}
+
+$holdtime 11.8
+!TR_NOEAT
+{
+Mivel a Fekete Szurdok Intézetben gyakran kezelnek magas méregtartalmú anyagokat; Tilos a dohányzás, evés vagy az ivás a Fekete Szurdok Utazási Rendszeren.
+}
+
+$holdtime 18.5
+$chained !TR_EMERG_PT2
+!TR_EMERG
+{
+Kérjük, mindig tartsa végtagjait a vonaton belül. Ne próbálja meg az ajtókat kinyitni, amíg a vonat az állomás peronjánál meg nem állt. Vészhelyzet esetén, minden utas maradjon ülve és várja meg a további utasításokat.
+}
+
+$holdtime 15.4
+!TR_EMERG_PT2
+{
+Ha szükséges a vonat elhagyása, a mozgásképtelen személyzet kerüljön menekítésre elõször. Kérjük, maradjon távol az elektromosan töltött sínektõl és haladjon a sürgõsségi állomás felé a segítség megérkezéséig.
+}
+
+$holdtime 19
+$chained !TR_TOURN_PT2
+!TR_TOURN
+{
+Emlékeztetõül, a Fekete Szurdok Akadályfutás verseny ma este 1900-kor kezdõdik. A biztonsági személyzet középdöntõsei külön biztonságos hozzáférésû adásban lesznek bejelentve.
+}
+
+$holdtime 5.5
+!TR_TOURN_PT2
+{
+Ne feledd, több élet függhet az állóképességedtõl!
+}
+
+$holdtime 6
+$chained !TR_JOBS_PT2
+!TR_JOBS
+{
+Van barátod vagy hozzátartozód, aki Fekete Szurdok csapatának értékes kiegészítése lehet?
+}
+
+$holdtime 13
+$chained !TR_JOBS_PT3
+!TR_JOBS_PT2
+{
+Nyílt napok elérhetõek a következõ területeken; Anyagkezelõ, és Vámkezelõ. További információért lépj kapcsolatba a Fekete Szurdok személyzetével.
+}
+
+$holdtime 13.5
+$chained !TR_JOBS_PT4
+!TR_JOBS_PT3
+{
+Van hozzátartozód, aki a következõ területeken tapasztalattal rendelkezik; Elméleti fizika, Biotechnológia, vagy más magas-technológiai tudományok, kérjük lépj kapcsolatba a humánerõforrás osztállyal.
+}
+
+$holdtime 5
+!TR_JOBS_PT4
+{
+A Fekete Szurdok Kutató Intézmény esélyegyenlõségért küzdõ munkáltató.
+}
+
+$holdtime 13
+$chained !TR_HAZ_PT2
+!TR_HAZ
+{
+Emlékeztetõ a Fekete Szurdok személyzetének; A rendszeres sugárzás elleni és vegyvédelmi szûrés a folyamatos foglalkoztatás elengedhetetlen követelménye a Fekete Szurdok Kutató Intézetben.
+}
+
+$holdtime 7
+$chained !TR_HAZ_PT3
+!TR_HAZ_PT2
+{
+A beütemezett vizeletvizsgálat vagy sugárzás elleni szûrés hiánya azonnali megszüntetést vonhat maga után.
+}
+
+$holdtime 11
+$chained !TR_HAZ_PT4
+!TR_HAZ_PT3
+{
+Ha mukája során sugárzásnak volt kitéve vagy más káros vegyianyaggal érintkezett, lépjen kapcsolatba azonnal a sugárzás-biztonsági tisztjével !
+}
+
+$holdtime 5.5
+!TR_HAZ_PT4
+{
+Dolgozz biztonságosan, dolgozz okosan. A jövõd múlhat rajta !
+}
+
+$holdtime 5.5
+!TR_ARRIVE
+{
+Megérkeztünk a: [C szektor] Teszt Laborok és Vezérlõ Épületek-hez.
+}
+
+$holdtime 7.5
+$chained !TR_EXIT_PT2
+!TR_EXIT
+{
+Kérjük lépjen hátra az autamata ajtótól, és várja meg a személyazonosságát ellenõrzõ biztonsági tisztet.
+}
+
+$holdtime 5.5
+$chained !TR_EXIT_PT3
+!TR_EXIT_PT2
+{
+Mielõtt elhagyná a vonatot, nézze át környezetét a személyes tárgyai után.
+}
+
+$holdtime 4
+!TR_EXIT_PT3
+{
+Köszönjük, legyen biztonságos és termelékeny a napja!
+}
+
+//============================================================
+// Gina Cross holo (Hazard Course)
+//============================================================
+
+$color  255 222 152
+$color2 128 111  76
+
+$holdtime 7
+$chained !HOLO_INTRO_PT2
+!HOLO_INTRO
+{
+Heló. Köszöntjük a Fekete Szurdok Akadályfutáson. Itt oktatást kap a Veszélyes Környezet Ruha használatához.
+}
+
+$holdtime 8
+!HOLO_INTRO_PT2
+{
+A holografikus aszisztense vagyok. Kezdjük azzal, hogy belebújik a ruhájába ! Láthatja, maga elõtt van kiakasztva.
+}
+
+$holdtime 5.5
+!HOLO_BUTTON
+{
+Ha ilyen gombot lát, nyomja meg. Megjelenek, hogy a megfelelõ mozdulatokat bemutassam.
+}
+
+$holdtime 15
+!HOLO_MOVE
+{
+Mozgás közben a V.K.R ruha érezhetõen zavaró lehet elsõre. Vegyen egy kis idõt, hogy megbarátkozzon az alap mozgással és hamarosan olyan lesz, mint a második bõre ! A sarkon várom !
+}
+
+$holdtime 4.5
+$chained !HOLO_JUMP_PT2
+!HOLO_JUMP
+{
+Az elsõ gyakorlat az Akadályfutáson, az alap ugrás !
+}
+
+$holdtime 5.5
+$chained !HOLO_JUMP_PT3
+!HOLO_JUMP_PT2
+{
+Át kell másznia ezeken a csöveken, csak futás és ugrás funkciókkal.
+}
+
+$holdtime 5.5
+!HOLO_JUMP_PT3
+{
+Segít ha futva indul neki. Figyeljen, és próbálja meg maga is !
+}
+
+$holdtime 10
+!HOLO_DUCK
+{
+Most le kell gugolnia pár akadály elõtt. A gugolás automatikusan lopakodó módba váltja a ruhát, a mozgási hangok csillapítására.
+}
+
+$holdtime 11
+!HOLO_JDUCK
+{
+Összevonjunk a tapasztaltakat. Most UGRANIA, GUGOLNIA és megint UGRANIA kell ! Ez felkészíti a következõ teremhez, ahol mindkét mozdulatot egyszerre kell csinálnia.
+}
+
+$holdtime 4.5
+$chained !HOLO_PIPEDUCK_PT2
+!HOLO_PIPEDUCK
+{
+Hogy átjusson a csöveken, jelezzen a ruhájának a gugoló-ugrás végrehajtására.
+}
+
+$holdtime 13
+!HOLO_PIPEDUCK_PT2
+{
+Álljon a csõ szája elé és mozogjon elõrre. Ugorjon fel. Amíg a levegõben van váltson át gugolásra. Elsõre nehéz, de gyakran rá lesz utalva !
+}
+
+$holdtime 1
+!HOLO_NICEJOB
+{
+Szép munka !
+}
+
+$holdtime 7.8
+!HOLO_LADDER
+{
+Sétáljon a létrához, nézzen fel és mozogjon elõrre. Ha lefelé akar menni, csak mozogjon hátra.
+}
+
+$holdtime 13
+!HOLO_3JUMPS
+{
+A következõ 3 ugrás fokozatosan nehezebb lesz, de átvihetõek. Ne lepõdjön meg, ha egy párszor elvéti a harmadikat. Ha egy nekifutásra mindhárom sikerül, nagyon jól halad !
+}
+
+$holdtime 2
+!HOLO_KEEPTRYING
+{
+Próbálkozzon ! Sikerülni fog !
+}
+
+$holdtime 2
+!HOLO_RUNSTART
+{
+Segít, ha nekifut !
+}
+
+$holdtime 3.7
+!HOLO_FALLSHORT
+{
+Ha kicsi a megugrott táv, akkor túl hamar kezd ugrani.
+}
+
+$holdtime 4.5
+!HOLO_GREATWORK
+{
+Szép munka ! Most már csak egy fajta ugrást kell elsajátítania.
+}
+
+$holdtime 4
+$chained !HOLO_LONGJUMP_PT2
+!HOLO_LONGJUMP
+{
+Távolugráshoz szükséges a feltöltõ modulja, itt találja.
+}
+
+$holdtime 11
+!HOLO_LONGJUMP_PT2
+{
+Távolugrás aktiválásához, le kell gugolnia, elõrre mozognia, majd ugornia. Ha felért az állásra nyomja meg a gombot, és
+bemutatom a mozdulatsort.
+}
+
+$holdtime 6
+!HOLO_RETRY
+{
+Próbálja meg megint. Ne felejtsen el elõre mozogni, ugorni és amíg a levegõben van, gugolni.
+}
+
+$holdtime 5.5
+!HOLO_STARTLIFT
+{
+Kérem indítsa el a liftet a felfelé gomb megnyomásával. Nézzen rá, és nyomja a [HASZNÁL] gombot.
+}
+
+$holdtime 7.5
+$chained !HOLO_JUMPDOWN_PT2
+!HOLO_JUMPDOWN
+{
+Ha odafenn van, csak egy útt vezet lefelé. Tájolja be a célkeresztet a padlón, és próbálja meg a legjobban eltalálni !
+}
+
+$holdtime 5.2
+!HOLO_JUMPDOWN_PT2
+{
+Ha az eséstõl sérülést szenvedett, orvosi ellátást biztosítunk a következõ állomáson.
+}
+
+$holdtime 8.6
+$chained !HOLO_MEDKIT_PT2
+!HOLO_MEDKIT
+{
+Hasonló orvosi készleteket Fekete Szurdok egész területén találhat. Az élete helyreállításához, sétáljon a készlet elé és nyomja a [HASZNÁL] gombot.
+}
+
+$holdtime 10
+!HOLO_MEDKIT_PT2
+{
+Az élete fokozatosan helyreáll mindaddig, amíg nem töltõdik fel teljesen, vagy a készlet ki nem merül. Ha a fény kialszik, a készlet kimerült.
+}
+
+$holdtime 4.5
+!HOLO_SPINBRIDGE
+{
+Hogy a híd elforduljon, menjel fel és tekerje el a kereket a [HASZNÁL] gombbal.
+}
+
+$holdtime 1.1
+!HOLO_FANTASTIC
+{
+Fantasztikus !
+}
+
+$holdtime 7.6
+!HOLO_JUMPGAP
+{
+Néha többre van szüksége a ruhánál hogy kijusson szorult helyzetekbõl. Gyûrje le a hátrányt saját magától.
+}
+
+$holdtime 10
+!HOLO_PUSHBOX
+{
+Csak annyit kell tennie, hogy letolja a dobozt az aknába. Tolni könnyû ! Mozogjon a doboz felé és a doboz abban az irányban fog elmozdulni.
+}
+
+$holdtime 7.8
+$chained !HOLO_PULLBOX_PT2
+!HOLO_PULLBOX
+{
+Ha nem tudja eltolni az akadályt az útjából, próbálja meg elhúzni. Az elhúzáshoz a közelében nyomja meg a [HASZNÁL] gombot.
+}
+
+$holdtime 7.2
+!HOLO_PULLBOX_PT2
+{
+Keressen fogást a dobozon nyomvatartva a [HASZNÁL] gombot és lassan mozogjon hátra. A doboz elindul magával együtt.
+}
+
+$holdtime 9.8
+!HOLO_BREAKBOX
+{
+Végül, ha semmi nem vezetne eredményre, össze is törhet tárgyakat maga elõtt. Gyõzõdjön meg róla, hogy magánál van a feszítõvas. Egyszerûen törje át magát a törmeléken.
+}
+
+$holdtime 3
+!HOLO_FLASHLIGHT
+{
+Aktiválja a szeblámpát a következõ területen.
+}
+
+$holdtime 5.3
+!HOLO_LIGHTOFF
+{
+Nagyszerû ! Ne feledje, a zseblámpa lemerülhet. Kapcsolja ki, ha nincs rá szüksége !
+}
+
+$holdtime 12.2
+!HOLO_TARGET
+{
+Üdvözöljük a Fekete Szurdok Céllövõ gyakorlaton, itt kiképzést kap: Fegyver tüzelés, Újratöltés és tartozék gránátvetõ használatra. Kérem vegyen magához egy fegyvert és haladjon a tüzelõálláshoz.
+}
+
+$holdtime 8
+$chained !HOLO_HITALL_PT2
+!HOLO_HITALL
+{
+Sorrendben minden célpontot el kell találnia a továbbjutáshoz. Ha elsõre elvéti ne aggódjon, újból fel fog bukkani.
+}
+
+$holdtime 6
+!HOLO_HITALL_PT2
+{
+Próbáljon újratölteni inkább a szünetek közt, minthogy kritikus helyzetben fogyjon ki a lõszere.
+}
+
+$holdtime 8
+!HOLO_GRENADE
+{
+A gránátvetõ haasználatához használja a [Másodlagos Tûz] gombot. Néhány célpont betörik, amikor a gránát eltalálja.
+}
+
+$holdtime 5
+!HOLO_COMMENCING
+{
+Folyamat kezdõdik 5..4..3..2..1
+}
+
+$holdtime 2
+!HOLO_TRYAGAIN
+{
+Nincs sérülés. Próbálja újra !
+}
+
+$holdtime 6
+!HOLO_CONGRATS
+{
+Gratulálunk ! Sikeresen elvégezte a Fekete Szurdok Céllövõ gyakorlatot. Folytassa útját a következõ teremig !
+}
+
+$holdtime 15.5
+!HOLO_DROWN
+{
+A V.K.R ruhája képes nyomonkövetni a vér-oxigén szintjét. Figyelmezteti, ha levegõ utánpótlásra van szüksége. A tanfolyamon átúszva esni fog az oxigén szintje. A középponton lehetõsége lesz a felszínre jönni levegõért.
+}
+
+$holdtime 11
+!HOLO_BREATH
+{
+Jöjjön fel és vegyen egy lélegzetet ! Láthatja, a vér-oxigén kijelzõ a kivetítõjén visszatér a normális értékre. Már biztonságban tovább úszhat a pálya végéig.
+}
+
+$holdtime 9.3
+$chained !HOLO_CHARGER_PT2
+!HOLO_CHARGER
+{
+Ez a Veszélyes Környezeti Ruha energiatöltõje. Ha kifogy az energiából, lépjen közelebb és nyomja meg a [HASZNÁL] gombot.
+}
+
+$holdtime 8.3
+!HOLO_CHARGER_PT2
+{
+A ruhája fokozatosan visszatölt addig, amíg a töltõ ki nem merül. Egyedi elemek is segíthetnek a ruha feltöltésében.
+}
+
+$holdtime 10.5
+!HOLO_STEAM
+{
+Ha tûzön vagy gõzön halad át egy "égési sérülés" ikon felvillan. Helyzetjelzõk fogják mutatni a behatás irányát.
+}
+
+$holdtime 8.5
+!HOLO_RADIATION
+{
+Sugárzás közelében aktiválódik a Geiger számláló és a "sugárzás" ikon. Vegyianyagoknál szintén felvillan egy ikon.
+}
+
+$holdtime 2
+!HOLO_INJURY
+{
+Kérem haladjon a következõ terembe.
+}
+
+$holdtime 5.5
+$chained !HOLO_LEADGUARD_PT2
+!HOLO_LEADGUARD
+{
+Vezesse a biztonsági õrt a következõ szobába, visszaengedi majd az Utazó Rendszerhez.
+}
+
+$holdtime 7.2
+!HOLO_LEADGUARD_PT2
+{
+Menjen közel az õrhöz és nyomja meg a [HASZNÁL] gombot. Követni fogja mindaddig, amíg ezt nem teszi meg újra.
+}
+
+$holdtime 13
+!HOLO_USETRAIN
+{
+Nyomja meg a [HASZNÁL] gombot a vonat irányítókonzolán. Nyomja meg az [ELÕRRE] és [HÁTRA] gombokat a gyorsításhoz és a lassításhoz. A kilépéshez nyomja meg megint a [HASZNÁL] gombot.
+}
+
+$holdtime 9
+!HOLO_DONE
+{
+Gratulálunk a Fekete Szurdok Akadályfutáson elért eredményéért ! Jogosítványt szerzett a VKR mark 4 védelmi rendszer teljeskörû használatára !
+}
+
+
+//=============================================================================================================================================
+// Barney (generic)
+//=============================================================================================================================================
+
+$color  126 192 255
+$color2  63  96 128
+
+$holdtime 1
+!BA_OK0
+{
+Oké, fedezlek.
+}
+
+$holdtime 3
+!BA_OK1
+{
+Oke, talán tovább élünk, ha összedolgozunk.
+}
+
+$holdtime 2
+!BA_OK2
+{
+Tünjünk innen a pokolba.
+}
+
+$holdtime 3
+!BA_OK3
+{
+Csapatban jobbak az esélyeink.
+}
+
+$holdtime 3
+!BA_OK4
+{
+Oké, Miért is ne ? Úgy sem akartam egyedül meghalni.
+}
+
+$holdtime 1
+!BA_OK5
+{
+Ja, gyerünk.
+}
+
+$holdtime 2
+!BA_OK6
+{
+Vettem, fussunk mint az állat.
+}
+
+$holdtime 3
+!BA_WAIT0
+{
+Oké, Itt várok és segítek annak aki erre téved.
+}
+
+$holdtime 2
+!BA_WAIT1
+{
+Nélkülem mész tovább.
+}
+
+$holdtime 2
+!BA_WAIT2
+{
+Oké, Biztosítom a területet.
+}
+
+$holdtime 2
+!BA_WAIT3
+{
+Ja, Itt várok.
+}
+
+$holdtime 2
+!BA_WAIT4
+{
+Viszlát.
+}
+
+$holdtime 2
+!BA_WAIT5
+{
+Itt állok és védekezem.
+}
+
+$holdtime 3
+!BA_POK0
+{
+Sajnálom, uram, A posztomnál kell maradnom.
+}
+
+$holdtime 3
+!BA_POK1
+{
+Sajnálom, Szolgálatban vagyok Freeman úr.
+}
+
+$holdtime 2
+!BA_POK2
+{
+Késõbb nem ér rá ?
+}
+
+$holdtime 3
+!BA_POK3
+{
+Hé ! Keress meg késõbb, Fizetek egy kört.
+}
+
+$holdtime 1
+!BA_HELLO0
+{
+Helló.
+}
+
+$holdtime 1
+!BA_HELLO1
+{
+Hé, Freeman úr.
+}
+
+$holdtime 1
+!BA_HELLO2
+{
+Helló, uram.
+}
+
+$holdtime 1
+!BA_HELLO3
+{
+Hé, Gordon.
+}
+
+$holdtime 1
+!BA_HELLO4
+{
+Uram...
+}
+
+$holdtime 1
+!BA_HELLO5
+{
+Hé, Gordon.
+}
+
+$holdtime 1
+!BA_HELLO6
+{
+Uram...
+}
+
+$holdtime 2
+!BA_HEAR0
+{
+Hallottam valamit.
+}
+
+$holdtime 2
+!BA_HEAR1
+{
+Ez nem hangzik valami jól.
+}
+
+$holdtime 2
+!BA_HEAR2
+{
+Ember, az rosszul hangzik.
+}
+
+$holdtime 3
+!BA_SMELL0
+{
+Ugh, valami megdöglött itt !
+}
+
+$holdtime 3
+!BA_SMELL1
+{
+Mi ez a szag ?
+}
+
+$holdtime 2
+!BA_SMELL2
+{
+Ugh, mi ez a bûz !?
+}
+
+$holdtime 2
+!BA_CUREA
+{
+Fogadok, hogy fáj egy kicsit.
+}
+
+$holdtime 3
+!BA_CUREB
+{
+Uram, a sérülése lassan kezelésre szorul.
+}
+
+$holdtime 4
+!BA_CUREC
+{
+Nos... uram, Utálom ezt mondani, de rossz bõrben van.
+}
+
+$holdtime 2
+!BA_SCARED0
+{
+Hé, hagyja abba !
+}
+
+$holdtime 3
+!BA_SCARED1
+{
+Megõrült !? Hagyja békén !
+}
+
+$holdtime 3
+!BA_WOUND0
+{
+Kaptam egy párat, de túlélem.
+}
+
+$holdtime 3
+!BA_WOUND1
+{
+Nos... Elég keményen eltaláltak.
+}
+
+$holdtime 4
+!BA_MORTAL0
+{
+Sajnálom... uram, ebbõl nem tudok többet elviselni.
+}
+
+$holdtime 2
+!BA_SHOT0
+{
+Vigyázzon azzal az izével !
+}
+
+$holdtime 2
+!BA_SHOT1
+{
+Hé, mi rosszat tettem én magával ?
+}
+
+$holdtime 2
+!BA_SHOT2
+{
+Vigyázzon azzal az izével !
+}
+
+$holdtime 2
+!BA_SHOT3
+{
+Mit csinálni !?
+}
+
+$holdtime 3
+!BA_SHOT4
+{
+Olyan barátok mint te, ember !
+}
+
+$holdtime 2
+!BA_SHOT5
+{
+Ne rázz le engem, Gordon.
+}
+
+$holdtime 2
+!BA_MAD0
+{
+Hé, lépj ki haver !
+}
+
+$holdtime 2
+!BA_MAD1
+{
+Reméltem, hogy soha nem jutunk idáig...
+}
+
+$holdtime 3
+!BA_MAD2
+{
+Hé, Azt fogod kívánni, bárcsak ezt ne csináltam volna.
+}
+
+$holdtime 3
+!BA_MAD3
+{
+Ennyit tudtam bekapni... egy kicsivel se többet !
+}
+
+$holdtime 2
+!BA_MAD4
+{
+Végállomás !
+}
+
+$holdtime 2
+!BA_MAD5
+{
+Ne kényszeríts rá.
+}
+
+$holdtime 2
+!BA_MAD6
+{
+Mi legyen a sírodva írva ?
+}
+
+$holdtime 1
+!BA_STARE0
+{
+Yep.
+}
+
+$holdtime 1
+!BA_STARE1
+{
+Igen, uram.
+}
+
+$holdtime 1
+!BA_STARE2
+{
+Helló, uram.
+}
+
+$holdtime 1
+!BA_STARE3
+{
+Uram.
+}
+
+$holdtime 3
+!BA_ATTACK0
+{
+Tüzet nyiss, Gordon !
+}
+
+$holdtime 3
+!BA_ATTACK1
+{
+TÛZET NYISS !
+}
+
+$holdtime 1
+!BA_ATTACK2
+{
+Vissza !
+}
+
+$holdtime 2
+!BA_ATTACK3
+{
+Mi az ördög ez ?
+}
+
+$holdtime 2
+!BA_ATTACK4
+{
+Pusztulj, vérszívó !
+}
+
+$holdtime 2
+!BA_ATTACK5
+{
+Célozz a fejére, már ha van neki.
+}
+
+$holdtime 1
+!BA_KILL0
+{
+Egy megvan !
+}
+
+$holdtime 2
+!BA_KILL1
+{
+Hehe, mégegy leterítve !
+}
+
+$holdtime 3
+!BA_KILL2
+{
+Egy rémmel kevesebb a világon.
+}
+
+$holdtime 2
+!BA_KILL3
+{
+Ember ! Láttad ezt a lövést ?
+}
+
+$holdtime 2
+!BA_KILL4
+{
+Wao... Közel volt.
+}
+
+$holdtime 3
+!BA_KILL5
+{
+Hé, Jól mutat majd a trófeatermemben.
+}
+
+$holdtime 1
+!BA_KILL6
+{
+Pakolj fel !
+}
+
+$holdtime 2
+!BA_STOP0
+{
+Tovább nem mehetek.
+}
+
+$holdtime 4
+!BA_STOP1
+{
+Itt maradok és figyelek mindenkire, akinek segítség kell.
+}
+
+$holdtime 2
+!BA_IDLE0
+{
+Mi a fene ez ?
+}
+
+$holdtime 3
+!BA_IDLE1
+{
+Most elég hidegnek tûnsz.
+}
+
+$holdtime 4
+!BA_IDLE2
+{
+Egyszer kapjam a markomba azt, aki felelõs ezért.
+}
+
+$holdtime 3
+!BA_IDLE3
+{
+Csodálkozom, hogy nem tudtak nagyobb bajt okozni.
+}
+
+$holdtime 3
+!BA_IDLE4
+{
+Elõbb, vagy utóbb megfordul a kocka.
+}
+
+$holdtime 3
+!BA_IDLE5
+{
+Sokkal nagyobb ez a hely, mint gondoltam.
+}
+
+$holdtime 4
+!BA_IDLE6
+{
+Ja, ma az összes célbalövõ gyakorlat megtérül most !
+}
+
+$holdtime 3
+!BA_IDLE7
+{
+Rossz érzésem van...
+}
+
+$holdtime 3
+!BA_IDLE8
+{
+Rajtaütést szimatolok. Jobb, ha óvatosak leszünk.
+}
+
+$holdtime 3
+!BA_IDLE9
+{
+Boldog leszek, ha egy karcolás nélkül túlélem ezt.
+}
+
+$holdtime 4
+!BA_IDLE10
+{
+Nem hiszem, hogy tovább juthatunk. Ez nem néz ki túl jól.
+}
+
+$holdtime 3
+!BA_QUESTION0
+{
+Mit gondolsz, vár minket hûsítõ a legvégén ?
+}
+
+$holdtime 2
+!BA_QUESTION1
+{
+Gondolod, ez a helyes út ?
+}
+
+$holdtime 3
+!BA_QUESTION2
+{
+Nem lehet ennél rosszabb, ugye ?
+}
+
+$holdtime 3
+!BA_QUESTION3
+{
+Fogadok örülsz, hogy csúzlit is tartok magamnál, ugye ?
+}
+
+$holdtime 3
+!BA_QUESTION4
+{
+Volt alami fogalamad róla, hogy ilyen dolgokon dolgoznak ?
+}
+
+$holdtime 2
+!BA_QUESTION5
+{
+Gondolod, hogy ez kivisz minket ?
+}
+
+$holdtime 3
+!BA_QUESTION6
+{
+Van fogalmad róla, mi folyik itt !?
+}
+
+$holdtime 2
+!BA_QUESTION7
+{
+Te nem félsz, mi ?
+}
+
+$holdtime 3
+!BA_QUESTION8
+{
+Még mindig azt hiszed, hogy ez gyakorlat, ugye ?
+}
+
+$holdtime 2
+!BA_QUESTION9
+{
+Szerinted közelebb jutottunk ?
+}
+
+$holdtime 2
+!BA_QUESTION10
+{
+Hé, hallottál valamit ?
+}
+
+$holdtime 3
+!BA_QUESTION11
+{
+Szerinted mennyien vesztek oda ?
+}
+
+$holdtime 3
+!BA_QUESTION12
+{
+Látsz valamit mozogni ?
+}
+
+$holdtime 2
+!BA_QUESTION13
+{
+Arra gondolsz, amire én ?
+}
+
+$holdtime 4
+!BA_QUESTION14
+{
+Látod azt az izét a hiányzó lábával ?
+}
+
+$holdtime 1
+!BA_ANSWER0
+{
+Semiképp.
+}
+
+$holdtime 1
+!BA_ANSWER1
+{
+Meggondolom.
+}
+
+$holdtime 1
+!BA_ANSWER2
+{
+Jól hangzik !
+}
+
+$holdtime 1
+!BA_ANSWER3
+{
+Igen, uram.
+}
+
+$holdtime 1
+!BA_ANSWER4
+{
+Fogadhatsz rá.
+}
+
+$holdtime 1
+!BA_ANSWER5
+{
+Így van.
+}
+
+$holdtime 1
+!BA_ANSWER6
+{
+Yep.
+}
+
+$holdtime 1
+!BA_ANSWER7
+{
+Ne engem kérdezz.
+}
+
+$holdtime 2
+!BA_ANSWER8
+{
+Ne fogadj rá.
+}
+
+$holdtime 2
+!BA_ANSWER9
+{
+Nem veszem be.
+}
+
+$holdtime 2
+!BA_ANSWER10
+{
+Nem úgy látom.
+}
+
+$holdtime 1
+!BA_ANSWER11
+{
+Nem úgy gondolom.
+}
+
+$holdtime 1
+!BA_ANSWER12
+{
+Nehéz megmondani.
+}
+
+$holdtime 1
+!BA_ANSWER13
+{
+Nem tudhatom.
+}
+
+$holdtime 1
+!BA_ANSWER14
+{
+Nem...
+}
+
+$holdtime 1
+!BA_ANSWER15
+{
+Nem, uram !
+}
+
+$holdtime 2
+!BA_ANSWER16
+{
+Nem tudok rájönni...
+}
+
+$holdtime 1
+!BA_ANSWER17
+{
+Lehet.
+}
+
+$holdtime 2
+!BA_ANSWER18
+{
+Nem tudom elmondani.
+}
+
+$holdtime 2
+!BA_ANSWER19
+{
+Csendbe lennél végre !?
+}
+
+$holdtime 2
+!BA_ANSWER20
+{
+Túl sokat beszélsz.
+}
+
+$holdtime 2
+!BA_ANSWER21
+{
+Nem kérdezted ezt már tõlem ?
+}
+
+//=============================================================================================================================================
+// Barney Scripted Subtitles
+//=============================================================================================================================================
+
+$holdtime 2
+!BA_HAZ_OK0
+{
+Persze, követlek.
+}
+
+$holdtime 2
+!BA_HAZ_WAIT0
+{
+Oké, Itt várok.
+}
+
+$holdtime 3.5
+!BA_LATE
+{
+Reggelt, Freeman úr... Úgy látszik késésben van.
+}
+
+$holdtime 4
+!BA_HEADDOWN
+{
+Hé, rossz légzsilip felé tart, Freeman úr. Tudja, hogy itt nem engedhetem át.
+}
+
+$holdtime 8.5
+$chained !BA_DESK_PT2
+!BA_DESK
+{
+Hé, Freeman úr! Van egy csomó üzenetem a számára, de volt egy rendszer összeomlásunk 20 perccel ezelõtt, és még azóta is keresem a fájlaimat. Egy azokból a bizonyos napokból, gondolom...
+}
+
+$holdtime 8.2
+!BA_DESK_PT2
+{
+Van némi problémánk a tesztkamrában is. Azt hiszem, ezzel minden tiszta. Közölték, gondoskodjak róla, hogy egyenesen lefelé tartson, amint felvette a védõruhát.
+}
+
+$holdtime 3
+!BA_BUTTON
+{
+Ugyan már, Gordon ! Bajba akarsz keverni ?
+}
+
+$holdtime 5
+!BA_HEVNO
+{
+Sajnálom, Freeman úr, határozott utasításom van rá, hogy a védõruhája nélkül ne engedjem be.
+}
+
+$holdtime 3
+!BA_HEVYES
+{
+Menjen nyugodtan tovább, uram. Úgy néz ki húzós napja lessz.
+}
+
+$holdtime 8
+!BA_GLAD
+{
+Gordon ! Ember, de örülök hogy látom ! Mi a fenék ezek !? És miért van rajtuk tudós öltözék ?
+}
+
+$holdtime 6
+!BA_BULLSQUID
+{
+Hé, Mi a fenét keres idelent ? Menjen a felszínre ! Azt hallottam csapatokat küldenek a megmentésünkre !
+}
+
+$holdtime 4
+!BA_CLIMB
+{
+A liftek használaton kívûl vannak... de fel tudunk mászni...
+}
+
+$holdtime 5
+!BA_SLEW
+{
+Szóval, ha felértünk a felszínre, a katonaság mindent elintéz értünk.
+}
+
+$holdtime 5
+!BA_SURFACE	
+{
+Ne számíts arra, hogy a lovasság lemerészkedik utánnunk. Irány a felszín !
+}
+
+$holdtime 5
+!BA_TOPSIDE
+{
+Talán úton an a segítség, de én nem fogom õket megvárni. Fel kell jutnunk a felszínre !
+}
+
+$holdtime 4
+!BA_WHISPER
+{
+Csendben ! Ez az izé hall minket !
+}
+
+$holdtime 6
+!BA_TENTACLE
+{
+HÉ ! Ide ! Zabálj ólmot, te földönkívüli polip !
+}
+
+$holdtime 5
+$chained !BA_HUB1A_PT2
+!BA_HUB1A
+{
+Uram, Ha újra be tudja kapcsolni a síneket... az a vonat egyenesen a felszínre visz...
+}
+
+$holdtime 6
+$chained !BA_HUB1A_PT3
+!BA_HUB1A_PT2
+{
+Megpróbálnám magam is, de hosszú az út lefelé a generátor teremig. És ott... 
+}
+
+$holdtime 2.5
+!BA_HUB1A_PT3
+{
+sok minden van útba...
+}
+
+$holdtime 4
+!BA_HUB2A
+{
+Sosem csinálom meg... Jobb ha nélkülem megy...
+}
+
+$holdtime 9.6
+$chained !BA_LAUNCH_PT2
+!BA_LAUNCH
+{
+Freeman, Vártam magára. Egy a tudós cimbijei közül üzent magának. Ezen a régi vasúti rendszeren kéne felfelé tartani valamilyen mûhold hordozó rakétáig.
+}
+
+$holdtime 5.2
+$chained !BA_LAUNCH_PT3
+!BA_LAUNCH_PT2
+{
+Nem tudom hol van pontosan, és az öreg annyira sietett élve kijutni, hogy nem árulta el.
+}
+
+$holdtime 8
+$chained !BA_LAUNCH_PT4
+!BA_LAUNCH_PT3
+{
+A lényeg, a katonaság leállította az indítást, úgyhogy ha megtalálja a rakétát, fel kell jutnia az irányítóterembe, és saját magának fellõni.
+}
+
+$holdtime 6
+!BA_LAUNCH_PT4
+{
+Mondott valamit még egy, a Lambda csapatnak szüksége van mûhold földkörüli pályára állítására, ha helyre akarják hozni ezt a felfordulást.
+}
+
+$holdtime 6
+!BA_ASSN
+{
+Freeman, igaz ? Van egy üzenetem a számára. Semmiképp se...
+}
+
+$holdtime 2
+!BA_TAU1A
+{
+Mi ez az izé ? Valamiféle fegyver ?
+}
+
+$holdtime 2
+!BA_TAU3A
+{
+Ember ! Miért nem használjuk ezt ?
+}
+
+$holdtime 2
+!BA_TAU5A
+{
+Mit jelent az hogy túltölté...
+}
+
+$holdtime 2.8
+$chained !BA_ALIVE_PT2
+!BA_ALIVE
+{
+Hé, nem jó idefent. Minden le van zárva.
+}
+
+$holdtime 5.2
+$chained !BA_ALIVE_PT3
+!BA_ALIVE_PT2
+{
+Az egyetlen kiút, ha találunk egy szkener hozzáféréssel rendelkezõt, aki ki tudja nyitni a fõajtót.
+}
+
+$holdtime 7.5
+!BA_ALIVE_PT3
+{
+Biztos vagyok benne, hogy pár tudós elrejtõzött a laborokban, talán ha mindketten kutakodunk, elõbb megtaláljuk õket, és rá vehetjük õket.
+}
+
+$holdtime 9
+!BA_HELPME
+{
+Segítség... Segítség... Valaki, segítsen... Meghalok idekint... Valaki segítsen...
+}
+
+$holdtime 3
+!BA_SURVEY2A
+{
+Szóval ez az a fickó. Azt hittük soha nem sikerül magának !
+}
+
+$holdtime 2
+!BA_SURVEY4A
+{
+Ja, jobb ha megöli !
+}
+ 
+$holdtime 5
+!BA_SURVEY6A
+{
+Elég tudni hogy nem ürítette ki, nem maradna sok hátra a hazatéréshez...
+}
+ 
+$holdtime 4
+!BA_SURVEY8A
+{
+Ne felejtsen el felszerelni ! Fedezem magát, ammíg a portál megnyitására vár.
+}
+ 
+$holdtime 5
+!BA_PORTSTAY
+{
+Itt maradok lent. Ha látok valamit, ami nem ide tartozik, lõni fogok rá !
+}
+
+//============================================================
+// Scientist (generic)
+//============================================================
+
+$color  224 224 224
+$color2 112 112 112
+
+$holdtime 4
+!SC_OK0
+{
+Az én agyammal és az ön szerszámaival tökéletes csapatot alkotunk !
+}
+
+$holdtime 2
+!SC_OK1
+{
+Örülök, hogy lekötelez egy tudós társat !
+}
+
+$holdtime 2
+!SC_OK2
+{
+Rendben, azt se tudja majd, hogy itt vagyok.
+}
+
+$holdtime 3
+!SC_OK3
+{
+Nagyon remélem, hogy tudja mit csinál.
+}
+
+$holdtime 2
+!SC_OK4
+{
+Mutassa az utat !
+}
+
+$holdtime 1
+!SC_OK5
+{
+Gyerünk !
+}
+
+$holdtime 2
+!SC_OK6
+{
+Igen, gyerünk.
+}
+
+$holdtime 1
+!SC_OK7
+{
+Igen.
+}
+
+$holdtime 1
+!SC_OK8
+{
+Rendben...
+}
+
+$holdtime 3
+!SC_WAIT0
+{
+Ilyen nagy teher voltam ?
+}
+
+$holdtime 2
+!SC_WAIT1
+{
+Lelassítom magát, ugye ?
+}
+
+$holdtime 2
+!SC_WAIT2
+{
+Nem hiszem hogy átgondolja !?
+}
+
+$holdtime 2
+!SC_WAIT3
+{
+Miért hagy itt ?
+}
+
+$holdtime 1
+!SC_WAIT4
+{
+Itt várok.
+}
+
+$holdtime 1
+!SC_WAIT5
+{
+Itt maradok.
+}
+
+$holdtime 1
+!SC_WAIT6
+{
+Várok.
+}
+
+$holdtime 2
+!SC_STOP0
+{
+Ez a legtovább, ameddig mehetek.
+}
+
+$holdtime 2
+!SC_STOP1
+{
+Megtagadom, hogy még egy tapottat menjek.
+}
+
+$holdtime 3
+!SC_STOP2
+{
+Itt kell hagynia Gordon.
+}
+
+$holdtime 3
+!SC_STOP3
+{
+Itt maradok és várom a kollégáimat.
+}
+
+$holdtime 2
+!SC_STARE0
+{
+Iiiigen ?
+}
+
+$holdtime 2
+!SC_STARE1
+{
+Azt gondolja, amit én gondolok ?
+}
+
+$holdtime 4
+!SC_STARE2
+{
+Foggalma sincs róla mi folyik itt, ugye ?
+}
+
+$holdtime 1
+!SC_HELLO0
+{
+Hellóka !
+}
+
+$holdtime 3.5
+!SC_HELLO1
+{
+Freeman ! Ki hitte volna hogy még életben van.
+}
+
+$holdtime 1.5
+!SC_HELLO2
+{
+Egy tudóstárs !
+}
+
+$holdtime 2
+!SC_HELLO3
+{
+Üdvözlet.
+}
+
+$holdtime 2.4
+!SC_HELLO4
+{
+Helló !
+}
+
+$holdtime 3.1
+!SC_HELLO5
+{
+Áh! Jó hogy látom !
+}
+
+$holdtime 4.4
+!SC_HELLO6
+{
+Áh ! Van egy új VKR ruhája ! Az nagyon hasznos lehet.
+}
+
+$holdtime 4.3
+!SC_HELLO7
+{
+Maga a Rendellenes Anyagok laborjából való ? Igen ! Felismertem magát !
+}
+
+$holdtime 3.6
+!SC_HELLO8
+{
+Á ! Freeman ! Látom, maga is ebben a felfordulásban van.
+}
+
+$holdtime 1.1
+!SC_ANSWER0
+{
+Nem vagy benne teljesen biztos...
+}
+
+$holdtime 1.3
+!SC_ANSWER1
+{
+Én... nem vagyok benne biztos.
+}
+
+$holdtime 1
+!SC_ANSWER2
+{
+Talán...
+}
+
+$holdtime 1.3
+!SC_ANSWER3
+{
+Ki mondhatja ?
+}
+
+$holdtime 1.8
+!SC_ANSWER4
+{
+Ez nem meggyõzõ.
+}
+
+$holdtime 1
+!SC_ANSWER5
+{
+Elméletileg.
+}
+
+$holdtime 1.5
+!SC_ANSWER6
+{
+Miért engem kérdez ?
+}
+
+$holdtime 2
+!SC_ANSWER7
+{
+Kérem csillapodjon...
+}
+
+$holdtime 1.2
+!SC_ANSWER8
+{
+Persze !
+}
+
+$holdtime 1
+!SC_ANSWER9
+{
+Teljesen !
+}
+
+$holdtime 1
+!SC_ANSWER10
+{
+Igen !
+}
+
+$holdtime 1
+!SC_ANSWER11
+{
+Úgy hiszem !
+}
+
+$holdtime 1
+!SC_ANSWER12
+{
+Helyes.
+}
+
+$holdtime 1
+!SC_ANSWER13
+{
+Biztos vagyok benne !
+}
+
+$holdtime 1
+!SC_ANSWER14
+{
+Pozitívan !
+}
+
+$holdtime 1
+!SC_ANSWER15
+{
+Nincs ellenvetésem.
+}
+
+$holdtime 1.5
+!SC_ANSWER16
+{
+Iiiigen ?
+}
+
+$holdtime 1
+!SC_ANSWER17
+{
+Persze hogy nem !
+}
+
+$holdtime 1
+!SC_ANSWER18
+{
+Természetesen nem !
+}
+
+$holdtime 1
+!SC_ANSWER19
+{
+Neeem...
+}
+
+$holdtime 2
+!SC_ANSWER20
+{
+Nem úgy gondolom ...
+}
+
+$holdtime 2
+!SC_ANSWER21
+{
+Egyáltalán nincs igaza.
+}
+
+$holdtime 1.3
+!SC_ANSWER22
+{
+Nem veheti komolyan...
+}
+ 
+$holdtime 1.2
+!SC_ANSWER23
+{
+Igazán nem tudom.
+}
+
+$holdtime 1.1
+!SC_ANSWER24
+{
+Ne legyen nevetséges !
+}
+
+$holdtime 1
+!SC_ANSWER25
+{
+Pofa be !
+}
+
+$holdtime 1.8
+!SC_ANSWER26
+{
+Mégcsak nem is tippelek.
+}
+
+$holdtime 1.8
+!SC_ANSWER27
+{
+Elég ebbõl a kérdésbõl...
+}
+
+$holdtime 2
+!SC_ANSWER28
+{
+Nem ezt kérdezte ?
+}
+
+$holdtime 3
+!SC_ANSWER29
+{
+Tudja... Sokszor ismétli önmagát.
+}
+
+$holdtime 3.2
+!SC_QUESTION0
+{
+Látott már hasonlót ?
+}
+
+$holdtime 4
+!SC_QUESTION1
+{
+A jobb féltekém is odaadnám pár óra alvásért...
+}
+
+$holdtime 2
+!SC_QUESTION2
+{
+Arra gondol, amire én gondolok ?
+}
+
+$holdtime 2
+!SC_QUESTION3
+{
+Ki fogunk innen valaha is jutni ?
+}
+
+$holdtime 2
+!SC_QUESTION4
+{
+Biztos benne, hogy ez a helyes út ?
+}
+
+$holdtime 2
+!SC_QUESTION5
+{
+Ettõl nem lehet már rosszabb.
+}
+
+$holdtime 2.8
+!SC_QUESTION6
+{
+Biztos, hogy valaki meg fog menteni minket.
+}
+
+$holdtime 2.6
+!SC_QUESTION7
+{
+Nem találja ezt az egészet lenyûgözõnek ?
+}
+
+$holdtime 3.5
+!SC_QUESTION8
+{
+Nos, azt hiszem ez inkább stimuláló, maga szerint ?
+}
+
+$holdtime 4
+!SC_QUESTION9
+{
+Nagyon valószínû, hogy a szerencsék hamarosan megfordul, egyetért ?
+}
+
+$holdtime 2.2
+!SC_QUESTION10
+{
+Hallott valamit ?
+}
+
+$holdtime 2.5
+!SC_QUESTION11
+{
+Érzi, amit én ?
+}
+
+$holdtime 3
+!SC_QUESTION12
+{
+Kövér jóság, amivé a doktori tesz engem, hmm ?
+}
+
+$holdtime 3
+!SC_QUESTION13
+{
+Nem gondolja, hogy várnunk kellene itt egy kicsit ?
+}
+
+$holdtime 4
+!SC_QUESTION14
+{
+Emlékszik valamire azokból a vészhelyzeti túlélõ utasításokból ?
+}
+
+$holdtime 5
+!SC_QUESTION15
+{
+Ezeknek a rákféléknek egyedi parazita startégiájuk van, nem gondolja ? 
+}
+
+$holdtime 3.5
+!SC_QUESTION16
+{
+Úgy hiszem ez figyelemre méltóvá tesz minket, nem ?
+}
+
+$holdtime 2
+!SC_QUESTION17
+{
+Nem kellene elkapnunk egy példányt ?
+}
+
+$holdtime 5.8
+!SC_QUESTION18
+{
+Azt feltételezi, hogy az összes lény belõlünk akar vacsorázni ?
+}
+
+$holdtime 3.5
+!SC_QUESTION19
+{
+Az a gyanúja, hogy idegen ürügy lehet a hiba mögött ?
+}
+
+$holdtime 3
+!SC_QUESTION20
+{
+Nem kellene fellebeznünk az idegen hatóságoknál ?
+}
+
+$holdtime 5.1
+!SC_QUESTION21
+{
+A katonai tisztogatás csak egy paranoiás pletyka, nem ?
+}
+
+$holdtime 5.3
+!SC_QUESTION22
+{
+Az idegenek nem lehetnek mind ellenségesek... ugye ?
+}
+
+$holdtime 2.5
+!SC_QUESTION23
+{
+Megértette az utolsó bejelentést ?
+}
+
+$holdtime 2
+!SC_QUESTION24
+{
+Ne érez füstszagot ?
+}
+
+$holdtime 4
+!SC_QUESTION25
+{
+Fogalma sincs róla mi folyik itt, igaz ?
+}
+
+$holdtime 3
+!SC_QUESTION26
+{
+Nos, van ötlete mit tegyünk most ?
+}
+
+$holdtime 3
+!SC_IDLE0
+{
+Megjósoltam az egészet, tudja. Az egészet !
+}
+
+$holdtime 3.3
+!SC_IDLE1
+{
+Úgy tûnik a behatároló rendszer nem mûködött...
+}
+
+$holdtime 2.6
+!SC_IDLE2
+{
+Még mindig azt mondja, ez semmi a káosz elmélethez képest.
+}
+
+$holdtime 3
+!SC_IDLE3
+{
+Milyen érdekes, azt nézze csak !
+}
+
+$holdtime 5
+!SC_IDLE4
+{
+Lenyûgözõ ! Sosem feltételeztem hogy ilyen dolgok lehetségesek !
+}
+
+$holdtime 4
+!SC_IDLE5
+{
+Nézzük csak azokat a különös jegyeket.
+}
+
+$holdtime 3
+!SC_IDLE6
+{
+Ki a felelõs ezért a felfordulásért ?
+}
+
+$holdtime 2.5
+!SC_IDLE7
+{
+Nos, ott úszott el a nyugdíjjunk.
+}
+ 
+$holdtime 4
+!SC_IDLE8
+{
+Szeretne egyet megvizsgálni ezekbõl a vérmintákból mikroszkóp alatt ?
+}
+ 
+$holdtime 5
+!SC_IDLE9
+{
+Számítottam rá, hogy ez történik, de az adminisztrátor nem akarta meghallani.
+}
+ 
+$holdtime 4
+!SC_IDLE10
+{
+A hiba ekkora nagyságrendben rendkívül valószínûtlen.
+}
+ 
+$holdtime 5
+!SC_IDLE11
+{
+Nos, a dimenzionális törés feltétlenül továbbít szerves anyagot.
+}
+ 
+$holdtime 4.5
+!SC_IDLE12
+{
+Remélem a Lambda labor srácai irányításuk alá tudják vonni ezt.
+}
+ 
+$holdtime 1.2
+!SC_IDLE13
+{
+Hallok valamit...
+}
+
+$holdtime 4
+!SC_PHELLO0
+{
+Helló Gordon Freeman ! Örülök hogy látom.
+}
+
+$holdtime 1
+!SC_PHELLO1
+{
+Üdv...
+}
+
+$holdtime 2
+!SC_PHELLO2
+{
+Áh ! Örülök,hogy látom !
+}
+
+$holdtime 1.5
+!SC_PHELLO3
+{
+Üdvözlet !
+}
+
+$holdtime 1
+!SC_PHELLO4
+{
+Helló !
+}
+
+$holdtime 1
+!SC_PHELLO5
+{
+Helló !
+}
+
+$holdtime 1
+!SC_PHELLO6
+{
+Freeman...
+}
+
+$holdtime 2.5
+!SC_PIDLE0
+{
+Valaki megint eldugta a szemüvegem...
+}
+
+$holdtime 3.7
+!SC_PIDLE1
+{
+Miért kell mindannyiunknak ezt a ronda nyakkendõt viselni ?
+}
+
+$holdtime 3.7
+!SC_PIDLE2
+{
+Csodálkoznék, ha újra futtathatnám azt a tesztet ?
+}
+
+$holdtime 2.4
+!SC_PIDLE3
+{
+Ez mind elméleti határok között van.
+}
+
+$holdtime 1.7
+!SC_PIDLE4
+{
+Ahogy feltételeztem.
+}
+
+$holdtime 1.4
+!SC_PIDLE5
+{
+Ez fura.
+}
+
+$holdtime 2.5
+!SC_PIDLE6
+{
+Igen... ez mind csekélynek tûnik.
+}
+
+$holdtime 3.5
+!SC_PIDLE7
+{
+Nos, hol hagytam a leállítási folyamat ellenõrzõt ?
+}
+
+$holdtime 3
+!SC_PIDLE8
+{
+Ne felejtsem el jelenteni azt az ingadozást.
+}
+
+$holdtime 3.4
+!SC_PIDLE9
+{
+Tudja, a legtöbb szimulációs eredmény teljesen elfogadható.
+}
+
+$holdtime 3.3
+!SC_PIDLE10
+{
+Remélem azok a behatároló paraméterek még mindig csekélynek tünnek.
+}
+
+$holdtime 3.2
+!SC_PQUEST0
+{
+Képes már mûködésre bírni az italgépet ?
+}
+
+$holdtime 4
+!SC_PQUEST1
+{
+Elküldte ma már az állapot jelentést az adminisztrátornak ?
+}
+
+$holdtime 4
+!SC_PQUEST2
+{
+Megint azokat az alagút-rács számításokat futtatja?
+}
+
+$holdtime 4
+!SC_PQUEST3
+{
+Ez felrázza majd azokat a nagy tömörítõ fiúkat, hmm ?
+}
+
+$holdtime 3.9
+!SC_PQUEST4
+{
+100%-osan biztos benne, hogy a maga teóriája helyes ?
+}
+
+$holdtime 3.3
+!SC_PQUEST5
+{
+Alig várom az analízist, maga ?
+}
+
+$holdtime 3.3
+!SC_PQUEST6
+{
+Nem lenne fantasztikus ha tiszta adatokat kapnánk apróért ?
+}
+
+$holdtime 2.5
+!SC_PQUEST7
+{
+Valami ötlet az új minta eredetérõl ?
+}
+
+$holdtime 3.5
+!SC_PQUEST8
+{
+Ez az analízis tökéletesen fog futni ma, nem gondolja ?
+}
+
+$holdtime 4.5
+!SC_PQUEST9
+{
+Nem aggódik kicsit az exponenciális fokozat forgatókönyvtõl, amit beszéltünk ?
+}
+
+$holdtime 3.5
+!SC_PQUEST10
+{
+Nem gondolja, hogy el kéne halasztanunk egy újabb beállításig ?
+}
+
+$holdtime 3.2
+!SC_PQUEST11
+{
+Nem lesz puhány újra az etikai eset után, ugye ?
+}
+
+$holdtime 4
+!SC_PQUEST12
+{
+Azok az elhelyezõ modulátorok tegnap lettek behangolva, ugye ?
+}
+
+$holdtime 2
+!SC_PQUEST13
+{
+Nem tudja ki ette meg az összes fánkot ?
+}
+
+$holdtime 2
+!SC_PQUEST14
+{
+Nem látta valahol a kávés csészémet ?
+}
+
+$holdtime 2
+!SC_PQUEST15
+{
+Nem éhes még valaki ?
+}
+
+$holdtime 4.5
+!SC_PQUEST16
+{
+Nem kellene újraszámolnunk azokat a rezgés csillapító értékeket ?
+}
+
+$holdtime 3
+!SC_PQUEST17
+{
+Biztosan leellenõrizte az eigen csillapítókat ?
+}
+
+$holdtime 1.5
+!SC_NOGO
+{
+Nem ! Ne menjen arra !
+}
+
+$holdtime 3
+!SC_MONST0
+{
+Nézze csak, még egy fejrák !
+}
+
+$holdtime 3
+!SC_MONST1
+{
+Még egy fontos példány, a tettek mezején !
+}
+
+$holdtime 1
+!SC_HEAR0
+{
+Hallok valamit.
+}
+
+$holdtime 1
+!SC_HEAR1
+{
+Hallotta ezt ?
+}
+
+$holdtime 2
+!SC_HEAR2
+{
+Az a hang ! Mi az ?
+}
+
+$holdtime 4.3
+!SC_SMELL0
+{
+Úgy hiszem valami itt nagyon halszagú.
+}
+
+$holdtime 3
+!SC_SMELL1
+{
+Remélem ez a szag nem magából ered ?
+}
+
+$holdtime 3
+!SC_SMELL2
+{
+Hmm, milyen egyéni szag.
+}
+
+$holdtime 2.5
+!SC_SMELL3
+{
+Mi ez a bûz ?
+}
+
+$holdtime 3.5
+!SC_WOUND0
+{
+Úgy látszik megsebesültem, de tudok tovább haladni.
+}
+
+$holdtime 3.5
+!SC_WOUND1
+{
+Nos.. Úgy látszik komolyan megsebesültem.
+}
+
+$holdtime 2.5
+!SC_MORTAL0
+{
+Nem hiszem, hogy sokáig kitartok.
+}
+
+$holdtime 3.5
+!SC_MORTAL1
+{
+Nos.. Úgy látszik komoly a sérülésem.
+}
+
+$holdtime 2
+!SC_CUREA
+{
+Szörnyen fest !
+}
+
+$holdtime 2
+!SC_CUREB
+{
+Áá, megsérült...
+}
+
+$holdtime 3
+!SC_CUREC
+{
+Úgy tünik azonnali segítségnyújtásra szorul !
+}
+
+$holdtime 3
+!SC_HEAL0
+{
+Hagy gondoskodjak a sebeirõl...
+}
+
+$holdtime 3
+!SC_HEAL1
+{
+Ettõl jobban érzi majd magát.
+}
+
+$holdtime 4
+!SC_HEAL2
+{
+Úgy tünik azonnali segítségnyújtásra szorul ! Próbálja ki ezt !
+}
+
+$holdtime 2
+$chained !SC_HEAL3_PT2
+!SC_HEAL3
+{
+Szörnyen néz ki !
+}
+
+$holdtime 2.5
+!SC_HEAL3_PT2
+{
+Maradjon nyugton ! Ez egy kicsit se fáj.
+}
+
+$holdtime 2
+$chained !SC_HEAL4_PT2
+!SC_HEAL4
+{
+Áá, megsérült...
+}
+
+$holdtime 1
+!SC_HEAL4_PT2
+{
+Próbálja ki ezt !
+}
+
+$holdtime 2
+!SC_HEAL5
+{
+Engedje meg hogy ellássam a sérülését.
+}
+
+$holdtime 2
+!SC_HEAL6
+{
+Tudok valamit a fájdalom ellen.
+}
+
+$holdtime 2
+!SC_HEAL7
+{
+Ne aggódjon, orvos vagyok.
+}
+
+$holdtime 2.2
+!SC_PLFEAR0
+{
+Istenem, mit csinál !?
+}
+
+$holdtime 2
+!SC_PLFEAR1
+{
+Ebbõl nem bírok többet !
+}
+
+$holdtime 2.8
+!SC_PLFEAR2
+{
+Ez õrület ! Eltünök innen !
+}
+
+$holdtime 1.5
+!SC_PLFEAR3
+{
+NE ! KÉREM !
+}
+
+$holdtime 2
+!SC_PLFEAR4
+{
+Ki kell jutnom innen.
+}
+
+$holdtime 2
+!SC_PLFEAR5
+{
+Sajnálom ! Most megyek.
+}
+
+$holdtime 1
+!SC_FEAR0
+{
+Neee...
+}
+
+$holdtime 1
+!SC_FEAR2
+{
+Neee !
+}
+
+$holdtime 2
+!SC_FEAR3
+{
+NE ! Nem akarok meghalni !!!
+}
+
+$holdtime 2.8
+!SC_FEAR4
+{
+Csak ki akarok jutni élve !
+}
+
+$holdtime 2
+!SC_FEAR7
+{
+Oh, ne !
+}
+
+$holdtime 2
+!SC_FEAR8
+{
+Oh, ne !
+}
+
+$holdtime 1
+!SC_FEAR9
+{
+OH, NE !
+}
+
+$holdtime 2
+!SC_FEAR10
+{
+Oh, neee...
+}
+
+$holdtime 2
+!SC_FEAR11
+{
+Ohhh, neee...
+}
+
+$holdtime 1
+!SC_SCREAM5
+{
+Oh, ne !
+}
+
+$holdtime 1
+!SC_SCREAM6
+{
+Jó ÉG!
+}
+
+$holdtime 1
+!SC_SCREAM10
+{
+Uram !
+}
+
+$holdtime 1
+!SC_SCREAM11
+{
+Istenem !
+}
+
+$holdtime 1
+!SC_SCREAM12
+{
+NEEE !!!
+}
+
+$holdtime 1
+!SC_SCREAM13
+{
+VISSZA !!!
+}
+
+$holdtime 2.2
+!SC_SCARED0
+{
+Istenem, mit csinál !?
+}
+
+$holdtime 2
+!SC_SCARED1
+{
+Ne támadjon ! Õ egy barát !
+}
+
+$holdtime 2.4
+!SC_SCARED2
+{
+Megõrült !? Hagyja abba, tüstént !
+}
+
+$holdtime 1.7
+!SC_LETYOUIN
+{
+Várjon egy percet és beengedem.
+}
+
+$holdtime 1.9
+!SC_OVERHERE
+{
+Pszt ! Ide.
+}
+
+$holdtime 3.3
+!SC_POK0
+{
+Kérem ! Hagyjon békén a kisérlet végéig !
+}
+
+$holdtime 1.5
+!SC_POK1
+{
+Nem zavarhat most.
+}
+
+$holdtime 2.8
+!SC_POK2
+{
+Bocsánat Gordon, de most elég elfoglalt vagyok !
+}
+
+$holdtime 3.2
+!SC_POK3
+{
+Várnia kell vele a teszt végéig.
+}
+
+$holdtime 3
+!SC_POK4
+{
+Nem a tesztkamrában kéne lennie fél órája?
+}
+
+
+//============================================================
+// Scientist Scripted Subtitles
+//============================================================
+
+$holdtime 2.5
+!SC_STAYBACK
+{
+NE ! VISSZA ! GORDON !
+}
+
+$holdtime 4
+!SC_GETAWAY
+{
+Menjen onnan, Freeman ! Fontos üzenetet várok !
+}
+
+$holdtime 2
+!SC_GMORN
+{
+Jó reggelt, Gordon.
+}
+
+$holdtime 2
+!SC_BIGDAY
+{
+Nagy nap ez a mai, Freeman.
+}
+
+$holdtime 2.7
+!SC_SAMPLE
+{
+A mintákat épp most vitték a tesztkamrához.
+}
+
+$holdtime 2.7
+!SC_HAZ_OK0
+{
+Igen ! Követem, ha úgy akarja.
+}
+
+$holdtime 2
+!SC_HAZ_WAIT0
+{
+Ok... Itt várok.
+}
+
+$holdtime 5
+!SC_GOODWORK
+{
+Szép munka ! A ruhák elég macerásak lehetnek ! Haladjon a következõ teremhez.
+}
+
+$holdtime 5
+!SC_HARDLYNOTICE
+{
+Nagyon jó, Alig vettem észre magát ! Menjen a következõ terembe.
+}
+
+$holdtime 3.5
+!SC_NEXTSTATION
+{
+Szép volt ! Folytassa utját a következõ állomásig !
+}
+
+$holdtime 7
+!SC_DISA
+{
+*Mikrofon* Teszt... teszt ?! Minden jónak látszik...
+}
+
+$holdtime 6.8
+$chained !SC_DIS1A_PT2
+!SC_DIS1A
+{
+Rendben Gordon, a ruha kényelmes lesz végig ez alatt. A példány néhány perc múlva érkezik hozzád...
+}
+
+$holdtime 8.2
+!SC_DIS1A_PT2
+{
+Ha lenne oly szíves felmászni és elindítani a rotorokat, feltornázzuk az anti-anyag színképmérõt 80%-ra és tartjuk, amíg be nem érkezik a kocsi.
+}
+
+$holdtime 5
+!SC_DIS1B
+{
+Gordon, nem hall ? Másszon fel és indítsa el a rotorokat, kérem !
+}
+
+$holdtime 3
+!SC_DIS1C
+{
+MÁSSZON FEL és INDÍTSA el a rotorokat !
+}
+
+$holdtime 3
+!SC_DIS1D
+{
+Nagyon jó... Innen átvesszük !
+}
+
+$holdtime 6
+!SC_DIS2A
+{
+1. szint: Energia kibocsátók 3..2..1..
+}
+
+$holdtime 3
+!SC_DIS3A
+{
+Számottevõ fázis sugarat látok!
+}
+
+$holdtime 5.2
+!SC_DIS4A 
+{
+Mondja neki, hogy álljon hátrébb a fokális szakasztól ! A ruhának sem tesz jót, ha a sugárnyalábban csodálkozik...
+}
+
+$holdtime 4.6
+!SC_DIS5A
+{
+2. szint: kibocsátók aktiválódnak... Most !
+}
+
+$holdtime 10.5
+!SC_DIS6A
+{
+Most informáltak róla, hogy a minta készen áll, Gordon. Magán múlik majd pár pillanat múlva ! Keresse meg a példányát szállító rendszert.
+}
+
+$holdtime 7
+!SC_DIS7A
+{
+Elõírás szerinti beillesztés szabványon kívüli példánnyal ! Gyerünk, Gordon. Tolja a kocsit az analízis nyíláshoz.
+}
+
+$holdtime 4.5
+!SC_DIS9A
+{
+Kondenzátorok megemelve 105%-ra.
+}
+
+$holdtime 8.2
+!SC_DIS10A
+{
+Gordon, Nem tudjuk megbecsülni meddig tud mûködni a rendszer ezen a szinten, vagy meddig fog tartani a beolvasás... Kérem, dolgozzon olyan gyorsan, ahogy tud !
+}
+
+$holdtime 12
+!SC_DIS11A
+{
+Uh, biztos nem probléma, biztosan... de tapasztalok egy kis eltérést a... nos, nem, megint határon belül van. Lehet folytatni !
+}
+
+$holdtime 4.6
+!SC_DIS12A
+{
+Semmin se kell aggódnod, Gordon heh... Ennyi... Gyerünk !
+}
+
+$holdtime 1.7
+!SC_DIS13A
+{
+Mit csinál odalenn !?
+}
+
+$holdtime 4
+!SC_DIS14A
+{
+SZEDJÉTEK KI ONNAN ! Lõjjétek le a berendezést és hozzátok ki !
+}
+
+$holdtime 9.5
+!SC_DIS15A
+{
+Leállítás ! Leállítás megkisérlése... Ez nem ! Ez nem, nem áll le ! EZ NEM... 
+}
+
+$holdtime 4
+!SC_DIS16A
+{
+Gordon ! El a sugaraktól !
+}
+
+$holdtime 3
+!SC_DIS17A
+{
+Túl sokáig várt ! Nem tudjuk befogni !
+}
+
+$holdtime 5.5
+!SC_LOCK1A
+{
+Félek, ma el fogunk térni a szabványos analízis folyamatoktól, Gordon.
+}
+
+$holdtime 7.5
+!SC_LOCK2A
+{
+Igen, de jó okkal ! Ez ritka lehetõség számunkra. Ez a legtisztább minta, amit eddig láttunk !
+}
+
+$holdtime 2
+!SC_LOCK3A
+{
+És... potencionálisan, a leg-instabilabb...
+}
+
+$holdtime 4
+!SC_LOCK4A
+{
+Na, na, ha követi az elõírt beillesztési folyamatot, minden rendben lessz !
+}
+
+$holdtime 8
+!SC_LOCK5A
+{
+Nem tudom hogy mondhatja ezt. De én is bevallom, hogy a rezonancia fokozat forgatókönyv esélye extrémen valószínûtlen...
+}
+
+$holdtime 8
+!SC_LOCK6A
+{
+Gordon-nak nem kell végighallgatnia ezt az egészet, magasan képzett profeszionalista ! Meggyõztük az adminisztrátort, hogy semmi baj sem lesz...
+}
+
+$holdtime 5
+!SC_LOCK7A
+{
+Ó... igen, igaza van... Gordon, teljes a bizalmunk önben !
+}
+
+$holdtime 3
+!SC_LOCK8A
+{
+Nos, gyerünk. Eresszük be végre !
+}
+
+$holdtime 2.5
+!SC_CRIT1A
+{
+Gyorsan ! Kritikussá válik !
+}
+
+$holdtime 2.5
+!SC_CRIT2A
+{
+Mi sz ördög ütött a berendezéseinkbe ?
+}
+
+$holdtime 2.5
+!SC_CRIT3A
+{
+Nem is ez a dolguk, valójában.
+}
+
+$holdtime 4.5
+!SC_CTRL1A
+{
+Á, Gordon. Ide ért ! Most küldtük le a mintát a teszt kamrába.
+}
+
+$holdtime 6.5
+!SC_CTRL2A
+{
+Felnyomtuk az anti-anyag színképmérõt 105%-ra. Kicsit kockázatos, de szükségünk van az extra felbontásra.
+}
+
+$holdtime 7.5
+!SC_CTRL3A
+{
+Az adminisztátor nagyon aggódik, hogy meggyõzõ analízist kaphassunk a mai mintából. Hosszasan gyûjtögették.
+}
+
+$holdtime 4
+!SC_CTRL4A
+{
+Várnak önre, Gordon. A teszt kamrában.
+}
+
+$holdtime 2
+!SC_CONSOLE1A
+{
+Miért nem hallgattak meg ?!
+}
+
+$holdtime 2.3
+!SC_CONSOLE2A
+{
+Megpróbáltuk figylemeztetni õket !
+}
+
+$holdtime 5.5
+!SC_CONSOLE3A
+{
+Sosem hittem, hogy láthatok egy rezonancia kaszkádot, nemhogy létrehozni egyet...
+}
+
+$holdtime 7.2
+$chained !SC_CONSOLE4A_PT2
+!SC_CONSOLE4A
+{
+Gordon, hát élsz ! Istennek hála a védelmi ruháért ! Félek megmozdítani, és minden telefonunk süket !
+}
+
+$holdtime 11.5
+!SC_CONSOLE4A_PT2
+{
+Kérem, siessen a felszínre, és tudassa valakivel, hogy itt veszteglünk ! Szüksége lesz a segítségemre a retina szkennernél ! A tudós csapat megmaradt tagjai biztosan örömmel segítenek majd !
+}
+
+$holdtime 1.3
+!SC_CONSOLE5A
+{
+Legyen óvatos, Gordon !
+}
+
+$holdtime 2.5
+!SC_CONSOLERPT
+{
+Szüksége lesz rám a retina szkenner aktiválásához !
+}
+
+$holdtime 4
+!SC_DANGLING
+{
+Nem... Nem tudom sokáig tartani !
+}
+
+$holdtime 5.8
+!SC_DARKROOM
+{
+Nem vagyok benne biztos, hogy a felszinre akarok jutni... Mi lesz ha a világ rájön, hogy mit csinálunk itt ?
+}
+
+$holdtime 10
+!SC_LOUNGE
+{
+Gordon ! Ha tudtam volna hogy maga az. Beengedem ! Mindeki a felszínre tart, de szerintem õrültség, hogy nem maradnak nyugton. Valakinek jönnie kell, hogy megmentsen minket.
+}
+
+$holdtime 9
+!SC_TRANSMISSION
+{
+Az imént belehalgattam egy biztonsági csatornába. Katonák érkeztek a megmentésünkre ! Persze kétlem, hogy életben maradunk az üdvözlésükig...
+}
+
+$holdtime 3.7
+!SC_1MAN
+{
+Vigyen magával ! Én vagyok az egyetlen, aki mindent tud !
+}
+
+$holdtime 1.4
+!SC_ATLAST
+{
+Végre mentés !
+}
+
+$holdtime 2.6
+!SC_RESCUED
+{
+Végre megmentve ! Istennek hála, hogy itt vannak !
+}
+
+$holdtime 5
+!SC_SILO1A
+{
+Az Istenért, nyisd ki a siló ajtaját ! Értünk jönnek, ez az egyetlen kiút !
+}
+
+$holdtime 3
+!SC_SILO2A
+{
+Istenem, el vagyunk átkozva !!!
+}
+
+$holdtime 2
+!SC_TEAM
+{
+Ne lõjjön ! Tudósokkal vagyok !
+}
+
+$holdtime 2
+!SC_THANKGOD
+{
+Hála Istennek, hogy itt van !
+}
+
+$holdtime 10
+!SC_TRAINEND
+{
+Hallotta ? Tudósokat ölnek... A saját fajtájuk, ellenünk fordultak... Úgy gondolom, Itt maradok és szerencsét próbálok a szörnyekkel...
+}
+
+$holdtime 7
+!SC_ROCKET
+{
+Gyújtsd be... a rakéta motrot... Pusztísd el az átkozottat mielõtt még nagyobbra nõ !
+}
+
+$holdtime 4.5
+!SC_BLIND
+{
+Van ott valaki ? Nem... Nem látok semmit.
+}
+
+$holdtime 6
+!SC_POWEROFF
+{
+Remélem senki nem várja el tõlem a generátor bekapcsolását. Kovács lement oda, de még nem jött vissza.
+}
+
+$holdtime 6
+!SC_POWERON
+{
+Kiváló ! Valaki visszaállította az energiát ! A motor is futni fog se'perc alatt !
+}
+
+$holdtime 8
+!SC_GENER
+{
+Ez a búvóhelyem, és nem mozdulok amíg a szituáció drasztikusan nem javul. Most menjen, és ne mondja senkinek, hogy itt vagyok !
+}
+
+$holdtime 10.2
+$chained !SC_TRUST_PT2
+!SC_TRUST
+{
+Nos , ennyit a kormányról ! A "tisztogatásról" alkotott képük kimerül a projecthez köthetõk megölésében ! A ruhájáról megítélve, azt mondanám közel állt a baj forrásához... Nem igaz ?
+}
+
+$holdtime 5.4
+$chained !SC_TRUST_PT3
+!SC_TRUST_PT2
+{
+Nézze, ha valaki meg tudja fékezni a katasztrófát, azok a tudósok a Lambda építményben , a bázis túlsó végén!
+}
+
+$holdtime 8
+$chained !SC_TRUST_PT4
+!SC_TRUST_PT3
+{
+Mivel a tranzit rendszer halott, nem tudom megmondani, hogyan jusson el oda. De van erre valahol egy öreg leszerelt vasút hálózat, a siló építmény alatt...
+}
+
+$holdtime 11
+!SC_TRUST_PT4
+{
+Ha átjut a rakéta teszt laboron, talán át tudja magát küzdeni az öreg alagútakon, hogy fellelje, akármi is maradt a Lamdba csapatból ! Bízhat bennük. Bízhat mindannyiunkban. Sok szerencsét !
+}
+
+$holdtime 4
+!SC_TENT
+{
+Ne ! NE ! NE ! Szállj le rólam ! Takarodj ! SZÁLLJ MÁR LE !!!
+}
+
+$holdtime 1.5
+$chained !SC_ICKY_PT2
+!SC_ICKY
+{
+Látta ?
+}
+
+$holdtime 8.5
+$chained !SC_ICKY_PT3
+!SC_ICKY_PT2
+{
+Azt mondják elnyelte a mélység, de meggyõzõdésem, szörny sosem úszott földi vizekben egészen a múlt hétig!
+}
+
+$holdtime 8
+!SC_ICKY_PT3
+{
+Van egy kábítópuska a cápa ketrecben, de nem tudom hogy mûködni fog-e majd ezen a példányon. Azért megpróbálhatja.
+}
+
+$holdtime 11.5
+$chained !SC_TRACK_PT2
+!SC_TRACK
+{
+Gordon Freeman, maga az, ugye ? A kutató csapat nyomon követte a Fekete Szurdok biztonsági rendszerein. Sajnálatosan, a katonaság is. A ruhája tele van nyomkövetõkkel.
+}
+
+$holdtime 8.8
+$chained !SC_TRACK_PT3
+!SC_TRACK_PT2
+{
+Még mindig jobb, mintha meztelenül rohangálna. Hideg van bennt és sietnie kell. Pillanatok alatt lemerítheti a ruhája tartalékait!
+}
+
+$holdtime 8.8
+!SC_TRACK_PT3
+{
+Ha a Lambda építményeket igyekszik elérni, tartson az öreg ipari terület felé, ahol a biztonsági rendszer csupa lyuk. Nekem eddig bejött.
+}
+ 
+$holdtime 2.7
+!SC_TAU2A
+{
+Tegye le ! Ez egy prototípus !
+}
+
+$holdtime 3.5
+!SC_TAU4A
+{
+Túlságosan kiszámíthatatlan ! Ne hagyja feltöltõdni !
+}
+
+$holdtime 6
+!SC_1PSURG
+{
+Mindannyiunknak van retina szkenner engedélyünk. Kisérjen minket a várakozóterembe, és kijuttatjuk a laborból.
+}
+
+$holdtime 6
+!SC_2PSURG
+{
+Le kell kapcsolnia a sebészi egységet elõbb. Péter bekapcsolta, de attól tartok sosem jön vissza...
+}
+
+$holdtime 7
+!SC_3PSURG
+{
+Egy tudós, Istennek hála ! Juttasson ki minket innen mielõtt azok a katonai drónok rájönnek hol bújkálunk !
+}
+
+$holdtime 4
+!SC_ALLDIE
+{
+Ha mindanyiunkat megöl, Freeman ! Sosem jut ki innen !
+}
+
+$holdtime 12.4
+!SC_LETOUT
+$chained !SC_LETOUT_PT2
+{
+Nos... Kiengedem, de figyelmeztetnem kell, pokol van odakint ! Teljesen katonai irányítás alatt van ! Át kell lopakodnia és harcolnia magát az egyik végétól a másikig, és nem számítok rá, hogy sokat talál majd a mieninkbõl...
+}
+
+$holdtime 12.5
+!SC_LETOUT_PT2
+{
+De ha mégis túléli és átjut a bázison, a Lambda építménynél találja magát, ahol a tudósok maradéka is meghúzódott. Nem mennék oda magam, de tudtukra adom hoyg érkezik !
+}
+
+$holdtime 10
+$chained !SC_BOOBIE_PT2
+!SC_BOOBIE
+{
+A Lambda építmény felé tart, igaz ? Magam is arrafelé tartottam, amíg fel nem adtam, nos, ideges nem lettem. Tekintsen ki az ajtón és látni fogja mire gondolok !
+}
+
+$holdtime 7
+!SC_BOOBIE_PT2
+{
+Kivárom itt a katasztrófát. Ha mégis továbbmegy, könyörgöm, nagyon óvatosan tegye !
+}
+
+$holdtime 11.5
+$chained !SC_STRAWS_PT2
+!SC_STRAWS
+{
+Bocsásson meg, Mr. Freeman, de nem kockáztathattam meg az ajtó nyitását, amíg le nem mosta õket a pályáról ! Ez a Lambda építmény utolsó bejárata, minden más le lett zárva az invázió kirekesztésére !
+}
+
+$holdtime 8.5
+$chained !SC_STRAWS_PT3
+!SC_STRAWS_PT2
+{
+Amikor felötlött, hogy mégiscsak eljuthat ide, sorsot húztunk, ki maradjon hátra, hogy beengedje. Nyilvánvalóan én húztam a rövidebbet...
+}
+
+$holdtime 5.2
+$chained !SC_STRAWS_PT4
+!SC_STRAWS_PT3
+{
+A kollégáim a Lambda reaktor csúcsán várnak ! Várják, akarom mondani...
+}
+
+$holdtime 7.5
+$chained !SC_STRAWS_PT5
+!SC_STRAWS_PT4
+{
+A reaktor most le van kapcsolva, de az útján felfelé bekapcsolhatja ! Mindenképp el kell árasztania a magot , hogy eljusson a teleportáló laborba. 
+}
+
+$holdtime 7.5
+!SC_STRAWS_PT5
+{
+Errõl nem szabadna tudnia... de látom ,már így is sokkal többet tud mint amit egy embernek kéne !
+}
+
+$holdtime 11
+!SC_GLUON2A
+{
+Volt a fegyverfejlesztéseknél is ? Én építettem a Gluon puskát, de nem tudtam magam rávenni hogy élõlényeket öljek vele. Maga nem úgy néz ki, mint akinek bármi gondja lenne a gyilkolással.
+}
+
+$holdtime 9
+!SC_FLOOD
+{
+Freeman, nem igaz ? Mindkét pumpát be kell kapcsolnia kell a mag elárasztásához... majd a karbantartó csövön le, az viszi a maghoz. Rövid az idõ !
+}
+
+$holdtime 8.7
+!SC_LINGER
+{
+Ne idõzzön itt, Mr. Freeman ! Bekapcsolta a pumpákat. Menjen a karbantartó csõhöz, árassza el a magot, és haladéktalanul menjen fel a laborba!
+}
+
+$holdtime 2.5
+!SC_SURVEY1A
+{
+Gordon Freeman ! Végre megtalált minket !
+}
+
+$holdtime 13
+$chained !SC_SURVEY3A_PT2
+!SC_SURVEY3A
+{
+Ez az elsõ felmérõ csapat anyagellátója. Gyûjtöttek és hoztak magukkal jó pár kézreesõ példányt a peremvilágból, umm, a felmérés elõtt csak saját maguknak gyûjtöttek, ez...
+}
+
+$holdtime 13
+!SC_SURVEY3A_PT2
+{
+Gyanítjuk, hogy rengeteg portál van odaát, amit egyetlen erõs lény a saját intenzív koncentrációval alkotott meg. Tudni fogja melyik, ha meglátja... Gyûlölöm ezt mondani, Gordon... de el kell pusztítania, ha tudja.
+}
+
+$holdtime 7
+!SC_SURVEY5A
+{
+Persze, semmivel sem tartozik nekünk, Mr. Freeman ! De ha már eddig eljött. Olyan sokat tud ezekrõl a lényekrõl,mint még senki más !
+}
+
+$holdtime 10
+!SC_SURVEY7A
+{
+Igen... úgyhogy... Ha gondolja, a kollégám a fõ portál irányítópultjánál várja. Kinyitja az átjárót magának, Mr. Freeman. Igyekezzen !
+}
+
+$holdtime 15
+!SC_LJUMP
+{
+Ez, Mr. Freeman, egy távolugró modul ! Direkt a másvilágban navigálásra fejlesztve. Õszintén remélem, hogy megkapta a távolugró oktatást, mert Xen-ben csak arra hagyatkozhat ! Azt ajánlom, gyakorolja be még mielõtt átmenne.
+}
+
+$holdtime 5
+!SC_UPHERE
+{
+Heló, Freeman ! Itt vagyok fent ! Gyakorolja a távolugrást ha szükséges, de igyekezzen !
+}
+
+$holdtime 13.2
+!SC_PORTAL
+{
+Rendben, Most már nyithatom az átjárót. A folyamat bonyolult, és ha egyszer elkezdõdött már nem szabad félbeszakítani vagy elõrrõl kell kezdenem az egészet ! Ne lépjen a sugárba, amíg nem szólok. Megértette ? Kezdem !
+}
+
+$holdtime 2.5
+!SC_PORTOPEN
+{
+Készen áll ! Mennie kell, most !
+}
+
+$holdtime 3
+!SC_POSITION
+{
+Mindjárt ott vagyunk, Freeman... Helyezkedjen el !
+}
+
+$holdtime 3
+!SC_FOREVER
+{
+IGYEKEZZEN FREEMAN ! NEM TUDOM SOKÁIG NYITVA TARTANI !
+}
+
+$holdtime 2
+!SC_NOTYET
+{
+Még ne, Freeman !
+}
+
+$holdtime 2
+!SC_FOOL
+{
+FREEMAN MAGA BOLOND !!!
+}
+
+//==============================================================================
+// Human Grunts (generic)
+//==============================================================================
+
+$color  96 255 96
+$color2 48 128 48
+
+$holdtime 1
+!HG_GREN0
+{
+GRÁNÁT !
+}
+
+$holdtime 1
+!HG_GREN1
+{
+FEDEZÉKBE !
+}
+
+$holdtime 1.5
+!HG_GREN2
+{
+FENÉBE !
+}
+
+$holdtime 1
+!HG_GREN3
+{
+FÖLDRE !
+}
+
+$holdtime 1
+!HG_GREN3
+{
+NE !
+}
+
+$holdtime 1
+!HG_GREN4
+{
+ISTENEM !
+}
+
+$holdtime 1
+!HG_GREN5
+{
+NEM !
+}
+
+$holdtime 1
+!HG_GREN6
+{
+MOZGÁS !
+}
+
+$holdtime 2.2
+!HG_ALERT0
+{
+CSAPAT, ELKAPTUK FREEMAN-T !
+}
+
+$holdtime 1
+!HG_ALERT1
+{
+CÉLPONT !
+}
+
+$holdtime 1
+!HG_ALERT2
+{
+MOZGÁS !
+}
+
+$holdtime 2.2
+!HG_ALERT3
+{
+FENE ! ELLENSÉG A LÁTHATÁRON !
+}
+
+$holdtime 2
+!HG_ALERT4
+{
+CSAPAT, ELKAPNI FREEMAN-T !
+}
+
+$holdtime 3
+!HG_ALERT5
+{
+CSAPAT, SEMLEGESÍTENI FREEMAN-T !
+}
+
+$holdtime 1.4
+!HG_ALERT6
+{
+BEFELÉ !
+}
+
+$holdtime 2.2
+!HG_MONST0
+{
+MOZGOLÓDÁS A SZEKTOROMBAN !
+}
+
+$holdtime 1.8
+!HG_MONST1
+{
+MOZGOLÓDÁS VAN !
+}
+
+$holdtime 1.8
+!HG_MONST2
+{
+IDEGEN RIADÓ !
+}
+
+$holdtime 2
+!HG_MONST3
+{
+IDEGEN MOZGÁS !
+}
+
+$holdtime 1.2
+!HG_COVER0
+{
+FEDEZÉKBE !
+}
+
+$holdtime 2
+!HG_COVER1
+{
+ELTERELÉST KÉREK !
+}
+ 
+$holdtime 2
+!HG_COVER2
+{
+TÁMOGATÁST KÉREK !
+}
+
+$holdtime 1.8
+!HG_COVER3
+{
+FORRÓ A HELYZET !
+}
+
+$holdtime 2
+!HG_COVER4
+{
+VISSZA !
+} 
+
+$holdtime 2
+!HG_COVER5
+{
+TERÜLETET MEGTISZTÍTANI !
+} 
+ 
+$holdtime 1.5
+!HG_COVER6
+{
+FENE EGYE MEG !
+} 
+  
+$holdtime 1.5
+!HG_COVER7
+{
+FEDEZÉKTÛZ !
+}
+
+$holdtime 2
+!HG_THROW0
+{
+GRÁNÁT REPÜL !
+} 
+
+$holdtime 1
+!HG_THROW1
+{
+EZT KAPD BE !
+} 
+ 
+$holdtime 2
+!HG_THROW2
+{
+REPÜLÕ GRÁNÁT !
+} 
+ 
+$holdtime 2
+!HG_THROW3
+{
+Csapat, pihenj
+} 
+ 
+$holdtime 2.5
+!HG_TAUNT0
+{
+Uhh, erõs tûz alá vettek
+}
+
+$holdtime 2
+!HG_TAUNT1
+{
+Vettem, tartsd a pozíciót
+} 
+
+$holdtime 2
+!HG_TAUNT2
+{
+SZÉTRUGJUK A SEGGED !
+} 
+
+$holdtime 2.5
+!HG_TAUNT3
+{
+Uram, el fog bukni
+} 
+
+$holdtime 1.8
+!HG_TAUNT4
+{
+Nincs semmid !
+} 
+
+$holdtime 1.8
+!HG_TAUNT5
+{
+TÁMOGATÁST KÉREK !
+} 
+
+$holdtime 1.5
+!HG_CHARGE0
+{
+FELDERÍTÉS !
+}
+
+$holdtime 1
+!HG_CHARGE1
+{
+BEFELÉ !
+} 
+
+$holdtime 1
+!HG_CHARGE2
+{
+GYERÜNK !
+}
+
+$holdtime 1.3
+!HG_CHARGE3
+{
+IRÁNY !
+} 
+
+$holdtime 1.3
+!HG_CHARGE3
+{
+HAJRÁ !
+}
+
+$holdtime 2
+!HG_QUEST0
+{
+Figyelem emberek...
+}
+
+$holdtime 2
+!HG_QUEST1
+{
+Rádió ellenõrzés, vége.
+}
+
+$holdtime 2
+!HG_QUEST2
+{
+Kizárás folyamatban.
+}
+
+$holdtime 2
+!HG_QUEST3
+{
+Csapat, csendesíts.
+}
+
+$holdtime 2
+!HG_QUEST4
+{
+Ájl.
+}
+
+$holdtime 2
+!HG_QUEST5
+{
+Szektort kisöpörni.
+}
+
+$holdtime 3
+!HG_QUEST6
+{
+Uhh, Cél kisöprõ formáció.
+}
+
+$holdtime 2
+!HG_QUEST7
+{
+Visszhang misszió mehet.
+}
+
+$holdtime 3
+!HG_QUEST8
+{
+Lõszerész csapat, fegyverellenõrzés, ok.
+}
+
+$holdtime 3.2
+!HG_QUEST9
+{
+Lõszerész csapat, elsõdleges Foxtrot Kilences.
+}
+
+$holdtime 2.5
+!HG_QUEST10
+{
+Misszió ok, Zéró Kilences.
+}
+
+$holdtime 4
+!HG_QUEST11
+{
+Csapat, figyelni Freeman-re, vége.
+} 
+
+$holdtime 2
+!HG_ANSWER0
+{
+Uhh... Vettem.
+} 
+
+$holdtime 1
+!HG_ANSWER1
+{
+Igen,uram.
+} 
+
+$holdtime 2
+!HG_ANSWER2
+{
+Igenis, uram.
+} 
+
+$holdtime 1
+!HG_ANSWER3
+{
+Negatív.
+} 
+
+$holdtime 1
+!HG_ANSWER4
+{
+Vettem.
+} 
+
+$holdtime 1.8
+!HG_ANSWER5
+{
+Ok, irányítva.
+} 
+
+$holdtime 3
+!HG_ANSWER6
+{
+Az, uhh, Igenis...
+} 
+
+$holdtime 2
+!HG_CLEAR0
+{
+Minden tiszta, uram.
+} 
+
+$holdtime 2
+!HG_CLEAR1
+{
+Bravó poszt, tiszta.
+} 
+
+$holdtime 2
+!HG_CLEAR2
+{
+Delta csapat, tiszta.
+} 
+
+$holdtime 3.2
+!HG_CLEAR3
+{
+Nincs láthatáron ellenség uram, vége.
+} 
+ 
+$holdtime 3.2
+!HG_CLEAR4
+{
+Nincs láthatáron célszemély, vége.
+} 
+ 
+$holdtime 2.5
+!HG_CLEAR5
+{
+Nincs mozgás ezen a szinten.
+} 
+ 
+$holdtime 3
+!HG_CLEAR6
+{
+Uram, szektor biztosítva, vége.
+} 
+  
+$holdtime 3.8
+!HG_CLEAR7
+{
+Támaszpont, csapat pozícióban, vége.
+} 
+  
+$holdtime 3.2
+!HG_CLEAR8
+{
+Felderítõk, pozícióban, minden nyugodt.
+}  
+  
+$holdtime 3
+!HG_CLEAR9
+{
+Õrtorony, minden nyugodt, vége.
+}   
+   
+$holdtime 2
+!HG_CLEAR10
+{
+Uram, hallok valamit...
+}   
+    
+$holdtime 3.7
+!HG_CLEAR11
+{
+Uram, uhh, zéró mozgás, vége.
+} 
+    
+$holdtime 2.5
+!HG_CLEAR12
+{
+Terület biztosítva, vége.
+} 
+    
+$holdtime 2
+!HG_CHECK0
+{
+Ok, bejelentkezve.
+}
+
+$holdtime 3
+!HG_CHECK1
+{
+Csapat, ellenfél tiszta ?
+}
+
+$holdtime 2
+!HG_CHECK2
+{
+Bejelentkezve.
+}
+
+$holdtime 2
+!HG_CHECK3
+{
+Õrtorny, bejelentkezve.
+}
+
+$holdtime 2
+!HG_CHECK4
+{
+Felderítõk, bejelentkezve.
+}
+
+$holdtime 2
+!HG_CHECK5
+{Mozgás ellenõrizve, vége.
+}
+
+$holdtime 2.5
+!HG_CHECK6
+{
+Zónát ellenõrizd, vége.
+}
+
+$holdtime 2
+!HG_CHECK7
+{
+Minden rendben ott ?
+}
+
+//==============================================================================
+// Human Grunts (scripted)
+//==============================================================================
+
+$holdtime 2.5
+!HG_SNOOP1A
+{
+Szóval... ki ez a fickó, Freeman ?
+}
+
+$holdtime 2
+!HG_SNOOP2A
+{
+Ott volt az epicentrumnál...
+}
+
+$holdtime 5
+!HG_SNOOP3A
+{
+Tudós csapat ? Gondolod õ a felelõs ? Talán szabotázs ?
+}
+
+$holdtime 5
+!HG_SNOOP4A
+{
+Ja, talán !? Amit biztosan tudok, a haverjaimat gyilkolássza !
+}
+
+$holdtime 5
+!HG_SNOOP5A
+{
+Ó igen, megfizet. Biztosan megfizet érte !
+}
+
+$holdtime 1
+$chained !HG_AMBUSH_PT2
+!HG_AMBUSH
+{
+...
+}
+
+$holdtime 5
+$chained !HG_AMBUSH_PT3
+!HG_AMBUSH_PT2
+{
+ELKAPNI !
+}
+
+$holdtime 3
+$chained !HG_AMBUSH_PT4
+!HG_AMBUSH_PT3
+{
+Haha, szép ütés.
+}
+
+$holdtime 2
+!HG_AMBUSH_PT4
+{
+Rendben, elkaptuk...
+}
+
+$holdtime 2.2
+!HG_DRAG1A
+{
+Hová visszük ezt a Freeman fickót ?
+}
+
+$holdtime 2
+!HG_DRAG2A
+{
+Felszínre, kikérdezni...
+}
+
+$holdtime 3.5
+!HG_DRAG3A
+{
+Mi a fenének ? Elkaptuk... Öljük meg most !
+}
+
+$holdtime 2.5
+!HG_DRAG4A
+{
+Uhh... És ha megtalálják a testet ?
+}
+
+$holdtime 2.1
+!HG_DRAG5A
+{
+Testet !? Milyen testet ?
+}
+
+$holdtime 3
+!HG_DRAG6A
+{
+*lolz*
+}
+
+$holdtime 6.5
+!HG_SUCKS
+{
+Megöltem 12 agyament tudóst és egy sem vágott vissza. Ez szopás...
+}
+
+$holdtime 6.5
+!HG_CIVVIES
+{
+Nem erre a szarra szerzõdtem. Szörnyek, biztosan. De civilek ? Ki rendelte el ezt a mûveletet mégis ?
+}
+
+$holdtime 10
+!HG_ABANDON
+{
+Felejtsék el Freemant ! Felszámoljuk a veszteségeinket és kitörünk ! Mindenki, aki lent maradt, már csak magára számíthat. Megismétlem, ha eddig nem volt, most már az !
+}
+
+$holdtime 13.3
+$chained !HG_LEBUZ_PT2
+!HG_LEBUZ
+{
+Jelentkezzen, Cooper. Veszi ? Felejtsék el Freemant. Elhagyjuk a bázist. Ha van még bombáznivaló célpont, jelölje meg a térképen. Máskülönben, tünjön onnan.
+}
+
+$holdtime 6
+!HG_LEBUZ_PT2
+{
+Ismétlem, kivonulunk és légi csapást mérünk. Adja meg a célpontokat, vagy vonuljon hátra !
+}
+
+//============================================================
+// Black Mesa Intercom (VOX) (generic)
+//============================================================
+
+$color  208 104 255
+$color2 104  52 128
+ 
+$holdtime 1.5
+!NA0
+{
+Hozzáférés megtagadva.
+}
+ 
+$holdtime 2.5
+!NA1
+{
+Hozzáférés: megtagadva.
+}
+
+$holdtime 2
+!NA2
+{
+Ellenõrizetlen hozzáférés.
+}
+ 
+$holdtime 1.7
+!NA3
+{
+Jogtalan hozzáférés.
+}
+ 
+$holdtime 2
+!NA4
+{
+Az ajtó: Zárva.
+} 
+ 
+$holdtime 2
+!NA5
+{
+Ellenõrizetlen hozzáférés.
+} 
+ 
+$holdtime 2
+!NA6
+{
+Belépés megtagadva.
+}
+ 
+$holdtime 2
+!NA7
+{
+Belépés nem engedélyezett.
+}
+ 
+$holdtime 3
+!NA8
+{
+Nincs azonosítatlan személyzet.
+}
+  
+$holdtime 4.5
+!NA9
+{
+Nincs hozzáférése ehhez a részleghez.
+}
+  
+$holdtime 3
+!NA10
+{
+Sajnálom, nem léphet be.
+} 
+
+$holdtime 3
+!NA11
+{
+Sajnálom, ez az ajtó: Zárva.
+}
+  
+$holdtime 4
+!NA12
+{
+Kérem, távozzon a területtõl.
+}
+  
+$holdtime 3
+!NA13
+{
+Kérem, Távozzon innen; Ajtó.
+} 
+  
+$holdtime 2.4
+!NA14
+{
+Nem jut be.
+}
+  
+$holdtime 2.7
+!NA15
+{
+Belépés nem lehetséges.
+}
+  
+$holdtime 2.7
+!NA16
+{
+Egész nap ezt akarja csinálni.
+}
+  
+$holdtime 2.5
+!NA17
+{
+Távozzon most !
+} 
+  
+$holdtime 3
+!NA18
+{
+NEM, NEM, és NEEEM !
+}
+
+$holdtime 1.5
+!EA0
+{
+Hozzáférés Elfogadva.
+}
+
+$holdtime 1.5
+!EA1
+{
+Hozzáférés Engedélyezve.
+}
+
+$holdtime 1.5
+!EA2
+{
+Belépés Engedélyezve.
+} 
+
+$holdtime 1.5
+!EA3
+{
+Belépés Elfogadva.
+} 
+
+$holdtime 2
+!EA4
+{
+Hozzáférés Visszaigazolva.
+} 
+
+$holdtime 2
+!EA5
+{
+Belépési Engedély Megadva.
+}
+
+$holdtime 2
+!EA6
+{
+Hozzáférés Visszaigazolva.
+} 
+
+$holdtime 3.2
+!EA7
+{
+Üzemi Hozzáférés, Megadva.
+}
+
+$holdtime 1.5
+!EA8
+{
+Hozzáférés Megadva.
+} 
+
+$holdtime 2.7
+!ND0
+{
+Biztonsági Zár Bekapcsolt.
+}
+
+$holdtime 2.7
+!ND1
+{
+Védett Terület, belépni tilos.
+} 
+
+$holdtime 2.7
+!ND2
+{
+Biztonsági Zárlat, belépni tilos.
+} 
+
+$holdtime 2.5
+!ND3
+{
+Biztonsági Ajtó, belépni tilos.
+} 
+
+$holdtime 2.7
+!ND4
+{
+Biztonsági Rendszer életbe lépett.
+}  
+
+$holdtime 3.5
+!ND5
+{
+Biztonsági Rendszer élesítve, Belépni Tilos.
+} 
+ 
+$holdtime 2
+!ND6
+{
+Ajtó: Biztosítva.
+}
+ 
+$holdtime 3
+!ND7
+{
+Iletéktelen Hozzáférés, távozzon.
+} 
+ 
+$holdtime 3
+!ED0
+{
+Biztonsági Zár; Kioldva.
+} 
+
+$holdtime 3
+!ED1
+{
+Biztonság Feloldva, folytassa.
+} 
+
+$holdtime 3
+!ED2
+{
+Biztonsági Zárlat, feloldva.
+}  
+
+$holdtime 3
+!ED3
+{
+Biztonsági felülírás elfogadva.
+}  
+ 
+$holdtime 3
+!ED4
+{
+Biztonsági Hozzáférés Elfogadva.
+}
+  
+$holdtime 3
+!ED5
+{
+Biztonsági Rendszer Kikapcsolt.
+}
+  
+$holdtime 3
+!ED6
+{
+Ajtó Biztonság Kioldva.
+}
+  
+$holdtime 3
+!NF0
+{
+Vészhelyzeti Robbantás Ajtó: Aktiválva.
+}
+  
+$holdtime 3
+!NF1
+{
+Vészhelyzeti Robbantó Pajzs: Aktiválva.
+}
+  
+$holdtime 3.3
+!NF3
+{
+Robbanás Elzáró Pajzs: Lent.
+}
+  
+$holdtime 3
+!EF0
+{
+Vészhelyzeti Robbantás Ajtó: Nyitva.
+}
+  
+$holdtime 3.3
+!EF1
+{
+Vészhelyzeti Robbantó Pajzs: Kikapcsolt.
+}
+
+$holdtime 3.3
+!EF3
+{
+Robbanás Elzáró Pajzs: Nyitva.
+}
+ 
+$holdtime 3.3
+!NFIRE0
+{
+Tûzzáró Ajtó: Lent.
+}
+  
+$holdtime 3.3
+!EFIRE0
+{
+Tûzzáró Ajtó: Nyitva.
+} 
+  
+$holdtime 3.5
+!NCHEM0
+{
+Vegyvédelmi Ajtó: Aktiválva.
+} 
+  
+$holdtime 3.5
+!ECHEM0
+{
+Vegyivédelmi Ajtó: Nyitva.
+}
+  
+$holdtime 3.3
+!NRAD0
+{
+Sugárvédelmi Ajtó: Aktiválva.
+}
+  
+$holdtime 3.3
+!ERAD0
+{
+Sugárvédelmi Ajtó: Nyitva.
+}
+  
+$holdtime 3.3
+!NCON0
+{
+Vészzáró Ajtó: Aktiválva.
+} 
+  
+$holdtime 3.3
+!ECON0
+{
+Vészzáró Ajtó: Nyitva.
+} 
+  
+$holdtime 3.3
+!NG0
+{
+Sajnálom, az ajtó nem mûködik.
+}
+  
+$holdtime 3.3
+!NG1
+{
+Sajnálom, az ajtó használaton kívûl.
+}
+  
+$holdtime 4
+!NG2
+{
+Ajtó sérülés észlelve, kérem hívja a szervízt.
+}
+
+$holdtime 3.5
+!NH0
+{
+Belépni Tilos, karbantartó terület.
+}
+
+$holdtime 4
+!NH1
+{
+A karbantartó területen az átjárás tilos.
+}
+
+$holdtime 3.5
+!EH0
+{
+Karbantartó terület: Belépés engedélyezve.
+} 
+
+$holdtime 3
+!EH1
+{
+Karbantartó terület ajtó: Nyitva.
+} 
+
+$holdtime 5
+!T0
+{
+KÜLÖNLEGES VESZÉLYHELYZET: Védelmi rendszer élesítve a zónában.
+}
+
+$holdtime 4
+!T1
+{
+KÜLÖNLEGES VESZÉLYHELYZET: Védelmi rendszer aktiválva.
+} 
+
+$holdtime 4
+!T2
+{
+VESZÉLY: Gépágyú hatótáv védelmi rendszer élesítve.
+}
+
+$holdtime 4.5
+!T3
+{
+KÜLÖNLEGES VESZÉLYHELYZET: Legközelebbi védelmi rendszer aktiválva.
+} 
+ 
+$holdtime 4.5
+!T4
+{
+VESZÉLY: Alap védelmi gépágyú rendszer feltölthetett.
+}
+ 
+$holdtime 4
+!T5
+{
+VESZÉLY: Automata védelmi rendszer aktiválva.
+} 
+ 
+$holdtime 3
+!WE0
+{
+FIGYELEM: Magasfeszültség kábel.
+} 
+
+$holdtime 3
+!WE1
+{
+FIGYELEM: Magasfeszültség kábel.
+}
+
+$holdtime 3
+!WE2
+{
+FIGYELEM: Áramütés veszély.
+}
+
+$holdtime 4
+!WE3
+{
+FIGYELEM: Enyhe Áramütés veszély.
+}
+
+$holdtime 3.5
+!DR0
+{
+FIGYELEM: Sugárzás szivárgás észlelve.
+}
+
+$holdtime 4
+!DR1
+{
+VESZÉLY: Sugárzás veszély észlelve.
+}
+
+$holdtime 4
+!DR2
+{
+VESZÉLY: Magas Sugárzás Szint észlelve.
+}
+
+$holdtime 5
+!DR4
+{
+ÉLETVESZÉLY: Közérzetsértõ, különösen magas sugárzás észlelve.
+}
+
+$holdtime 5
+!DC0
+{
+VESZÉLY: Kemikália szivárgás, a terület életveszélyessé vált.
+}
+
+$holdtime 4.5
+!DC1
+{
+VESZÉLY: Kemikália hûtõ szivárgás, életveszélyes zóna.
+}
+
+$holdtime 5.5
+!DC2
+{
+VESZÉLY: Kemikália elzáró hasadás, a személyzet hagyja el a területet.
+}
+
+$holdtime 4
+!DC3
+{
+VESZÉLY: Mélyhûtött kemikália szivárgás.
+}
+
+$holdtime 4
+!DC4
+{
+VESZÉLY: Mélyhûtött hélium szivárgás.
+} 
+
+$holdtime 4.5
+!DB0
+{
+VESZÉLY: Folyékony vegyianyag szivárgás közvetlen közelben.
+} 
+
+$holdtime 5.5
+!DB1
+{
+VESZÉLY: Hûtõfolyadék szivárgás, jelentõs vegyianyag veszély a közelben.
+} 
+
+$holdtime 5
+!DB2
+{
+VESZÉLY: Folyékony vegyianyag veszély, hagyja el a területet.
+} 
+ 
+$holdtime 5
+!DB3
+{
+VESZÉLY: Vegyianyag észlelve közvetlen közelben.
+} 
+ 
+$holdtime 3
+!TR_A
+{
+3..2..1..
+} 
+
+$holdtime 3
+!TR_B
+{
+Célzó Rendszer Kikapcsolt.
+} 
+
+//============================================================
+// Black Mesa Base Computer (VOX) Level Subtitles
+//============================================================
+$holdtime 7
+!C1A0_0
+{
+Coomer Ügynök, jelentkezzen: Felszíni Taktikai Mûvelet Központban.
+}
+
+$holdtime 6.7
+!C1A0_1
+{
+Megfigyelõ csapat: Radioaktív Anyagokat Kezelõ kamrához.
+}
+
+$holdtime 6.7
+!C1A0_2
+{
+16-os ügynök, jelentkezzen: Adminisztráció 2. Alszint-en.
+}
+
+$holdtime 6
+!C1A0_3
+{
+Dr. Johnson, hívja: Megfigyelõ Tartály 1-et.
+}
+
+$holdtime 7
+!C1A0_4
+{
+Dr. West, kérem jelentkezzen: Lambda Reaktor Együttes-ben.
+}
+
+$holdtime 5.5
+!C1A0_5
+{
+Dr. Cross: hívja a 729-et kérem.
+}
+
+$holdtime 5.5
+!C1A0_6
+{
+Bailey Õrmester: Felszíni Ellenõrzõpont Bravo-hoz.
+}
+
+$holdtime 7
+!C1A0_7
+{
+Cryogenetika Biztonsági Csoport: Státuszjelentés 1100-kor, kérem.
+}
+
+$holdtime 7.5
+!C1A0_8
+{
+Kódolt üzenet Black Kapitánynak: Irányítás és Kommunikációs Központ.
+}
+
+$holdtime 8.2
+!C1A0_9
+{
+C Szektor Tudományos Személyzet, jelentkezzen: Rendellenes Anyagok teszt laboratóriumban.
+}
+
+$holdtime 8
+!C1A0_10
+{
+Dr. Freeman: Rendellenes Anyagok teszt laboratóriumba, azonnal !
+}
+
+$holdtime 8
+!C1A0_11
+{
+FIGYELEM: Kisérleti Hajtómû laboratórium teszt tûz 90 perc múlva.
+}
+
+$holdtime 5
+!C1A0_12
+{
+Víz Erõmû 60%-on teljesít. 
+}
+
+$holdtime 5.7
+!C1A0_13
+{
+Fekete Szurdok felszíni hõmérséklet 93 fok.
+}
+ 
+$holdtime 6.8
+!C1A0_14
+{
+Kilövõ tiszt jelenti, alfa mûhold kibocsátó eseménytelen.
+}
+  
+$holdtime 6.8
+!C1A0_15
+{
+Dr. Birdwell jelenti: Szupravezetõ váltás aktiválva.
+}
+  
+$holdtime 8
+!C1A0_16
+{
+FIGYELEM: Jelenteni minden biztonság sértést Adminisztáció 1 Alszinten.
+}
+  
+$holdtime 7
+!C1A0_17
+{
+FIGYLELEM: Servíz személyzet, kérem hívja Helikopter Hangár 1-et.
+}
+  
+$holdtime 6
+!C1A0_18
+{
+Pajzs megfigyelõ csoport jelenti, elsõdleges reaktor eseménytelen.
+}
+  
+$holdtime 6.7
+!C1A0_19
+{
+Transzport irányító rendszer jelenti, minden rendszer idõben van.
+}
+  
+$holdtime 7.6
+!C1A0_20
+{
+Dr. Victor, jelentkezzen: Mélyhûtött Lézer laboratóriumban, kérem.
+}
+  
+$holdtime 6
+!C1A0_21
+{
+Guthrie Õrmester, jelentkezzen: Felszíni Gépjármûparkban azonnal.
+}
+  
+$holdtime 6
+!C1A0_22
+{
+Uránium szálítmányozás csoport D szektorba.
+}
+
+$holdtime 9
+!C1A1_0
+{
+FIGYELMEZTETÉS: Magas energiájú robbanás észlelve az Anyag Laboratóriumban.
+}
+
+$holdtime 7
+!C1A1_1
+{
+FIGYELEM: Biztonsági személyzet C Szektorba azonnal.
+}
+
+$holdtime 7.5
+!C1A1_2
+{
+FIGYELMEZTETÉS: Illetéktelen biológiai létformák észlelve C Szektorban.
+}
+
+$holdtime 9
+!C1A1_3
+{
+FIGYELMEZTETÉS: Illetéktelen biológiai létformák észlelve Hûtõ Karbantartó Területen.
+}
+ 
+$holdtime 8
+!C1A1_4
+{
+Sérülést elhárító csoport C Szektorba azonnal.
+}
+ 
+$holdtime 7
+!C1A1_5
+{
+FIGYELMEZTETÉS: C Szektor felvonó hibás. Használaton kívül !
+}
+ 
+$holdtime 7
+!C1A1_6
+{
+Vegyianyag figylemeztetés B és C Szektorban.
+} 
+ 
+$holdtime 8.1
+!C1A1_7
+{
+FIGYELEM: C Szektor tudó személyzet, hagyja el a területet azonnal.
+} 
+ 
+$holdtime 8
+!C1A1_8
+{
+FIGYELMEZTETÉS: Áradás észlelve 3-as Alszint, B Szektor.
+} 
+ 
+$holdtime 8.5
+!C1A1_9
+{
+FIGYELMEZTETÉS: Rendellenes energia mezõ észlelve az Adminisztráviós Központban.
+} 
+ 
+$holdtime 8
+!C1A1_10
+{
+FIGYELEM: Minden C Szektor tudós személynek, státuszjelentést kérek.
+} 
+ 
+$holdtime 8.1
+!C1A1_11
+{
+FIGYELEM: Minden C Szektor tudós személynek, státuszjelentést kérek azonnal.
+} 
+
+$holdtime 6.5
+!C1A2_0
+{
+Vészhelyzeti Takarító Csoport: Biológiai Hulladékfeldolgozó Üzembe.
+} 
+
+$holdtime 8
+!C1A2_1
+{
+FIGYELEM: Admisztrációs személyzetnek; D Szektort elhagyni azonnal.
+} 
+
+$holdtime 6
+!C1A2_2
+{
+FIGYELEM: Biztonsági személyzet D Szektorba.
+} 
+
+$holdtime 6
+!C1A2_3
+{
+Szervíz csoport: Felvonó 1 ellenõrzés [C Szektor]
+} 
+
+$holdtime 8.4
+!C1A2_4
+{
+FIGYELMEZTETÉS: Illetéktelen biológiai létformák észlelve: Ventillációs Rendszerben
+}
+
+$holdtime 6
+!C1A2_5
+{
+Backman Fõhadnagy és takarító csoport: 3. Alszintre
+}
+
+$holdtime 8
+!C1A2_6
+{
+VESZÉLY: Gépágyú védelmi rendszer aktiválva [D Szektor]
+}
+
+$holdtime 9
+!C1A2_7
+{
+Biztonsági tiszt jelenti: Elesett személy a D Szektorban, Orvosi segítség szükséges.
+}
+
+$holdtime 9
+!C1A2_8
+{
+EXTRÉM VESZÉLY: Minden gépágyú védelmi rendszer aktiválva [D Szektor]
+}
+
+$holdtime 7.5
+!C1A2_9
+{
+Gépágyú javító személyzet: Magas biztonságú Anyagok raktárba.
+}
+
+$holdtime 8
+!C1A2_10
+{
+FIGYELEM: Áramütés veszély észlelve; Adminisztrációs Központban.
+}
+
+$holdtime 8.5
+!C1A2_11
+{
+Biztonsági tiszt jelenti: Orvosi Vészhelyzet [Adminisztrációs Központ]
+}
+
+$holdtime 8.5
+!C1A3_0
+{
+FIGYELEM: Minden tudós személy jelentkezzen; felszínen azonnali kihallgatásra.
+}
+
+$holdtime 8
+!C1A3_1
+{
+Minden személy hagyja el: Magas biztonságú Anyagok raktár Üzemet.
+}
+
+$holdtime 7
+!C1A3_2
+{
+Vészhelyzeti Uránium Elzáró Csoport: D Szektorba.
+}
+
+$holdtime 7
+!C1A3_3
+{
+Gépágyú karbantartó személyzet: Központi Irányítás és Kommunikációs Központba.
+}
+
+$holdtime 8
+!C1A3_4
+{
+Katonai Személyzet, végrehajtani: Kiló India Lima nagy erõvel.
+}
+
+$holdtime 8
+!C1A3_5
+{
+FIGYELEM: A bejelentõ rendszer katonai irányítás alatt.
+}
+
+$holdtime 8
+!C1A3_6
+{
+Felkutató és Semlegesítõ Bravó Erõk: Jelenti, másodlagos feladat semlegesítve.
+}
+
+$holdtime 8
+!C1A3_7
+{
+Bravó Erõk jelenti: Hotel Sierra Mike üzem biztosítva.
+}
+
+$holdtime 7.5
+!C1A3_8
+{
+FIGYELEM: Minden katonai személynek; Atomi biológiai kémiai riadó.
+}
+
+$holdtime 8
+!C1A3_9
+{
+FIGYELEM: Minden katonai személynek; Extrém atomi biológiai kémiai riadó.
+}
+ 
+$holdtime 9
+!C1A3_10
+{
+FIGYELEM: Fekete Szurdok bejelentõ rendszer katonai irányítás alatt.
+}
+ 
+$holdtime 8
+!C1A3_warn
+{
+FIGYELEM: Biztonsági zárlat riadó. Biztonsági ajtó a helyén.
+}
+ 
+$holdtime 12
+!C1A3_lock
+{
+Biztonsági ajtó a helyén: 5..4..3..2..1.. Zárlat aktiválva.
+}
+
+$holdtime 8
+!C1A4_0
+{
+FIGYELEM: Kisérleti rakéta teszt tûz feloldva.
+}
+
+$holdtime 6
+!C1A4_1
+{
+Javító csoport jelentkezzen: Vágánykezelõ, E Szektorban.
+}
+
+$holdtime 6
+!C1A4_2
+{
+Kék Karbantartó csapat: Hõcserélõ hûtõrendszer vizsgálat.
+}
+
+$holdtime 7
+!C1A4_3
+{
+Zöld Karbantartó csapat: Feszültség vizsgálat 729-es kábelen.
+} 
+
+$holdtime 9
+!C1A4_4
+{
+Mentõ csoport: Anyag Tároló Üzem Bravó Csapat elesett személyt jelentett.
+} 
+
+$holdtime 7
+!C1A4_5
+{
+Alfa Erõk kivonulni. Extrém Kutató személyzet ellenállás.
+}
+
+$holdtime 9
+!C1A4_6
+{
+FIGYELEM: Minden Fekete Szurdok Biztonsági Személy; körözve azonnali kihallgatásra.
+}
+
+$holdtime 9.2
+!C1A4_7
+{
+FIGYELEM: Gordon Freeman, jelentkezzen; Katonai személyzetnél azonnali biztonsági ellenõrzésre.
+}
+
+$holdtime 9
+!C1A4_8
+{
+FIGYELMEZTETÉS: Ellenséges biológiai létformák észlelve: Vágánykezelõ [E Szektor]
+}
+
+$holdtime 6.2
+!FUEL_OFF
+{
+Üzemanyag és energia ellátás szükséges: Rakéta teszt tûz aktiváláshoz.
+}
+ 
+$holdtime 8
+!C2A1_0
+{
+FIGYELMEZTETÉS: Vágány energiaellátás hiba. Az alacsonyabb szintû Erõmût ellenörizni.
+}
+ 
+$holdtime 7.5
+!C2A1_1
+{
+Sárga Karbantartó csapat: Kérem megjavítani a 394.-es váltót
+}
+ 
+$holdtime 8.5
+!C2A1_2
+{
+FIGYELEM: Gordon Freeman, jelentkezzen; Katonai személyzetnél azonnali biztonsági ellenõrzésre.
+}
+  
+$holdtime 6
+!C2A1_3
+{
+Delta Csapat jelenti: Indító vezérlõ biztosítva.
+}
+  
+$holdtime 8
+!C2A1_4
+{
+VESZÉLY: Gépágyú védelmi rendszer - AKTIVÁLVA [E Siló]
+}
+ 
+$holdtime 5
+!C2A1_5
+{
+E Szektor Vágánykezelõ: Státuszjelentést kérek.
+}
+ 
+$holdtime 6
+!C2A1_6
+{
+Ekó Erõk jelenti: Behatolás a kerületben [E Szektor]
+} 
+  
+$holdtime 9.6
+!C2A1_7
+{
+FIGYELEM: Felkutató és Semlegesítõ Erõk 3-as szintre vált. Minden biológiai létforma semlegesítése.
+} 
+   
+$holdtime 8.7
+!C2A1_8
+{
+VESZÉLY: Illetéktelen robbanás észlelve; Kisérleti Hajtómû laboratóriumban.
+} 
+ 
+$holdtime 4
+!POWER_OFF
+{
+Fõ energia: KIKAPCSOLVA.
+} 
+ 
+$holdtime 3
+!POWER_ON
+{
+Fõ energia: BEKAPCSOLVA.
+} 
+ 
+$holdtime 7
+!C2A2_0
+{
+FIGYELEM: Megtakarítani E Siló indítási területet azonnal.
+} 
+ 
+$holdtime 7
+!C2A2_1
+{
+Zárlat megfigyelõ csoport: Fejlett Biológiai Kutató Laboratóriumba.
+} 
+ 
+$holdtime 7
+!C2A2_2
+{
+Orvosi csoport, Ekó Csapatnál elesett személy.
+} 
+ 
+$holdtime 9
+!C2A2_3
+{
+Katonai Személyzet Riasztás: Engedélyezett Gordon Freeman üldözése extrém erõkkel.
+} 
+ 
+$holdtime 9
+!C2A2_4
+{
+RIADÓ: Csapat az E Silóban, Freeman a közvetlen környezetükben tartózkodhat.
+} 
+ 
+$holdtime 5.5
+!C2A2_5
+{
+[Indító Vezérlõ] Vonat aktivitás észlelve.
+} 
+ 
+$holdtime 8.2
+!C2A2_6
+{
+Orvosi csapat E Szektorba, Ekó Csapatnak nem sikerült: a célt elérni.
+} 
+ 
+$holdtime 7
+!C2A2_7
+{
+Mûhold Rakéta Betöltõ Rész: Jelenti a státusz ZÖLD.
+} 
+ 
+$holdtime 19
+!C2A2_launch
+{
+Mûhold Indító Rendszer aktiválva: 5..4..3..2..1.. Az indítás MEHET.
+} 
+
+$holdtime 6.5
+!C2A4_0
+{
+FIGYELMEZTETÉS: Vészhelyzeti Zárlat Rendszer aktiválva.
+} 
+
+$holdtime 6.5
+!C2A4_1
+{
+RIADÓ: Biológiai zárlat megsértés észlelve.
+} 
+
+$holdtime 7
+!C2A4_2
+{
+FIGYELMEZTETÉS: Biológiai sterilizáló rendszer aktiválva.
+} 
+
+$holdtime 9.5
+!C2A4_3
+{
+FIGYELEM: Ellenséges idegen katonai erõk észlelve [Fejlett Biológiai Kutató laboratórium]
+}
+
+$holdtime 9.2
+!C2A4_4
+{
+Felkutató és Semlegesítõ Erõk jelenti: Támogatás szükséges. Extrém ellenállásba ütközött.
+} 
+ 
+$holdtime 7.7
+!C2A4_5
+{
+Felszíni Zárlat Erõk RIADÓ: Ellenséges idegen katonai erõk észlelve.
+} 
+  
+$holdtime 5
+!C2A4_6
+{
+Magas Energia Lézer Státusz: ZÖLD.
+} 
+  
+$holdtime 7.5
+!C2A4_7
+{
+Idegen zárlat rendszer hiba, sterilizációs kamrát használni.
+} 
+   
+$holdtime 8.3
+!C2A4_8
+{
+FIGYELEM: Minden felszíni katonai személynek, megtisztítani Helikopter Hangár 4-et.
+} 
+   
+$holdtime 9
+!C2A4_9
+{
+Ellenséges idegen áttörés: [Alfa Felszíni Ellenörzõpont], [Delta Ellenörzõpont]
+} 
+   
+$holdtime 12
+!C2A4_10
+{
+RIADÓ: Felszíni Zárlat Erõk; Bevethetõ mindennemû erõ Gordon Freeman üldözésére. Fegyvertûz engedélyezett észlelés esetén.
+} 
+   
+$holdtime 7.5
+!C2A4_11
+{
+RIADÓ: Felszíni Zárlat Erõk; Freeman a közelükbe érkezhet.
+} 
+   
+$holdtime 7
+!C2A4_12
+{
+Gordon, minden kutató személy semlegesítve lesz, amíg fel nem adja.
+} 
+   
+$holdtime 5
+!C2A4_ster
+{
+Sterilizációs Rendszer aktiválva.
+}
+   
+$holdtime 5
+!C3A1_0
+{
+FIGYELMEZTETÉS: Elsõdleges Antenna hiba észlelve.
+}
+   
+$holdtime 6.2
+!C3A1_1
+{
+Felszíni Gépjármûparkot megtisztítani a mentõhelikopternek.
+}
+   
+$holdtime 6
+!C3A1_2
+{
+FIGYELMEZTETÉS: Felszíni Fegyvertár biztonsági megkerülés észlelve.
+}
+   
+$holdtime 7.1
+!C3A1_3
+{
+FIGYELMEZTETÉS: Sugárzás szivárgás észlelve; Elsõdleges Antenna terület.
+}
+   
+$holdtime 10
+!C3A1_4
+{
+Felkutató és Semlegesítõ Erõk Kiló [Központi Vezérlõ] jelenti: ellenséges idegen erõk a közelben.
+}
+     
+$holdtime 7
+!C3A1_5
+{
+Üzenet Gordon Freeman-nek: Most nem menekülsz el.
+}
+     
+$holdtime 8
+!C3A1_6
+{
+Figyelem minden egységnek: Freeman dezertõr az elsõdleges célpont.
+} 
+     
+$holdtime 8
+!C3A1_7
+{
+RIADÓ: Maradék zárlat erõk, Freeman-nl kísérleti fegyver lehet.
+} 
+      
+$holdtime 8.2
+!C3A1_8
+{
+Minden személynek: Elhagyni [Lambda Épület], extrém dimenzionális üzemzavar észlelve.
+} 
+      
+$holdtime 9.4
+!C3A1_9
+{
+Felszíni Fegyverraktár Tûzoltó csapat, Delta Ellenörzõpont, Felszíni Vízerõmû.
+} 
+      
+$holdtime 7
+!C3A2_0
+{
+FIGYELMEZTETÉS: Kereszt dimenzionális energia mezõ észlelve.
+}
+      
+$holdtime 9
+!C3A2_1
+{
+FIGYELMEZTETÉS: Illetéktelen biológiai erõ észlelve; kereszt dimenzionális energia mezõben.
+}
+      
+$holdtime 8.5
+!C3A2_2
+{
+Minden személynek elhagyni: [Lambda Épület] extrém dimenzionális üzemzavar észlelve.
+}
+      
+$holdtime 8
+!C3A2_3
+{
+Illetéktelen aktivitás észlelve: Fõ Reaktor Mag.
+} 
+      
+$holdtime 9.5
+!C3A2_4
+{
+VESZÉLY: Magas energia kisülés észlelve; Radioaktív Anyagokat Kezelõ kamránál.
+} 
+      
+$holdtime 7.5
+!C3A2_5
+{
+Biológiai erõ észlelve: Elsõdleges Hûtõ Rendszerben.
+}  
+      
+$holdtime 6
+!C3A2_6
+{
+Lambda Üzem jelenti: Dimenzionális zárlat.
+} 
+      
+$holdtime 8
+!C3A2_7
+{
+Lambda Üzem jelenti: Dimenzionális zárlat rendszer hiba.
+} 
+      
+$holdtime 4
+!C3A2_target
+{
+Mûhold célzó rendszer: FOGLALT.
+} 
+      
+$holdtime 11
+!C3A2_portal
+{
+FIGYELMEZTETÉS: Kereszt dimenzionális átjáró; Energiaszint 120%
+} 
+      
+$holdtime 9
+!C3A2_core
+{
+FIGYELEM: Lambda Üzem Személyzet; Elsõdleges Mag aktiválva.
+}  
+
+//==============================================================================
+// HEV Suit
+//==============================================================================
+
+$color  255 192 58
+$color2 128  96 29
+
+$holdtime 11
+!HEV_A0
+{
+Köszönti a VKR mark 4 védelmi rendszer, Veszélyes környezeti behatások elleni használatra.
+} 
+
+$holdtime 11
+$chained !HEV_AAx_PT2
+!HEV_AAx
+{
+Köszönti a VKR mark 4 védelmi rendszer, Veszélyes környezeti behatások elleni használatra.
+} 
+
+$holdtime 4.5
+$chained !HEV_AAx_PT3
+!HEV_AAx_PT2
+{
+Ütésálló Reaktív Páncélzat: AKTIVÁLVA.
+}
+
+$holdtime 4.5
+$chained !HEV_AAx_PT4
+!HEV_AAx_PT3
+{
+Légköri szennyezõdés Érzékelõk: AKTIVÁLVA.
+}
+
+$holdtime 3.5
+$chained !HEV_AAx_PT5
+!HEV_AAx_PT4
+{
+Életfunkció Megfigyelés: AKTIVÁLVA.
+}
+
+$holdtime 3.5
+$chained !HEV_AAx_PT6
+!HEV_AAx_PT5
+{
+Egészségügyi Automata: ÖSSZEKAPCSOLT.
+}
+
+$holdtime 4.2
+$chained !HEV_AAx_PT7
+!HEV_AAx_PT6
+{
+Önvédelmi Fegyver Kiválasztó: AKTIVÁLVA.
+}
+
+$holdtime 3.6
+$chained !HEV_AAx_PT8
+!HEV_AAx_PT7
+{
+Lõszer Szint Követõ: AKTIVÁLVA.
+}
+
+$holdtime 3.7
+$chained !HEV_AAx_PT9
+!HEV_AAx_PT8
+{
+Kommunikációs Interfész: ONLINE.
+}
+
+$holdtime 3
+!HEV_AAx_PT9
+{
+Legyen Biztonságos Napja !
+}
+
+$holdtime 3.5
+!HEV_A1
+{
+Erõteljes Mozgás Rásegítés: AKTIVÁLVA.
+}
+
+$holdtime 4.2
+!HEV_A2
+{
+Ütésálló Reaktív Páncélzat: AKTIVÁLVA.
+}
+
+$holdtime 4.2
+!HEV_A3
+{
+Légköri szennyezõdés Érzékelõk: AKTIVÁLVA.
+}
+
+$holdtime 3.5
+!HEV_A4
+{
+Életfunkció Megfigyelés: AKTIVÁLVA.
+}
+
+$holdtime 3.7
+!HEV_A5
+{
+Lõszer Szint Követõ: AKTIVÁLVA.
+}
+
+$holdtime 3.7
+!HEV_A6
+{
+Kommunikációs Interfész: ONLINE.
+}
+
+$holdtime 4.2
+!HEV_A7
+{
+Önvédelmi Fegyver Kiválasztó: AKTIVÁLVA.
+}
+
+$holdtime 3.5
+!HEV_A8
+{
+Egészségügyi Automata: ÖSSZEKAPCSOLT.
+}
+
+$holdtime 4
+!HEV_A9
+{
+Energia Szint: 100%
+}
+
+$holdtime 4
+!HEV_A10
+{
+Legyen Biztonságos Napja !
+}
+
+$holdtime 5
+!HEV_MED0
+{
+Orvosi készlet nem elegendõ a sérülés javítására.
+}
+
+$holdtime 4.5
+!HEV_MED1
+{
+Egészségügyi Automata: ÖSSZEKAPCSOLT.
+}
+
+$holdtime 4
+!HEV_MED2
+{
+Forduljon kezelõ orvoshoz.
+}
+
+$holdtime 7
+!HEV_HEAL0
+{
+Seb sterilizálva. Morfium beadva.
+}
+
+$holdtime 7
+!HEV_HEAL1
+{
+NYílt seb beforrasztva. A vérzés elállt.
+}
+
+$holdtime 3.7
+!HEV_HEAL2
+{
+A vérzés elállt.
+}
+
+$holdtime 4
+!HEV_HEAL3
+{
+Vér plazma beadva.
+}
+
+$holdtime 4.5
+!HEV_HEAL4
+{
+Ellenméreg beadva.
+}
+
+$holdtime 4.5
+!HEV_HEAL5
+{
+Ellenanyag beadva.
+}
+
+$holdtime 4
+!HEV_HEAL6
+{
+Seb sterilizálva.
+}
+
+$holdtime 4.2
+!HEV_HEAL7
+{
+Morfium beadva.
+}
+
+$holdtime 4.7
+!HEV_HEAL8
+{
+Sérülés kijavítva.
+}
+
+$holdtime 4
+!HEV_DMG0
+{
+Enyhe zúzódás észlelve.
+}
+
+$holdtime 4
+!HEV_DMG1
+{
+Súlyos zúzódás észlelve.
+}	
+
+$holdtime 4
+!HEV_DMG2
+{
+Belsõ vérzés felfedezve.
+}
+
+$holdtime 5
+!HEV_DMG3
+{
+FIGYELEM: Magas vér-toxin szint.
+}
+
+$holdtime 4
+!HEV_DMG4
+{
+Enyhe törés felfedezve.
+} 
+ 
+$holdtime 4
+!HEV_DMG5
+{
+Súlyos törés felfedezve.
+}  
+ 
+$holdtime 4
+!HEV_DMG6
+{
+Vér veszteség felfedezve.
+} 
+  
+$holdtime 4
+!HEV_DMG7
+{
+Keressen orvosi ellátást.
+} 
+  
+$holdtime 4
+!HEV_HLTH0
+{
+FIGYELEM: Életfunkciók esnek.
+} 
+  
+$holdtime 4.1
+!HEV_HLTH1
+{
+Esnek az életfunkciók.
+} 
+  
+$holdtime 4.5
+!HEV_HLTH2
+{
+FIGYELEM: Életfunkció kritikus.
+} 
+  
+$holdtime 5
+!HEV_HLTH3
+{
+VÉSZHELYZET: Felhasználói Halál Elkerülhetetlen.
+} 
+   
+$holdtime 6
+!HEV_HLTH4
+{
+Esnek az életfunkciók. Területelhagyás javasolt.
+} 
+    
+$holdtime 6
+!HEV_HLTH5
+{
+FIGYELEM: Életfunkció kritikus. Területelhagyás szükséges.
+}  
+   
+$holdtime 10
+!HEV_HLTH6
+{
+VÉSZHELYZET: Felhasználói Halál Elkerülhetetlen. Azonnali területelhagyás szükséges.
+} 
+   
+$holdtime 5
+!HEV_SHOCK
+{
+FIGYELEM: Áramütés veszély észlelve.
+} 
+   
+$holdtime 5
+!HEV_FIRE
+{
+FIGYELEM: Égésveszély észlelve.
+} 
+   
+$holdtime 5
+!HEV_AIM_ON
+{
+Automata Célzás Rásegítés: AKTIVÁLVA.
+} 
+   
+$holdtime 5
+!HEV_AIM_OFF
+{
+Automata Célzás Rásegítés: KIKAPCSOLT.
+}
+   
+$holdtime 3.5
+!HEV_BATTERY
+{
+VKR Energiatelep beszerezve.
+}
+   
+$holdtime 3
+!HEV_MEDKIT
+{
+Automata Orvosi Készlet.
+}
+ 
+$holdtime 6.5
+!HEV_0P
+{
+FIGYELEM: VKR energiaszin 5% alatt.
+}
+    
+$holdtime 3
+!HEV_1P
+{
+Energia: 10%
+}
+
+$holdtime 3
+!HEV_2P
+{
+Energia: 15%
+}
+
+$holdtime 3
+!HEV_3P
+{
+Energia: 20%
+}
+
+$holdtime 4
+!HEV_4P
+{
+Energia: 25%
+}
+
+$holdtime 3
+!HEV_5P
+{
+Energia: 30%
+}
+
+$holdtime 4
+!HEV_6P
+{
+Energia: 35%
+}  
+ 
+$holdtime 3
+!HEV_7P
+{
+Energia: 40%
+} 
+ 
+$holdtime 4
+!HEV_8P
+{
+Energia: 45%
+} 
+  
+$holdtime 3
+!HEV_9P
+{
+Energia: 50%
+}
+  
+$holdtime 4
+!HEV_10P
+{
+Energia: 55%
+} 
+   
+$holdtime 3
+!HEV_11P
+{
+Energia: 60%
+}
+   
+$holdtime 4
+!HEV_12P
+{
+Energia: 65%
+}
+   
+$holdtime 3
+!HEV_13P
+{
+Energia: 70%
+} 
+    
+$holdtime 4
+!HEV_14P
+{
+Energia: 75%
+} 
+
+$holdtime 3
+!HEV_15P
+{
+Energia: 80%
+} 
+
+$holdtime 4
+!HEV_16P
+{
+Energia: 85%
+}  
+ 
+$holdtime 3
+!HEV_17P
+{
+Energia: 90%
+}  
+ 
+$holdtime 4
+!HEV_18P
+{
+Energia: 95%
+}   
+  
+$holdtime 4.5
+!HEV_19P
+{
+Energia szint: 100%
+} 
+  
+$holdtime 2.5
+!HEV_AMO0
+{
+Lõszer elfogyott.
+} 
+   
+$holdtime 3.5
+!HEV_DET0
+{
+FIGYELEM: Vegyianyag észlelve.
+} 
+    
+$holdtime 3.5
+!HEV_DET1
+{
+FIGYELMEZTETÉS: Veszélyes Kemikália észlelve.
+}
+    
+$holdtime 5
+!HEV_DET2
+{
+FIGYELMEZTETÉS: Veszélyes Sugárzási Szint észlelve.
+}
+
+
+//============================================================
+// Nihilanth
+//============================================================
+
+$color  255 140 140
+$color2 255  70  70
+
+$holdtime 8
+!NIL_ALONE
+{
+Egyedül... nem te egyedül... nem te egyedül...
+}
+
+$holdtime 4
+!NIL_COMES
+{
+Jön... másik...
+}
+
+$holdtime 8
+!NIL_DECEIVE
+{
+Megtéveszt... meg fog téveszteni...
+}
+
+$holdtime 7
+!NIL_DIE
+{
+Meghaltok... mind meghaltok... mind meghaltok...
+}
+
+$holdtime 5
+!NIL_DONE
+{
+Tettél... amit tettél...
+}
+
+$holdtime 5.5
+!NIL_FREEMAN
+{
+Freeman !
+}
+
+$holdtime 8
+!NIL_LAST
+{
+Az utolsó... te vagy... az utolsó...te vagy...
+}
+
+$holdtime 13.5
+!NIL_NOTMAN
+{
+Te ember vagy... õ nem ember... rád vár... rád...
+}
+
+$holdtime 8
+!NIL_NOWDIE
+{
+Most halj meg... most halj meg... most...
+}
+
+$holdtime 8
+!NIL_SLAVES
+{
+A szolgái... mi vagyunk a szolgái... mi vagyunk...
+}
+
+$holdtime 5.5
+!NIL_THELAST
+{
+Az utolsó... Én vagyok az utolsó...
+}
+
+$holdtime 7
+!NIL_THETRUTH
+{
+Az igazat... sosem tudhatod... az igazat...
+}
+
+$holdtime 7
+!NIL_THIEVES
+{
+Tolvajok... mind tolvajok vagytok... mind...
+}
+
+$holdtime 5
+!NIL_WIN
+{
+Nyerned... Nem lehet nyerned...
+}
+
+//============================================================
+// GMan
+//============================================================
+
+$color  136 144 176
+$color2  68  72  88
+
+$holdtime 17
+!GM_SUIT
+{
+Gordon Freeman hús-vér valójában. Vagy inkább, védõruhában. Bátorkodtam megszabadítani a fegyvereitõl, a legtöbb a kormány tulajdona volt. Ami a ruhát illeti, Úgy hiszem kiérdemelte...
+}
+
+$holdtime 13
+!GM_NASTY
+{
+A peremvilág, Xen, jelenleg a mi irányításunk alatt van, magának köszönhetõen. Elég mocskos munkát végzett odaát. Le vagyok nyûgözve...
+}
+
+$holdtime 20
+!GM_POTENTIAL
+{
+Ezért vagyok itt, Freeman Úr. Megemlítettem a szolgálatait a munkaadóimnak és engedélyezték, hogy feajánljak egy állást. Megegyeztünk abban, hogy kimeríthetetlen potenciállal rendelkezik...
+}
+
+$holdtime 13.5
+!GM_STEPIN
+{
+Talpraesett embernek bizonyította magát, így nem feltételezem, hogy gondja lenne eldönteni mit tegyen. Ha érdekli, csak lépjen be az átjáróba és ezt igennek veszem...
+}
+
+$holdtime 13.5
+!GM_OTHERWISE
+{
+Egyébként... nos... Olyan csatát tudok ajánlani, amiben nincs esélye a gyõzelemre. Lehangoló ahhoz képest, amit épp most élt túl.
+}
+
+$holdtime 2
+!GM_1CHOOSE
+{
+Ideje választani...
+}
+
+$holdtime 2
+!GM_2CHOOSE
+{
+Itt az idõ választani...
+}
+
+$holdtime 5.2
+!GM_WISE
+{
+Bölcsen döntött, Freeman Úr. Hamarosan viszont látom...
+}
+
+$holdtime 3.5
+!GM_WONTWORK
+{
+Nos, úgy látom nem fogunk együtt dolgozni...
+}
+
+$holdtime 3
+!GM_REGRET
+{
+Fel a fejjel, Freeman Úr...
+}
