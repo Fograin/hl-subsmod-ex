@@ -1,0 +1,5892 @@
+//====================================================
+// Half-Life Subtitles MOD 3.0 - Localization file
+//====================================================
+// Parameters info:
+// $effect X 			<= Used by mod to assign messages
+// $color2 R G B 		<= Text highlight color
+// $color R G B 		<= Text final color
+// $fadein SECONDS		<= Time it takes to fade each character
+// $fxtime SECONDS		<= This is the amount of time the highlight lags behind the leading edge of the text
+// $fadeout SECONDS		<= How long it takes to fade out the message after holding
+//====================================================
+// Additional info:
+// Font = Arial narrow 16
+//===========================================================
+// Language: Turkish
+// Writen by: Mehmet "qabRieL" Umaç
+// Edits by: N/A
+//===========================================================
+
+// Global subtitles settings
+$effect 18
+$position 0 0
+$fadein 0.01
+$fxtime 0.25
+$fadeout 0.5
+
+//==============================================================================================================
+// Train ride
+//==============================================================================================================
+$color  255 255 255
+$color2 128 128 128
+
+$holdtime 11.5
+!TR_GMORN
+{
+Günaydýn, Black Mesa Ulaþým Sistemi'ne hoþ geldiniz. Bu otomatik tren Black Mesa Araþtýrma çalýþanýnýn güvenliði ve rahatlýðý için saðlanmýþtýr.
+}
+
+$holdtime 20.5
+!TR_TIME
+{
+Saat sabah 08:47. Yüzey sýcaklýðý 34 derece, gün içinde azami 41 derecelik bir sýcaklýk olacaðý tahmin edilmektedir. Black Mesa Yerleþkesi daima 20 derece sýcaklýkta tutulacak þekilde donatýlmýþtýr.
+}
+
+$holdtime 24
+$chained !TR_DEST_PT2
+!TR_DEST
+{
+Bu tren 3. Kat Yatakhaneleri'nden gelip Sektör C Deney Laboratuvarlarý & Denetim Üniteleri'nde gitmektedir. Eðer Sektör C'nin ilerisindeki yüksek güvenlikli bir yere gitmek istiyorsanýz Alan 9'daki Ana Ulaþým Merkezi'ne dönüp bir yüksek güvenlik trenine bininiz.
+}
+
+$holdtime 14
+!TR_DEST_PT2
+{
+Henüz kimlik belgenizi göz tarama sistemine kaydettirmediyseniz, ulaþým sisteminin yüksek güvenlikli bölümüne geçmeden önce Black Mesa çalýþanýna baþvurarak kayýt iþlemlerinizi tamamlayýnýz.
+}
+
+$holdtime 11.8
+!TR_NOEAT
+{
+Black Mesa Yerleþkesi içerisinde sürekli olarak yüksek derecede zehirli maddeler kullanýldýðýndan, ulaþým sistemi içerisinde sigara içmek, yiyecek ve içecekler yasaktýr.
+}
+
+$holdtime 18.5
+$chained !TR_EMERG_PT2
+!TR_EMERG
+{
+Trenin dýþ tarafýna uzanmayýnýz. Tren istasyon platformuna yanaþýp tamamen durana kadar kesinlikle kapýlarý açmaya çalýþmayýnýz. Acil bir durumda, yolcularýn yerlerinde kalmalarý ve verilecek talimatlara uymalarý gerekmektedir.
+}
+
+$holdtime 15.4
+!TR_EMERG_PT2
+{
+Trenin boþaltýlmasýnýn gerektiði durumlarda öncelik engelli çalýþana aittir. Lütfen elektrikli ray hattýndan uzak durunuz ve yardým ekibi ulaþana kadar bir acil durum istasyonuna ilerleyiniz.
+}
+
+$holdtime 19
+$chained !TR_TOURN_PT2
+!TR_TOURN
+{
+Hatýrlatma: Black Mesa Tehlike Kursu Dekatlonu bu akþam 3. Kat tesiste gerçekleþtirilecektir. Yüksek güvenlik çalýþaný yarý finalleri ayrý bir yayýn frekansýndan duyurulacaktýr.
+}
+
+$holdtime 5.5
+!TR_TOURN_PT2
+{
+Unutmayýn: Saðlýðýnýz, baþka canlarýn saðlýðý için de gereklidir.
+}
+
+$holdtime 6
+$chained !TR_JOBS_PT2
+!TR_JOBS
+{
+Black Mesa takýmýna deðerli katkýlarda bulunacaðýný düþündüðünüz bir arkadaþýnýz mý var?
+}
+
+$holdtime 13
+$chained !TR_JOBS_PT3
+!TR_JOBS_PT2
+{
+Malzeme Taþýnmasý ve Düþük Seviyeli Güvenlik bölümlerinde iþ fýrsatlarý devam etmekte. Lütfen ayrýntýlý bilgi için Black Mesa çalýþanýna danýþýn.
+}
+
+$holdtime 13.5
+$chained !TR_JOBS_PT4
+!TR_JOBS_PT3
+{
+Eðer teorik fizik, biyoteknoloji ya da diðer yüksek teknik bir disiplin geçmiþi bulunan bir tanýdýðýnýz varsa, lütfen sivil iþe alým ekibimizle görüþün.
+}
+
+$holdtime 5
+!TR_JOBS_PT4
+{
+Black Mesa Tesisi herkese eþit þans veren bir iþverendir.
+}
+
+$holdtime 13
+$chained !TR_HAZ_PT2
+!TR_HAZ
+{
+Tüm Black Mesa çalýþanýna hatýrlatma: Düzenli ýþýným ve zararlý madde taramasý Black Mesa Araþtýrma Tesisi içerisindeki devamlýlýðýnýz açýsýndan zorunludur. 
+}
+
+$holdtime 7
+$chained !TR_HAZ_PT3
+!TR_HAZ_PT2
+{
+Önceden planlanmýþ bir idrar tahlili ya da ýþýným denetimi eksikliði derhal uzaklaþtýrmayla cezalandýrýlacaktýr.
+}
+
+$holdtime 11
+$chained !TR_HAZ_PT4
+!TR_HAZ_PT3
+{
+Eðer görevleriniz sýrasýnda ýþýnýma ya da diðer zararlý maddelere maruz kaldýðýnýzý düþünüyorsanýz, acilen ýþýným güvenlik amirinize danýþýnýz.
+}
+
+$holdtime 5.5
+!TR_HAZ_PT4
+{
+Güvenli çalýþýn. Uyanýk olun. Geleceðiniz buna baðlý.
+}
+
+$holdtime 5.5
+!TR_ARRIVE
+{
+Sektör C Deney Laboratuvarlarý & Denetim Üniteleri'ne yaklaþýlýyor.
+}
+
+$holdtime 7.5
+$chained !TR_EXIT_PT2
+!TR_EXIT
+{
+Lütfen otomatik kapýnýn gerisinde durun ve güvenlik görevlisinin kimlik bilgilerinizi onaylamasýný bekleyin.
+}
+
+$holdtime 5.5
+$chained !TR_EXIT_PT3
+!TR_EXIT_PT2
+{
+Trenden ayrýlmadan önce lütfen kiþisel eþyalarýnýzý denetleyin.
+}
+
+$holdtime 4
+!TR_EXIT_PT3
+{
+Teþekkür eder, güvenli ve verimli bir gün geçirmenizi dileriz.
+}
+
+//============================================================
+// Gina Cross holo (Hazard Course)
+//============================================================
+
+$color  255 222 152
+$color2 128 111  76
+
+$holdtime 7
+$chained !HOLO_INTRO_PT2
+!HOLO_INTRO
+{
+Merhabalar, Black Mesa Tehlike Kursu'na hoþ geldiniz, burada Tehlikeli Çevre Giysi'nizi nasýl kullanacaðýnýzý öðreneceksiniz.
+}
+
+$holdtime 8
+!HOLO_INTRO_PT2
+{
+Ben holografik yardýmcýnýz olacaðým. Giysinizi giyerek iþe baþlayalým. Önünüzde asýlý bir þekilde bulabilirsiniz.
+}
+
+$holdtime 5.5
+!HOLO_BUTTON
+{
+Bu düðmelerden görürseniz, basýn ve ben de size bazý hareketleri göstermek için arz-ý endam ederim.
+}
+
+$holdtime 15
+!HOLO_MOVE
+{
+H.E.V giysinizle hareket etmek baþta kafa karýþtýrýcý olabilir. Biraz müsaade edip temel hareketleri tanýyýn ve kýsa bir süre sonra size sanki ikinci bir deriymiþ gibi oturacaktýr. Köþede tekrar görüþeceðiz.
+}
+
+$holdtime 4.5
+$chained !HOLO_JUMP_PT2
+!HOLO_JUMP
+{
+Tehlike Kursu'nda çalýþacaðýmýz ilk hareket, temel zýplama.
+}
+
+$holdtime 5.5
+$chained !HOLO_JUMP_PT3
+!HOLO_JUMP_PT2
+{
+Sadece koþma ve zýplama komutlarýný kullanarak bu borularýn üzerinden geçmeye çalýþacaksýnýz.
+}
+
+$holdtime 5.5
+!HOLO_JUMP_PT3
+{
+Koþturarak baþlamak daha kolaydýr. Beni izleyin ardýndan kendiniz deneyin.
+}
+
+$holdtime 10
+!HOLO_DUCK
+{
+Sýradaki zorluklarýn altýndan geçmek zorundasýnýz. Lütfen eðilmenin giysinizi otomatik olarak gizlilik moduna alacaðýný, ve hareket sesini en aza düþüreceðini not edin.
+}
+
+$holdtime 11
+!HOLO_JDUCK
+{
+Þimdi ise bu yetenekleri birleþtireceðiz. Zýplamanýz, eðilmeniz sonra tekrar zýplamanýz gerecek. Bu sizi bir sonraki odaya hazýrlayacak, orada da hareketleri ayný anda yapmanýz gerekecek.
+}
+
+$holdtime 4.5
+$chained !HOLO_PIPEDUCK_PT2
+!HOLO_PIPEDUCK
+{
+Bu borularýn içine girebilmek için, giysinize çömelme zýplamasý yapmasý sinyalini vermelisiniz.
+}
+
+$holdtime 13
+!HOLO_PIPEDUCK_PT2
+{
+Borunun tam önüne gelin ve ileri tuþuna basmaya devam edin. Sonra zýplayýn ve havadayken, çömelin. Biraz zorlu, ama zamanla anlayacaksýnýz ki iþinize yarayacak.
+}
+
+$holdtime 1
+!HOLO_NICEJOB
+{
+Çok güzel!
+}
+
+$holdtime 7.8
+!HOLO_LADDER
+{
+Dümdüz merdivene doðru ilerleyin, yukarý bakýn ve ileri gitmeye devam edin. Geri gelmek isterseniz, geriye gidin.
+}
+
+$holdtime 13
+!HOLO_3JUMPS
+{
+Sýradaki üç zýplama giderek zorlaþýyor, ama gayet mümkünler. Sonuncuyu birkaç defa kaçýrýrsanýz þaþýrmayýn. Üçünü de bir kerede yaparsanýz, gayet iyi gidiyorsunuz demektir.
+}
+
+$holdtime 2
+!HOLO_KEEPTRYING
+{
+Denemeye devam edin. Baþarabilirsiniz.
+}
+
+$holdtime 2
+!HOLO_RUNSTART
+{
+Koþarak baþlamak daha kolay olabilir.
+}
+
+$holdtime 3.7
+!HOLO_FALLSHORT
+{
+Aþaðý düþüyorsanýz, erken atlýyor olabilirsiniz.
+}
+
+$holdtime 4.5
+!HOLO_GREATWORK
+{
+Harika iþ çýkardýnýz! Öðrenmeniz gereken bir zýplama þekli daha var.
+}
+
+$holdtime 4
+$chained !HOLO_LONGJUMP_PT2
+!HOLO_LONGJUMP
+{
+Uzun zýplama, burada da görüldüðü gibi kendisine özel olan þarj modülüne ihtiyaç duyar
+}
+
+$holdtime 11
+!HOLO_LONGJUMP_PT2
+{
+Uzun zýplamayý devreye sokmak için, çömelmeniz ve ileri yürümeniz ve son olarak da zýplamanýz gerekmektedir. Platforma geldiðinizde düðmeye basýn ve ben size hareketi göstereceðim.
+}
+
+$holdtime 6
+!HOLO_RETRY
+{
+Bir daha deneyin. Ýleri gitmeyi unutmayýn, zýplayýn ve havadayken çömelin
+}
+
+$holdtime 5.5
+!HOLO_STARTLIFT
+{
+Lütfen düðmeye ilerleyin, ona doðru bakýn ve Kullanma tuþunuza basarak asansörü çalýþtýrýn.
+}
+
+$holdtime 7.5
+$chained !HOLO_JUMPDOWN_PT2
+!HOLO_JUMPDOWN
+{
+Yukarýya çýktýðýnýza göre, aþaðý inmenin tek bir yolu var. Aþaðýdaki hedefi bulun ve üzerine inmek için elinizden geleni yapýn.
+}
+
+$holdtime 5.2
+!HOLO_JUMPDOWN_PT2
+{
+Eðer düþüþten ötürü hasar alýrsanýz, bir sonraki istasyonda size týbbi tedavi uygularýz.
+}
+
+$holdtime 8.6
+$chained !HOLO_MEDKIT_PT2
+!HOLO_MEDKIT
+{
+Black Mesa yerleþkesinde buradaki gibi saðlýk kitleri bulacaksýnýz. Saðlýðýnýzý tazelemek için, saðlýk kitine ilerleyin ve Kullanma tuþunuza basýn.
+}
+
+$holdtime 10
+!HOLO_MEDKIT_PT2
+{
+Tam dolana kadar veya kit bitinceye kadar, saðlýðýnýz yavaþ yavaþ tazelenecektir. Iþýðý söndüðü zaman, bir saðlýk kiti tekrar kullanýlamaz.
+}
+
+$holdtime 4.5
+!HOLO_SPINBRIDGE
+{
+Köprüyü döndürmek için, denetim dümenine yaklaþýn ve Kullanma tuþuna basýn.
+}
+
+$holdtime 1.1
+!HOLO_FANTASTIC
+{
+Mükemmel!
+}
+
+$holdtime 7.6
+!HOLO_JUMPGAP
+{
+Dar bir yerden geçmek için bazen giysinizden baþka þeylere de güvenmelisiniz. Bu boþluðu zýplayarak geçmeyi deneyin.
+}
+
+$holdtime 10
+!HOLO_PUSHBOX
+{
+Yapmanýz gereken, kutuyu boþluða doðru itmek. Ýtmek basittir. Kutuya doðru ilerleyin, bu sayede kutuyu itebilirsiniz.
+}
+
+$holdtime 7.8
+$chained !HOLO_PULLBOX_PT2
+!HOLO_PULLBOX
+{
+Engeli yolunuzdan itemiyorsanýz, çekmeyi deneyebilirsiniz. Bir kutuyu çekmek için, ona yaklaþýn ve Kullanma tuþunuza basýn.
+}
+
+$holdtime 7.2
+!HOLO_PULLBOX_PT2
+{
+Kutuyu tutup Kullanma tuþuna basýlý tutarken, yavaþça geriye doðru gidin. Kutu da sizinle birlikte gelecektir.
+}
+
+$holdtime 9.8
+!HOLO_BREAKBOX
+{
+Son olarak, hiçbiri iþe yaramadýysa önünüze çýkan engelleri kýrmayý deneyebilirsiniz. Levyeyi aldýðýnýza emin olun, ardýndan önünüze gelen her þeyi kýrýn.
+}
+
+$holdtime 3
+!HOLO_FLASHLIGHT
+{
+Bir sonraki bölge için giysinizin fenerini devreye sokun.
+}
+
+$holdtime 5.3
+!HOLO_LIGHTOFF
+{
+Harika! Unutmayýn, el feneriniz güç kullanýr. Bu yüzden, gereksiz olduðu durumlarda kapatýn!
+}
+
+$holdtime 12.2
+!HOLO_TARGET
+{
+Black Mesa Atýþ Alaný'na hoþ geldiniz, burada bir silah nasýl ateþlenir, nasýl þarjör deðiþtirilir ve bomba atar ekli iken nasýl ateþ edilir gibi temelleri öðreneceksiniz. Lütfen silahý alýn ve atýþ istasyonuna ilerleyin.
+}
+
+$holdtime 8
+$chained !HOLO_HITALL_PT2
+!HOLO_HITALL
+{
+Kursu tamamlayabilmek için bütün hedefleri vurmanýz gerekmektedir. Ancak ilk seferinde kaçýrýrsanýz, endiþe etmeyin, tekrar geri gelecektir.
+}
+
+$holdtime 6
+!HOLO_HITALL_PT2
+{
+Önemli bir anda kurþunun bitmesini beklemektense, duraklama anlarýnda þarjörü deðiþtirmeyi deneyin.
+}
+
+$holdtime 8
+!HOLO_GRENADE
+{
+Bomba atarýnýzý ateþlemek için, [Alternatif Atýþ] tuþunu kullanýn. Bazý hedefler sadece bomba atar ile vurulduklarýnda kýrýlýr.
+}
+
+$holdtime 5
+!HOLO_COMMENCING
+{
+Diziye baþlanýyor: 5..4..3..2..1
+}
+
+$holdtime 2
+!HOLO_TRYAGAIN
+{
+Zararý yok. Tekrar deneyin!
+}
+
+$holdtime 6
+!HOLO_CONGRATS
+{
+Tebrikler! Black Mesa Atýþ Alaný'ný baþarýyla tamamladýnýz. Lütfen bir sonraki alana ilerleyin.
+}
+
+$holdtime 15.5
+!HOLO_DROWN
+{
+H.E.V giysiniz kandaki oksijen seviyesini görüntüler ve hava ikmaline gerek duyulduðunda sizi uyarýr. Bu bölümde yüzerken, oksijen seviyeniz düþmeye baþlayacak, orta noktada, yüzeye çýkma olanaðýna sahip olacaksýnýz.
+}
+
+$holdtime 11
+!HOLO_BREATH
+{
+Yukarý çýkýn ve nefes alýn. Giysinizde görüntülenen kandaki oksijen göstergesinin eski seviyesine döndüðünü göreceksiniz. Bu bölümün sonuna yüzebilirsiniz.
+}
+
+$holdtime 9.3
+$chained !HOLO_CHARGER_PT2
+!HOLO_CHARGER
+{
+Bu gördüðünüz, Tehlikeli Çevre Giysi'niz için bir þarj ünitesi. Giysinizin enerjisi düþükse, herhangi bir þarj aletine yaklaþýn ve Kullanma tuþuna basýn.
+}
+
+$holdtime 8.3
+!HOLO_CHARGER_PT2
+{
+Giysinizin þarj ünitesi tükenene kadar yavaþ yavaþ þarj olacaktýr. Tekil bataryalar da giysinizi þarj etmek için kullanýlabilir.
+}
+
+$holdtime 10.5
+!HOLO_STEAM
+{
+Eðer ateþ veya buharýn içinden geçerseniz bir sýcaklýk hasarý simgesinin yandýðý göreceksiniz. Göstergenizin ortasýnda yer alan yön göstergeleri, hasarýn nereden geldiðini gösterecektir.
+}
+
+$holdtime 8.5
+!HOLO_RADIATION
+{
+Bir ýþýnýma yakýnlaþtýðýnýzda bir Geiger sayacý ve ýþýným göstergesi devreye girer. Biyolojik tehlikeler ayrýca ýþýldayan bir simgeyle de gösterilir.
+}
+
+$holdtime 2
+!HOLO_INJURY
+{
+Lütfen bir sonraki alana ilerleyin.
+}
+
+$holdtime 5.5
+$chained !HOLO_LEADGUARD_PT2
+!HOLO_LEADGUARD
+{
+Güvenlik görevlisine bir sonraki odaya kadar önderlik edin, ulaþým sistemine geri dönmenizi saðlayacaktýr.
+}
+
+$holdtime 7.2
+!HOLO_LEADGUARD_PT2
+{
+Görevliye yaklaþýp Kullanma tuþuna basýn. Üzerine gelip tekrar Kullanma tuþuna basýncaya kadar sizi takip edecektir.
+}
+
+$holdtime 13
+!HOLO_USETRAIN
+{
+Trenle etkileþime geçmek için Kullanma tuþuna basýn. Trenin hýzýný arttýrmak ve azaltmak için Ýleri ve Geri tuþlarýný kullanýn. Trenden ayrýlmak için tekrar Kullanma tuþuna basýn.
+}
+
+$holdtime 9
+!HOLO_DONE
+{
+Tebrikler, Black Mesa Tehlike Kursu'nu baþarýyla tamamladýnýz! Artýk H.E.V Mark 4 koruma sistemini kullanabilecek þekilde tescillendiniz! 
+}
+
+
+//=============================================================================================================================================
+// Barney (generic)
+//=============================================================================================================================================
+
+$color  126 192 255
+$color2  63  96 128
+
+$holdtime 1
+!BA_OK0
+{
+Pekala, ben seni korurum.
+}
+
+$holdtime 3
+!BA_OK1
+{
+Peki, beraber çalýþýrsak, daha uzun süre hayatta kalabiliriz.
+}
+
+$holdtime 2
+!BA_OK2
+{
+Haydi buradan çýkalým.
+}
+
+$holdtime 3
+!BA_OK3
+{
+Takým olursak kurtulma ihtimalimiz daha yüksek olur.
+}
+
+$holdtime 3
+!BA_OK4
+{
+Peki, niye olmasýn? Yalnýz ölmek istemem.
+}
+
+$holdtime 1
+!BA_OK5
+{
+Peki, gidelim.
+}
+
+$holdtime 2
+!BA_OK6
+{
+Anlaþýldý, deli danalar gibi akalým.
+}
+
+$holdtime 3
+!BA_WAIT0
+{
+Peki, ben burada bekleyip gelen geçene yardýmcý olacaðým.
+}
+
+$holdtime 2
+!BA_WAIT1
+{
+Sen bensiz devam et.
+}
+
+$holdtime 2
+!BA_WAIT2
+{
+Tamamdýr, ben bu bölgeyi güvence altýna alacaðým.
+}
+
+$holdtime 2
+!BA_WAIT3
+{
+Tamam, ben burada bekleyeceðim.
+}
+
+$holdtime 2
+!BA_WAIT4
+{
+Sonra görüþürüz.
+}
+
+$holdtime 2
+!BA_WAIT5
+{
+Burada kalýp bu bölgeyi savunacaðým.
+}
+
+$holdtime 3
+!BA_POK0
+{
+Kusura bakmayýn, efendim, görev yerimde durmak zorundayým.
+}
+
+$holdtime 3
+!BA_POK1
+{
+Üzgünüm ama görev baþýndayým Bay Freeman.
+}
+
+$holdtime 2
+!BA_POK2
+{
+Daha sonra yapsak olmaz mý?
+}
+
+$holdtime 3
+!BA_POK3
+{
+Hey! Bi' ara takýlalým, sana bi' bira ýsmarlarým.
+}
+
+$holdtime 1
+!BA_HELLO0
+{
+Merhaba.
+}
+
+$holdtime 1
+!BA_HELLO1
+{
+Merhaba, Bay Freeman.
+}
+
+$holdtime 1
+!BA_HELLO2
+{
+Merhaba, efendim.
+}
+
+$holdtime 1
+!BA_HELLO3
+{
+Hey, Gordon.
+}
+
+$holdtime 1
+!BA_HELLO4
+{
+Efendim...
+}
+
+$holdtime 1
+!BA_HELLO5
+{
+Hey, Gordon.
+}
+
+$holdtime 1
+!BA_HELLO6
+{
+Efendim...
+}
+
+$holdtime 2
+!BA_HEAR0
+{
+Bir þey duydum.
+}
+
+$holdtime 2
+!BA_HEAR1
+{
+Bu kulaða pek hoþ gelmedi.
+}
+
+$holdtime 2
+!BA_HEAR2
+{
+Dostum, bu kulaða hiç de hoþ gelmedi.
+}
+
+$holdtime 3
+!BA_SMELL0
+{
+Öð, burada bir þey ölmüþ.
+}
+
+$holdtime 3
+!BA_SMELL1
+{
+Bu koku da ne?
+}
+
+$holdtime 2
+!BA_SMELL2
+{
+Öf, bu pis koku da ne?
+}
+
+$holdtime 2
+!BA_CUREA
+{
+Ýddaaya varým ki deli gibi acýyordur o þimdi.
+}
+
+$holdtime 3
+!BA_CUREB
+{
+Efendim, o yara için tedavi gerekebilir.
+}
+
+$holdtime 4
+!BA_CUREC
+{
+Þey... efendim, bunu söylemeye dilim varmýyor ama, kötü durumdasýnýz.
+}
+
+$holdtime 2
+!BA_SCARED0
+{
+Hey, kes þunu!
+}
+
+$holdtime 3
+!BA_SCARED1
+{
+Çýldýrdýn mý sen?! Rahat býraksana adamý!
+}
+
+$holdtime 3
+!BA_WOUND0
+{
+Biraz hasar aldým, ama devam edebilirim.
+}
+
+$holdtime 3
+!BA_WOUND1
+{
+Þey... bayaðý kötü yaralandým.
+}
+
+$holdtime 4
+!BA_MORTAL0
+{
+Kusuruma bakmayýn... efendim, ama daha fazla dayanamayacaðým.
+}
+
+$holdtime 2
+!BA_SHOT0
+{
+O þeye dikkat et!
+}
+
+$holdtime 2
+!BA_SHOT1
+{
+Hey, benim ne zararýmý gördün?
+}
+
+$holdtime 2
+!BA_SHOT2
+{
+O þeye dikkat et!
+}
+
+$holdtime 2
+!BA_SHOT3
+{
+Ne yapmaya çalýþýyorsun!
+}
+
+$holdtime 3
+!BA_SHOT4
+{
+Senin gibi dost olmaz olsun
+}
+
+$holdtime 2
+!BA_SHOT5
+{
+Beni sinirlendirme, Gordon.
+}
+
+$holdtime 2
+!BA_MAD0
+{
+Hey, geri çekil dostum!
+}
+
+$holdtime 2
+!BA_MAD1
+{
+Keþke bu durumlara düþmeseydik.
+}
+
+$holdtime 3
+!BA_MAD2
+{
+Heh, keþke bunu yapmasaydým diyeceksin.
+}
+
+$holdtime 3
+!BA_MAD3
+{
+Benim de sabrýmýn taþtýðý bir nokta var!
+}
+
+$holdtime 2
+!BA_MAD4
+{
+Senin için yolun sonu göründü.
+}
+
+$holdtime 2
+!BA_MAD5
+{
+Bunu bana yaptýrma.
+}
+
+$holdtime 2
+!BA_MAD6
+{
+Mezartaþýnda ne yazmasýný istersin?
+}
+
+$holdtime 1
+!BA_STARE0
+{
+Evet.
+}
+
+$holdtime 1
+!BA_STARE1
+{
+Evet, efendim.
+}
+
+$holdtime 1
+!BA_STARE2
+{
+Merhaba, efendim.
+}
+
+$holdtime 1
+!BA_STARE3
+{
+Efendim.
+}
+
+$holdtime 3
+!BA_ATTACK0
+{
+Ateþ aç, Gordon!
+}
+
+$holdtime 3
+!BA_ATTACK1
+{
+Ateþ aç!
+}
+
+$holdtime 1
+!BA_ATTACK2
+{
+Geri çekil!
+}
+
+$holdtime 2
+!BA_ATTACK3
+{
+Bu da ne lan böyle?
+}
+
+$holdtime 2
+!BA_ATTACK4
+{
+Geber, seni pis kan emici.
+}
+
+$holdtime 2
+!BA_ATTACK5
+{
+Bulabilirsen baþýndan niþan al.
+}
+
+$holdtime 1
+!BA_KILL0
+{
+Birini hallettim!
+}
+
+$holdtime 2
+!BA_KILL1
+{
+Haha, bir tane daha indirdim!
+}
+
+$holdtime 3
+!BA_KILL2
+{
+Dünayadaki korkunç þeyler sayýsý bir azaldý.
+}
+
+$holdtime 2
+!BA_KILL3
+{
+Uf be! Nasýl vurdum gördün mü?
+}
+
+$holdtime 2
+!BA_KILL4
+{
+Vay be... bu bayaðý bi' yakýndý.
+}
+
+$holdtime 3
+!BA_KILL5
+{
+Heh, bu ödül odamda çok iyi duracak.
+}
+
+$holdtime 1
+!BA_KILL6
+{
+Gelin bakalým!
+}
+
+$holdtime 2
+!BA_STOP0
+{
+Benden bu kadar.
+}
+
+$holdtime 4
+!BA_STOP1
+{
+Burada kalýp yardýma ihtiyacý olan var mý diye bakýnacaðým.
+}
+
+$holdtime 2
+!BA_IDLE0
+{
+Bu da ne lan böyle?
+}
+
+$holdtime 3
+!BA_IDLE1
+{
+Buz gibi bi' bira iyi giderdi þimdi.
+}
+
+$holdtime 4
+!BA_IDLE2
+{
+Bu karmaþanýn sorumlusunu bulursam yakasýna yapýþacaðým.
+}
+
+$holdtime 3
+!BA_IDLE3
+{
+Acaba o herifler daha büyük bir kargaþa yaratabilirler miydi merak ediyorum.
+}
+
+$holdtime 3
+!BA_IDLE4
+{
+Þansýmýz eninde sonunda deðiþecek.
+}
+
+$holdtime 3
+!BA_IDLE5
+{
+Bu mekan benim sandýðýmdan daha da büyükmüþ.
+}
+
+$holdtime 4
+!BA_IDLE6
+{
+Evet, atýþ alanýnda harcadýðým onca zamanýn geri dönüþü olacak bugün!
+}
+
+$holdtime 3
+!BA_IDLE7
+{
+Bu konu hakkýnda içimde kötü bir his var...
+}
+
+$holdtime 3
+!BA_IDLE8
+{
+Havada pusu kokusu var. Dikkatli olsak iyi olur.
+}
+
+$holdtime 3
+!BA_IDLE9
+{
+Buradan kazasýz belasýz çýkarsam çok iyi olacak.
+}
+
+$holdtime 4
+!BA_IDLE10
+{
+Daha fazla ilerlemeli miyiz bilmiyorum. Pek iyi görünmüyor.
+}
+
+$holdtime 3
+!BA_QUESTION0
+{
+Bunlarýn hepsini atlattýðýmýzda bizi soðuk bir bira bekliyor mudur dersin?
+}
+
+$holdtime 2
+!BA_QUESTION1
+{
+Sence burasý doðru çýkýþ yolu mu?
+}
+
+$holdtime 3
+!BA_QUESTION2
+{
+Bundan daha kötüsü olamaz, deðil mi?
+}
+
+$holdtime 3
+!BA_QUESTION3
+{
+Bu eski tabanca benimle birlikte diye memnunsun, deðil mi?
+}
+
+$holdtime 3
+!BA_QUESTION4
+{
+Bu tarz þeyler üzerinde çalýþtýklarý hakkýnda bir bilgin var mýydý?
+}
+
+$holdtime 2
+!BA_QUESTION5
+{
+Sence burasý doðru çýkýþ yolu mu?
+}
+
+$holdtime 3
+!BA_QUESTION6
+{
+Neler döndüðü hakkýnda bir fikrin var mý?
+}
+
+$holdtime 2
+!BA_QUESTION7
+{
+Korkmuyorsun, deðil mi?
+}
+
+$holdtime 3
+!BA_QUESTION8
+{
+You don't still think this is a drill, do you ?
+Bunun hâlâ bir alýþtýrma olduðunu zannetmiyorsun, deðil mi?
+}
+
+$holdtime 2
+!BA_QUESTION9
+{
+Sence yaklaþýyor muyuz?
+}
+
+$holdtime 2
+!BA_QUESTION10
+{
+Hey, bir þey duydun mu?
+}
+
+$holdtime 3
+!BA_QUESTION11
+{
+Bizim ekipten kaç kiþi ölmüþtür sence?
+}
+
+$holdtime 3
+!BA_QUESTION12
+{
+Bir þeyin hareket ettiðini gördün mü?
+}
+
+$holdtime 2
+!BA_QUESTION13
+{
+Benim düþündüðümü mü düþünüyorsun?
+}
+
+$holdtime 4
+!BA_QUESTION14
+{
+Ayaðý olmayan o þeyi gördün mü?
+}
+
+$holdtime 1
+!BA_ANSWER0
+{
+Hayatta olmaz.
+}
+
+$holdtime 1
+!BA_ANSWER1
+{
+Galiba.
+}
+
+$holdtime 1
+!BA_ANSWER2
+{
+Olur!
+}
+
+$holdtime 1
+!BA_ANSWER3
+{
+Emredersiniz efendim.
+}
+
+$holdtime 1
+!BA_ANSWER4
+{
+Elbette.
+}
+
+$holdtime 1
+!BA_ANSWER5
+{
+Buyur.
+}
+
+$holdtime 1
+!BA_ANSWER6
+{
+Evet.
+}
+
+$holdtime 1
+!BA_ANSWER7
+{
+Bana sorma.
+}
+
+$holdtime 2
+!BA_ANSWER8
+{
+Hiç sanmam.
+}
+
+$holdtime 2
+!BA_ANSWER9
+{
+Külahýma anlat.
+}
+
+$holdtime 2
+!BA_ANSWER10
+{
+Ben öyle düþünmüyorum.
+}
+
+$holdtime 1
+!BA_ANSWER11
+{
+Zannetmiyorum.
+}
+
+$holdtime 1
+!BA_ANSWER12
+{
+Söylemesi zor.
+}
+
+$holdtime 1
+!BA_ANSWER13
+{
+Bilmiyorum.
+}
+
+$holdtime 1
+!BA_ANSWER14
+{
+Hayýr.
+}
+
+$holdtime 1
+!BA_ANSWER15
+{
+Hayýr, efendim.
+}
+
+$holdtime 2
+!BA_ANSWER16
+{
+Anlayamýyorum...
+}
+
+$holdtime 1
+!BA_ANSWER17
+{
+Belki.
+}
+
+$holdtime 2
+!BA_ANSWER18
+{
+Harbiden söyleyemem.
+}
+
+$holdtime 2
+!BA_ANSWER19
+{
+Sessiz olur musun?!
+}
+
+$holdtime 2
+!BA_ANSWER20
+{
+Çok konuþuyorsun ha.
+}
+
+$holdtime 2
+!BA_ANSWER21
+{
+Onu zaten sormamýþ mýydýn?
+}
+
+//=============================================================================================================================================
+// Barney Scripted Subtitles
+//=============================================================================================================================================
+
+$holdtime 2
+!BA_HAZ_OK0
+{
+Elbette, seni takip ederim.
+}
+
+$holdtime 2
+!BA_HAZ_WAIT0
+{
+Peki, burada bekleyeceðim.
+}
+
+$holdtime 3.5
+!BA_LATE
+{
+Günaydýn, Bay Freeman... Görünüþe bakýlýrsa geç kalmýþsýnýz.
+}
+
+$holdtime 4
+!BA_HEADDOWN
+{
+Yanlýþ giriþe gelmiþsiniz Bay Freeman. Buradan geçmenize izin veremem biliyorsunuz.
+}
+
+$holdtime 8.5
+$chained !BA_DESK_PT2
+!BA_DESK
+{
+Merhaba Bay Freeman. Sizin için birkaç iletim vardý, fakat yaklaþýk yirmi dakika önce sistem çöktü ve hâlâ dosyalarýma ulaþmaya çalýþýyorum. Baþka gün, ayný terane...
+}
+
+$holdtime 8.2
+!BA_DESK_PT2
+{
+Ayrýca Deney Odasý'nda da bir takým sýkýntýlar vardý, ama sanýrým hepsi giderildi. Bana koruyucu giysinizi giyer giymez oraya gitmenizi söylememi tembihlediler.
+}
+
+$holdtime 3
+!BA_BUTTON
+{
+Haydi ama, Gordon! Baþýmý belaya sokmaya mý çalýþýyorsun?
+}
+
+$holdtime 5
+!BA_HEVNO
+{
+Üzgünüm, Bay Freeman, koruyucu giysiniz olmadan sizi içeri almamam yönünde kesin emir aldým.
+}
+
+$holdtime 3
+!BA_HEVYES
+{
+Devam edin, efendim. Anlaþýlan bugünün þanssýz kiþisi sizsiniz.
+}
+
+$holdtime 8
+!BA_GLAD
+{
+Gordon! Dostum, seni gördüðüme çok sevindim! Bu þeyler de ne böyle?! Ve niye bilim ekibinin üniformalarýný giyiyorlar?
+}
+
+$holdtime 6
+!BA_BULLSQUID
+{
+Hey, aþaðýda ne halt arýyorsun? Yukarý çýk! Askerlerin bizi kurtarmak için geldiðini duydum!
+}
+
+$holdtime 4
+!BA_CLIMB
+{
+Asansörler çalýþmýyor... ama hâlâ týrmanabiliriz...
+}
+
+$holdtime 5
+!BA_SLEW
+{
+Söylentiye göre yüzeye vardýðýmýzda, ordu bize yardým edecekmiþ.
+}
+
+$holdtime 5
+!BA_SURFACE	
+{
+Askerlerin bizi bulmasýný bekleme! Yüzeye çýkmaya çalýþ!
+}
+
+$holdtime 5
+!BA_TOPSIDE
+{
+Belki yardým gerçekten yoldadýr, ama ben oturup beklemeyeceðim. Yüzeye çýkmalýyýz!
+}
+
+$holdtime 4
+!BA_WHISPER
+{
+Sessiz ol! Bu þeyler bizi duyuyor!
+}
+
+$holdtime 6
+!BA_TENTACLE
+{
+Hey! Hey buraya bak! Ýçinde patlasýn, seni pis uzay ahtapotu!
+}
+
+$holdtime 5
+$chained !BA_HUB1A_PT2
+!BA_HUB1A
+{
+Bayým, eðer gücü açabilirseniz... tren bizi direk olarak yüzeye götürür...
+}
+
+$holdtime 6
+$chained !BA_HUB1A_PT3
+!BA_HUB1A_PT2
+{
+Kendim denerdim, ama jenaratör odasý çok uzakta. Ve yolda...
+}
+
+$holdtime 2.5
+!BA_HUB1A_PT3
+{
+bazý þeyler var...
+}
+
+$holdtime 4
+!BA_HUB2A
+{
+Ben kurtulamayacaðým... En iyisi bensiz devam et...
+}
+
+$holdtime 9.6
+$chained !BA_LAUNCH_PT2
+!BA_LAUNCH
+{
+Freeman, ben de seni bekliyordum. Bilim insaný arkadaþlarýndan biri sana bir ileti iletmemi söyledi. Bu eski raylý sistemi kullanarak bir çeþit uydu gönderim roketine gitmen gerekiyormuþ.
+}
+
+$holdtime 5.2
+$chained !BA_LAUNCH_PT3
+!BA_LAUNCH_PT2
+{
+Tam olarak nerede bilmiyorum, o yaþlý adam da canýný kurtarmakla çok meþgul olduðu için bana anlatmadý.
+}
+
+$holdtime 8
+$chained !BA_LAUNCH_PT4
+!BA_LAUNCH_PT3
+{
+Özet geçmek gerekirse, ordu fýrlatmayý iptal etmiþ, bu yüzden o roketi bulduðunda, denetleme odasýna gidip fýrlatmayý kendin yapmak zorundasýn.
+}
+
+$holdtime 6
+!BA_LAUNCH_PT4
+{
+Lambda ekibi þayet bu kargaþayý temizleyecekse o uydunun yörüngeye oturmasý gerekiyor tarzý bir þeyler söyledi.
+}
+
+$holdtime 6
+!BA_ASSN
+{
+Sen Freeman'sýn, deðil mi? Sana bir iletim var. Sakýn diyeyim...
+}
+
+$holdtime 2
+!BA_TAU1A
+{
+Bu þey de ne? Bir çeþit silah mý?
+}
+
+$holdtime 2
+!BA_TAU3A
+{
+Vay be! Niye kullanmýyoruz bunu?
+}
+
+$holdtime 2
+!BA_TAU5A
+{
+Ne demek, aþýrý güç yü...
+}
+
+$holdtime 2.8
+$chained !BA_ALIVE_PT2
+!BA_ALIVE
+{
+Hey, burada durum pek iyi deðil. Her yer kapalý.
+}
+
+$holdtime 5.2
+$chained !BA_ALIVE_PT3
+!BA_ALIVE_PT2
+{
+Dýþarýya çýkmanýn tek yolu, ön kapýyý açabilecek tarayýcý yetkisine sahip birini bulmak.
+}
+
+$holdtime 7.5
+!BA_ALIVE_PT3
+{
+Laboratuvarlarda bir yerlerde saklanan birkaç bilim insaný olduðuna adým gibi eminim, belki ikimiz beraber ararsak, yerlerini bulabilir ve bizi dýþarý çýkarmalarýný saðlayabiliriz.
+}
+
+$holdtime 9
+!BA_HELPME
+{
+Yardým... Yardým edin... Birisi yardým etsin lütfen... Ölüyorum burada... Lütfen yardým edin.
+}
+
+$holdtime 3
+!BA_SURVEY2A
+{
+Demek adamýmýz bu. Hiç gelemeyeceksin diye düþünmüþtük!
+}
+
+$holdtime 2
+!BA_SURVEY4A
+{
+Evet, öldürsen iyi edersin.
+}
+ 
+$holdtime 5
+!BA_SURVEY6A
+{
+Eðer iþini halletmezsen, geriye dönmen için pek bir sebep kalmayacaðýný biliyorsun.
+}
+ 
+$holdtime 4
+!BA_SURVEY8A
+{
+Cephane almayý unutma. Sen o geçidin ýsýnmasýný beklerken koruyacaðým seni.
+}
+ 
+$holdtime 5
+!BA_PORTSTAY
+{
+Ben aþaðýda kalacaðým. Bu dünyaya ait olmayan bir þey görürsem, ateþ etmeye baþlayacaðým!
+}
+
+//============================================================
+// Scientist (generic)
+//============================================================
+
+$color  224 224 224
+$color2 112 112 112
+
+$holdtime 4
+!SC_OK0
+{
+Benim zekam ve senin kas kütlenle, muhteþem bir takým olacaðýz!
+}
+
+$holdtime 2
+!SC_OK1
+{
+Bir bilim insaný arkadaþýma eþlik etmekten hoþnut olurum!
+}
+
+$holdtime 2
+!SC_OK2
+{
+Peki, burada olduðumu anlamayacaksýn bile.
+}
+
+$holdtime 3
+!SC_OK3
+{
+Umuyorum ki ne yaptýðýný biliyorsundur.
+}
+
+$holdtime 2
+!SC_OK4
+{
+Önden buyur.
+}
+
+$holdtime 1
+!SC_OK5
+{
+Gidelim.
+}
+
+$holdtime 2
+!SC_OK6
+{
+Evet, gidelim.
+}
+
+$holdtime 1
+!SC_OK7
+{
+Evet.
+}
+
+$holdtime 1
+!SC_OK8
+{
+Pekala...
+}
+
+$holdtime 3
+!SC_WAIT0
+{
+Sana o kadar mý yük oldum?
+}
+
+$holdtime 2
+!SC_WAIT1
+{
+Seni yavaþlatýyorum, öyle mi?
+}
+
+$holdtime 2
+!SC_WAIT2
+{
+Tekrar düþünsen diyorum?!
+}
+
+$holdtime 2
+!SC_WAIT3
+{
+Beni niye burada býrakýyorsun?
+}
+
+$holdtime 1
+!SC_WAIT4
+{
+Tam burada bekleyeceðim.
+}
+
+$holdtime 1
+!SC_WAIT5
+{
+Burada kalacaðým.
+}
+
+$holdtime 1
+!SC_WAIT6
+{
+Bekleyeceðim.
+}
+
+$holdtime 2
+!SC_STOP0
+{
+Benden bu kadar.
+}
+
+$holdtime 2
+!SC_STOP1
+{
+Bir adým daha atmayý reddediyorum.
+}
+
+$holdtime 3
+!SC_STOP2
+{
+Beni burada býrakmak zorunda kalacaksýn Gordon.
+}
+
+$holdtime 3
+!SC_STOP3
+{
+Burada kalýp meslektaþlarýmý bekleyeceðim.
+}
+
+$holdtime 2
+!SC_STARE0
+{
+Evet?
+}
+
+$holdtime 2
+!SC_STARE1
+{
+Benim düþündüðümü mü düþünüyorsun?
+}
+
+$holdtime 4
+!SC_STARE2
+{
+Olan biten hakkýnda hiçbir fikrin yok, deðil mi?
+}
+
+$holdtime 1
+!SC_HELLO0
+{
+Merhabalar!
+}
+
+$holdtime 3.5
+!SC_HELLO1
+{
+Freeman! Hâlâ hayatta olacaðýn kimin aklýna gelirdi.
+}
+
+$holdtime 1.5
+!SC_HELLO2
+{
+Dost bir bilim insaný!
+}
+
+$holdtime 2
+!SC_HELLO3
+{
+Esenlikler dilerim.
+}
+
+$holdtime 2.4
+!SC_HELLO4
+{
+Merhabalar!
+}
+
+$holdtime 3.1
+!SC_HELLO5
+{
+Ahh! Seni görmek çok güzel!
+}
+
+$holdtime 4.4
+!SC_HELLO6
+{
+Ah! Sende yeni HEV giysilerinden var. Çok kullanýþlý olmalý.
+}
+
+$holdtime 4.3
+!SC_HELLO7
+{
+Olaðanüstü Maddeler laboratuvarýndansýn, deðil mi? Evet. Seni tanýyorum.
+}
+
+$holdtime 3.6
+!SC_HELLO8
+{
+Ah! Freeman! Görüyorum ki sen de bu kargaþanýn içinde kalmýþsýn.
+}
+
+$holdtime 1.1
+!SC_ANSWER0
+{
+Tam emin deðilim...
+}
+
+$holdtime 1.3
+!SC_ANSWER1
+{
+Pek... emin deðilim.
+}
+
+$holdtime 1
+!SC_ANSWER2
+{
+Belki de...
+}
+
+$holdtime 1.3
+!SC_ANSWER3
+{
+Kim bilebilir ki?
+}
+
+$holdtime 1.8
+!SC_ANSWER4
+{
+Ýnandýrýcý deðil.
+}
+
+$holdtime 1
+!SC_ANSWER5
+{
+Teorik olarak.
+}
+
+$holdtime 1.5
+!SC_ANSWER6
+{
+Niye bana soruyorsun?
+}
+
+$holdtime 2
+!SC_ANSWER7
+{
+Kibarca sesini alçalt...
+}
+
+$holdtime 1.2
+!SC_ANSWER8
+{
+Tabii ki!
+}
+
+$holdtime 1
+!SC_ANSWER9
+{
+Kesinlikle!
+}
+
+$holdtime 1
+!SC_ANSWER10
+{
+Evet!
+}
+
+$holdtime 1
+!SC_ANSWER11
+{
+Öyle sanýyorum!
+}
+
+$holdtime 1
+!SC_ANSWER12
+{
+Peki.
+}
+
+$holdtime 1
+!SC_ANSWER13
+{
+Eminim!
+}
+
+$holdtime 1
+!SC_ANSWER14
+{
+Olumlu!
+}
+
+$holdtime 1
+!SC_ANSWER15
+{
+Hiç þüphem yok.
+}
+
+$holdtime 1.5
+!SC_ANSWER16
+{
+Evet?
+}
+
+$holdtime 1
+!SC_ANSWER17
+{
+Elbette hayýr!
+}
+
+$holdtime 1
+!SC_ANSWER18
+{
+Kesinlikle olmaz!
+}
+
+$holdtime 1
+!SC_ANSWER19
+{
+Hayýr...
+}
+
+$holdtime 2
+!SC_ANSWER20
+{
+Sanmýyorum...
+}
+
+$holdtime 2
+!SC_ANSWER21
+{
+Tamamen yanlýþsýn.
+}
+
+$holdtime 1.3
+!SC_ANSWER22
+{
+Ciddi olamazsýn...
+}
+ 
+$holdtime 1.2
+!SC_ANSWER23
+{
+Gerçekten bilmiyorum.
+}
+
+$holdtime 1.1
+!SC_ANSWER24
+{
+Saçmalama!
+}
+
+$holdtime 1
+!SC_ANSWER25
+{
+Shut up !
+}
+
+$holdtime 1.8
+!SC_ANSWER26
+{
+Tahmin etmeye yeltenmiyorum bile...
+}
+
+$holdtime 1.8
+!SC_ANSWER27
+{
+Ayný soruyu sormayý býrak...
+}
+
+$holdtime 2
+!SC_ANSWER28
+{
+Onu az önce sormadýn mý zaten?
+}
+
+$holdtime 3
+!SC_ANSWER29
+{
+Biliyor musun... Bazen kendini tekrar ediyorsun.
+}
+
+$holdtime 3.2
+!SC_QUESTION0
+{
+Daha önce bunun gibi bir þey gördün mü?
+}
+
+$holdtime 4
+!SC_QUESTION1
+{
+Birkaç saatlik uyku için beynimin sað lobunu verebilirim...
+}
+
+$holdtime 2
+!SC_QUESTION2
+{
+Benim düþündüðümü mü düþünüyorsun?
+}
+
+$holdtime 2
+!SC_QUESTION3
+{
+Buradan kurtulabilecek miyiz?
+}
+
+$holdtime 2
+!SC_QUESTION4
+{
+Bunun doðru yol olduðundan emin misin?
+}
+
+$holdtime 2
+!SC_QUESTION5
+{
+Bundan daha kötüsü olamaz.
+}
+
+$holdtime 2.8
+!SC_QUESTION6
+{
+Elbette birileri gelip bizi kurtaracaktýr.
+}
+
+$holdtime 2.6
+!SC_QUESTION7
+{
+Bu olanlarýn hepsini büyüleyici bulmuyor musun?
+}
+
+$holdtime 3.5
+!SC_QUESTION8
+{
+Þey, ben bu olanlarýn ilham verici olduðunu düþünüyorum, sen?
+}
+
+$holdtime 4
+!SC_QUESTION9
+{
+Büyük ihtimalle þansýmýz deðiþir, sen de öyle düþünmüyor musun?
+}
+
+$holdtime 2.2
+!SC_QUESTION10
+{
+Bir þey duydun mu?
+}
+
+$holdtime 2.5
+!SC_QUESTION11
+{
+Benim aldýðým kokuyu sen de alýyor musun?
+}
+
+$holdtime 3
+!SC_QUESTION12
+{
+O doktora þu an çok iþime yarýyor, deðil mi?
+}
+
+$holdtime 3
+!SC_QUESTION13
+{
+Don't you think we should wait here for a while ? Sencede bir süre burada soluklanmayalým mý?
+}
+
+$holdtime 4
+!SC_QUESTION14
+{
+O acil durumda hayatta kalma prosedürlerinden herhangi birini hatýrlýyor musun?
+}
+
+$holdtime 5
+!SC_QUESTION15
+{
+Bu yengecimsi yaratýklarýn özgün bir asalaklýk izlemi var, sence de öyle deðil mi?
+}
+
+$holdtime 3.5
+!SC_QUESTION16
+{
+Bu olan bitenden dikkate deðer bir makale çýkar diyorum, ya sen?.
+}
+
+$holdtime 2
+!SC_QUESTION17
+{
+Bir örnek yakalamasak mý?
+}
+
+$holdtime 5.8
+!SC_QUESTION18
+{
+Gerçekten buradaki tüm yaratýklarýn bizi yemeðe çalýþtýðýný mý iddaa ediyorsun?
+}
+
+$holdtime 3.5
+!SC_QUESTION19
+{
+Bu baþarýsýzlýðýn arkasýnda bazý uzaylý tuzaðý olduðunu mu düþünüyorsun?
+}
+
+$holdtime 3
+!SC_QUESTION20
+{
+Sence uzaylý yetkililere mi baþvurmalýyýz?
+}
+
+$holdtime 5.1
+!SC_QUESTION21
+{
+Ordu temizliði sadece paranoyak bir söylenti, öyle deðil mi?
+}
+
+$holdtime 5.3
+!SC_QUESTION22
+{
+Uzaylý türlerinin hepsi saldýrgaan olamaz herhalde... deðil mi?
+}
+
+$holdtime 2.5
+!SC_QUESTION23
+{
+En son yapýlan duyuruyu anladýn mý?
+}
+
+$holdtime 2
+!SC_QUESTION24
+{
+Yanýk kokusu alýyor musun?
+}
+
+$holdtime 4
+!SC_QUESTION25
+{
+Neler olup bitiyor hiçbir fikrin yok, deðil mi?
+}
+
+$holdtime 3
+!SC_QUESTION26
+{
+Eh, bundan sonra ne yapacaðýz bir fikrin var mý?
+}
+
+$holdtime 3
+!SC_IDLE0
+{
+Bunlarýn hepsini tahmin etmiþtim, biliyor musun. Hepsini.
+}
+
+$holdtime 3.3
+!SC_IDLE1
+{
+Anlaþýlan kapsama sistemi tamamen bozulmuþ...
+}
+
+$holdtime 2.6
+!SC_IDLE2
+{
+Hâlâ bir kaos teorin olmadýðýný mý söylüyorsun.
+}
+
+$holdtime 3
+!SC_IDLE3
+{
+Ne kadar ilgi çekici, baksana þuna!
+}
+
+$holdtime 5
+!SC_IDLE4
+{
+Büyüleyici! Böyle þeylerin olabileceðini hiç düþünmemiþtim!
+}
+
+$holdtime 4
+!SC_IDLE5
+{
+Þu acayip iþaretlere bir bak.
+}
+
+$holdtime 3
+!SC_IDLE6
+{
+Bu kargaþadan kim sorumlu.
+}
+
+$holdtime 2.5
+!SC_IDLE7
+{
+Eh, baðýþ paramýz da uçtu gitti.
+}
+ 
+$holdtime 4
+!SC_IDLE8
+{
+Bu kan örneklerinden birini mikroskop altýna yatýrmak istemez miydin?
+}
+ 
+$holdtime 5
+!SC_IDLE9
+{
+Böyle bir þey olabileceðinden þüphelenmiþtim, ama yönetici beni dinlemedi.
+}
+ 
+$holdtime 4
+!SC_IDLE10
+{
+Bu büyüklükte bir baþarýsýzlýk son derece olasý olmayan bir þey.
+}
+ 
+$holdtime 5
+!SC_IDLE11
+{
+Eh, boyutsal yarýk kesinlikle organik madde iletiyor.
+}
+ 
+$holdtime 4.5
+!SC_IDLE12
+{
+Lambda laboratuvarýndaki o insanlarýn bunu denetim altýna alabileceðini umuyorum.
+}
+ 
+$holdtime 1.2
+!SC_IDLE13
+{
+Bir þey duydum.
+}
+
+$holdtime 4
+!SC_PHELLO0
+{
+Merhaba Gordon Freeman! Seni görmek güzel.
+}
+
+$holdtime 1
+!SC_PHELLO1
+{
+Esenlikler dilerim...
+}
+
+$holdtime 2
+!SC_PHELLO2
+{
+Ah! Seni görmek çok güzel.
+}
+
+$holdtime 1.5
+!SC_PHELLO3
+{
+Esenlikler dilerim!
+}
+
+$holdtime 1
+!SC_PHELLO4
+{
+Merhabalar!
+}
+
+$holdtime 1
+!SC_PHELLO5
+{
+Selamlar!
+}
+
+$holdtime 1
+!SC_PHELLO6
+{
+Freeman...
+}
+
+$holdtime 2.5
+!SC_PIDLE0
+{
+Birileri yine gözlüðümü saklamýþ...
+}
+
+$holdtime 3.7
+!SC_PIDLE1
+{
+Niye hepimiz bu rezalet kýravatlarý takmak zorundayýz ki?
+}
+
+$holdtime 3.7
+!SC_PIDLE2
+{
+Acaba o deneyi tekrar mý yapsam?
+}
+
+$holdtime 2.4
+!SC_PIDLE3
+{
+Bunlarýn hepsi kuramsal sýnýrlarýn içinde.
+}
+
+$holdtime 1.7
+!SC_PIDLE4
+{
+Týpký beklediðim gibi.
+}
+
+$holdtime 1.4
+!SC_PIDLE5
+{
+Bu garip.
+}
+
+$holdtime 2.5
+!SC_PIDLE6
+{
+Evet... bunlarýn hepsi önemsiz gözüküyor.
+}
+
+$holdtime 3.5
+!SC_PIDLE7
+{
+Haydi, nerede býraktým ben þimdi o kapatma iþlem çizelgesini?
+}
+
+$holdtime 3
+!SC_PIDLE8
+{
+O dalgalanmayý rapor etmeyi unutmamalýyým.
+}
+
+$holdtime 3.4
+!SC_PIDLE9
+{
+Gördüðün gibi, bu benzetim sonuçlarý son derece kabul edilebilir seviyede.
+}
+
+$holdtime 3.3
+!SC_PIDLE10
+{
+Umarým o kapsama deðiþkenleri hâlâ önemsizdir.
+}
+
+$holdtime 3.2
+!SC_PQUEST0
+{
+O meþrubat makinesini çalýþtýrmayý baþarabildin mi henüz?
+}
+
+$holdtime 4
+!SC_PQUEST1
+{
+Durum yazanaðýný yöneticiye gönderdin mi bugün?
+}
+
+$holdtime 4
+!SC_PQUEST2
+{
+Yine o tünelin örgülü hesaplamalarýný mý yapýyorsun?
+}
+
+$holdtime 4
+!SC_PQUEST3
+{
+Bu o hayýr topluluklarýný az da olsa geri çeker, deðil mi?
+}
+
+$holdtime 3.9
+!SC_PQUEST4
+{
+Kendi kuramýnýn yüzde yüz doðru olduðuna emin misin?
+}
+
+$holdtime 3.3
+!SC_PQUEST5
+{
+Bu çözümlemeyi dört gözle bekliyorum, ya sen?
+}
+
+$holdtime 3.3
+!SC_PQUEST6
+{
+Bir kereliðine de olsa saf deðerler alsak muhteþem olmaz mýydý?
+}
+
+$holdtime 2.5
+!SC_PQUEST7
+{
+O yeni örneðin kaynaðý ile ilgili bir fikrin var mý?
+}
+
+$holdtime 3.5
+!SC_PQUEST8
+{
+Bu çözümleme bugün harika bir þekilde gerçekleþecek, sence de öyle deðil mi?
+}
+
+$holdtime 4.5
+!SC_PQUEST9
+{
+Daha önce tartýþtýðýmýz rezonans çaðlayaný senaryosundan az da olsa endiþelenmiyor musun?
+}
+
+$holdtime 3.5
+!SC_PQUEST10
+{
+Sence yeniden ölçülemek amacýyla ertelemeli miyiz?
+}
+
+$holdtime 3.2
+!SC_PQUEST11
+{
+Yine o ahlaki mi deðil mi konusuna takýlmayacaksýn, deðil mi?
+}
+
+$holdtime 4
+!SC_PQUEST12
+{
+Bütün o yerleþtirme kipleyiciler bugün ayarlandý, deðil mi?
+}
+
+$holdtime 2
+!SC_PQUEST13
+{
+Bütün o çörekleri kim yedi biliyor musun?
+}
+
+$holdtime 2
+!SC_PQUEST14
+{
+Kahve bardaðýmý gördün mü?
+}
+
+$holdtime 2
+!SC_PQUEST15
+{
+Baþka acýkan var mý?
+}
+
+$holdtime 4.5
+!SC_PQUEST16
+{
+Sence de o rezonans bastýrma etmenlerini tekrardan denetlememiz gerekmez mi?
+}
+
+$holdtime 3
+!SC_PQUEST17
+{
+Eigen zayýflatýcýlarýný denetlediðine emin misin?
+}
+
+$holdtime 1.5
+!SC_NOGO
+{
+Hayýr! O tarafa gitme!
+}
+
+$holdtime 3
+!SC_MONST0
+{
+Baksana, bir kafayengeci daha!
+}
+
+$holdtime 3
+!SC_MONST1
+{
+Bir baþka önemli canlý türü daha canlý kanlý ortaya çýktý!
+}
+
+$holdtime 1
+!SC_HEAR0
+{
+Bir þey duydum.
+}
+
+$holdtime 1
+!SC_HEAR1
+{
+O sesi duydun mu?
+}
+
+$holdtime 2
+!SC_HEAR2
+{
+Þu ses! Ne o?
+}
+
+$holdtime 4.3
+!SC_SMELL0
+{
+Sanýyorum ki burada bir þey bildiðin leþ kokuyor.
+}
+
+$holdtime 3
+!SC_SMELL1
+{
+Umarým o koku senden gelmiyordur?
+}
+
+$holdtime 3
+!SC_SMELL2
+{
+Hým, ne kadar acayip bir koku.
+}
+
+$holdtime 2.5
+!SC_SMELL3
+{
+O koku da ne?
+}
+
+$holdtime 3.5
+!SC_WOUND0
+{
+Yaralandým ancak devam edebilirim.
+}
+
+$holdtime 3.5
+!SC_WOUND1
+{
+Eh... görünüþe bakýlýrsa ciddi þekilde yaralandým.
+}
+
+$holdtime 2.5
+!SC_MORTAL0
+{
+Daha fazla dayanabileceðimi sanmýyorum.
+}
+
+$holdtime 3.5
+!SC_MORTAL1
+{
+Eh... görünüþe bakýlýrsa ciddi þekilde yaralandým.
+}
+
+$holdtime 2
+!SC_CUREA
+{
+Berbat görünüyorsun!
+}
+
+$holdtime 2
+!SC_CUREB
+{
+Ah, yaralanmýþsýn...
+}
+
+$holdtime 3
+!SC_CUREC
+{
+Görünüþe bakýlýrsa derhal týbbý müdahaleye ihtiyacýn var!
+}
+
+$holdtime 3
+!SC_HEAL0
+{
+Ýzninle þu yaranla ilgileneyim...
+}
+
+$holdtime 3
+!SC_HEAL1
+{
+Bu kendini daha iyi hissetmeni saðlayacaktýr.
+}
+
+$holdtime 4
+!SC_HEAL2
+{
+Görünüþe bakýlýrsa derhal týbbý müdahaleye ihtiyacýn var! Bunu deneyelim!
+}
+
+$holdtime 2
+$chained !SC_HEAL3_PT2
+!SC_HEAL3
+{
+Berbat görünüyorsun!
+}
+
+$holdtime 2.5
+!SC_HEAL3_PT2
+{
+Sabit dur! Hiç acýmayacak.
+}
+
+$holdtime 2
+$chained !SC_HEAL4_PT2
+!SC_HEAL4
+{
+Ah, yaralanmýþsýn...
+}
+
+$holdtime 1
+!SC_HEAL4_PT2
+{
+Bunu deneyelim!
+}
+
+$holdtime 2
+!SC_HEAL5
+{
+O yarayý tedavi etmeme izin ver.
+}
+
+$holdtime 2
+!SC_HEAL6
+{
+Acýnýn geçmesi için bir þey verebilirim sana.
+}
+
+$holdtime 2
+!SC_HEAL7
+{
+Endiþe etme, ben doktorum.
+}
+
+$holdtime 2.2
+!SC_PLFEAR0
+{
+Ulu Tanrým, ne yapýyorsun?!
+}
+
+$holdtime 2
+!SC_PLFEAR1
+{
+Daha fazla kaldýramam bunu!
+}
+
+$holdtime 2.8
+!SC_PLFEAR2
+{
+Bu çýlgýnlýk! Ben gidiyorum!
+}
+
+$holdtime 1.5
+!SC_PLFEAR3
+{
+Hayýr! Lütfen!
+}
+
+$holdtime 2
+!SC_PLFEAR4
+{
+Buradan çýkmalýyým.
+}
+
+$holdtime 2
+!SC_PLFEAR5
+{
+Üzgünüm! Gidiyorum ben.
+}
+
+$holdtime 1
+!SC_FEAR0
+{
+Hayýr...
+}
+
+$holdtime 1
+!SC_FEAR2
+{
+Hayýr!
+}
+
+$holdtime 2
+!SC_FEAR3
+{
+Hayýr! Ölmek istemiyorum!
+}
+
+$holdtime 2.8
+!SC_FEAR4
+{
+Sadece buradan canlý olarak çýkmak istiyorum!
+}
+
+$holdtime 2
+!SC_FEAR7
+{
+Hayýr, olamaz!
+}
+
+$holdtime 2
+!SC_FEAR8
+{
+Hayýr, olamaz!
+}
+
+$holdtime 1
+!SC_FEAR9
+{
+Hayýr!
+}
+
+$holdtime 2
+!SC_FEAR10
+{
+Hayýr, olamaz...
+}
+
+$holdtime 2
+!SC_FEAR11
+{
+Hayýr, olamaz...
+}
+
+$holdtime 1
+!SC_SCREAM5
+{
+Hayýr, olamaz!
+}
+
+$holdtime 1
+!SC_SCREAM6
+{
+Amanýn!
+}
+
+$holdtime 1
+!SC_SCREAM10
+{
+Amanýn!
+}
+
+$holdtime 1
+!SC_SCREAM11
+{
+Tanrým!
+}
+
+$holdtime 1
+!SC_SCREAM12
+{
+Hayýr!
+}
+
+$holdtime 1
+!SC_SCREAM13
+{
+Geri gel!
+}
+
+$holdtime 2.2
+!SC_SCARED0
+{
+Tanrým, neler yapýyorsun?!
+}
+
+$holdtime 2
+!SC_SCARED1
+{
+ Saldýrmayý býrak! O bizden!
+}
+
+$holdtime 2.4
+!SC_SCARED2
+{
+Çýldýrdýn mý sen?! Ona saldýrmayý kes, hemen!
+}
+
+$holdtime 1.7
+!SC_LETYOUIN
+{
+Biraz bekle, seni içeri alayým.
+}
+
+$holdtime 1.9
+!SC_OVERHERE
+{
+Piþt! Buraya.
+}
+
+$holdtime 3.3
+!SC_POK0
+{
+Lütfen! Deney bitene kadar beni rahat býrak.
+}
+
+$holdtime 1.5
+!SC_POK1
+{
+Þu an meþgulüm.
+}
+
+$holdtime 2.8
+!SC_POK2
+{
+Kusura bakma Gordon, ama þu an biraz iþim var.
+}
+
+$holdtime 3.2
+!SC_POK3
+{
+Deney bitene kadar beklemek zorundasýn.
+}
+
+$holdtime 3
+!SC_POK4
+{
+Senin yarým saat önce deney odasýnda olman gerekmiyor muydu?
+}
+
+
+//============================================================
+// Scientist Scripted Subtitles
+//============================================================
+
+$holdtime 2.5
+!SC_STAYBACK
+{
+Hayýr! Geride kal! Gordon!
+}
+
+$holdtime 4
+!SC_GETAWAY
+{
+Uzaklaþ oradan, Freeman! Önemli bir ileti bekliyorum!
+}
+
+$holdtime 2
+!SC_GMORN
+{
+Günün aydýn olsun, Gordon.
+}
+
+$holdtime 2
+!SC_BIGDAY
+{
+Bugün önemli gün, Freeman.
+}
+
+$holdtime 2.7
+!SC_SAMPLE
+{
+Örnek az önce deney odasýna gönderildi.
+}
+
+$holdtime 2.7
+!SC_HAZ_OK0
+{
+Tabii! Eðer istersen seni takip ederim.
+}
+
+$holdtime 2
+!SC_HAZ_WAIT0
+{
+Pekala... burada bekleyeceðim.
+}
+
+$holdtime 5
+!SC_GOODWORK
+{
+Ýyi iþ çýkardýn! O yeni giysiler çetrefilli olabiliyor. Lütfen bir sonraki alana ilerle.
+}
+
+$holdtime 5
+!SC_HARDLYNOTICE
+{
+Çok güzel, seni zar zor görebildim! Bir sonraki alana ilerle.
+}
+
+$holdtime 3.5
+!SC_NEXTSTATION
+{
+Çok güzel! Bir sonraki alana hazýr görünüyorsun.
+}
+
+$holdtime 7
+!SC_DISA
+{
+Deneme... deneme... Her þey yolunda gibi görünüyor...
+}
+
+$holdtime 6.8
+$chained !SC_DIS1A_PT2
+!SC_DIS1A
+{
+Pekala, Gordon, giysin deney sýrasýnda seni rahat tutacaktýr. Örnek birazdan sana ulaþtýrýlacak...
+}
+
+$holdtime 8.2
+!SC_DIS1A_PT2
+{
+Yukarý týrmanýp pervaneleri çalýþtýrýrsan, bu sayede Anti-Kütle Tayfölçer'ini 80% güce getirebilir ve taþýyýcý gelene kadar o seviyede tutabiliriz.
+}
+
+$holdtime 5
+!SC_DIS1B
+{
+Gordon, beni duymuyor musun? Yukarý týrman ve pervaneleri çalýþtýr lütfen.
+}
+
+$holdtime 3
+!SC_DIS1C
+{
+Yukarý týrman ve pervaneleri çalýþtýr!
+}
+
+$holdtime 3
+!SC_DIS1D
+{
+Çok güzel... Buradan sonrasýný biz halledeceðiz.
+}
+
+$holdtime 6
+!SC_DIS2A
+{
+Birinci kademe yayýcýlara güç veriliyor: üç... iki... bir.
+}
+
+$holdtime 3
+!SC_DIS3A
+{
+Öngörülebilir safha dizileri gözlemliyorum.
+}
+
+$holdtime 5.2
+!SC_DIS4A 
+{
+Merkezi bölgeden çekilmesini söyle! Iþýna doðru giderse giysinin bir faydasý olmaz ona...
+}
+
+$holdtime 4.6
+!SC_DIS5A
+{
+Ýkinci kademe yayýcýlar devreye giriyor... girdi!
+}
+
+$holdtime 10.5
+!SC_DIS6A
+{
+Az önce örneðin hazýr olduðu konusunda bilgilendirildim, Gordon. Her an sana doðru yola çýkmýþ olabilir. Örnek için taþýma sistemine göz at.
+}
+
+$holdtime 7
+!SC_DIS7A
+{
+Sýradan olmayan bir örnek için sýradan bir ekleme. Devam et, Gordon. Taþýyýcýyý çözümleme kanalýna sok.
+}
+
+$holdtime 4.5
+!SC_DIS9A
+{
+Yoðunlaçlar 105% çýkartýlýyor.
+}
+
+$holdtime 8.2
+!SC_DIS10A
+{
+Gordon, sistem bu seviyede ne kadar kalabilir ya da okuma iþlemi ne kadar sürer kestiremiyoruz. Lütfen, olabildiðince hýzlý çalýþ.
+}
+
+$holdtime 12
+!SC_DIS11A
+{
+Ah, muhtemelen bir sorun deðildir, muhtemelen... ama ufak uyuþmazlýklar görüyor... neyse, tamam. Tekrar kabul edilebir seviyeye geri döndü. Devam ediliyor.
+}
+
+$holdtime 4.6
+!SC_DIS12A
+{
+Endiþelenmen gereken bir þey yok, Gordon. Evet... Devam et.
+}
+
+$holdtime 1.7
+!SC_DIS13A
+{
+Aþaðýda neler yapýyor o?!
+}
+
+$holdtime 4
+!SC_DIS14A
+{
+Çýkarýn onu oradan! Malzemeleri kapatýn ve onu oradan çýkartýn!
+}
+
+$holdtime 9.5
+!SC_DIS15A
+{
+Kapatýlýyor! Kapatmaya çalýþýyorum... kapanmýyor! Olmuyor, kapanmýyor! Kapanm...
+}
+
+$holdtime 4
+!SC_DIS16A
+{
+Gordon! Iþýndan uzaklaþ!
+}
+
+$holdtime 3
+!SC_DIS17A
+{
+Çok bekledi! Zapt edemiyoruz!
+}
+
+$holdtime 5.5
+!SC_LOCK1A
+{
+Korkarým bugün sýradan inceleme iþleminin biraz dýþýna çýkacaðýz, Gordon.
+}
+
+$holdtime 7.5
+!SC_LOCK2A
+{
+Evet, evet ama iyi sebeplerden dolayý. Bu bizim için bulunmaz bir fýrsat. Bu þimdiye dek gördüðümüz en saf örnek!
+}
+
+$holdtime 2
+!SC_LOCK3A
+{
+Ve muhtemelen en dengesizi...
+}
+
+$holdtime 4
+!SC_LOCK4A
+{
+Sýradan ekleme yönetimini izlediðimiz sürece hiçbir þey olmaz.
+}
+
+$holdtime 8
+!SC_LOCK5A
+{
+Bunu nasýl söyleyebilirsin bilmiyorum. Gerçi bir Rezonans Çaðlayaný senaryosu olasýlýðýnýn aþýrý derecede olasýlýk dýþý olduðunu kabullenmeliyim.
+}
+
+$holdtime 8
+!SC_LOCK6A
+{
+Gordon'ýn bunlarý duymasýna gerek yok, o zaten iyi eðitim almýþ bir profesyonel. Yöneticiye hiçbir þeyin ters gitmeyeceði güvencesini verdik...
+}
+
+$holdtime 5
+!SC_LOCK7A
+{
+Ah, evet, haklýsýn... Gordon, sana güvenimiz tam.
+}
+
+$holdtime 3
+!SC_LOCK8A
+{
+Pekala. Hadi bakalým, onu içeri alalým.
+}
+
+$holdtime 2.5
+!SC_CRIT1A
+{
+Çabuk! Durum ciddileþiyor!
+}
+
+$holdtime 2.5
+!SC_CRIT2A
+{
+Donanýmlarýmýza neler oluyor böyle?
+}
+
+$holdtime 2.5
+!SC_CRIT3A
+{
+Hiç böyle yapmamasý gerekiyordu.
+}
+
+$holdtime 4.5
+!SC_CTRL1A
+{
+Ah, Gordon. Geldin demek. Örneði deney odasýna az önce gönderdik.
+}
+
+$holdtime 6.5
+!SC_CTRL2A
+{
+Anti-Kütle Tayfölçer'ini %105 güce çýkardýk. Biraz kumar oynadýk sayýlýr ama o fazladan çözünürlüðe ihtiyacýmýz var.
+}
+
+$holdtime 7.5
+!SC_CTRL3A
+{
+Yönetici bugünkü örnekten tatmin edici bir sonuç almamýz konusunda çok kararlý. Sanýrým bu yüzden birazcýk cesur davrandý.
+}
+
+$holdtime 4
+!SC_CTRL4A
+{
+Seni bekliyorlar, Gordon. Deney odasýnda.
+}
+
+$holdtime 2
+!SC_CONSOLE1A
+{
+Neden dinlemediler?
+}
+
+$holdtime 2.3
+!SC_CONSOLE2A
+{
+Onlarý uyarmaya çalýþmýþtýk!
+}
+
+$holdtime 5.5
+!SC_CONSOLE3A
+{
+Yaratmayý býrak, bir rezonans çaðlayaný göreceðim aklýmýn ucundan geçmezdi...
+}
+
+$holdtime 7.2
+$chained !SC_CONSOLE4A_PT2
+!SC_CONSOLE4A
+{
+Gordon, yaþýyorsun! O koruyucu giysi için Tanrý'ya þükürler olsun. Onu hareket ettirmeye korkuyorum ve bütün telefonlarýmýz kesildi.
+}
+
+$holdtime 11.5
+!SC_CONSOLE4A_PT2
+{
+Lütfen, elinden geldiðince hýzlý bir þekilde yüzeye çýk, ve burada zor durumda olduðumuzu birilerine haber ver. Göz taramasýndan geçebilmen için bana ihtiyacýn olacak. Bilim ekibinin geri kalanýnýn da sana yardýmcý olacaðýna eminim!
+}
+
+$holdtime 1.3
+!SC_CONSOLE5A
+{
+Dikkatli ol, Gordon!
+}
+
+$holdtime 2.5
+!SC_CONSOLERPT
+{
+Göz taramasýndan geçebilmen için bana ihtiyacýn olacak.
+}
+
+$holdtime 4
+!SC_DANGLING
+{
+Daha... daha fazla tutunamýyorum!
+}
+
+$holdtime 5.8
+!SC_DARKROOM
+{
+Ben yüzeye çýkmak istediðimden emin deðilim. Ya dünya burada neler yaptýðýmýzý öðrenirse?
+}
+
+$holdtime 10
+!SC_LOUNGE
+{
+Gordon! Sen olduðunu bilseydim, hemen içeri alýrdým. Herkes yüzeye doðru alýyor, ama bence beklememek çýlgýnlýk. Birilerinin gelip bizi kurtarmasý gerekiyor.
+}
+
+$holdtime 9
+!SC_TRANSMISSION
+{
+Az önce güvenli kanaldan bir yayýn duydum. Askerler gelmiþ, bizi kurtarmaya iniyorlarmýþ! Tabii, acaba onlarla karþýlaþabilecek kadar uzun yaþar mýyýz þüpheliyim...
+}
+
+$holdtime 3.7
+!SC_1MAN
+{
+Beni de yanýna al! Her þeyi bilen kiþi benim!
+}
+
+$holdtime 1.4
+!SC_ATLAST
+{
+Sonunda kurtulduk!
+}
+
+$holdtime 2.6
+!SC_RESCUED
+{
+Sonunda kurtulduk! Tanrý'ya þükürler olsun geldiniz!
+}
+
+$holdtime 5
+!SC_SILO1A
+{
+Tanrý aþkýna, aç þu ambar kapýsýný! Peþimizdeler, tek çýkar yolumuz bu!
+}
+
+$holdtime 3
+!SC_SILO2A
+{
+Yüce Tanrým, sonumuz geldi!
+}
+
+$holdtime 2
+!SC_TEAM
+{
+Ateþ etmeyin! Ben bilim ekibindendim!
+}
+
+$holdtime 2
+!SC_THANKGOD
+{
+Tanrý'ya þükürler olsun geldiniz!
+}
+
+$holdtime 10
+!SC_TRAINEND
+{
+Duydun mu? Bilim insanlarýný öldürüyorlarmýþ... Kendi ýrkýmýz, bize sýrtýný dönüyor... Sanýrým burada kalýp bu yaratýklarla þansýmý deneyeceðim...
+}
+
+$holdtime 7
+!SC_ROCKET
+{
+Roket motorunu... ateþle... Bu lanetlenmiþ þeyi daha fazla büyümeden yok et!
+}
+
+$holdtime 4.5
+!SC_BLIND
+{
+Orada biri mi var? Bir... bir þey göremiyorum.
+}
+
+$holdtime 6
+!SC_POWEROFF
+{
+Umarým kimse benden üreteci çalýþtýrmamý beklemiyordur. Smithers aþaðý indi ve geri dönmedi.
+}
+
+$holdtime 6
+!SC_POWERON
+{
+Harika! Birisi bütün gücü geri getirdi! Motor kýsa sürede yeniden çalýþýr hale gelir.
+}
+
+$holdtime 8
+!SC_GENER
+{
+Burasý benim saklanma noktam ve durum tamamen düzelene kadar buradan kýpýrdamayacaðým. Þimdi burayý terket ve burada olduðumu kimseye söyleme.
+}
+
+$holdtime 10.2
+$chained !SC_TRUST_PT2
+!SC_TRUST
+{
+Eh, hükümetten de bu beklenirdi! Çevreleme politikalarý projeyle ilgisi olan herkesi öldürmek. Koruyucu giysine bakarak konuþursam, senin de ters giden deneyin bir parçasý olduðunu söyleyebilirim.. Doðru, deðil mi?
+}
+
+$holdtime 5.4
+$chained !SC_TRUST_PT3
+!SC_TRUST_PT2
+{
+Þimdi, bu faciayý sonlandýrabilecek birileri varsa, onlar da üssün diðer tarafýnda bulunan Lambda tesisindeki bilim insanlarý.
+}
+
+$holdtime 8
+$chained !SC_TRUST_PT4
+!SC_TRUST_PT3
+{
+Ulaþým sistemi çalýþmadýðýndan dolayý sana oraya nasýl gideceðini söyleyemem, ama depo bölümünün ötesinde bir yerde kullanýlmayan bir ray sistemi var...
+}
+
+$holdtime 11
+!SC_TRUST_PT4
+{
+Roket deneme laboratuvara kadar gidebilirsen, Lambda ekibinden geri kalanlarý eski tünelleri takip ederek bulabilirsin belki. Onlara güvenebilirsin. Hepimize güvenebilirsin. Ýyi þanslar!
+}
+
+$holdtime 4
+!SC_TENT
+{
+Hayýr! Hayýr, hayýr! Kurtar beni þundan! Kurtar beni! Kurtar!
+}
+
+$holdtime 1.5
+$chained !SC_ICKY_PT2
+!SC_ICKY
+{
+Gördün mü?
+}
+
+$holdtime 8.5
+$chained !SC_ICKY_PT3
+!SC_ICKY_PT2
+{
+Okyanusun bilinen en derin noktasýndan geldiðini söylüyorlar, ama o yaratýðýn bir hafta önceye kadar dünyadaki denizlerde yüzmediðine eminim!
+}
+
+$holdtime 8
+!SC_ICKY_PT3
+{
+Köpek balýðý kafesinde yatýþtýrýcý var, ama onun bu özel tür üzerinde etkili olacaðýndan þüpheliyim. Kendin denemek istersen buyur.
+}
+
+$holdtime 11.5
+$chained !SC_TRACK_PT2
+!SC_TRACK
+{
+Gordon Freeman, sensin, deðil mi? Bilim ekibi Black Mesa güvenlik sistemi ile ilerlemeni takip ediyordu. Ne  yazýk ki, ordu da ayný þekilde. Üzerindeki giysi takip aygýtlarýyla dolu.
+}
+
+$holdtime 8.8
+$chained !SC_TRACK_PT3
+!SC_TRACK_PT2
+{
+Yine de, bu yerde çýplak dolaþmaktan iyidir. Ýçerisi soðuk, bu yüzden acele etmelisin. Giysinin gücünü saniyeler içinde tüketebilir.
+}
+
+$holdtime 8.8
+!SC_TRACK_PT3
+{
+Eðer Lambda tesisine varmaya kararlýysan, güvenlik sisteminin açýklarla dolu olduðu eski sanayi bölgelerinden gitsen daha iyi olur. Þimdiye kadar bende iþe yaradý.
+}
+ 
+$holdtime 2.7
+!SC_TAU2A
+{
+Býrak onu çabuk! O henüz bir ön model!
+}
+
+$holdtime 3.5
+!SC_TAU4A
+{
+Çünkü çok dengesiz. Sakýn aþýrý yük binmesin!
+}
+
+$holdtime 6
+!SC_1PSURG
+{
+Hepimizin göz taramasýnda yeterli yetkisi var. Bize giriþe kadar eþlik edersen laboratuvardan çýkabiliriz.
+}
+
+$holdtime 6
+!SC_2PSURG
+{
+Öncelikle cerrahi üniteyi kapatman gerekecek. Peters açmýþtý onu ama korkarým bir daha geri dönemedi...
+}
+
+$holdtime 7
+!SC_3PSURG
+{
+Bir bilim insaný, Tanrý'ya þükür! O asalak askerler nerede saklandýðýmýzý öðrenmeden bizi buradan çýkar!
+}
+
+$holdtime 4
+!SC_ALLDIE
+{
+Eðer ölmemize izin verirsen, Freeman, buradan asla çýkamazsýn!
+}
+
+$holdtime 12.4
+!SC_LETOUT
+$chained !SC_LETOUT_PT2
+{
+Pekala... Seni dýþarý çýkartacaðým, ama uyarýyorum, dýþarý cehenneme dönmüþ. Tamamen ordunun denetimi altýnda. Sessizce ilerlemen ve bir uçtan diðerine savaþarak yolunu açman gerekecek, ayrýca yol boyunca pek bizden birine rastlayacaðýný zannetmiyorum.
+}
+
+$holdtime 12.5
+!SC_LETOUT_PT2
+{
+Ama hayatta kalýr da bir þekilde üssü geçersen, kendini geriye kalan bilim ekibinin de sýðýndýðý Lambda tesisinde bulacaksýn. Ben kendimi riske atmazdým, ama senin yolda olduðunu onlara bildireceðim.
+}
+
+$holdtime 10
+$chained !SC_BOOBIE_PT2
+!SC_BOOBIE
+{
+Lambda tesisine doðru gidiyorsun, deðil mi? Ben de oraya gidiyordum, sonra yaralandým ve, eh, cesaretimi yitirdim. Þu kapýdan içeri bir göz at, ne demek istediðimi o zaman anlarsýn.
+}
+
+$holdtime 7
+!SC_BOOBIE_PT2
+{
+Facianýn bitmesini bekleyeceðim burada. Devam etmeye niyetliysen, sana yalvarýyorum, çok dikkatli bir þekilde ilerle!
+}
+
+$holdtime 11.5
+$chained !SC_STRAWS_PT2
+!SC_STRAWS
+{
+Özür dilerim, Bay Freeman, ama siz bölgenin güvenliðini saðlamadan bu kapýyý açma riskine giremezdim. Bu kapý Lambda tesisine açýlan tek giriþ, diðerleri istilayý bastýrmak için kapatýldý.
+}
+
+$holdtime 8.5
+$chained !SC_STRAWS_PT3
+!SC_STRAWS_PT2
+{
+Buraya sað salim varabileceðinizi fark ettiðimizde, kimin arkada kalýp sizi içeri almasý için çöp çektik. Anlaþýldýðý üzere, kýsa olaný ben çektim...
+}
+
+$holdtime 5.2
+$chained !SC_STRAWS_PT4
+!SC_STRAWS_PT3
+{
+Meslektaþlarým Lambda tepkimecinin tepesinde bekliyorlar. Yani, sizi bekliyorlar..
+}
+
+$holdtime 7.5
+$chained !SC_STRAWS_PT5
+!SC_STRAWS_PT4
+{
+Tepkimeç þu anda kapalý, ama yukarý çýkarken devreye sokabilirsiniz. Iþýnlanma laboratuvarlarýna girebilmek için çekirdeði suyla doldurmanýz gerekecek zaten.
+}
+
+$holdtime 7.5
+!SC_STRAWS_PT5
+{
+Bunlarý bilmek için yetkiniz yok... ama gördüðüm kadarýyla bir insanýn bilmesi gerekenden çok daha fazla þeyi biliyorsunuz zaten.
+}
+
+$holdtime 11
+!SC_GLUON2A
+{
+Sen de mi Silah Araþtýrmalarý bölümündeydin? Gluon silahýný ben yaptým, ama silahý canlý bir yaratýðýn üzerinde kullanmaya ikna edemiyorum kendimi. Bu þeyleri öldürmekte bir sorunun yokmuþ gibi görünüyor.
+}
+
+$holdtime 9
+!SC_FLOOD
+{
+Freeman, deðil mi? Tepkimeci suyla doldurmak için her iki pompayý da devreye sokmalýsýn... sonra da aþaðýdaki eriþim borusu seni çekirdeðe götürecek. Süremiz sýnýrlý!
+}
+
+$holdtime 8.7
+!SC_LINGER
+{
+Oyalanmayýn, Bay Freeman. Pompalarý açtýnýz. Þimdi eriþim borusuna inin, çekirdeði suyla doldurun, ve gecikmeden laboratuvara varýn!
+}
+
+$holdtime 2.5
+!SC_SURVEY1A
+{
+Gordon Freeman! Sonunda bizi buldun!
+}
+
+$holdtime 13
+$chained !SC_SURVEY3A_PT2
+!SC_SURVEY3A
+{
+Burasý ilk araþtýrma ekibimiz için malzeme deposu. Dünya ötesi yerlerden pek çok örnek toplanýp buraya getirilirdi... þey, yani dünya ötesi varlýklarýn araþtýrma ekibi üyelerini toplamasýndan önce.
+}
+
+$holdtime 13
+!SC_SURVEY3A_PT2
+{
+Orada, saf ve güçlü bir þeyin kuvvetli yoðunlaþmasýndan meydana gelmiþ çok büyük bir geçit olduðunu düþünüyoruz. Gördüðünde anlayacaksýn zaten... Bunu söylemekten nefret ediyorum, Gordon... ama eðer yapabiliyorsan, onu öldürmelisin.
+}
+
+$holdtime 7
+!SC_SURVEY5A
+{
+Tabii ki bize hiçbir þey borçu deðilsiniz, Bay Freeman. Ama buraya kadar geldiniz. Bu yaratýklar hakkýnda diðer herkesin bildiði kadar þey biliyorsunuz.
+}
+
+$holdtime 10
+!SC_SURVEY7A
+{
+Evet... yani... gitmeye niyetliyseniz, meslektaþým sizi ana geçit denetimlerinin orada bekliyor. Sizin için bir geçit açacak, Bay Freeman. Acele edin!
+}
+
+$holdtime 15
+!SC_LJUMP
+{
+Bu, Bay Freeman, bir uzun zýplama modülü. Sýrf öteki dünyada daha rahat hareket edilsin diye yaratýldý. Umarým uzun zýplama eðitimi almýþsýnýzdýr, çünkü Xen'e vardýðýnýzda ihtiyacýnýz olacak! Size tavsiyem gitmeden önce alýþtýrma yapmanýz.
+}
+
+$holdtime 5
+!SC_UPHERE
+{
+Merhaba, Freeman! Yukarýdayým! Uzun zýplama alýþtýrmasý yapacaksan yap, ama acele et!
+}
+
+$holdtime 13.2
+!SC_PORTAL
+{
+Pekala, artýk geçidi açabilirim. Ýþlem karýþýk, ve bi' kere baþladý mý durdurulmamalý yoksa en baþtan baþlamak zorunda kalýrým. Ben sana söyleyene kadar ýþýna girme. Anlaþýldý mý? Baþlýyorum.
+}
+
+$holdtime 2.5
+!SC_PORTOPEN
+{
+Geçit hazýr. Git artýk, hadi!
+}
+
+$holdtime 3
+!SC_POSITION
+{
+Neredeyse vardýk, Freeman... Konumunu al!
+}
+
+$holdtime 3
+!SC_FOREVER
+{
+Acele et, Freeman! Sonsuza dek açýk tutamam bunu!
+}
+
+$holdtime 2
+!SC_NOTYET
+{
+Henüz deðil, Freeman!
+}
+
+$holdtime 2
+!SC_FOOL
+{
+Freeman, seni aptal!
+}
+
+//==============================================================================
+// Human Grunts (generic)
+//==============================================================================
+
+$color  96 255 96
+$color2 48 128 48
+
+$holdtime 1
+!HG_GREN0
+{
+EL BOMBASI!
+}
+
+$holdtime 1
+!HG_GREN1
+{
+SÝPERE GEÇÝN!
+}
+
+$holdtime 1.5
+!HG_GREN2
+{
+HA SÝKTÝR!
+}
+
+$holdtime 1
+!HG_GREN3
+{
+YERE YATIN!
+}
+
+$holdtime 1
+!HG_GREN3
+{
+HAYIR
+}
+
+$holdtime 1
+!HG_GREN4
+{
+TANRIM!
+}
+
+$holdtime 1
+!HG_GREN5
+{
+HAYIR!
+}
+
+$holdtime 1
+!HG_GREN6
+{
+YÜRÜYÜN!
+}
+
+$holdtime 2.2
+!HG_ALERT0
+{
+EKÝP FREEMAN'I GÖRDÜM!
+}
+
+$holdtime 1
+!HG_ALERT1
+{
+HEDEF!
+}
+
+$holdtime 1
+!HG_ALERT2
+{
+HAREKET VAR!
+}
+
+$holdtime 2.2
+!HG_ALERT3
+{
+SÝKTÝR! DÜÞMANLARIMIZ VAR!
+}
+
+$holdtime 2
+!HG_ALERT4
+{
+EKÝP, FREEMAN'I ÝNDÝRÝN!
+}
+
+$holdtime 3
+!HG_ALERT5
+{
+EKÝP, FREEMAN'I ETKÝSÝZ HALE GETÝRÝN!
+}
+
+$holdtime 1.4
+!HG_ALERT6
+{
+DALIN!
+}
+
+$holdtime 2.2
+!HG_MONST0
+{
+BÖLGEMDE YARATIK VAR!
+}
+
+$holdtime 1.8
+!HG_MONST1
+{
+YARATIKLAR SALDIRIYOR!
+}
+
+$holdtime 1.8
+!HG_MONST2
+{
+UZAYLI ALARMI!
+}
+
+$holdtime 2
+!HG_MONST3
+{
+UZAYLI HAREKETÝ!
+}
+
+$holdtime 1.2
+!HG_COVER0
+{
+SÝPER ALIN!
+}
+
+$holdtime 2
+!HG_COVER1
+{
+BASKI ATEÞÝNE ÝHTÝYACIM VAR!
+}
+ 
+$holdtime 2
+!HG_COVER2
+{
+YARDIMA ÝHTÝYACIM VAR!
+}
+
+$holdtime 1.8
+!HG_COVER3
+{
+ÇOK KALABALIK!
+}
+
+$holdtime 2
+!HG_COVER4
+{
+SAKLANIN!
+} 
+
+$holdtime 2
+!HG_COVER5
+{
+BU BÖLGEYÝ TEMÝZLEYÝN!
+} 
+ 
+$holdtime 1.5
+!HG_COVER6
+{
+KAHRETSÝN!
+} 
+  
+$holdtime 1.5
+!HG_COVER7
+{
+KORUMA ATEÞÝ!
+}
+
+$holdtime 2
+!HG_THROW0
+{
+BOMBA ATIYORUM!
+} 
+
+$holdtime 1
+!HG_THROW1
+{
+AL BAKALIM!
+} 
+ 
+$holdtime 2
+!HG_THROW2
+{
+BOMBA ATIYORUM!
+} 
+ 
+$holdtime 2
+!HG_THROW3
+{
+EKÝP, EÐÝLÝN!
+} 
+ 
+$holdtime 2.5
+!HG_TAUNT0
+{
+Ah, burada aðýr ateþ altýndayýz.
+}
+
+$holdtime 2
+!HG_TAUNT1
+{
+Anlaþýldý, konumunuzu koruyun.
+} 
+
+$holdtime 2
+!HG_TAUNT2
+{
+KIÇINI TEKMELEYECEÐÝZ!
+} 
+
+$holdtime 2.5
+!HG_TAUNT3
+{
+Bayým, geberiyorsunuz.
+} 
+
+$holdtime 1.8
+!HG_TAUNT4
+{
+Elinde hiçbir þey yok!
+} 
+
+$holdtime 1.8
+!HG_TAUNT5
+{
+YARDIM LAZIM!
+} 
+
+$holdtime 1.5
+!HG_CHARGE0
+{
+GÝDÝN!
+}
+
+$holdtime 1
+!HG_CHARGE1
+{
+YÜRÜYÜN!
+} 
+
+$holdtime 1
+!HG_CHARGE2
+{
+YÜRÜYÜN!
+}
+
+$holdtime 1.3
+!HG_CHARGE3
+{
+GÝDELÝM!
+}
+
+$holdtime 2
+!HG_QUEST0
+{
+Dikkatli olun millet...
+}
+
+$holdtime 2
+!HG_QUEST1
+{
+Telsiz yanýt ver, tamam.
+}
+
+$holdtime 2
+!HG_QUEST2
+{
+Gözetlemeyi sürdürün.
+}
+
+$holdtime 2
+!HG_QUEST3
+{
+Ekip, sessiz olun.
+}
+
+$holdtime 2
+!HG_QUEST4
+{
+Konumunuzu koruyun.
+}
+
+$holdtime 2
+!HG_QUEST5
+{
+O bölgeyi temizleyin.
+}
+
+$holdtime 3
+!HG_QUEST6
+{
+Ah, düþman temizleme dizilimine geçin.
+}
+
+$holdtime 2
+!HG_QUEST7
+{
+Görev devam ediyor.
+}
+
+$holdtime 3
+!HG_QUEST8
+{
+Atýþ ekibi, silah denetimi, tamam.
+}
+
+$holdtime 3.2
+!HG_QUEST9
+{
+Atýþ ekibi, göreviniz F9.
+}
+
+$holdtime 2.5
+!HG_QUEST10
+{
+Pekala görev, 09.
+}
+
+$holdtime 4
+!HG_QUEST11
+{
+Ekip, Freeman'a dikkat edin, tamam.
+} 
+
+$holdtime 2
+!HG_ANSWER0
+{
+Anlaþýldý.
+} 
+
+$holdtime 1
+!HG_ANSWER1
+{
+Emredersiniz, efendim.
+} 
+
+$holdtime 2
+!HG_ANSWER2
+{
+Olumlu, efendim.
+} 
+
+$holdtime 1
+!HG_ANSWER3
+{
+Olumsuz.
+} 
+
+$holdtime 1
+!HG_ANSWER4
+{
+Tamam.
+} 
+
+$holdtime 1.8
+!HG_ANSWER5
+{
+Tamamdýr, denetim.
+} 
+
+$holdtime 3
+!HG_ANSWER6
+{
+Evet, o, olumlu.
+} 
+
+$holdtime 2
+!HG_CLEAR0
+{
+Her yer temiz, efendim.
+} 
+
+$holdtime 2
+!HG_CLEAR1
+{
+Bravo görev yeri, temiz.
+} 
+
+$holdtime 2
+!HG_CLEAR2
+{
+Delta ekibi, temiz.
+} 
+
+$holdtime 3.2
+!HG_CLEAR3
+{
+Düþman izi yok efendim, tamam.
+} 
+ 
+$holdtime 3.2
+!HG_CLEAR4
+{
+Hedeften iz yok efendim, tamam.
+} 
+ 
+$holdtime 2.5
+!HG_CLEAR5
+{
+Bu seviyede hareket yok.
+} 
+ 
+$holdtime 3
+!HG_CLEAR6
+{
+Efendim, bölge güvenli, tamam.
+} 
+  
+$holdtime 3.8
+!HG_CLEAR7
+{
+Komuta bölgesi, ekip konumda, tamam.
+} 
+  
+$holdtime 3.2
+!HG_CLEAR8
+{
+Toparlanýn, konumda, sessiz olun.
+}  
+  
+$holdtime 3
+!HG_CLEAR9
+{
+Gözetim bölgesi, her yer sessiz, tamam.
+}   
+   
+$holdtime 2
+!HG_CLEAR10
+{
+Efendim, bir þey duydum...
+}   
+    
+$holdtime 3.7
+!HG_CLEAR11
+{
+Efendim, sýfýr hareket, tamam.
+} 
+    
+$holdtime 2.5
+!HG_CLEAR12
+{
+Bölge güvenli efendim, tamam.
+} 
+    
+$holdtime 2
+!HG_CHECK0
+{
+Pekala, denetleyin.
+}
+
+$holdtime 3
+!HG_CHECK1
+{
+Ekip, düþmanlar temizlendi mi?
+}
+
+$holdtime 2
+!HG_CHECK2
+{
+Rapor verin millet.
+}
+
+$holdtime 2
+!HG_CHECK3
+{
+Gözlem, denetleyin.
+}
+
+$holdtime 2
+!HG_CHECK4
+{
+Araþtýrma ekibi, rapor verin.
+}
+
+$holdtime 2
+!HG_CHECK5
+{
+Hareket denetimi, tamam.
+}
+
+$holdtime 2.5
+!HG_CHECK6
+{
+Bölgenizi denetleyin, tamam.
+}
+
+$holdtime 2
+!HG_CHECK7
+{
+Orada her þey tamam mý?
+}
+
+$holdtime 2.5
+!HG_SNOOP1A
+{
+Ee... bu Freeman denen herif de kim?
+}
+
+$holdtime 2
+!HG_SNOOP2A
+{
+Olayýn sýfýr noktasýndaymýþ...
+}
+
+$holdtime 5
+!HG_SNOOP3A
+{
+Bilim ekibinden mi? Sence o mu sorumludur bundan? Sabotaja uðraþmýþtýr belki?
+}
+
+$holdtime 5
+!HG_SNOOP4A
+{
+Evet, olabilir. Emin olduðum tek þey, dostlarýmý öldürüyor olmasý.
+}
+
+$holdtime 5
+!HG_SNOOP5A
+{
+Oh evet, bunu ödeyecek. Kesinlikle ödeyecek.
+}
+
+$holdtime 1
+$chained !HG_AMBUSH_PT2
+!HG_AMBUSH
+{
+...
+}
+
+$holdtime 5
+$chained !HG_AMBUSH_PT3
+!HG_AMBUSH_PT2
+{
+Yakalayýn!
+}
+
+$holdtime 3
+$chained !HG_AMBUSH_PT4
+!HG_AMBUSH_PT3
+{
+Ha ha, güzel vurdun.
+}
+
+$holdtime 2
+!HG_AMBUSH_PT4
+{
+Pekala herif elimizde...
+}
+
+$holdtime 2.2
+!HG_DRAG1A
+{
+Bu Freeman denen elemaný nereye götürüyoruz?
+}
+
+$holdtime 2
+!HG_DRAG2A
+{
+Yukarýya, sorgulamaya...
+}
+
+$holdtime 3.5
+!HG_DRAG3A
+{
+Niye yahu? Herif elimizde... hemen öldürelim.
+}
+
+$holdtime 2.5
+!HG_DRAG4A
+{
+Ah... peki ya cesedi bulurlarsa?
+}
+
+$holdtime 2.1
+!HG_DRAG5A
+{
+Ceset mi? Ne cesedi?
+}
+
+$holdtime 3
+!HG_DRAG6A
+{
+*güler*
+}
+
+$holdtime 6.5
+!HG_SUCKS
+{
+On iki aptal bilim insaný öldürdüm, bir tanesi karþýlýk bile vermeye kalkmadý. Çok boktan...
+}
+
+$holdtime 6.5
+!HG_CIVVIES
+{
+Bu saçmalýk için imza atmadým ben. Canavarlar, tabii. Ama siviller? Bu operasyonun iznini kim verdi ki zaten?
+}
+
+$holdtime 10
+!HG_ABANDON
+{
+Freeman'ý boþ verin! Pýlýmýzý pýrtýmýzý topluyoruz ve geri çekiliyoruz! Aþaðýda kalan varsa artýk kendi baþýnadýr. Tekrar ediyorum, eskiden öyle olmasa bile, artýk öylesiniz!
+}
+
+$holdtime 13.3
+$chained !HG_LEBUZ_PT2
+!HG_LEBUZ
+{
+Cevap ver, Cooper. Duyuyor musun? Freeman'ý unut. Üssü terk ediyoruz. Bombalanmasý gereken son hedefin varsa, taktiksel haritada iþaretle. Yoksa, hemen terk et orayý.
+}
+
+$holdtime 6
+!HG_LEBUZ_PT2
+{
+Tekrar ediyorum, geri çekiyoruz ve hava saldýrýsýna baþlýyoruz. Ya bize hedefleri göster ya da bir yere sýðýn.
+}
+
+//============================================================
+// Black Mesa Intercom (VOX) (generic)
+//============================================================
+
+$color  208 104 255
+$color2 104  52 128
+ 
+$holdtime 1.5
+!NA0
+{
+Giriþ reddedildi.
+}
+ 
+$holdtime 2.5
+!NA1
+{
+Giriþ: Reddedildi.
+}
+
+$holdtime 2
+!NA2
+{
+Ýzinsiz giriþ.
+}
+ 
+$holdtime 1.7
+!NA3
+{
+Yasadýþý giriþ.
+}
+ 
+$holdtime 2
+!NA4
+{
+Kapý: Kilitli.
+} 
+ 
+$holdtime 2
+!NA5
+{
+Ýzinsiz giriþ.
+} 
+ 
+$holdtime 2
+!NA6
+{
+Giriþ yasaktýr.
+}
+ 
+$holdtime 2
+!NA7
+{
+Giriþe izin verilmiyor.
+}
+ 
+$holdtime 3
+!NA8
+{
+Yetkisiz çalýþanlar giremez.
+}
+  
+$holdtime 4.5
+!NA9
+{
+Bu tesise giriþ hakkýnýz yok.
+}
+  
+$holdtime 3
+!NA10
+{
+Üzgünüm, içeri giremezsin.
+} 
+
+$holdtime 3
+!NA11
+{
+Üzgünüm, bu kapý: Kilitli.
+}
+  
+$holdtime 4
+!NA12
+{
+Lütfen, bu alandan uzaklaþýn.
+}
+  
+$holdtime 3
+!NA13
+{
+Lütfen, kapýdan uzaklaþýn.
+} 
+  
+$holdtime 2.4
+!NA14
+{
+Ýçeri giremeyeceksiniz.
+}
+  
+$holdtime 2.7
+!NA15
+{
+Giriþ bir seçenek deðildir.
+}
+  
+$holdtime 2.7
+!NA16
+{
+Bunu bütün gün boyunca yapacak mýyýz?
+}
+  
+$holdtime 2.5
+!NA17
+{
+Burayý derhal terk edin!
+} 
+  
+$holdtime 3
+!NA18
+{
+Hayýr, hayýr ve son olarak yine hayýr!
+}
+
+$holdtime 1.5
+!EA0
+{
+Giriþ izni verildi.
+}
+
+$holdtime 1.5
+!EA1
+{
+Giriþ izni verildi.
+}
+
+$holdtime 1.5
+!EA2
+{
+Giriþ izni verildi.
+} 
+
+$holdtime 1.5
+!EA3
+{
+Giriþ izni verildi.
+} 
+
+$holdtime 2
+!EA4
+{
+Giriþ izni verildi.
+} 
+
+$holdtime 2
+!EA5
+{
+Giriþ izni verildi.
+}
+
+$holdtime 2
+!EA6
+{
+Giriþ izni verildi.
+} 
+
+$holdtime 3.2
+!EA7
+{
+Tesise giriþ izni, verildi.
+}
+
+$holdtime 1.5
+!EA8
+{
+Giriþ izni verildi.
+} 
+
+$holdtime 2.7
+!ND0
+{
+Güvenlik kilidi devrede.
+}
+
+$holdtime 2.7
+!ND1
+{
+Güvenli bölge, giriþ yok.
+} 
+
+$holdtime 2.7
+!ND2
+{
+Güvenlik kilitlemesi, giriþ yok.
+} 
+
+$holdtime 2.5
+!ND3
+{
+Güvenli kapý, giriþ yok.
+} 
+
+$holdtime 2.7
+!ND4
+{
+Güvenlik sistemi zorda.
+}  
+
+$holdtime 3.5
+!ND5
+{
+Güvenlik sistemleri silahlandý, giriþ yok.
+} 
+ 
+$holdtime 2
+!ND6
+{
+Kapý: Güvende.
+}
+ 
+$holdtime 3
+!ND7
+{
+Yasa dýþý giriþ, uzaklaþýn.
+} 
+ 
+$holdtime 3
+!ED0
+{
+Güvenlik kilidi: Devre Dýþý
+} 
+
+$holdtime 3
+!ED1
+{
+Güvenlik saðlandý, devam edin.
+} 
+
+$holdtime 3
+!ED2
+{
+Güvenlik kilitlemesi, serbest býrakýldý.
+}  
+
+$holdtime 3
+!ED3
+{
+Güvenli geçersiz kýlma kabul edildi.
+}  
+ 
+$holdtime 3
+!ED4
+{
+Güvenlik giriþi tanýndý.
+}
+  
+$holdtime 3
+!ED5
+{
+Güvenlik sistemi devre dýþý.
+}
+  
+$holdtime 3
+!ED6
+{
+Kapý güvenliði devre dýþý.
+}
+  
+$holdtime 3
+!NF0
+{
+Acil durum patlama kapýsý: Devrede.
+}
+  
+$holdtime 3
+!NF1
+{
+Acil durum patlama kalkaný: Devrede.
+}
+  
+$holdtime 3.3
+!NF3
+{
+Patlama denetim kalkaný: Devre Dýþý.
+}
+  
+$holdtime 3
+!EF0
+{
+Acil durum patlama kapýsý: Açýk.
+}
+  
+$holdtime 3.3
+!EF1
+{
+Acil durum patlama kalkaný: Devre Dýþý.
+}
+
+$holdtime 3.3
+!EF3
+{
+Patlama sýnýrlayýcý kalkan: Açýk.
+}
+ 
+$holdtime 3.3
+!NFIRE0
+{
+Yangýn sýnýrlayýcý kapý: Devre Dýþý.
+}
+  
+$holdtime 3.3
+!EFIRE0
+{
+Yangýn sýnýrlayýcý kapý: Açýk.
+} 
+  
+$holdtime 3.5
+!NCHEM0
+{
+Kimyasal sýzýntý sýnýrlayýcý kapý: Devrede.
+} 
+  
+$holdtime 3.5
+!ECHEM0
+{
+Kimyasal sýzýntý sýnýrlayýcý kapý: Açýk.
+}
+  
+$holdtime 3.3
+!NRAD0
+{
+Iþýným sýnýrlayýcý kapý: Devrede.
+}
+  
+$holdtime 3.3
+!ERAD0
+{
+Iþýným sýnýrlayýcý kapý: Açýk.
+}
+  
+$holdtime 3.3
+!NCON0
+{
+Acil durum sýnýrlayýcý kapýsý devrede.
+} 
+  
+$holdtime 3.3
+!ECON0
+{
+Acil durum sýnýrlayýcý kapýsý devre dýþý.
+} 
+  
+$holdtime 3.3
+!NG0
+{
+Üzgünüm, bu kapý çalýþmýyor.
+}
+  
+$holdtime 3.3
+!NG1
+{
+Üzgünüm, kapý arýzalý.
+}
+  
+$holdtime 4
+!NG2
+{
+Kapý hasarý algýlandý, lütfen servis çalýþanlarýný çaðýrýn.
+}
+
+$holdtime 3.5
+!NH0
+{
+Giriþ yok, bakým bölgesi.
+}
+
+$holdtime 4
+!NH1
+{
+Bakým bölgesinde herhangi bir çalýþanýn girmesi yasaktýr.
+}
+
+$holdtime 3.5
+!EH0
+{
+Bakým bölgesi: Giriþ izni verildi.
+} 
+
+$holdtime 3
+!EH1
+{
+Bakým bölgesi kapýsý: Açýk.
+} 
+
+$holdtime 5
+!T0
+{
+Yüksek tehlike: Savunma sistemi bu bölgede çalýþýr durumda.
+}
+
+$holdtime 4
+!T1
+{
+Tehlikeli bölge: Savunma sistemleri devrede.
+} 
+
+$holdtime 4
+!T2
+{
+Tehlike: Taret çeperi savunma sistemi devrede.
+}
+
+$holdtime 4.5
+!T3
+{
+Büyük tehlike: En yakýndaki savunma sistemi devrede.
+} 
+ 
+$holdtime 4.5
+!T4
+{
+Tehlike: Üs savunma taret sistemi devrede olabilir.
+}
+ 
+$holdtime 4
+!T5
+{
+Tehlike: Otomatik savunma sistemi devrede.
+} 
+ 
+$holdtime 3
+!WE0
+{
+Uyarý: Yüksek gerilimli kablo.
+} 
+
+$holdtime 3
+!WE1
+{
+Uyarý: Yüksek güçte kablo.
+}
+
+$holdtime 3
+!WE2
+{
+Uyarý: Elektrik þok tehlikesi.
+}
+
+$holdtime 4
+!WE3
+{
+Uyarý: Yüksek elektrik þok tehlikesi.
+}
+
+$holdtime 3.5
+!DR0
+{
+Tehlike: Iþýným sýzýntýsý tespit edildi.
+}
+
+$holdtime 4
+!DR1
+{
+Tehlike: Iþýným tehlikesi tespit edildi.
+}
+
+$holdtime 4
+!DR2
+{
+Tehlike: Yüksek ýþýným seviyesi tespit edildi.
+}
+
+$holdtime 5
+!DR4
+{
+Tehlike: Güvenlik ihlali, yüksek ýþýným seviyesi tespit edildi.
+}
+
+$holdtime 5
+!DC0
+{
+Tehlike: Kimyasal sýzýntý, bölge artýk aþýrý tehlikeli.
+}
+
+$holdtime 4.5
+!DC1
+{
+Tehlike: Kimyasal soðtucu sýzýntýsý, tehlikeli bölge.
+}
+
+$holdtime 5.5
+!DC2
+{
+Tehlike: Kimyasal sýnýrlama ihlali, bütün çalýþanlar bu bölgeyi terk edin.
+}
+
+$holdtime 4
+!DC3
+{
+Tehlike: Aþýrý soðutulmuþ kimyasal sýzýntýsý.
+}
+
+$holdtime 4
+!DC4
+{
+Tehlike: Aþýrý soðutulmuþ helyum sýzýntýsý.
+} 
+
+$holdtime 4.5
+!DB0
+{
+Tehlike: Sývý biyolojik tehlike sýzýntýsý.
+} 
+
+$holdtime 5.5
+!DB1
+{
+Tehlike: Soðutucu sýzýntýsý, bölgede biyolojik tehlike yüksek seviyede.
+} 
+
+$holdtime 5
+!DB2
+{
+Tehlike: Sývý biyolojik tehlike salýnýmý, bölgeyi boþaltýn.
+} 
+ 
+$holdtime 5
+!DB3
+{
+Tehlike: Bölgede biyolojik tehlike tespit edildi.
+} 
+ 
+$holdtime 3
+!TR_A
+{
+3..2..1..
+} 
+
+$holdtime 3
+!TR_B
+{
+Hedefleme sistemi devre dýþý.
+} 
+
+//============================================================
+// Black Mesa Base Computer (VOX) Level Subtitles
+//============================================================
+$holdtime 7
+!C1A0_0
+{
+Ajan Coomer, Yüzey Taktiksel Operasyonlar Merkezine rapor verin.
+}
+
+$holdtime 6.7
+!C1A0_1
+{
+Denetleme ekibi, Iþýnetkin Maddeler Ýdare bölümüne gidin.
+}
+
+$holdtime 6.7
+!C1A0_2
+{
+Ajan 16, Yönetim'in Ýkinci Alt Katý'na rapor verin.
+}
+
+$holdtime 6
+!C1A0_3
+{
+Dr. Johnson, lütfen 1. Gözlem Tanký'ný arayýn.
+}
+
+$holdtime 7
+!C1A0_4
+{
+Dr. West, Lambda Tepkimeç Tesisi'ne rapor verin.
+}
+
+$holdtime 5.5
+!C1A0_5
+{
+Dr. Cross: lütfen 729'u arayýn.
+}
+
+$holdtime 5.5
+!C1A0_6
+{
+Çavuþ Bailey: Yüzey Denetim Noktasý Bravo'ya bekleniyorsunuz.
+}
+
+$holdtime 7
+!C1A0_7
+{
+Dondurgan Güvenlik Ekibi: Saat 11'de rapor verin lütfen.
+}
+
+$holdtime 7.5
+!C1A0_8
+{
+Yüzbaþý Black için kodlu ileti: Komuta ve Ýletiþim Merkezin'de.
+}
+
+$holdtime 8.2
+!C1A0_9
+{
+Sektör C bilim çalýþanlarý, Olaðanüstü Maddeler deney laboratuvarýna rapor verin.
+}
+
+$holdtime 8
+!C1A0_10
+{
+Dr. Freeman: acilen Olaðanüstü Maddeler deney laboratuvarýna gidin!
+}
+
+$holdtime 8
+!C1A0_11
+{
+Dikkat: Deneysel Ýtme laboratuvarý deney ateþine 90 dakika.
+}
+
+$holdtime 5
+!C1A0_12
+{
+Su Tesisi þu anda 60% güçle çalýþýyor.
+}
+
+$holdtime 5.7
+!C1A0_13
+{
+Black Mesa yüzey sýcaklýðý 34 derecedir.
+}
+ 
+$holdtime 6.8
+!C1A0_14
+{
+Fýrlatým memurunun raporu, alpha uydusunun konuþlanmasý önemsizdir.
+}
+  
+$holdtime 6.8
+!C1A0_15
+{
+Dr. Birdwell raporu: Süper iletken takasý devrede.
+}
+  
+$holdtime 8
+!C1A0_16
+{
+Dikkat: Güvenlik ihlallerini birinci alt seviye Yönetim'e bildirin.
+}
+  
+$holdtime 7
+!C1A0_17
+{
+Dikkat: Servis çalýþanlarý, lütfen 1 numaralý helikopter hangarýný boþaltýn.
+}
+  
+$holdtime 6
+!C1A0_18
+{
+Kalkan denetim ekibi, birinci tepkimecin önemsiz olduðunu rapor etti.
+}
+  
+$holdtime 6.7
+!C1A0_19
+{
+Taþýma denetim raporu, bütün sistemler vakitli.
+}
+  
+$holdtime 7.6
+!C1A0_20
+{
+Dr. Victor: Aþýrý Soðumuþ Lazer laboratuvarýna rapor verin lütfen.
+}
+  
+$holdtime 6
+!C1A0_21
+{
+Çavuþ Guthrie, Yüzey Taþýt Parký'na rapor verin.
+}
+  
+$holdtime 6
+!C1A0_22
+{
+Uranyum teslimati denetim ekibi, Sectör D'ye bekleniyorsunuz.
+}
+
+$holdtime 9
+!C1A1_0
+{
+Uyarý: Maddeler laboratuvarýnda yüksek enerijili patlama tespit edildi.
+}
+
+$holdtime 7
+!C1A1_1
+{
+Dikkat: Güvenlik çalýþanlarý acilen Sektör C'ye bekleniyorsunuz.
+}
+
+$holdtime 7.5
+!C1A1_2
+{
+Uyarý: Sektör C'de yetkisiz biyolojik formlar tespit edildi.
+}
+
+$holdtime 9
+!C1A1_3
+{
+Uyarý: Soðutma Bakýmý Bölge'sinde yetkisiz biyolojik formlar tespit edildi.
+}
+ 
+$holdtime 8
+!C1A1_4
+{
+Hasar denetim ekipleri, acilen Sektör C'ye.
+}
+ 
+$holdtime 7
+!C1A1_5
+{
+Uyarý: Sektör C'de asansör arýzasý. Kullanmayýnýz!
+}
+ 
+$holdtime 7
+!C1A1_6
+{
+Sektör B ve C'de biyolojik tehlike uyarýsý.
+} 
+ 
+$holdtime 8.1
+!C1A1_7
+{
+Dikkat: Sektör C bilim çalýþanlarý, bölgeyi derhal terk edin.
+} 
+ 
+$holdtime 8
+!C1A1_8
+{
+Uyarý: Sektör B, 3. alt katta su baskýný tespit edildi.
+} 
+ 
+$holdtime 8.5
+!C1A1_9
+{
+Uyarý: Yönetim Merkezi'nde olaðanüstü enerji alaný tespit edildi.
+} 
+ 
+$holdtime 8
+!C1A1_10
+{
+Dikkat: Herhangi bir Sektör C bilim çalýþaný, lütfen durum raporu verin.
+} 
+ 
+$holdtime 8.1
+!C1A1_11
+{
+Dikkat: Sektör C bilim çalýþanlarý, lütfen acilen durum raporu verin.
+} 
+
+$holdtime 6.5
+!C1A2_0
+{
+Acil durum temizlik ekibi: Biyolojik Atýk Ýþleme Tesisi'ne bekleniyorsunuz.
+} 
+
+$holdtime 8
+!C1A2_1
+{
+Dikkat: Yönetim çalýþanlarý, Sektör D'yi derhal terk edin.
+} 
+
+$holdtime 6
+!C1A2_2
+{
+Dikkat: Güvenlik çalýþanlarý Sektör D'ye bekleniyorsunuz.
+} 
+
+$holdtime 6
+!C1A2_3
+{
+Servis ekibi: Sektör C'deki 1 numaralý asansörü denetleyin.
+} 
+
+$holdtime 8.4
+!C1A2_4
+{
+Uyarý: Havalandýrma sisteminde yetkisiz biyolojik formlar tespit edildi.
+}
+
+$holdtime 6
+!C1A2_5
+{
+Teðmen Backman ve temizlik ekibi: 3. Alt Kata bekleniyorsunuz.
+}
+
+$holdtime 8
+!C1A2_6
+{
+Tehlike: Taret savunma sistemleri devrede [Sektör D]
+}
+
+$holdtime 9
+!C1A2_7
+{
+Güvenlik memuru raporu: Sektör D'de yaralý var, týbbý yardým gerekebilir.
+}
+
+$holdtime 9
+!C1A2_8
+{
+Yüksek tehlike: Bütün taret savunma sistemleri devrede [Sektör D]
+}
+
+$holdtime 7.5
+!C1A2_9
+{
+Taret tamir çalýþanlarý, Yüksek Güvenlikli Maddeler deoplama bölgesine bekleniyorsunuz.
+}
+
+$holdtime 8
+!C1A2_10
+{
+Dikkat: Yönetim Merkezinde elektrik þok tehlikesi tespit edildi.
+}
+
+$holdtime 8.5
+!C1A2_11
+{
+Güvenlik görevlisi raporu: Týbbý acil durum [Yönetim Merkezi]
+}
+
+$holdtime 8.5
+!C1A3_0
+{
+Dikkat: Bütün bilim çalýþanlarý, derhal sorgulama için yüzeye çýkýn.
+}
+
+$holdtime 8
+!C1A3_1
+{
+Bütün çalýþanlar: Yüksek Güvenlikli Maddeler Depolama Tesisini terk edin.
+}
+
+$holdtime 7
+!C1A3_2
+{
+Acil Durum Uranyum Tutma ekibi: Sektör D'ye bekleniyorsunuz.
+}
+
+$holdtime 7
+!C1A3_3
+{
+Taret bakým ekibi: Ana Komuta ve Ýletiþim Merkezi'ne bekleniyorsunuz.
+}
+
+$holdtime 8
+!C1A3_4
+{
+Askeri çalýþanlar, Kilo India Lima taktiðine büyük kuvvetle devam edin.
+}
+
+$holdtime 8
+!C1A3_5
+{
+Dikkat: Bu duyuru sistemi artýk askeriyenin komutasý altýndadýr.
+}
+
+$holdtime 8
+!C1A3_6
+{
+Ara ve Yoket Force Bravo Raporu: Ýkincil hedefler yok edildi.
+}
+
+$holdtime 8
+!C1A3_7
+{
+Bravo Force raporu: Hotel Sierra Mike tesisi güvende.
+}
+
+$holdtime 7.5
+!C1A3_8
+{
+Dikkat: Bütün askeri çalýþanlar, atomal biyolojik kimyasal tehlike.
+}
+
+$holdtime 8
+!C1A3_9
+{
+Dikkat: Bütün askeri çalýþanlar, ileri derecede atomal biyolojik kimyasal tehlike.
+}
+ 
+$holdtime 9
+!C1A3_10
+{
+Dikkat: Black Mesa Duyuru Sistemi, artýk ordunun komutasý altýndadýr.
+}
+ 
+$holdtime 8
+!C1A3_warn
+{
+Dikkat: Güvenlik kilitlemesi uyarýsý. Güvenlik kapýsý devreye girecek.
+}
+ 
+$holdtime 12
+!C1A3_lock
+{
+Güvenlik kapýsý devrede: 5..4..3..2..1.. Kilitlenme devrede.
+}
+
+$holdtime 8
+!C1A4_0
+{
+Dikkat: Deneysel roket deney ateþi devre dýþý.
+}
+
+$holdtime 6
+!C1A4_1
+{
+Tamir ekibi: Yol Denetimi, Sektör E'ye rapor verin.
+}
+
+$holdtime 6
+!C1A4_2
+{
+Mavi Bakým Ekibi: Soðutma seviyesinde sýcaklýk aktarýmýný denetleyin.
+}
+
+$holdtime 7
+!C1A4_3
+{
+Yeþil Bakým Ekibi: Kablo 729'daki gerilimi denetleyin.
+} 
+
+$holdtime 9
+!C1A4_4
+{
+Týbbi Ekipler: Madde Depoama Tesisi'ne bekleniyorsunuz. Bravo ekibi yaralý raporu verdi.
+} 
+
+$holdtime 7
+!C1A4_5
+{
+Alpha Force ilerleyin. Bilim çalýþanlarý direniþi üst seviyede.
+}
+
+$holdtime 9
+!C1A4_6
+{
+Dikkat: Bütün Black Mesa güvenlik çalýþanlarý, sorgulama için isteniyorsunuz.
+}
+
+$holdtime 9.2
+!C1A4_7
+{
+Dikkat: Gordon Freeman, güvenlik denetimi için askeri çalýþana rapor verin.
+}
+
+$holdtime 9
+!C1A4_8
+{
+Uyarý: Yol Denetimi'nde [Sektör E] saldýrgan biyolojik formlar tespit edildi.
+}
+
+$holdtime 6.2
+!FUEL_OFF
+{
+Roket deney atýþýný gerçekleþtirmek için yakýt ve güç devrede olmalý.
+}
+ 
+$holdtime 8
+!C2A1_0
+{
+Uyarý: Yol gücünde baþarýsýzlýk. Alt seviyelerdeki güç tesisini denetleyin.
+}
+ 
+$holdtime 7.5
+!C2A1_1
+{
+Sarý bakým ekibi: Lütfen 394'e yedek parça getirin.
+}
+ 
+$holdtime 8.5
+!C2A1_2
+{
+Dikkat: Gordon Freeman, güvenlik denetimi için askeri çalýþanlara rapor verin.
+}
+  
+$holdtime 6
+!C2A1_3
+{
+Delta ekibi raporu: Fýrlatým Denetimi güvenli.
+}
+  
+$holdtime 8
+!C2A1_4
+{
+Tehlike: Taret savunma sistemleri. Devrede [Depo E]
+}
+ 
+$holdtime 5
+!C2A1_5
+{
+Sektör E Yol Denetimi: Lütfen durum raporu verin.
+}
+ 
+$holdtime 6
+!C2A1_6
+{
+Echo güçleri raporu: Sektör E'de sýnýr ihlali.
+} 
+  
+$holdtime 9.6
+!C2A1_7
+{
+Uyarý: Ara ve Yoket güçleri Kod 3'ü takip edin. Bütün biyolojik formlarý yok edin.
+} 
+   
+$holdtime 8.7
+!C2A1_8
+{
+Tehlike: Deneysel Ýtme laboratuvarýnda yetkisiz patlama tespit edildi.
+} 
+ 
+$holdtime 4
+!POWER_OFF
+{
+Ana Güç: Kapalý.
+} 
+ 
+$holdtime 3
+!POWER_ON
+{
+Ana Güç: Açýk.
+} 
+ 
+$holdtime 7
+!C2A2_0
+{
+Dikkat: E Depo'su fýrlatým bölgesini derhal boþaltýn.
+} 
+ 
+$holdtime 7
+!C2A2_1
+{
+Sýnýrlama gözetim ekibi: Ýleri Seviye Biyolojik Araþtýrma Laboratuvarý'na bekleniyorsunuz.
+} 
+ 
+$holdtime 7
+!C2A2_2
+{
+Týbbi ekip Sektör E'ye bekleniyorsunuz, Echo ekibinde yaralý var.
+} 
+ 
+$holdtime 9
+!C2A2_3
+{
+Askeri çalýþanlarýn dikkatine: Gordon Freeman'a soruþturma açma yetkisiine sahipsiniz.
+} 
+ 
+$holdtime 9
+!C2A2_4
+{
+Uyarý: E Depo'sundaki ekip, Freeman bölgenizde geziniyor olabilir.
+} 
+ 
+$holdtime 5.5
+!C2A2_5
+{
+[Fýrlatým Denetimi] Tren hareketliliði tespit edildi.
+} 
+ 
+$holdtime 8.2
+!C2A2_6
+{
+Týbbi ekip Sektör E'den bekleniyorsunuz,Echo Team ekibi denetim noktasýna varamadý.
+} 
+ 
+$holdtime 7
+!C2A2_7
+{
+Uydu Roket Yükleme Limaný: Durum raporu yeþil.
+} 
+ 
+$holdtime 19
+!C2A2_launch
+{
+Uydu fýrlatým sistemi devrede: 5..4..3..2..1.. Fýrlatým baþladý.
+} 
+
+$holdtime 6.5
+!C2A4_0
+{
+Uyarý: Acil durum sýnýrlama sistemi devrede.
+} 
+
+$holdtime 6.5
+!C2A4_1
+{
+Dikkat: Biyolojik sýnýrlama ihlali tespit edildi.
+} 
+
+$holdtime 7
+!C2A4_2
+{
+Uyarý: Biyolojik arýndýrma sistemi tespit edildi.
+} 
+
+$holdtime 9.5
+!C2A4_3
+{
+Dikkat: Düþman uzaylý askeri güçleri tespit edildi [Ýleri Seviye Biyolojik Araþtýrma laboratuvarý]
+}
+
+$holdtime 9.2
+!C2A4_4
+{
+Ara ve Yoket Gücü raporu: Destek gerekli. Ýleri seviye dirençle karþý karþýyayýz.
+} 
+ 
+$holdtime 7.7
+!C2A4_5
+{
+Yüzey Sýnýrlama Gücü dikkat: Düþman uzaylý askeri güç tespit edildi. 
+} 
+  
+$holdtime 5
+!C2A4_6
+{
+Yüksek Güçlü Lazer durumu: Yeþil.
+} 
+  
+$holdtime 7.5
+!C2A4_7
+{
+Uzaylý sýnýrlama sistemi baþarýsýz oldu, arýndýrma bölümünü kullanýn.
+} 
+   
+$holdtime 8.3
+!C2A4_8
+{
+Dikkat: Bütün yüzey askeri çalýþanlarý, 4 numaralý Helikopter Hangar'ýný temizleyin.
+} 
+   
+$holdtime 9
+!C2A4_9
+{
+Düþman uzaylý ihlali: Yüzey Denetim Noktasý Alpha, Delta
+} 
+   
+$holdtime 12
+!C2A4_10
+{
+Dikkat: Yüzey Sýnýrlama Gücü; Gordon Freeman'ý soruþturmak için istediðiniz gücü kullanýn. Gördüðünüz yerde vurma yetkiniz var.
+} 
+   
+$holdtime 7.5
+!C2A4_11
+{
+Dikkat: Yüzey Sýnýrlama Gücü; Freeman bölgenize yaklaþabilir.
+} 
+   
+$holdtime 7
+!C2A4_12
+{
+Gordon, bütün bilim çalýþanlarý sen teslim olana kadar imha edilecektir.
+} 
+   
+$holdtime 5
+!C2A4_ster
+{
+Arýndýrma sistemi devrede.
+}
+   
+$holdtime 5
+!C3A1_0
+{
+Uyarý: Birincil Anten baþarýsýzlýðý tespit edildi.
+}
+   
+$holdtime 6.2
+!C3A1_1
+{
+Yüzey Taþýt Parkýný acil durum týbbi helikopteri için temizleyin.
+}
+   
+$holdtime 6
+!C3A1_2
+{
+Uyarý: Yüzey Cephanelik güvenlik ihlali tespit edildi.
+}
+   
+$holdtime 7.1
+!C3A1_3
+{
+Uyarý: Birincil Aten bölgesinde ýþýným sýzýntýsý tespit edildi.
+}
+   
+$holdtime 10
+!C3A1_4
+{
+Ara ve Yok Et Gücü Kilo [Merkezi Komuta] raporu: bölge içinde düþman uzaylý gücü. 
+}
+     
+$holdtime 7
+!C3A1_5
+{
+Gordon Freeman'a ileti: Bu kez kaçamayacaksýn.
+}
+     
+$holdtime 8
+!C3A1_6
+{
+Bütün birimlerin dikkatine: Dönek Freeman artýk birincil hedefinizdir.
+} 
+     
+$holdtime 8
+!C3A1_7
+{
+Dikkat: Geriye kalan sýnýrlama ekipleri, Freeman'da deneysel silah olabilir.
+} 
+      
+$holdtime 8.2
+!C3A1_8
+{
+Bütün çalýþanlar: Lambda Tesisi'ni boþaltýn, çok boyutlu arýza tespit edildi.
+} 
+      
+$holdtime 9.4
+!C3A1_9
+{
+Atýþ Denetim Ekibi; Yüzey Cephanelik'i, Denetim Noktasý Delta, Yüzey Su Tesisi'ne bekleniyorsunuz.
+} 
+      
+$holdtime 7
+!C3A2_0
+{
+Uyarý: Çarpýk boyutlu güç alaný hareketliliði tespit edildi.
+}
+      
+$holdtime 9
+!C3A2_1
+{
+Uyarý: Çarpýk boyutlu güç alanýnda yetkisi biyolojik güç tespit edildi.
+}
+      
+$holdtime 8.5
+!C3A2_2
+{
+Bütün çalýþanlar: Lambda Tesisi'ni boþaltýn. Çok boyutlu arýza tespit edildi.
+}
+      
+$holdtime 8
+!C3A2_3
+{
+Ana Tepkimeç Çekirdeði'nde yetkisiz etkinlik tespit edildi.
+} 
+      
+$holdtime 9.5
+!C3A2_4
+{
+Tehlike: Iþýnetkin Maddeler Ýdare Bölümü'nde yüksek enerjili takas tespit edildi.
+} 
+      
+$holdtime 7.5
+!C3A2_5
+{
+Birincil Soðutma Sistemi'nde biyolojik güç tespit edildi.
+}  
+      
+$holdtime 6
+!C3A2_6
+{
+Lambda Tesisi raporu: Boyutsal kirlilik.
+} 
+      
+$holdtime 8
+!C3A2_7
+{
+Lambda Tesisi raporu: Boyutsal sýnýrlama sistemi baþarýsýzlýðý.
+} 
+      
+$holdtime 4
+!C3A2_target
+{
+Uydu hedef sistemi: Devrede.
+} 
+      
+$holdtime 11
+!C3A2_portal
+{
+Uyarý: Çok Boyutlu Geçit Aygýtý; Güç seviyesi 120%
+} 
+      
+$holdtime 9
+!C3A2_core
+{
+Dikkat: Lambda Tesisi çalýþanlarý, Birincil Çekirdek devrede.
+}  
+
+//==============================================================================
+// HEV Suit
+//==============================================================================
+
+$color  255 192 58
+$color2 128  96 29
+
+$holdtime 11
+!HEV_A0
+{
+Tehlikeli ortam koþullarýnda kullanýlmasý için tasarlanan H.E.V Mark IV koruyucu sisteme hoþ geldiniz.
+} 
+
+$holdtime 11
+$chained !HEV_AAx_PT2
+!HEV_AAx
+{
+Tehlikeli ortam koþullarýnda kullanýlmasý için tasarlanan H.E.V Mark IV koruyucu sisteme hoþ geldiniz.
+} 
+
+$holdtime 4.5
+$chained !HEV_AAx_PT3
+!HEV_AAx_PT2
+{
+Yüksek darbe önleyici zýrh: Devrede. 
+}
+
+$holdtime 4.5
+$chained !HEV_AAx_PT4
+!HEV_AAx_PT3
+{
+Kirli hava algýlayýcýlarý: Devrede.
+}
+
+$holdtime 3.5
+$chained !HEV_AAx_PT5
+!HEV_AAx_PT4
+{
+Yaþamsal belirti gözetimi: Devrede.
+}
+
+$holdtime 3.5
+$chained !HEV_AAx_PT6
+!HEV_AAx_PT5
+{
+Otomatik týbbi sistemler: Devrede.
+}
+
+$holdtime 4.2
+$chained !HEV_AAx_PT7
+!HEV_AAx_PT6
+{
+Savunma silahý seçim sistemi: Devrede.
+}
+
+$holdtime 3.6
+$chained !HEV_AAx_PT8
+!HEV_AAx_PT7
+{
+Cephane seviyesi gözetimi: Devrede.
+}
+
+$holdtime 3.7
+$chained !HEV_AAx_PT9
+!HEV_AAx_PT8
+{
+Ýletiþim arayüzü: Baðlandý.
+}
+
+$holdtime 3
+!HEV_AAx_PT9
+{
+Ýyi günler dileriz!
+}
+
+$holdtime 3.5
+!HEV_A1
+{
+Güç destekli hareket: Devrede.
+}
+
+$holdtime 4.2
+!HEV_A2
+{
+Yüksek darbe önleyici zýrh: Devrede. 
+}
+
+$holdtime 4.2
+!HEV_A3
+{
+Kirli hava algýlayýcýlarý: Devrede.
+}
+
+$holdtime 3.5
+!HEV_A4
+{
+Yaþamsal belirti gözetimi: Devrede.
+}
+
+$holdtime 3.7
+!HEV_A5
+{
+Cephane seviyesi gözetimi: Devrede.
+}
+
+$holdtime 3.7
+!HEV_A6
+{
+Ýletiþim arayüzü: Baðlandý.
+}
+
+$holdtime 4.2
+!HEV_A7
+{
+Savunma silahý seçim sistemi: Devrede.
+}
+
+$holdtime 3.5
+!HEV_A8
+{
+Otomatik týbbi sistemler: Devrede.
+}
+
+$holdtime 4
+!HEV_A9
+{
+Güç seviyesi: 100%
+}
+
+$holdtime 4
+!HEV_A10
+{
+Ýyi günler dileriz!
+}
+
+$holdtime 5
+!HEV_MED0
+{
+Hasarý onarmak için yetersiz týbbi malzeme.
+}
+
+$holdtime 4.5
+!HEV_MED1
+{
+Otomatik týbbi sistemler: Devrede.
+}
+
+$holdtime 4
+!HEV_MED2
+{
+Týbbi müdahale yapýlýyor.
+}
+
+$holdtime 7
+!HEV_HEAL0
+{
+Yara arýndýrýldý. Morfin verildi.
+}
+
+$holdtime 7
+!HEV_HEAL1
+{
+Yerel sargý bezi uygulandý. Kanama durduruldu.
+}
+
+$holdtime 3.7
+!HEV_HEAL2
+{
+Kanama durduruldu.
+}
+
+$holdtime 4
+!HEV_HEAL3
+{
+Sývý kan verildi.
+}
+
+$holdtime 4.5
+!HEV_HEAL4
+{
+Antitoksin verildi.
+}
+
+$holdtime 4.5
+!HEV_HEAL5
+{
+Panzehir verildi.
+}
+
+$holdtime 4
+!HEV_HEAL6
+{
+Yara arýndýrýldý.
+}
+
+$holdtime 4.2
+!HEV_HEAL7
+{
+Morfin verildi.
+}
+
+$holdtime 4.7
+!HEV_HEAL8
+{
+Týbbý hasar onarýldý.
+}
+
+$holdtime 4
+!HEV_DMG0
+{
+Ufak kesikler tespit edildi.
+}
+
+$holdtime 4
+!HEV_DMG1
+{
+Büyük kesikler tespit edildi.
+}	
+
+$holdtime 4
+!HEV_DMG2
+{
+Ýç kanama tespit edildi.
+}
+
+$holdtime 5
+!HEV_DMG3
+{
+Uyarý: Kanda aðý seviyesi tespit edildi.
+}
+
+$holdtime 4
+!HEV_DMG4
+{
+Ufak kýrýklar tespit edildi.
+} 
+ 
+$holdtime 4
+!HEV_DMG5
+{
+Büyük kýrýklar tespit edildi.
+}  
+ 
+$holdtime 4
+!HEV_DMG6
+{
+Kan kaybý tespit edildi.
+} 
+  
+$holdtime 4
+!HEV_DMG7
+{
+Týbbi müdahale arayýn.
+} 
+  
+$holdtime 4
+!HEV_HLTH0
+{
+Uyarý: Yaþamsal belirtiler düþüyor.
+} 
+  
+$holdtime 4.1
+!HEV_HLTH1
+{
+Yaþamsal belirtiler düþüyor.
+} 
+  
+$holdtime 4.5
+!HEV_HLTH2
+{
+Uyarý: Yaþamsal belirtiler kritik durumda.
+} 
+  
+$holdtime 5
+!HEV_HLTH3
+{
+Acil Durum: Kullanýcý ölümü an meselesi.
+} 
+   
+$holdtime 6
+!HEV_HLTH4
+{
+Yaþamsal belirtiler düþüyor. Bölgeyi terk edin.
+} 
+    
+$holdtime 6
+!HEV_HLTH5
+{
+Yaþamsal belirtiler düþüyor. Bölgeyi terk edin.
+}  
+   
+$holdtime 10
+!HEV_HLTH6
+{
+Acil Durum: Kullanýcý ölümü an meselesi. Acilen bölgeyi terk edin.
+} 
+   
+$holdtime 5
+!HEV_SHOCK
+{
+Uyarý: Elektrik hasarý tespit edildi.
+} 
+   
+$holdtime 5
+!HEV_FIRE
+{
+Uyarý: Aþýrý ýsý hasarý tespit edildi.
+} 
+   
+$holdtime 5
+!HEV_AIM_ON
+{
+Otomatik hedef edinme sistemi: Devrede.
+} 
+   
+$holdtime 5
+!HEV_AIM_OFF
+{
+Otomatik hedef edinme sistemi: Devre dýþý.
+}
+   
+$holdtime 3.5
+!HEV_BATTERY
+{
+H.E.V Güç Ünitesi alýndý.
+}
+   
+$holdtime 3
+!HEV_MEDKIT
+{
+Otomatik Saðlýk Kiti.
+}
+ 
+$holdtime 6.5
+!HEV_0P
+{
+Uyarý: H.E.V güç seviyesi 5%'in altýnda.
+}
+    
+$holdtime 3
+!HEV_1P
+{
+Güç: 10%
+}
+
+$holdtime 3
+!HEV_2P
+{
+Güç: 15%
+}
+
+$holdtime 3
+!HEV_3P
+{
+Güç: 20%
+}
+
+$holdtime 4
+!HEV_4P
+{
+Güç: 25%
+}
+
+$holdtime 3
+!HEV_5P
+{
+Güç: 30%
+}
+
+$holdtime 4
+!HEV_6P
+{
+Güç: 35%
+}  
+ 
+$holdtime 3
+!HEV_7P
+{
+Güç: 40%
+} 
+ 
+$holdtime 4
+!HEV_8P
+{
+Güç: 45%
+} 
+  
+$holdtime 3
+!HEV_9P
+{
+Güç: 50%
+}
+  
+$holdtime 4
+!HEV_10P
+{
+Güç 55%
+} 
+   
+$holdtime 3
+!HEV_11P
+{
+Güç: 60%
+}
+   
+$holdtime 4
+!HEV_12P
+{
+Güç: 65%
+}
+   
+$holdtime 3
+!HEV_13P
+{
+Güç: 70%
+} 
+    
+$holdtime 4
+!HEV_14P
+{
+Güç: 75%
+} 
+
+$holdtime 3
+!HEV_15P
+{
+Güç: 80%
+} 
+
+$holdtime 4
+!HEV_16P
+{
+Güç: 85%
+}  
+ 
+$holdtime 3
+!HEV_17P
+{
+Güç: 90%
+}  
+ 
+$holdtime 4
+!HEV_18P
+{
+Güç: 95%
+}   
+  
+$holdtime 4.5
+!HEV_19P
+{
+Güç seviyesi: 100%
+} 
+  
+$holdtime 2.5
+!HEV_AMO0
+{
+Cephane tükendi.
+} 
+   
+$holdtime 3.5
+!HEV_DET0
+{
+Uyarý: Biyolojik tehlike tespit edildi.
+} 
+    
+$holdtime 3.5
+!HEV_DET1
+{
+Uyarý: Tehlikeli kimyasal tespit edildi.
+}
+    
+$holdtime 5
+!HEV_DET2
+{
+Uyarý: Tehlikeli ýþýným seviyeleri tespit edildi.
+}
+
+
+//============================================================
+// Nihilanth
+//============================================================
+
+$color  255 140 140
+$color2 255  70  70
+
+$holdtime 8
+!NIL_ALONE
+{
+Yalnýz... deðilsin... yalnýz deðilsin...
+}
+
+$holdtime 4
+!NIL_COMES
+{
+Bir... tane... daha... geliyor...
+}
+
+$holdtime 8
+!NIL_DECEIVE
+{
+Seni kandýracak... kandýracak...
+}
+
+$holdtime 7
+!NIL_DIE
+{
+Geber... öleceksiniz... hepiniz...
+}
+
+$holdtime 5
+!NIL_DONE
+{
+Ne... ne yaptýn sen...
+}
+
+$holdtime 5.5
+!NIL_FREEMAN
+{
+Freeman!
+}
+
+$holdtime 8
+!NIL_LAST
+{
+Sonuncu... sen... sonuncusun...
+}
+
+$holdtime 13.5
+!NIL_NOTMAN
+{
+Sen insansýn... o deðil... seni bekliyor... seni...
+}
+
+$holdtime 8
+!NIL_NOWDIE
+{
+Gebereceksin... þimdi... öleceksin...
+}
+
+$holdtime 8
+!NIL_SLAVES
+{
+Köleleriyiz... onlarýn köleleriyiz... öyleyiz...
+}
+
+$holdtime 5.5
+!NIL_THELAST
+{
+Sonuncu... sonuncuyum...
+}
+
+$holdtime 7
+!NIL_THETRUTH
+{
+Gerçeði... asla bilemezsin... gerçeði...
+}
+
+$holdtime 7
+!NIL_THIEVES
+{
+Hýrsýzlar... hepiniz hýrsýzsýnýz... hepiniz...
+}
+
+$holdtime 5
+!NIL_WIN
+{
+Kazanamazsýn... kazanamazsýn...
+}
+
+//============================================================
+// GMan
+//============================================================
+
+$color  136 144 176
+$color2  68  72  88
+//     
+$holdtime 17
+!GM_SUIT
+{
+Gordon Freeman ete kemiðe bürünmüþ karþýmda duruyor. Daha doðrusu, giysisine bürünmüþ. Silahlarýnýzý alarak sizi rahatlatma cüretinde bulundum, zaten çoðu hükümetin malýydý. Giysiye gelince, bence onu hak ettiniz.
+}
+
+$holdtime 13
+!GM_NASTY
+{
+Sýnýr dünyasý, Xen, sayenizde þimdilik bizim denetimimiz altýnda. Orada gerçekten iyi bir iþ çýkardýnýz. Etkilendim.
+}
+
+$holdtime 20
+!GM_POTENTIAL
+{
+Bu yüzden buradayým, Bay Freeman. Hizmetlerinizi iþverenlerime önerdim, onlar da size bir iþ teklifi yapmam için bana yetki verdiler. Sýnýrsýz bir potansiyeliniz olduðu konusunda onlarla hemfikiriz.
+}
+
+$holdtime 13.5
+!GM_STEPIN
+{
+Kararlý bir kiþi olduðunuzu kanýtladýnýz, bu yüzden ne yapacaðýnýzý seçerken sýkýntý yaþayacaðýnýzý zannetmiyorum. Eðer teklifle ilgilenirseniz, geçide doðru adým atýn ve ben de bunu bir evet olarak alayým.
+}
+
+$holdtime 13.5
+!GM_OTHERWISE
+{
+Aksi taktirde... eh... size kazanma ihtimalinizin bulunmadýðý bir savaþ teklif edebilirim. O kadar badireyi atlattýktan sonra, bir düþ kýrýklýðý olur.
+}
+
+$holdtime 2
+!GM_1CHOOSE
+{
+Seçim zamaný...
+}
+
+$holdtime 2
+!GM_2CHOOSE
+{
+Seçim yapma vakti...
+}
+
+$holdtime 5.2
+!GM_WISE
+{
+Çok güzel, Bay Freeman. Sizinle tekrar görüþeceðiz...
+}
+
+$holdtime 3.5
+!GM_WONTWORK
+{
+Eh, birlikte çalýþmayacaðýz gibi görünüyor...
+}
+
+$holdtime 3
+!GM_REGRET
+{
+Piþman olmak yok, Bay Freeman...
+}

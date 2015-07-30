@@ -1,0 +1,826 @@
+// TITLES FOR HALF-LIFE: SUBTITLES MOD
+// Position command $position x y 
+// x & y are from 0 to 1 to be screen resolution independent
+// -1 means center in each dimension
+// Effect command $effect <effect number>
+// effect 0 is fade in/fade out
+// effect 1 is flickery credits
+// effect 2 is write out (training room)
+// Add 16 to effect number to use VGUI system
+// Text color r g b command $color
+// fadein time fadeout time / hold time
+// $fadein (message fade in time - per character in effect 2)
+// $fadeout (message fade out time)
+// $holdtime (stay on the screen for this long)
+
+//INTRO TITLES
+// All centered for now
+$position -1 -1
+$effect 18
+// This is the final color
+$color 140 140 140
+// This is the highlight color
+$color2 240 110 0
+// This is the time it takes to fade each character
+$fadein 0.01
+// This is the amount of time the highlight lags behind the leading edge of the text
+$fxtime 0.25
+// How long to hold the message on the screen (after it scans out)
+$holdtime 3.5
+// How long it takes to fade out the message after holding
+$fadeout 1.5
+
+$chained SM_INTRO_CR_01
+CR27
+{
+Black Mesa Araþtýrma Tesisi
+Black Mesa, New Mexico
+}
+
+
+//INTRO CREDITS
+// Test values -- JAY
+// Lower left
+$position 0.1 0.7
+$effect 17
+// Final fade-in color
+$color 128 128 128
+// This is the highlight/flash color
+$color2 0 0 0
+$fadein 1.5
+$fadeout 0.5
+$holdtime 1.2
+
+CR1
+{
+Ted Backman
+}
+
+CR2
+{
+TK Backman
+}
+
+CR3
+{
+Kelly Bailey
+}
+
+CR4
+{
+Yahn Bernier
+}
+
+CR5
+{
+Ken Birdwell
+}
+
+CR6
+{
+Steve Bond
+}
+
+CR7
+{
+Dario Casali
+}
+
+CR8
+{
+John Cook
+}
+
+CR9
+{
+Greg Coomer
+}
+
+CR10
+{
+Wes Cumberland
+}
+
+CR11
+{
+John Guthrie
+}
+
+CR12
+{
+Mona Lisa Guthrie
+}
+
+CR13
+{
+Mike Harrington
+}
+
+CR14
+{
+Monica Harrington
+}
+
+CR15
+{
+Brett Johnson
+}
+
+CR16
+{
+Chuck Jones
+}
+
+CR17
+{
+Marc Laidlaw
+}
+
+CR18
+{
+Karen Laur
+}
+
+CR19
+{
+Randy Lundeen
+}
+
+CR20
+{
+Yatsze Mark
+}
+
+CR21
+{
+Lisa Mennet
+}
+
+CR22
+{
+Gabe Newell
+}
+
+CR23
+{
+Dave Riller
+}
+
+CR24
+{
+Aaron Stackpole
+}
+
+CR25
+{
+Jay Stelly
+}
+
+CR26
+{
+Harry Teasley 
+}
+
+CR35
+{
+Steve Theodore
+}
+
+CR36
+{
+Bill Van Buren
+}
+
+CR37
+{
+Robin Walker
+}
+
+CR38
+{
+Douglas R. Wood
+}
+
+//END CREDITS
+$position -1 -1
+$effect 16
+// Final fade-in color
+$color 128 128 128
+// This is the highlight/flash color
+$color2 0 0 0
+$fadein 0.5
+$fadeout 0.5
+$holdtime 4
+
+VALVEIS
+{
+Valve is:
+}
+
+END1
+{
+Ted Backman
+TK Backman
+Kelly Bailey
+Yahn Bernier
+Ken Birdwell
+Steve Bond
+Dario Casali
+John Cook
+Greg Coomer
+Wes Cumberland
+}
+
+END2
+{
+John Guthrie
+Mona Lisa Guthrie
+Mike Harrington
+Monica Harrington
+Brett Johnson
+Chuck Jones
+Marc Laidlaw
+Karen Laur
+Randy Lundeen
+Yatsze Mark
+}
+
+$chained SM_OUTRO_CR_01
+END3
+{
+Lisa Mennet
+Gabe Newell
+Dave Riller
+Aaron Stackpole
+Jay Stelly
+Harry Teasley
+Steve Theodore
+Bill Van Buren
+Robin Walker
+Douglas R. Wood
+}
+
+//INTRO TITLES
+// All centered for now
+$position -1 -1
+$effect 18
+// This is the final color
+$color 140 140 140
+// This is the highlight color
+$color2 240 110 0
+// This is the time it takes to fade each character
+$fadein 0.01
+// This is the amount of time the highlight lags behind the leading edge of the text
+$fxtime 0.25
+// How long to hold the message on the screen (after it scans out)
+$holdtime 3.5
+// How long it takes to fade out the message after holding
+$fadeout 1.5
+
+
+CR28
+{
+KÝÞÝ:
+Gordon Freeman
+Erkek, Yaþ: 27
+}
+
+CR29
+{
+EÐÝTÝM:
+Doktora, MIT, Teorik Fizik
+}
+
+CR30
+{
+GÖREV:
+Araþtýrma Görevlisi
+}
+
+CR31
+{
+GÖREV YERÝ:
+Olaðanüstü Maddeler Laboratuvarý
+}
+
+CR32
+{
+YETKÝ:
+Seviye 3
+}
+
+CR33
+{
+ÝDARÝ KEFÝL:
+Gizli
+}
+
+CR34
+{
+OLAÐANÜSTÜ HALLERDE ÖNCELÝKLÝ SORUMLULUÐU:
+Ýsteðe Baðlý
+}
+
+$fadein 0.03
+$holdtime 9
+
+GAMEOVER
+{
+KÝÞÝ:  FREEMAN
+
+DURUM:  DEÐERLENDÝRME SONLANDIRILDI
+
+ÝÞLEM SONRASI:
+Kiþi hedefin baþarýlmasý için gereken insan varlýklarýndan istifade etmekte baþarýsýz oldu.
+}
+
+$fadein 0.03
+$holdtime 9
+TRAITOR
+{
+KÝÞÝ:  FREEMAN
+
+DURUM: ÝÞE ALINDI
+
+GÖREVLENDÝRÝLMEYÝ BEKLÝYOR
+}
+
+
+$fadein 0.03
+$holdtime 9
+LOSER
+{
+KÝÞÝ:  FREEMAN
+
+DURUM:  GÖZETÝM SONLANDIRILDI
+
+ÝÞLEM SONRASI:
+
+Kiþi istihdam teklifini reddetti.
+}
+
+//CHAPTER TITLES
+
+$fadein 0.01
+$position -1 0.4
+$holdtime 3.5
+T0A0TITLE
+{
+TEHLÝKE KURSU
+}
+
+$position -1 0.65
+C0A0TITLE
+{
+BLACK MESA GÝRÝÞÝ
+
+}
+
+OPENTITLE3
+{
+
+}
+
+OPENTITLE4
+{
+
+}
+
+C0A1TITLE
+{
+OLAÐANÜSTÜ MADDELER
+(ANOMALOUS MATERIALS)
+}
+
+C1A1TITLE
+{
+BEKLENMEDÝK SONUÇLAR
+(UNFORESEEN CONSEQUENCES)
+}
+
+C1A2TITLE
+{
+OFÝS TESÝSLERÝ
+(OFFICE COMPLEX)
+}
+
+C1A3TITLE
+{
+"DÜÞMANLARIMIZ VAR"
+(WE'VE GOT HOSTILES)
+}
+
+C1A4TITLE
+{
+PATLAMA ÇUKURU
+(BLAST PIT)
+}
+
+C2A1TITLE
+{
+GÜÇ VER
+(POWER UP)
+}
+
+C2A2TITLE
+{
+RAYLARIN ÜZERÝNDE
+(ON A RAIL)
+}
+
+C2A3TITLE
+{
+YAKALANMA
+(APPREHENSION)
+}
+
+C2A4TITLE1
+{
+TORTU ÝÞLEMÝ
+(RESIDUE PROCESSING)
+}
+
+C2A4TITLE2
+{
+ÞÜPHELÝ AHLAKLAR
+(QUESTIONABLE ETHICS)
+}
+
+C2A5TITLE
+{
+YÜZEY GERÝLÝMÝ
+(SURFACE TENSION)
+}
+
+C3A1TITLE
+{
+"FREEMAN'I BOÞ VERÝN!"
+(FORGET ABOUT FREEMAN!)
+}
+
+C3A2TITLE
+{
+LAMBDA ÇEKÝRDEÐÝ
+(LAMBDA CORE)
+}
+
+C4A1TITLE
+{
+XEN
+}
+
+C4A1ATITLE
+{
+KARIÞGAN
+(INTERLOPER)
+}
+
+C4A1BTITLE
+{
+
+}
+
+C4A1CTITLE
+{
+
+}
+
+C4A1ETITLE
+{
+
+}
+
+C4A1FTITLE
+{
+
+}
+
+C4A2TITLE
+{
+GONARCH'IN ÝNÝ
+(GONARCH'S LAIR)
+}
+
+C4A3TITLE
+{
+NIHILANTH
+}
+
+C5TITLE
+{
+ENDGAME
+}
+
+
+// In-Game messages
+$position -1 0.65
+$effect 18
+// This is the final color
+$color 140 140 140
+// This is the highlight color
+$color2 240 110 0
+// This is the time it takes to fade each character
+$fadein 0.01
+// This is the amount of time the highlight lags behind the leading edge of the text
+$fxtime 0.25
+// How long to hold the message on the screen (after it scans out)
+$holdtime 2.0
+// How long it takes to fade out the message after holding
+$fadeout 0.5
+
+GAMESAVED
+{
+Kaydedildi.
+}
+
+// Game title
+// This is a placeholder to hold the effects controls for the "Half-Life" title
+$position -1 -1
+// Only effect 0 is supported for game title (plus 16 for the VGUI)
+$effect 16
+// This is the final color
+$color 200 200 200
+// Not used color2
+$color2 0 0 0
+// This is the time it takes to fade in the title
+$fadein 1.0
+// How long to hold the message on the screen (after it scans out)
+$holdtime 3.0
+// How long it takes to fade out the message after holding
+$fadeout 1.5
+
+GAMETITLE
+{
+Half-Life
+}
+
+//HAZARD COURSE TEXT
+
+// Test values -- JAY
+$position -1 0.65
+// Scan-out text effect
+$effect 18
+// This is the final color
+$color 140 140 140
+// This is the highlight color
+$color2 0 200 50
+// This is the time it takes to fade each character
+$fadein 0.005
+// This is the amount of time the highlight lags behind the leading edge of the text
+$fxtime 0.5
+// How long to hold the message on the screen (after it scans out)
+$holdtime 3.5
+// How long it takes to fade out the message after holding
+$fadeout 1.5
+
+$position -1 0.3
+HZBUTTON1
+{
+BÝR DÜÐMEYE BASMAK ÝÇÝN KULLANMA TUÞUNA BASIN
+}
+
+$position -1 0.65
+HZBUTTON2
+{
+BÝR DÜÐMEYE BASMAK ÝÇÝN KULLANMA TUÞUNA BASIN
+}
+
+HZMOVE
+{
+ÝLERÝ TUÞUNA BASARAK ÝLERÝ GÝDÝN
+GERÝ TUÞUNA BASRAK GERÝ GÝDÝN
+SOLA DÖNME TUÞUNA BASARAK SOLA DÖNÜN
+SAÐA DÖNME TUÞUNA BASRAK SAÐA DÖNÜN
+}
+
+HZJUMP
+{
+ÝLERÝ DOÐRU KOÞTURMAK ÝÇÝN ÝLERÝ TUÞUNA BASIN
+ZIPLAMAK ÝÇÝN ZIPLAMA TUÞUNA BASIN
+}
+
+HZDUCK
+{
+ÝLERÝ DOÐRU KOÞTURMAK ÝÇÝN ÝLERÝ TUÞUNA BASIN
+EÐÝLMEK ÝÇÝN EÐÝLME TUÞUNA BASIN
+GÝZLÝLÝK MODUNDA HAREKET ETMEK ÝÇÝN
+ÝLERÝ VE EÐÝLME TUÞLARINA AYNI ANDA BASIN
+}
+
+HZCOMBO
+{
+ÝLERÝ DOÐRU KOÞTURMAK ÝÇÝN ÝLERÝ TUÞUNA BASIN
+ZIPLAMAK ÝÇÝN ZIPLAMA TUÞUNA BASIN
+EÐÝLMEK ÝÇÝN EÐÝLME TUÞUNA BASIN
+ZIPLAMAK ÝÇÝN ZIPLAMA TUÞUNA BASIN
+}
+
+HZDUCKJUMP
+{
+ÝLERÝ TUÞUNA VE ZIPLAMA TUÞUNA AYNI ANDA BASIN
+VE SONRA DA EÐÝLME TUÞUNA BASIN
+}
+
+HZLADDER
+{
+MERDÝVENLERDEN ÇIKMAK ÝÇÝN ÝLERÝ TUÞUNA BASIN
+MERDÝVENLERDEN ÝNMEK ÝÇÝN GERÝ TUÞUNA BASIN
+}
+
+HZLJUMP
+{
+ÝLERÝ DOÐRU GÝDERKEN,
+EÐÝLME TUÞUNU BASILI TUTUN--
+ARDINDAN ZIPLAMA TUÞUNA BASIN
+}
+
+$position -1 0.3
+HZLMOD
+{
+ENGELÝN BAÞLANGICINDAKÝ
+UZUN ZIPLAMA MODÜLÜNÜ ALDIÐINIZA EMÝN OLUN
+}
+
+$position -1 0.65
+HZMEDKIT
+{
+KULLANMA TUÞUNU BASILI TUTARAK SAÐLIK KÝTLERÝNÝ KULLANIN
+SAÐLIK 100 OLANA KADAR VEYA KÝT TÜKENENE
+KADAR KULLANMA TUÞUNU BASILI TUTUN
+}
+
+HZMOMENT
+{
+KULLANMA TUÞUNU BASILI TUTARAK
+ÇARKI VE ÖLÇEÐÝ DEVREYE SOKUN
+KÖPRÜ KONUMUNA GELENE KADAR KULLANMA TUÞUNU BASILI TUTUN
+}
+
+HZPUSH
+{
+KUTUYA DOÐRU HAREKET ETMEK ÝÇÝN ÝLERÝ TUÞUNA BASIN
+KUTUYU ÝKTÝRMEK ÝÇÝN ÝLERÝ TUÞUNA BASMAYA DEVAM EDÝN
+}
+
+HZPULL
+{
+KUTUYU GERÝ ÇEKMEK ÝÇÝN
+KULLANMA VE GERÝ TUÞUNA BERABER BASIN
+}
+
+HZCROWBAR
+{
+LEVYEYE DOÐRU ÝLERLEYÝN
+NESNELERÝ KIRMAK ÝÇÝN SALDIRI1 TUÞUNA BASIN
+}
+ 
+HZLITEON
+{
+EL FENERÝNÝ AÇMAK ÝÇÝN
+EL FENERÝ TUÞUNA BASIN
+}
+
+HZLITEOFF
+{
+EL FENERÝNÝ KAPATMAK ÝÇÝN
+TEKRAR EL FENERÝ TUÞUNA BASIN
+}
+
+HZWEAPON
+{
+SÝLAHI ALMAK ÝÇÝN ÜZERÝNE YÜRÜYÜN
+}
+
+HZFIREWEAP
+{
+BÝRÝNCÝL SALDIRI ÝÇÝN SALDIRI1 TUÞUNA BASIN
+ÝKÝNCÝL SALDIRI ÝÇÝN SALDIRI2 TUÞUNA BASIN
+ÝSTEDÝÐÝNÝZ ZAMAN ÞARJÖR YENÝLEMEK ÝÇÝN ÞARJÖR TUÞUNA BASIN
+}
+
+HZARMOR
+{
+KULLANMA TUÞUNUZU BASILI TUTUN
+GÝYSÝNÝN ZIRHI DOLANA KADAR
+VEYA KÝT TÜKENENE KADAR BASILI TUTUN
+}
+
+HZSWIM
+{
+ÝLERÝ TUÞUNA BASIN
+YÜZERKEN FARE ÝLE NÝÞAN ALIN
+SAÐLIK KAYBETMEYE BAÞLARSANIZ HAVA BULUN
+SAÐLIÐINIZ ÖNCEKÝ SEVÝYESÝNE DÖNENE
+KADAR DIÞARDA KALMAYA DEVAM EDÝN
+}
+
+HZDAMAGE
+{
+BELÝRLÝ HASAR TÜRLERÝ
+BAÞ ÜSTÜ GÖSTERGENÝZDE BELÝRECEKTÝR
+HASARIN GELDÝÐÝ YÖN EKRANINIZIN ORTASINDA
+KIRMIZI PARLAMALARLA GÖSTERÝLÝR
+}
+
+HZHAZARD
+{
+IÞINIM TEHLÝKELERÝ
+BÝR GEIGER SAYACINI DEVREYE SOKAR
+}
+
+HZSCIENTIST
+{
+BÝLÝM ÝNSANINA YAKLAÞIN
+BÝLÝM ÝNSANINDAN SAÐLIK ALMAK ÝÇÝN KULLANMA TUÞUNA BASIN
+}
+
+HZBARNEY
+{
+GÜVENLÝK GÖREVLÝSÝNE YAKLAÞIN
+YARDIMINI ALMAK ÝÇÝN KULLANMA TUÞUNA BASIN
+KAPIYA DOÐRU GÝDÝN VE GÖREVLÝ
+DÜÐMELERÝ DEVREYE SOKACAKTIR
+}
+
+HZTRAIN
+{
+TRENÝ KULLANMAK ÝÇÝN KULLANMA TUÞUNA BASIN
+HIZLANMAK ÝÇÝN ÝLERÝ TUÞUNA BASIN
+YAVAÞLAMAK ÝÇÝN GERÝ TUÞUNA BASIN
+TRENDEN ÝNMEK ÝÇÝN TEKRAR KULLANMA TUÞUNA BASIN
+}
+
+HZDONE
+{
+TEBRÝKLER!
+BLACK MESA TEHLÝKE KURSUNU
+TAMAMLADINIZ.
+ÝSTEDÝÐÝNÝZ ZAMAN TEKRAR GELÝN.
+}
+
+// SM INTRO CREDITS
+$position -0.05 0.05
+$effect 17
+$color 140 140 140
+$color2 0 0 0
+$fadein 1.5
+$holdtime 5
+$fadeout 0.5
+
+$chained SM_INTRO_CR_02
+SM_INTRO_CR_01
+{
+Half-Life: Subtitles Mod by:
+Marek "Fograin92" Apostel
+Vit_amiN (You know this guy)
+}
+
+$chained SM_INTRO_CR_03
+SM_INTRO_CR_02
+{
+Turkish translation:
+Mehmet "qabRieL" Umaç
+}
+
+SM_INTRO_CR_03
+{
+Special thanks to:
+Uncle Mike from cs-mapping.com.ua (Usefull code fixes)
+BUzer from hlfx.ru (Usefull code fixes)
+Half-Life: Paranoia mod team (Base subtitles code)
+combineoverwiki.net (Quotes from HL games)
+half-life.wikia.com (Nihilanth quotes)
+}
+
+// SM OUTRO CREDITS
+$position -1 -1
+$effect 16
+$color 140 140 140
+$color2 0 0 0
+$fadein 0.5
+$fadeout 0.5
+$holdtime 4
+
+$chained SM_OUTRO_CR_02
+SM_OUTRO_CR_01
+{
+Half-Life: Subtitles Mod
+Version: 3.0
+}
+
+SM_OUTRO_CR_02
+{
+Subtitles MOD team:
+Marek "Fograin92" Apostel - Leader / Headbanger / English subtitles
+Vit_amiN (You know this guy) - Programmer / Summoner
+
+Turkish translation:
+Mehmet "qabRieL" Umaç
+
+Special thanks to:
+Uncle Mike from cs-mapping.com.ua (Usefull code fixes)
+BUzer from hlfx.ru (Usefull code fixes)
+Half-Life: Paranoia mod team (Base subtitles code)
+combineoverwiki.net (Quotes from HL games)
+half-life.wikia.com (Nihilanth quotes)
+}
