@@ -1,0 +1,802 @@
+// TITLES FOR HALF-LIFE: SUBTITLES MOD
+// Position command $position x y 
+// x & y are from 0 to 1 to be screen resolution independent
+// -1 means center in each dimension
+// Effect command $effect <effect number>
+// effect 0 is fade in/fade out
+// effect 1 is flickery credits
+// effect 2 is write out (training room)
+// Add 16 to effect number to use VGUI system
+// Text color r g b command $color
+// fadein time fadeout time / hold time
+// $fadein (message fade in time - per character in effect 2)
+// $fadeout (message fade out time)
+// $holdtime (stay on the screen for this long)
+
+//INTRO TITLES
+// All centered for now
+$position -1 -1
+$effect 18
+// This is the final color
+$color 140 140 140
+// This is the highlight color
+$color2 240 110 0
+// This is the time it takes to fade each character
+$fadein 0.01
+// This is the amount of time the highlight lags behind the leading edge of the text
+$fxtime 0.25
+// How long to hold the message on the screen (after it scans out)
+$holdtime 3.5
+// How long it takes to fade out the message after holding
+$fadeout 1.5
+
+$chained SM_INTRO_CR_01
+CR27
+{
+еЯЕУМГТИЙщР еЦЙАТАСТэСЕИР Black Mesa
+Black Mesa, мщО лЕНИЙЭ
+}
+
+
+//INTRO CREDITS
+// Test values -- JAY
+// Lower left
+$position 0.1 0.7
+$effect 17
+// Final fade-in color
+$color 128 128 128
+// This is the highlight/flash color
+$color2 0 0 0
+$fadein 1.5
+$fadeout 0.5
+$holdtime 1.2
+
+CR1
+{
+Ted Backman
+}
+
+CR2
+{
+TK Backman
+}
+
+CR3
+{
+Kelly Bailey
+}
+
+CR4
+{
+Yahn Bernier
+}
+
+CR5
+{
+Ken Birdwell
+}
+
+CR6
+{
+Steve Bond
+}
+
+CR7
+{
+Dario Casali
+}
+
+CR8
+{
+John Cook
+}
+
+CR9
+{
+Greg Coomer
+}
+
+CR10
+{
+Wes Cumberland
+}
+
+CR11
+{
+John Guthrie
+}
+
+CR12
+{
+Mona Lisa Guthrie
+}
+
+CR13
+{
+Mike Harrington
+}
+
+CR14
+{
+Monica Harrington
+}
+
+CR15
+{
+Brett Johnson
+}
+
+CR16
+{
+Chuck Jones
+}
+
+CR17
+{
+Marc Laidlaw
+}
+
+CR18
+{
+Karen Laur
+}
+
+CR19
+{
+Randy Lundeen
+}
+
+CR20
+{
+Yatsze Mark
+}
+
+CR21
+{
+Lisa Mennet
+}
+
+CR22
+{
+Gabe Newell
+}
+
+CR23
+{
+Dave Riller
+}
+
+CR24
+{
+Aaron Stackpole
+}
+
+CR25
+{
+Jay Stelly
+}
+
+CR26
+{
+Harry Teasley 
+}
+
+CR35
+{
+Steve Theodore
+}
+
+CR36
+{
+Bill Van Buren
+}
+
+CR37
+{
+Robin Walker
+}
+
+CR38
+{
+Douglas R. Wood
+}
+
+//END CREDITS
+$position -1 -1
+$effect 16
+// Final fade-in color
+$color 128 128 128
+// This is the highlight/flash color
+$color2 0 0 0
+$fadein 0.5
+$fadeout 0.5
+$holdtime 4
+
+VALVEIS
+{
+г Valve ЕъМАИ:
+}
+
+END1
+{
+Ted Backman
+TK Backman
+Kelly Bailey
+Yahn Bernier
+Ken Birdwell
+Steve Bond
+Dario Casali
+John Cook
+Greg Coomer
+Wes Cumberland
+}
+
+END2
+{
+John Guthrie
+Mona Lisa Guthrie
+Mike Harrington
+Monica Harrington
+Brett Johnson
+Chuck Jones
+Marc Laidlaw
+Karen Laur
+Randy Lundeen
+Yatsze Mark
+}
+
+$chained SM_OUTRO_CR_01
+END3
+{
+Lisa Mennet
+Gabe Newell
+Dave Riller
+Aaron Stackpole
+Jay Stelly
+Harry Teasley
+Steve Theodore
+Bill Van Buren
+Robin Walker
+Douglas R. Wood
+}
+
+//INTRO TITLES
+// All centered for now
+$position -1 -1
+$effect 18
+// This is the final color
+$color 140 140 140
+// This is the highlight color
+$color2 240 110 0
+// This is the time it takes to fade each character
+$fadein 0.01
+// This is the amount of time the highlight lags behind the leading edge of the text
+$fxtime 0.25
+// How long to hold the message on the screen (after it scans out)
+$holdtime 3.5
+// How long it takes to fade out the message after holding
+$fadeout 1.5
+
+
+CR28
+{
+упойеилемо:
+цЙЭЯМТОМ жЯъЛАМ
+╒ЯЯЕМ, ЕТЧМ 27
+}
+
+CR29
+{
+EDUCATION:
+дИДАЙТОЯИЙЭ, лит, хЕЫЯГТИЙч жУСИЙч
+}
+
+CR30
+{
+хесг:
+сУМЕЯЦэТГР еЯЕЩМГР
+}
+
+CR31
+{
+диояислос:
+еЯЦАСТчЯИО аМЫЛэКЫМ уКИЙЧМ
+}
+
+CR32
+{
+еноусиодотгсг асжакеиас:
+еПъПЕДО 3
+}
+
+CR33
+{
+воягцос диоийгсеыс:
+аПЭЯЯГТО
+}
+
+CR34
+{
+пяотеяаиотгта амтидяасгс се йяисг:
+дИАЙЯИТИЙч
+}
+
+$fadein 0.03
+$holdtime 9
+
+GAMEOVER
+{
+упойеилемо:  жяилам
+
+йатастасг:  теялатислос аниокоцгсгс
+
+мейяоьиа:
+тО УПОЙЕъЛЕМО АПщТУВЕ МА АНИОПОИчСЕИ АПОТЕКЕСЛАТИЙэ
+АМХЯЧПИМА ЛщСА ЦИА ЕПъТЕУНГ СТЭВОУ.
+}
+
+$fadein 0.03
+$holdtime 9
+TRAITOR
+{
+упойеилемо:  жяилам
+
+йатастасг:  пяосекгжхг
+
+амаломг амахесгс апостокгс
+}
+
+
+$fadein 0.03
+$holdtime 9
+LOSER
+{
+упойеилемо:  жяилам
+
+йатастасг:  теялатислос паяатгягсгс
+
+мейяоьиа:
+тО УПОЙЕъЛЕМО АПщЯЯИЬЕ ПЯОСЖОЯэ ПЯЭСКГЬГР.
+}
+
+//CHAPTER TITLES
+
+$fadein 0.01
+$position -1 0.4
+$holdtime 3.5
+T0A0TITLE
+{
+пяоцяалла амтилетыписгс йимдумым
+}
+
+$position -1 0.65
+C0A0TITLE
+{
+еисеяволемос ста BLACK MESA
+}
+
+OPENTITLE3
+{
+
+}
+
+OPENTITLE4
+{
+
+}
+
+C0A1TITLE
+{
+еяцастгяиа амылакым укийым
+}
+
+C1A1TITLE
+{
+апяобкептес сумепеиес
+}
+
+C1A2TITLE
+{
+суцйяотгла цяажеиым
+}
+
+C1A3TITLE
+{
+"евоуле евхяоус"
+}
+
+C1A4TITLE
+{
+хакалос пуяодотгсгс
+}
+
+C2A1TITLE
+{
+жоятысг исвуос
+}
+
+C2A2TITLE
+{
+амы цяаллым
+}
+
+C2A3TITLE
+{
+суккгьг
+}
+
+C2A4TITLE1
+{
+епенеяцасиа йатакоипым
+}
+
+C2A4TITLE2
+{
+алжибокоу гхийгс
+}
+
+C2A5TITLE
+{
+емтасг епижамеиас
+}
+
+C3A1TITLE
+{
+"невасте том жяилам!"
+}
+
+C3A2TITLE
+{
+пуягмас калда
+}
+
+C4A1TITLE
+{
+фем
+}
+
+C4A1ATITLE
+{
+паяеисайтос
+}
+
+C4A1BTITLE
+{
+
+}
+
+C4A1CTITLE
+{
+
+}
+
+C4A1ETITLE
+{
+
+}
+
+C4A1FTITLE
+{
+
+}
+
+C4A2TITLE
+{
+г жыкиа тоу цйомаяв
+}
+
+C4A3TITLE
+{
+мивикамх
+}
+
+C5TITLE
+{
+текос паивмидиоу
+}
+
+
+// In-Game messages
+$position -1 0.65
+$effect 18
+// This is the final color
+$color 140 140 140
+// This is the highlight color
+$color2 240 110 0
+// This is the time it takes to fade each character
+$fadein 0.01
+// This is the amount of time the highlight lags behind the leading edge of the text
+$fxtime 0.25
+// How long to hold the message on the screen (after it scans out)
+$holdtime 2.0
+// How long it takes to fade out the message after holding
+$fadeout 0.5
+
+GAMESAVED
+{
+аПОХГЙЕЩТГЙЕ...
+}
+
+// Game title
+// This is a placeholder to hold the effects controls for the "Half-Life" title
+$position -1 -1
+// Only effect 0 is supported for game title (plus 16 for the VGUI)
+$effect 16
+// This is the final color
+$color 200 200 200
+// Not used color2
+$color2 0 0 0
+// This is the time it takes to fade in the title
+$fadein 1.0
+// How long to hold the message on the screen (after it scans out)
+$holdtime 3.0
+// How long it takes to fade out the message after holding
+$fadeout 1.5
+
+GAMETITLE
+{
+Half-Life
+}
+
+//HAZARD COURSE TEXT
+
+// Test values -- JAY
+$position -1 0.65
+// Scan-out text effect
+$effect 18
+// This is the final color
+$color 140 140 140
+// This is the highlight color
+$color2 0 200 50
+// This is the time it takes to fade each character
+$fadein 0.005
+// This is the amount of time the highlight lags behind the leading edge of the text
+$fxtime 0.5
+// How long to hold the message on the screen (after it scans out)
+$holdtime 3.5
+// How long it takes to fade out the message after holding
+$fadeout 1.5
+
+$position -1 0.3
+HZBUTTON1
+{
+пиесте то пкгйтяо вягсгс сас циа ма патгсете ема йоулпи
+}
+
+$position -1 0.65
+HZBUTTON2
+{
+пиесте то пкгйтяо вягсгс сас циа ма патгсете ема йоулпи
+}
+
+HZMOVE
+{
+йимгхеите пяос та лпяоста пиефомтас то пкгйтяо елпяос
+йимгхеите пяос та описхем пиефомтас то пкгйтяо писы
+йимгхеите пяос та аяистеяа пиефомтас то пкгйтяо аяистеягйимгсг
+йимгхеите пяос та дениа пиефомтас то пкгйтяо дениайимгсг
+}
+
+HZJUMP
+{
+пиесте то пкгйтяо елпяос циа ма тяенете пяос та лпяоста
+пиесте то пкгйтяо аклатос циа ма пгдгнете
+}
+
+HZDUCK
+{
+пиесте то пкгйтяо елпяос циа ма тяенете пяос та лпяоста
+пиесте то пкгйтяо сйуьилатос циа ма сйуьете
+пиесте та пкгйтяа елпяос + сйуьило лафи 
+циа ма йимгхеите ахояуба
+}
+
+HZCOMBO
+{
+пиесте то пкгйтяо елпяос циа ма тяенете пяос та лпяоста
+пиесте то пкгйтяо аклатос циа ма пгдгнете
+пиесте то пкгйтяо сйуьилатос циа ма сйуьете
+пиесте то пкгйтяо аклатос циа ма пгдгнете
+}
+
+HZDUCKJUMP
+{
+пиесте та пкгйтяа елпяос + акла лафи,
+стг сумевеиа то пкгйтяо сйуьилатос
+}
+
+HZLADDER
+{
+пиесте то пкгйтяо елпяос циа ма амебеите сйакес
+пиесте то пкгйтяо писы циа ма йатебеите сйакес
+}
+
+HZLJUMP
+{
+емы йимгсте елпяос,
+йяатгсте пиеслемо то пкгйтяо сйуьилатос--
+стг сумевеиа пиесте то пкгйтяо аклатос
+}
+
+$position -1 0.3
+HZLMOD
+{
+сицоуяеутеите пыс пгяате тг ломада упеяпгдгсгс
+стгм аявг тоу елподиоу
+}
+
+$position -1 0.65
+HZMEDKIT
+{
+вягсилопоигсте иатяийа сет йяатымтас пиеслемо то пкгйтяо вягсгс
+йяатгсте пиеслемо то пкгйтяо вягсгс еыс отоу г уцеиа еимаи
+ста 100 ╧ то сет енамткгхеи.
+}
+
+HZMOMENT
+{
+емеяцопоигсте стяожиццес веияислоу йаи диадяастийес епижамеиес 
+йяатымтас пиеслемо то пкгйтяо вягсгс
+йяатгсте пиеслемо то пкгйтяо вягсгс еыс отоу г цежуяа еимаи се хесг
+}
+
+HZPUSH
+{
+пиесте то пкгйтяо елпяос циа ма стахеите лпяоста апо то йибытио
+сумевисте ма пиефете то пкгйтяо елпяос циа ма спяынете то йибытио
+}
+
+HZPULL
+{
+пиесте та пкгйтяа вягсгс + писы лафи
+циа ма тяабгнете то йибытио
+}
+
+HZCROWBAR
+{
+йимгхеите пяос то косто
+пиесте то пкгйтяо епихесг1 циа ма спасете амтийеилема
+}
+ 
+HZLITEON
+{
+пиесте то пкгйтяо тоу жайоу
+циа ма амаьете то жайо
+}
+
+HZLITEOFF
+{
+пиесте нама то пкгйтяо тоу жайоу
+циа ма сбгсете то жайо
+}
+
+HZWEAPON
+{
+йимгхеите пяос то опко йаи сгйысте то
+}
+
+HZFIREWEAP
+{
+пиесте то пкгйтяо епихесг1 циа тгм йуяиа епихесг
+пиесте то пкгйтяо епихесг2 циа тгм емаккайтийг епихесг
+пиесте то пкгйтяо епамацелислатос циа ма епамацелисете йата боукгсг
+}
+
+HZARMOR
+{
+пиесте йаи йяатгсте пиеслемо то пкгйтяо вягсгс сас
+йяатгсте то пиеслемо еыс отоу г хыяайисг тгс стокгс жоятистеи
+╧ г ломада епамажоятисгс енамткгхеи
+}
+
+HZSWIM
+{
+пиесте то пкгйтяо елпяос
+стовеусте ле то помтийи емы йокулпате
+емтописте аеяа еам аявисеи ма леиыметаи г уцеиа сас
+амалеимате стом аеяа левяи г уцеиа сас
+епамекхеи ста пяогцоулема епипеда
+}
+
+HZDAMAGE
+{
+ояислема еидг тяаулатислоу ха йатацяажомтаи
+стгм охомг емдеинеым сас.
+г йатеухумсг апо тгм опоиа тяаулатифесте уподеиймуетаи апо йоййимоус
+йатеухумтийоус деийтес сто йемтяо тгс охомгс сас
+}
+
+HZHAZARD
+{
+йимдумои айтимобокиас
+емеяцопоиоум ема летягтг GEIGER
+}
+
+HZSCIENTIST
+{
+пкгсиасте том епистглома
+пиесте то пкгйтяо вягсгс циа ма кабете иатяийг жяомтида апо том епистглома
+}
+
+HZBARNEY
+{
+пкгсиасте том жукайа асжакеиас
+пиесте то пкгйтяо вягсгс циа ма сас богхгсеи
+йатеухумхеите пяос тгм поята йаи о жукайас
+ха емеяцопоигсеи та йоулпиа
+}
+
+HZTRAIN
+{
+пиесте то пкгйтяо вягсгс циа ма емеяцопоигсете то тяаимо
+пиесте то пкгйтяо елпяос циа ма епитавумете
+пиесте то пкгйтяо писы циа ма епибяадумете
+пиесте нама то пкгйтяо вягсгс циа ма апемеяцопоигсете то тяаимо
+}
+
+HZDONE
+{
+суцваягтгяиа!
+окойкгяысате то
+пяоцяалла амтилетыписгс йимдумым тым BLACK MESA.
+епистяеьте опоиадгпоте стицлг.
+}
+
+// SM INTRO CREDITS
+$position -0.05 0.05
+$effect 17
+$color 140 140 140
+$color2 0 0 0
+$fadein 1.5
+$holdtime 5
+$fadeout 0.5
+
+$chained SM_INTRO_CR_02
+SM_INTRO_CR_01
+{
+тО Half-Life: Subtitles Mod ЕъМАИ ТЫМ:
+Mark "Fograin92" Apostel
+Vit_amiN (ТОМ ЦМЫЯъФЕТЕ)
+}
+
+$chained SM_INTRO_CR_03
+SM_INTRO_CR_02
+{
+
+}
+
+SM_INTRO_CR_03
+{
+иДИАъТЕЯА ЕУВАЯИСТЧ СТОУР:
+тГМ ОЛэДА ТОУ Half-Life: Paranoia mod (ЦИА ТО БАСИЙЭ ЙЧДИЙА ТЫМ УПОТъТКЫМ)
+combineoverwiki.net (ЦИА ОЛИКъЕР ТЫМ ПАИВМИДъЫМ ТОУ HL)
+half-life.wikia.com (ЦИА ТГМ ОЛИКъА ТОУ мъВИКАМХ)
+}
+
+// SM OUTRO CREDITS
+$position -1 -1
+$effect 16
+$color 140 140 140
+$color2 0 0 0
+$fadein 0.5
+$fadeout 0.5
+$holdtime 4
+
+$chained SM_OUTRO_CR_02
+SM_OUTRO_CR_01
+{
+Half-Life: Subtitles Mod
+╦ЙДОСГ: 3.0
+}
+
+SM_OUTRO_CR_02
+{
+г ОЛэДА ТОУ Subtitles MOD:
+Mark "Fograin92" Apostel - еПИЙЕЖАКчР / дЕУТЕЯЕЩЫМ пЯОЦЯАЛЛАТИСТчР / аццк уПЭТИТКОИ
+Vit_amiN (тОМ ЦМЫЯъФЕТЕ) - еПИЙЕЖАКчР / бАСИЙЭР пЯОЦЯАЛЛАТИСТчР / аяйетес епидиояхысеис
+
+иДИАъТЕЯА ЕУВАЯИСТЧ СТОУР:
+тГМ ОЛэДА ТОУ Half-Life: Paranoia mod - цИА ТО БАСИЙЭ ЙЧДИЙА ТЫМ УПОТъТКЫМ
+combineoverwiki.net - цИА ТИР ОЛИКъЕР ТЫМ ПАИВМИДИЧМ ТОУ HL
+half-life.wikia.com - цИА ТГМ ОЛИКъА ТОУ мъВИКАМХ 
+}
