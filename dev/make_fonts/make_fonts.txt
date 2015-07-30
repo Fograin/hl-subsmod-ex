@@ -1,0 +1,153 @@
+;=======================================================================================
+; Targa Name			Typeface	Font Style	Size	Charset
+;=======================================================================================
+
+; --------------------------------------
+; Subtitles Text (flag 0x10, any effect)
+; --------------------------------------
+
+320_Subtitles Text		Arial Narrow	Regular		13	default
+400_Subtitles Text		Arial		Regular		12	default
+512_Subtitles Text		Arial		Regular		14	default
+640_Subtitles Text		Arial		Regular		16	default
+800_Subtitles Text		Arial		Regular		18	default
+1024_Subtitles Text		Arial		Regular		22	default
+1152_Subtitles Text		Arial		Regular		23	default
+1280_Subtitles Text		Arial		Regular		24	default
+1600_Subtitles Text		Arial		Regular		32	default
+
+; ---------------------------------------
+; Show/Hide Text (flag 0x10, effect 0x00)
+; ---------------------------------------
+
+320_Show-Hide Text		Arial Narrow	Regular		13	default
+400_Show-Hide Text		Arial		Regular		12	default
+512_Show-Hide Text		Arial		Regular		14	default
+640_Show-Hide Text		Arial		Regular		16	default
+800_Show-Hide Text		Arial		Regular		18	default
+1024_Show-Hide Text		Arial		Regular		22	default
+1152_Show-Hide Text		Arial		Regular		23	default
+1280_Show-Hide Text		Arial		Regular		24	default
+1600_Show-Hide Text		Arial		Regular		32	default
+
+; -----------------------------------------
+; Flickery Credits (flag 0x10, effect 0x01)
+; -----------------------------------------
+
+320_Credits Text		Arial Narrow	Regular		13	default
+400_Credits Text		Arial		Regular		12	default
+512_Credits Text		Arial		Regular		14	default
+640_Credits Text		Arial		Regular		16	default
+800_Credits Text		Arial		Regular		18	default
+1024_Credits Text		Arial		Regular		22	default
+1152_Credits Text		Arial		Regular		23	default
+1280_Credits Text		Arial		Regular		24	default
+1600_Credits Text		Arial		Regular		32	default
+
+; --------------------------------------
+; Writeout Text (flag 0x10, effect 0x02)
+; --------------------------------------
+
+320_Writeout Text		Arial Narrow	Regular		13	default
+400_Writeout Text		Arial		Regular		12	default
+512_Writeout Text		Arial		Regular		14	default
+640_Writeout Text		Arial		Regular		16	default
+800_Writeout Text		Arial		Regular		18	default
+1024_Writeout Text		Arial		Regular		22	default
+1152_Writeout Text		Arial		Regular		23	default
+1280_Writeout Text		Arial		Regular		24	default
+1600_Writeout Text		Arial		Regular		32	default
+
+; -----------------
+; Basic Text (VGUI)
+; -----------------
+
+640_Basic Text			Arial		Regular		17	default
+
+; --------------------
+; Briefing Text (VGUI)
+; --------------------
+
+640_Briefing Text		Tahoma		Regular		12	default
+800_Briefing Text		Tahoma		Regular		13	default
+1024_Briefing Text		Verdana		Regular		16	default
+1152_Briefing Text		Verdana		Regular		16	default
+1280_Briefing Text		Verdana		Regular		18	default
+1600_Briefing Text		Verdana		Regular		20	default
+
+; ------------------------
+; Command Menu Text (VGUI)
+; ------------------------
+
+640_CommandMenu Text		Tahoma		Bold		12	default
+800_CommandMenu Text		Tahoma		Bold		13	default
+1024_CommandMenu Text		Verdana		Bold		16	default
+1152_CommandMenu Text		Verdana		Bold		16	default
+1280_CommandMenu Text		Verdana		Bold		18	default
+1600_CommandMenu Text		Verdana		Bold		20	default
+
+; --------------------------
+; Primary Button Text (VGUI)
+; --------------------------
+
+640_Primary Button Text		Tahoma		Bold		12	default
+800_Primary Button Text		Tahoma		Bold		13	default
+1024_Primary Button Text	Verdana		Bold		16	default
+1152_Primary Button Text	Verdana		Bold		16	default
+1280_Primary Button Text	Verdana		Bold		18	default
+1600_Primary Button Text	Verdana		Bold		20	default
+
+; ----------------------------
+; Scoreboard Small Text (VGUI)
+; ----------------------------
+
+640_Scoreboard Small Text	Tahoma		Regular		12	default
+800_Scoreboard Small Text	Tahoma		Regular		13	default
+1024_Scoreboard Small Text	Verdana		Regular		16	default
+1152_Scoreboard Small Text	Verdana		Regular		16	default
+1280_Scoreboard Small Text	Verdana		Regular		18	default
+1600_Scoreboard Small Text	Verdana		Regular		20	default
+
+; ----------------------
+; Scoreboard Text (VGUI)
+; ----------------------
+
+640_Scoreboard Text		Tahoma		Regular		12	default
+800_Scoreboard Text		Tahoma		Regular		13	default
+1024_Scoreboard Text		Verdana		Regular		16	default
+1152_Scoreboard Text		Verdana		Regular		16	default
+1280_Scoreboard Text		Verdana		Regular		18	default
+1600_Scoreboard Text		Verdana		Regular		20	default
+
+; ----------------------------
+; Scoreboard Title Text (VGUI)
+; ----------------------------
+
+640_Scoreboard Title Text	Tahoma		Bold		12	default
+800_Scoreboard Title Text	Verdana		Bold		14	default
+1024_Scoreboard Title Text	Arial		Bold		20	default
+1152_Scoreboard Title Text	Arial		Bold		24	default
+1280_Scoreboard Title Text	Arial		Bold		27	default
+1600_Scoreboard Title Text	Arial		Bold		32	default
+
+; ---------------------
+; Team Info Text (VGUI)
+; ---------------------
+
+640_Team Info Text		Tahoma		Regular		13	default
+800_Team Info Text		Tahoma		Regular		13	default
+1024_Team Info Text		Verdana		Regular		16	default
+1152_Team Info Text		Verdana		Regular		16	default
+1280_Team Info Text		Verdana		Regular		18	default
+1600_Team Info Text		Verdana		Regular		20	default
+
+; -----------------
+; Title Font (VGUI)
+; -----------------
+
+640_Title Font			Tahoma		Bold		18	default
+800_Title Font			Verdana		Bold		20	default
+1024_Title Font			Arial		Bold		20	default
+1152_Title Font			Arial		Bold		24	default
+1280_Title Font			Arial		Bold		27	default
+1600_Title Font			Arial		Bold		32	default

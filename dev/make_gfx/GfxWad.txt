@@ -1,0 +1,55 @@
+Wavelength Gfx.wad Compiler v1.0
+================================
+A Half-Life gfx.wad compiler. It allows editing of the .bmp files
+in the gfx.wad, which are: backtile.bmp, conchars.bmp, creditsfont.bmp,
+lambda.bmp, lambda32.bmp, lambda64.bmp and paused.bmp. These files are 
+included in this zip. Simply edit these images in a paint program, then 
+compile them with Gfx.wad Compiler.
+
+I've created conchars.txt and creditsfont.txt, which are coordinate 
+scripts for the two font files: conchars.bmp and creditsfont.bmp. It
+describes the script format to follow that allows you to change fonts. 
+It's a rigid format so only change the numbers. Simply change the .bmp, 
+then edit the .txt.
+
+For more information about editing the gfx.wad see this article:
+http://www.planethalflife.com/wavelength/2dart/articles/wads.html
+
+This program has been tested in Win95, Win98 and NT4, and will
+bring up message boxes for all known errors. It supports Color
+Modes over 256 colors, and Small and Large Font Settings. If you
+come across a bug, send in a detailed description to me.
+
+©1999 by Wavelength. This is freeware. Anyone wanting to release 
+this must not do so for profit and must include this text file.
+
+Michael "Spider" Morace
+kingminos@aol.com
+Wavelength - Half-Life Editing
+http://www.planethalflife.com/wavelength
+
+Other Half-Life related things by Spider:
+
+Half-Life font - February, 1998
+http://www.planethalflife.com/dl/dl.asp?planethalflife/wavelength/2dart/hlfont.zip
+
+Wallpaper for the Half-Life Themes - February, 1998
+http://www.planethalflife.com/dl/dl.asp?planethalflife/wavelength/2dart/theme.zip
+
+E3 1998 Preview of Half-Life - June 25, 1998
+http://www.planethalflife.com/wavelength/models/articles/e3_1998.html
+
+Playtesting Half-Life at Valve's Office - August 25, 1998
+http://www.planethalflife.com/wavelength/models/articles/04.html
+
+The first tutorial for Making Half-Life Decals - November 16, 1998
+http://www.planethalflife.com/wavelength/2dart/tutorials/decals.html
+
+Currently the only Tutorial on Making Skins for Half-Life - January 3, 1999
+http://www.planethalflife.com/wavelength/2dart/tutorials/SkinTutorial.html
+
+Dukowski Multiplayer Model - January 13, 1999
+http://www.planethalflife.com/dl/dl.asp?planethalflife/wavelength/models/dukowski.exe
+
+Wavelength Sprite Wizard - April 16, 1999
+http://www.planethalflife.com/dl/dl.asp?planethalflife/wavelength/2dart/SprWiz.zip
