@@ -1,0 +1,7 @@
+// texturename			filtername	factor	base	blendfunc		flags (1 = grayscale)
+
+"fifties_wall14y"			emboss		0.2	128	blend		1
+"{grate1"				emboss		0.4	128	blend		1
+"wal10rc"				emboss		0.6	128	blend		1
+"models/barney.mdl/BX_Face1"		emboss		0.15	128	blend		1
+"models/barney.mdl/BX_Front_Top1"	emboss		0.3	128	blend		1
