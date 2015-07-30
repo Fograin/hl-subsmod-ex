@@ -1,0 +1,817 @@
+// TITLES FOR HALF-LIFE: SUBTITLES MOD
+// Position command $position x y 
+// x & y are from 0 to 1 to be screen resolution independent
+// -1 means center in each dimension
+// Effect command $effect <effect number>
+// effect 0 is fade in/fade out
+// effect 1 is flickery credits
+// effect 2 is write out (training room)
+// Add 16 to effect number to use VGUI system
+// Text color r g b command $color
+// fadein time fadeout time / hold time
+// $fadein (message fade in time - per character in effect 2)
+// $fadeout (message fade out time)
+// $holdtime (stay on the screen for this long)
+
+//INTRO TITLES
+// All centered for now
+$position -1 -1
+$effect 18
+// This is the final color
+$color 140 140 140
+// This is the highlight color
+$color2 240 110 0
+// This is the time it takes to fade each character
+$fadein 0.01
+// This is the amount of time the highlight lags behind the leading edge of the text
+$fxtime 0.25
+// How long to hold the message on the screen (after it scans out)
+$holdtime 3.5
+// How long it takes to fade out the message after holding
+$fadeout 1.5
+
+$chained SM_INTRO_CR_01
+CR27
+{
+Исследовательский комплекс «Чёрная Меза»
+США, Нью-Мексико, плоскогорье Чёрная Меза
+}
+
+
+//INTRO CREDITS
+// Test values -- JAY
+// Lower left
+$position 0.1 0.7
+$effect 17
+// Final fade-in color
+$color 128 128 128
+// This is the highlight/flash color
+$color2 0 0 0
+$fadein 1.5
+$fadeout 0.5
+$holdtime 1.2
+
+CR1
+{
+Ян Бернье
+}
+
+CR2
+{
+Кен Бёрдвелл
+}
+
+CR3
+{
+Стив Бонд
+}
+
+CR4
+{
+Келли Бэйли
+}
+
+CR5
+{
+Т.К. Бэкман
+}
+
+CR6
+{
+Тед Бэкман
+}
+
+CR7
+{
+Билл Ван Бюрен
+}
+
+CR8
+{
+Робин Волкер
+}
+
+CR9
+{
+Даглас Р. Вуд
+}
+
+CR10
+{
+Джон Гатри
+}
+
+CR11
+{
+Мона Лиза Гатри
+}
+
+CR12
+{
+Чак Джонс
+}
+
+CR13
+{
+Бретт Джонсон
+}
+
+CR14
+{
+Уэс Камберленд
+}
+
+CR15
+{
+Дарио Касали
+}
+
+CR16
+{
+Джон Кук
+}
+
+CR17
+{
+Грег Кумер
+}
+
+CR18
+{
+Рэнди Ландин
+}
+
+CR19
+{
+Кэрен Лор
+}
+
+CR20
+{
+Марк Лэйдлоу
+}
+
+CR21
+{
+Ятсз Марк
+}
+
+CR22
+{
+Лиза Меннет
+}
+
+CR23
+{
+Гейб Ньюэлл
+}
+
+CR24
+{
+Дэйв Риллер
+}
+
+CR25
+{
+Джей Стелли
+}
+
+CR26
+{
+Аарон Стэкпол
+}
+
+CR35
+{
+Стив Теодор
+}
+
+CR36
+{
+Гарри Тисли
+}
+
+CR37
+{
+Майк Харрингтон
+}
+
+CR38
+{
+Моника Харрингтон
+}
+
+//END CREDITS
+$position -1 -1
+$effect 16
+// Final fade-in color
+$color 128 128 128
+// This is the highlight/flash color
+$color2 0 0 0
+$fadein 0.5
+$fadeout 0.5
+$holdtime 4
+
+VALVEIS
+{
+Valve — это:
+}
+
+END1
+{
+Ян Бернье
+Кен Бёрдвелл
+Стив Бонд
+Келли Бэйли
+Т.К. Бэкман
+Тед Бэкман
+Билл Ван Бюрен
+Робин Волкер
+Даглас Р. Вуд
+Джон Гатри
+}
+
+END2
+{
+Мона Лиза Гатри
+Чак Джонс
+Бретт Джонсон
+Уэс Камберленд
+Дарио Касали
+Джон Кук
+Грег Кумер
+Рэнди Ландин
+Кэрен Лор
+Марк Лэйдлоу
+}
+
+$chained SM_OUTRO_CR_01
+END3
+{
+Ятсз Марк
+Лиза Меннет
+Гейб Ньюэлл
+Дэйв Риллер
+Джей Стелли
+Аарон Стэкпол
+Стив Теодор
+Гарри Тисли
+Майк Харрингтон
+Моника Харрингтон
+}
+
+//INTRO TITLES
+// All centered for now
+$position -1 -1
+$effect 18
+// This is the final color
+$color 140 140 140
+// This is the highlight color
+$color2 240 110 0
+// This is the time it takes to fade each character
+$fadein 0.01
+// This is the amount of time the highlight lags behind the leading edge of the text
+$fxtime 0.25
+// How long to hold the message on the screen (after it scans out)
+$holdtime 3.5
+// How long it takes to fade out the message after holding
+$fadeout 1.5
+
+
+CR28
+{
+ОБЪЕКТ:
+Гордон Фримен
+Мужчина, 27 лет
+}
+
+CR29
+{
+ОБРАЗОВАНИЕ:
+Массачусетский технологический институт
+Кандидат наук в области теоретической физики
+}
+
+CR30
+{
+ДОЛЖНОСТЬ:
+Научный сотрудник
+}
+
+CR31
+{
+НАЗНАЧЕНИЕ:
+Лаборатория аномальных материалов
+}
+
+CR32
+{
+ДОПУСК:
+Уровень 3
+}
+
+CR33
+{
+АДМИНИСТРАТИВНЫЙ СПОНСОР:
+Засекречен
+}
+
+CR34
+{
+ДЕЙСТВИЯ В СЛУЧАЕ ЧС:
+По обстоятельствам
+}
+
+$fadein 0.03
+$holdtime 9
+
+GAMEOVER
+{
+ОБЪЕКТ:  ФРИМЕН
+
+СТАТУС:  ОЦЕНКА ПРЕКРАЩЕНА
+
+ПОСМЕРТНО:
+Объект не сумел эффективно использовать
+человеческие ресурсы для достижения цели.
+}
+
+$fadein 0.03
+$holdtime 9
+TRAITOR
+{
+ОБЪЕКТ:  ФРИМЕН
+
+СТАТУС:  НАНЯТ
+
+ОЖИДАЕТ НАЗНАЧЕНИЯ
+}
+
+
+$fadein 0.03
+$holdtime 9
+LOSER
+{
+ОБЪЕКТ:  ФРИМЕН
+
+СТАТУС:  НАБЛЮДЕНИЕ ПРЕКРАЩЕНО
+
+ПОСМЕРТНО:
+Объект отклонил предложение работы.
+}
+
+//CHAPTER TITLES
+
+$fadein 0.01
+$position -1 0.4
+$holdtime 3.5
+T0A0TITLE
+{
+КУРС МОЛОДОГО БОЙЦА
+}
+
+$position -1 0.65
+C0A0TITLE
+{
+ПРИБЫТИЕ В ЧЁРНУЮ МЕЗУ
+}
+
+OPENTITLE3
+{
+
+}
+
+OPENTITLE4
+{
+
+}
+
+C0A1TITLE
+{
+АНОМАЛЬНЫЕ МАТЕРИАЛЫ
+}
+
+C1A1TITLE
+{
+НЕПРЕДВИДЕННЫЕ ПОСЛЕДСТВИЯ
+}
+
+C1A2TITLE
+{
+ОФИСНЫЙ КОМПЛЕКС
+}
+
+C1A3TITLE
+{
+«ОБНАРУЖЕН ПРОТИВНИК»
+}
+
+C1A4TITLE
+{
+ПРОБНЫЙ ЗАПУСК
+}
+
+C2A1TITLE
+{
+ПОДАЧА ПИТАНИЯ
+}
+
+C2A2TITLE
+{
+МОНОРЕЛЬС
+}
+
+C2A3TITLE
+{
+МРАЧНЫЕ ПРЕДЧУВСТВИЯ
+}
+
+C2A4TITLE1
+{
+ПЕРЕРАБОТКА ОТХОДОВ
+}
+
+C2A4TITLE2
+{
+СОМНИТЕЛЬНАЯ ЭТИКА
+}
+
+C2A5TITLE
+{
+ПОВЕРХНОСТНОЕ НАТЯЖЕНИЕ
+}
+
+C3A1TITLE
+{
+«ЗАБУДЬТЕ О ФРИМЕНЕ!»
+}
+
+C3A2TITLE
+{
+ЯДРО «ЛЯМБДЫ»
+}
+
+C4A1TITLE
+{
+ЗЕН
+}
+
+C4A1ATITLE
+{
+НЕЗВАНЫЙ ГОСТЬ
+}
+
+C4A1BTITLE
+{
+
+}
+
+C4A1CTITLE
+{
+
+}
+
+C4A1ETITLE
+{
+
+}
+
+C4A1FTITLE
+{
+
+}
+
+C4A2TITLE
+{
+ЛОГОВО ГОНАРЧА
+}
+
+C4A3TITLE
+{
+НИХИЛАНТ
+}
+
+C5TITLE
+{
+ЭНДШПИЛЬ
+}
+
+
+// In-Game messages
+$position -1 0.65
+$effect 18
+// This is the final color
+$color 140 140 140
+// This is the highlight color
+$color2 240 110 0
+// This is the time it takes to fade each character
+$fadein 0.01
+// This is the amount of time the highlight lags behind the leading edge of the text
+$fxtime 0.25
+// How long to hold the message on the screen (after it scans out)
+$holdtime 2.0
+// How long it takes to fade out the message after holding
+$fadeout 0.5
+
+GAMESAVED
+{
+Сохранено…
+}
+
+// Game title
+// This is a placeholder to hold the effects controls for the "Half-Life" title
+$position -1 -1
+// Only effect 0 is supported for game title (plus 16 for the VGUI)
+$effect 16
+// This is the final color
+$color 200 200 200
+// Not used color2
+$color2 0 0 0
+// This is the time it takes to fade in the title
+$fadein 1.0
+// How long to hold the message on the screen (after it scans out)
+$holdtime 3.0
+// How long it takes to fade out the message after holding
+$fadeout 1.5
+
+GAMETITLE
+{
+Half-Life
+}
+
+//HAZARD COURSE TEXT
+
+// Test values -- JAY
+$position -1 0.65
+// Scan-out text effect
+$effect 18
+// This is the final color
+$color 140 140 140
+// This is the highlight color
+$color2 0 200 50
+// This is the time it takes to fade each character
+$fadein 0.005
+// This is the amount of time the highlight lags behind the leading edge of the text
+$fxtime 0.5
+// How long to hold the message on the screen (after it scans out)
+$holdtime 3.5
+// How long it takes to fade out the message after holding
+$fadeout 1.5
+
+$position -1 0.3
+HZBUTTON1
+{
+НАЖМИТЕ «ИСПОЛЬЗОВАТЬ» ДЛЯ НАЖАТИЯ НА КНОПКУ
+}
+
+$position -1 0.65
+HZBUTTON2
+{
+НАЖМИТЕ «ИСПОЛЬЗОВАТЬ» ДЛЯ НАЖАТИЯ НА КНОПКУ
+}
+
+HZMOVE
+{
+ДВИГАЙТЕСЬ ВПЕРЁД, ИСПОЛЬЗУЯ КЛАВИШУ «ВПЕРЁД»
+ДВИГАЙТЕСЬ НАЗАД, ИСПОЛЬЗУЯ КЛАВИШУ «НАЗАД»
+ДВИГАЙТЕСЬ ВЛЕВО, ИСПОЛЬЗУЯ КЛАВИШУ «ВЛЕВО»
+ДВИГАЙТЕСЬ ВПРАВО, ИСПОЛЬЗУЯ КЛАВИШУ «ВПРАВО»
+}
+
+HZJUMP
+{
+БЕГИТЕ ВПЕРЁД, ИСПОЛЬЗУЯ КЛАВИШУ «ВПЕРЁД»
+ПРЫГАЙТЕ, ИСПОЛЬЗУЯ КЛАВИШУ «ПРЫЖОК»
+}
+
+HZDUCK
+{
+БЕГИТЕ ВПЕРЁД, ИСПОЛЬЗУЯ КЛАВИШУ «ВПЕРЁД»
+ПРИСЯДЬТЕ, ИСПОЛЬЗУЯ КЛАВИШУ «ПРИСЕСТЬ»
+ИСПОЛЬЗУЙТЕ КОМБИНАЦИЮ КЛАВИШ «ВПЕРЁД» +
+«ПРИСЕСТЬ», ЧТОБЫ ПЕРЕДВИГАТЬСЯ БЕСШУМНО
+}
+
+HZCOMBO
+{
+БЕГИТЕ ВПЕРЁД, ИСПОЛЬЗУЯ КЛАВИШУ «ВПЕРЁД»
+ПРЫГАЙТЕ, ИСПОЛЬЗУЯ КЛАВИШУ «ПРЫЖОК»
+ПРИСЯДЬТЕ, ИСПОЛЬЗУЯ КЛАВИШУ «ПРИСЕСТЬ»
+ПРЫГАЙТЕ, ИСПОЛЬЗУЯ КЛАВИШУ «ПРЫЖОК»
+}
+
+HZDUCKJUMP
+{
+ИСПОЛЬЗУЙТЕ КОМБИНАЦИЮ КЛАВИШ «ВПЕРЁД» +
+«ПРЫЖОК», ЗАТЕМ НАЖМИТЕ КЛАВИШУ «ПРИСЕСТЬ»
+}
+
+HZLADDER
+{
+НАЖМИТЕ «ВПЕРЁД» ДЛЯ ПОДЪЁМА ПО ЛЕСТНИЦЕ
+НАЖМИТЕ «НАЗАД» ДЛЯ СПУСКА ПО ЛЕСТНИЦЕ
+}
+
+HZLJUMP
+{
+ПРИ ДВИЖЕНИИ ВПЕРЁД УДЕРЖИВАЙТЕ КЛАВИШУ
+«ПРИСЕСТЬ», ЗАТЕМ НАЖМИТЕ КЛАВИШУ «ПРЫЖОК»
+}
+
+$position -1 0.3
+HZLMOD
+{
+ПЕРЕД ПРЕОДОЛЕНИЕМ ПРЕПЯТСТВИЯ УБЕДИТЕСЬ В
+ТОМ, ЧТО У ВАС ЕСТЬ МОДУЛЬ ДЛИННОГО ПРЫЖКА
+}
+
+$position -1 0.65
+HZMEDKIT
+{
+ВОСПОЛЬЗУЙТЕСЬ АПТЕЧКОЙ, УДЕРЖИВАЯ КЛАВИШУ
+«ИСПОЛЬЗОВАТЬ» ДО ТЕХ ПОР, ПОКА УРОВЕНЬ
+ЗДОРОВЬЯ НЕ СТАНЕТ МАКСИМАЛЬНЫМ ИЛИ ПОКА
+АПТЕЧКА НЕ ОПУСТЕЕТ
+}
+
+HZMOMENT
+{
+УПРАВЛЯЙТЕ КОЛЁСАМИ И РЫЧАГАМИ, УДЕРЖИВАЯ
+КЛАВИШУ «ИСПОЛЬЗОВАТЬ»
+УДЕРЖИВАЙТЕ КЛАВИШУ ДО ТЕХ ПОР, ПОКА МОСТ
+НЕ ВСТАНЕТ В ПОДХОДЯЩУЮ ПОЗИЦИЮ
+}
+
+HZPUSH
+{
+ПОДОЙДИТЕ ВПЛОТНУЮ К ЯЩИКУ И ПРОДОЛЖАЙТЕ
+НАЖИМАТЬ КЛАВИШУ «ВПЕРЁД», ЧТОБЫ ТОЛКАТЬ
+ЯЩИК ПЕРЕД СОБОЙ
+}
+
+HZPULL
+{
+ИСПОЛЬЗУЙТЕ КОМБИНАЦИЮ «ИСПОЛЬЗОВАТЬ» +
+«НАЗАД», ЧТОБЫ ТАЩИТЬ ЯЩИК ЗА СОБОЙ
+}
+
+HZCROWBAR
+{
+ВОЗЬМИТЕ МОНТИРОВКУ
+НАЖМИТЕ «АТАКА 1», ЧТОБЫ СЛОМАТЬ ОБЪЕКТ
+}
+ 
+HZLITEON
+{
+НАЖМИТЕ КЛАВИШУ «ФОНАРЬ»
+ДЛЯ ВКЛЮЧЕНИЯ ФОНАРИКА
+}
+
+HZLITEOFF
+{
+НАЖМИТЕ КЛАВИШУ «ФОНАРЬ» ЕЩЁ
+РАЗ ДЛЯ ВЫКЛЮЧЕНИЯ ФОНАРИКА
+}
+
+HZWEAPON
+{
+ПОДОЙДИТЕ К ОРУЖИЮ, ЧТОБЫ ВЗЯТЬ ЕГО
+}
+
+HZFIREWEAP
+{
+НАЖМИТЕ «АТАКА 1» ДЛЯ ОСНОВНОЙ АТАКИ
+НАЖМИТЕ «АТАКА 2» ДЛЯ АЛЬТЕРНАТИВНОЙ АТАКИ
+НАЖМИТЕ «ПЕРЕЗАРЯДИТЬ» ДЛЯ ПЕРЕЗАРЯДКИ
+}
+
+HZARMOR
+{
+НАЖМИТЕ И УДЕРЖИВАЙТЕ КЛАВИШУ «ИСПОЛЬЗОВАТЬ»
+ДО ТЕХ ПОР, ПОКА БРОНЯ КОСТЮМА НЕ ЗАРЯДИТСЯ
+ИЛИ ПОКА ЗАРЯДНОЕ УСТРОЙСТВО НЕ РАЗРЯДИТСЯ
+}
+
+HZSWIM
+{
+ИСПОЛЬЗУЙТЕ КЛАВИШУ «ВПЕРЁД», ЧТОБЫ ПЛЫТЬ
+КОНТРОЛИРУЙТЕ НАПРАВЛЕНИЕ ДВИЖЕНИЯ МЫШЬЮ
+ЕСЛИ ВЫ НАЧАЛИ ТЕРЯТЬ ЗДОРОВЬЕ, ВСПЛЫВИТЕ
+НА ПОВЕРХНОСТЬ И ПОДОЖДИТЕ, ПОКА УРОВЕНЬ
+ЗДОРОВЬЯ НЕ ВЕРНЁТСЯ В НОРМУ
+}
+
+HZDAMAGE
+{
+НЕКОТОРЫЕ ТИПЫ ПОЛУЧАЕМЫХ ПОВРЕЖДЕНИЙ
+РЕГИСТРИРУЮТСЯ НА ВАШЕМ ЭКРАНЕ
+НАПРАВЛЕНИЕ ПОВРЕЖДЕНИЙ УКАЗЫВАЕТСЯ В
+ВИДЕ КРАСНЫХ ВСПЫШЕК ПО ЦЕНТРУ ЭКРАНА
+}
+
+HZHAZARD
+{
+ПРИ ВЫСОКОМ УРОВНЕ РАДИАЦИИ
+ВКЛЮЧАЕТСЯ СЧЁТЧИК ГЕЙГЕРА
+}
+
+HZSCIENTIST
+{
+ПОДОЙДИТЕ К УЧЁНОМУ
+НАЖМИТЕ «ИСПОЛЬЗОВАТЬ», ЧТОБЫ ОН ВАС ПОДЛЕЧИЛ
+}
+
+HZBARNEY
+{
+ПОДОЙДИТЕ К ОХРАННИКУ
+НАЖМИТЕ «ИСПОЛЬЗОВАТЬ», ЧТОБЫ ОН ВАМ ПОМОГ
+НАПРАВЛЯЙТЕСЬ К ДВЕРИ, А ОХРАННИК НАЖМЁТ НА
+КНОПКУ
+}
+
+HZTRAIN
+{
+НАЖМИТЕ «ИСПОЛЬЗОВАТЬ» ДЛЯ АКТИВАЦИИ УПРАВЛЕНИЯ
+НАЖМИТЕ «ВПЕРЁД» ДЛЯ УСКОРЕНИЯ ДВИЖЕНИЯ ПОЕЗДА
+НАЖМИТЕ «НАЗАД» ДЛЯ ЗАМЕДЛЕНИЯ ДВИЖЕНИЯ ПОЕЗДА
+НАЖМИТЕ «ИСПОЛЬЗОВАТЬ» ЕЩЁ РАЗ ДЛЯ ДЕАКТИВАЦИИ
+}
+
+HZDONE
+{
+ПОЗДРАВЛЯЕМ!
+ВЫ ЗАВЕРШИЛИ ПРОХОЖДЕНИЕ КУРСА
+МОЛОДОГО БОЙЦА ЧЁРНОЙ МЕЗЫ.
+БУДЕМ РАДЫ УВИДЕТЬ ВАС СНОВА!
+}
+
+// SM INTRO CREDITS
+$position -0.05 0.05
+$effect 17
+$color 140 140 140
+$color2 0 0 0
+$fadein 1.5
+$holdtime 5.0
+$fadeout 0.5
+
+$chained SM_INTRO_CR_02
+SM_INTRO_CR_01
+{
+Авторы Half-Life: Subtitles Mod:
+Марек “Fograin92” Апостел
+Vit_amiN (ну, вы его знаете)
+}
+
+$chained SM_INTRO_CR_03
+SM_INTRO_CR_02
+{
+Локализация:
+Никита Борненко — исходный русский перевод
+Дмитрий Шорохов — редактура русского перевода
+Vit_amiN — редактура и дополнительные ресурсы
+}
+
+SM_INTRO_CR_03
+{
+Особая благодарность:
+Дяде Мише с cs-mapping.com.ua (полезные исправления кода)
+BUzer с hlfx.ru (полезные исправления кода)
+Команде мода Half-Life: Paranoia (базовый код субтитров)
+combineoverwiki.net (цитаты из игр вселенной Half-Life)
+half-life.wikia.com (цитаты Нихиланта)
+}
+
+// SM OUTRO CREDITS
+$position -1 -1
+$effect 16
+$color 140 140 140
+$color2 0 0 0
+$fadein 0.5
+$fadeout 0.5
+$holdtime 4
+
+$chained SM_OUTRO_CR_02
+SM_OUTRO_CR_01
+{
+Half-Life: Subtitles Mod
+Версия 3.0
+}
+
+SM_OUTRO_CR_02
+{
+Команда разработчиков:
+Марек “Fograin92” Апостел — Руководитель / Металлист / Английские субтитры
+Vit_amiN (ну, вы его знаете) — Программист / Злостный любитель Summoning
+
+Локализация:
+Никита Борненко — исходный русский перевод
+Дмитрий Шорохов — редактура русского перевода
+Vit_amiN — редактура и дополнительные ресурсы
+
+Особая благодарность:
+Дяде Мише с cs-mapping.com.ua (полезные исправления кода)
+BUzer с hlfx.ru (полезные исправления кода)
+Команде мода Half-Life: Paranoia (базовый код субтитров)
+combineoverwiki.net (цитаты из игр вселенной Half-Life)
+half-life.wikia.com (цитаты Нихиланта)
+}
