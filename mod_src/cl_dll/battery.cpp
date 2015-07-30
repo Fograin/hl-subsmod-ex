@@ -46,7 +46,7 @@ int CHudBattery::VidInit(void)
 	int HUD_suit_empty = gHUD.GetSpriteIndex( "suit_empty" );
 	int HUD_suit_full = gHUD.GetSpriteIndex( "suit_full" );
 
-	m_hSprite1 = m_hSprite2 = 0;  // delaying get sprite handles until we know the sprites are loaded
+	m_HL_HSPRITE1 = m_HL_HSPRITE2 = 0;  // delaying get sprite handles until we know the sprites are loaded
 	m_prc1 = &gHUD.GetSpriteRect( HUD_suit_empty );
 	m_prc2 = &gHUD.GetSpriteRect( HUD_suit_full );
 	m_iHeight = m_prc2->bottom - m_prc1->top;
@@ -117,17 +117,17 @@ int CHudBattery::Draw(float flTime)
 	x = ScreenWidth/5;
 
 	// make sure we have the right sprite handles
-	if ( !m_hSprite1 )
-		m_hSprite1 = gHUD.GetSprite( gHUD.GetSpriteIndex( "suit_empty" ) );
-	if ( !m_hSprite2 )
-		m_hSprite2 = gHUD.GetSprite( gHUD.GetSpriteIndex( "suit_full" ) );
+	if ( !m_HL_HSPRITE1 )
+		m_HL_HSPRITE1 = gHUD.GetSprite( gHUD.GetSpriteIndex( "suit_empty" ) );
+	if ( !m_HL_HSPRITE2 )
+		m_HL_HSPRITE2 = gHUD.GetSprite( gHUD.GetSpriteIndex( "suit_full" ) );
 
-	SPR_Set(m_hSprite1, r, g, b );
+	SPR_Set(m_HL_HSPRITE1, r, g, b );
 	SPR_DrawAdditive( 0,  x, y - iOffset, m_prc1);
 
 	if (rc.bottom > rc.top)
 	{
-		SPR_Set(m_hSprite2, r, g, b );
+		SPR_Set(m_HL_HSPRITE2, r, g, b );
 		SPR_DrawAdditive( 0, x, y - iOffset + (rc.top - m_prc2->top), &rc);
 	}
 

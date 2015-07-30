@@ -360,7 +360,7 @@ void CHud :: Init( void )
 // cleans up memory allocated for m_rg* arrays
 CHud :: ~CHud()
 {
-	delete [] m_rghSprites;
+	delete [] m_rgHL_HSPRITEs;
 	delete [] m_rgrcRects;
 	delete [] m_rgszSpriteNames;
 
@@ -381,7 +381,7 @@ CHud :: ~CHud()
 
 // GetSpriteIndex()
 // searches through the sprite list loaded from hud.txt for a name matching SpriteName
-// returns an index into the gHUD.m_rghSprites[] array
+// returns an index into the gHUD.m_rgHL_HSPRITEs[] array
 // returns 0 if sprite not found
 int CHud :: GetSpriteIndex( const char *SpriteName )
 {
@@ -424,7 +424,8 @@ void CHud :: VidInit( void )
 			// count the number of sprites of the appropriate res
 			m_iSpriteCount = 0;
 			client_sprite_t *p = m_pSpriteList;
-			for ( int j = 0; j < m_iSpriteCountAllRes; j++ )
+			int j;
+			for ( j = 0; j < m_iSpriteCountAllRes; j++ )
 			{
 				if ( p->iRes == m_iRes )
 					m_iSpriteCount++;
@@ -432,7 +433,7 @@ void CHud :: VidInit( void )
 			}
 
 			// allocated memory for sprite handle arrays
- 			m_rghSprites = new HSPRITE[m_iSpriteCount];
+ 			m_rgHL_HSPRITEs = new HL_HSPRITE[m_iSpriteCount];
 			m_rgrcRects = new wrect_t[m_iSpriteCount];
 			m_rgszSpriteNames = new char[m_iSpriteCount * MAX_SPRITE_NAME_LENGTH];
 
@@ -444,7 +445,7 @@ void CHud :: VidInit( void )
 				{
 					char sz[256];
 					sprintf(sz, "sprites/%s.spr", p->szSprite);
-					m_rghSprites[index] = SPR_Load(sz);
+					m_rgHL_HSPRITEs[index] = SPR_Load(sz);
 					m_rgrcRects[index] = p->rc;
 					strncpy( &m_rgszSpriteNames[index * MAX_SPRITE_NAME_LENGTH], p->szName, MAX_SPRITE_NAME_LENGTH );
 
@@ -463,19 +464,20 @@ void CHud :: VidInit( void )
 
 		// count the number of sprites of the appropriate res
 		m_iSpriteCount = 0;
-		for ( int j = 0; j < m_iSpriteCountAllRes; j++ )
+		int j;
+		for ( j = 0; j < m_iSpriteCountAllRes; j++ )
 		{
 			if ( p->iRes == m_iRes )
 				m_iSpriteCount++;
 			p++;
 		}
 
-		delete [] m_rghSprites;
+		delete [] m_rgHL_HSPRITEs;
 		delete [] m_rgrcRects;
 		delete [] m_rgszSpriteNames;
 
 		// allocated memory for sprite handle arrays
- 		m_rghSprites = new HSPRITE[m_iSpriteCount];
+ 		m_rgHL_HSPRITEs = new HL_HSPRITE[m_iSpriteCount];
 		m_rgrcRects = new wrect_t[m_iSpriteCount];
 		m_rgszSpriteNames = new char[m_iSpriteCount * MAX_SPRITE_NAME_LENGTH];
 
@@ -487,7 +489,7 @@ void CHud :: VidInit( void )
 			{
 				char sz[256];
 				sprintf( sz, "sprites/%s.spr", p->szSprite );
-				m_rghSprites[index] = SPR_Load(sz);
+				m_rgHL_HSPRITEs[index] = SPR_Load(sz);
 				m_rgrcRects[index] = p->rc;
 				strncpy( &m_rgszSpriteNames[index * MAX_SPRITE_NAME_LENGTH], p->szName, MAX_SPRITE_NAME_LENGTH );
 

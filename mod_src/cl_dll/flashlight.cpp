@@ -59,8 +59,8 @@ int CHudFlashlight::VidInit(void)
 	int HUD_flash_full = gHUD.GetSpriteIndex( "flash_full" );
 	int HUD_flash_beam = gHUD.GetSpriteIndex( "flash_beam" );
 
-	m_hSprite1 = gHUD.GetSprite(HUD_flash_empty);
-	m_hSprite2 = gHUD.GetSprite(HUD_flash_full);
+	m_HL_HSPRITE1 = gHUD.GetSprite(HUD_flash_empty);
+	m_HL_HSPRITE2 = gHUD.GetSprite(HUD_flash_full);
 	m_hBeam = gHUD.GetSprite(HUD_flash_beam);
 	m_prc1 = &gHUD.GetSpriteRect(HUD_flash_empty);
 	m_prc2 = &gHUD.GetSpriteRect(HUD_flash_full);
@@ -121,7 +121,7 @@ int CHudFlashlight::Draw(float flTime)
 	x = ScreenWidth - m_iWidth - m_iWidth/2 ;
 
 	// Draw the flashlight casing
-	SPR_Set(m_hSprite1, r, g, b );
+	SPR_Set(m_HL_HSPRITE1, r, g, b );
 	SPR_DrawAdditive( 0,  x, y, m_prc1);
 
 	if ( m_fOn )
@@ -140,7 +140,7 @@ int CHudFlashlight::Draw(float flTime)
 		rc = *m_prc2;
 		rc.left += iOffset;
 
-		SPR_Set(m_hSprite2, r, g, b );
+		SPR_Set(m_HL_HSPRITE2, r, g, b );
 		SPR_DrawAdditive( 0, x + iOffset, y, &rc);
 	}
 

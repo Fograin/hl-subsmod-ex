@@ -422,7 +422,7 @@ typedef struct
 	int		loadingBar;		// 'loading' progress bar
 	int		glowShell;		// for renderFxGlowShell
 	int		tileImage;		// for draw any areas not covered by the refresh
-	HSPRITE		hChromeSprite;		// this is a really HudSprite handle, not texnum!
+	HL_HSPRITE		hChromeSprite;		// this is a really HudSprite handle, not texnum!
 	cl_font_t		creditsFont;		// shared creditsfont
 
 	int		num_client_entities;	// cl.maxclients * CL_UPDATE_BACKUP * MAX_PACKET_ENTITIES
@@ -598,8 +598,8 @@ client_textmessage_t *CL_TextMessageGet( const char *pName );
 int pfnDecalIndexFromName( const char *szDecalName );
 int pfnIndexFromTrace( struct pmtrace_s *pTrace );
 int CL_FindModelIndex( const char *m );
-HSPRITE pfnSPR_Load( const char *szPicName );
-HSPRITE pfnSPR_LoadExt( const char *szPicName, uint texFlags );
+HL_HSPRITE pfnSPR_Load( const char *szPicName );
+HL_HSPRITE pfnSPR_LoadExt( const char *szPicName, uint texFlags );
 void TextAdjustSize( int *x, int *y, int *w, int *h );
 void PicAdjustSize( float *x, float *y, float *w, float *h );
 void CL_PlayerTrace( float *start, float *end, int traceFlags, int ignore_pe, pmtrace_t *tr );

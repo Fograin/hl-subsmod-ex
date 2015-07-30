@@ -190,15 +190,15 @@ static void CL_DrawSegs( int modelIndex, float frame, int rendermode, const vec3
 	float	div, length, fraction, factor;
 	float	flMaxWidth, vLast, vStep, brightness;
 	vec3_t	perp1, vLastNormal;
-	HSPRITE	m_hSprite;
+	HL_HSPRITE	m_HL_HSPRITE;
 	beamseg_t	curSeg;
 
 	if( !cl_draw_beams->integer )
 		return;
 	
-	m_hSprite = R_GetSpriteTexture( Mod_Handle( modelIndex ), frame );
+	m_HL_HSPRITE = R_GetSpriteTexture( Mod_Handle( modelIndex ), frame );
 
-	if( !m_hSprite || segments < 2  )
+	if( !m_HL_HSPRITE || segments < 2  )
 		return;
 
 	length = VectorLength( delta );
@@ -259,7 +259,7 @@ static void CL_DrawSegs( int modelIndex, float frame, int rendermode, const vec3
 	total_segs = segments;
 
 	SetBeamRenderMode( rendermode );
-	GL_Bind( GL_TEXTURE0, m_hSprite );
+	GL_Bind( GL_TEXTURE0, m_HL_HSPRITE );
 	pglBegin( GL_TRIANGLE_STRIP );
 
 	// specify all the segments.
@@ -401,13 +401,13 @@ static void CL_DrawDisk( int modelIndex, float frame, int rendermode, const vec3
 {
 	float	div, length, fraction;
 	float	w, vLast, vStep;
-	HSPRITE	m_hSprite;
+	HL_HSPRITE	m_HL_HSPRITE;
 	vec3_t	point;
 	int	i;
 
-	m_hSprite = R_GetSpriteTexture( Mod_Handle( modelIndex ), frame );
+	m_HL_HSPRITE = R_GetSpriteTexture( Mod_Handle( modelIndex ), frame );
 
-	if( !m_hSprite || segments < 2 )
+	if( !m_HL_HSPRITE || segments < 2 )
 		return;
 
 	if( segments > NOISE_DIVISIONS )
@@ -426,7 +426,7 @@ static void CL_DrawDisk( int modelIndex, float frame, int rendermode, const vec3
 	w = freq * delta[2];
 
 	SetBeamRenderMode( rendermode );
-	GL_Bind( GL_TEXTURE0, m_hSprite );
+	GL_Bind( GL_TEXTURE0, m_HL_HSPRITE );
 
 	pglBegin( GL_TRIANGLE_STRIP );
 
@@ -469,13 +469,13 @@ static void CL_DrawCylinder( int modelIndex, float frame, int rendermode, const 
 {
 	float	length, fraction;
 	float	div, vLast, vStep;
-	HSPRITE	m_hSprite;
+	HL_HSPRITE	m_HL_HSPRITE;
 	vec3_t	point;
 	int	i;
 
-	m_hSprite = R_GetSpriteTexture( Mod_Handle( modelIndex ), frame );
+	m_HL_HSPRITE = R_GetSpriteTexture( Mod_Handle( modelIndex ), frame );
 
-	if( !m_hSprite || segments < 2 )
+	if( !m_HL_HSPRITE || segments < 2 )
 		return;
 
 	if( segments > NOISE_DIVISIONS )
@@ -493,7 +493,7 @@ static void CL_DrawCylinder( int modelIndex, float frame, int rendermode, const 
 	
 	GL_Cull( GL_NONE );	// draw both sides
 	SetBeamRenderMode( rendermode );
-	GL_Bind( GL_TEXTURE0, m_hSprite );
+	GL_Bind( GL_TEXTURE0, m_HL_HSPRITE );
 
 	pglBegin( GL_TRIANGLE_STRIP );
 
@@ -542,12 +542,12 @@ void CL_DrawRing( int modelIndex, float frame, int rendermode, const vec3_t sour
 	vec3_t	last1, last2, point, screen, screenLast;
 	vec3_t	center, xaxis, yaxis, zaxis, tmp, normal;
 	float	radius, x, y, scale;
-	HSPRITE	m_hSprite;
+	HL_HSPRITE	m_HL_HSPRITE;
 	vec3_t	d;
 
-	m_hSprite = R_GetSpriteTexture( Mod_Handle( modelIndex ), frame );
+	m_HL_HSPRITE = R_GetSpriteTexture( Mod_Handle( modelIndex ), frame );
 
-	if( !m_hSprite || segments < 2 )
+	if( !m_HL_HSPRITE || segments < 2 )
 		return;
 
 	VectorCopy( delta, d );
@@ -606,7 +606,7 @@ void CL_DrawRing( int modelIndex, float frame, int rendermode, const vec3_t sour
 	j = segments / 8;
 
 	SetBeamRenderMode( rendermode );
-	GL_Bind( GL_TEXTURE0, m_hSprite );
+	GL_Bind( GL_TEXTURE0, m_HL_HSPRITE );
 
 	pglBegin( GL_TRIANGLE_STRIP );
 
@@ -744,11 +744,11 @@ static void DrawBeamFollow( int modelIndex, particle_t *pHead, int frame, int re
 	float	vLast = 0.0;
 	float	vStep = 1.0;
 	vec3_t	last1, last2, tmp, normal, scaledColor;
-	HSPRITE	m_hSprite;
+	HL_HSPRITE	m_HL_HSPRITE;
 	rgb_t	nColor;
 
-	m_hSprite = R_GetSpriteTexture( Mod_Handle( modelIndex ), frame );
-	if( !m_hSprite ) return;
+	m_HL_HSPRITE = R_GetSpriteTexture( Mod_Handle( modelIndex ), frame );
+	if( !m_HL_HSPRITE ) return;
 
 	// UNDONE: This won't work, screen and screenLast must be extrapolated here to fix the
 	// first beam segment for this trail
@@ -776,7 +776,7 @@ static void DrawBeamFollow( int modelIndex, particle_t *pHead, int frame, int re
 	nColor[2] = (byte)bound( 0, (int)(scaledColor[2] * 255.0f), 255 );
 
 	SetBeamRenderMode( rendermode );
-	GL_Bind( GL_TEXTURE0, m_hSprite );
+	GL_Bind( GL_TEXTURE0, m_HL_HSPRITE );
 
 	pglBegin( GL_QUADS );
 

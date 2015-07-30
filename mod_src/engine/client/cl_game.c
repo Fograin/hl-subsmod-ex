@@ -1167,7 +1167,7 @@ pfnSPR_LoadExt
 
 =========
 */
-HSPRITE pfnSPR_LoadExt( const char *szPicName, uint texFlags )
+HL_HSPRITE pfnSPR_LoadExt( const char *szPicName, uint texFlags )
 {
 	char	name[64];
 	int	i;
@@ -1201,7 +1201,7 @@ HSPRITE pfnSPR_LoadExt( const char *szPicName, uint texFlags )
 
 	if( i == MAX_IMAGES ) 
 	{
-		MsgDev( D_ERROR, "SPR_Load: can't load %s, MAX_HSPRITES limit exceeded\n", szPicName );
+		MsgDev( D_ERROR, "SPR_Load: can't load %s, MAX_HL_HSPRITES limit exceeded\n", szPicName );
 		return 0;
 	}
 
@@ -1220,7 +1220,7 @@ pfnSPR_Load
 
 =========
 */
-HSPRITE pfnSPR_Load( const char *szPicName )
+HL_HSPRITE pfnSPR_Load( const char *szPicName )
 {
 	return pfnSPR_LoadExt( szPicName, 0 );
 }
@@ -1231,11 +1231,11 @@ CL_GetSpritePointer
 
 =============
 */
-const model_t *CL_GetSpritePointer( HSPRITE hSprite )
+const model_t *CL_GetSpritePointer( HL_HSPRITE HL_HSPRITE )
 {
-	if( hSprite <= 0 || hSprite > ( MAX_IMAGES - 1 ))
+	if( HL_HSPRITE <= 0 || HL_HSPRITE > ( MAX_IMAGES - 1 ))
 		return NULL; // bad image
-	return &clgame.sprites[hSprite];
+	return &clgame.sprites[HL_HSPRITE];
 }
 
 /*
@@ -1244,7 +1244,7 @@ pfnSPR_Frames
 
 =========
 */
-static int pfnSPR_Frames( HSPRITE hPic )
+static int pfnSPR_Frames( HL_HSPRITE hPic )
 {
 	int	numFrames;
 
@@ -1259,7 +1259,7 @@ pfnSPR_Height
 
 =========
 */
-static int pfnSPR_Height( HSPRITE hPic, int frame )
+static int pfnSPR_Height( HL_HSPRITE hPic, int frame )
 {
 	int	sprHeight;
 
@@ -1274,7 +1274,7 @@ pfnSPR_Width
 
 =========
 */
-static int pfnSPR_Width( HSPRITE hPic, int frame )
+static int pfnSPR_Width( HL_HSPRITE hPic, int frame )
 {
 	int	sprWidth;
 
@@ -1289,7 +1289,7 @@ pfnSPR_Set
 
 =========
 */
-static void pfnSPR_Set( HSPRITE hPic, int r, int g, int b )
+static void pfnSPR_Set( HL_HSPRITE hPic, int r, int g, int b )
 {
 	clgame.ds.pSprite = CL_GetSpritePointer( hPic );
 	clgame.ds.spriteColor[0] = bound( 0, r, 255 );
@@ -1486,7 +1486,7 @@ pfnSetCrosshair
 setup crosshair
 =============
 */
-static void pfnSetCrosshair( HSPRITE hspr, wrect_t rc, int r, int g, int b )
+static void pfnSetCrosshair( HL_HSPRITE hspr, wrect_t rc, int r, int g, int b )
 {
 	clgame.ds.rgbaCrosshair[0] = (byte)r;
 	clgame.ds.rgbaCrosshair[1] = (byte)g;
@@ -2510,7 +2510,7 @@ model_t *pfnLoadMapSprite( const char *filename )
 
 	if( i == MAX_IMAGES ) 
 	{
-		MsgDev( D_ERROR, "LoadMapSprite: can't load %s, MAX_HSPRITES limit exceeded\n", filename );
+		MsgDev( D_ERROR, "LoadMapSprite: can't load %s, MAX_HL_HSPRITES limit exceeded\n", filename );
 		return NULL;
 	}
 

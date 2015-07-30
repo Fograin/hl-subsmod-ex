@@ -94,7 +94,7 @@ int CHudMenu :: Draw( float flTime )
 	int y = (ScreenHeight/2) - ((nlc/2)*12) - 40; // make sure it is above the say text
 	int x = 20;
 
-	i = 0;
+	int i = 0;
 	while ( i < MAX_MENU_STRING && g_szMenuString[i] != '\0' )
 	{
 		gHUD.DrawHudString( x, y, 320, g_szMenuString + i, 255, 255, 255 );

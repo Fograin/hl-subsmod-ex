@@ -1076,7 +1076,7 @@ void CHudSpectator::DrawOverviewLayer()
 	if ( hasMapImage)
 	{
 		i = m_MapSprite->numframes / (4*3);
-		i = sqrt(i);
+		i = sqrt(float(i));
 		xTiles = i*4;
 		yTiles = i*3;
 	}
@@ -1194,7 +1194,7 @@ void CHudSpectator::DrawOverviewLayer()
 void CHudSpectator::DrawOverviewEntities()
 {
 	int				i,ir,ig,ib;
-	struct model_s *hSpriteModel;
+	struct model_s *HL_HSPRITEModel;
 	vec3_t			origin, angles, point, forward, right, left, up, world, screen, offset;
 	float			x,y,z, r,g,b, sizeScale = 4.0f;
 	cl_entity_t *	ent;
@@ -1218,13 +1218,13 @@ void CHudSpectator::DrawOverviewEntities()
 	// draw all players
 	for (i=0 ; i < MAX_OVERVIEW_ENTITIES ; i++)
 	{
-		if ( !m_OverviewEntities[i].hSprite )
+		if ( !m_OverviewEntities[i].HL_HSPRITE )
 			continue;
 
-		hSpriteModel = (struct model_s *)gEngfuncs.GetSpritePointer( m_OverviewEntities[i].hSprite );
+		HL_HSPRITEModel = (struct model_s *)gEngfuncs.GetSpritePointer( m_OverviewEntities[i].HL_HSPRITE );
 		ent = m_OverviewEntities[i].entity;
 		
-		gEngfuncs.pTriAPI->SpriteTexture( hSpriteModel, 0 );
+		gEngfuncs.pTriAPI->SpriteTexture( HL_HSPRITEModel, 0 );
 		gEngfuncs.pTriAPI->RenderMode( kRenderTransTexture );
 
 		// see R_DrawSpriteModel
@@ -1273,8 +1273,8 @@ void CHudSpectator::DrawOverviewEntities()
 
 		gEngfuncs.pTriAPI->RenderMode( kRenderTransAdd );
 		
-		hSpriteModel = (struct model_s *)gEngfuncs.GetSpritePointer( m_hsprBeam );
-		gEngfuncs.pTriAPI->SpriteTexture( hSpriteModel, 0 );
+		HL_HSPRITEModel = (struct model_s *)gEngfuncs.GetSpritePointer( m_hsprBeam );
+		gEngfuncs.pTriAPI->SpriteTexture( HL_HSPRITEModel, 0 );
 		
 		gEngfuncs.pTriAPI->Color4f(r, g, b, 0.3);
 
@@ -1357,9 +1357,9 @@ void CHudSpectator::DrawOverviewEntities()
 
 	angles[0] = 0; // always show horizontal camera sprite
 
-	hSpriteModel = (struct model_s *)gEngfuncs.GetSpritePointer( m_hsprCamera );
+	HL_HSPRITEModel = (struct model_s *)gEngfuncs.GetSpritePointer( m_hsprCamera );
 	gEngfuncs.pTriAPI->RenderMode( kRenderTransAdd );
-	gEngfuncs.pTriAPI->SpriteTexture( hSpriteModel, 0 );
+	gEngfuncs.pTriAPI->SpriteTexture( HL_HSPRITEModel, 0 );
 	
 	
 	gEngfuncs.pTriAPI->Color4f( r, g, b, 1.0 );
@@ -1427,7 +1427,7 @@ void CHudSpectator::CheckOverviewEntities()
 
 bool CHudSpectator::AddOverviewEntity( int type, struct cl_entity_s *ent, const char *modelname)
 {
-	HSPRITE	hSprite = 0;
+	HL_HSPRITE	HL_HSPRITE = 0;
 	double  duration = -1.0f;	// duration -1 means show it only this frame;
 
 	if ( !ent )
@@ -1440,9 +1440,9 @@ bool CHudSpectator::AddOverviewEntity( int type, struct cl_entity_s *ent, const 
 			switch ( g_PlayerExtraInfo[ent->index].teamnumber )
 			{
 				// blue and red teams are swapped in CS and TFC
-				case 1 : hSprite = m_hsprPlayerBlue; break;
-				case 2 : hSprite = m_hsprPlayerRed; break;
-				default : hSprite = m_hsprPlayer; break;
+				case 1 : HL_HSPRITE = m_hsprPlayerBlue; break;
+				case 2 : HL_HSPRITE = m_hsprPlayerRed; break;
+				default : HL_HSPRITE = m_hsprPlayer; break;
 			}
 		}
 		else
@@ -1455,7 +1455,7 @@ bool CHudSpectator::AddOverviewEntity( int type, struct cl_entity_s *ent, const 
 	else
 		return false;	
 
-	return AddOverviewEntityToList(hSprite, ent, gEngfuncs.GetClientTime() + duration );
+	return AddOverviewEntityToList(HL_HSPRITE, ent, gEngfuncs.GetClientTime() + duration );
 }
 
 void CHudSpectator::DeathMessage(int victim)
@@ -1467,7 +1467,7 @@ void CHudSpectator::DeathMessage(int victim)
 		AddOverviewEntityToList(m_hsprPlayerDead, pl, gEngfuncs.GetClientTime() + 2.0f );
 }
 
-bool CHudSpectator::AddOverviewEntityToList(HSPRITE sprite, cl_entity_t *ent, double killTime)
+bool CHudSpectator::AddOverviewEntityToList(HL_HSPRITE sprite, cl_entity_t *ent, double killTime)
 {
 	for ( int i = 0; i< MAX_OVERVIEW_ENTITIES; i++ )
 	{
@@ -1475,7 +1475,7 @@ bool CHudSpectator::AddOverviewEntityToList(HSPRITE sprite, cl_entity_t *ent, do
 		if ( m_OverviewEntities[i].entity == NULL)
 		{
 			m_OverviewEntities[i].entity = ent;
-			m_OverviewEntities[i].hSprite = sprite;
+			m_OverviewEntities[i].HL_HSPRITE = sprite;
 			m_OverviewEntities[i].killTime = killTime;
 			return true;
 		}

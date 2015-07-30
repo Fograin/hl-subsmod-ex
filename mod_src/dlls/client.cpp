@@ -264,7 +264,8 @@ void Host_Say( edict_t *pEntity, int teamonly )
 	}
 
 // make sure the text has content
-	for ( char *pc = p; pc != NULL && *pc != 0; pc++ )
+	char *pc = p;
+	for ( pc = p; pc != NULL && *pc != 0; pc++ )
 	{
 		if ( !isspace( *pc ) )
 		{
