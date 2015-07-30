@@ -55,6 +55,9 @@
 #include "vgui_ScorePanel.h"
 #include "vgui_SpectatorPanel.h"
 
+#include "sm_gamespec.h"	// Vit_amiN
+#include "sm_main.h"		// Vit_amiN
+
 extern int g_iVisibleMouse;
 class CCommandMenu;
 int g_iPlayerClass;
@@ -519,6 +522,7 @@ TeamFortressViewport::TeamFortressViewport(int x,int y,int wide,int tall) : Pane
 	m_pClassMenu = NULL;
 	m_pScoreBoard = NULL;
 	m_pSpectatorPanel = NULL;
+	m_pMsgsBasePanel = NULL;	// Fograin92, Vit_amiN
 	m_pCurrentMenu = NULL;
 	m_pCurrentCommandMenu = NULL;
 
@@ -579,6 +583,7 @@ TeamFortressViewport::TeamFortressViewport(int x,int y,int wide,int tall) : Pane
 	CreateClassMenu();
 	CreateSpectatorMenu();
 	CreateScoreBoard();
+	CreateMsgsBasePanel();	// Vit_amiN
 	// Init command menus
 	m_iNumMenus = 0;
 	m_iCurrentTeamNumber = m_iUser1 = m_iUser2 = m_iUser3 = 0;
@@ -612,6 +617,12 @@ void TeamFortressViewport::Initialize( void )
 	{
 		// Spectator menu doesn't need initializing
 		m_pSpectatorPanel->setVisible( false );
+		m_pSpectatorPanel->EnableInsetView( false );	// Vit_amiN: close PIP mode inset
+		m_pSpectatorPanel->ShowMenu( false );			// Vit_amiN: close spectator menu
+	}
+	if (m_pMsgsBasePanel)	// Fograin92, Vit_amiN
+	{
+		m_pMsgsBasePanel->Initialize();
 	}
 
 	// Make sure all menus are hidden
@@ -661,8 +672,8 @@ int TeamFortressViewport::CreateCommandMenu( char * menuFile, int direction, int
 
 	// Read Command Menu from the txt file
 	char token[1024];
-	char *pfile = (char*)gEngfuncs.COM_LoadFile( menuFile, 5, NULL);
-	if (!pfile)
+	char *pFileStart = (char*)gEngfuncs.COM_LoadFile( menuFile, 5, NULL);	// Vit_amiN: pointer for COM_FreeFile()
+	if (!pFileStart)
 	{
 		gEngfuncs.Con_DPrintf( "Unable to open %s\n", menuFile);
 		SetCurrentCommandMenu( NULL );
@@ -681,7 +692,7 @@ try
 	// Now start parsing the menu structure
 	m_pCurrentCommandMenu = m_pCommandMenus[newIndex];
 	char szLastButtonText[32] = "file start";
-	pfile = gEngfuncs.COM_ParseFile(pfile, token);
+	char *pfile = gEngfuncs.COM_ParseFile(pFileStart, token);
 	while ( ( strlen ( token ) > 0 ) && ( m_iNumMenus < MAX_MENUS ) )
 	{
 		// Keep looping until we hit the end of this menu
@@ -705,6 +716,7 @@ try
 			if (!m_pCurrentCommandMenu)
 			{
 				gEngfuncs.Con_Printf("Error in %s file after '%s'.\n",menuFile, szLastButtonText );
+				gEngfuncs.COM_FreeFile( pFileStart );	// Vit_amiN: prevent the memory leak
 				m_iInitialized = false;
 				return newIndex;
 			}
@@ -765,11 +777,12 @@ try
 
 			// Get the button bound key
 			strncpy( cBoundKey, token, 32 );
+			cBoundKey[31] = '\0';	// Vit_amiN: null-terminate cBoundKey, not cText
 			cText[31] = '\0';
 
 			// Get the button text
 			pfile = gEngfuncs.COM_ParseFile(pfile, token);
-			strncpy( cText, token, 32 );
+			strncpy( cText, CHudTextMessage::BufferedLocaliseTextString( token ), 32 );	// Vit_amiN: localize button text
 			cText[31] = '\0';
 
 			// save off the last button text we've come across (for error reporting)
@@ -881,13 +894,14 @@ catch( CException *e )
 	e;
 	//e->Delete();
 	e = NULL;
+	gEngfuncs.COM_FreeFile( pFileStart );	// Vit_amiN: prevent the memory leak
 	m_iInitialized = false;
 	return newIndex;
 }
 
 	SetCurrentMenu( NULL );
 	SetCurrentCommandMenu( NULL );
-	gEngfuncs.COM_FreeFile( pfile );
+	gEngfuncs.COM_FreeFile( pFileStart );
 
 	m_iInitialized = true;
 	return newIndex;
@@ -1402,7 +1416,7 @@ void TeamFortressViewport::UpdateSpectatorPanel()
 			m_pSpectatorPanel->setVisible( true );	// show spectator panel, but
 			m_pSpectatorPanel->ShowMenu( false );	// dsiable all menus/buttons
 			
-			_snprintf( tempString, sizeof( tempString ) - 1, "%c%s", HUD_PRINTCENTER, CHudTextMessage::BufferedLocaliseTextString( "#Spec_Duck" ) );
+			_snprintf( tempString, sizeof( tempString ) - 1, "%c%s", HUD_PRINTCENTER, SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#Spec_Duck" ) ) );	// Vit_amiN: hooked
 			tempString[ sizeof( tempString ) - 1 ] = '\0';
 
 			gHUD.m_TextMessage.MsgFunc_TextMsg( NULL, strlen( tempString ) + 1, tempString );
@@ -1869,6 +1883,20 @@ void TeamFortressViewport::CreateSpectatorMenu()
 }
 
 //======================================================================================
+// MESSAGES BASE PANEL
+//======================================================================================
+// Fograin92, Vit_amiN: Panel for messages handling
+void TeamFortressViewport::CreateMsgsBasePanel()
+{
+	// Create the Panel
+	m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this,	// It sets parent by itself
+											  pCustomTitleFilesArray,
+											  ARRAYSIZE(pCustomTitleFilesArray),
+											  0, 0, ScreenWidth, ScreenHeight);
+	m_pMsgsBasePanel->Initialize();
+}
+
+//======================================================================================
 // UPDATE HUD SECTIONS
 //======================================================================================
 // We've got an update on player info
@@ -1928,6 +1956,44 @@ void TeamFortressViewport::GetAllPlayersInfo( void )
 		if ( g_PlayerInfoList[i].thisplayer )
 			m_pScoreBoard->m_iPlayerNum = i;  // !!!HACK: this should be initialized elsewhere... maybe gotten from the engine
 	}
+}
+
+// Vit_amiN: function to add a text message (as a message)
+void TeamFortressViewport::AddSMTextMessage( const int & msgType, const client_textmessage_t * const pMessage, const void * const pSpecData, const float & msgAddTime )
+{
+	if ( m_pMsgsBasePanel )
+		AddSMTextMessage( msgType, SM_ConvMessageToBundle( pMessage ), pSpecData, msgAddTime );
+	else
+		gEngfuncs.Con_DPrintf( "ERROR: AddSMTextMessage(): Unable to get the base panel!\n" );
+}
+
+// Vit_amiN: function to add a text message (as a bundle)
+void TeamFortressViewport::AddSMTextMessage( const int & msgType, const client_textmessage_bundle_t * const pBundle, const void * const pSpecData, const float & msgAddTime )
+{
+	if ( m_pMsgsBasePanel )
+		m_pMsgsBasePanel->AddTextMessage( msgType, pBundle, pSpecData, msgAddTime );
+	else
+		gEngfuncs.Con_DPrintf( "ERROR: AddSMTextMessage(): Unable to get the base panel!\n" );
+}
+
+// Vit_amiN: function to get a client message (as a bundle)
+const client_textmessage_bundle_t * const TeamFortressViewport::GetSMClientMessage( const char * const pMsgName )
+{
+	if ( m_pMsgsBasePanel )
+		return m_pMsgsBasePanel->GetClientMessage( pMsgName );
+	else
+		gEngfuncs.Con_DPrintf( "ERROR: GetSMClientMessage(): Unable to get the base panel!\n" );
+
+	return NULL;
+}
+
+// Vit_amiN: function to clear text messages
+void TeamFortressViewport::ClrSMTextMessages( void )
+{
+	if ( m_pMsgsBasePanel )
+		m_pMsgsBasePanel->ClrTextMessages();
+	else
+		gEngfuncs.Con_DPrintf( "ERROR: ClrSMTextMessages(): Unable to get the base panel!\n" );
 }
 
 void TeamFortressViewport::paintBackground()

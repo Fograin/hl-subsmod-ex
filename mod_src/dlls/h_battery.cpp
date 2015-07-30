@@ -26,6 +26,7 @@
 #include "saverestore.h"
 #include "skill.h"
 #include "gamerules.h"
+#include "weapons.h"	// Vit_amiN
 
 class CRecharge : public CBaseToggle
 {
@@ -117,8 +118,8 @@ void CRecharge::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE use
 		Off();
 	}
 
-	// if the player doesn't have the suit, or there is no juice left, make the deny noise
-	if ((m_iJuice <= 0) || (!(pActivator->pev->weapons & (1<<WEAPON_SUIT))))
+	// if the player doesn't have the suit (Vit_amiN: or the suit is fully charged), or there is no juice left, make the deny noise
+	if ((m_iJuice <= 0) || !((pActivator->pev->weapons & (1<<WEAPON_SUIT)) && (pActivator->pev->armorvalue < MAX_NORMAL_BATTERY)))
 	{
 		if (m_flSoundTime <= gpGlobals->time)
 		{

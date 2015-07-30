@@ -71,6 +71,8 @@ inline struct cvar_s *CVAR_CREATE( const char *cv, const char *val, const int fl
 #define XRES(x)		((int)(float(x)  * ((float)ScreenWidth / 640.0f) + 0.5f))
 #define YRES(y)		((int)(float(y)  * ((float)ScreenHeight / 480.0f) + 0.5f))
 
+#define BASE_XRES 640.f	// Fograin92
+
 // use this to project world coordinates to screen coordinates
 #define XPROJECT(x)	( (1.0f+(x))*ScreenWidth*0.5f )
 #define YPROJECT(y) ( (1.0f-(y))*ScreenHeight*0.5f )

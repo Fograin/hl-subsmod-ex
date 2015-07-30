@@ -15,6 +15,8 @@
 //
 //  parsemsg.cpp
 //
+#include "sm_consts.h"	// Vit_amiN
+
 typedef unsigned char byte;
 #define true 1
 
@@ -127,7 +129,8 @@ float READ_FLOAT( void )
 char* READ_STRING( void )
 {
 	static char     string[2048];
-	int             l,c;
+	int             l;
+    char            c;
 
 	string[0] = 0;
 
@@ -137,10 +140,10 @@ char* READ_STRING( void )
 		if ( giRead+1 > giSize )
 			break; // no more characters
 
-		c = READ_BYTE();
-		if (c == -1 || c == 0)
+		c = static_cast<signed char>(READ_CHAR());	// Vit_amiN: we must cast it back: int -> signed char -> char
+		if (c == STR_NETW_EOF_CHAR || c == '\0')
 			break;
-		string[l] = c;
+		string[l] = (c == STR_SUBS_EOF_CHAR) ? STR_NETW_EOF_CHAR : c;	// Vit_amiN: substituting 0xFF chars back
 		l++;
 	} while (l < sizeof(string)-1);
 	

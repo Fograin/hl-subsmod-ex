@@ -120,7 +120,7 @@ void CPython::Holster( int skiplocal /* = 0 */ )
 {
 	m_fInReload = FALSE;// cancel any reload in progress.
 
-	if ( m_fInZoom )
+	if ( IsZoomActive() )
 	{
 		SecondaryAttack();
 	}
@@ -141,16 +141,8 @@ void CPython::SecondaryAttack( void )
 		return;
 	}
 
-	if ( m_pPlayer->pev->fov != 0 )
-	{
-		m_fInZoom = FALSE;
-		m_pPlayer->pev->fov = m_pPlayer->m_iFOV = 0;  // 0 means reset to default fov
-	}
-	else if ( m_pPlayer->pev->fov != 40 )
-	{
-		m_fInZoom = TRUE;
-		m_pPlayer->pev->fov = m_pPlayer->m_iFOV = 40;
-	}
+	// 0 means reset to default fov; Vit_amiN: uses IsZoomActive() now
+	m_pPlayer->pev->fov = m_pPlayer->m_iFOV = IsZoomActive() ? 0 : 40;
 
 	m_flNextSecondaryAttack = UTIL_WeaponTimeBase() + 0.5;
 }
@@ -220,10 +212,9 @@ void CPython::Reload( void )
 	if ( m_pPlayer->ammo_357 <= 0 )
 		return;
 
-	if ( m_pPlayer->pev->fov != 0 )
+	if ( IsZoomActive() )
 	{
-		m_fInZoom = FALSE;
-		m_pPlayer->pev->fov = m_pPlayer->m_iFOV = 0;  // 0 means reset to default fov
+		SecondaryAttack();
 	}
 
 	int bUseScope = FALSE;
@@ -289,7 +280,10 @@ void CPython::WeaponIdle( void )
 	SendWeaponAnim( iAnim, UseDecrement() ? 1 : 0, bUseScope );
 }
 
-
+BOOL CPython::IsZoomActive()
+{
+	return m_pPlayer && ( m_pPlayer->pev->fov != 0.0f );
+}
 
 class CPythonAmmo : public CBasePlayerAmmo
 {

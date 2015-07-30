@@ -264,9 +264,12 @@ int CCrowbar::Swing( int fFirst )
 				}
 				m_pPlayer->m_iWeaponVolume = CROWBAR_BODYHIT_VOLUME;
 				if ( !pEntity->IsAlive() )
-					  return TRUE;
+				{
+					m_flNextPrimaryAttack = UTIL_WeaponTimeBase() + 0.25;	// Vit_amiN: fixed the 'rapid crowbar'
+					return TRUE;
+				}
 				else
-					  flVol = 0.1;
+					flVol = 0.1;
 
 				fHitWorld = FALSE;
 			}

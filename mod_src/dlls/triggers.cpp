@@ -1840,15 +1840,16 @@ void CTriggerPush :: Touch( CBaseEntity *pOther )
 		return;
 	}
 
-	if ( pevToucher->solid != SOLID_NOT && pevToucher->solid != SOLID_BSP )
+	// Vit_amiN: barrels on c2a5 are flying for real now, thanks to Uncle Mike for the info how to fix
+	if ( pevToucher->solid != SOLID_NOT /* && pevToucher->solid != SOLID_BSP */ )
 	{
-		// Instant trigger, just transfer velocity and remove
-		if (FBitSet(pev->spawnflags, SF_TRIG_PUSH_ONCE))
+		// The toucher is BSP model that needs physics/world collisions
+		if ( pevToucher->movetype == MOVETYPE_PUSHSTEP )
 		{
 			pevToucher->velocity = pevToucher->velocity + (pev->speed * pev->movedir);
 			if ( pevToucher->velocity.z > 0 )
 				pevToucher->flags &= ~FL_ONGROUND;
-			UTIL_Remove( this );
+			pev->solid = SOLID_NOT;	// disable the trigger once the toucher is pushed
 		}
 		else
 		{	// Push field, transfer to base velocity
@@ -1861,6 +1862,8 @@ void CTriggerPush :: Touch( CBaseEntity *pOther )
 			pevToucher->flags |= FL_BASEVELOCITY;
 //			ALERT( at_console, "Vel %f, base %f\n", pevToucher->velocity.z, pevToucher->basevelocity.z );
 		}
+		// Instant trigger, just transfer velocity (the code above) and remove
+		if ( FBitSet(pev->spawnflags, SF_TRIG_PUSH_ONCE) ) UTIL_Remove( this );
 	}
 }
 

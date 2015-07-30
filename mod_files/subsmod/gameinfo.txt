@@ -2,15 +2,19 @@
 
 
 basedir		"subsmod"
-gamedir		"valve"
-title		"Half-Life"
+gamedir		"subsmod"
+fallback_dir	"valve"
+title		"Half-Life: Subtitles Mod"
 startmap		"c0a0"
 trainmap		"t0a0"
-version		1
+version		301
+size		10485760
+url_info		"http://www.moddb.com/mods/half-life-subtitles-mod/summary"
+url_update		"http://www.moddb.com/mods/half-life-subtitles-mod/downloads"
 type		"Single"
 dllpath		"bin"
 gamedll		"bin/server.dll"
-icon		"game.ico"
+icon		"sm_valve.ico"
 gamemode		"singleplayer_only"
 sp_entity		"info_player_start"
 mp_entity		"info_player_deathmatch"
@@ -24,3 +28,6 @@ max_edicts	900
 max_tempents	500
 max_beams		128
 max_particles	4096
+
+
+

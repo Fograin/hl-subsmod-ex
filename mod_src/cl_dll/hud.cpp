@@ -31,6 +31,7 @@
 #include "demo_api.h"
 #include "vgui_scorepanel.h"
 
+extern void SM_RegisterAllConVars();	// Vit_amiN
 
 
 class CHLVoiceStatusHelper : public IVoiceStatusHelper
@@ -268,6 +269,8 @@ int __MsgFunc_AllowSpec(const char *pszName, int iSize, void *pbuf)
 // This is called every time the DLL is loaded
 void CHud :: Init( void )
 {
+	SM_RegisterAllConVars();	// Fograin92, Vit_amiN: reg cvars
+
 	HOOK_MESSAGE( Logo );
 	HOOK_MESSAGE( ResetHUD );
 	HOOK_MESSAGE( GameMode );
@@ -535,6 +538,7 @@ int CHud::MsgFunc_Logo(const char *pszName,  int iSize, void *pbuf)
 }
 
 float g_lastFOV = 0.0;
+bool g_hasPredictedFOV = false;	// Vit_amiN: it'll became true after the first prediction
 
 /*
 ============
@@ -636,7 +640,7 @@ int CHud::MsgFunc_SetFOV(const char *pszName,  int iSize, void *pbuf)
 	int def_fov = CVAR_GET_FLOAT( "default_fov" );
 
 	//Weapon prediction already takes care of changing the fog. ( g_lastFOV ).
-	if ( cl_lw && cl_lw->value )
+	if ( g_hasPredictedFOV )	// Vit_amiN: false if the FOV was not predicted yet
 		return 1;
 
 	g_lastFOV = newfov;

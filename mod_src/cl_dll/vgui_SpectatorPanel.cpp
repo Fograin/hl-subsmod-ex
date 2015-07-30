@@ -234,7 +234,7 @@ void SpectatorPanel::ShowMenu(bool isVisible)
 		{
 			char string[ 64 ];
 
-			_snprintf( string, sizeof( string ) - 1, "%c%s", HUD_PRINTCENTER, CHudTextMessage::BufferedLocaliseTextString( "#Spec_Duck" ) );
+			_snprintf( string, sizeof( string ) - 1, "%c%s", HUD_PRINTCENTER, SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#Spec_Duck" ) ) );	// Vit_amiN: hooked
 			string[ sizeof( string ) - 1 ] = '\0';
 
 			gHUD.m_TextMessage.MsgFunc_TextMsg( NULL, strlen( string ) + 1, string );

@@ -24,6 +24,8 @@
 #include "talkmonster.h"
 #include "gamerules.h"
 
+#include "sm_hook_snd.h"	// Vit_amiN
+
 
 static char *memfgets( byte *pMemFile, int fileSize, int &filePos, char *pBuffer, int bufferSize );
 
@@ -1412,12 +1414,18 @@ void EMIT_SOUND_DYN(edict_t *entity, int channel, const char *sample, float volu
 	{
 		char name[32];
 		if (SENTENCEG_Lookup(sample, name) >= 0)
-				EMIT_SOUND_DYN2(entity, channel, name, volume, attenuation, flags, pitch);
+		{
+			EMIT_S_SUB_DYN2(entity, channel, sample, volume, attenuation, flags, pitch);	// Vit_amiN: pseudo-hook
+			EMIT_SOUND_DYN2(entity, channel, name,   volume, attenuation, flags, pitch);
+		}
 		else
 			ALERT( at_aiconsole, "Unable to find %s in sentences.txt\n", sample );
 	}
 	else
+	{
+		EMIT_S_SUB_DYN2(entity, channel, sample, volume, attenuation, flags, pitch);		// Vit_amiN: pseudo-hook
 		EMIT_SOUND_DYN2(entity, channel, sample, volume, attenuation, flags, pitch);
+	}
 }
 
 // play a specific sentence over the HEV suit speaker - just pass player entity, and !sentencename

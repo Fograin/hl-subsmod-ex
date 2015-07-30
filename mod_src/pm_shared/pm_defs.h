@@ -35,9 +35,8 @@
 
 // PM_PlayerTrace results.
 #include "pmtrace.h"
-
-
 #include "usercmd.h"
+#include "sm_hook_snd.h"	// Vit_amiN
 
 // physent_t
 typedef struct physent_s
@@ -210,7 +209,7 @@ typedef struct playermove_s
 	// Functions
 	// Run functions for this frame?
 	qboolean		runfuncs;
-	void		(*PM_PlaySound)( int channel, const char *sample, float volume, float attenuation, int fFlags, int pitch );
+	void			(*PM_PlaySound_Hooked) ( int channel, const char *sample, float volume, float attenuation, int fFlags, int pitch );	// Vit_amiN: hooked
 	const char	*(*PM_TraceTexture)( int ground, float *vstart, float *vend );
 	void		(*PM_PlaybackEventFull)( int flags, int clientindex, unsigned short eventindex, float delay, float *origin, float *angles, float fparam1, float fparam2, int iparam1, int iparam2, int bparam1, int bparam2 );
 	pmtrace_t		(*PM_PlayerTraceEx) (float *start, float *end, int traceFlags, int (*pfnIgnore)( physent_t *pe ));

@@ -18,6 +18,8 @@
 
 #include "event_flags.h"
 
+#include "sm_hook_txt.h"	// Vit_amiN
+
 // Must be provided by user of this code
 extern enginefuncs_t g_engfuncs;
 
@@ -79,7 +81,7 @@ inline void MESSAGE_BEGIN( int msg_dest, int msg_type, const float *pOrigin = NU
 #define WRITE_LONG		(*g_engfuncs.pfnWriteLong)
 #define WRITE_ANGLE		(*g_engfuncs.pfnWriteAngle)
 #define WRITE_COORD		(*g_engfuncs.pfnWriteCoord)
-#define WRITE_STRING	(*g_engfuncs.pfnWriteString)
+#define WRITE_STRING(s)	(*g_engfuncs.pfnWriteString)(SUBST_EOFS_IN_BUFFER(s))	// Vit_amiN: hooked
 #define WRITE_ENTITY	(*g_engfuncs.pfnWriteEntity)
 #define CVAR_REGISTER	(*g_engfuncs.pfnCVarRegister)
 #define CVAR_GET_FLOAT	(*g_engfuncs.pfnCVarGetFloat)

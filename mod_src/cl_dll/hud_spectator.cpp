@@ -873,7 +873,7 @@ void CHudSpectator::SetModes(int iNewMainMode, int iNewInsetMode)
 
 		char string[128];
 		sprintf(string, "#Spec_Mode%d", g_iUser1 );
-		sprintf(string, "%c%s", HUD_PRINTCENTER, CHudTextMessage::BufferedLocaliseTextString( string ));
+		sprintf(string, "%c%s", HUD_PRINTCENTER, SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( string ) ) );	// Vit_amiN: hooked
 		gHUD.m_TextMessage.MsgFunc_TextMsg(NULL, strlen(string)+1, string );
 	}
 

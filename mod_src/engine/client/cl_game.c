@@ -1609,8 +1609,10 @@ pfnPlaySoundByName
 */
 static void pfnPlaySoundByName( const char *szSound, float volume )
 {
-	int hSound = S_RegisterSound( szSound );
-	S_StartSound( NULL, cl.refdef.viewentity, CHAN_ITEM, hSound, volume, ATTN_NORM, PITCH_NORM, SND_STOP_LOOPING );
+	SM_Hook_Client_pfnPlaySoundByName( szSound, volume )
+
+	//int hSound = S_RegisterSound( szSound );
+	//S_StartSound( NULL, cl.refdef.viewentity, CHAN_ITEM, hSound, volume, ATTN_NORM, PITCH_NORM, SND_STOP_LOOPING );
 }
 
 /*
@@ -2056,8 +2058,9 @@ static pmtrace_t *pfnTraceLine( float *start, float *end, int flags, int usehull
 
 static void pfnPlaySoundByNameAtLocation( char *szSound, float volume, float *origin )
 {
-	int hSound = S_RegisterSound( szSound );
-	S_StartSound( origin, 0, CHAN_AUTO, hSound, volume, ATTN_NORM, PITCH_NORM, 0 );
+	SM_Hook_Client_pfnPlaySoundByNameAtLocation( szSound, origin, volume )
+	//int hSound = S_RegisterSound( szSound );
+	//S_StartSound( origin, 0, CHAN_AUTO, hSound, volume, ATTN_NORM, PITCH_NORM, 0 );
 }
 
 /*

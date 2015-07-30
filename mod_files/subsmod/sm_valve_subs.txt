@@ -1,0 +1,5889 @@
+//====================================================
+// Half-Life Subtitles MOD 3.0 - Localization file
+//====================================================
+// Parameters info:
+// $effect X 			<= Used by mod to assign messages
+// $color2 R G B 		<= Text highlight color
+// $color R G B 		<= Text final color
+// $fadein SECONDS		<= Time it takes to fade each character
+// $fxtime SECONDS		<= This is the amount of time the highlight lags behind the leading edge of the text
+// $fadeout SECONDS		<= How long it takes to fade out the message after holding
+//====================================================
+// Additional info:
+// Font = Arial narrow 16
+//===========================================================
+// Language: English
+// Writen by: Fograin92
+// Edits by: Vit_amiN, Codefreak5
+//===========================================================
+
+// Global subtitles settings
+$effect 18
+$position 0 0
+$fadein 0.01
+$fxtime 0.25
+$fadeout 0.5
+
+//==============================================================================================================
+// Train ride
+//==============================================================================================================
+$color  255 255 255
+$color2 128 128 128
+
+$holdtime 12
+!TR_GMORN
+{
+Good morning, and welcome to the Black Mesa Transit System. This automated train is provided for the security and convenience of the Black Mesa Research Facility personnel.
+}
+
+$holdtime 21
+!TR_TIME
+{
+The time is 8:47am. Current topside temperature is 93 degrees with an estimated high of 105. The Black Mesa compound is maintained at a pleasant 68 degrees at all times.
+}
+
+$holdtime 24
+$chained !TR_DEST_PT2
+!TR_DEST
+{
+This train is inbound from Level 3 Dormitories to Sector C Test Labs and Control Facilities. If your intended destination is a high security area beyond Sector C, you will need to return to the Central Transit Hub in Area 9 and board a high security train.
+}
+
+$holdtime 14.5
+!TR_DEST_PT2
+{
+If you have not yet submitted your identity to the retinal clearance system, you must report to Black Mesa personnel for processing before you will be permitted into the high security branch of the transit system.
+}
+
+$holdtime 12.5
+!TR_NOEAT
+{
+Due to the high toxicity of material routinely handled in the Black Mesa compound, no smoking, eating or drinking are permitted within the Black Mesa transit system.
+}
+
+$holdtime 19
+$chained !TR_EMERG_PT2
+!TR_EMERG
+{
+Please keep your limbs inside the train at all times. Do not attempt to open the doors until the train has come to a complete halt at the station platform. In the event of an emergency, passengers are to remain seated and await further instruction.
+}
+
+$holdtime 16
+!TR_EMERG_PT2
+{
+If it is necessary to exit the train, disabled personnel should be evacuated first. Please, stay away from electrified rails and proceed to an emergency station until assistance arrives.
+}
+
+$holdtime 19
+$chained !TR_TOURN_PT2
+!TR_TOURN
+{
+A reminder that the Black Mesa Hazard Course decathlon will commence this evening at 1900 in the Level 3 facility. The semi-finals for high security personnel will be announced in a separate secure access transmission.
+}
+
+$holdtime 6
+!TR_TOURN_PT2
+{
+Remember, more lives than your own may depend on your fitness!
+}
+
+$holdtime 6
+$chained !TR_JOBS_PT2
+!TR_JOBS
+{
+Do you have a friend or relative who would make a valuable addition to the Black Mesa Team?
+}
+
+$holdtime 13
+$chained !TR_JOBS_PT3
+!TR_JOBS_PT2
+{
+Immediate openings are available in the areas of: Materials Handling, and Low Clearance Security. Please contact Black Mesa personnel for further information.
+}
+
+$holdtime 13.5
+$chained !TR_JOBS_PT4
+!TR_JOBS_PT3
+{
+If you have an associate with a background in the areas of: Theoretical Physics, Biotechnology, or other high-tech disciplines, please contact our civilian recruiting division.
+}
+
+$holdtime 5
+!TR_JOBS_PT4
+{
+The Black Mesa Research Facility is an equal opportunity employer.
+}
+
+$holdtime 13
+$chained !TR_HAZ_PT2
+!TR_HAZ
+{
+A reminder to all Black Mesa personnel: Regular radiation and biohazard screenings are a requirement of continued employment in the Black Mesa Research Facility.
+}
+
+$holdtime 7
+$chained !TR_HAZ_PT3
+!TR_HAZ_PT2
+{
+Missing a scheduled urinalysis or radiation checkup is grounds for immediate termination.
+}
+
+$holdtime 11
+$chained !TR_HAZ_PT4
+!TR_HAZ_PT3
+{
+If you feel you have been exposed to radioactive or other hazardous materials in the course of your duties contact your radiation safety officer immediately!
+}
+
+$holdtime 5.5
+!TR_HAZ_PT4
+{
+Work safe, work smart. Your future depends on it!
+}
+
+$holdtime 6
+!TR_ARRIVE
+{
+Now arriving at: Sector C Test Labs and Control Facilities.
+}
+
+$holdtime 7.5
+$chained !TR_EXIT_PT2
+!TR_EXIT
+{
+Please stand back from the automated door, and wait for the security officer to verify your identity.
+}
+
+$holdtime 5.5
+$chained !TR_EXIT_PT3
+!TR_EXIT_PT2
+{
+Before exiting the train, be sure to check your area for personal belongings.
+}
+
+$holdtime 4.5
+!TR_EXIT_PT3
+{
+Thank you, and have a very safe and productive day!
+}
+
+//============================================================
+// Gina Cross holo (Hazard Course)
+//============================================================
+
+$color  255 222 152
+$color2 128 111  76
+
+$holdtime 7
+$chained !HOLO_INTRO_PT2
+!HOLO_INTRO
+{
+Hello and welcome to the Black Mesa Hazard Course, where you'll be trained in the use of the Hazardous Environment Suit.
+}
+
+$holdtime 8
+!HOLO_INTRO_PT2
+{
+I'm your holographic assistant. Let's begin by stepping into your suit! You can see it suspended up ahead of you.
+}
+
+$holdtime 6
+!HOLO_BUTTON
+{
+If you see one of these buttons, press it and I will appear to demonstrate certain moves.
+}
+
+$holdtime 15
+!HOLO_MOVE
+{
+Moving around in your H.E.V. Suit can be slightly disorienting at first. Take a moment to familiarize yourself with basic movement, and soon it will fit you like a second skin! I will see you just around the corner!
+}
+
+$holdtime 5
+$chained !HOLO_JUMP_PT2
+!HOLO_JUMP
+{
+The first move we will practice in the Hazard Course is basic jumping!
+}
+
+$holdtime 6
+$chained !HOLO_JUMP_PT3
+!HOLO_JUMP_PT2
+{
+You'll attempt to get over this set of pipes, using only your run and jump commands.
+}
+
+$holdtime 6
+!HOLO_JUMP_PT3
+{
+It helps to get a running start. Watch me and then try it yourself!
+}
+
+$holdtime 11
+!HOLO_DUCK
+{
+You will now duck under the next set of obstacles. Please note that crouching will automatically shift your suit into stealth mode, minimizing movement noise.
+}
+
+$holdtime 12
+!HOLO_JDUCK
+{
+Now we will combine skills. You'll need to JUMP, DUCK and then JUMP again! This will prepare you for the next room, where you'll have to do both moves at the same time.
+}
+
+$holdtime 5
+$chained !HOLO_PIPEDUCK_PT2
+!HOLO_PIPEDUCK
+{
+To get into these pipes, you'll have to signal your suit to make a duck jump.
+}
+
+$holdtime 13
+!HOLO_PIPEDUCK_PT2
+{
+You want to stand right at the mouth of the pipe and continue to press forward. Then jump up and while are you in mid air, go into a crouch. It's tricky, but you'll find it comes in handy!
+}
+
+$holdtime 2
+!HOLO_NICEJOB
+{
+Nice job!
+}
+
+$holdtime 9
+!HOLO_LADDER
+{
+Walk directly into the ladder, look up and continue moving forward. If you want to come back down, just move backward.
+}
+
+$holdtime 14
+!HOLO_3JUMPS
+{
+The next 3 jumps get harder each time, but they are quite possible. Don't be surprised if you miss the last one a time or two. If you can make all 3 in a continuous run, you are doing well!
+}
+
+$holdtime 3
+!HOLO_KEEPTRYING
+{
+Keep trying! You'll get it!
+}
+
+$holdtime 3
+!HOLO_RUNSTART
+{
+It helps to have a running start!
+}
+
+$holdtime 4
+!HOLO_FALLSHORT
+{
+If you keep falling short, you might be jumping too soon.
+}
+
+$holdtime 4.5
+!HOLO_GREATWORK
+{
+Great work! Now there's one more style of jumping you need to learn.
+}
+
+$holdtime 4
+$chained !HOLO_LONGJUMP_PT2
+!HOLO_LONGJUMP
+{
+Long jumping requires its own charging module, seen here.
+}
+
+$holdtime 11
+!HOLO_LONGJUMP_PT2
+{
+To activate your long jump, you will have to duck and move forward and then launch into a jump. Once you are up on the platform press the button and I will demonstrate the move.
+}
+
+$holdtime 7
+!HOLO_RETRY
+{
+Give it another try. Remember to move forward, jump and while in mid air, crouch.
+}
+
+$holdtime 5.5
+!HOLO_STARTLIFT
+{
+Please start the lift by moving up to the button, looking at it and pressing the Use key.
+}
+
+$holdtime 7.5
+$chained !HOLO_JUMPDOWN_PT2
+!HOLO_JUMPDOWN
+{
+Now that you're up here, there's only one way down. Find the target on the floor below and do your best to hit it! 
+}
+
+$holdtime 6
+!HOLO_JUMPDOWN_PT2
+{
+If you take any damage from the fall, we will administer medical care at the next station.
+}
+
+$holdtime 8.6
+$chained !HOLO_MEDKIT_PT2
+!HOLO_MEDKIT
+{
+You'll find medkits like this one through out the Black Mesa compound. To restore your health, walk up to medkit and press your Use key.
+}
+
+$holdtime 10
+!HOLO_MEDKIT_PT2
+{
+Your health will recover gradually, until you are at full health or the kit is depleted. Once the light goes out, a medkit cannot be reused.
+}
+
+$holdtime 5
+!HOLO_SPINBRIDGE
+{
+To spin that bridge, walk up to the control wheel and press the Use key.
+}
+
+$holdtime 2
+!HOLO_FANTASTIC
+{
+Fantastic!
+}
+
+$holdtime 8.2
+!HOLO_JUMPGAP
+{
+Sometimes you'll need to rely on more than just your suit to get through a tight place. Try jumping this gap on your own.
+}
+
+$holdtime 10
+!HOLO_PUSHBOX
+{
+What you really need to do is push that box down into the pit. Pushing is easy! Just move forward against the box and you can push it into position.
+}
+
+$holdtime 8
+$chained !HOLO_PULLBOX_PT2
+!HOLO_PULLBOX
+{
+If you can't push the obstacle out of your way, you might try pulling it. To pull a box, move up to it and press your Use key.
+}
+
+$holdtime 7.5
+!HOLO_PULLBOX_PT2
+{
+While holding down the Use key to keep a grip on a box, move slowly backward. The box will come along with you.
+}
+
+$holdtime 11
+!HOLO_BREAKBOX
+{
+Finally, if nothing else works, you can try breaking the objects in your path. Make sure you picked up the crowbar, then simply smash your way through the debris.
+}
+
+$holdtime 4
+!HOLO_FLASHLIGHT
+{
+Activate your suit flashlight for the next area.
+}
+
+$holdtime 6
+!HOLO_LIGHTOFF
+{
+Great! Remember, your flashlight drains power. So, switch it off when you don't need it!
+}
+
+$holdtime 14
+!HOLO_TARGET
+{
+Welcome to the Black Mesa Target Range, where you'll receive training in firing a weapon, reloading, and firing the attached grenade launcher. Please pick up your weapon and advance to the firing station.
+}
+
+$holdtime 8
+$chained !HOLO_HITALL_PT2
+!HOLO_HITALL
+{
+You'll have to hit every target in order to complete the course. But if you miss the first time, don't worry, it will come around again.
+}
+
+$holdtime 6
+!HOLO_HITALL_PT2
+{
+Try to reload during pauses, rather than waiting to run out of ammunition at a critical time.
+}
+
+$holdtime 8
+!HOLO_GRENADE
+{
+To fire your grenade launcher, use your Alternate Fire button. Certain targets will break only when hit by grenades.
+}
+
+$holdtime 5
+!HOLO_COMMENCING
+{
+Commencing sequence in 5, 4, 3, 2, 1.
+}
+
+$holdtime 2
+!HOLO_TRYAGAIN
+{
+No harm done. Try again!
+}
+
+$holdtime 7
+!HOLO_CONGRATS
+{
+Congratulations! You have completed the Black Mesa Target Range. Please advance to the next area!
+}
+
+$holdtime 16
+!HOLO_DROWN
+{
+Your H.E.V. Suit monitors blood oxygen levels, warning you when you need to find an air supply. As you swim through this course, your oxygen levels will begin to drop. At the midpoint, you will be given an opportunity to surface for air.
+}
+
+$holdtime 12
+!HOLO_BREATH
+{
+Come up and catch your breath! You'll see the blood oxygen indicator on your suit's H.U.D. returning to its previous level. You are free to swim on to the end of the course.
+}
+
+$holdtime 9.3
+$chained !HOLO_CHARGER_PT2
+!HOLO_CHARGER
+{
+This is the charging unit for your Hazardous Environment Suit. When you're running low on power, step up to any charger and press Use key.
+}
+
+$holdtime 8.3
+!HOLO_CHARGER_PT2
+{
+Your suit will recharge gradually, until the charge unit is depleted. Individual batteries may also be used to charge your suit.
+}
+
+$holdtime 11
+!HOLO_STEAM
+{
+If you pass through fire or steam, you will see a heat damage icon lighting up. Directional indicators at the center of your display show you where damage is coming from.
+}
+
+$holdtime 9
+!HOLO_RADIATION
+{
+Proximity to radiation activates a Geiger counter and radiation display. Biohazards are also indicated with the luminous icon.
+}
+
+$holdtime 2.5
+!HOLO_INJURY
+{
+Please advance to the next area.
+}
+
+$holdtime 5.5
+$chained !HOLO_LEADGUARD_PT2
+!HOLO_LEADGUARD
+{
+Lead the security guard into the next room. He will let you back into the transit system.
+}
+
+$holdtime 8
+!HOLO_LEADGUARD_PT2
+{
+You must approach a guard and press your Use key. He will follow you until you face him and press your Use key again.
+}
+
+$holdtime 13
+!HOLO_USETRAIN
+{
+Press your Use key to engage the train. Press your Forward and Backward keys to increase or decrease the speed of the train. Press your Use key again to disengage from the train.
+}
+
+$holdtime 9.5
+!HOLO_DONE
+{
+Congratulations on completing the Black Mesa Hazard Course! You are now fully certified for use of the H.E.V. Mark 4 protective system!
+}
+
+
+//=============================================================================================================================================
+// Barney (generic)
+//=============================================================================================================================================
+
+$color  126 192 255
+$color2  63  96 128
+
+$holdtime 1.5
+!BA_OK0
+{
+Ok, I'll cover you.
+}
+
+$holdtime 3.5
+!BA_OK1
+{
+Ok, we might live longer if we work together.
+}
+
+$holdtime 2.5
+!BA_OK2
+{
+Let's get the hell outta here.
+}
+
+$holdtime 3.5
+!BA_OK3
+{
+We might stand a better chance if we team up.
+}
+
+$holdtime 3.5
+!BA_OK4
+{
+Ok, why not? Didn't want to die alone anyway.
+}
+
+$holdtime 1.5
+!BA_OK5
+{
+Yeah, let's go.
+}
+
+$holdtime 2.5
+!BA_OK6
+{
+Roger that, let's run like hell!
+}
+
+$holdtime 3.5
+!BA_WAIT0
+{
+Ok, I'll wait here and help anyone else who comes by.
+}
+
+$holdtime 2.5
+!BA_WAIT1
+{
+You go on without me.
+}
+
+$holdtime 2.5
+!BA_WAIT2
+{
+Ok, I'll secure this area.
+}
+
+$holdtime 2.5
+!BA_WAIT3
+{
+Yeah, I'll wait here.
+}
+
+$holdtime 2.5
+!BA_WAIT4
+{
+See you later.
+}
+
+$holdtime 2.5
+!BA_WAIT5
+{
+I'll stay here and guard this area.
+}
+
+$holdtime 3.5
+!BA_POK0
+{
+Sorry, sir, I've got to stay at my post.
+}
+
+$holdtime 3.5
+!BA_POK1
+{
+Sorry, I'm on duty Mr. Freeman.
+}
+
+$holdtime 2.5
+!BA_POK2
+{
+Can we do this later?
+}
+
+$holdtime 3.5
+!BA_POK3
+{
+Hey! Catch me later, I'll buy you a beer!
+}
+
+$holdtime 1.5
+!BA_HELLO0
+{
+Hello.
+}
+
+$holdtime 1.5
+!BA_HELLO1
+{
+Hey, Mr. Freeman.
+}
+
+$holdtime 1.5
+!BA_HELLO2
+{
+Hello, sir.
+}
+
+$holdtime 1.5
+!BA_HELLO3
+{
+Hey, Gordon.
+}
+
+$holdtime 1.5
+!BA_HELLO4
+{
+Sir...
+}
+
+$holdtime 1.5
+!BA_HELLO5
+{
+Hey, Gordon.
+}
+
+$holdtime 1.5
+!BA_HELLO6
+{
+Sir...
+}
+
+$holdtime 2.5
+!BA_HEAR0
+{
+I hear something.
+}
+
+$holdtime 2.5
+!BA_HEAR1
+{
+That doesn't sound right.
+}
+
+$holdtime 2.5
+!BA_HEAR2
+{
+Man, that sounded bad.
+}
+
+$holdtime 3.5
+!BA_SMELL0
+{
+Ew, something died down here!
+}
+
+$holdtime 3.5
+!BA_SMELL1
+{
+What is that smell?
+}
+
+$holdtime 2.5
+!BA_SMELL2
+{
+Ew, what's that stench!?
+}
+
+$holdtime 2.5
+!BA_CUREA
+{
+I'll bet that stings a bit.
+}
+
+$holdtime 3.5
+!BA_CUREB
+{
+Sir, that injury may need some attention soon.
+}
+
+$holdtime 4.5
+!BA_CUREC
+{
+Well... sir, I hate to say it, but you're in bad shape.
+}
+
+$holdtime 2.5
+!BA_SCARED0
+{
+Hey, stop that!
+}
+
+$holdtime 3.5
+!BA_SCARED1
+{
+Are you crazy!? Leave him alone!
+}
+
+$holdtime 3.5
+!BA_WOUND0
+{
+Took a little damage, but I can make it.
+}
+
+$holdtime 3.5
+!BA_WOUND1
+{
+Well... I got hit pretty hard.
+}
+
+$holdtime 4.5
+!BA_MORTAL0
+{
+Sorry... sir, but I can't take much more of this.
+}
+
+$holdtime 2.5
+!BA_SHOT0
+{
+Watch it with that thing!
+}
+
+$holdtime 2.5
+!BA_SHOT1
+{
+Hey, what did I ever do to you?
+}
+
+$holdtime 2.5
+!BA_SHOT2
+{
+Watch it with that thing!
+}
+
+$holdtime 2.5
+!BA_SHOT3
+{
+What you trying to do!?
+}
+
+$holdtime 3.5
+!BA_SHOT4
+{
+Friends like you, man!
+}
+
+$holdtime 2.5
+!BA_SHOT5
+{
+Don't tick me off, Gordon.
+}
+
+$holdtime 2.5
+!BA_MAD0
+{
+Hey, step off buddy!
+}
+
+$holdtime 2.5
+!BA_MAD1
+{
+I wish it hadn't come to this...
+}
+
+$holdtime 3.5
+!BA_MAD2
+{
+Heh, you gonna wish you hadn't done that.
+}
+
+$holdtime 3.5
+!BA_MAD3
+{
+I only take so much... and no more!
+}
+
+$holdtime 2.5
+!BA_MAD4
+{
+End of the line for you!
+}
+
+$holdtime 2.5
+!BA_MAD5
+{
+Don't make me do this.
+}
+
+$holdtime 2.5
+!BA_MAD6
+{
+What do you want on your tombstone?
+}
+
+$holdtime 1.5
+!BA_STARE0
+{
+Yup.
+}
+
+$holdtime 1.5
+!BA_STARE1
+{
+Yes, sir.
+}
+
+$holdtime 1.5
+!BA_STARE2
+{
+Hello, sir.
+}
+
+$holdtime 1.5
+!BA_STARE3
+{
+Sir.
+}
+
+$holdtime 3.5
+!BA_ATTACK0
+{
+Open fire, Gordon!
+}
+
+$holdtime 3.5
+!BA_ATTACK1
+{
+OPEN FIRE!
+}
+
+$holdtime 1.5
+!BA_ATTACK2
+{
+Stand back!
+}
+
+$holdtime 2.5
+!BA_ATTACK3
+{
+What the hell is this?
+}
+
+$holdtime 2.5
+!BA_ATTACK4
+{
+Die, you blood sucker!
+}
+
+$holdtime 2.5
+!BA_ATTACK5
+{
+Aim for the head, if you can find it!
+}
+
+$holdtime 1.5
+!BA_KILL0
+{
+Got one!
+}
+
+$holdtime 2.5
+!BA_KILL1
+{
+Haha, got another one!
+}
+
+$holdtime 3.5
+!BA_KILL2
+{
+That's one less horror in the world.
+}
+
+$holdtime 2.5
+!BA_KILL3
+{
+Man! Did you see that shot?
+}
+
+$holdtime 2.5
+!BA_KILL4
+{
+Woah... that was close.
+}
+
+$holdtime 3.5
+!BA_KILL5
+{
+Heh, that'll look nice in my trophy room.
+}
+
+$holdtime 1.5
+!BA_KILL6
+{
+Bring it on!
+}
+
+$holdtime 2.5
+!BA_STOP0
+{
+This is as far as I go.
+}
+
+$holdtime 4.5
+!BA_STOP1
+{
+I'm gonna stay here and keep a lookout for anyone that needs help.
+}
+
+$holdtime 2.5
+!BA_IDLE0
+{
+What the hell is this?
+}
+
+$holdtime 3.5
+!BA_IDLE1
+{
+I would really like a cold one right now.
+}
+
+$holdtime 4.5
+!BA_IDLE2
+{
+I'd like to get my hands on the guy responsible for this mess.
+}
+
+$holdtime 3.5
+!BA_IDLE3
+{
+Now I wonder if those boys could have made a bigger mess.
+}
+
+$holdtime 3.5
+!BA_IDLE4
+{
+Our luck has to change sooner or later.
+}
+
+$holdtime 3.5
+!BA_IDLE5
+{
+This place is a lot bigger than I thought.
+}
+
+$holdtime 4.5
+!BA_IDLE6
+{
+Yep, all that target range time is gonna pay off today!
+}
+
+$holdtime 3.5
+!BA_IDLE7
+{
+I have a bad feeling about this...
+}
+
+$holdtime 3.5
+!BA_IDLE8
+{
+I smell an ambush. We better be careful.
+}
+
+$holdtime 3.5
+!BA_IDLE9
+{
+I'll be happy to survive this with all my parts.
+}
+
+$holdtime 4.5
+!BA_IDLE10
+{
+I don't know if we should go any further. This doesn't look right.
+}
+
+$holdtime 3.5
+!BA_QUESTION0
+{
+You think there's a cold beer for us at the end of all this?
+}
+
+$holdtime 2.5
+!BA_QUESTION1
+{
+You think this is the right way out?
+}
+
+$holdtime 3.5
+!BA_QUESTION2
+{
+It can't get any worse than this, can it?
+}
+
+$holdtime 3.5
+!BA_QUESTION3
+{
+Bet you're glad I got this old sidearm on me, aren't ya?
+}
+
+$holdtime 3.5
+!BA_QUESTION4
+{
+Did you have any idea they were working on this kind of stuff?
+}
+
+$holdtime 2.5
+!BA_QUESTION5
+{
+You think this is the right way out?
+}
+
+$holdtime 3.5
+!BA_QUESTION6
+{
+You have any idea what's going on!?
+}
+
+$holdtime 2.5
+!BA_QUESTION7
+{
+You aren't scared, are you?
+}
+
+$holdtime 3.5
+!BA_QUESTION8
+{
+You don't still think this is a drill, do you?
+}
+
+$holdtime 2.5
+!BA_QUESTION9
+{
+Think we're getting any closer?
+}
+
+$holdtime 2.5
+!BA_QUESTION10
+{
+Hey, did you hear something?
+}
+
+$holdtime 3.5
+!BA_QUESTION11
+{
+Any idea how many of our crew have died?
+}
+
+$holdtime 3.5
+!BA_QUESTION12
+{
+Did you see something move?
+}
+
+$holdtime 2.5
+!BA_QUESTION13
+{
+Are you thinking what I'm thinking?
+}
+
+$holdtime 4.5
+!BA_QUESTION14
+{
+Did you see that thing with the missing leg?
+}
+
+$holdtime 1.5
+!BA_ANSWER0
+{
+No way.
+}
+
+$holdtime 1.5
+!BA_ANSWER1
+{
+I reckon.
+}
+
+$holdtime 1.5
+!BA_ANSWER2
+{
+Sounds right!
+}
+
+$holdtime 1.5
+!BA_ANSWER3
+{
+Yes, sir.
+}
+
+$holdtime 1.5
+!BA_ANSWER4
+{
+You bet.
+}
+
+$holdtime 1.5
+!BA_ANSWER5
+{
+You got it.
+}
+
+$holdtime 1.5
+!BA_ANSWER6
+{
+Yup.
+}
+
+$holdtime 1.5
+!BA_ANSWER7
+{
+Don't ask me.
+}
+
+$holdtime 2.5
+!BA_ANSWER8
+{
+Don't bet on it.
+}
+
+$holdtime 2.5
+!BA_ANSWER9
+{
+I don't buy it.
+}
+
+$holdtime 2.5
+!BA_ANSWER10
+{
+I don't see it that way.
+}
+
+$holdtime 1.5
+!BA_ANSWER11
+{
+I don't think so.
+}
+
+$holdtime 1.5
+!BA_ANSWER12
+{
+It's hard to say.
+}
+
+$holdtime 1.5
+!BA_ANSWER13
+{
+I just don't know.
+}
+
+$holdtime 1.5
+!BA_ANSWER14
+{
+Nope...
+}
+
+$holdtime 1.5
+!BA_ANSWER15
+{
+No, sir!
+}
+
+$holdtime 2.5
+!BA_ANSWER16
+{
+I can't figure it out...
+}
+
+$holdtime 1.5
+!BA_ANSWER17
+{
+Maybe.
+}
+
+$holdtime 2.5
+!BA_ANSWER18
+{
+I can't really tell.
+}
+
+$holdtime 2.5
+!BA_ANSWER19
+{
+Would you be quiet!?
+}
+
+$holdtime 2.5
+!BA_ANSWER20
+{
+You talk too much.
+}
+
+$holdtime 2.5
+!BA_ANSWER21
+{
+Didn't you already ask me that?
+}
+
+//=============================================================================================================================================
+// Barney Scripted Subtitles
+//=============================================================================================================================================
+
+$holdtime 2.5
+!BA_HAZ_OK0
+{
+Sure, I'll follow you.
+}
+
+$holdtime 2.5
+!BA_HAZ_WAIT0
+{
+Ok, I'll wait here.
+}
+
+$holdtime 3.5
+!BA_LATE
+{
+Morning, Mr. Freeman. Looks like you're running late.
+}
+
+$holdtime 4.5
+!BA_HEADDOWN
+{
+Hey, you got the wrong airlock, Mr. Freeman. You know I can't let you through here.
+}
+
+$holdtime 9
+$chained !BA_DESK_PT2
+!BA_DESK
+{
+Hey, Mr. Freeman! I had a bunch of messages for you, but we had a system crash about 20 minutes ago and I'm still trying to find my files. Just one of those days, I guess...
+}
+
+$holdtime 9
+!BA_DESK_PT2
+{
+They were having some problems down in the test chamber, too, but I think that's all straightened out. They told me to make sure you headed down there as soon as you got into your hazard suit.
+}
+
+$holdtime 3.5
+!BA_BUTTON
+{
+Come on, Gordon! You trying to get me into trouble?
+}
+
+$holdtime 5.5
+!BA_HEVNO
+{
+Sorry, Mr. Freeman, I got explicit orders not to let you through without your hazard suit on.
+}
+
+$holdtime 3.5
+!BA_HEVYES
+{
+Go right on through, sir. Looks like you're in the barrel today.
+}
+
+$holdtime 8.5
+!BA_GLAD
+{
+Gordon! Man, am I glad to see you! What the hell are these things!? And why are they wearin' science team uniforms?
+}
+
+$holdtime 6.5
+!BA_BULLSQUID
+{
+Hey, what the hell are you doing down here? Get topside! I hear troops are coming in to save us!
+}
+
+$holdtime 4.5
+!BA_CLIMB
+{
+Elevators are out of order... but we can still climb...
+}
+
+$holdtime 5.5
+!BA_SLEW
+{
+Word is once we get to the surface, the military has made arrangements for us.
+}
+
+$holdtime 5.5
+!BA_SURFACE	
+{
+Don't count on the cavalry finding us down here. Head for the surface!
+}
+
+$holdtime 5.5
+!BA_TOPSIDE
+{
+Maybe help is on its way, but I'm not waiting around for it. We've gotta get topside!
+}
+
+$holdtime 4.5
+!BA_WHISPER
+{
+Be quiet! This thing hears us!
+}
+
+$holdtime 6.5
+!BA_TENTACLE
+{
+HEY! Hey, over here! Eat lead, you outer space octopus!
+}
+
+$holdtime 5.5
+$chained !BA_HUB1A_PT2
+!BA_HUB1A
+{
+Mister, if you can get the power on... that train will take us straight to the surface...
+}
+
+$holdtime 6.5
+$chained !BA_HUB1A_PT3
+!BA_HUB1A_PT2
+{
+I would try it myself, but it's a long way down to the generator room, and there are... 
+}
+
+$holdtime 3
+!BA_HUB1A_PT3
+{
+things... in the way...
+}
+
+$holdtime 4.5
+!BA_HUB2A
+{
+I'm never gonna make it... You better go on without me...
+}
+
+$holdtime 10
+$chained !BA_LAUNCH_PT2
+!BA_LAUNCH
+{
+Freeman, I've been waiting for you. One of your scientist pals said to give you a message. You're supposed to take this old rail system up to some kind of satellite delivery rocket.
+}
+
+$holdtime 5.8
+$chained !BA_LAUNCH_PT3
+!BA_LAUNCH_PT2
+{
+I don't know where it is exactly, and the old guy was so worried about getting out of here alive he didn't tell me.
+}
+
+$holdtime 8.5
+$chained !BA_LAUNCH_PT4
+!BA_LAUNCH_PT3
+{
+The main thing is, the military aborted the launch, so when you do find the rocket, you'll have to get up to the control room and launch it yourself.
+}
+
+$holdtime 6.5
+!BA_LAUNCH_PT4
+{
+He said something about a Lambda team needing the satellite in orbit if they were ever gonna to clean up this mess.
+}
+
+$holdtime 6.5
+!BA_ASSN
+{
+Freeman, right? I've got a message for you. Make sure you don't-
+}
+
+$holdtime 2.5
+!BA_TAU1A
+{
+What is this thing? Some kinda weapon?
+}
+
+$holdtime 2.5
+!BA_TAU3A
+{
+Man! Why aren't we using it?
+}
+
+$holdtime 2.5
+!BA_TAU5A
+{
+What do you mean, overchar-
+}
+
+$holdtime 3.5
+$chained !BA_ALIVE_PT2
+!BA_ALIVE
+{
+Hey, it's no good up there. It's all sealed off.
+}
+
+$holdtime 5.8
+$chained !BA_ALIVE_PT3
+!BA_ALIVE_PT2
+{
+The only way out would be to find someone with scanner access who can open the front door.
+}
+
+$holdtime 8
+!BA_ALIVE_PT3
+{
+I'm pretty sure there's a few scientists hiding somewhere in the labs, maybe with both of us looking, we can track them down and get them to let us out.
+}
+
+$holdtime 9.5
+!BA_HELPME
+{
+Help... Help me... Somebody, please help me... I'm dying out here... Please help me...
+}
+
+$holdtime 3.5
+!BA_SURVEY2A
+{
+So this is the guy. We thought you'd never make it!
+}
+
+$holdtime 2.5
+!BA_SURVEY4A
+{
+Yeah, you'd better kill it!
+}
+ 
+$holdtime 5.5
+!BA_SURVEY6A
+{
+Enough to know that if you don't wipe it out, there won't be much for you to come home to...
+}
+ 
+$holdtime 4.5
+!BA_SURVEY8A
+{
+Don't forget to gear up! And I'll cover you while you're waiting for that portal to warm up.
+}
+ 
+$holdtime 5.5
+!BA_PORTSTAY
+{
+I'm gonna stay down here. If I see anything looks like it doesn't belong here, I'll start shooting!
+}
+
+//============================================================
+// Scientist (generic)
+//============================================================
+
+$color  224 224 224
+$color2 112 112 112
+
+$holdtime 4.5
+!SC_OK0
+{
+With my brains and your brawn, we'll make an excellent team!
+}
+
+$holdtime 2.5
+!SC_OK1
+{
+Glad to oblige a fellow scientist!
+}
+
+$holdtime 2.5
+!SC_OK2
+{
+Fine, you won't even know I'm here.
+}
+
+$holdtime 3.5
+!SC_OK3
+{
+I certainly hope you know what you're doing.
+}
+
+$holdtime 2.5
+!SC_OK4
+{
+Lead the way!
+}
+
+$holdtime 1.5
+!SC_OK5
+{
+Let's go!
+}
+
+$holdtime 2.5
+!SC_OK6
+{
+Yes, let's go.
+}
+
+$holdtime 1.5
+!SC_OK7
+{
+Yes.
+}
+
+$holdtime 1.5
+!SC_OK8
+{
+Alright...
+}
+
+$holdtime 3.5
+!SC_WAIT0
+{
+Have I been that much of a burden?
+}
+
+$holdtime 2.5
+!SC_WAIT1
+{
+I'm slowing you down, am I?
+}
+
+$holdtime 2.5
+!SC_WAIT2
+{
+I don't suppose you reconsider!?
+}
+
+$holdtime 2.5
+!SC_WAIT3
+{
+Why are you leaving me here?
+}
+
+$holdtime 1.5
+!SC_WAIT4
+{
+I'll wait right here.
+}
+
+$holdtime 1.5
+!SC_WAIT5
+{
+I'll stay here.
+}
+
+$holdtime 1.5
+!SC_WAIT6
+{
+I'll wait.
+}
+
+$holdtime 2.5
+!SC_STOP0
+{
+This is as far as I go.
+}
+
+$holdtime 2.5
+!SC_STOP1
+{
+I refuse to go another step.
+}
+
+$holdtime 3.5
+!SC_STOP2
+{
+You're going to have to leave me here, Gordon.
+}
+
+$holdtime 3.5
+!SC_STOP3
+{
+I'm going to stay here and wait for my colleagues.
+}
+
+$holdtime 2.5
+!SC_STARE0
+{
+Yeeees?
+}
+
+$holdtime 2.5
+!SC_STARE1
+{
+Are you thinking what I'm thinking?
+}
+
+$holdtime 4.5
+!SC_STARE2
+{
+You have no idea what is going on, do you?
+}
+
+$holdtime 1.5
+!SC_HELLO0
+{
+Hello there!
+}
+
+$holdtime 4
+!SC_HELLO1
+{
+Freeman! Who would've thought you'd still be alive?
+}
+
+$holdtime 2
+!SC_HELLO2
+{
+A fellow scientist!
+}
+
+$holdtime 2.5
+!SC_HELLO3
+{
+Greetings.
+}
+
+$holdtime 3
+!SC_HELLO4
+{
+Hello!
+}
+
+$holdtime 3.5
+!SC_HELLO5
+{
+Ahh! It's good to see you!
+}
+
+$holdtime 5
+!SC_HELLO6
+{
+Ahh! You have one of the new HEV suits! That should be very useful.
+}
+
+$holdtime 4.8
+!SC_HELLO7
+{
+You are from the Anomalous Materials lab? Yes! I recognize you!
+}
+
+$holdtime 4
+!SC_HELLO8
+{
+Ahh! Freeman! I see you are in this mess too.
+}
+
+$holdtime 1.5
+!SC_ANSWER0
+{
+I'm not at all sure...
+}
+
+$holdtime 1.8
+!SC_ANSWER1
+{
+I'm... not certain.
+}
+
+$holdtime 1.5
+!SC_ANSWER2
+{
+Perhaps...
+}
+
+$holdtime 1.8
+!SC_ANSWER3
+{
+Who can say?
+}
+
+$holdtime 2.3
+!SC_ANSWER4
+{
+It's inconclusive.
+}
+
+$holdtime 1.5
+!SC_ANSWER5
+{
+Theoretically.
+}
+
+$holdtime 2
+!SC_ANSWER6
+{
+Why are you asking me?
+}
+
+$holdtime 2.5
+!SC_ANSWER7
+{
+Kindly lower your voice...
+}
+
+$holdtime 1.8
+!SC_ANSWER8
+{
+Of course!
+}
+
+$holdtime 1.5
+!SC_ANSWER9
+{
+Absolutely!
+}
+
+$holdtime 1.5
+!SC_ANSWER10
+{
+Yes!
+}
+
+$holdtime 1.5
+!SC_ANSWER11
+{
+I believe so!
+}
+
+$holdtime 1.5
+!SC_ANSWER12
+{
+Right.
+}
+
+$holdtime 1.5
+!SC_ANSWER13
+{
+I'm sure of it!
+}
+
+$holdtime 1.5
+!SC_ANSWER14
+{
+Positively!
+}
+
+$holdtime 1.5
+!SC_ANSWER15
+{
+I have no doubt.
+}
+
+$holdtime 2
+!SC_ANSWER16
+{
+Yeeees?
+}
+
+$holdtime 1.5
+!SC_ANSWER17
+{
+Of course not!
+}
+
+$holdtime 1.5
+!SC_ANSWER18
+{
+Absolutely not!
+}
+
+$holdtime 1.5
+!SC_ANSWER19
+{
+Nooo...
+}
+
+$holdtime 2.5
+!SC_ANSWER20
+{
+I don't think so...
+}
+
+$holdtime 2.5
+!SC_ANSWER21
+{
+You are completely wrong.
+}
+
+$holdtime 1.8
+!SC_ANSWER22
+{
+You can't be serious...
+}
+ 
+$holdtime 1.8
+!SC_ANSWER23
+{
+I really don't know.
+}
+
+$holdtime 1.6
+!SC_ANSWER24
+{
+Don't be ridiculous!
+}
+
+$holdtime 1.5
+!SC_ANSWER25
+{
+Shut up!
+}
+
+$holdtime 2.5
+!SC_ANSWER26
+{
+I couldn't even venture a guess.
+}
+
+$holdtime 2.5
+!SC_ANSWER27
+{
+Stop asking that question...
+}
+
+$holdtime 2.5
+!SC_ANSWER28
+{
+Didn't you just ask me that?
+}
+
+$holdtime 3.5
+!SC_ANSWER29
+{
+You know... You repeat yourself sometimes.
+}
+
+$holdtime 3.8
+!SC_QUESTION0
+{
+Have you ever seen anything like this?
+}
+
+$holdtime 4.5
+!SC_QUESTION1
+{
+I'd give my right hemisphere for a few hours of sleep...
+}
+
+$holdtime 2.5
+!SC_QUESTION2
+{
+Are you thinking what I'm thinking?
+}
+
+$holdtime 2.5
+!SC_QUESTION3
+{
+Will we ever make it out of here?
+}
+
+$holdtime 2.5
+!SC_QUESTION4
+{
+Are you sure this is the right way?
+}
+
+$holdtime 2.5
+!SC_QUESTION5
+{
+It can't get any worse than this.
+}
+
+$holdtime 3.5
+!SC_QUESTION6
+{
+Surely someone will come and rescue us.
+}
+
+$holdtime 3
+!SC_QUESTION7
+{
+Don't you find this all rather fascinating?
+}
+
+$holdtime 4
+!SC_QUESTION8
+{
+Well, I think it's rather stimulating, don't you?
+}
+
+$holdtime 4.5
+!SC_QUESTION9
+{
+It's highly probable that our luck will change, don't you agree?
+}
+
+$holdtime 2.8
+!SC_QUESTION10
+{
+Did you hear something?
+}
+
+$holdtime 3
+!SC_QUESTION11
+{
+Do you smell what I smell?
+}
+
+$holdtime 3.5
+!SC_QUESTION12
+{
+Fat lot of good that Ph.D. does me now, hmm?
+}
+
+$holdtime 3.5
+!SC_QUESTION13
+{
+Don't you think we should wait here for a while?
+}
+
+$holdtime 4.5
+!SC_QUESTION14
+{
+Do you recall any of those emergency survival procedures?
+}
+
+$holdtime 5.5
+!SC_QUESTION15
+{
+These crab creatures have a unique parasitic strategy, don't you think? 
+}
+
+$holdtime 4
+!SC_QUESTION16
+{
+I believe this will make for a notable paper, don't you?
+}
+
+$holdtime 2.5
+!SC_QUESTION17
+{
+Shouldn't we try to capture a specimen?
+}
+
+$holdtime 6.5
+!SC_QUESTION18
+{
+Are you seriously suggesting that all of these beings are here to dine on us?
+}
+
+$holdtime 4
+!SC_QUESTION19
+{
+Do you suspect some alien subterfuge behind this failure?
+}
+
+$holdtime 3.5
+!SC_QUESTION20
+{
+Do you think we should appeal to the alien authorities?
+}
+
+$holdtime 5.6
+!SC_QUESTION21
+{
+The military clean up is just a paranoid rumor, isn't it?
+}
+
+$holdtime 6
+!SC_QUESTION22
+{
+The alien species can't possibly all be hostile... can they?
+}
+
+$holdtime 3
+!SC_QUESTION23
+{
+Did you understand that last announcement?
+}
+
+$holdtime 2.5
+!SC_QUESTION24
+{
+Do you smell something burning?
+}
+
+$holdtime 4.5
+!SC_QUESTION25
+{
+You have no idea what is going on, do you?
+}
+
+$holdtime 3.5
+!SC_QUESTION26
+{
+Well, do you have any idea what to do next?
+}
+
+$holdtime 3.5
+!SC_IDLE0
+{
+I predicted all of this, you know. All of it!
+}
+
+$holdtime 3.8
+!SC_IDLE1
+{
+It appears the containment system has completely failed...
+}
+
+$holdtime 3
+!SC_IDLE2
+{
+Do you still say there is nothing to chaos theory?
+}
+
+$holdtime 3.5
+!SC_IDLE3
+{
+How interesting, just look at that!
+}
+
+$holdtime 5.5
+!SC_IDLE4
+{
+Fascinating! I never suspected such things could be!
+}
+
+$holdtime 4.5
+!SC_IDLE5
+{
+Why, just look at those peculiar markings.
+}
+
+$holdtime 3.5
+!SC_IDLE6
+{
+Who is responsible for this mess?
+}
+
+$holdtime 3
+!SC_IDLE7
+{
+Well, there goes our grant money.
+}
+ 
+$holdtime 4.5
+!SC_IDLE8
+{
+Wouldn't you like to get one of these blood samples under a microscope?
+}
+ 
+$holdtime 5.5
+!SC_IDLE9
+{
+I suspected this could happen, but the administrator just would not listen.
+}
+ 
+$holdtime 4.5
+!SC_IDLE10
+{
+A failure of this magnitude is extremely improbable.
+}
+ 
+$holdtime 5.5
+!SC_IDLE11
+{
+Well, the dimensional breach is definitely transmitting organic matter.
+}
+ 
+$holdtime 5
+!SC_IDLE12
+{
+I hope those people in the Lambda lab can get this under control.
+}
+ 
+$holdtime 1.7
+!SC_IDLE13
+{
+I hear something...
+}
+
+$holdtime 4.5
+!SC_PHELLO0
+{
+Hello, Gordon Freeman! It's good to see you.
+}
+
+$holdtime 1.5
+!SC_PHELLO1
+{
+Greetings...
+}
+
+$holdtime 2.5
+!SC_PHELLO2
+{
+Ahh! It's good to see you!
+}
+
+$holdtime 2
+!SC_PHELLO3
+{
+Greetings!
+}
+
+$holdtime 1.5
+!SC_PHELLO4
+{
+Hello!
+}
+
+$holdtime 1.5
+!SC_PHELLO5
+{
+Hello there!
+}
+
+$holdtime 1.5
+!SC_PHELLO6
+{
+Freeman...
+}
+
+$holdtime 3
+!SC_PIDLE0
+{
+Someone has hidden my glasses again...
+}
+
+$holdtime 4.2
+!SC_PIDLE1
+{
+Why do we all have to wear these ridiculous ties?
+}
+
+$holdtime 4.5
+!SC_PIDLE2
+{
+I wonder if I should run that test again?
+}
+
+$holdtime 3
+!SC_PIDLE3
+{
+This is all within theoretical limits.
+}
+
+$holdtime 2
+!SC_PIDLE4
+{
+As I expected.
+}
+
+$holdtime 2
+!SC_PIDLE5
+{
+That's odd.
+}
+
+$holdtime 3
+!SC_PIDLE6
+{
+Yes... This all looks nominal.
+}
+
+$holdtime 4
+!SC_PIDLE7
+{
+Now, where did I leave that shutdown procedure chart?
+}
+
+$holdtime 3.5
+!SC_PIDLE8
+{
+I must remember to report that fluctuation.
+}
+
+$holdtime 4
+!SC_PIDLE9
+{
+Most of these simulation results are perfectly acceptable, you know.
+}
+
+$holdtime 4
+!SC_PIDLE10
+{
+I hope those containment parameters are still nominal.
+}
+
+$holdtime 3.8
+!SC_PQUEST0
+{
+Have you been able to get the beverage machine to work yet?
+}
+
+$holdtime 4.5
+!SC_PQUEST1
+{
+Did you submit your status report to the administrator today?
+}
+
+$holdtime 4.5
+!SC_PQUEST2
+{
+Are you running those tunneling lattice calculations again?
+}
+
+$holdtime 4.5
+!SC_PQUEST3
+{
+This should shake up those grant unification boys, hmm?
+}
+
+$holdtime 4.5
+!SC_PQUEST4
+{
+Are you 100% sure that theory of yours is correct?
+}
+
+$holdtime 4
+!SC_PQUEST5
+{
+I am rather looking forward to this analysis, aren't you?
+}
+
+$holdtime 4
+!SC_PQUEST6
+{
+Wouldn't it be fantastic to get some pure readings for a change?
+}
+
+$holdtime 3
+!SC_PQUEST7
+{
+Any ideas on the origin of that new sample?
+}
+
+$holdtime 4
+!SC_PQUEST8
+{
+This analysis is going to run perfectly today, don't you think?
+}
+
+$holdtime 5
+!SC_PQUEST9
+{
+Aren't you a bit worried about that exponential cascade scenario we discussed?
+}
+
+$holdtime 4
+!SC_PQUEST10
+{
+Do you think we should delay for another recalibration?
+}
+
+$holdtime 3.8
+!SC_PQUEST11
+{
+You aren't going soft to that ethics issue again, are you?
+}
+
+$holdtime 4.5
+!SC_PQUEST12
+{
+All these placement modulators were tuned today, weren't they?
+}
+
+$holdtime 2.5
+!SC_PQUEST13
+{
+Do you know who ate all the donuts?
+}
+
+$holdtime 2.5
+!SC_PQUEST14
+{
+Have you seen my coffee cup?
+}
+
+$holdtime 2.5
+!SC_PQUEST15
+{
+Is anyone else getting hungry?
+}
+
+$holdtime 5
+!SC_PQUEST16
+{
+Don't you think we should recalculate those resonance damping factors again?
+}
+
+$holdtime 3.5
+!SC_PQUEST17
+{
+Are you sure you checked the eigen attenuators?
+}
+
+$holdtime 2
+!SC_NOGO
+{
+No! Don't go that way!
+}
+
+$holdtime 3.5
+!SC_MONST0
+{
+Why look, another headcrab!
+}
+
+$holdtime 3.5
+!SC_MONST1
+{
+Another important species, revealed in action!
+}
+
+$holdtime 1.5
+!SC_HEAR0
+{
+I hear something.
+}
+
+$holdtime 1.5
+!SC_HEAR1
+{
+Did you hear that?
+}
+
+$holdtime 2.5
+!SC_HEAR2
+{
+That sound! What is it?
+}
+
+$holdtime 5
+!SC_SMELL0
+{
+I believe something smells quite foul here.
+}
+
+$holdtime 3.5
+!SC_SMELL1
+{
+I hope that odor isn't coming from you?
+}
+
+$holdtime 3.5
+!SC_SMELL2
+{
+Hmm, what a peculiar odor.
+}
+
+$holdtime 3
+!SC_SMELL3
+{
+What is that stench?
+}
+
+$holdtime 4
+!SC_WOUND0
+{
+I seem to be wounded, but I can keep going.
+}
+
+$holdtime 4
+!SC_WOUND1
+{
+Well.. I seem to be seriously wounded.
+}
+
+$holdtime 3
+!SC_MORTAL0
+{
+I don't think I can last much longer.
+}
+
+$holdtime 4
+!SC_MORTAL1
+{
+Well.. I seem to be seriously wounded.
+}
+
+$holdtime 2.5
+!SC_CUREA
+{
+You look terrible!
+}
+
+$holdtime 2.5
+!SC_CUREB
+{
+Ah, you've been wounded...
+}
+
+$holdtime 3.5
+!SC_CUREC
+{
+It appears that you need medical attention right away!
+}
+
+$holdtime 3.5
+!SC_HEAL0
+{
+Let me take care of that wound for you...
+}
+
+$holdtime 3.5
+!SC_HEAL1
+{
+This should make you feel better.
+}
+
+$holdtime 4.5
+!SC_HEAL2
+{
+It appears that you need medical attention right away! Let's try this!
+}
+
+$holdtime 2.5
+$chained !SC_HEAL3_PT2
+!SC_HEAL3
+{
+You look terrible!
+}
+
+$holdtime 3
+!SC_HEAL3_PT2
+{
+Hold still! This won't hurt a bit.
+}
+
+$holdtime 2.5
+$chained !SC_HEAL4_PT2
+!SC_HEAL4
+{
+Ah, you've been wounded...
+}
+
+$holdtime 1.5
+!SC_HEAL4_PT2
+{
+Let's try this!
+}
+
+$holdtime 2.5
+!SC_HEAL5
+{
+Allow me to treat that injury.
+}
+
+$holdtime 2.5
+!SC_HEAL6
+{
+I can give something for the pain.
+}
+
+$holdtime 2.5
+!SC_HEAL7
+{
+Don't worry, I'm a doctor.
+}
+
+$holdtime 2.8
+!SC_PLFEAR0
+{
+My God, what are you doing!?
+}
+
+$holdtime 2.5
+!SC_PLFEAR1
+{
+I can't take much more of this!
+}
+
+$holdtime 3.5
+!SC_PLFEAR2
+{
+This is madness! I'm getting out of here!
+}
+
+$holdtime 2
+!SC_PLFEAR3
+{
+NO! PLEASE!
+}
+
+$holdtime 2.5
+!SC_PLFEAR4
+{
+I've got to get out of here!
+}
+
+$holdtime 2.5
+!SC_PLFEAR5
+{
+Sorry! I'm leaving now!
+}
+
+$holdtime 1.5
+!SC_FEAR0
+{
+Nooo...
+}
+
+$holdtime 1.5
+!SC_FEAR2
+{
+Nooo!
+}
+
+$holdtime 2.5
+!SC_FEAR3
+{
+NO! I don't wanna die!!!
+}
+
+$holdtime 3.5
+!SC_FEAR4
+{
+I just want to get out of this alive!
+}
+
+$holdtime 2.5
+!SC_FEAR7
+{
+Oh, no!
+}
+
+$holdtime 2.5
+!SC_FEAR8
+{
+Oh, no!
+}
+
+$holdtime 1.5
+!SC_FEAR9
+{
+OH, NO!
+}
+
+$holdtime 2.5
+!SC_FEAR10
+{
+Oh, nooo...
+}
+
+$holdtime 2.5
+!SC_FEAR11
+{
+Ohhh, nooo...
+}
+
+$holdtime 1.5
+!SC_SCREAM5
+{
+Oh, no!
+}
+
+$holdtime 1.5
+!SC_SCREAM6
+{
+OH DEAR!
+}
+
+$holdtime 1.5
+!SC_SCREAM10
+{
+Oh, my!
+}
+
+$holdtime 1.5
+!SC_SCREAM11
+{
+My goodness!
+}
+
+$holdtime 1.5
+!SC_SCREAM12
+{
+NOOO!!!
+}
+
+$holdtime 1.5
+!SC_SCREAM13
+{
+GET BACK!!!
+}
+
+$holdtime 2.7
+!SC_SCARED0
+{
+My God, what are you doing!?
+}
+
+$holdtime 2.5
+!SC_SCARED1
+{
+Stop attacking! He's a friend!
+}
+
+$holdtime 3
+!SC_SCARED2
+{
+Are you insane!? Stop attacking, immediately!
+}
+
+$holdtime 2
+!SC_LETYOUIN
+{
+Wait a minute and I let you in.
+}
+
+$holdtime 2.5
+!SC_OVERHERE
+{
+Psst! Over here.
+}
+
+$holdtime 4
+!SC_POK0
+{
+Please! Leave me alone until after the experiment!
+}
+
+$holdtime 2
+!SC_POK1
+{
+I can't be bothered right now.
+}
+
+$holdtime 3.3
+!SC_POK2
+{
+Excuse me Gordon, but I'm rather busy now!
+}
+
+$holdtime 3.5
+!SC_POK3
+{
+You'll just have to wait until after the test.
+}
+
+$holdtime 3
+!SC_POK4
+{
+Weren't you supposed to be in the test chamber half an hour ago?
+}
+
+
+//============================================================
+// Scientist Scripted Subtitles
+//============================================================
+
+$holdtime 3
+!SC_STAYBACK
+{
+NO! STAY BACK! GORDON!
+}
+
+$holdtime 4.5
+!SC_GETAWAY
+{
+Get away from there, Freeman! I'm expecting an important message!
+}
+
+$holdtime 2.5
+!SC_GMORN
+{
+Good morning, Gordon.
+}
+
+$holdtime 2.5
+!SC_BIGDAY
+{
+Big day today, Freeman.
+}
+
+$holdtime 3
+!SC_SAMPLE
+{
+The sample was just delivered to the test chamber.
+}
+
+$holdtime 3
+!SC_HAZ_OK0
+{
+Yes! I will follow you, if you wish.
+}
+
+$holdtime 2.5
+!SC_HAZ_WAIT0
+{
+Ok... I'll wait here.
+}
+
+$holdtime 5.5
+!SC_GOODWORK
+{
+Good work! Those new suits can be tricky! Please proceed to the next area.
+}
+
+$holdtime 5.5
+!SC_HARDLYNOTICE
+{
+Very good, I hardly noticed you! Move on to the next area.
+}
+
+$holdtime 4
+!SC_NEXTSTATION
+{
+Good work! You look prepared for the next station!
+}
+
+$holdtime 7.5
+!SC_DISA
+{
+*Mic noise* Testing... testing?! Everything seems to be in order...
+}
+
+$holdtime 7.2
+$chained !SC_DIS1A_PT2
+!SC_DIS1A
+{
+All right, Gordon, your suit should keep you comfortable through all this. The specimen will be delivered to you in a few moments.
+}
+
+$holdtime 8.5
+!SC_DIS1A_PT2
+{
+If you would be so good as to climb up and start the rotors, we can bring the anti-mass spectrometer to 80% and hold it there until the carrier arrives.
+}
+
+$holdtime 5.5
+!SC_DIS1B
+{
+Gordon, are you not hearing me? Climb up and start the rotors, please!
+}
+
+$holdtime 3.5
+!SC_DIS1C
+{
+CLIMB UP and START the rotors!
+}
+
+$holdtime 3.5
+!SC_DIS1D
+{
+Very good... We'll take it from here.
+}
+
+$holdtime 6.5
+!SC_DIS2A
+{
+Power to stage 1 emitters in 3..2..1..
+}
+
+$holdtime 3.5
+!SC_DIS3A
+{
+I'm seeing predictable phase arrays.
+}
+
+$holdtime 5.5
+!SC_DIS4A 
+{
+Tell him to stand back from focal stage! That suit won't do him any good if he wanders in the beam...
+}
+
+$holdtime 5
+!SC_DIS5A
+{
+Stage 2 emitters activating... Now!
+}
+
+$holdtime 11
+!SC_DIS6A
+{
+I've just been informed that the sample is ready, Gordon. It should be coming up to you any moment now! Look to the delivery system for your specimen.
+}
+
+$holdtime 7.5
+!SC_DIS7A
+{
+Standard insertion for a nonstandard specimen! Go ahead, Gordon. Slot the carrier into the analysis port.
+}
+
+$holdtime 5
+!SC_DIS9A
+{
+Overhead capacitors to 105%.
+}
+
+$holdtime 8.5
+!SC_DIS10A
+{
+Gordon, we cannot predict how long the system can operate at this level, nor how long the readings will take... Please, work as quickly as you can!
+}
+
+$holdtime 12.5
+!SC_DIS11A
+{
+Uh, it's probably not a problem, probably... but I'm showing a small discrepancy in... well, no, it's well within acceptable bounds again. Sustaining sequence!
+}
+
+$holdtime 5
+!SC_DIS12A
+{
+Nothing you need to worry about, Gordon, heh... That's it... Go ahead!
+}
+
+$holdtime 2
+!SC_DIS13A
+{
+What is he doing in there!?
+}
+
+$holdtime 4.5
+!SC_DIS14A
+{
+GET HIM OUT OF THERE! Shut down the equipment and someone get him out!
+}
+
+$holdtime 10
+!SC_DIS15A
+{
+Shutting down! Attempting shutdown... It's not! It's not, it's not shutting down! IT'S NOT-
+}
+
+$holdtime 4.5
+!SC_DIS16A
+{
+Gordon! Get away from the beams!
+}
+
+$holdtime 3.5
+!SC_DIS17A
+{
+He waited too long! We can't contain it!
+}
+
+$holdtime 6
+!SC_LOCK1A
+{
+I'm afraid we'll be deviating a bit from standard analysis procedures today, Gordon.
+}
+
+$holdtime 8
+!SC_LOCK2A
+{
+Yes, but with good reason! This is a rare opportunity for us. This is the purest sample we've seen yet!
+}
+
+$holdtime 2.5
+!SC_LOCK3A
+{
+And... potentially, the most unstable...
+}
+
+$holdtime 4.5
+!SC_LOCK4A
+{
+Now, now, if you follow standard insertion procedures, everything will be fine!
+}
+
+$holdtime 8.5
+!SC_LOCK5A
+{
+I don't know how you can say that. Although I will admit that the possibility of a resonance cascade scenario is extremely unlikely...
+}
+
+$holdtime 8.5
+!SC_LOCK6A
+{
+Gordon doesn't need to hear all this, he's a highly trained professional! We've assured the administrator that nothing will go wrong...
+}
+
+$holdtime 5.5
+!SC_LOCK7A
+{
+Ah... yes, you're right... Gordon, we have complete confidence in you!
+}
+
+$holdtime 3.5
+!SC_LOCK8A
+{
+Well, go ahead. Let's let him in now!
+}
+
+$holdtime 3
+!SC_CRIT1A
+{
+Quick! It's about to go critical!
+}
+
+$holdtime 3
+!SC_CRIT2A
+{
+What the hell is going on with our equipment?
+}
+
+$holdtime 3
+!SC_CRIT3A
+{
+It wasn't meant to do this in the first place.
+}
+
+$holdtime 5
+!SC_CTRL1A
+{
+Ah, Gordon. Here you are! We just sent the sample down to the test chamber.
+}
+
+$holdtime 7
+!SC_CTRL2A
+{
+We boosted the anti-mass spectrometer 105%. Bit of a gamble, but we need the extra resolution.
+}
+
+$holdtime 8
+!SC_CTRL3A
+{
+The administrator is very concerned that we get a conclusive analysis of today's sample. I gather they went to some length to get it.
+}
+
+$holdtime 4.5
+!SC_CTRL4A
+{
+They're waiting for you, Gordon. In the Test Chamber.
+}
+
+$holdtime 2.5
+!SC_CONSOLE1A
+{
+Why didn't they listen?!
+}
+
+$holdtime 2.8
+!SC_CONSOLE2A
+{
+We tried to warn them!
+}
+
+$holdtime 6
+!SC_CONSOLE3A
+{
+I never thought I'd see a resonance cascade, let alone create one...
+}
+
+$holdtime 7.7
+$chained !SC_CONSOLE4A_PT2
+!SC_CONSOLE4A
+{
+Gordon, you're alive! Thank God for that hazard suit! I'm afraid to move him, and all our phones are out!
+}
+
+$holdtime 12
+!SC_CONSOLE4A_PT2
+{
+Please, get to the surface as soon as you can, and let someone know we're stranded down here! You'll need me to activate the retinal scanners! I'm sure the rest of the science team will gladly help you!
+}
+
+$holdtime 1.5
+!SC_CONSOLE5A
+{
+Be careful, Gordon!
+}
+
+$holdtime 3
+!SC_CONSOLERPT
+{
+You'll need me to activate the retinal scanners!
+}
+
+$holdtime 4.5
+!SC_DANGLING
+{
+I... I can't hold on much longer!
+}
+
+$holdtime 6.2
+!SC_DARKROOM
+{
+I'm not so sure I want to get to the surface... What if the world finds out what we were doing down here?
+}
+
+$holdtime 10.5
+!SC_LOUNGE
+{
+Gordon! If I'd known it was you, I'd have let you in! Everyone's heading for the surface, but I think they're crazy not to stay put. Someone is bound to come by and rescue us.
+}
+
+$holdtime 9.5
+!SC_TRANSMISSION
+{
+I just overheard a secure access transmission. Soldiers have arrived and they're coming to rescue us! Of course, I have my doubts that we'll live long enough to greet them...
+}
+
+$holdtime 4
+!SC_1MAN
+{
+Take me with you! I'm the one man who knows everything!
+}
+
+$holdtime 2
+!SC_ATLAST
+{
+Rescued at last!
+}
+
+$holdtime 3
+!SC_RESCUED
+{
+Rescued at last! Thank God you're here!
+}
+
+$holdtime 5.5
+!SC_SILO1A
+{
+For God's sake, open the silo door! They're coming for us, it's our only way out!
+}
+
+$holdtime 3.5
+!SC_SILO2A
+{
+Oh my God, we're doomed!!!
+}
+
+$holdtime 2.5
+!SC_TEAM
+{
+Don't shoot! I'm with science team!
+}
+
+$holdtime 2.5
+!SC_THANKGOD
+{
+Thank God, you're here!
+}
+
+$holdtime 10.5
+!SC_TRAINEND
+{
+Have you heard? They're killing scientists... Our own race, turning against us... I think I'll stay here and take my chances with the creatures...
+}
+
+$holdtime 7.5
+!SC_ROCKET
+{
+Fire the... rocket engine... Destroy the damned thing before it grows any larger!
+}
+
+$holdtime 5
+!SC_BLIND
+{
+Is someone there? I... I can't see a thing...
+}
+
+$holdtime 6.5
+!SC_POWEROFF
+{
+I hope no one expects me to start up the generator. Smithers went down there and never came back.
+}
+
+$holdtime 6.5
+!SC_POWERON
+{
+Excellent! Someone has restored all power! We'll have the engine up again in no time!
+}
+
+$holdtime 8.5
+!SC_GENER
+{
+This is my hiding spot, and I'm not moving until the situation is drastically improved. Now go away and don't tell anyone I'm here!
+}
+
+$holdtime 10.5
+$chained !SC_TRUST_PT2
+!SC_TRUST
+{
+Well, so much for the government! Their idea of "containment" is to kill everyone associated with the project! Judging from your hazard suit, I'd say you were part of what went wrong... Isn't that right?
+}
+
+$holdtime 6
+$chained !SC_TRUST_PT3
+!SC_TRUST_PT2
+{
+Now look, if anyone can end this catastrophe, it's the science team in the Lambda complex, at the opposite end of the base!
+}
+
+$holdtime 8.5
+$chained !SC_TRUST_PT4
+!SC_TRUST_PT3
+{
+With the transit system out, I couldn't tell you how to get there, but there's an old decommissioned rail system somewhere through here, beyond the silo complex.
+}
+
+$holdtime 11.5
+!SC_TRUST_PT4
+{
+If you can make it through the rocket test labs, you might be able to worm your way through the old tunnels to track down whatever's left of the Lambda team! You can trust them. You can trust all of us. Good luck!
+}
+
+$holdtime 4.5
+!SC_TENT
+{
+No! NO! NO! Get it off me! Get it off! GET IF OFF!!!
+}
+
+$holdtime 2
+$chained !SC_ICKY_PT2
+!SC_ICKY
+{
+Did you see it?
+}
+
+$holdtime 9
+$chained !SC_ICKY_PT3
+!SC_ICKY_PT2
+{
+They said it was hauled from the Challenger Deep, but I'm positive that beast never swam in terrestrial waters until a week ago!
+}
+
+$holdtime 8.5
+!SC_ICKY_PT3
+{
+There's a tranquilizer gun in the shark cage but I'm not sure it would work on this species. You're welcome to try.
+}
+
+$holdtime 12
+$chained !SC_TRACK_PT2
+!SC_TRACK
+{
+Gordon Freeman, it is you, isn't it? The science team has been tracking your progress with the Black Mesa security system. Unfortunately, so has the military. That suit of yours is full of tracking devices.
+}
+
+$holdtime 9.2
+$chained !SC_TRACK_PT3
+!SC_TRACK_PT2
+{
+Still, it's better than going naked in this place. It's cold in there and you'll have to hurry. It could sap your suit power in a matter of moments!
+}
+
+$holdtime 9.2
+!SC_TRACK_PT3
+{
+If you're bent on reaching the Lambda complex, then you want to keep to the older industrial areas, where the security system is full of holes. It worked for me, so far.
+}
+ 
+$holdtime 3
+!SC_TAU2A
+{
+Put that down! It's a prototype!
+}
+
+$holdtime 4
+!SC_TAU4A
+{
+It's much too unpredictable! Don't let it overcharge!
+}
+
+$holdtime 6.5
+!SC_1PSURG
+{
+We all have retinal scanner access. Escort us to the lobby, and we can get out of the lab.
+}
+
+$holdtime 6.5
+!SC_2PSURG
+{
+You'll have to shut down the surgical unit first. Peters switched it on, but I'm afraid he never made it back...
+}
+
+$holdtime 7.5
+!SC_3PSURG
+{
+A scientist, thank God! Get us out of here before those military drones figure out where we're hiding!
+}
+
+$holdtime 4.5
+!SC_ALLDIE
+{
+If you let us all die, Freeman, you'll never get out of here!
+}
+
+$holdtime 13
+!SC_LETOUT
+$chained !SC_LETOUT_PT2
+{
+Well... I'll let you out, but I'm warning you, it's hell out there! It's completely under military control! You'll have to sneak and fight your way from one end to the other, and I don't expect you'll meet many of our peers along the way...
+}
+
+$holdtime 13
+!SC_LETOUT_PT2
+{
+But if you do survive and somehow make it across the base, you'll end up at the Lambda complex, where the rest of the science team has taken shelter. I wouldn't venture there myself, but I will let them know that you are coming!
+}
+
+$holdtime 10.5
+$chained !SC_BOOBIE_PT2
+!SC_BOOBIE
+{
+You're heading for the Lambda complex, aren't you? I was heading there myself until I wound up here and, well, simply lost my nerve. Take one look through that door and you'll see what I mean!
+}
+
+$holdtime 7.5
+!SC_BOOBIE_PT2
+{
+I'm just going to wait out the catastrophe in here. If you intend to go on, then I beg of you, proceed with extreme caution!
+}
+
+$holdtime 12
+$chained !SC_STRAWS_PT2
+!SC_STRAWS
+{
+I apologize, Mr. Freeman, but I couldn't risk opening that door until I was sure you'd scoured the area! This is the last entrance to the Lambda Complex, every other has been sealed off to contain the invasion!
+}
+
+$holdtime 9
+$chained !SC_STRAWS_PT3
+!SC_STRAWS_PT2
+{
+When we realized that you might actually make it here, we drew straws to see who should stay behind to let you through. Obviously, I drew the short one...
+}
+
+$holdtime 6
+$chained !SC_STRAWS_PT4
+!SC_STRAWS_PT3
+{
+My colleagues are waiting at the tip of the Lambda reactor! Waiting for you, I mean...
+}
+
+$holdtime 8
+$chained !SC_STRAWS_PT5
+!SC_STRAWS_PT4
+{
+The reactor is shut down right now, but you can activate it on your way up! You'll have to flood the core anyway to get into the teleportation labs. 
+}
+
+$holdtime 8
+!SC_STRAWS_PT5
+{
+You're not authorized to know about those... but I can see you already know a great deal more than any one man is supposed to.
+}
+
+$holdtime 11.5
+!SC_GLUON2A
+{
+Were you in weapons research, too? I built the Gluon Gun, but I just can't bring myself to use it on a living creature. You don't look as if you have any trouble killing things...
+}
+
+$holdtime 9.5
+!SC_FLOOD
+{
+Freeman, isn't it? You'll need to activate both pumps to flood the reactor, and then that access pipe down there will take you to the core. Time is short!
+}
+
+$holdtime 9
+!SC_LINGER
+{
+Don't linger, Mr. Freeman! You've turned on the pumps! Now take the access pipe, flood the core, and get on up to the labs without delay!
+}
+
+$holdtime 3
+!SC_SURVEY1A
+{
+Gordon Freeman! You finally found us!
+}
+
+$holdtime 13.5
+$chained !SC_SURVEY3A_PT2
+!SC_SURVEY3A
+{
+This is the supply depot for our first survey team. Quite a few handsome specimens were collected from the border-world and brought back this way... Umm, before the survey members started being collected themselves, that is...
+}
+
+$holdtime 13.5
+!SC_SURVEY3A_PT2
+{
+We suspect there is an immense portal over there, created by the intense concentration of a single powerful being. You will know it when you see it... I hate to say this, Gordon... but you must kill it, if you can.
+}
+
+$holdtime 7.5
+!SC_SURVEY5A
+{
+Of course, you owe us nothing, Mr. Freeman! But you've come this far. You know as much about these creatures as anyone!
+}
+
+$holdtime 10.5
+!SC_SURVEY7A
+{
+Yes... so... If you're willing, my colleague is waiting for you at the main portal controls. He will open the gates for you, Mr. Freeman. Do hurry!
+}
+
+$holdtime 15.5
+!SC_LJUMP
+{
+This, Mr. Freeman, is a long-jump module! Created expressly for navigation in the world beyond. I certainly hope you received long-jump training, because once you're in Xen you will need it! I would advise you to practice before crossing over
+}
+
+$holdtime 5.5
+!SC_UPHERE
+{
+Hello, Freeman! I'm up here! Practice your long-jump if you must, but hurry up!
+}
+
+$holdtime 13.5
+!SC_PORTAL
+{
+All right, I can open the portal now. The process is complicated, and once it's begun I must not be interrupted or I will have to start all over again! Don't enter the beam until I give the okay. Understood? I will begin!
+}
+
+$holdtime 3
+!SC_PORTOPEN
+{
+It's ready! You must go, now!
+}
+
+$holdtime 3.5
+!SC_POSITION
+{
+We're almost there, Freeman... Get yourself in position!
+}
+
+$holdtime 3.5
+!SC_FOREVER
+{
+HURRY UP FREEMAN! I CAN'T KEEP IT OPEN FOREVER!
+}
+
+$holdtime 2.5
+!SC_NOTYET
+{
+Not yet, Freeman!
+}
+
+$holdtime 2.5
+!SC_FOOL
+{
+FREEMAN, YOU FOOL!!!
+}
+
+//==============================================================================
+// Human Grunts (generic)
+//==============================================================================
+
+$color  96 255 96
+$color2 48 128 48
+
+$holdtime 1.5
+!HG_GREN0
+{
+GRENADE!
+}
+
+$holdtime 1.5
+!HG_GREN1
+{
+TAKE COVER!
+}
+
+$holdtime 2
+!HG_GREN2
+{
+OH SHIT!
+}
+
+$holdtime 1.5
+!HG_GREN3
+{
+GET DOWN!
+}
+
+$holdtime 1.5
+!HG_GREN4
+{
+OH GOD!
+}
+
+$holdtime 1.5
+!HG_GREN5
+{
+NO!
+}
+
+$holdtime 1.5
+!HG_GREN6
+{
+MOVE!
+}
+
+$holdtime 2.5
+!HG_ALERT0
+{
+SQUAD, WE'VE GOT FREEMAN!
+}
+
+$holdtime 1.5
+!HG_ALERT1
+{
+TARGET!
+}
+
+$holdtime 1.5
+!HG_ALERT2
+{
+MOVEMENT!
+}
+
+$holdtime 2.7
+!HG_ALERT3
+{
+SHIT! WE'VE GOT HOSTILES!
+}
+
+$holdtime 2.5
+!HG_ALERT4
+{
+SQUAD, GET FREEMAN!
+}
+
+$holdtime 3.5
+!HG_ALERT5
+{
+SQUAD, NEUTRALIZE FREEMAN!
+}
+
+$holdtime 2
+!HG_ALERT6
+{
+MOVE IN!
+}
+
+$holdtime 2.5
+!HG_MONST0
+{
+BOGIES MY SECTOR!
+}
+
+$holdtime 2.2
+!HG_MONST1
+{
+WE'VE GOT BOGIES!
+}
+
+$holdtime 2.2
+!HG_MONST2
+{
+ALIEN ALERT!
+}
+
+$holdtime 2.5
+!HG_MONST3
+{
+ALIEN MOVEMENT!
+}
+
+$holdtime 1.5
+!HG_COVER0
+{
+TAKE COVER!
+}
+
+$holdtime 2.5
+!HG_COVER1
+{
+I NEED SUPPRESSING FIRE!
+}
+ 
+$holdtime 2.5
+!HG_COVER2
+{
+WE NEED BACKUP!
+}
+
+$holdtime 2
+!HG_COVER3
+{
+TOO HOT HERE!
+}
+
+$holdtime 2.5
+!HG_COVER4
+{
+FALL OUT!
+} 
+
+$holdtime 2.5
+!HG_COVER5
+{
+CLEAR THIS AREA!
+} 
+ 
+$holdtime 2
+!HG_COVER6
+{
+GOD DAMN!
+} 
+  
+$holdtime 2
+!HG_COVER7
+{
+COVER FIRE!
+}
+
+$holdtime 2.5
+!HG_THROW0
+{
+FIRE IN THE HOLE!
+} 
+
+$holdtime 1.5
+!HG_THROW1
+{
+TAKE THIS!
+} 
+ 
+$holdtime 2.5
+!HG_THROW2
+{
+Fire in the hole!
+} 
+ 
+$holdtime 2.5
+!HG_THROW3
+{
+Squad, stay down!
+} 
+ 
+$holdtime 3
+!HG_TAUNT0
+{
+Uhh, we got heavy fire here!
+}
+
+$holdtime 2.5
+!HG_TAUNT1
+{
+Roger, hold position!
+} 
+
+$holdtime 2.5
+!HG_TAUNT2
+{
+WE WILL KICK YOUR ASS!
+} 
+
+$holdtime 3
+!HG_TAUNT3
+{
+Mister, you are going down!
+} 
+
+$holdtime 2.2
+!HG_TAUNT4
+{
+You got nothing!
+} 
+
+$holdtime 2.2
+!HG_TAUNT5
+{
+REQUEST BACKUP!
+} 
+
+$holdtime 2
+!HG_CHARGE0
+{
+GO RECON!
+}
+
+$holdtime 1.5
+!HG_CHARGE1
+{
+MOVE IN!
+} 
+
+$holdtime 1.5
+!HG_CHARGE2
+{
+GO!
+}
+
+$holdtime 1.5
+!HG_CHARGE3
+{
+LET'S GO!
+} 
+
+$holdtime 2.5
+!HG_QUEST0
+{
+Stay alert people...
+}
+
+$holdtime 2.5
+!HG_QUEST1
+{
+Radio check, over.
+}
+
+$holdtime 2.5
+!HG_QUEST2
+{
+Maintain lookout.
+}
+
+$holdtime 2.5
+!HG_QUEST3
+{
+Squad, quiet down.
+}
+
+$holdtime 2.5
+!HG_QUEST4
+{
+Hold position.
+}
+
+$holdtime 2.5
+!HG_QUEST5
+{
+Sweep that sector.
+}
+
+$holdtime 3.5
+!HG_QUEST6
+{
+Uhh, go Tango sweep formation.
+}
+
+$holdtime 2.5
+!HG_QUEST7
+{
+Echo mission is go.
+}
+
+$holdtime 3.5
+!HG_QUEST8
+{
+Fire team, weapons check, ok.
+}
+
+$holdtime 3.5
+!HG_QUEST9
+{
+Fire team, objective Foxtrot Niner.
+}
+
+$holdtime 3
+!HG_QUEST10
+{
+Ok mission, Zero Niner.
+}
+
+$holdtime 4.5
+!HG_QUEST11
+{
+Squad, stay alert for Freeman, over.
+} 
+
+$holdtime 2.5
+!HG_ANSWER0
+{
+Uhh... Roger that.
+} 
+
+$holdtime 1.5
+!HG_ANSWER1
+{
+Yes, sir.
+} 
+
+$holdtime 2.5
+!HG_ANSWER2
+{
+Affirmative, sir.
+} 
+
+$holdtime 1.5
+!HG_ANSWER3
+{
+Negative.
+} 
+
+$holdtime 1.5
+!HG_ANSWER4
+{
+Roger.
+} 
+
+$holdtime 2
+!HG_ANSWER5
+{
+Ok, control.
+} 
+
+$holdtime 3.5
+!HG_ANSWER6
+{
+That is, uhh, affirmative...
+} 
+
+$holdtime 2.5
+!HG_CLEAR0
+{
+All clear, sir.
+} 
+
+$holdtime 2.5
+!HG_CLEAR1
+{
+Bravo post, clear.
+} 
+
+$holdtime 2.5
+!HG_CLEAR2
+{
+Delta team, clear.
+} 
+
+$holdtime 3.5
+!HG_CLEAR3
+{
+No sign of hostiles sir, over.
+} 
+ 
+$holdtime 3.5
+!HG_CLEAR4
+{
+No sign of objective sir, over.
+} 
+ 
+$holdtime 3
+!HG_CLEAR5
+{
+No movement on this level.
+} 
+ 
+$holdtime 3.5
+!HG_CLEAR6
+{
+Sir, sector secure, over.
+} 
+  
+$holdtime 4.2
+!HG_CLEAR7
+{
+Command post, team in position, over.
+} 
+  
+$holdtime 3.7
+!HG_CLEAR8
+{
+Recon, in position, all quiet.
+}  
+  
+$holdtime 3.5
+!HG_CLEAR9
+{
+Lookout post, all quiet, over.
+}   
+   
+$holdtime 2.5
+!HG_CLEAR10
+{
+Sir, I hear something...
+}   
+    
+$holdtime 4
+!HG_CLEAR11
+{
+Sir, uhh, zero movement, over.
+} 
+    
+$holdtime 3
+!HG_CLEAR12
+{
+Area secure sir, over.
+} 
+    
+$holdtime 2.5
+!HG_CHECK0
+{
+Ok, check in.
+}
+
+$holdtime 3.5
+!HG_CHECK1
+{
+Squad, are the hostiles clear?
+}
+
+$holdtime 2.5
+!HG_CHECK2
+{
+Check in people.
+}
+
+$holdtime 2.5
+!HG_CHECK3
+{
+Lookout, check in.
+}
+
+$holdtime 2.5
+!HG_CHECK4
+{
+Recon team, check in.
+}
+
+$holdtime 2.5
+!HG_CHECK5
+{
+Movement check, over.
+}
+
+$holdtime 3
+!HG_CHECK6
+{
+Check your zone, over.
+}
+
+$holdtime 2.5
+!HG_CHECK7
+{
+Everything ok there?
+}
+
+//==============================================================================
+// Human Grunts (scripted)
+//==============================================================================
+
+$holdtime 3
+!HG_SNOOP1A
+{
+So... who is this guy Freeman?
+}
+
+$holdtime 2.5
+!HG_SNOOP2A
+{
+They say he was at ground zero...
+}
+
+$holdtime 5.5
+!HG_SNOOP3A
+{
+Science team? You think he was responsible? Sabotage, maybe?
+}
+
+$holdtime 5.5
+!HG_SNOOP4A
+{
+Yeah, maybe!? All I know for sure is, he's been killing my buddies!
+}
+
+$holdtime 5.5
+!HG_SNOOP5A
+{
+Oh yeah, he'll pay. He will definitely pay!
+}
+
+$holdtime 1.5
+$chained !HG_AMBUSH_PT2
+!HG_AMBUSH
+{
+...
+}
+
+$holdtime 5.5
+$chained !HG_AMBUSH_PT3
+!HG_AMBUSH_PT2
+{
+GET HIM!
+}
+
+$holdtime 3.5
+$chained !HG_AMBUSH_PT4
+!HG_AMBUSH_PT3
+{
+Haha, nice hit.
+}
+
+$holdtime 2.5
+!HG_AMBUSH_PT4
+{
+Alright, we got him...
+}
+
+$holdtime 2.7
+!HG_DRAG1A
+{
+Where are we taking this Freeman guy?
+}
+
+$holdtime 2.5
+!HG_DRAG2A
+{
+Topside, for questioning.
+}
+
+$holdtime 4
+!HG_DRAG3A
+{
+What the hell for? We got him! Let's kill him now!
+}
+
+$holdtime 3
+!HG_DRAG4A
+{
+Uhh... And if they find the body?
+}
+
+$holdtime 2.6
+!HG_DRAG5A
+{
+Body!? What body?
+}
+
+$holdtime 3.5
+!HG_DRAG6A
+{
+Hahahahaha...
+}
+
+$holdtime 7
+!HG_SUCKS
+{
+I killed 12 dumbass scientists and not one of 'em fought back. This sucks...
+}
+
+$holdtime 7
+!HG_CIVVIES
+{
+I didn't sign on for this shit. Monsters, sure. But civilians? Who ordered this operation anyway?
+}
+
+$holdtime 10.5
+!HG_ABANDON
+{
+Forget about Freeman! We are cutting our losses and pulling out! Anyone left down there now is on his own! Repeat, if you weren't already, you are now f-
+}
+
+$holdtime 13.9
+$chained !HG_LEBUZ_PT2
+!HG_LEBUZ
+{
+Come in, Cooper. Do you copy? Forget about Freeman! We're abandoning the base. If you have any last bomb targets, mark them on the tactical map. Otherwise, get the hell out of there!
+}
+
+$holdtime 6.5
+!HG_LEBUZ_PT2
+{
+Repeat, we are pulling out and commencing air strikes. Give us targets or get below!
+}
+
+//============================================================
+// Black Mesa Intercom (VOX) (generic)
+//============================================================
+
+$color  208 104 255
+$color2 104  52 128
+ 
+$holdtime 2
+!NA0
+{
+Access denied.
+}
+ 
+$holdtime 3
+!NA1
+{
+Access is denied.
+}
+
+$holdtime 2.5
+!NA2
+{
+Unauthorized access.
+}
+ 
+$holdtime 2
+!NA3
+{
+Illegal access.
+}
+ 
+$holdtime 2.5
+!NA4
+{
+This door is locked.
+} 
+ 
+$holdtime 2.5
+!NA5
+{
+Unauthorized access.
+} 
+ 
+$holdtime 2.5
+!NA6
+{
+Entry forbidden.
+}
+ 
+$holdtime 2.5
+!NA7
+{
+Entry not permitted.
+}
+ 
+$holdtime 3.5
+!NA8
+{
+No unauthorized personnel.
+}
+  
+$holdtime 5
+!NA9
+{
+You do not have access to this facility.
+}
+  
+$holdtime 3.5
+!NA10
+{
+Sorry, you may not enter.
+} 
+
+$holdtime 3.5
+!NA11
+{
+Sorry, this door is locked.
+}
+  
+$holdtime 4.5
+!NA12
+{
+Please, move away from this area.
+}
+  
+$holdtime 3.5
+!NA13
+{
+Please, move away from door.
+} 
+  
+$holdtime 3
+!NA14
+{
+You will not get in.
+}
+  
+$holdtime 3
+!NA15
+{
+Entry is not an option.
+}
+  
+$holdtime 3
+!NA16
+{
+Will we do this all day.
+}
+  
+$holdtime 3
+!NA17
+{
+Move on immediately!
+} 
+  
+$holdtime 3.5
+!NA18
+{
+NO, NOO, and NOOO!
+}
+
+$holdtime 2
+!EA0
+{
+Access granted.
+}
+
+$holdtime 2
+!EA1
+{
+Access permitted.
+}
+
+$holdtime 2
+!EA2
+{
+Entry granted.
+} 
+
+$holdtime 2
+!EA3
+{
+Entry permitted.
+} 
+
+$holdtime 2.5
+!EA4
+{
+Access authorized.
+} 
+
+$holdtime 2.5
+!EA5
+{
+Entry is permitted.
+}
+
+$holdtime 2.5
+!EA6
+{
+Access authorized.
+} 
+
+$holdtime 3.7
+!EA7
+{
+Access to facility, granted.
+}
+
+$holdtime 2
+!EA8
+{
+Access granted.
+} 
+
+$holdtime 3
+!ND0
+{
+Security lock is engaged.
+}
+
+$holdtime 3
+!ND1
+{
+Secure area, no entry.
+} 
+
+$holdtime 3
+!ND2
+{
+Security lockout, no entry.
+} 
+
+$holdtime 3
+!ND3
+{
+Secure door, no entry.
+} 
+
+$holdtime 3
+!ND4
+{
+Security system in force.
+}  
+
+$holdtime 4
+!ND5
+{
+Security system armed, no entry.
+} 
+ 
+$holdtime 2.5
+!ND6
+{
+Door is: Secured.
+}
+ 
+$holdtime 3.5
+!ND7
+{
+Illegal access, move away.
+} 
+ 
+$holdtime 3.5
+!ED0
+{
+Security lock disengaged.
+} 
+
+$holdtime 3.5
+!ED1
+{
+Security clear, proceed.
+} 
+
+$holdtime 3.5
+!ED2
+{
+Security lockout, released.
+}  
+
+$holdtime 3.5
+!ED3
+{
+Secure override accepted.
+}  
+ 
+$holdtime 3.5
+!ED4
+{
+Security access acknowledged.
+}
+  
+$holdtime 3.5
+!ED5
+{
+Security system disengaged.
+}
+  
+$holdtime 3.5
+!ED6
+{
+Door security disengaged.
+}
+  
+$holdtime 3.5
+!NF0
+{
+Emergency blast door: Activated.
+}
+
+$holdtime 3.5
+!NF1
+{
+Emergency blast shield: Activated.
+}
+  
+$holdtime 3.7
+!NF3
+{
+The blast containment shield is down.
+}
+  
+$holdtime 3.5
+!EF0
+{
+Emergency blast door: Open.
+}
+  
+$holdtime 4
+!EF1
+{
+Emergency blast shield: Deactivated.
+}
+
+$holdtime 4
+!EF3
+{
+Blast containment shield is: Open.
+}
+ 
+$holdtime 4
+!NFIRE0
+{
+Fire containment door is: Down.
+}
+  
+$holdtime 4
+!EFIRE0
+{
+Fire containment door is: Open.
+} 
+  
+$holdtime 4
+!NCHEM0
+{
+Chemical leak containment door: Activated.
+} 
+  
+$holdtime 4
+!ECHEM0
+{
+Chemical leak containment door: Open.
+}
+  
+$holdtime 4
+!NRAD0
+{
+Radiation containment door: Activated.
+}
+  
+$holdtime 4
+!ERAD0
+{
+Radiation containment door: Open.
+}
+  
+$holdtime 4
+!NCON0
+{
+Emergency containment door engaged.
+} 
+  
+$holdtime 4
+!ECON0
+{
+Emergency containment door disengaged.
+} 
+  
+$holdtime 4
+!NG0
+{
+Sorry, this door is inoperative.
+}
+  
+$holdtime 4
+!NG1
+{
+Sorry, door out of service.
+}
+  
+$holdtime 4.5
+!NG2
+{
+Door damage detected, please call service personnel.
+}
+
+$holdtime 4
+!NH0
+{
+No access, maintenance area.
+}
+
+$holdtime 4.5
+!NH1
+{
+No personnel permitted in maintenance area.
+}
+
+$holdtime 4
+!EH0
+{
+Maintenance area: Access granted.
+} 
+
+$holdtime 3.5
+!EH1
+{
+Maintenance area door: Open.
+} 
+
+$holdtime 5.5
+!T0
+{
+EXTREME HAZARD: Defense system is armed in this zone.
+}
+
+$holdtime 4.5
+!T1
+{
+HAZARD AREA: Defense system activated.
+} 
+
+$holdtime 4.5
+!T2
+{
+DANGER: Turret perimeter defense system armed.
+}
+
+$holdtime 5
+!T3
+{
+EXTREME HAZARD: Nearest defense system engaged.
+} 
+ 
+$holdtime 5
+!T4
+{
+DANGER: Base defense turret system may power up.
+}
+ 
+$holdtime 4.5
+!T5
+{
+DANGER: Automatic defense system activated.
+} 
+ 
+$holdtime 3.5
+!WE0
+{
+WARNING: High voltage cable.
+} 
+
+$holdtime 3.5
+!WE1
+{
+WARNING: High power cable.
+}
+
+$holdtime 3.5
+!WE2
+{
+WARNING: Electric shock hazard.
+}
+
+$holdtime 4.5
+!WE3
+{
+WARNING: Severe electric shock hazard.
+}
+
+$holdtime 4
+!DR0
+{
+DANGER: Radiation leak detected.
+}
+
+$holdtime 4.5
+!DR1
+{
+DANGER: Radiation hazard detected.
+}
+
+$holdtime 4.5
+!DR2
+{
+DANGER: High radiation level detected.
+}
+
+$holdtime 5.5
+!DR4
+{
+DANGER: Safety violation, extreme radiation level detected.
+}
+
+$holdtime 5.5
+!DC0
+{
+DANGER: Chemical leak, area now a high health hazard.
+}
+
+$holdtime 5
+!DC1
+{
+DANGER: Chemical coolant leak, health hazard zone.
+}
+
+$holdtime 6
+!DC2
+{
+DANGER: Chemical containment breach, all personnel evacuate this area.
+}
+
+$holdtime 4.5
+!DC3
+{
+DANGER: Supercooled chemical leak.
+}
+
+$holdtime 4.5
+!DC4
+{
+DANGER: Supercooled helium leak.
+} 
+
+$holdtime 5
+!DB0
+{
+DANGER: Liquid biohazard leak in immediate area.
+} 
+
+$holdtime 6
+!DB1
+{
+DANGER: Coolant leak, severe biohazard now in this area.
+} 
+
+$holdtime 5.5
+!DB2
+{
+DANGER: Liquid biohazard released, evacuate area.
+} 
+ 
+$holdtime 5.5
+!DB3
+{
+DANGER: Biohazard detected in immediate area.
+} 
+ 
+$holdtime 3.5
+!TR_A
+{
+3... 2... 1...
+} 
+
+$holdtime 3.5
+!TR_B
+{
+Target system deactivated.
+} 
+
+//============================================================
+// Black Mesa Base Computer (VOX) Level Subtitles
+//============================================================
+$holdtime 7.5
+!C1A0_0
+{
+Agent Coomer, report to: Topside Tactical Operations Center.
+}
+
+$holdtime 7
+!C1A0_1
+{
+Inspection team, to: Radioactive Materials Handling bay.
+}
+
+$holdtime 7
+!C1A0_2
+{
+Agent 16, report to: Administration Sub-level 2.
+}
+
+$holdtime 6.5
+!C1A0_3
+{
+Dr. Johnson, please call: Observation Tank 1.
+}
+
+$holdtime 7.5
+!C1A0_4
+{
+Dr. West, please report to: Lambda Reactor Complex.
+}
+
+$holdtime 6
+!C1A0_5
+{
+Dr. Cross: call 729 please.
+}
+
+$holdtime 6
+!C1A0_6
+{
+Sergeant Bailey to: Topside Checkpoint Bravo.
+}
+
+$holdtime 7.5
+!C1A0_7
+{
+Cryogenic Safety Crew: Report status at 1100, please.
+}
+
+$holdtime 8
+!C1A0_8
+{
+Coded message for Captain Black: Command and Communication Center.
+}
+
+$holdtime 8.8
+!C1A0_9
+{
+Sector C science personnel, report to: Anomalous Materials test laboratory.
+}
+
+$holdtime 8.5
+!C1A0_10
+{
+Dr. Freeman to: Anomalous Materials test laboratory, immediately!
+}
+
+$holdtime 8.5
+!C1A0_11
+{
+ATTENTION: Experimental Propulsion laboratory test fire in 90 minutes.
+}
+
+$holdtime 5.5
+!C1A0_12
+{
+Hydro Plant now operating at 60%
+}
+
+$holdtime 6
+!C1A0_13
+{
+Black Mesa topside temperature is 93 degrees.
+}
+ 
+$holdtime 7.2
+!C1A0_14
+{
+Launch officer reports, alpha satellite deploy is nominal.
+}
+  
+$holdtime  7.2
+!C1A0_15
+{
+Dr. Birdwell reports: Superconducting interchange is activated.
+}
+  
+$holdtime 8.5
+!C1A0_16
+{
+ATTENTION: Report any security violation to Administration Sub-level 1.
+}
+  
+$holdtime 7.5
+!C1A0_17
+{
+ATTENTION: Service personnel, please clear Helicopter Hangar 1.
+}
+  
+$holdtime 6.5
+!C1A0_18
+{
+Shield inspection crew, reports primary reactor nominal.
+}
+  
+$holdtime 7.2
+!C1A0_19
+{
+Transportation control reports, all systems on time.
+}
+  
+$holdtime 8.2
+!C1A0_20
+{
+Dr. Victor, report to: Supercooled Laser laboratory, please.
+}
+  
+$holdtime 6.5
+!C1A0_21
+{
+Sergeant Guthrie, report to: Topside Motorpool immediately.
+}
+  
+$holdtime 6.5
+!C1A0_22
+{
+Uranium shipment inspection team to Sector D.
+}
+
+$holdtime 9.5
+!C1A1_0
+{
+WARNING: High energy detonation detected in Materials laboratory.
+}
+
+$holdtime 7.5
+!C1A1_1
+{
+ATTENTION: Security personnel to Sector C immediately.
+}
+
+$holdtime 8
+!C1A1_2
+{
+WARNING: Unauthorized biological forms detected in Sector C.
+}
+
+$holdtime 9.5
+!C1A1_3
+{
+WARNING: Unauthorized biological forms detected in Coolant Maintenance Area.
+}
+ 
+$holdtime 8.5
+!C1A1_4
+{
+Any damage control team to Sector C immediately.
+}
+ 
+$holdtime 7.5
+!C1A1_5
+{
+WARNING: Sector C elevator failure. Do not use!
+}
+ 
+$holdtime 7.5
+!C1A1_6
+{
+Biohazard warning in Sector B and C.
+} 
+ 
+$holdtime 8.6
+!C1A1_7
+{
+ATTENTION: Sector C science personnel, evacuate area immediately.
+} 
+ 
+$holdtime 8.5
+!C1A1_8
+{
+WARNING: Flooding detected on Sub-level 3, Sector B.
+} 
+ 
+$holdtime 9
+!C1A1_9
+{
+WARNING: Anomalous energy field detected in Administration Center.
+} 
+ 
+$holdtime 8.5
+!C1A1_10
+{
+ATTENTION: Any Sector C science personnel, please report status.
+} 
+ 
+$holdtime 8.6
+!C1A1_11
+{
+ATTENTION: Sector C science personnel, please report status immediately.
+} 
+
+$holdtime 7
+!C1A2_0
+{
+Emergency cleanup team to: Biological Waste Processing Plant.
+} 
+
+$holdtime 8.5
+!C1A2_1
+{
+ATTENTION: Administration personnel; Evacuate Sector D immediately.
+} 
+
+$holdtime 6.5
+!C1A2_2
+{
+ATTENTION: Security personnel to Sector D.
+} 
+
+$holdtime 6.5
+!C1A2_3
+{
+Service team: Check elevator 1; Sector C.
+} 
+
+$holdtime 9
+!C1A2_4
+{
+WARNING: Unauthorized biological forms detected in: Ventilation system.
+}
+
+$holdtime 6.5
+!C1A2_5
+{
+Lieutenant Backman and cleanup team: To Sub-level 3.
+}
+
+$holdtime 8.5
+!C1A2_6
+{
+DANGER: Turret defense systems activated; Sector D.
+}
+
+$holdtime 9.5
+!C1A2_7
+{
+Security officer reports: Men down in Sector D, Medical help required.
+}
+
+$holdtime 9.5
+!C1A2_8
+{
+EXTREME DANGER: All turret defense systems activated; Sector D.
+}
+
+$holdtime 8
+!C1A2_9
+{
+Turret repair personnel, to: High Security Materials storage area.
+}
+
+$holdtime 8.5
+!C1A2_10
+{
+ATTENTION: Electric shock hazard detected in Administration Center.
+}
+
+$holdtime 9
+!C1A2_11
+{
+Security officer reports: Medical emergency; Administration Center.
+}
+
+$holdtime 9
+!C1A3_0
+{
+ATTENTION: All science personnel report topside for immediate questioning.
+}
+
+$holdtime 8.5
+!C1A3_1
+{
+All personnel evacuate: High Security Materials Storage Facility.
+}
+
+$holdtime 7.5
+!C1A3_2
+{
+Emergency Uranium Containment team: To Sector D.
+}
+
+$holdtime 7.5
+!C1A3_3
+{
+Turret maintenance team to: Central Command and Communications Center.
+}
+
+$holdtime 8.5
+!C1A3_4
+{
+Military personnel, prosecute: Kilo India Lima with extreme force.
+}
+
+$holdtime 8.5
+!C1A3_5
+{
+ATTENTION: This announcement system; now under military command.
+}
+
+$holdtime 8.5
+!C1A3_6
+{
+Search and Destroy Force Bravo: Reports, secondary objective terminated.
+}
+
+$holdtime 8.5
+!C1A3_7
+{
+Bravo Force reports: Hotel Sierra Mike facility is secured.
+}
+
+$holdtime 8
+!C1A3_8
+{
+ATTENTION: All military personnel; Atomic biological chemical alert.
+}
+
+$holdtime 8.5
+!C1A3_9
+{
+ATTENTION: All military personnel; Extreme atomic biological chemical alert.
+}
+ 
+$holdtime 9.5
+!C1A3_10
+{
+ATTENTION: Black Mesa Announcement System; now under military command.
+}
+ 
+$holdtime 8.5
+!C1A3_warn
+{
+ATTENTION: Security lockout alert. Security door will engage.
+}
+ 
+$holdtime 12.5
+!C1A3_lock
+{
+Security door engaged: 5... 4... 3... 2... 1... Lockout activated.
+}
+
+$holdtime 8.5
+!C1A4_0
+{
+ATTENTION: Experimental rocket test fire disengaged.
+}
+
+$holdtime 6.5
+!C1A4_1
+{
+Repair crew report to: Track Control, Sector E.
+}
+
+$holdtime 6.5
+!C1A4_2
+{
+Maintenance Team Blue: Check heat exchange coolant level.
+}
+
+$holdtime 7.5
+!C1A4_3
+{
+Maintenance Team Green: Check voltage on Cable 729.
+} 
+
+$holdtime 9.5
+!C1A4_4
+{
+Medical Team to: Materials Storage Facility Team Bravo reports men down.
+} 
+
+$holdtime 7.5
+!C1A4_5
+{
+Alpha Force move out. Science personnel resistance extreme.
+}
+
+$holdtime 9.5
+!C1A4_6
+{
+ATTENTION: All Black Mesa security personnel; wanted for immediate questioning.
+}
+
+$holdtime 9.7
+!C1A4_7
+{
+ATTENTION: Gordon Freeman, report to Military personnel for immediate security check.
+}
+
+$holdtime 9.5
+!C1A4_8
+{
+WARNING: Hostile biological forms detected in: Track control, Sector E.
+}
+
+$holdtime 6.7
+!FUEL_OFF
+{
+Fuel and power must be engaged to: Activate rocket test fire.
+}
+ 
+$holdtime 8.5
+!C2A1_0
+{
+WARNING: Track power failure. Check lower level power plant.
+}
+ 
+$holdtime 8
+!C2A1_1
+{
+Maintenance team yellow: Please service relay 394.
+}
+ 
+$holdtime 9
+!C2A1_2
+{
+ATTENTION: Gordon Freeman, report to; Military personnel for immediate security check.
+}
+  
+$holdtime 6.5
+!C2A1_3
+{
+Delta team reports: Launch Control secured.
+}
+  
+$holdtime 8.5
+!C2A1_4
+{
+DANGER: Turret defense systems - ACTIVATED; Silo E.
+}
+ 
+$holdtime 5.5
+!C2A1_5
+{
+Sector E Track Control: Please report status.
+}
+ 
+$holdtime 6.5
+!C2A1_6
+{
+Echo force reports: Perimeter breach; Sector E.
+} 
+  
+$holdtime 10
+!C2A1_7
+{
+ATTENTION: Search and Destroy Force go to Code 3. Eliminate all biological forms.
+} 
+   
+$holdtime 9
+!C2A1_8
+{
+DANGER: Unauthorized detonation detected in; Experimental Propulsion laboratory.
+} 
+ 
+$holdtime 4.5
+!POWER_OFF
+{
+Main power is: NOT ON.
+} 
+ 
+$holdtime 3.5
+!POWER_ON
+{
+Main power is: ON.
+} 
+ 
+$holdtime 7.5
+!C2A2_0
+{
+ATTENTION: Clear Silo E launch area immediately.
+} 
+ 
+$holdtime 7.5
+!C2A2_1
+{
+Containment inspection team to: Advanced Biological Research Laboratory.
+} 
+ 
+$holdtime 7.5
+!C2A2_2
+{
+Medical team to Sector E, Echo Team has men down.
+} 
+ 
+$holdtime 9.5
+!C2A2_3
+{
+Alert military personnel: Authorized to prosecute Gordon Freeman with extreme force.
+} 
+ 
+$holdtime 9.5
+!C2A2_4
+{
+ALERT: Squad in Silo E, Freeman may be operating inside your perimeter.
+} 
+ 
+$holdtime 6
+!C2A2_5
+{
+Launch Control: Train activity detected.
+} 
+ 
+$holdtime 8.8
+!C2A2_6
+{
+Medical team to Sector E, Echo Team squad failed to: reach checkpoint.
+} 
+ 
+$holdtime 7.5
+!C2A2_7
+{
+Satellite Rocket Loading Bay: Reports status GREEN.
+} 
+ 
+$holdtime 19.5
+!C2A2_launch
+{
+Satellite launch system activated: 5... 4... 3... 2... 1... Launch is GO.
+} 
+
+$holdtime 7
+!C2A4_0
+{
+WARNING: Emergency containment system activated.
+} 
+
+$holdtime 7
+!C2A4_1
+{
+ALERT: Biological containment breach detected.
+} 
+
+$holdtime 7.5
+!C2A4_2
+{
+WARNING: Biological sterilization system activated.
+} 
+
+$holdtime 10
+!C2A4_3
+{
+ATTENTION: Hostile alien military force detected; Advanced Biological Research laboratory.
+}
+
+$holdtime 9.7
+!C2A4_4
+{
+Search and Destroy Force reports: Backup required. Engaged with extreme resistance.
+} 
+ 
+$holdtime 8
+!C2A4_5
+{
+Topside Containment Force ALERT: Hostile alien military force detected.
+} 
+  
+$holdtime 5.5
+!C2A4_6
+{
+High Power Laser status is: GREEN.
+} 
+  
+$holdtime 8
+!C2A4_7
+{
+Alien containment system failure, use sterilization chamber.
+} 
+   
+$holdtime 9
+!C2A4_8
+{
+ATTENTION: All topside military personnel, clear Helicopter Hangar 4.
+} 
+   
+$holdtime 9.5
+!C2A4_9
+{
+Hostile alien breach: Topside Checkpoint Alpha, Checkpoint Delta.
+} 
+   
+$holdtime 12.5
+!C2A4_10
+{
+ALERT: Topside Containment Force: Use any force to prosecute Gordon Freeman. You are authorized to shoot on sight.
+} 
+   
+$holdtime 8
+!C2A4_11
+{
+ALERT: Topside Containment Force: Freeman may approach your perimeter.
+} 
+   
+$holdtime 7.5
+!C2A4_12
+{
+Gordon, all science personnel will be terminated until you surrender.
+} 
+   
+$holdtime 5.5
+!C2A4_ster
+{
+Sterilization system activated.
+}
+   
+$holdtime 5.5
+!C3A1_0
+{
+WARNING: Primary Antenna failure detected.
+}
+   
+$holdtime 6.7
+!C3A1_1
+{
+Clear Topside Motorpool for emergency medical helicopter.
+}
+   
+$holdtime 6.5
+!C3A1_2
+{
+WARNING: Topside Armory security bypass detected.
+}
+   
+$holdtime 7.5
+!C3A1_3
+{
+WARNING: Radiation leak detected in Primary Antenna area.
+}
+   
+$holdtime 10.5
+!C3A1_4
+{
+Search and Destroy Force Kilo, Central Command reports: hostile alien force inside perimeter.
+}
+     
+$holdtime 7.5
+!C3A1_5
+{
+Message for Gordon Freeman: You will not escape this time.
+}
+     
+$holdtime 8.5
+!C3A1_6
+{
+Attention all units: Renegade Freeman is now your primary target.
+} 
+     
+$holdtime 8.5
+!C3A1_7
+{
+ALERT: Remaining containment force, Freeman may have experimental weapon.
+} 
+      
+$holdtime 8.7
+!C3A1_8
+{
+All personnel: Evacuate Lambda Complex, extreme dimensional malfunction detected.
+} 
+      
+$holdtime 10
+!C3A1_9
+{
+Fire Control Team to Topside Armory, Checkpoint Delta, Topside Hydro Plant.
+} 
+      
+$holdtime 7.5
+!C3A2_0
+{
+WARNING: Cross dimensional power field activity detected.
+}
+      
+$holdtime 9.5
+!C3A2_1
+{
+WARNING: Unauthorized biological force detected in; cross dimensional power field.
+}
+      
+$holdtime 9
+!C3A2_2
+{
+All personnel evacuate: Lambda Complex, extreme dimensional malfunction detected.
+}
+      
+$holdtime 8.5
+!C3A2_3
+{
+Unauthorized activity detected in: Main Reactor Core.
+} 
+      
+$holdtime 10
+!C3A2_4
+{
+DANGER: High energy exchange detected in: Radioactive Materials Handling Bay.
+} 
+      
+$holdtime 8
+!C3A2_5
+{
+Biological force detected in: Primary Coolant System.
+}  
+      
+$holdtime 6.5
+!C3A2_6
+{
+Lambda Complex reports: Dimensional contamination.
+} 
+      
+$holdtime 8.5
+!C3A2_7
+{
+Lambda Complex reports: Dimensional containment system failure.
+} 
+      
+$holdtime 4.5
+!C3A2_target
+{
+Satellite target system: ENGAGED.
+} 
+      
+$holdtime 11.5
+!C3A2_portal
+{
+WARNING: Cross Dimensional Portal Device; Power level is 120%.
+} 
+      
+$holdtime 9.5
+!C3A2_core
+{
+ATTENTION: Lambda Complex personnel; Primary Core activated.
+}  
+
+//==============================================================================
+// HEV Suit
+//==============================================================================
+
+$color  255 192 58
+$color2 128  96 29
+
+$holdtime 11.5
+!HEV_A0
+{
+Welcome to the H.E.V. Mark 4 protective system, for use in hazardous environment conditions.
+} 
+
+$holdtime 11
+$chained !HEV_AAx_PT2
+!HEV_AAx
+{
+Welcome to the H.E.V. Mark 4 protective system, for use in hazardous environment conditions.
+} 
+
+$holdtime 4.5
+$chained !HEV_AAx_PT3
+!HEV_AAx_PT2
+{
+High impact reactive armor: ACTIVATED.
+}
+
+$holdtime 4.5
+$chained !HEV_AAx_PT4
+!HEV_AAx_PT3
+{
+Atmospheric contaminant sensors: ACTIVATED.
+}
+
+$holdtime 3.5
+$chained !HEV_AAx_PT5
+!HEV_AAx_PT4
+{
+Vital sign monitoring: ACTIVATED.
+}
+
+$holdtime 3.5
+$chained !HEV_AAx_PT6
+!HEV_AAx_PT5
+{
+Automatic medical systems: ENGAGED.
+}
+
+$holdtime 4.2
+$chained !HEV_AAx_PT7
+!HEV_AAx_PT6
+{
+Defensive weapon selection system: ACTIVATED.
+}
+
+$holdtime 3.6
+$chained !HEV_AAx_PT8
+!HEV_AAx_PT7
+{
+Munition level monitoring: ACTIVATED.
+}
+
+$holdtime 3.7
+$chained !HEV_AAx_PT9
+!HEV_AAx_PT8
+{
+Communications interface: ONLINE.
+}
+
+$holdtime 3
+!HEV_AAx_PT9
+{
+Have a very safe day!
+}
+
+$holdtime 3.5
+!HEV_A1
+{
+Power assisted movement: ACTIVATED.
+}
+
+$holdtime 4.2
+!HEV_A2
+{
+High impact reactive armor: ACTIVATED.
+}
+
+$holdtime 4.2
+!HEV_A3
+{
+Atmospheric contaminant sensors: ACTIVATED.
+}
+
+$holdtime 3.5
+!HEV_A4
+{
+Vital sign monitoring: ACTIVATED.
+}
+
+$holdtime 3.7
+!HEV_A5
+{
+Munition level monitoring: ACTIVATED.
+}
+
+$holdtime 3.7
+!HEV_A6
+{
+Communications interface: ONLINE.
+}
+
+$holdtime 4.2
+!HEV_A7
+{
+Defensive weapon selection system: ACTIVATED.
+}
+
+$holdtime 3.5
+!HEV_A8
+{
+Automatic medical systems: ENGAGED.
+}
+
+$holdtime 4
+!HEV_A9
+{
+Power level is: 100%.
+}
+
+$holdtime 4
+!HEV_A10
+{
+Have a very safe day!
+}
+
+$holdtime 5
+!HEV_MED0
+{
+Insufficient medical supplies to repair damage.
+}
+
+$holdtime 4.5
+!HEV_MED1
+{
+Automatic medical systems: ENGAGED.
+}
+
+$holdtime 4
+!HEV_MED2
+{
+Administering medical attention.
+}
+
+$holdtime 7
+!HEV_HEAL0
+{
+Wound sterilized. Morphine administered.
+}
+
+$holdtime 7
+!HEV_HEAL1
+{
+Local torniquette applied. Bleeding has stopped.
+}
+
+$holdtime 3.7
+!HEV_HEAL2
+{
+Bleeding has stopped.
+}
+
+$holdtime 4
+!HEV_HEAL3
+{
+Blood plasma administered.
+}
+
+$holdtime 4.5
+!HEV_HEAL4
+{
+Antitoxin administered.
+}
+
+$holdtime 4.5
+!HEV_HEAL5
+{
+Antidote administered.
+}
+
+$holdtime 4
+!HEV_HEAL6
+{
+Wound sterilised.
+}
+
+$holdtime 4.2
+!HEV_HEAL7
+{
+Morphine administered.
+}
+
+$holdtime 4.7
+!HEV_HEAL8
+{
+Medical damage repaired.
+}
+
+$holdtime 4
+!HEV_DMG0
+{
+Minor lacterations detected.
+}
+
+$holdtime 4
+!HEV_DMG1
+{
+Major lacerations detected.
+}	
+
+$holdtime 4
+!HEV_DMG2
+{
+Internal bleeding detected.
+}
+
+$holdtime 5
+!HEV_DMG3
+{
+WARNING: Blood toxin levels detected.
+}
+
+$holdtime 4
+!HEV_DMG4
+{
+Minor fracture detected.
+} 
+ 
+$holdtime 4
+!HEV_DMG5
+{
+Major fracture detected.
+}  
+ 
+$holdtime 4
+!HEV_DMG6
+{
+Blood loss detected.
+} 
+  
+$holdtime 4
+!HEV_DMG7
+{
+Seek medical attention.
+} 
+  
+$holdtime 4
+!HEV_HLTH0
+{
+WARNING: Vital signs dropping.
+} 
+  
+$holdtime 4.1
+!HEV_HLTH1
+{
+Vital signs are dropping.
+} 
+  
+$holdtime 4.5
+!HEV_HLTH2
+{
+WARNING: Vital signs critical.
+} 
+  
+$holdtime 5
+!HEV_HLTH3
+{
+EMERGENCY: User death imminent.
+} 
+   
+$holdtime 6
+!HEV_HLTH4
+{
+Vital signs are dropping. Evacuate area.
+} 
+    
+$holdtime 6
+!HEV_HLTH5
+{
+WARNING: Vital signs critical. Evacuate area.
+}  
+   
+$holdtime 10
+!HEV_HLTH6
+{
+EMERGENCY: User death imminent. Evacuate area immediately.
+} 
+   
+$holdtime 5
+!HEV_SHOCK
+{
+WARNING: Electrical damage detected.
+} 
+   
+$holdtime 5
+!HEV_FIRE
+{
+WARNING: Extreme heat damage detected.
+} 
+   
+$holdtime 5
+!HEV_AIM_ON
+{
+Automatic target acquisition system: ACTIVATED.
+} 
+   
+$holdtime 5
+!HEV_AIM_OFF
+{
+Automatic target acquisition system DEACTIVATED.
+}
+   
+$holdtime 3.5
+!HEV_BATTERY
+{
+HEV Power Unit acquired.
+}
+   
+$holdtime 3
+!HEV_MEDKIT
+{
+Automatic Medical Kit.
+}
+ 
+$holdtime 6.5
+!HEV_0P
+{
+WARNING: HEV power level below 5%.
+}
+    
+$holdtime 3
+!HEV_1P
+{
+Power: 10%.
+}
+
+$holdtime 3
+!HEV_2P
+{
+Power: 15%.
+}
+
+$holdtime 3
+!HEV_3P
+{
+Power: 20%.
+}
+
+$holdtime 4
+!HEV_4P
+{
+Power: 25%.
+}
+
+$holdtime 3
+!HEV_5P
+{
+Power: 30%.
+}
+
+$holdtime 4
+!HEV_6P
+{
+Power: 35%.
+}  
+ 
+$holdtime 3
+!HEV_7P
+{
+Power: 40%.
+} 
+ 
+$holdtime 4
+!HEV_8P
+{
+Power: 45%.
+} 
+  
+$holdtime 3
+!HEV_9P
+{
+Power: 50%.
+}
+  
+$holdtime 4
+!HEV_10P
+{
+Power: 55%.
+} 
+   
+$holdtime 3
+!HEV_11P
+{
+Power: 60%.
+}
+   
+$holdtime 4
+!HEV_12P
+{
+Power: 65%.
+}
+   
+$holdtime 3
+!HEV_13P
+{
+Power: 70%.
+} 
+    
+$holdtime 4
+!HEV_14P
+{
+Power: 75%.
+} 
+
+$holdtime 3
+!HEV_15P
+{
+Power: 80%.
+} 
+
+$holdtime 4
+!HEV_16P
+{
+Power: 85%.
+}  
+ 
+$holdtime 3
+!HEV_17P
+{
+Power: 90%.
+}  
+ 
+$holdtime 4
+!HEV_18P
+{
+Power: 95%.
+}   
+  
+$holdtime 4.5
+!HEV_19P
+{
+Power level is: 100%.
+} 
+  
+$holdtime 2.5
+!HEV_AMO0
+{
+Ammunition depleted.
+} 
+   
+$holdtime 3.5
+!HEV_DET0
+{
+WARNING: Biohazard detected.
+} 
+    
+$holdtime 3.5
+!HEV_DET1
+{
+WARNING: Hazardous chemical detected.
+}
+    
+$holdtime 5
+!HEV_DET2
+{
+WARNING: Hazardous radiation levels detected.
+}
+
+
+//============================================================
+// Nihilanth
+//============================================================
+
+$color  255 140 140
+$color2 255  70  70
+
+$holdtime 8.5
+!NIL_ALONE
+{
+Alone... not you alone... not you alone...
+}
+
+$holdtime 4.5
+!NIL_COMES
+{
+Comes... another...
+}
+
+$holdtime 8.5
+!NIL_DECEIVE
+{
+Deceive you... will deceive you...
+}
+
+$holdtime 7.5
+!NIL_DIE
+{
+Die... you all die... you all die...
+}
+
+$holdtime 5.5
+!NIL_DONE
+{
+Done... what have you done...
+}
+
+$holdtime 6
+!NIL_FREEMAN
+{
+Freeman!
+}
+
+$holdtime 8.5
+!NIL_LAST
+{
+The last... you are... the last... you are...
+}
+
+$holdtime 14
+!NIL_NOTMAN
+{
+You are man... he is not man... for you he waits... for you...
+}
+
+$holdtime 8.5
+!NIL_NOWDIE
+{
+Now die... now die... now...
+}
+
+$holdtime 8.5
+!NIL_SLAVES
+{
+Their slaves... we are their slaves... we are...
+}
+
+$holdtime 6
+!NIL_THELAST
+{
+The last... I am the last...
+}
+
+$holdtime 7.5
+!NIL_THETRUTH
+{
+The truth... you can never know... the truth...
+}
+
+$holdtime 7.5
+!NIL_THIEVES
+{
+Thieves... you all are thieves... you all are...
+}
+
+$holdtime 5.5
+!NIL_WIN
+{
+Win... you cannot win...
+}
+
+//============================================================
+// GMan
+//============================================================
+
+$color  136 144 176
+$color2  68  72  88
+
+$holdtime 17.5
+!GM_SUIT
+{
+Gordon Freeman, in the flesh. Or rather, in the hazard suit. I took the liberty of relieving you of your weapons; most of them were government property. As for the suit, I think you've earned it...
+}
+
+$holdtime 13.5
+!GM_NASTY
+{
+The borderworld, Xen, is in our control for the time being, thanks to you. Quite a nasty piece of work you managed over there. I am impressed...
+}
+
+$holdtime 20.5
+!GM_POTENTIAL
+{
+That's why I'm here, Mr. Freeman. I have recommended your services to my employers, and they have authorized me to offer you a job. They agree with me that you have limitless potential...
+}
+
+$holdtime 14
+!GM_STEPIN
+{
+You've proved yourself a decisive man, so I don't expect you'll have any trouble deciding what to do. If you're interested, just step into the portal and I will take that as a yes...
+}
+
+$holdtime 14
+!GM_OTHERWISE
+{
+Otherwise... well... I can offer you a battle you have no chance of winning. Rather an anticlimax, after what you've just survived.
+}
+
+$holdtime 2.5
+!GM_1CHOOSE
+{
+Time to choose...
+}
+
+$holdtime 2.5
+!GM_2CHOOSE
+{
+It's time to choose...
+}
+
+$holdtime 5.7
+!GM_WISE
+{
+Wisely done, Mr. Freeman. I will see you up ahead...
+}
+
+$holdtime 4
+!GM_WONTWORK
+{
+Well, it looks like we won't be working together...
+}
+
+$holdtime 3.5
+!GM_REGRET
+{
+No regrets, Mr. Freeman...
+}

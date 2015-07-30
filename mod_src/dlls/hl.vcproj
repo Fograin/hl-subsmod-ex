@@ -51,7 +51,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\dlls,..\engine,..\common,..\pm_shared,..\game_shared"
+				AdditionalIncludeDirectories="..\dlls;..\engine;..\common;..\pm_shared;..\game_shared;..\public;..\subs_mod"
 				PreprocessorDefinitions="NDEBUG;WIN32;_WINDOWS;QUIVER;VOXEL;QUAKE2;VALVE_DLL;CLIENT_WEAPONS"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -322,6 +322,14 @@
 			Filter="cpp;c;cxx;rc;def;r;odl;idl;hpj;bat;for;f90"
 			>
 			<File
+				RelativePath="activity.h"
+				>
+			</File>
+			<File
+				RelativePath="activitymap.h"
+				>
+			</File>
+			<File
 				RelativePath="aflock.cpp"
 				>
 				<FileConfiguration
@@ -477,6 +485,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="animation.h"
+				>
+			</File>
+			<File
 				RelativePath="apache.cpp"
 				>
 				<FileConfiguration
@@ -568,6 +580,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="basemonster.h"
+				>
 			</File>
 			<File
 				RelativePath="bigmomma.cpp"
@@ -756,6 +772,14 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="cbase.h"
+				>
+			</File>
+			<File
+				RelativePath="cdll_dll.h"
+				>
+			</File>
+			<File
 				RelativePath="client.cpp"
 				>
 				<FileConfiguration
@@ -785,6 +809,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="client.h"
+				>
 			</File>
 			<File
 				RelativePath="combat.cpp"
@@ -911,6 +939,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="decals.h"
+				>
+			</File>
+			<File
 				RelativePath="defaultai.cpp"
 				>
 				<FileConfiguration
@@ -940,6 +972,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="defaultai.h"
+				>
 			</File>
 			<File
 				RelativePath="doors.cpp"
@@ -973,6 +1009,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="doors.h"
+				>
+			</File>
+			<File
 				RelativePath="effects.cpp"
 				>
 				<FileConfiguration
@@ -1002,6 +1042,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="effects.h"
+				>
 			</File>
 			<File
 				RelativePath="egon.cpp"
@@ -1035,6 +1079,14 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="..\engine\eiface.h"
+				>
+			</File>
+			<File
+				RelativePath="enginecallback.h"
+				>
+			</File>
+			<File
 				RelativePath="explode.cpp"
 				>
 				<FileConfiguration
@@ -1064,6 +1116,14 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="explode.h"
+				>
+			</File>
+			<File
+				RelativePath="extdll.h"
+				>
 			</File>
 			<File
 				RelativePath="flyingmonster.cpp"
@@ -1097,6 +1157,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="flyingmonster.h"
+				>
+			</File>
+			<File
 				RelativePath="func_break.cpp"
 				>
 				<FileConfiguration
@@ -1126,6 +1190,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="func_break.h"
+				>
 			</File>
 			<File
 				RelativePath="func_tank.cpp"
@@ -1219,6 +1287,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="gamerules.h"
+				>
 			</File>
 			<File
 				RelativePath="gargantua.cpp"
@@ -1779,6 +1851,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="hornet.h"
+				>
+			</File>
+			<File
 				RelativePath="hornetgun.cpp"
 				>
 				<FileConfiguration
@@ -1934,6 +2010,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="items.h"
+				>
+			</File>
+			<File
 				RelativePath="leech.cpp"
 				>
 				<FileConfiguration
@@ -2027,6 +2107,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="monsterevent.h"
+				>
+			</File>
+			<File
 				RelativePath="monstermaker.cpp"
 				>
 				<FileConfiguration
@@ -2087,6 +2171,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="monsters.h"
+				>
 			</File>
 			<File
 				RelativePath="monsterstate.cpp"
@@ -2275,6 +2363,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="nodes.h"
+				>
+			</File>
+			<File
 				RelativePath="osprey.cpp"
 				>
 				<FileConfiguration
@@ -2368,6 +2460,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="plane.h"
+				>
+			</File>
+			<File
 				RelativePath="plats.cpp"
 				>
 				<FileConfiguration
@@ -2430,6 +2526,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="player.h"
+				>
+			</File>
+			<File
 				RelativePath="..\pm_shared\pm_debug.c"
 				>
 				<FileConfiguration
@@ -2459,6 +2559,22 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\pm_shared\pm_debug.h"
+				>
+			</File>
+			<File
+				RelativePath="..\pm_shared\pm_defs.h"
+				>
+			</File>
+			<File
+				RelativePath="..\pm_shared\pm_info.h"
+				>
+			</File>
+			<File
+				RelativePath="..\pm_shared\pm_materials.h"
+				>
 			</File>
 			<File
 				RelativePath="..\pm_shared\pm_math.c"
@@ -2492,6 +2608,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="..\pm_shared\pm_movevars.h"
+				>
+			</File>
+			<File
 				RelativePath="..\pm_shared\pm_shared.c"
 				>
 				<FileConfiguration
@@ -2521,6 +2641,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\pm_shared\pm_shared.h"
+				>
 			</File>
 			<File
 				RelativePath="python.cpp"
@@ -2678,6 +2802,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="saverestore.h"
+				>
+			</File>
+			<File
 				RelativePath="schedule.cpp"
 				>
 				<FileConfiguration
@@ -2707,6 +2835,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="schedule.h"
+				>
 			</File>
 			<File
 				RelativePath="scientist.cpp"
@@ -2769,6 +2901,14 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="scripted.h"
+				>
+			</File>
+			<File
+				RelativePath="scriptevent.h"
+				>
 			</File>
 			<File
 				RelativePath="shotgun.cpp"
@@ -2864,6 +3004,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="skill.h"
+				>
+			</File>
+			<File
 				RelativePath="sound.cpp"
 				>
 				<FileConfiguration
@@ -2926,6 +3070,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="soundent.h"
+				>
+			</File>
+			<File
 				RelativePath="spectator.cpp"
 				>
 				<FileConfiguration
@@ -2957,6 +3105,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="spectator.h"
+				>
+			</File>
+			<File
 				RelativePath="squadmonster.cpp"
 				>
 				<FileConfiguration
@@ -2986,6 +3138,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="squadmonster.h"
+				>
 			</File>
 			<File
 				RelativePath="squeakgrenade.cpp"
@@ -3081,6 +3237,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="talkmonster.h"
+				>
+			</File>
+			<File
 				RelativePath="teamplay_gamerules.cpp"
 				>
 				<FileConfiguration
@@ -3110,6 +3270,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="teamplay_gamerules.h"
+				>
 			</File>
 			<File
 				RelativePath="tempmonster.cpp"
@@ -3172,6 +3336,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="trains.h"
+				>
 			</File>
 			<File
 				RelativePath="triggers.cpp"
@@ -3298,6 +3466,14 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="util.h"
+				>
+			</File>
+			<File
+				RelativePath="vector.h"
+				>
+			</File>
+			<File
 				RelativePath="..\game_shared\voice_gamemgr.cpp"
 				>
 				<FileConfiguration
@@ -3358,6 +3534,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="weapons.h"
+				>
 			</File>
 			<File
 				RelativePath="world.cpp"
@@ -3452,196 +3632,54 @@
 					/>
 				</FileConfiguration>
 			</File>
-		</Filter>
-		<Filter
-			Name="Header Files"
-			Filter="h;hpp;hxx;hm;inl;fi;fd"
-			>
-			<File
-				RelativePath="activity.h"
+			<Filter
+				Name="subs_mod"
 				>
-			</File>
-			<File
-				RelativePath="activitymap.h"
-				>
-			</File>
-			<File
-				RelativePath="animation.h"
-				>
-			</File>
-			<File
-				RelativePath="basemonster.h"
-				>
-			</File>
-			<File
-				RelativePath="cbase.h"
-				>
-			</File>
-			<File
-				RelativePath="cdll_dll.h"
-				>
-			</File>
-			<File
-				RelativePath="client.h"
-				>
-			</File>
-			<File
-				RelativePath="decals.h"
-				>
-			</File>
-			<File
-				RelativePath="defaultai.h"
-				>
-			</File>
-			<File
-				RelativePath="doors.h"
-				>
-			</File>
-			<File
-				RelativePath="effects.h"
-				>
-			</File>
-			<File
-				RelativePath="..\engine\eiface.h"
-				>
-			</File>
-			<File
-				RelativePath="enginecallback.h"
-				>
-			</File>
-			<File
-				RelativePath="explode.h"
-				>
-			</File>
-			<File
-				RelativePath="extdll.h"
-				>
-			</File>
-			<File
-				RelativePath="flyingmonster.h"
-				>
-			</File>
-			<File
-				RelativePath="func_break.h"
-				>
-			</File>
-			<File
-				RelativePath="gamerules.h"
-				>
-			</File>
-			<File
-				RelativePath="hornet.h"
-				>
-			</File>
-			<File
-				RelativePath="items.h"
-				>
-			</File>
-			<File
-				RelativePath="monsterevent.h"
-				>
-			</File>
-			<File
-				RelativePath="monsters.h"
-				>
-			</File>
-			<File
-				RelativePath="nodes.h"
-				>
-			</File>
-			<File
-				RelativePath="plane.h"
-				>
-			</File>
-			<File
-				RelativePath="player.h"
-				>
-			</File>
-			<File
-				RelativePath="..\pm_shared\pm_debug.h"
-				>
-			</File>
-			<File
-				RelativePath="..\pm_shared\pm_defs.h"
-				>
-			</File>
-			<File
-				RelativePath="..\pm_shared\pm_info.h"
-				>
-			</File>
-			<File
-				RelativePath="..\pm_shared\pm_materials.h"
-				>
-			</File>
-			<File
-				RelativePath="..\pm_shared\pm_movevars.h"
-				>
-			</File>
-			<File
-				RelativePath="..\pm_shared\pm_shared.h"
-				>
-			</File>
-			<File
-				RelativePath="saverestore.h"
-				>
-			</File>
-			<File
-				RelativePath="schedule.h"
-				>
-			</File>
-			<File
-				RelativePath="scripted.h"
-				>
-			</File>
-			<File
-				RelativePath="scriptevent.h"
-				>
-			</File>
-			<File
-				RelativePath="skill.h"
-				>
-			</File>
-			<File
-				RelativePath="soundent.h"
-				>
-			</File>
-			<File
-				RelativePath="spectator.h"
-				>
-			</File>
-			<File
-				RelativePath="squadmonster.h"
-				>
-			</File>
-			<File
-				RelativePath="talkmonster.h"
-				>
-			</File>
-			<File
-				RelativePath="teamplay_gamerules.h"
-				>
-			</File>
-			<File
-				RelativePath="trains.h"
-				>
-			</File>
-			<File
-				RelativePath="util.h"
-				>
-			</File>
-			<File
-				RelativePath="vector.h"
-				>
-			</File>
-			<File
-				RelativePath="weapons.h"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="Resource Files"
-			Filter="ico;cur;bmp;dlg;rc2;rct;bin;cnt;rtf;gif;jpg;jpeg;jpe"
-			>
+				<File
+					RelativePath="..\subs_mod\sm_consts.h"
+					>
+				</File>
+				<File
+					RelativePath="..\subs_mod\sm_gamespec.h"
+					>
+				</File>
+				<File
+					RelativePath="..\subs_mod\sm_hook_snd.h"
+					>
+				</File>
+				<File
+					RelativePath="..\subs_mod\sm_hook_txt.h"
+					>
+				</File>
+				<File
+					RelativePath="..\subs_mod\sm_structs.h"
+					>
+				</File>
+				<File
+					RelativePath="..\subs_mod\sm_util_snd.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\subs_mod\sm_util_snd.h"
+					>
+				</File>
+				<File
+					RelativePath="..\subs_mod\sm_util_sp.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\subs_mod\sm_util_sp.h"
+					>
+				</File>
+				<File
+					RelativePath="..\subs_mod\sm_util_txt.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\subs_mod\sm_util_txt.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 	</Files>
 	<Globals>

@@ -36,6 +36,8 @@
 #include "game.h"
 #include "hltv.h"
 
+#include "sm_gamespec.h"	// Vit_amiN
+
 // #define DUCKFIX
 
 extern DLL_GLOBAL ULONG		g_ulModelIndexPlayer;
@@ -1813,6 +1815,7 @@ void CBasePlayer::PreThink(void)
 	{
 		CBaseEntity *pTrain = CBaseEntity::Instance( pev->groundentity );
 		float vel;
+		int iGearId;	// Vit_amiN: keeps the train control HUD in sync
 		
 		if ( !pTrain )
 		{
@@ -1854,9 +1857,11 @@ void CBasePlayer::PreThink(void)
 			pTrain->Use( this, this, USE_SET, (float)vel );
 		}
 
-		if (vel)
+		iGearId = TrainSpeed(pTrain->pev->speed, pTrain->pev->impulse);
+
+		if (iGearId != (m_iTrain & 0x0F))	// Vit_amiN: speed changed
 		{
-			m_iTrain = TrainSpeed(pTrain->pev->speed, pTrain->pev->impulse);
+			m_iTrain = iGearId;
 			m_iTrain |= TRAIN_ACTIVE|TRAIN_NEW;
 		}
 
@@ -2886,7 +2891,7 @@ void CBasePlayer :: Precache( void )
 
 	m_flFlashLightTime = 1;
 
-	m_iTrain |= TRAIN_NEW;
+	m_iTrain = TRAIN_NEW;
 
 	// Make sure any necessary user messages have been registered
 	LinkUserMessages();
@@ -2895,6 +2900,15 @@ void CBasePlayer :: Precache( void )
 
 	if ( gInitHUD )
 		m_fInitHUD = TRUE;
+	
+	pev->fov = m_iFOV;	// Vit_amiN: restore the FOV on level change or map/saved game load
+
+	// Vit_amiN: to guarantee the correctness of the weapons prediction system initial state
+	// we must initialize ammo counters here, before actual calls to any predicting function
+	// (e.g. UpdateClientData(), HUD_WeaponsPostThink(), HUD_TxferPredictionData()) will be
+	// made.
+	// It should be touched on a level transition, too.
+	TabulateAmmo();
 }
 
 
@@ -3078,7 +3092,8 @@ void CBasePlayer::SelectItem(const char *pstr)
 
 void CBasePlayer::SelectLastItem(void)
 {
-	if (!m_pLastItem)
+	// Vit_amiN: added a check if it cannot be deployed
+	if ( !m_pLastItem || !m_pLastItem->CanDeploy() )
 	{
 		return;
 	}
@@ -3870,6 +3885,19 @@ void CBasePlayer :: UpdateClientData( void )
 			WRITE_BYTE( 0 );
 		MESSAGE_END();
 
+		// Vit_amiN: client's flashlight could run out of sync
+		MESSAGE_BEGIN( MSG_ONE, gmsgFlashlight, NULL, pev );
+			WRITE_BYTE( FlashlightIsOn() );
+			WRITE_BYTE( m_iFlashBattery );
+		MESSAGE_END();
+
+		// Vit_amiN: the geiger state could run out of sync, too
+		MESSAGE_BEGIN( MSG_ONE, gmsgGeigerRange, NULL, pev );
+			WRITE_BYTE( 0 );
+		MESSAGE_END();
+
+		m_iClientHideHUD = -1;	// Vit_amiN: forcing to update
+
 		if ( !m_fGameHUDInitialized )
 		{
 			MESSAGE_BEGIN( MSG_ONE, gmsgInitHUD, NULL, pev );
@@ -4063,6 +4091,15 @@ void CBasePlayer :: UpdateClientData( void )
 				WRITE_BYTE(II.iFlags);					// byte		Flags
 			MESSAGE_END();
 		}
+
+		for ( int i = 0; i < MAX_AMMO_SLOTS; i++ )
+		{
+			m_rgAmmoLast[i] = 0;	// Vit_amiN: force remaining ammo to be sent
+		}
+
+		m_iClientFOV = -1;			// Vit_amiN: force client weapons to be sent
+
+		// FIXME: check if no more messages are required
 	}
 
 
@@ -4254,7 +4291,12 @@ Vector CBasePlayer :: AutoaimDeflection( Vector &vecSrc, float flDist, float flD
 
 	if ( g_psv_aim->value == 0 )
 	{
-		m_fOnTarget = FALSE;
+		if ( m_lastx != 0 || m_lasty != 0 )	// Vit_amiN: reset angles
+		{
+			m_vecAutoAim.x = 1.0f;
+			ResetAutoaim( );
+			m_lastx = m_lasty = 0;
+		}
 		return g_vecZero;
 	}
 

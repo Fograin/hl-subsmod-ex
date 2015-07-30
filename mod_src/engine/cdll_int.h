@@ -143,8 +143,8 @@ typedef struct cl_enginefuncs_s
 	void	(*pfnGetPlayerInfo)( int ent_num, hud_player_info_t *pinfo );
 
 	// sound handlers
-	void	(*pfnPlaySoundByName)( char *szSound, float volume );
-	void	(*pfnPlaySoundByIndex)( int iSound, float volume );
+	void (*pfnPlaySoundByName)( char *szSound, float volume );
+	void (*pfnPlaySoundByIndex)( int iSound, float volume );
 
 	// vector helpers
 	void	(*pfnAngleVectors)( const float *vecAngles, float *forward, float *right, float *up );

@@ -767,7 +767,7 @@ void CBasePlayerItem::AttachToPlayer ( CBasePlayer *pPlayer )
 	pev->owner = pPlayer->edict();
 	pev->nextthink = gpGlobals->time + .1;
 	SetTouch( NULL );
-	SetThink( NULL );
+	SetThink( NULL );	// Vit_amiN: no 'fall on ground' think, thanks to BUzer and Uncle Mike
 }
 
 // CALLED THROUGH the newly-touched weapon's instance. The existing player weapon is pOriginal
@@ -1135,6 +1135,7 @@ void CBasePlayerAmmo :: DefaultTouch( CBaseEntity *pOther )
 int CBasePlayerWeapon::ExtractAmmo( CBasePlayerWeapon *pWeapon )
 {
 	int			iReturn;
+	iReturn = FALSE;	// Vit_amiN: must return initialized var
 
 	if ( pszAmmo1() != NULL )
 	{

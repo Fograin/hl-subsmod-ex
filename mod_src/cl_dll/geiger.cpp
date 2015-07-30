@@ -74,6 +74,7 @@ int CHudGeiger::Draw (float flTime)
 		if (m_iGeigerRange > 800)
 		{
 			pct = 0;			//Con_Printf ( "range > 800\n");
+			flvol = 0.0;		// Vit_amiN: it was uninitialized
 		}
 		else if (m_iGeigerRange > 600)
 		{

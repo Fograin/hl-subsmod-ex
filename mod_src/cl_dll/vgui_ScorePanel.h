@@ -154,7 +154,8 @@ public:
 		strcpy(buf, text);
 
 		int len = strlen(buf);
-		while (len && isspace(buf[--len]))
+		// Vit_amiN: don't use signed chars with ctype.h
+		while (len && isspace((unsigned char)buf[--len]))
 		{
 			buf[len] = 0;
 		}

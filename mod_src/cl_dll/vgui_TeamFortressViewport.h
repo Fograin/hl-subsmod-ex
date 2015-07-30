@@ -31,6 +31,10 @@
 // custom scheme handling
 #include "vgui_SchemeManager.h"
 
+#include "sm_hook_txt.h"	// Vit_amiN
+#include "sm_structs.h"		// Vit_amiN
+class VGUI_MsgsBasePanel;	// Vit_amiN
+
 #define TF_DEFS_ONLY
 #include "tf_defs.h"
 
@@ -435,6 +439,7 @@ private:
 	void		 CreateClassMenu( void );
 	CMenuPanel*	 ShowClassMenu( void );
 	void		 CreateSpectatorMenu( void );
+	void		 CreateMsgsBasePanel( void );	// Vit_amiN
 	
 	// Scheme handler
 	CSchemeManager m_SchemeManager;
@@ -539,6 +544,12 @@ public:
 	// Input
 	bool SlotInput( int iSlot );
 
+	// Vit_amiN: Message panel interactions
+	void AddSMTextMessage( const int &, const client_textmessage_t        * const, const void * const, const float & );
+	void AddSMTextMessage( const int &, const client_textmessage_bundle_t * const, const void * const, const float & );
+	const client_textmessage_bundle_t * const GetSMClientMessage( const char * const );
+	void ClrSMTextMessages( void );
+
 	virtual void paintBackground();
 
 	CSchemeManager *GetSchemeManager( void ) { return &m_SchemeManager; }
@@ -556,6 +567,7 @@ public:
 	CClassMenuPanel	*m_pClassMenu;
 	ScorePanel		*m_pScoreBoard;
 	SpectatorPanel *		m_pSpectatorPanel;
+	VGUI_MsgsBasePanel *	m_pMsgsBasePanel;	// Fograin92, Vit_amiN
 	char			m_szServerName[ MAX_SERVERNAME_LENGTH ];
 };
 
@@ -1708,7 +1720,8 @@ public:
 		// Draw the vertical line
 		int HealthWidth = gHUD.GetSpriteRect(gHUD.m_HUD_number_0).right - gHUD.GetSpriteRect(gHUD.m_HUD_number_0).left;
 		x += HealthWidth / 2;
-		FillRGBA(x, iYPos + 5, HealthWidth / 10, gHUD.m_iFontHeight, 255, 160, 0, a);
+		UnpackRGB(r, g, b, RGB_YELLOWISH);	// Vit_amiN: fixed to use HUD color
+		FillRGBA(x, iYPos + 5, HealthWidth / 10, gHUD.m_iFontHeight, r, g, b, a);
 	}
 };
 

@@ -24,6 +24,10 @@
 #include <stdio.h>
 #include "parsemsg.h"
 
+#include "sm_consts.h"					// Vit_amiN
+#include "sm_util_sp.h"					// Vit_amiN
+#include "vgui_TeamFortressViewport.h"	// Vit_amiN
+
 DECLARE_MESSAGE( m_Message, HudText )
 DECLARE_MESSAGE( m_Message, GameTitle )
 
@@ -55,6 +59,10 @@ int CHudMessage::VidInit( void )
 
 void CHudMessage::Reset( void )
 {
+	// Vit_amiN: mimic the m_pMessages reset behavior
+	if (gViewPort)
+		gViewPort->ClrSMTextMessages();
+
  	memset( m_pMessages, 0, sizeof( m_pMessages[0] ) * maxHUDMessages );
 	memset( m_startTime, 0, sizeof( m_startTime[0] ) * maxHUDMessages );
 	
@@ -162,6 +170,7 @@ void CHudMessage::MessageScanNextChar( void )
 		if ( m_parms.charTime > m_parms.time )
 		{
 			srcRed = srcGreen = srcBlue = 0;
+			destRed = destGreen = destBlue = 0;	// Vit_amiN: these vars were uninitialized
 			blend = 0;	// pure source
 		}
 		else
@@ -183,6 +192,11 @@ void CHudMessage::MessageScanNextChar( void )
 				blend = 255 - (deltaTime * (1.0/m_parms.pMessage->fxtime) * 255.0 + 0.5);
 			}
 		}
+		break;
+
+		// Vit_amiN: these vars were uninitialized
+		default:
+			destRed = destGreen = destBlue = 0;		
 		break;
 	}
 	if ( blend > 255 )
@@ -243,11 +257,11 @@ void CHudMessage::MessageScanStart( void )
 }
 
 
+// Vit_amiN: I changed the text processing method, the original one was unsafe
 void CHudMessage::MessageDrawScan( client_textmessage_t *pMessage, float time )
 {
 	int i, j, length, width;
 	const char *pText;
-	unsigned char line[80];
 
 	pText = pMessage->pMessage;
 	// Count lines
@@ -286,22 +300,18 @@ void CHudMessage::MessageDrawScan( client_textmessage_t *pMessage, float time )
 	{
 		m_parms.lineLength = 0;
 		m_parms.width = 0;
-		while ( *pText && *pText != '\n' )
+		while ( pText[m_parms.lineLength] && pText[m_parms.lineLength] != '\n' )
 		{
-			unsigned char c = *pText;
-			line[m_parms.lineLength] = c;
+			unsigned char c = pText[m_parms.lineLength];
 			m_parms.width += gHUD.m_scrinfo.charWidths[c];
 			m_parms.lineLength++;
-			pText++;
 		}
-		pText++;		// Skip LF
-		line[m_parms.lineLength] = 0;
 
 		m_parms.x = XPosition( pMessage->x, m_parms.width, m_parms.totalWidth );
 
 		for ( j = 0; j < m_parms.lineLength; j++ )
 		{
-			m_parms.text = line[j];
+			m_parms.text = static_cast<unsigned char>(pText[j]);
 			int next = m_parms.x + gHUD.m_scrinfo.charWidths[ m_parms.text ];
 			MessageScanNextChar();
 			
@@ -310,6 +320,7 @@ void CHudMessage::MessageDrawScan( client_textmessage_t *pMessage, float time )
 			m_parms.x = next;
 		}
 
+		pText += m_parms.lineLength + 1;	// Skip the entire line and it's LF
 		m_parms.y += gHUD.m_scrinfo.iCharHeight;
 	}
 }
@@ -363,7 +374,7 @@ int CHudMessage::Draw( float fTime )
 		{
 			pMessage = m_pMessages[i];
 			if ( m_startTime[i] > gHUD.m_flTime )
-				m_startTime[i] = gHUD.m_flTime + m_parms.time - m_startTime[i] + 0.2;	// Server takes 0.2 seconds to spawn, adjust for this
+				m_startTime[i] += gHUD.m_flTime - m_parms.time;	// Vit_amiN: fixed the math, no need to adjust the client time anymore
 		}
 	}
 
@@ -376,14 +387,18 @@ int CHudMessage::Draw( float fTime )
 			// This is when the message is over
 			switch( pMessage->effect )
 			{
-			case 0:
-			case 1:
-				endTime = m_startTime[i] + pMessage->fadein + pMessage->fadeout + pMessage->holdtime;
+				case 0:
+				case 1:
+					endTime = m_startTime[i] + pMessage->fadein + pMessage->fadeout + pMessage->holdtime;
 				break;
 			
-			// Fade in is per character in scanning messages
-			case 2:
-				endTime = m_startTime[i] + (pMessage->fadein * strlen( pMessage->pMessage )) + pMessage->fadeout + pMessage->holdtime;
+				// Fade in is per character in scanning messages
+				case 2:
+					endTime = m_startTime[i] + (pMessage->fadein * strlen( pMessage->pMessage )) + pMessage->fadeout + pMessage->holdtime;
+				break;
+
+				default:
+					endTime = 0.0f;	// Vit_amiN: initialized
 				break;
 			}
 
@@ -422,10 +437,40 @@ void CHudMessage::MessageAdd( const char *pName, float time )
 	int i,j;
 	client_textmessage_t *tempMessage;
 
+	#ifndef DISABLE_ENGINE_HOOKS
+
+	int msgType = MSG_TYPE_HUD_TEXT;
+	const void * pMsgSpecData = NULL;
+	const client_textmessage_bundle_t * pBund = NULL;
+
+	// Vit_amiN: check if the msg raw data is marked with 'subtitle' flag
+	if ( pName[0] == SND_MSG_SUBT_FLAG )
+	{
+		pName = SM_READ_SUBTITLE( pName, pMsgSpecData );
+		msgType = pMsgSpecData ? MSG_TYPE_SUBTITLE : MSG_TYPE_GARBLING;
+	}
+
+	if ( gViewPort ) pBund = gViewPort->GetSMClientMessage( pName );
+	if ( !pBund ) return;
+
+	// Vit_amiN: a free slot isn't required if the msg goes to VGUI panel
+	if ( (pBund->TextMessage.effect & MSG_FLAG_IS_VGUI) == MSG_FLAG_IS_VGUI )
+	{
+		gViewPort->AddSMTextMessage( msgType, pBund, pMsgSpecData, time );
+		return;
+	}
+
+	tempMessage = const_cast<client_textmessage_t *>
+		( pBund->pSrcMessage ? pBund->pSrcMessage : &pBund->TextMessage );
+	
+	#endif	// DISABLE_ENGINE_HOOKS
+
 	for ( i = 0; i < maxHUDMessages; i++ )
 	{
 		if ( !m_pMessages[i] )
 		{
+			#ifdef DISABLE_ENGINE_HOOKS
+
 			// Trim off a leading # if it's there
 			if ( pName[0] == '#' ) 
 				tempMessage = TextMessageGet( pName+1 );
@@ -452,6 +497,8 @@ void CHudMessage::MessageAdd( const char *pName, float time )
 
 				tempMessage = &g_pCustomMessage;
 			}
+
+			#endif	// DISABLE_ENGINE_HOOKS
 
 			for ( j = 0; j < maxHUDMessages; j++ )
 			{
@@ -522,6 +569,20 @@ void CHudMessage::MessageAdd(client_textmessage_t * newMessage )
 	// Turn on drawing
 	if ( !(m_iFlags & HUD_ACTIVE) )
 		m_iFlags |= HUD_ACTIVE;
+
+	#ifndef DISABLE_ENGINE_HOOKS
+	
+	// Vit_amiN: don't search a free slot if the msg goes to VGUI panel
+	if ( (newMessage->effect & MSG_FLAG_IS_VGUI) == MSG_FLAG_IS_VGUI )
+	{
+		if ( gViewPort )
+		{
+			gViewPort->AddSMTextMessage( MSG_TYPE_HUD_TEXT, newMessage, NULL, gHUD.m_flTime );
+		}
+		return;
+	}
+	
+	#endif	// DISABLE_ENGINE_HOOKS
 	
 	for ( int i = 0; i < maxHUDMessages; i++ )
 	{

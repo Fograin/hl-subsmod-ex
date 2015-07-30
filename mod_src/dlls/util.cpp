@@ -30,6 +30,8 @@
 #include "player.h"
 #include "weapons.h"
 #include "gamerules.h"
+#include "sm_hook_snd.h"	// Vit_amiN
+
 
 float UTIL_WeaponTimeBase( void )
 {
@@ -632,10 +634,16 @@ void UTIL_EmitAmbientSound( edict_t *entity, const Vector &vecOrigin, const char
 	{
 		char name[32];
 		if (SENTENCEG_Lookup(samp, name) >= 0)
+		{
+			EMIT_AMBIENT_S_SUB(entity, rgfl, samp, vol, attenuation, fFlags, pitch);	// Vit_amiN: pseudo-hook
 			EMIT_AMBIENT_SOUND(entity, rgfl, name, vol, attenuation, fFlags, pitch);
+		}
 	}
 	else
+	{
+		EMIT_AMBIENT_S_SUB(entity, rgfl, samp, vol, attenuation, fFlags, pitch);		// Vit_amiN: pseudo-hook
 		EMIT_AMBIENT_SOUND(entity, rgfl, samp, vol, attenuation, fFlags, pitch);
+	}
 }
 
 static unsigned short FixedUnsigned16( float value, float scale )

@@ -150,7 +150,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\utils\vgui\include,..\engine,..\common,..\pm_shared,..\dlls"
+				AdditionalIncludeDirectories="..\utils\vgui\include;..\engine;..\common;..\pm_shared;..\dlls;..\public;..\subs_mod"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;CLIENT_DLL;CLIENT_WEAPONS;_CRT_SECURE_NO_WARNINGS"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -243,6 +243,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="ammo.h"
+				>
+			</File>
+			<File
 				RelativePath="ammo_secondary.cpp"
 				>
 				<FileConfiguration
@@ -287,6 +291,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="ammohistory.h"
+				>
+			</File>
+			<File
 				RelativePath="battery.cpp"
 				>
 				<FileConfiguration
@@ -307,6 +315,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="camera.h"
+				>
 			</File>
 			<File
 				RelativePath="cdll_int.cpp"
@@ -331,6 +343,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="cl_dll.h"
+				>
+			</File>
+			<File
 				RelativePath="com_weapons.cpp"
 				>
 				<FileConfiguration
@@ -351,6 +367,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="com_weapons.h"
+				>
 			</File>
 			<File
 				RelativePath="death.cpp"
@@ -395,6 +415,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="demo.h"
+				>
 			</File>
 			<File
 				RelativePath="entity.cpp"
@@ -463,6 +487,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="eventscripts.h"
+				>
+			</File>
+			<File
 				RelativePath="flashlight.cpp"
 				>
 				<FileConfiguration
@@ -505,6 +533,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="GameStudioModelRenderer.h"
+				>
 			</File>
 			<File
 				RelativePath="geiger.cpp"
@@ -551,6 +583,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="health.h"
+				>
+			</File>
+			<File
 				RelativePath="hud.cpp"
 				>
 				<FileConfiguration
@@ -571,6 +607,14 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="hud.h"
+				>
+			</File>
+			<File
+				RelativePath="hud_iface.h"
+				>
 			</File>
 			<File
 				RelativePath="hud_msg.cpp"
@@ -639,6 +683,14 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="hud_servers.h"
+				>
+			</File>
+			<File
+				RelativePath="hud_servers_priv.h"
+				>
+			</File>
+			<File
 				RelativePath="hud_spectator.cpp"
 				>
 				<FileConfiguration
@@ -659,6 +711,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="hud_spectator.h"
+				>
 			</File>
 			<File
 				RelativePath="hud_update.cpp"
@@ -705,6 +761,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="in_defs.h"
+				>
+			</File>
+			<File
 				RelativePath="input.cpp"
 				>
 				<FileConfiguration
@@ -747,6 +807,14 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\common\itrackeruser.h"
+				>
+			</File>
+			<File
+				RelativePath="kbutton.h"
+				>
 			</File>
 			<File
 				RelativePath="menu.cpp"
@@ -817,6 +885,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="overview.h"
+				>
+			</File>
+			<File
 				RelativePath="parsemsg.cpp"
 				>
 				<FileConfiguration
@@ -865,6 +937,22 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="..\pm_shared\pm_debug.h"
+				>
+			</File>
+			<File
+				RelativePath="..\pm_shared\pm_defs.h"
+				>
+			</File>
+			<File
+				RelativePath="..\pm_shared\pm_info.h"
+				>
+			</File>
+			<File
+				RelativePath="..\pm_shared\pm_materials.h"
+				>
+			</File>
+			<File
 				RelativePath="..\pm_shared\pm_math.c"
 				>
 				<FileConfiguration
@@ -887,6 +975,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="..\pm_shared\pm_movevars.h"
+				>
+			</File>
+			<File
 				RelativePath="..\pm_shared\pm_shared.c"
 				>
 				<FileConfiguration
@@ -907,6 +999,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="..\pm_shared\pm_shared.h"
+				>
 			</File>
 			<File
 				RelativePath="saytext.cpp"
@@ -997,6 +1093,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="studio_util.h"
+				>
+			</File>
+			<File
 				RelativePath="StudioModelRenderer.cpp"
 				>
 				<FileConfiguration
@@ -1017,6 +1117,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="StudioModelRenderer.h"
+				>
 			</File>
 			<File
 				RelativePath="text_message.cpp"
@@ -1107,6 +1211,14 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="util.h"
+				>
+			</File>
+			<File
+				RelativePath="util_vector.h"
+				>
+			</File>
+			<File
 				RelativePath="..\game_shared\vgui_checkbutton2.cpp"
 				>
 				<FileConfiguration
@@ -1173,6 +1285,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="vgui_ConsolePanel.h"
+				>
+			</File>
+			<File
 				RelativePath="vgui_ControlConfigPanel.cpp"
 				>
 				<FileConfiguration
@@ -1193,6 +1309,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="vgui_ControlConfigPanel.h"
+				>
 			</File>
 			<File
 				RelativePath="vgui_CustomObjects.cpp"
@@ -1283,6 +1403,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="vgui_int.h"
+				>
+			</File>
+			<File
 				RelativePath="..\game_shared\vgui_listbox.cpp"
 				>
 				<FileConfiguration
@@ -1371,6 +1495,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="vgui_SchemeManager.h"
+				>
+			</File>
+			<File
 				RelativePath="vgui_ScorePanel.cpp"
 				>
 				<FileConfiguration
@@ -1391,6 +1519,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="vgui_ScorePanel.h"
+				>
 			</File>
 			<File
 				RelativePath="vgui_ServerBrowser.cpp"
@@ -1415,6 +1547,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="vgui_ServerBrowser.h"
+				>
+			</File>
+			<File
 				RelativePath="vgui_SpectatorPanel.cpp"
 				>
 				<FileConfiguration
@@ -1437,6 +1573,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="vgui_SpectatorPanel.h"
+				>
+			</File>
+			<File
 				RelativePath="vgui_TeamFortressViewport.cpp"
 				>
 				<FileConfiguration
@@ -1457,6 +1597,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="vgui_TeamFortressViewport.h"
+				>
 			</File>
 			<File
 				RelativePath="vgui_teammenu.cpp"
@@ -1501,6 +1645,26 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="view.h"
+				>
+			</File>
+			<File
+				RelativePath="..\game_shared\voice_banmgr.h"
+				>
+			</File>
+			<File
+				RelativePath="..\game_shared\voice_status.h"
+				>
+			</File>
+			<File
+				RelativePath="..\game_shared\voice_vgui_tweakdlg.h"
+				>
+			</File>
+			<File
+				RelativePath="wrect.h"
+				>
 			</File>
 			<Filter
 				Name="hl"
@@ -1593,6 +1757,10 @@
 							PreprocessorDefinitions=""
 						/>
 					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="ev_hldm.h"
+					>
 				</File>
 				<File
 					RelativePath="..\dlls\gauss.cpp"
@@ -2013,184 +2181,62 @@
 					</FileConfiguration>
 				</File>
 			</Filter>
-		</Filter>
-		<Filter
-			Name="Header Files"
-			Filter="h;hpp;hxx;hm;inl;fi;fd"
-			>
-			<File
-				RelativePath="ammo.h"
+			<Filter
+				Name="subs_mod"
 				>
-			</File>
-			<File
-				RelativePath="ammohistory.h"
-				>
-			</File>
-			<File
-				RelativePath="camera.h"
-				>
-			</File>
-			<File
-				RelativePath="cl_dll.h"
-				>
-			</File>
-			<File
-				RelativePath="com_weapons.h"
-				>
-			</File>
-			<File
-				RelativePath="demo.h"
-				>
-			</File>
-			<File
-				RelativePath="ev_hldm.h"
-				>
-			</File>
-			<File
-				RelativePath="eventscripts.h"
-				>
-			</File>
-			<File
-				RelativePath="GameStudioModelRenderer.h"
-				>
-			</File>
-			<File
-				RelativePath="health.h"
-				>
-			</File>
-			<File
-				RelativePath="hud.h"
-				>
-			</File>
-			<File
-				RelativePath="hud_iface.h"
-				>
-			</File>
-			<File
-				RelativePath="hud_servers.h"
-				>
-			</File>
-			<File
-				RelativePath="hud_servers_priv.h"
-				>
-			</File>
-			<File
-				RelativePath="hud_spectator.h"
-				>
-			</File>
-			<File
-				RelativePath="in_defs.h"
-				>
-			</File>
-			<File
-				RelativePath="..\common\itrackeruser.h"
-				>
-			</File>
-			<File
-				RelativePath="kbutton.h"
-				>
-			</File>
-			<File
-				RelativePath="overview.h"
-				>
-			</File>
-			<File
-				RelativePath="..\pm_shared\pm_debug.h"
-				>
-			</File>
-			<File
-				RelativePath="..\pm_shared\pm_defs.h"
-				>
-			</File>
-			<File
-				RelativePath="..\pm_shared\pm_info.h"
-				>
-			</File>
-			<File
-				RelativePath="..\pm_shared\pm_materials.h"
-				>
-			</File>
-			<File
-				RelativePath="..\pm_shared\pm_movevars.h"
-				>
-			</File>
-			<File
-				RelativePath="..\pm_shared\pm_shared.h"
-				>
-			</File>
-			<File
-				RelativePath="studio_util.h"
-				>
-			</File>
-			<File
-				RelativePath="StudioModelRenderer.h"
-				>
-			</File>
-			<File
-				RelativePath="util.h"
-				>
-			</File>
-			<File
-				RelativePath="util_vector.h"
-				>
-			</File>
-			<File
-				RelativePath="vgui_ConsolePanel.h"
-				>
-			</File>
-			<File
-				RelativePath="vgui_ControlConfigPanel.h"
-				>
-			</File>
-			<File
-				RelativePath="vgui_int.h"
-				>
-			</File>
-			<File
-				RelativePath="vgui_SchemeManager.h"
-				>
-			</File>
-			<File
-				RelativePath="vgui_ScorePanel.h"
-				>
-			</File>
-			<File
-				RelativePath="vgui_ServerBrowser.h"
-				>
-			</File>
-			<File
-				RelativePath="vgui_SpectatorPanel.h"
-				>
-			</File>
-			<File
-				RelativePath="vgui_TeamFortressViewport.h"
-				>
-			</File>
-			<File
-				RelativePath="view.h"
-				>
-			</File>
-			<File
-				RelativePath="..\game_shared\voice_banmgr.h"
-				>
-			</File>
-			<File
-				RelativePath="..\game_shared\voice_status.h"
-				>
-			</File>
-			<File
-				RelativePath="..\game_shared\voice_vgui_tweakdlg.h"
-				>
-			</File>
-			<File
-				RelativePath="wrect.h"
-				>
-			</File>
-		</Filter>
-		<Filter
-			Name="Resource Files"
-			Filter="ico;cur;bmp;dlg;rc2;rct;bin;cnt;rtf;gif;jpg;jpeg;jpe"
-			>
+				<File
+					RelativePath="..\subs_mod\sm_consts.h"
+					>
+				</File>
+				<File
+					RelativePath="..\subs_mod\sm_gamespec.h"
+					>
+				</File>
+				<File
+					RelativePath="..\subs_mod\sm_hook_snd.h"
+					>
+				</File>
+				<File
+					RelativePath="..\subs_mod\sm_hook_txt.h"
+					>
+				</File>
+				<File
+					RelativePath="..\subs_mod\sm_main.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\subs_mod\sm_main.h"
+					>
+				</File>
+				<File
+					RelativePath="..\subs_mod\sm_structs.h"
+					>
+				</File>
+				<File
+					RelativePath="..\subs_mod\sm_util_snd.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\subs_mod\sm_util_snd.h"
+					>
+				</File>
+				<File
+					RelativePath="..\subs_mod\sm_util_sp.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\subs_mod\sm_util_sp.h"
+					>
+				</File>
+				<File
+					RelativePath="..\subs_mod\sm_util_txt.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\subs_mod\sm_util_txt.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 	</Files>
 	<Globals>
