@@ -1,0 +1,811 @@
+// TITLES FOR HALF-LIFE: SUBTITLES MOD
+// Position command $position x y 
+// x & y are from 0 to 1 to be screen resolution independent
+// -1 means center in each dimension
+// Effect command $effect <effect number>
+// effect 0 is fade in/fade out
+// effect 1 is flickery credits
+// effect 2 is write out (training room)
+// Add 16 to effect number to use VGUI system
+// Text color r g b command $color
+// fadein time fadeout time / hold time
+// $fadein (message fade in time - per character in effect 2)
+// $fadeout (message fade out time)
+// $holdtime (stay on the screen for this long)
+
+//INTRO TITLES
+// All centered for now
+$position -1 -1
+$effect 18
+// This is the final color
+$color 140 140 140
+// This is the highlight color
+$color2 240 110 0
+// This is the time it takes to fade each character
+$fadein 0.01
+// This is the amount of time the highlight lags behind the leading edge of the text
+$fxtime 0.25
+// How long to hold the message on the screen (after it scans out)
+$holdtime 3.5
+// How long it takes to fade out the message after holding
+$fadeout 1.5
+
+$chained SM_INTRO_CR_01
+CR27
+{
+Výzkumný komplex Black Mesa
+Black Mesa, Nové Mexiko
+}
+
+
+//INTRO CREDITS
+// Test values -- JAY
+// Lower left
+$position 0.1 0.7
+$effect 17
+// Final fade-in color
+$color 128 128 128
+// This is the highlight/flash color
+$color2 0 0 0
+$fadein 1.5
+$fadeout 0.5
+$holdtime 1.2
+
+CR1
+{
+Ted Backman
+}
+
+CR2
+{
+TK Backman
+}
+
+CR3
+{
+Kelly Bailey
+}
+
+CR4
+{
+Yahn Bernier
+}
+
+CR5
+{
+Ken Birdwell
+}
+
+CR6
+{
+Steve Bond
+}
+
+CR7
+{
+Dario Casali
+}
+
+CR8
+{
+John Cook
+}
+
+CR9
+{
+Greg Coomer
+}
+
+CR10
+{
+Wes Cumberland
+}
+
+CR11
+{
+John Guthrie
+}
+
+CR12
+{
+Mona Lisa Guthrie
+}
+
+CR13
+{
+Mike Harrington
+}
+
+CR14
+{
+Monica Harrington
+}
+
+CR15
+{
+Brett Johnson
+}
+
+CR16
+{
+Chuck Jones
+}
+
+CR17
+{
+Marc Laidlaw
+}
+
+CR18
+{
+Karen Laur
+}
+
+CR19
+{
+Randy Lundeen
+}
+
+CR20
+{
+Yatsze Mark
+}
+
+CR21
+{
+Lisa Mennet
+}
+
+CR22
+{
+Gabe Newell
+}
+
+CR23
+{
+Dave Riller
+}
+
+CR24
+{
+Aaron Stackpole
+}
+
+CR25
+{
+Jay Stelly
+}
+
+CR26
+{
+Harry Teasley 
+}
+
+CR35
+{
+Steve Theodore
+}
+
+CR36
+{
+Bill Van Buren
+}
+
+CR37
+{
+Robin Walker
+}
+
+CR38
+{
+Douglas R. Wood
+}
+
+//END CREDITS
+$position -1 -1
+$effect 16
+// Final fade-in color
+$color 128 128 128
+// This is the highlight/flash color
+$color2 0 0 0
+$fadein 0.5
+$fadeout 0.5
+$holdtime 4
+
+VALVEIS
+{
+Valve:
+}
+
+END1
+{
+Ted Backman
+TK Backman
+Kelly Bailey
+Yahn Bernier
+Ken Birdwell
+Steve Bond
+Dario Casali
+John Cook
+Greg Coomer
+Wes Cumberland
+}
+
+END2
+{
+John Guthrie
+Mona Lisa Guthrie
+Mike Harrington
+Monica Harrington
+Brett Johnson
+Chuck Jones
+Marc Laidlaw
+Karen Laur
+Randy Lundeen
+Yatsze Mark
+}
+
+$chained SM_OUTRO_CR_01
+END3
+{
+Lisa Mennet
+Gabe Newell
+Dave Riller
+Aaron Stackpole
+Jay Stelly
+Harry Teasley
+Steve Theodore
+Bill Van Buren
+Robin Walker
+Douglas R. Wood
+}
+
+//INTRO TITLES
+// All centered for now
+$position -1 -1
+$effect 18
+// This is the final color
+$color 140 140 140
+// This is the highlight color
+$color2 240 110 0
+// This is the time it takes to fade each character
+$fadein 0.01
+// This is the amount of time the highlight lags behind the leading edge of the text
+$fxtime 0.25
+// How long to hold the message on the screen (after it scans out)
+$holdtime 3.5
+// How long it takes to fade out the message after holding
+$fadeout 1.5
+
+
+CR28
+{
+SUBJEKT:
+Gordon Freeman
+Muž, 27 let
+}
+
+CR29
+{
+VZDÌLÁNÍ:
+Ph.D., MIT, Teoretická fyzika
+}
+
+CR30
+{
+POZICE:
+Výzkumný pracovník
+}
+
+CR31
+{
+PØIDÌLENÍ:
+Laboratoø anomálních materiálù
+}
+
+CR32
+{
+POVOLENÍ:
+Úroveò 3
+}
+
+CR33
+{
+ADMINISTRATIVNÍ SPONZOR:
+Tajný
+}
+
+CR34
+{
+PRIORITA REAKCE NA KATASTROFU:
+Dle uvážení
+}
+
+$fadein 0.03
+$holdtime 9
+
+GAMEOVER
+{
+SUBJEKT: FREEMAN
+
+STATUS: HODNOCENÍ UKONÈENO
+
+ZPRÁVA:
+Subjektu se nepodaøilo efektivnì využít 
+lidské pomoci k dosažení cíle.
+}
+
+$fadein 0.03
+$holdtime 9
+TRAITOR
+{
+SUBJEKT: FREEMAN
+
+STATUS: NAJAT
+
+OÈEKÁVÁ PØIDÌLENÍ
+}
+
+
+$fadein 0.03
+$holdtime 9
+LOSER
+{
+SUBJEKT: FREEMAN
+
+STATUS: POZOROVÁNÍ UKONÈENO
+
+ZPRÁVA:
+Subjekt odmítl nabídku zamìstnání.
+}
+
+//CHAPTER TITLES
+
+$fadein 0.01
+$position -1 0.4
+$holdtime 3.5
+T0A0TITLE
+{
+VÝCVIKOVÝ KURZ
+}
+
+$position -1 0.65
+C0A0TITLE
+{
+PØÍJEZD DO BLACK MESA
+}
+
+OPENTITLE3
+{
+
+}
+
+OPENTITLE4
+{
+
+}
+
+C0A1TITLE
+{
+ANOMÁLNÍ MATERIÁLY
+}
+
+C1A1TITLE
+{
+NEPØEDVÍDATELNÉ NÁSLEDKY
+}
+
+C1A2TITLE
+{
+KANCELÁØSKÝ KOMPLEX
+}
+
+C1A3TITLE
+{
+„MÁME SPOLEÈNOST“
+}
+
+C1A4TITLE
+{
+RAKETOVÉ SILO
+}
+
+C2A1TITLE
+{
+NAPÁJENÍ
+}
+
+C2A2TITLE
+{
+NA DRÁZE
+}
+
+C2A3TITLE
+{
+ZADRŽENÍ
+}
+
+C2A4TITLE1
+{
+ZPRACOVÁNÍ ODPADU
+}
+
+C2A4TITLE2
+{
+POCHYBNÁ ETIKA
+}
+
+C2A5TITLE
+{
+POVRCHOVÉ NAPÌTÍ
+}
+
+C3A1TITLE
+{
+„ZAPOMEÒTE NA FREEMANA!“
+}
+
+C3A2TITLE
+{
+JÁDRO LAMBDA
+}
+
+C4A1TITLE
+{
+XEN
+}
+
+C4A1ATITLE
+{
+VETØELEC
+}
+
+C4A1BTITLE
+{
+
+}
+
+C4A1CTITLE
+{
+
+}
+
+C4A1ETITLE
+{
+
+}
+
+C4A1FTITLE
+{
+
+}
+
+C4A2TITLE
+{
+GONARCHOVO DOUPÌ
+}
+
+C4A3TITLE
+{
+NIHILANTH
+}
+
+C5TITLE
+{
+KONEC HRY
+}
+
+
+// In-Game messages
+$position -1 0.65
+$effect 18
+// This is the final color
+$color 140 140 140
+// This is the highlight color
+$color2 240 110 0
+// This is the time it takes to fade each character
+$fadein 0.01
+// This is the amount of time the highlight lags behind the leading edge of the text
+$fxtime 0.25
+// How long to hold the message on the screen (after it scans out)
+$holdtime 2.0
+// How long it takes to fade out the message after holding
+$fadeout 0.5
+
+GAMESAVED
+{
+Uloženo...
+}
+
+// Game title
+// This is a placeholder to hold the effects controls for the "Half-Life" title
+$position -1 -1
+// Only effect 0 is supported for game title (plus 16 for the VGUI)
+$effect 16
+// This is the final color
+$color 200 200 200
+// Not used color2
+$color2 0 0 0
+// This is the time it takes to fade in the title
+$fadein 1.0
+// How long to hold the message on the screen (after it scans out)
+$holdtime 3.0
+// How long it takes to fade out the message after holding
+$fadeout 1.5
+
+GAMETITLE
+{
+Half-Life
+}
+
+//HAZARD COURSE TEXT
+
+// Test values -- JAY
+$position -1 0.65
+// Scan-out text effect
+$effect 18
+// This is the final color
+$color 140 140 140
+// This is the highlight color
+$color2 0 200 50
+// This is the time it takes to fade each character
+$fadein 0.005
+// This is the amount of time the highlight lags behind the leading edge of the text
+$fxtime 0.5
+// How long to hold the message on the screen (after it scans out)
+$holdtime 3.5
+// How long it takes to fade out the message after holding
+$fadeout 1.5
+
+$position -1 0.3
+HZBUTTON1
+{
+STISKNÌTE FUNKÈNÍ KLÁVESU PRO STISKNUTÍ TLAÈÍTKA
+}
+
+$position -1 0.65
+HZBUTTON2
+{
+STISKNÌTE FUNKÈNÍ KLÁVESU PRO STISKNUTÍ TLAÈÍTKA
+}
+
+HZMOVE
+{
+POHNÌTE SE DOPØEDU STISKNUTÍM KLÁVESY VPØED
+POHNÌTE SE DOZADU STISKNUTÍM KLÁVESY DOZADU
+POHNÌTE SE DOLEVA STISKNUTÍM KLÁVESY DOLEVA
+POHNÌTE SE DOPRAVA STISKNUTÍM KLÁVESY DOPRAVA
+}
+
+HZJUMP
+{
+STISKNÌTE KLÁVESU VPØED PRO BÌH VPØED
+STISKNÌTE KLÁVESU SKOK PRO VÝSKOK
+}
+
+HZDUCK
+{
+STISKNÌTE KLÁVESU VPØED PRO BÌH VPØED
+STISKNÌTE KLÁVESU KLEKNOUT PRO KLEKNUTÍ
+STISKNÌTE KLÁVESY VPØED + KLEKNOUT SOUÈASNÌ 
+PRO TICHÝ POHYB
+}
+
+HZCOMBO
+{
+STISKNÌTE KLÁVESU VPØED PRO BÌH VPØED
+STISKNÌTE KLÁVESU SKOK PRO VÝSKOK
+STISKNÌTE KLÁVESU KLEKNOUT PRO KLEKNUTÍ
+STISKNÌTE KLÁVESU SKOK PRO VÝSKOK
+}
+
+HZDUCKJUMP
+{
+STISKNÌTE KLÁVESY VPØED + SKOK SOUÈASNÌ,
+POTÉ STISKNÌTE KLÁVESU KLEKNOUT
+}
+
+HZLADDER
+{
+STISKNÌTE KLÁVESU VPØED PRO VYLÉZÁNÍ PO ŽEBØÍCÍCH
+STISKNÌTE KLÁVESU DOZADU PRO SLÉZÁNÍ ZE ŽEBØÍKÙ
+}
+
+HZLJUMP
+{
+PØI POHYBU DOPØEDU,
+PODRŽTE KLÁVESU PRO KLEKNUTÍ--
+PAK STISKNÌTE KLÁVESU SKOK
+}
+
+$position -1 0.3
+HZLMOD
+{
+UJISTÌTE SE, ŽE JSTE SEBRALI MODUL PRO DALEKÉ SKOKY
+NA ZAÈÁTKU PØEKÁŽKY
+}
+
+$position -1 0.65
+HZMEDKIT
+{
+LÉKÁRNY POUŽIJTE PØIDRŽENÍM KLÁVESY POUŽÍT
+DRŽTE POUŽÍT TAK DLOUHO, DOKUD
+NEMÁTE 100 ŽIVOTÙ NEBO DO VYÈERPÁNÍ LÉKÁRNY
+}
+
+HZMOMENT
+{
+PODRŽTE FUNKÈNÍ KLÁVESU PRO
+POHNUTÍ KOLAMA A VENTILAMA
+DRŽTE FUNKÈNÍ KLÁVESU DOKUD MOST NENÍ VE SPRÁVNÉ POZICI
+}
+
+HZPUSH
+{
+STISKNÌTE KLÁVESU VPØED PRO POHYB PROTI KRABICI
+PODRŽENÍM KLÁVESY POSUNETE KRABICI DOPØEDU
+}
+
+HZPULL
+{
+STISKNÌTE FUNKÈNÍ KLÁVESU + KLÁVESU DOZADU SPOLEÈNÌ
+PRO TÁHNUTÍ KRABICE ZPÌT
+}
+
+HZCROWBAR
+{
+PØEJDÌTE K PÁÈIDLU
+STISKNUTÍM KLÁVESY PRO PRIMÁRNÍ ÚTOK ROZBIJETE PØEDMÌTY
+}
+ 
+HZLITEON
+{
+STISKNÌTE KLÁVESU SVÍTILNA
+PRO ZAPNUTÍ SVÍTILNY
+}
+
+HZLITEOFF
+{
+STISKNÌTE ZNOVU TLAÈÍTKO SVÍTILNA
+PRO VYPNUTÍ SVÍTILNY
+}
+
+HZWEAPON
+{
+PØESUÒTE SE KE ZBRANI ABYSTE JI SEBRALI.
+}
+
+HZFIREWEAP
+{
+STISKNÌTE KLÁVESU ÚTOK1 PRO HLAVNÍ ÚTOK
+STISKNÌTE KLÁVESU ÚTOK2 PRO ALTERNATIVNÍ ÚTOK
+STISKNÌTE KLÁVESU NABÍT PRO NABITÍ ZBRANÌ PODLE LIBOSTI
+}
+
+HZARMOR
+{
+STISKNÌTE A PODRŽTE VAŠI KLÁVESU S FUNKCÍ "POUŽÍT"
+DOKUD BRNÌNÍ VAŠEHO OBLEKU NENÍ DOBITO
+NEBO DO DOBY NEŽ JE NABÍJEÈ VYÈERPANÝ
+}
+
+HZSWIM
+{
+STISKNÌTE KLÁVESU VPØED
+PØI PLAVÁNÍ OVLÁDEJTE SMÌR MYŠÍ
+NAJDÌTE VZDUCH POKUD VÁM ZAÈNE KLESAT ZDRAVÍ
+POÈKEJTE NA VZDUCHU DOKUD SE ZDRAVÍ
+NEOBNOVÍ NA PÙVODNÍ HODNOTU
+}
+
+HZDAMAGE
+{
+JISTÉ TYPY POŠKOZENÍ BUDOU ZOBRAZENY
+NA VAŠEM DISPLEJI
+SMÌR POŠKOZENÍ JE INDIKOVÁNO ÈERVENÝMI
+ZÁBLESKY VE STØEDU VAŠÍ OBRAZOVKY
+}
+
+HZHAZARD
+{
+NEBEZPEÈÍ Z OZÁØENÍ
+AKTIVUJTE GEIGERÙV DETEKTOR
+}
+
+HZSCIENTIST
+{
+PØISTUPTE K VÌDCI
+POUŽIJTE FUNKÈNÍ KLÁVESU PRO ZÍSKÁNÍ ŽIVOTÙ OD VÌDCE
+}
+
+HZBARNEY
+{
+PØISTUPTE K HLÍDAÈI
+STISKNÌTE FUNKÈNÍ KLÁVESU PRO POŽÁDÁNÍ O POMOC
+JDÌTE SMÌREM KE DVEØÍM A HLÍDAÈ
+POUŽIJE TLAÈÍTKA
+}
+
+HZTRAIN
+{
+POUŽIJTE FUNKÈNÍ KLÁVESU PRO ZPROVOZNÌNÍ VLAKU
+STISKNÌTE KLÁVESU VPØED PRO ZRYCHLENÍ
+STISKNÌTE KLÁVESU DOZADU PRO ZPOMALENÍ
+STISKNÌTE ZNOVU FUNKÈNÍ KLÁVESU PRO ODPOUTÁNÍ SE OD VLAKU
+}
+
+HZDONE
+{
+GRATULUJEME!
+DOKONÈILI JSTE
+VÝCVIKOVÝ KURZ BLACK MESA.
+MÙŽETE SE KDYKOLIV VRÁTIT
+}
+
+// SM INTRO CREDITS
+$position -0.05 0.05
+$effect 17
+$color 140 140 140
+$color2 0 0 0
+$fadein 1.5
+$holdtime 5
+$fadeout 0.5
+
+$chained SM_INTRO_CR_02
+SM_INTRO_CR_01
+{
+Half-Life: Subtitles Mod:
+Mark "Fograin92" Apostel
+Vit_amiN (toho znáte)
+}
+
+$chained SM_INTRO_CR_03
+SM_INTRO_CR_02
+{
+Èeský pøeklad:
+Jan "ELjano" Doležal
+Dominik "Dom44" Hlaváèek
+}
+
+SM_INTRO_CR_03
+{
+Speciální podìkování:
+Jiøí "HLBLÁZEN" Hrabák (betatesting)
+František Èupera a Savage (korekce)
+Tvùrcùm módu Half-Life: Paranoia (základní titulkový kód)
+combineoverwiki.net (citace z HL her)
+half-life.wikia.com (Nihilanthovi citace)
+}
+
+// SM OUTRO CREDITS
+$position -1 -1
+$effect 16
+$color 140 140 140
+$color2 0 0 0
+$fadein 0.5
+$fadeout 0.5
+$holdtime 4
+
+$chained SM_OUTRO_CR_02
+SM_OUTRO_CR_01
+{
+Half-Life: Subtitles Mod
+Verze: 3.0
+}
+
+SM_OUTRO_CR_02
+{
+Tvùrci Subtitles MOD:
+Mark "Fograin92" Apostel - Vedoucí / Junior programátor / Anglické titulky
+Vit_amiN (toho znáte) - Vedoucí / Senior programátor / Hromada oprav
+
+Èeský pøeklad:
+Jan "ELjano" Doležal - Vedoucí pøekladu / Pøekladatel
+Dominik "Dom44" Hlaváèek - Pøekladatel
+
+Speciální podìkování:
+Jiøí "HLBLÁZEN" Hrabák, František Èupera a Savage - Korekce
+Tvùrcùm módu Half-Life: Paranoia - Základní titulkový kód
+combineoverwiki.net - Citace z HL her
+half-life.wikia.com - Nihilanthovi citace
+}

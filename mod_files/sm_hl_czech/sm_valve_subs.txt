@@ -1,0 +1,5890 @@
+//====================================================
+// Half-Life Subtitles MOD 3.0 - Localization file
+//====================================================
+// Parameters info:
+// $effect X 			<= Used by mod to assign messages
+// $color2 R G B 		<= Text highlight color
+// $color R G B 		<= Text final color
+// $fadein SECONDS		<= Time it takes to fade each character
+// $fxtime SECONDS		<= This is the amount of time the highlight lags behind the leading edge of the text
+// $fadeout SECONDS		<= How long it takes to fade out the message after holding
+//====================================================
+// Additional info:
+// Font = Arial narrow 16
+//===========================================================
+// Language: Czech / Èesky
+// Writen by: Jan "ELjano" Doležal
+// Edits by: Dominik "Dom44" Hlaváèek, Jiøí "HLBLÁZEN" Hrabák, František Èupera and Savage.
+//===========================================================
+
+// Global subtitles settings
+$effect 18
+$position 0 0
+$fadein 0.01
+$fxtime 0.25
+$fadeout 0.5
+
+//==============================================================================================================
+// Train ride
+//==============================================================================================================
+
+$color  255 255 255
+$color2 128 128 128
+
+$holdtime 11.5
+!TR_GMORN
+{
+Dobré ráno, vítejte v dopravním systému spoleènosti Black Mesa. Tato automatizovaná souprava slouží k bezpeèí a pohodlí zamìstnancù Výzkumného komplexu Black Mesa.
+}
+
+$holdtime 20.5
+!TR_TIME
+{
+Aktuální èas je 8:47. Teplota na povrchu je 34°C s pøedpokládaným nárùstem až na 42°C. Komplex Black Mesa je udržován za všech okolností na pøíjemných 20°C.
+}
+
+$holdtime 24
+$chained !TR_DEST_PT2
+!TR_DEST
+{
+Tato souprava míøí z ubytoven úrovnì 3 do testovacích laboratoøí a kontrolních zaøízení sektoru C. Pokud je vaším zamýšleným cílem oblast vysokého zabezpeèení za sektorem C, budete se muset vrátit zpìt do centrálního nástupištì v oblasti 9 a nastoupit do soupravy s vysokým zabezpeèením.
+}
+
+$holdtime 14
+!TR_DEST_PT2
+{
+Pokud nemáte potvrzenou svou identitu v systému skenování sítnice, musíte to oznámit zamìstnanci spoleènosti Black Mesa, aby provedl pøíslušný postup, který povolí pøístup do trasy s vysokým zabezpeèením.
+}
+
+$holdtime 11.8
+!TR_NOEAT
+{
+Vzhledem k vysoké toxicitì materiálù bìžnì se vyskytujících v Black Mesa, je v dopravním systému zakázáno kouøit, jíst èi pít.
+}
+
+$holdtime 18.5
+$chained !TR_EMERG_PT2
+!TR_EMERG
+{
+Po dobu jízdy prosím nevystrkujte své konèetiny ze soupravy. Nepokoušejte se otevøít dveøe, dokud souprava zcela nezastaví ve stanici. V pøípadì nouze musí cestující zùstat na svých sedadlech a vyèkat na další instrukce.
+}
+
+$holdtime 15.4
+!TR_EMERG_PT2
+{
+Pokud je nezbytné evakuovat soupravu, zdravotnì postižení zamìstnanci mají pøednost. Držte se prosím dál od napájecí kolejnice a postupujte do nejbližší nouzové stanice, kde vyèkejte, dokud dorazí pomoc.
+}
+
+$holdtime 19
+$chained !TR_TOURN_PT2
+!TR_TOURN
+{
+Pøipomínáme, že desetiboj Výcvikového kurzu Black Mesa zaèíná dnes veèer v 19:00 na úrovni 3. Semifinále pro zamìstnance ostrahy bude vyhlášeno samostatnì v bezpeènostním hlášení.
+}
+
+$holdtime 5.5
+!TR_TOURN_PT2
+{
+Pamatujte, že na vaší fyzické kondici mùže záviset více životù, než jen ten váš.
+}
+
+$holdtime 6
+$chained !TR_JOBS_PT2
+!TR_JOBS
+{
+Máte mezi pøáteli nebo pøíbuznými nìkoho, kdo by byl cenným pøínosem pro tým Black Mesa?
+}
+
+$holdtime 13
+$chained !TR_JOBS_PT3
+!TR_JOBS_PT2
+{
+Pracovní pøíležitosti jsou nyní dostupné v oblastech: manipulace s materiály a zabezpeèení nízké úrovnì. Pro více informací prosím kontaktujte zamìstnance spoleènosti Black Mesa.
+}
+
+$holdtime 13.5
+$chained !TR_JOBS_PT4
+!TR_JOBS_PT3
+{
+Pokud máte známého se vzdìláním v oblasti teoretické fyziky, biotechnologie èi jiné pokroèilé technické oblasti, kontaktujte prosím náš tým pro nábor civilistù.
+}
+
+$holdtime 5
+!TR_JOBS_PT4
+{
+Výzkumný komplex Black Mesa je zamìstnavatelem s rovnou šancí pro každého.
+}
+
+$holdtime 13
+$chained !TR_HAZ_PT2
+!TR_HAZ
+{
+Pøipomínáme všem zamìstnancùm spoleènosti Black Mesa: pro trvalé zamìstnání ve Výzkumném komplexu Black Mesa jsou nezbytné pravidelné kontroly radioaktivity a biologického nebezpeèí.
+}
+
+$holdtime 7
+$chained !TR_HAZ_PT3
+!TR_HAZ_PT2
+{
+Chybìjící kontroly moèi nebo radiace jsou dùvodem pro okamžité rozvázání pracovního pomìru.
+}
+
+$holdtime 11
+$chained !TR_HAZ_PT4
+!TR_HAZ_PT3
+{
+Pokud máte pocit, že jste byli v dobì své služby vystaveni záøení nebo dalším nebezpeèným látkám, neprodlenì kontaktujte vašeho referenta v radiaèní ochranì.
+}
+
+$holdtime 5.5
+!TR_HAZ_PT4
+{
+Pracujte bezpeènì, pracujte s rozumem. Závisí na tom vaše budoucnost.
+}
+
+$holdtime 5.5
+!TR_ARRIVE
+{
+Nyní pøijíždíte do testovacích laboratoøí a kontrolních zaøízení sektoru C.
+}
+
+$holdtime 7.5
+$chained !TR_EXIT_PT2
+!TR_EXIT
+{
+Odstupte prosím od automatizovaných dveøí a vyèkejte na pracovníka ostrahy, který ovìøí vaši totožnost.
+}
+
+$holdtime 5.5
+$chained !TR_EXIT_PT3
+!TR_EXIT_PT2
+{
+Pøed výstupem ze soupravy se ujistìte, že jste zde neponechali své osobní vìci.
+}
+
+$holdtime 4
+!TR_EXIT_PT3
+{
+Dìkujeme a pøejeme Vám bezpeèný a úspìšný den.
+}
+
+//============================================================
+// Gina Cross holo (Hazard Course)
+//============================================================
+
+$color  255 222 152
+$color2 128 111  76
+
+$holdtime 7
+$chained !HOLO_INTRO_PT2
+!HOLO_INTRO
+{
+Dobrý den. Vítejte ve výcvikovém kurzu Black Mesa, kde budete školeni v používání ochranného obleku.
+}
+
+$holdtime 8
+!HOLO_INTRO_PT2
+{
+Jsem vaše holografická asistentka. Zaèneme tím, že vstoupíte do svého obleku. Uvidíte jej o kus dál.
+}
+
+$holdtime 5.5
+!HOLO_BUTTON
+{
+Uvidíte-li tlaèítko podobné tomuto, stisknìte ho a já vám pøedvedu daný postup.
+}
+
+$holdtime 15
+!HOLO_MOVE
+{
+Zpoèátku mùžete být pøi pohybu ve vašem HEV obleku lehce dezorientovaní. V klidu se seznamte se základními pohyby a za chvíli budete v obleku jako doma. Uvidíme se hned za rohem.
+}
+
+$holdtime 4.5
+$chained !HOLO_JUMP_PT2
+!HOLO_JUMP
+{
+Prvním pohybem, který si procvièíme, budou jednoduché skoky.
+}
+
+$holdtime 5.5
+$chained !HOLO_JUMP_PT3
+!HOLO_JUMP_PT2
+{
+Pokuste se dostat pøes tuto soustavu trubek pouze pomocí bìhu a vyskokù.
+}
+
+$holdtime 5.5
+!HOLO_JUMP_PT3
+{
+Rozhodnì vám pomùže se nejprve rozbìhnout. Sledujte mnì a potom se o to pokuste sami.
+}
+
+$holdtime 10
+!HOLO_DUCK
+{
+Nyní projdete v podøepu pod další soustavou pøekážek. Všimnìte si, že podøep automaticky pøepne váš oblek do tichého režimu, který minimalizuje hluk pøi pohybu.
+}
+
+$holdtime 11
+!HOLO_JDUCK
+{
+Nyní zkombinujeme vaše dovednosti. Budete muset vyskoèit, døepnout si a potom znovu vyskoèit. Toto vás pøipraví na další místnost, kde budete muset provést oba pohyby souèasnì.
+}
+
+$holdtime 4.5
+$chained !HOLO_PIPEDUCK_PT2
+!HOLO_PIPEDUCK
+{
+Abyste se dostal do tìchto trubek, musíte dát svému obleku signál k provedení skoku s podøepem.
+}
+
+$holdtime 13
+!HOLO_PIPEDUCK_PT2
+{
+Pøistupte k ústí trubky a pokraèujte stisknutím „POHYB DOPØEDU“ vyskoète, a zatímco jste ve vzduchu, proveïte podøep. Je to složité, ale zjistíte, že je to velmi užiteèné.
+}
+
+$holdtime 1
+!HOLO_NICEJOB
+{
+Dobrá práce!
+}
+
+$holdtime 7.8
+!HOLO_LADDER
+{
+Jdìte pøímo k žebøíku, podívejte se nahoru a pokraèujte vpøed. Chcete-li lézt dolù, pohybujte se dozadu.
+}
+
+$holdtime 13
+!HOLO_3JUMPS
+{
+Následující trojskok je sice obtížný, ale proveditelný. Nelekejte se, pokud se vám to napoprvé nebo napodruhé nepodaøí. Uspìjete pouze tehdy, když zvládnete všechny tøi skoky bez zastavení.
+}
+
+$holdtime 2
+!HOLO_KEEPTRYING
+{
+Zkoušejte to dál! Dokážete to!
+}
+
+$holdtime 2
+!HOLO_RUNSTART
+{
+Pomùžu vám s rozbìhem.
+}
+
+$holdtime 3.7
+!HOLO_FALLSHORT
+{
+Pokud spadnete pøíliš brzy, tak možná vyskakujete pøíliš brzy.
+}
+
+$holdtime 4.5
+!HOLO_GREATWORK
+{
+Skvìlá práce. Zbývá ještì jeden styl skoku, který se potøebujete nauèit.
+}
+
+$holdtime 4
+$chained !HOLO_LONGJUMP_PT2
+!HOLO_LONGJUMP
+{
+Skoky do dálky vyžadují vlastní pohonný modul, který je zde.
+}
+
+$holdtime 11
+!HOLO_LONGJUMP_PT2
+{
+Abyste aktivovali skok do dálky, musíte být v podøepu, pohybovat se vpøed a zárovìò skoèit. Až vylezete na plošinu, stisknìte tlaèítko a já vám pohyb pøedvedu.
+}
+
+$holdtime 6
+!HOLO_RETRY
+{
+Zkuste to prosím znovu. Pamatujte, bìžte dopøedu, skoète a ve vzduchu se pokrète.
+}
+
+$holdtime 5.5
+!HOLO_STARTLIFT
+{
+Pøivolejte prosím výtah tak, že pøijdete k tlaèítku, pohlédnete na nìj a stisknete klávesu „POUŽÍT“.
+}
+
+$holdtime 7.5
+$chained !HOLO_JUMPDOWN_PT2
+!HOLO_JUMPDOWN
+{
+Nyní, když jste nahoøe, vede dolù jen jedna cesta. Najdìte terè na podlaze pod vámi a snažte se jej co nejlépe zasáhnout. 
+}
+
+$holdtime 5.2
+!HOLO_JUMPDOWN_PT2
+{
+Pokud si pøi pádu ublížíte, poskytneme vám lékaøskou pomoc na dalším stanovišti.
+}
+
+$holdtime 8.6
+$chained !HOLO_MEDKIT_PT2
+!HOLO_MEDKIT
+{
+Jednotku první pomoci, jako je tato, najdete v celém komplexu Black Mesa. Chcete-li obnovit svùj zdravotní stav, pøistupte k jednotce a stisknìte tlaèítko „POUŽÍT“.
+}
+
+$holdtime 10
+!HOLO_MEDKIT_PT2
+{
+Váš zdravotní stav se bude postupnì zvyšovat, dokud nebude plnì doplnìn nebo dokud jednotka nebude vybitá. Když jednotka zhasne, nelze jí znova využít.
+}
+
+$holdtime 4.5
+!HOLO_SPINBRIDGE
+{
+Chcete-li otoèit s tímto mùstkem, pøistupte k øídícímu kolu a stisknìte tlaèítko „POUŽÍT“.
+}
+
+$holdtime 1.1
+!HOLO_FANTASTIC
+{
+Fantastické!
+}
+
+$holdtime 7.6
+!HOLO_JUMPGAP
+{
+Nìkdy se budete muset spoléhat na více, než jen váš oblek, abyste se nìkam dostal. Zkuste se dostat pøes tuto mezeru pomocí vlastní pøedstavivosti.
+}
+
+$holdtime 10
+!HOLO_PUSHBOX
+{
+K dalšímu postupu potøebujete umístit tuto bednu do mezery. Tlaèení je snadné. Jen jdìte rovnì a tlaète bednu pøed sebou až do daného místa.
+}
+
+$holdtime 7.8
+$chained !HOLO_PULLBOX_PT2
+!HOLO_PULLBOX
+{
+Pokud se vám nedaøí vytlaèit pøekážku, která stojí v cestì, mùžete se jí pokusit vytáhnout. Abyste vytáhnul bednu, pøistupte k ní a stisknìte tlaèítko „POUŽÍT“.
+}
+
+$holdtime 7.2
+!HOLO_PULLBOX_PT2
+{
+Držte tlaèítko „POUŽÍT“ k zachycení bedny a jdìte pomalu dozadu. Bedna se bude pohybovat s vámi.
+}
+
+$holdtime 9.8
+!HOLO_BREAKBOX
+{
+Nakonec, když už nic jiného nepomùže, mùžete se pokusit rozbít objekty ve vaší cestì. Ujistìte se, že máte v ruce páèidlo, s kterým si jednoduše vytvoøíte cestu pøes trosky.
+}
+
+$holdtime 3
+!HOLO_FLASHLIGHT
+{
+Aktivujte svítilnu na vašem obleku pøed vstupem do další èásti.
+}
+
+$holdtime 5.3
+!HOLO_LIGHTOFF
+{
+Skvìle. Pamatujte, že baterka vybíjí energii, vypnìte jí, pokud jí nepotøebujete.
+}
+
+$holdtime 12.2
+!HOLO_TARGET
+{
+Vítejte v kurzu støelby v Black Mesa, kde budete proškoleni ve støelbì z automatické pušky, nabíjení a støelby z granátometu. Vezmìte si prosím zbraò a jdìte na palebnou pozici.
+}
+
+$holdtime 8
+$chained !HOLO_HITALL_PT2
+!HOLO_HITALL
+{
+K dokonèení kurzu je tøeba zasáhnout všechny cíle. Pokud nezasáhnete na potrvé, nezoufejte, cíl se bude vracet.
+}
+
+$holdtime 6
+!HOLO_HITALL_PT2
+{
+Pokuste se pøebíjet v dobì, než se objeví další cíl, vyhnete se tak prázdnému zásobníku v kritické situaci.
+}
+
+$holdtime 8
+!HOLO_GRENADE
+{
+Chcete-li použít granátomet, stisknìte alternativní tlaèítko støelby. Nìkteré cíle zasáhnete pouze s pomocí granátu.
+}
+
+$holdtime 5
+!HOLO_COMMENCING
+{
+Sekvence bude zahájena za 5, 4, 3, 2, 1.
+}
+
+$holdtime 2
+!HOLO_TRYAGAIN
+{
+Nic se nestalo. Zkuste to znovu.
+}
+
+$holdtime 6
+!HOLO_CONGRATS
+{
+Gratulujeme! Dokonèil jste kurz støelby v Black Mesa. Pøejdìte prosím do další èásti.
+}
+
+$holdtime 15.5
+!HOLO_DROWN
+{
+Váš HEV oblek monitoruje hladinu kyslíku v krvi a upozorní vás, kdy je nutné provést pøísun kyslíku. Bìhem plavání v této èásti vaše hladina kyslíku v krvi zaène klesat. V polovinì cesty budete mít pøíležitost se vynoøit a nadechnout se.
+}
+
+$holdtime 11
+!HOLO_BREATH
+{
+Vynoøte se a popadnìte dech. Mùžete si povšimnout indikátoru hladiny kyslíku v krvi na displeji vašeho obleku, který se vrací do pùvodní úrovnì. Nyní mùžete doplavat k závìreèné èásti kurzu.
+}
+
+$holdtime 9.3
+$chained !HOLO_CHARGER_PT2
+!HOLO_CHARGER
+{
+Tohle je nabíjecí jednotka pro HEV oblek. Když vám dochází energie, pøistupte k nabíjecí jednotce a stisknìte tlaèítko „POUŽÍT“.
+}
+
+$holdtime 8.3
+!HOLO_CHARGER_PT2
+{
+Váš oblek se bude postupnì nabíjet, dokud nabíjecí jednotka nebude vyèerpána. Také elektrická baterie mùže nabít váš oblek.
+}
+
+$holdtime 10.5
+!HOLO_STEAM
+{
+Projdete-li pøes oheò nebo páru, rozsvítí se ikona zranìní. Smìrový ukazatel uprostøed displeje vám ukáže, odkud pochází zdroj zranìní.
+}
+
+$holdtime 8.5
+!HOLO_RADIATION
+{
+V blízkosti radiaèního záøení se aktivuje Geigerùv poèítaè a display rozbrazí hladinu radiace. Biologické nebezpeèí je také indikováno svítící ikonou.
+}
+
+$holdtime 2
+!HOLO_INJURY
+{
+Pøejdìte prosím do další èásti.
+}
+
+$holdtime 5.5
+$chained !HOLO_LEADGUARD_PT2
+!HOLO_LEADGUARD
+{
+Vezmìte èlena ochranky do další místnosti, umožní vám se vrátit do dopravního systému.
+}
+
+$holdtime 7.2
+!HOLO_LEADGUARD_PT2
+{
+Postavte se pøed ochranku a stisknìte tlaèítko „POUŽÍT“. Bude vás následovat, dokud znova nestisknete tlaèítko „POUŽÍT“.
+}
+
+$holdtime 13
+!HOLO_USETRAIN
+{
+Stisknìte tlaèítko „POUŽÍT“ pro pøipojení k drezínì. Stisknete-li tlaèítko „POHYB DOPØEDU“ nebo „POHYB DOZADU“, mùžete zvýšit nebo snížit rychlost drezíny. Stisknìte tlaèítko „POUŽÍT“ pro odpojení od drezíny.
+}
+
+$holdtime 9
+!HOLO_DONE
+{
+Blahopøejeme vám k dokonèení výcvikového kurzu Black Mesa. Nyní jste plnì oprávnìn k užívání ochranného obleku HEV ètvrté generace.
+}
+
+//=============================================================================================================================================
+// Barney (generic)
+//=============================================================================================================================================
+
+$color  126 192 255
+$color2  63  96 128
+
+$holdtime 1
+!BA_OK0
+{
+Jasnì, budu tì krýt.
+}
+
+$holdtime 3
+!BA_OK1
+{
+Jasnì, mùžeme pøežít déle, když budeme spolupracovat.
+}
+
+$holdtime 2
+!BA_OK2
+{
+Vypadneme odsud.
+}
+
+$holdtime 3
+!BA_OK3
+{
+Jo, když budeme spolupracovat, mùžeme mít vìtší šanci.
+}
+
+$holdtime 3
+!BA_OK4
+{
+Jo, proè ne. Stejnì nechci umøít sám.
+}
+
+$holdtime 1
+!BA_OK5
+{
+Pojïme.
+}
+
+$holdtime 2
+!BA_OK6
+{
+Tak jo, vypadneme odsud.
+}
+
+$holdtime 3
+!BA_WAIT0
+{
+Jo, poèkám tady a pomùžu komukoliv dalšímu, kdo pøijde. 
+}
+
+$holdtime 2
+!BA_WAIT1
+{
+Jdi beze mì.
+}
+
+$holdtime 2
+!BA_WAIT2
+{
+Dobøe, budu to tu hlídat.
+}
+
+$holdtime 2
+!BA_WAIT3
+{
+Dobøe, poèkám tady.
+}
+
+$holdtime 2
+!BA_WAIT4
+{
+Uvidíme se pozdìji.
+}
+
+$holdtime 2
+!BA_WAIT5
+{
+Zùstanu tady a budu hlídat tuhle oblast.
+}
+
+$holdtime 3
+!BA_POK0
+{
+Promiòte, pane. Musím zùstat na své pozici.
+}
+
+$holdtime 3
+!BA_POK1
+{
+Omlouvám se, pane Freemane, ale jsem ve službì.
+}
+
+$holdtime 2
+!BA_POK2
+{
+Mùžeš se stavit pozdìji?
+}
+
+$holdtime 3
+!BA_POK3
+{
+Hele, stav se pozdìji, zvu tì na pivo.
+}
+
+$holdtime 1
+!BA_HELLO0
+{
+Dobrej.
+}
+
+$holdtime 1
+!BA_HELLO1
+{
+Zdravím, pane Freemane.
+}
+
+$holdtime 1
+!BA_HELLO2
+{
+Dobrý den, pane.
+}
+
+$holdtime 1
+!BA_HELLO3
+{
+Èau, Gordone.
+}
+
+$holdtime 1
+!BA_HELLO4
+{
+Pane.
+}
+
+$holdtime 1
+!BA_HELLO5
+{
+Zdar, Gordone.
+}
+
+$holdtime 1
+!BA_HELLO6
+{
+Pane.
+}
+
+$holdtime 2
+!BA_HEAR0
+{
+Nìco jsem slyšel.
+}
+
+$holdtime 2
+!BA_HEAR1
+{
+To nezní dobøe.
+}
+
+$holdtime 2
+!BA_HEAR2
+{
+Ty vole, to nezní moc dobøe.
+}
+
+$holdtime 3
+!BA_SMELL0
+{
+Uch, tady nìco chcíplo!
+}
+
+$holdtime 3
+!BA_SMELL1
+{
+Co je to za smrad?
+}
+
+$holdtime 2
+!BA_SMELL2
+{
+Uch, co je to za smrad?
+}
+
+$holdtime 2
+!BA_CUREA
+{
+Vsadím se, že to musí bolet.
+}
+
+$holdtime 3
+!BA_CUREB
+{
+Pane, té ránì byste mìl zaèít vìnovat vìtší pozornost.
+}
+
+$holdtime 4
+!BA_CUREC
+{
+Pane, nerad to øíkám, ale nevypadáte moc dobøe.
+}
+
+$holdtime 2
+!BA_SCARED0
+{
+Hele, nech toho!
+}
+
+$holdtime 3
+!BA_SCARED1
+{
+Ruplo ti v bednì? Nech toho!
+}
+
+$holdtime 3
+!BA_WOUND0
+{
+Nic to není, zvládnu to.
+}
+
+$holdtime 3
+!BA_WOUND1
+{
+No, schytal jsem to poøádnì.
+}
+
+$holdtime 4
+!BA_MORTAL0
+{
+Promiòte, pane, ale víc toho už nevydržím.
+}
+
+$holdtime 2
+!BA_SHOT0
+{
+Koukej kam s tím míøíš!
+}
+
+$holdtime 2
+!BA_SHOT1
+{
+Hej! Co jsem ti udìlal?
+}
+
+$holdtime 2
+!BA_SHOT2
+{
+Koukej co dìláš!
+}
+
+$holdtime 2
+!BA_SHOT3
+{
+O co se snažíš?
+}
+
+$holdtime 3
+!BA_SHOT4
+{
+To jseš fakt kámoš, vole!
+}
+
+$holdtime 2
+!BA_SHOT5
+{
+Neser mì, Gordone.
+}
+
+$holdtime 2
+!BA_MAD0
+{
+Hele, odstup vole!
+}
+
+$holdtime 2
+!BA_MAD1
+{
+Nechtìl jsem, aby to došlo až sem...
+}
+
+$holdtime 3
+!BA_MAD2
+{
+Budeš litovat toho, co jsi udìlal.
+}
+
+$holdtime 3
+!BA_MAD3
+{
+Nìco snesu, ale tohle už ne.
+}
+
+$holdtime 2
+!BA_MAD4
+{
+To je tvùj konec!
+}
+
+$holdtime 2
+!BA_MAD5
+{
+Nenu mì to udìlat.
+}
+
+$holdtime 2
+!BA_MAD6
+{
+Co chceš mít na náhrobku?
+}
+
+$holdtime 1
+!BA_STARE0
+{
+Jo.
+}
+
+$holdtime 1
+!BA_STARE1
+{
+Ano, pane.
+}
+
+$holdtime 1
+!BA_STARE2
+{
+Dobrý den, pane.
+}
+
+$holdtime 1
+!BA_STARE3
+{
+Pane.
+}
+
+$holdtime 3
+!BA_ATTACK0
+{
+Støílej, Gordone! Støílej!
+}
+
+$holdtime 3
+!BA_ATTACK1
+{
+Støílej, Gordone! Støílej!
+}
+
+$holdtime 1
+!BA_ATTACK2
+{
+Zpátky!
+}
+
+$holdtime 2
+!BA_ATTACK3
+{
+Co to kurva je?
+}
+
+$holdtime 2
+!BA_ATTACK4
+{
+Zdechni hajzle!
+}
+
+$holdtime 2
+!BA_ATTACK5
+{
+Miø na hlavu, pokud jí dokážeš najít.
+}
+
+$holdtime 1
+!BA_KILL0
+{
+Dostal jsem ho!
+}
+
+$holdtime 2
+!BA_KILL1
+{
+Ha ha! Dostal jsem dalšího!
+}
+
+$holdtime 3
+!BA_KILL2
+{
+O jednu potvoru ménì na tomto svìtì.
+}
+
+$holdtime 2
+!BA_KILL3
+{
+Ty vole, vidìl jsi tu trefu?
+}
+
+$holdtime 2
+!BA_KILL4
+{
+Ty jo, to bylo o fous.
+}
+
+$holdtime 3
+!BA_KILL5
+{
+Ten se bude krásnì vyjímat v mojí sbírce.
+}
+
+$holdtime 1
+!BA_KILL6
+{
+Jen tak dál!
+}
+
+$holdtime 2
+!BA_STOP0
+{
+Dál už nejdu.
+}
+
+$holdtime 4
+!BA_STOP1
+{
+Zùstanu tady a podívam se, jestli nìkdo nepotøebuje pomoc.
+}
+
+$holdtime 2
+!BA_IDLE0
+{
+Co to kurva je?
+}
+
+$holdtime 3
+!BA_IDLE1
+{
+Teï bych si opravdu dal jedno vychlazené.
+}
+
+$holdtime 4
+!BA_IDLE2
+{
+Chtìl bych dostat do rukou toho hajzla, který mùže za tohle svinstvo.
+}
+
+$holdtime 3
+!BA_IDLE3
+{
+Jsem zvìdavý, jestli to ti týpci ještì víc poserou.
+}
+
+$holdtime 3
+!BA_IDLE4
+{
+Døíve nebo pozdìji nás štìstí stejnì opustí.
+}
+
+$holdtime 3
+!BA_IDLE5
+{
+Je to tu vìtší, než jsem si myslel.
+}
+
+$holdtime 4
+!BA_IDLE6
+{
+Jo, dny strávené na støelnici se koneènì vyplatily.
+}
+
+$holdtime 3
+!BA_IDLE7
+{
+Mám z toho špatný pocit...
+}
+
+$holdtime 3
+!BA_IDLE8
+{
+Cítím tu past. Buï opatrný.
+}
+
+$holdtime 3
+!BA_IDLE9
+{
+Budu šastný, když se z toho dostanu vcelku.
+}
+
+$holdtime 4
+!BA_IDLE10
+{
+Nejsem si jistý, zda máme jít dál. Nevypadá to dobøe.
+}
+
+$holdtime 3
+!BA_QUESTION0
+{
+Myslíš si, že po tom všem dáme jedno vychlazené?
+}
+
+$holdtime 2
+!BA_QUESTION1
+{
+Jseš si jistý, že je to správná cesta?
+}
+
+$holdtime 3
+!BA_QUESTION2
+{
+Horší už to být nemùže, že ne?
+}
+
+$holdtime 3
+!BA_QUESTION3
+{
+Vsadím se, že jsi rád, že mám u sebe tuhle starou pistoli, co?
+}
+
+$holdtime 3
+!BA_QUESTION4
+{
+Máš nìjakou pøedstavu, na èem to pracovali?
+}
+
+$holdtime 2
+!BA_QUESTION5
+{
+Myslíš si, že je to správná cesta ven?
+}
+
+$holdtime 3
+!BA_QUESTION6
+{
+Máš nìjaké ponìtí, co se tu vlastnì dìje?
+}
+
+$holdtime 2
+!BA_QUESTION7
+{
+Nemáš strach, že ne?
+}
+
+$holdtime 3
+!BA_QUESTION8
+{
+Poøád si myslíš, že je to cvièení, co?
+}
+
+$holdtime 2
+!BA_QUESTION9
+{
+Myslíš, že se blížíme?
+}
+
+$holdtime 2
+!BA_QUESTION10
+{
+Hele, neslyšel jsi nìco?
+}
+
+$holdtime 3
+!BA_QUESTION11
+{
+Kolik myslíš, že tu zdechlo našich kolegù?
+}
+
+$holdtime 3
+!BA_QUESTION12
+{
+Vidìl jsi to?
+}
+
+$holdtime 2
+!BA_QUESTION13
+{
+Myslíš na to, co já?
+}
+
+$holdtime 4
+!BA_QUESTION14
+{
+Vidìl jsi tu beznohou potvoru?
+}
+
+$holdtime 1
+!BA_ANSWER0
+{
+Ani náhodou.
+}
+
+$holdtime 1
+!BA_ANSWER1
+{
+Doufám.
+}
+
+$holdtime 1
+!BA_ANSWER2
+{
+Zní to dobøe.
+}
+
+$holdtime 1
+!BA_ANSWER3
+{
+Ano, pane.
+}
+
+$holdtime 1
+!BA_ANSWER4
+{
+Urèitì.
+}
+
+$holdtime 1
+!BA_ANSWER5
+{
+To si piš.
+}
+
+$holdtime 1
+!BA_ANSWER6
+{
+Jo.
+}
+
+$holdtime 1
+!BA_ANSWER7
+{
+Mì se neptej.
+}
+
+$holdtime 2
+!BA_ANSWER8
+{
+S tím nepoèítej.
+}
+
+$holdtime 2
+!BA_ANSWER9
+{
+Nechápu to.
+}
+
+$holdtime 2
+!BA_ANSWER10
+{
+Vidím to jinak.
+}
+
+$holdtime 1
+!BA_ANSWER11
+{
+To si nemyslím.
+}
+
+$holdtime 1
+!BA_ANSWER12
+{
+Tìžko øíct.
+}
+
+$holdtime 1
+!BA_ANSWER13
+{
+Já prostì nevím.
+}
+
+$holdtime 1
+!BA_ANSWER14
+{
+Ne...
+}
+
+$holdtime 1
+!BA_ANSWER15
+{
+Ne, pane.
+}
+
+$holdtime 2
+!BA_ANSWER16
+{
+Nemùžu na to pøijít...
+}
+
+$holdtime 1
+!BA_ANSWER17
+{
+Možná.
+}
+
+$holdtime 2
+!BA_ANSWER18
+{
+To opravdu nemohu øíct.
+}
+
+$holdtime 2
+!BA_ANSWER19
+{
+Mùžeš být zticha?
+}
+
+$holdtime 2
+!BA_ANSWER20
+{
+Moc mluvíš.
+}
+
+$holdtime 2
+!BA_ANSWER21
+{
+Na to už ses mì ptal, ne?
+}
+
+//=============================================================================================================================================
+// Barney Scripted Subtitles
+//=============================================================================================================================================
+
+$holdtime 2
+!BA_HAZ_OK0
+{
+Jistì, pùjdu s vámi.
+}
+
+$holdtime 2
+!BA_HAZ_WAIT0
+{
+Dobrá, budu tady èekat.
+}
+
+$holdtime 3.5
+!BA_LATE
+{
+Dobré ráno, pane Freemane. Zdá se, že máte zpoždìní.
+}
+
+$holdtime 4
+!BA_HEADDOWN
+{
+Jste u špatné pøetlakové komory, pane Freemane. Víte, že vás sem nemohu pustit.
+}
+
+$holdtime 8.5
+$chained !BA_DESK_PT2
+!BA_DESK
+{
+Zdravím, pane Freemane. Mìl jsem tu pro vás nìkolik zpráv, ale asi pøed 20 minutami nám zkolaboval systém a stále se pokouším najít své soubory. Zase jeden z tìch dnù.
+}
+
+$holdtime 8.2
+!BA_DESK_PT2
+{
+Taky dole v testovací komoøe mìli nìjaké problémy, ale myslím, že už je to v poøádku. Prý se tam máte ukázat, hned co budete mít na sobì ochranný oblek.
+}
+
+$holdtime 3
+!BA_BUTTON
+{
+Co je s vámi, Gordone? Chcete mì dostat do prùšvihu?
+}
+
+$holdtime 5
+!BA_HEVNO
+{
+Promiòte, pane Freemane. Dostal jsem pøímý rozkaz, abych vás nepouštìl bez ochranného obleku.
+}
+
+$holdtime 3
+!BA_HEVYES
+{
+Pøímo tudy, pane. Vypadá to, že dnes máte naspìch.
+}
+
+$holdtime 8
+!BA_GLAD
+{
+Gordone! Chlape, tak rád tì vidím. Co je to k sakru za potvory? A proè mají na sobì vìdecké pláštì? 
+}
+
+$holdtime 6
+!BA_BULLSQUID
+{
+Hej, co vy tady dole dìláte? Bìžte na povrch! Slyšel jsem, že nás jde zachránit armáda.
+}
+
+$holdtime 4
+!BA_CLIMB
+{
+Výtahy jsou mimo provoz, ale poøád mùžeme vyšplhat.
+}
+
+$holdtime 5
+!BA_SLEW
+{
+Otázka je, jak se dostaneme na povrch, když proti nám armáda pøijala opatøení.
+}
+
+$holdtime 5
+!BA_SURFACE	
+{
+Hele, nepoèítejte s tím, že nás tady dole najde kavalérie. Bìžte na povrch!
+}
+
+$holdtime 5
+!BA_TOPSIDE
+{
+Pomoc je možná na cestì, ale nehodlám tady na ní èekat. Musíme se dostat na povrch!
+}
+
+$holdtime 4
+!BA_WHISPER
+{
+Buï zticha. Ta vìc nás slyší.
+}
+
+$holdtime 6
+!BA_TENTACLE
+{
+Hej, hej! Pøímo tady! Nažer se tohodle ty vetøelská chobotnice!
+}
+
+$holdtime 5
+$chained !BA_HUB1A_PT2
+!BA_HUB1A
+{
+Pane, pokud obnovíte pøísun energie, tak ta drezína nás doveze pøímo na povrch...
+}
+
+$holdtime 6
+$chained !BA_HUB1A_PT3
+!BA_HUB1A_PT2
+{
+Zkusil bych to sám, ale je to dlouhá cesta dolu k generátoru a jsou tam...
+}
+
+$holdtime 2.5
+!BA_HUB1A_PT3
+{
+Potvory v cestì...
+}
+
+$holdtime 4
+!BA_HUB2A
+{
+Já už to nezvládnu... Radši jdìte beze mì...
+}
+
+$holdtime 9.6
+$chained !BA_LAUNCH_PT2
+!BA_LAUNCH
+{
+Freemane, èekám tu na vás. Jeden z vašich vìdeckých pøátel mi øekl, abych vám tuhle pøedal zprávu. Máte prý dojet touto starou železnièní soustavou nahoru k nìjaké raketì nesoucí satelit.
+}
+
+$holdtime 5.2
+$chained !BA_LAUNCH_PT3
+!BA_LAUNCH_PT2
+{
+Nevím kde to pøesnì je, ten staøík se natolik staral o to, jak se dostat odsud živý, že mi to ani neøekl.
+}
+
+$holdtime 8
+$chained !BA_LAUNCH_PT4
+!BA_LAUNCH_PT3
+{
+Hlavní ale je, že armáda zrušila odpal. Takže až tu raketu najdete, budete muset dostat do øídicí místnosti a odpálit ji ruènì.
+}
+
+$holdtime 6
+!BA_LAUNCH_PT4
+{
+Øíkal nìco o tom, že ji tým Lambda potøebuje mít na obìžné dráze, aby to tady vùbec mohli dát do poøádku.
+}
+
+$holdtime 6
+!BA_ASSN
+{
+Freeman, správnì? Mám pro vás vzkaz. Dávajte pozor, abyste ne–
+}
+
+$holdtime 2
+!BA_TAU1A
+{
+Co je to? Nìjaký druh zbranì?
+}
+
+$holdtime 2
+!BA_TAU3A
+{
+Vole, proè bychom jí nemohli použít?
+}
+
+$holdtime 2
+!BA_TAU5A
+{
+Co myslíš tím pøetíž–
+}
+
+$holdtime 2.8
+$chained !BA_ALIVE_PT2
+!BA_ALIVE
+{
+Hele, není to tam dobrý, vše je uzavøeno.
+}
+
+$holdtime 5.2
+$chained !BA_ALIVE_PT3
+!BA_ALIVE_PT2
+{
+Jediným východiskem je najít nìkoho, kdo má pøístup ke skeneru, aby mohl otevøít pøední vchod.
+}
+
+$holdtime 7.5
+!BA_ALIVE_PT3
+{
+Jsem si jistý, že se nìkde v laboratoøích skrývá nìkolik vìdcù. Možná, že když se porozhlédneme kolem, mùžeme je vystopovat a donutit je, aby nás odtud pustili.
+}
+
+$holdtime 9
+!BA_HELPME
+{
+Pomóc... Prosím, pomozte mi nìkdo, umírám tady. Prosím... pomozte... mi...
+}
+
+$holdtime 3
+!BA_SURVEY2A
+{
+Tak to je ten chlap, jo? Mysleli jsme, že to nikdy nedokážeš.
+}
+
+$holdtime 2
+!BA_SURVEY4A
+{
+Jo, radši bys to mìl zabít.
+}
+ 
+$holdtime 5
+!BA_SURVEY6A
+{
+Zkrátka, když se ti to nepovede, už nebude mít cenu vracet se zpátky.
+}
+ 
+$holdtime 4
+!BA_SURVEY8A
+{
+Nezapomeò se vybavit. Budu tì krýt, zatímco budeš èekat, než se portál zahøeje.
+}
+ 
+$holdtime 5
+!BA_PORTSTAY
+{
+Zùstanu tady. Když uvidím nìco, co sem nepatøí, zaènu støílet.
+}
+
+//============================================================
+// Scientist (generic)
+//============================================================
+
+$color  224 224 224
+$color2 112 112 112
+
+$holdtime 4
+!SC_OK0
+{
+S mým mozkem a vašimi svaly mùžeme vytvoøit excelentní tým.
+}
+
+$holdtime 2
+!SC_OK1
+{
+Rád budu následovat kolegu vìdce.
+}
+
+$holdtime 2
+!SC_OK2
+{
+Dobøe, ani o mì nebudete vìdet.
+}
+
+$holdtime 3
+!SC_OK3
+{
+Doufám, že víte, co dìláte.
+}
+
+$holdtime 2
+!SC_OK4
+{
+Veïte mì.
+}
+
+$holdtime 1
+!SC_OK5
+{
+Pojïme.
+}
+
+$holdtime 2
+!SC_OK6
+{
+Ano, pojïme.
+}
+
+$holdtime 1
+!SC_OK7
+{
+Ano.
+}
+
+$holdtime 1
+!SC_OK8
+{
+Dobrá.
+}
+
+$holdtime 3
+!SC_WAIT0
+{
+To jsem byl taková zátìž?
+}
+
+$holdtime 2
+!SC_WAIT1
+{
+Asi vás zpomaluji, že?
+}
+
+$holdtime 2
+!SC_WAIT2
+{
+Nepøepokládám, že si to rozmyslíte.
+}
+
+$holdtime 2
+!SC_WAIT3
+{
+Proè mì tady necháváte?
+}
+
+$holdtime 1
+!SC_WAIT4
+{
+Poèkám tady.
+}
+
+$holdtime 1
+!SC_WAIT5
+{
+Zùstanu tady.
+}
+
+$holdtime 1
+!SC_WAIT6
+{
+Budu èekat.
+}
+
+$holdtime 2
+!SC_STOP0
+{
+Dál už nejdu.
+}
+
+$holdtime 2
+!SC_STOP1
+{
+Odmítám jít dál.
+}
+
+$holdtime 3
+!SC_STOP2
+{
+Budete mì tu muset nechat, Gordone.
+}
+
+$holdtime 3
+!SC_STOP3
+{
+Zùstanu zde a poèkám na své kolegy.
+}
+
+$holdtime 2
+!SC_STARE0
+{
+Ano?
+}
+
+$holdtime 2
+!SC_STARE1
+{
+Myslíte na to samé, co já?
+}
+
+$holdtime 4
+!SC_STARE2
+{
+Nemáte tušení, co se tu dìje, že?
+}
+
+$holdtime 1
+!SC_HELLO0
+{
+Nazdárek.
+}
+
+$holdtime 3.5
+!SC_HELLO1
+{
+Freemane. Kdo by si pomyslel, že jste poøád naživu.
+}
+
+$holdtime 1.5
+!SC_HELLO2
+{
+Kolega vìdec.
+}
+
+$holdtime 2
+!SC_HELLO3
+{
+Zdravím.
+}
+
+$holdtime 2.4
+!SC_HELLO4
+{
+Dobrý den.
+}
+
+$holdtime 3.1
+!SC_HELLO5
+{
+Á, rád vás vidím.
+}
+
+$holdtime 4.4
+!SC_HELLO6
+{
+Á, máte na sobì jeden z tìch nových HEV obleku. To mùže být velmi užiteèný.
+}
+
+$holdtime 4.3
+!SC_HELLO7
+{
+Vy jste z laboratoøí anomálních materiálù, že? Ano, poznávám vás.
+}
+
+$holdtime 3.6
+!SC_HELLO8
+{
+Á, Freeman! Vidím, že jste také v této kaši.
+}
+
+$holdtime 1.1
+!SC_ANSWER0
+{
+Nejsem si jistý.
+}
+
+$holdtime 1.3
+!SC_ANSWER1
+{
+Nevím to jistì.
+}
+
+$holdtime 1
+!SC_ANSWER2
+{
+Možná.
+}
+
+$holdtime 1.3
+!SC_ANSWER3
+{
+Kdo ví?
+}
+
+$holdtime 1.8
+!SC_ANSWER4
+{
+To je neprùkazné.
+}
+
+$holdtime 1
+!SC_ANSWER5
+{
+Teoreticky.
+}
+
+$holdtime 1.5
+!SC_ANSWER6
+{
+Proè se ptáte mì?
+}
+
+$holdtime 2
+!SC_ANSWER7
+{
+Laskavì stište svùj hlas.
+}
+
+$holdtime 1.2
+!SC_ANSWER8
+{
+Samozøejmì.
+}
+
+$holdtime 1
+!SC_ANSWER9
+{
+Rozhodnì.
+}
+
+$holdtime 1
+!SC_ANSWER10
+{
+Ano.
+}
+
+$holdtime 1
+!SC_ANSWER11
+{
+Myslím, že ano.
+}
+
+$holdtime 1
+!SC_ANSWER12
+{
+Správnì.
+}
+
+$holdtime 1
+!SC_ANSWER13
+{
+Jsem si jistý.
+}
+
+$holdtime 1
+!SC_ANSWER14
+{
+Jednoznaènì.
+}
+
+$holdtime 1
+!SC_ANSWER15
+{
+Nemám pochybnosti.
+}
+
+$holdtime 1.5
+!SC_ANSWER16
+{
+Ano?
+}
+
+$holdtime 1
+!SC_ANSWER17
+{
+Samozøejmì, že ne.
+}
+
+$holdtime 1
+!SC_ANSWER18
+{
+Rozhodnì ne.
+}
+
+$holdtime 1
+!SC_ANSWER19
+{
+Ne.
+}
+
+$holdtime 2
+!SC_ANSWER20
+{
+To si nemyslím.
+}
+
+$holdtime 2
+!SC_ANSWER21
+{
+Naprosto se pletete.
+}
+
+$holdtime 1.3
+!SC_ANSWER22
+{
+To nemyslíte vážnì.
+}
+ 
+$holdtime 1.2
+!SC_ANSWER23
+{
+Opravdu nevím.
+}
+
+$holdtime 1.1
+!SC_ANSWER24
+{
+Nebuïte smìšný.
+}
+
+$holdtime 1
+!SC_ANSWER25
+{
+Sklapnìte.
+}
+
+$holdtime 1.8
+!SC_ANSWER26
+{
+Nemohu ani spekulovat.
+}
+
+$holdtime 1.8
+!SC_ANSWER27
+{
+Pøestaòte se mì na to ptát.
+}
+
+$holdtime 2
+!SC_ANSWER28
+{
+Neptal jste se už na to?
+}
+
+$holdtime 3
+!SC_ANSWER29
+{
+Víte, že se obèas opakujete.
+}
+
+$holdtime 3.2
+!SC_QUESTION0
+{
+Už jste nìkdy vidìli nìco takového?
+}
+
+$holdtime 4
+!SC_QUESTION1
+{
+Moje pravá hemisféra potøebuje nìkolik hodin spánku.
+}
+
+$holdtime 2
+!SC_QUESTION2
+{
+Myslíte na to samé, co já?
+}
+
+$holdtime 2
+!SC_QUESTION3
+{
+Dostaneme se nìkdy odsud?
+}
+
+$holdtime 2
+!SC_QUESTION4
+{
+Jste si jistý, že to je správná cesta?
+}
+
+$holdtime 2
+!SC_QUESTION5
+{
+Horší už to být nemùže.
+}
+
+$holdtime 2.8
+!SC_QUESTION6
+{
+Urèitì nás nìkdo pøijde zachránit.
+}
+
+$holdtime 2.6
+!SC_QUESTION7
+{
+Tohle všechno je fascinující, nemyslíte?
+}
+
+$holdtime 3.5
+!SC_QUESTION8
+{
+Myslím, že je to spíše stimulující, že?
+}
+
+$holdtime 4
+!SC_QUESTION9
+{
+Je velmi pravdìpodobné, že nás štìstí opustí, nemyslíte?
+}
+
+$holdtime 2.2
+!SC_QUESTION10
+{
+Neslyšel jste nìco?
+}
+
+$holdtime 2.5
+!SC_QUESTION11
+{
+Cítíte to, co já?
+}
+
+$holdtime 3
+!SC_QUESTION12
+{
+K èemu mi je ten doktorát, co?
+}
+
+$holdtime 3
+!SC_QUESTION13
+{
+Nemyslíte, že bychom tu mìli ještì chvíli poèkat?
+}
+
+$holdtime 4
+!SC_QUESTION14
+{
+Pamatujete si nìkdo postup v pøípadì nouze?
+}
+
+$holdtime 5
+!SC_QUESTION15
+{
+Tyto krabovité bytosti mají unikátní parazitální strategii, nemyslíte?
+}
+
+$holdtime 3.5
+!SC_QUESTION16
+{
+Vìøím, že tohle bude pozoruhodný dokument, je to tak?
+}
+
+$holdtime 2
+!SC_QUESTION17
+{
+Nemìli bychom se snažit získat nìjaký vzorek?
+}
+
+$holdtime 5.8
+!SC_QUESTION18
+{
+Opravdu si myslíte, že všechny tyto bytosti jsou zde jen proto, aby nás snìdli?
+}
+
+$holdtime 3.5
+!SC_QUESTION19
+{
+Nemáte podezøení, že za touto nehodou stojí nìjaký vetøelecký trik?
+}
+
+$holdtime 3
+!SC_QUESTION20
+{
+Nemyslíte, že bychom mìli apelovat na pøedstavitele tìch vetøelcù?
+}
+
+$holdtime 5.1
+!SC_QUESTION21
+{
+Ta „èistící“ jednotka, je to jen paranoidní fáma, že ano?
+}
+
+$holdtime 5.3
+!SC_QUESTION22
+{
+Ne všechny mimozemské bytosti musí být nepøátelské, že ne?
+}
+
+$holdtime 2.5
+!SC_QUESTION23
+{
+Rozumìl jste tomu poslednímu hlášení?
+}
+
+$holdtime 2
+!SC_QUESTION24
+{
+Cítíte to? Nìco se tu pálí.
+}
+
+$holdtime 4
+!SC_QUESTION25
+{
+Nemáte tušení, co se tu dìje, že?
+}
+
+$holdtime 3
+!SC_QUESTION26
+{
+Dobrá, máte nìjakou pøedstavu, co se bude dít dál?
+}
+
+$holdtime 3
+!SC_IDLE0
+{
+Já to všechno pøedpovídal, víte. Všechno!
+}
+
+$holdtime 3.3
+!SC_IDLE1
+{
+Vypadá to, že kontrolní systém plnì selhal.
+}
+
+$holdtime 2.6
+!SC_IDLE2
+{
+Stále tvrdíte, že nic z toho nesouvisí s teorií chaosu?
+}
+
+$holdtime 3
+!SC_IDLE3
+{
+Úchvatné. Jen se na to podívejte!
+}
+
+$holdtime 5
+!SC_IDLE4
+{
+Fascinující. Netušil jsem, že nìco takového mùže existovat.
+}
+
+$holdtime 4
+!SC_IDLE5
+{
+Jen se podívejte na ty zvláštní stopy.
+}
+
+$holdtime 3
+!SC_IDLE6
+{
+Kdo je zodpovìdný za tento prùšvih?
+}
+
+$holdtime 2.5
+!SC_IDLE7
+{
+Inu, takhle mizí naše sponzorské dotace.
+}
+ 
+$holdtime 4
+!SC_IDLE8
+{
+Nechcete se podívat na tyhle vzorky krve pod mikroskopem?
+}
+ 
+$holdtime 5
+!SC_IDLE9
+{
+Tušil jsem, že se to mùže stát, ale správce mì plnì ignoroval.
+}
+ 
+$holdtime 4
+!SC_IDLE10
+{
+Selhání takového rozsahu je velmi nepravdìpodobné.
+}
+ 
+$holdtime 5
+!SC_IDLE11
+{
+Inu, dimenzionální narušení mùže jednoznaènì pøenášet organické hmoty.
+}
+ 
+$holdtime 4.5
+!SC_IDLE12
+{
+Doufám, že lidé z laboratoøí Lambda získají vše zpìt pod kontrolu.
+}
+ 
+$holdtime 1.2
+!SC_IDLE13
+{
+Nìco jsem slyšel...
+}
+
+$holdtime 4
+!SC_PHELLO0
+{
+Ááá, dobrý den, Gordone Freemane. Rád vás vidím.
+}
+
+$holdtime 1
+!SC_PHELLO1
+{
+Zdravím.
+}
+
+$holdtime 2
+!SC_PHELLO2
+{
+Ááá, rád vás vidím.
+}
+
+$holdtime 1.5
+!SC_PHELLO3
+{
+Zdravím.
+}
+
+$holdtime 1
+!SC_PHELLO4
+{
+Dobrý den.
+}
+
+$holdtime 1
+!SC_PHELLO5
+{
+Vítejte.
+}
+
+$holdtime 1
+!SC_PHELLO6
+{
+Freemane.
+}
+
+$holdtime 2.5
+!SC_PIDLE0
+{
+Nìkdo mi znovu schoval brýle.
+}
+
+$holdtime 3.7
+!SC_PIDLE1
+{
+Proè všichni musíme nosit tyhle smìšné kravaty?
+}
+
+$holdtime 3.7
+!SC_PIDLE2
+{
+Pøemýšlím, jestli nemám znova udìlat ten test.
+}
+
+$holdtime 2.4
+!SC_PIDLE3
+{
+Toto vše je v mezích teoretických limitù.
+}
+
+$holdtime 1.7
+!SC_PIDLE4
+{
+Jak jsem oèekával.
+}
+
+$holdtime 1.4
+!SC_PIDLE5
+{
+To je zvláštní.
+}
+
+$holdtime 2.5
+!SC_PIDLE6
+{
+Ano, všechno to vypadá nepatrnì.
+}
+
+$holdtime 3.5
+!SC_PIDLE7
+{
+Kde jsem jen nechal ten ten graf s vypínacím postupem?
+}
+
+$holdtime 3
+!SC_PIDLE8
+{
+Nesním zapomenout na tu zprávu o fluktuaci.
+}
+
+$holdtime 3.4
+!SC_PIDLE9
+{
+Vìtšina výsledkù ze simulace je pøijatelná, víte.
+}
+
+$holdtime 3.3
+!SC_PIDLE10
+{
+Doufám, že tyhle omezující parametry jsou stále nominální.
+}
+
+$holdtime 3.2
+!SC_PQUEST0
+{
+Už se vám povedlo rozchodit ten nápojový automat?
+}
+
+$holdtime 4
+!SC_PQUEST1
+{
+Už jste odeslal správci prùbìžnou zprávu?
+}
+
+$holdtime 4
+!SC_PQUEST2
+{
+To už zase poèítáte ty tunelovací pøíhrady? 
+}
+
+$holdtime 4
+!SC_PQUEST3
+{
+To by mìlo otøást s chlapci od teorie velkého sjednocení.
+}
+
+$holdtime 3.9
+!SC_PQUEST4
+{
+Jste si stoprocentnì jisti, že je vaše teorie správná?
+}
+
+$holdtime 3.3
+!SC_PQUEST5
+{
+Netrpìlivì èekám na tu analýzu, co vy?
+}
+
+$holdtime 3.3
+!SC_PQUEST6
+{
+Nebylo by skvìlé získat pro zmìnu nìjaké èisté hodnoty?
+}
+
+$holdtime 2.5
+!SC_PQUEST7
+{
+Nìjaké nápady, jak mohl vzniknul tamtem nový vzorek?
+}
+
+$holdtime 3.5
+!SC_PQUEST8
+{
+Ta analýza dnes pobìží perfektnì, nemyslíte?
+}
+
+$holdtime 4.5
+!SC_PQUEST9
+{
+Nemáte obavy z možného prùbìhu exponenciální kaskády, o které jsme diskutovali?
+}
+
+$holdtime 3.5
+!SC_PQUEST10
+{
+Nemyslíte, že bychom to mìli odložit kvùli další rekalibraci?
+}
+
+$holdtime 3.2
+!SC_PQUEST11
+{
+S etickými problémy se nezatìžujete, že?
+}
+
+$holdtime 4
+!SC_PQUEST12
+{
+Všechny modulátory fázového posunu jsou nyní nastaveny, že ano?
+}
+
+$holdtime 2
+!SC_PQUEST13
+{
+Nevíte, kdo snìdl všechny koblihy?
+}
+
+$holdtime 2
+!SC_PQUEST14
+{
+Nevidìl jste mùj šálek kávy?
+}
+
+$holdtime 2
+!SC_PQUEST15
+{
+Má ještì nìkdo hlad?
+}
+
+$holdtime 4.5
+!SC_PQUEST16
+{
+Nemyslíte, že byste mìl ty tlumící faktory rezonance znovu propoèítat?
+}
+
+$holdtime 3
+!SC_PQUEST17
+{
+Jste si jisti, že jste zkontrolovat tlumièe?
+}
+
+$holdtime 1.5
+!SC_NOGO
+{
+Ne! Nechoïte tam!
+}
+
+$holdtime 3
+!SC_MONST0
+{
+Podívejte se, další mozkokrab.
+}
+
+$holdtime 3
+!SC_MONST1
+{
+Další dùležitý druh odhalený v akci.
+}
+
+$holdtime 1
+!SC_HEAR0
+{
+Nìco jsem slyšel.
+}
+
+$holdtime 1
+!SC_HEAR1
+{
+Slyšel jste to?
+}
+
+$holdtime 2
+!SC_HEAR2
+{
+Ten zvuk. Co je to?
+}
+
+$holdtime 4.3
+!SC_SMELL0
+{
+Myslím si, že tu nìco pøíšernì hnije.
+}
+
+$holdtime 3
+!SC_SMELL1
+{
+Doufám, že ten odér nepochází od vás.
+}
+
+$holdtime 3
+!SC_SMELL2
+{
+Hmm, to je zvláštní zápach.
+}
+
+$holdtime 2.5
+!SC_SMELL3
+{
+Co je to za zápach?
+}
+
+$holdtime 3.5
+!SC_WOUND0
+{
+Mám dojem, že jsem zranìný, ale mohu jít dál.
+}
+
+$holdtime 3.5
+!SC_WOUND1
+{
+No, myslím, že jsem tìžce zranìn.
+}
+
+$holdtime 2.5
+!SC_MORTAL0
+{
+Myslím, že toho více nevydržím.
+}
+
+$holdtime 3.5
+!SC_MORTAL1
+{
+No, myslím, jak jsem tìžce zranìn.
+}
+
+$holdtime 2
+!SC_CUREA
+{
+Vypadáte strašnì.
+}
+
+$holdtime 2
+!SC_CUREB
+{
+Ááá, byl jste zranìn.
+}
+
+$holdtime 3
+!SC_CUREC
+{
+Zdá se, že neprodlenì potøebujete lékaøskou pomoc.
+}
+
+$holdtime 3
+!SC_HEAL0
+{
+Dovolte mi, abych se postaral o tu ránu.
+}
+
+$holdtime 3
+!SC_HEAL1
+{
+Tohle by vám mìlo pomoci.
+}
+
+$holdtime 4
+!SC_HEAL2
+{
+Zdá se, že potøebujete okamžitou lékaøskou pomoc. Nechte mì se na to podívat.
+}
+
+$holdtime 2
+$chained !SC_HEAL3_PT2
+!SC_HEAL3
+{
+Vypadáte strašnì.
+}
+
+$holdtime 2.5
+!SC_HEAL3_PT2
+{
+Stùjte klidnì, nebude to bolet.
+}
+
+$holdtime 2
+$chained !SC_HEAL4_PT2
+!SC_HEAL4
+{
+Ááá, jste zranìný.
+}
+
+$holdtime 1
+!SC_HEAL4_PT2
+{
+Zkuste tohle.
+}
+
+$holdtime 2
+!SC_HEAL5
+{
+Dovolte mi, abych se na to podíval.
+}
+
+$holdtime 2
+!SC_HEAL6
+{
+Dám vám nìco proti bolesti.
+}
+
+$holdtime 2
+!SC_HEAL7
+{
+Nemìjte obavy, jsem doktor.
+}
+
+$holdtime 2.2
+!SC_PLFEAR0
+{
+Mùj Bože! Co to dìláte?
+}
+
+$holdtime 2
+!SC_PLFEAR1
+{
+Víc toho už nevydržím.
+}
+
+$holdtime 2.8
+!SC_PLFEAR2
+{
+Tohle je šílenství! Musím odtud zmizet!
+}
+
+$holdtime 1.5
+!SC_PLFEAR3
+{
+Ne! Prosím!
+}
+
+$holdtime 2
+!SC_PLFEAR4
+{
+Musím se odsud dostat.
+}
+
+$holdtime 2
+!SC_PLFEAR5
+{
+Promiòte, musím vás opustit.
+}
+
+$holdtime 1
+!SC_FEAR0
+{
+Ne...
+}
+
+$holdtime 1
+!SC_FEAR2
+{
+Ale ne!
+}
+
+$holdtime 2
+!SC_FEAR3
+{
+Ne! Já nechci umøít!
+}
+
+$holdtime 2.8
+!SC_FEAR4
+{
+Chci se z toho dostat živý.
+}
+
+$holdtime 2
+!SC_FEAR7
+{
+Ale ne.
+}
+
+$holdtime 2
+!SC_FEAR8
+{
+Ale ne.
+}
+
+$holdtime 1
+!SC_FEAR9
+{
+Ne, ne!
+}
+
+$holdtime 2
+!SC_FEAR10
+{
+Ale ne.
+}
+
+$holdtime 2
+!SC_FEAR11
+{
+Ale ne.
+}
+
+$holdtime 1
+!SC_SCREAM5
+{
+Ale ne!
+}
+
+$holdtime 1
+!SC_SCREAM6
+{
+Ach, Bože!
+}
+
+$holdtime 1
+!SC_SCREAM10
+{
+Bože mùj!
+}
+
+$holdtime 1
+!SC_SCREAM11
+{
+Ježiši!
+}
+
+$holdtime 1
+!SC_SCREAM12
+{
+Ne!
+}
+
+$holdtime 1
+!SC_SCREAM13
+{
+Vypadnìte!
+}
+
+$holdtime 2.2
+!SC_SCARED0
+{
+Mùj Bože! Co to dìláte?
+}
+
+$holdtime 2
+!SC_SCARED1
+{
+Nechte ho! Je to pøítel!
+}
+
+$holdtime 2.4
+!SC_SCARED2
+{
+Zbláznil jste se? Okamžitì toho nechte!
+}
+
+$holdtime 1.7
+!SC_LETYOUIN
+{
+Poèkejte vteøinku, pustím vás dovnitø.
+}
+
+$holdtime 1.9
+!SC_OVERHERE
+{
+Psst, tady!
+}
+
+$holdtime 3.3
+!SC_POK0
+{
+Nechte mì prosím na pokoji dokud neskonèí experiment.
+}
+
+$holdtime 1.5
+!SC_POK1
+{
+Teï nemùžu být rušen.
+}
+
+$holdtime 2.8
+!SC_POK2
+{
+Omluvte mì, Gordone, ale teï jsem zaneprázdnìn.
+}
+
+$holdtime 3.2
+!SC_POK3
+{
+Budete si muset poèkat, dokud neskonèí test.
+}
+
+$holdtime 3
+!SC_POK4
+{
+Nemìl jste už být asi pøed pùl hodinou v testovací komoøe?
+}
+
+//============================================================
+// Scientist Scripted Subtitles
+//============================================================
+
+$holdtime 2.5
+!SC_STAYBACK
+{
+Ne! Zpátky! Gordone!
+}
+
+$holdtime 4
+!SC_GETAWAY
+{
+Jdìte pryè Freemane! Oèekávám dùležitou zprávu!
+}
+
+$holdtime 2
+!SC_GMORN
+{
+Dobré ráno, Gordone.
+}
+
+$holdtime 2
+!SC_BIGDAY
+{
+Dnes je velký den, Freemane.
+}
+
+$holdtime 2.7
+!SC_SAMPLE
+{
+Vzorek byl právì doruèen do testovací komory.
+}
+
+$holdtime 2.7
+!SC_HAZ_OK0
+{
+Ano, pùjdu s vámi, pokud si to pøejete.
+}
+
+$holdtime 2
+!SC_HAZ_WAIT0
+{
+Dobrá, budu tady èekat.
+}
+
+$holdtime 5
+!SC_GOODWORK
+{
+Dobrá práce. Tyto nové obleky mohou být velmi ošidný. Pokraèujte prosím do další èásti.
+}
+
+$holdtime 5
+!SC_HARDLYNOTICE
+{
+Výbornì, sotva jsem si vás všiml. Pøesuòte se do další èásti.
+}
+
+$holdtime 3.5
+!SC_NEXTSTATION
+{
+Dobrá práce. Je vidìt, že jste pøipravený na další èást cvièení.
+}
+
+$holdtime 7
+!SC_DISA
+{
+[Zpìtná vazba] Zkouška, zkouška. [Kašel] Všechno se zdá být v poøádku.
+}
+
+$holdtime 6.8
+$chained !SC_DIS1A_PT2
+!SC_DIS1A
+{
+Dobrá, Gordone. Váš oblek by vám mìl bìhem pokusu zajistit pohodlí. Vzorek vám bude dopraven za okamžik...
+}
+
+$holdtime 7.2
+!SC_DIS1A_PT2
+{
+Teï kdybyste jen vylezl nahoru a nastartoval rotory, abychom mohli spustit spektometr antihmoty na 80% a ponechat ho v tohle stavu, dokud nedorazí dopravník.
+}
+
+$holdtime 5
+!SC_DIS1B
+{
+Gordone, vy mì neslyšíte? Vylezte prosím nahoru a spuse rotory.
+}
+
+$holdtime 3
+!SC_DIS1C
+{
+Vylezte nahoru a spuse rotory!
+}
+
+$holdtime 3
+!SC_DIS1D
+{
+Velmi dobøe... Odteï pøebíráme kontrolu.
+}
+
+$holdtime 6
+!SC_DIS2A
+{
+Napájení prvního okruhu emitorù bude zapnuto za 3, 2, 1.
+}
+
+$holdtime 3
+!SC_DIS3A
+{
+Vidím pøedvídatelná fázová pole.
+}
+
+$holdtime 5.2
+!SC_DIS4A 
+{
+Øeknìte mu, aby se držel od ohniska. Oblek ho neochrání pøed nárazy elektrického proudu.
+}
+
+$holdtime 4.6
+!SC_DIS5A
+{
+Druhý okruh emitorù bude aktivován... Teï!
+}
+
+$holdtime 10.5
+!SC_DIS6A
+{
+Právì jsem byl informován, že vzorek je pøipraven, Gordone. Mìl by tam být každou chvíli. Najdete ho v pøepravním zaøízení.
+}
+
+$holdtime 7
+!SC_DIS7A
+{
+Standardní vkládání nestandartního vzorku. Pokraèujte, Gordone. Zasuòte dopravník do analyzaèní èásti.
+}
+
+$holdtime 4.5
+!SC_DIS9A
+{
+Horní kondenzátory jsou nabité na 105 %.
+}
+
+$holdtime 8.2
+!SC_DIS10A
+{
+Gordone, nemùžeme pøedvídat, jak dlouho bude systém schopen pracovat na téhle úrovni, ani jak dlouho potrvá mìøení. Pracujte prosím co nejrychleji.
+}
+
+$holdtime 12
+!SC_DIS11A
+{
+Hmm, asi to není problém... nejspíš. Našel jsem malou nesrovnalost v... Vlastnì ne, vše je zase v pøijatelných mezích. Udržuji sekvenci.
+}
+
+$holdtime 4.6
+!SC_DIS12A
+{
+Nemusíte si dìlat žádné starosti, Gordone. Pokraèujte.
+}
+
+$holdtime 1.7
+!SC_DIS13A
+{
+Co to tam provádí?
+}
+
+$holdtime 4
+!SC_DIS14A
+{
+Dostaòte ho odtamtud! Vypnìte pøístroje a nìkdo ho dostaòte ven!
+}
+
+$holdtime 9.5
+!SC_DIS15A
+{
+Vypnìte to! Pokuste se to vypnout! Ale ne! To ne! Nejde to vypnout! To není – 
+}
+
+$holdtime 4
+!SC_DIS16A
+{
+Gordone, držte se od paprskù!
+}
+
+$holdtime 3
+!SC_DIS17A
+{
+Èekal pøíliš dlouho! Nemùžeme pøestat!
+}
+
+$holdtime 5.5
+!SC_LOCK1A
+{
+Obávám se, že se dnes mírnì odchýlíme od bìžných postupù pøi analýze, Gordone.
+}
+
+$holdtime 7.5
+!SC_LOCK2A
+{
+Ano, ale z dobrého dùvodu. Tohle je pro nás vzácná pøíležitost. Je to nejèistší vzorek, který jsme kdy vidìli.
+}
+
+$holdtime 2
+!SC_LOCK3A
+{
+A také potencionálnì nejménì stabilní.
+}
+
+$holdtime 4
+!SC_LOCK4A
+{
+le no tak, dokud budeme dodržovat standardní postupy vkládání, vše bude v poøádku.
+}
+
+$holdtime 8
+!SC_LOCK5A
+{
+Nechápu, jak tohle mùžete øíct. Aèkoliv uznávám, že možnost rezonanèní kaskády je krajnì nepravdìpodobná...
+}
+
+$holdtime 8
+!SC_LOCK6A
+{
+Gordon tohle nepotøebuje poslouchat, je to vysoce trénovaný profesionál. Ujišoval jsem správce, že se nic nepokazí.
+}
+
+$holdtime 5
+!SC_LOCK7A
+{
+Ach... Ano, máte pravdu. Gordone, máme ve vás plnou dùvìru.
+}
+
+$holdtime 3
+!SC_LOCK8A
+{
+No, jen do toho. Pustíme vás dovnitø.
+}
+
+$holdtime 2.5
+!SC_CRIT1A
+{
+Rychle! Za chvíli to bude kritické!
+}
+
+$holdtime 2.5
+!SC_CRIT2A
+{
+Co se to sakra dìje s naším vybavením?
+}
+
+$holdtime 2.5
+!SC_CRIT3A
+{
+Pøedevším se to nikdy nemìlo stát.
+}
+
+$holdtime 4.5
+!SC_CTRL1A
+{
+Ááá, Gordone. Tady vás máme. Právì jsme poslali vzorek dolù do testovací komory.
+}
+
+$holdtime 6.5
+!SC_CTRL2A
+{
+Zesílili jsme spektrometr antihmoty na 105 %, trochu hazard, ale potøebujeme vyšší rozlišení.
+}
+
+$holdtime 7.5
+!SC_CTRL3A
+{
+Správce trvá na tom, abychom získali potvzující výsledky z analýzy dnešního vzorku. Tuším, že nebylo snadné ho sehnat.
+}
+
+$holdtime 4
+!SC_CTRL4A
+{
+Už vás èekají v testovací komoøe, Gordone.
+}
+
+$holdtime 2
+!SC_CONSOLE1A
+{
+Proè nás neposlouchali?
+}
+
+$holdtime 2.3
+!SC_CONSOLE2A
+{
+Snažili jsme se je varovat.
+}
+
+$holdtime 5.5
+!SC_CONSOLE3A
+{
+Nikdy jsem si nemyslel, že uvidím rezonanèní kaskádu, natož že ji spustím.
+}
+
+$holdtime 7.2
+$chained !SC_CONSOLE4A_PT2
+!SC_CONSOLE4A
+{
+Gordone, jste naživu! Díky Bohu za ten ochranný oblek. Bojím se pohnout a telefony jsou hluché.
+}
+
+$holdtime 11.5
+!SC_CONSOLE4A_PT2
+{
+Dostaòte se prosím co nejdøíve na povrch a dejte nìkomu vìdìt, že jsme tu uvìznìni. Budete potøebovat, abych vám aktivoval skenery sítnice. Jsem si jistý, že i ostatní vìdci vám rádi pomohou.
+}
+
+$holdtime 1.3
+!SC_CONSOLE5A
+{
+Buïte opatrný, Gordone.
+}
+
+$holdtime 2.5
+!SC_CONSOLERPT
+{
+Budete potøebovat, abych vám aktivoval skenery sítnice.
+}
+
+$holdtime 4
+!SC_DANGLING
+{
+Já to už dlouho... nevydržím!
+}
+
+$holdtime 5.8
+!SC_DARKROOM
+{
+Nejsem si jistý, jestli se chci dostat na povrch. Co kdyby se svìt dozvìdìl, co jsme tady dole dìlali?
+}
+
+$holdtime 10
+!SC_LOUNGE
+{
+Gordone. Kdybych vìdìl, že jste to vy, pustil bych vás dovnitø. Všichni se snaží dostat na povrch. Ale podle mì jsou to blázni, když nechtìjí zùstat na místì. Nìkdo nás sem urèitì pøijde zachránit.
+}
+
+$holdtime 9
+!SC_TRANSMISSION
+{
+Právì jsem vyslechl tajné hlášení. Vojáci už dorazili a jdou nás zachránit. Pøirozenì mám pochybnosti, zda budeme žít dost dlouho na to, abychom je pøivítali.
+}
+
+$holdtime 3.7
+!SC_1MAN
+{
+Vezmìte mì s sebou! Jsem jediný èlovìk, který ví všechno!
+}
+
+$holdtime 1.4
+!SC_ATLAST
+{
+Záchrana, koneènì!
+}
+
+$holdtime 2.6
+!SC_RESCUED
+{
+Koneènì, záchrana! Díky Bohu, že jste tu!
+}
+
+$holdtime 5
+!SC_SILO1A
+{
+Pro Boha svatého, otevøete dveøe od toho sila! Jdou si pro nás, tohle je jediná cesta!
+}
+
+$holdtime 3
+!SC_SILO2A
+{
+Ach mùj Bože, jsme ztraceni!
+}
+
+$holdtime 2
+!SC_TEAM
+{
+Nestøílejte! Patøím k vìdcùm!
+}
+
+$holdtime 2
+!SC_THANKGOD
+{
+Díky Bohu, že jste tady!
+}
+
+$holdtime 10
+!SC_TRAINEND
+{
+Slyšeli jste? Zabíjejí vìdce. Náš vlastní druh se obrátil proti nám. Myslím, že radši zùstanu tady risknu to s tìmi bytostmi.
+}
+
+$holdtime 7
+!SC_ROCKET
+{
+Zapojte ten... raketový motor. Zniète tu zatracenou potvoru, než vyroste ještì víc!
+}
+
+$holdtime 4.5
+!SC_BLIND
+{
+Je tam nìkdo? Nic nevidím.
+}
+
+$holdtime 6
+!SC_POWEROFF
+{
+Doufám, že ode mne neèekáte, že pùjdu spustím ten generátor. Smithers šel tam dolù a už se nevrátil.
+}
+
+$holdtime 6
+!SC_POWERON
+{
+Výbornì! Nìkdo obnovil pøísun energie. Motor bude bìžet co nevidìt.
+}
+
+$holdtime 8
+!SC_GENER
+{
+Jsem tu schovaný a nehnu se odsud, dokud se situace drasticky nezlepší. Bìžte pryè a nikomu neøíkejte, že jsem tady!
+}
+
+$holdtime 10.2
+$chained !SC_TRUST_PT2
+!SC_TRUST
+{
+Tolik pomoci od vlády. Chtìjí vše utajit tak, že zabijí všechny, co mìli nìco spoleèného s projektem. Soudì podle vašeho obleku, budete asi souèástí toho, co se pokazilo. Nemám pravdu?
+}
+
+$holdtime 5.4
+$chained !SC_TRUST_PT3
+!SC_TRUST_PT2
+{
+Podívejte, pokud nìkdo mùže ukonèit tuto katastrofu, jsou to vìdci v komplexu Lambda na druhé stranì základny.
+}
+
+$holdtime 8
+$chained !SC_TRUST_PT4
+!SC_TRUST_PT3
+{
+Jelikož pøeprava nefunguje, tak vám neporadím, jak se tam dostat, ale nìkde se tu nachází starý vyøazený železnièní systém.
+}
+
+$holdtime 11
+!SC_TRUST_PT4
+{
+Pokud se vám podaøí dostat skrz laboratoøe testující rakety, mohl byste prolézt starými tunely a zjistit, co zbylo z týmu Lambda. Mùžete jim vìøit. Všem nám mùžete vìøit. Hodnì štìstí.
+}
+
+$holdtime 4
+!SC_TENT
+{
+Ne! Ne, ne! Dostaòte to pryè! Pryè ode mì!
+}
+
+$holdtime 1.5
+$chained !SC_ICKY_PT2
+!SC_ICKY
+{
+Vidìl jste to?
+}
+
+$holdtime 8.5
+$chained !SC_ICKY_PT3
+!SC_ICKY_PT2
+{
+Prý to vylovili z prohlubnì Challenger, ale jsem si jist, že to stvoøení ještì pøed týdnem neplavalo v pozemských vodách.
+}
+
+$holdtime 8
+!SC_ICKY_PT3
+{
+V kleci proti žralokùm je zbraò se sedativy, ale nejsem si jistý, jestli bude fungovat u tohoto druhu. Mùžete to vyzkoušet.
+}
+
+$holdtime 11.5
+$chained !SC_TRACK_PT2
+!SC_TRACK
+{
+Gordon Freeman, jste to vy, že ano? Vìdecký tým sledoval váš postup pomocí bezpeènostního systém Black Mesa. Naneštìstí také armáda. Ten váš oblek je plný sledovacích zaøízení.
+}
+
+$holdtime 8.8
+$chained !SC_TRACK_PT3
+!SC_TRACK_PT2
+{
+Pøesto je to lepší, než zde chodit nahý. Tam uvnitø byste si mìl pospíšit, protože je tam poøádná zima. Mohlo by to z vašeho obleku vysát energii bìhem chvilky.
+}
+
+$holdtime 8.8
+!SC_TRACK_PT3
+{
+Pokud míøíte do komplexu Lambda, mìl byste se držet starších, prùmyslových oblastí, kde má bezpeènostní systém plno dìr. Pro mì to zatím fungovalo.
+}
+ 
+$holdtime 2.7
+!SC_TAU2A
+{
+Položte to. Je to prototyp.
+}
+
+$holdtime 3.5
+!SC_TAU4A
+{
+Je to pøíliš nestabilní. Nesmíte to pøetížit!
+}
+
+$holdtime 6
+!SC_1PSURG
+{
+Všichni tu máme pøístup ke skeneru sítnice. Doprovoïte nás do vestibulu a dostaneme vás z laboratoøe.
+}
+
+$holdtime 6
+!SC_2PSURG
+{
+Prvoøadì ale budete muset vypnout chirurgické oddìlení. Peter ho zapnul, ale obávám se, že už se nevrátí.
+}
+
+$holdtime 7
+!SC_3PSURG
+{
+Vìdec! Díky Bohu! Dostaòte nás odtud, než vojenští zvìdové zjistí, kde se skrýváme.
+}
+
+$holdtime 4
+!SC_ALLDIE
+{
+Freemane, pokud nás všechny necháte zemøít, tak se odtud nikdy nedostanete!
+}
+
+$holdtime 12.4
+!SC_LETOUT
+$chained !SC_LETOUT_PT2
+{
+Dobrá, pustím vás ven, ale varuji vás, venku to je peklo. Armáda plnì pøevzala kontrolu. Budete se muset plížit a probojovat z jednoho konce na druhý. Neèekám, že bìhem své cesty narazíte na nìkterého našeho kolegu.
+}
+
+$holdtime 12.5
+!SC_LETOUT_PT2
+{
+Ale pokud se vám podaøí pøežít a projít pøes základnu, dostanete se do komplexu Lambda, kde pøežívá zbytek vìdeckého týmu. Osobnì to nechci riskovat, ale dám jim vìdìt, že jste na cestì.
+}
+
+$holdtime 10
+$chained !SC_BOOBIE_PT2
+!SC_BOOBIE
+{
+Míøíte do komplexu Lambda, že? Také jsem tam míøil, pøed tím, než jsem se tu zranil a... Zkrátka jsem stratil nervy. Podívejte za ty dveøe a uvidíte, jak to myslím.
+}
+
+$holdtime 7
+!SC_BOOBIE_PT2
+{
+Pøeèkám zde tu katastrofu. Pokud máte v úmyslu jít dál, tak postupujte prosím s nejvyšší opatrností.
+}
+
+$holdtime 11.5
+$chained !SC_STRAWS_PT2
+!SC_STRAWS
+{
+Omlouvám se pane Freemane, ale nemohl jsem riskovat otevøení dveøí, dokud jste neprohledal tuto oblast. Tohle je poslední vstup do komplexu Lambda. Všechny ostatní byly vyøazeny z provozu kvùli této invazi.
+}
+
+$holdtime 8.5
+$chained !SC_STRAWS_PT3
+!SC_STRAWS_PT2
+{
+Když jsme si uvìdomili, že byste se sem mohl opravdu dostat, tahali jsme slámky, aby se rozhodlo, kdo tu zùstane a pustí vás. Oèividnì, já jsem vytáhnul tu nejkratší.
+}
+
+$holdtime 5.2
+$chained !SC_STRAWS_PT4
+!SC_STRAWS_PT3
+{
+Moji kolegové èekají na vrcholu Lambda reaktoru. Myslím, že èekají na vás.
+}
+
+$holdtime 7.5
+$chained !SC_STRAWS_PT5
+!SC_STRAWS_PT4
+{
+Reaktor je souèasné dobì vypnutý, ale mùžete ho bìhem své cesty nahoru aktivovat. Budete muset zaplavit jádro tak, abyste se dostal do laboratoøí teleportace.
+}
+
+$holdtime 7.5
+!SC_STRAWS_PT5
+{
+Sice k tomu nemáte oprávnìní, ale jak vidím, už toho stejnì víte až pøíliš.
+}
+
+$holdtime 11
+!SC_GLUON2A
+{
+Nebyl jste také v oddìlení vývoje zbraní? Postavil jsem gluonovou zbraò, ale nedokážu jí použít na živých bytostech. Vy ale nevypadáte na nìkoho, kdo byl mìl problém se zabíjením.
+}
+
+$holdtime 9
+!SC_FLOOD
+{
+Freeman, je to tak? Musíte aktivovat obì èerpadla k zaplavení reaktoru, èímž získáte pøístup k dolnímu potrubí, které vás dovede k jádru. Èas se krátí.
+}
+
+$holdtime 8.7
+!SC_LINGER
+{
+Nezdržujte se, pane Freemane, Zapnul jste èerpadla. Dostaòte se do potrubí, zatopte jádro a neprodlenì bìžte do laboratoøí.
+}
+
+$holdtime 2.5
+!SC_SURVEY1A
+{
+Gordon Freeman, koneènì jste nás našel!
+}
+
+$holdtime 13
+$chained !SC_SURVEY3A_PT2
+!SC_SURVEY3A
+{
+Tohle je zásobovací sklad pro náš první prùzkumný tým. Nasbírali celkem pár zajímavých vzorkù z hranice svìta, které jsme sem pøevezli. Tedy... pøedtím, než jsme zjistili, že je èlenové prùzkumného týmu sbírají pro sebe.
+}
+
+$holdtime 13
+!SC_SURVEY3A_PT2
+{
+Domníváme se, že je tam nesmírnì silný portál, který byl vytvoøen intenzivní koncentrací jedné mocné bytosti. Poznáte jí od pohledu. Øíkám to s tìžkým srdcem Gordone, ale musíte to zabít.
+}
+
+$holdtime 7
+!SC_SURVEY5A
+{
+Samozøejmì, nic nám nedlužíte, pane Freemane. Ale jste už tak daleko. Víte o tìch stvoøeních více, než všichni ostatní.
+}
+
+$holdtime 10
+!SC_SURVEY7A
+{
+Ano, takže pokud jste ochotný pomoci, mùj kolega na vás èeká u ovladaèù hlavního portálu. Otevøe vám prùchod, pane Freemane. Pospìšte si!
+}
+
+$holdtime 15
+!SC_LJUMP
+{
+Tohle, pane Freemane, je modul skoku do dálky, vytvoøený výslovnì pro orientaci v okolním svìtì. Doufám, že jste absolvoval školení ve skoku do dálky, protože ho budete na Xenu potøebovat. Doporuèuji ho trochu vyzkoušet, než projdete na druhou stranu.
+}
+
+$holdtime 5
+!SC_UPHERE
+{
+Zdravím, Freemane. Jsem tady nahoøe. Vyzkoušejte si skok do dálky, jestli chcete, ale rychle!
+}
+
+$holdtime 13.2
+!SC_PORTAL
+{
+V poøádku, mohou otevøít portál. Tento proces je složitý, a jakmile se zaène, nesmí být pøerušen, nebo budu muset zaèít od zaèátku. Nevstupujte do svazku, dokud nedám povel. Rozumìl jste? Zaèínám.
+}
+
+$holdtime 2.5
+!SC_PORTOPEN
+{
+Hotovo! Musíte jít, hned!
+}
+
+$holdtime 3
+!SC_POSITION
+{
+Už to bude, Freemane. Pøipravte se!
+}
+
+$holdtime 3
+!SC_FOREVER
+{
+Rychle, Freemane! Nedokážu ho udržet vìènì!
+}
+
+$holdtime 2
+!SC_NOTYET
+{
+Ještì ne, Freemane!
+}
+
+$holdtime 2
+!SC_FOOL
+{
+Freemane, zbláznil jste se!
+}
+
+//==============================================================================
+// Human Grunts (generic)
+//==============================================================================
+
+$color  96 255 96
+$color2 48 128 48
+
+$holdtime 1
+!HG_GREN0
+{
+Granát!
+}
+
+$holdtime 1
+!HG_GREN1
+{
+Kryjte se!
+}
+
+$holdtime 1.5
+!HG_GREN2
+{
+Do prdele!
+}
+
+$holdtime 1
+!HG_GREN3
+{
+K zemi!
+}
+
+$holdtime 1
+!HG_GREN3
+{
+Ne!
+}
+
+$holdtime 1
+!HG_GREN4
+{
+Panebože!
+}
+
+$holdtime 1
+!HG_GREN5
+{
+Ne!
+}
+
+$holdtime 1
+!HG_GREN6
+{
+Pohyb!
+}
+
+$holdtime 2.2
+!HG_ALERT0
+{
+Jednotko! Máme Freemana!
+}
+
+$holdtime 1
+!HG_ALERT1
+{
+Cíl!
+}
+
+$holdtime 1
+!HG_ALERT2
+{
+Pohyb!
+}
+
+$holdtime 2.2
+!HG_ALERT3
+{
+Kurva! Máme spoleènost!
+}
+
+$holdtime 2
+!HG_ALERT4
+{
+Jednotko! Dostaòte Freemana!
+}
+
+$holdtime 3
+!HG_ALERT5
+{
+Jednotko! Zneškodnìte Freemana!
+}
+
+$holdtime 1.4
+!HG_ALERT6
+{
+Jïete na to!
+}
+
+$holdtime 2.2
+!HG_MONST0
+{
+Kontakt! Mùj sektor!
+}
+
+$holdtime 1.8
+!HG_MONST1
+{
+Máme kontakt!
+}
+
+$holdtime 1.8
+!HG_MONST2
+{
+Vetøelec, pozor!
+}
+
+$holdtime 2
+!HG_MONST3
+{
+Vetøelci v pohybu!
+}
+
+$holdtime 1.2
+!HG_COVER0
+{
+Kryjte se!
+}
+
+$holdtime 2
+!HG_COVER1
+{
+Potøebuji krycí palbu!
+}
+ 
+$holdtime 2
+!HG_COVER2
+{
+Potøebujeme posily!
+}
+
+$holdtime 1.8
+!HG_COVER3
+{
+Je tu pøíliš horko!
+}
+
+$holdtime 2
+!HG_COVER4
+{
+Stáhnìte se!
+} 
+
+$holdtime 2
+!HG_COVER5
+{
+Vyèistìte to tu!
+} 
+ 
+$holdtime 1.5
+!HG_COVER6
+{
+Kurva!
+} 
+  
+$holdtime 1.5
+!HG_COVER7
+{
+Krycí palba!
+}
+
+$holdtime 2
+!HG_THROW0
+{
+Pozor, výbuch!
+} 
+
+$holdtime 1
+!HG_THROW1
+{
+Zkus tohle!
+} 
+ 
+$holdtime 2
+!HG_THROW2
+{
+Pozor, granát!
+} 
+ 
+$holdtime 2
+!HG_THROW3
+{
+Jednotko, k zemi!
+} 
+ 
+$holdtime 2.5
+!HG_TAUNT0
+{
+Máme tu tìžkou palbu.
+}
+
+$holdtime 2
+!HG_TAUNT1
+{
+Rozkaz, držet pozici.
+} 
+
+$holdtime 2
+!HG_TAUNT2
+{
+Nakopeme ti prdel!
+} 
+
+$holdtime 2.5
+!HG_TAUNT3
+{
+Budeš žrat písek.
+} 
+
+$holdtime 1.8
+!HG_TAUNT4
+{
+Nemáš šanci.
+} 
+
+$holdtime 1.8
+!HG_TAUNT5
+{
+Žádám o posily!
+} 
+
+$holdtime 1.5
+!HG_CHARGE0
+{
+Prùzkum vpøed!
+}
+
+$holdtime 1
+!HG_CHARGE1
+{
+Pohyb!
+} 
+
+$holdtime 1
+!HG_CHARGE2
+{
+Vpøed!
+}
+
+$holdtime 1.3
+!HG_CHARGE3
+{
+Jedu jedu!
+}
+
+$holdtime 2
+!HG_QUEST0
+{
+Buïte na pozoru, chlapi.
+}
+
+$holdtime 2
+!HG_QUEST1
+{
+Kontrola radia, pøíjem.
+}
+
+$holdtime 2
+!HG_QUEST2
+{
+Udržujte bdìlost.
+}
+
+$holdtime 2
+!HG_QUEST3
+{
+Jednotko, ticho.
+}
+
+$holdtime 2
+!HG_QUEST4
+{
+Držte pozici.
+}
+
+$holdtime 2
+!HG_QUEST5
+{
+Zaberte tehle sektor.
+}
+
+$holdtime 3
+!HG_QUEST6
+{
+Tango, zmìnte formaci.
+}
+
+$holdtime 2
+!HG_QUEST7
+{
+Echo, mise v tahu.
+}
+
+$holdtime 3
+!HG_QUEST8
+{
+Palebný týme, kontrola zbraní.
+}
+
+$holdtime 3.2
+!HG_QUEST9
+{
+Palebný týme, cíl Foxtrot 9.
+}
+
+$holdtime 2.5
+!HG_QUEST10
+{
+Rozumím, mise 09.
+}
+
+$holdtime 4
+!HG_QUEST11
+{
+Jednotko, pozor na Freemana, pøíjem.
+} 
+
+$holdtime 2
+!HG_ANSWER0
+{
+Ehm, rozumím.
+} 
+
+$holdtime 1
+!HG_ANSWER1
+{
+Ano pane.
+} 
+
+$holdtime 2
+!HG_ANSWER2
+{
+Potvrzuji pane.
+} 
+
+$holdtime 1
+!HG_ANSWER3
+{
+Negativní.
+} 
+
+$holdtime 1
+!HG_ANSWER4
+{
+Rozkaz.
+} 
+
+$holdtime 1.8
+!HG_ANSWER5
+{
+Pod kontrolou.
+} 
+
+$holdtime 3
+!HG_ANSWER6
+{
+To je, ehm, potvrzuji.
+} 
+
+$holdtime 2
+!HG_CLEAR0
+{
+Vše jasné, pane.
+} 
+
+$holdtime 2
+!HG_CLEAR1
+{
+Tým Bravo, èistý.
+} 
+
+$holdtime 2
+!HG_CLEAR2
+{
+Tým Delta, èistý.
+} 
+
+$holdtime 3.2
+!HG_CLEAR3
+{
+Žádné stopy po nepøíteli, pøíjem.
+} 
+ 
+$holdtime 3.2
+!HG_CLEAR4
+{
+Žádné stopy po cíly pane, pøíjem.
+} 
+ 
+$holdtime 2.5
+!HG_CLEAR5
+{
+Žadný pohyb na této pozici.
+} 
+ 
+$holdtime 3
+!HG_CLEAR6
+{
+Sektor je zabezpeèen, pøíjem.
+} 
+  
+$holdtime 3.8
+!HG_CLEAR7
+{
+Velení, tým je na pozici, pøíjem.
+} 
+  
+$holdtime 3.2
+!HG_CLEAR8
+{
+Prùzkum na pozici, vše èisté.
+}  
+  
+$holdtime 3
+!HG_CLEAR9
+{
+Vyhlídková vìž, vše èisté, pøíjem.
+}   
+   
+$holdtime 2
+!HG_CLEAR10
+{
+Pane, nìco jsem slyšel.
+}   
+    
+$holdtime 3.7
+!HG_CLEAR11
+{
+Pane, ehm, žádný pohyb, pøíjem.
+} 
+    
+$holdtime 2.5
+!HG_CLEAR12
+{
+Oblast zabezpeèena pane, pøíjem.
+} 
+    
+$holdtime 2
+!HG_CHECK0
+{
+Rozumím, zkontrolujte to.
+}
+
+$holdtime 3
+!HG_CHECK1
+{
+Jednotko, prohledali jste nepøítele?
+}
+
+$holdtime 2
+!HG_CHECK2
+{
+Zkontrolováno.
+}
+
+$holdtime 2
+!HG_CHECK3
+{
+Hlídko, zkontrolujte to.
+}
+
+$holdtime 2
+!HG_CHECK4
+{
+Prùzkumný tým, zkontrolováno.
+}
+
+$holdtime 2
+!HG_CHECK5
+{
+Pohyb pod kontrolou, pøíjem.
+}
+
+$holdtime 2.5
+!HG_CHECK6
+{
+Zkontrolujte vaši oblast, pøíjem.
+}
+
+$holdtime 2
+!HG_CHECK7
+{
+Vše v poøádku.
+}
+
+$holdtime 2.5
+!HG_SNOOP1A
+{
+Takže... Co je to zaè ten Freeman?
+}
+
+$holdtime 2
+!HG_SNOOP2A
+{
+Øíká se, že byl na místì havárie.
+}
+
+$holdtime 5
+!HG_SNOOP3A
+{
+Jeden z vìdátorù, jo? Myslíš, že je za to zodpovìdný? Sabotáž, možná?
+}
+
+$holdtime 5
+!HG_SNOOP4A
+{
+Jo, možná. Jediné, co vím jistì, je, že zabíjí moje kámoše.
+}
+
+$holdtime 5
+!HG_SNOOP5A
+{
+No jo, ten za to zaplatí. Rozhodnì za to zaplatí.
+}
+
+$holdtime 1
+$chained !HG_AMBUSH_PT2
+!HG_AMBUSH
+{
+...
+}
+
+$holdtime 5
+$chained !HG_AMBUSH_PT3
+!HG_AMBUSH_PT2
+{
+Dostaò tì ho!
+}
+
+$holdtime 3
+$chained !HG_AMBUSH_PT4
+!HG_AMBUSH_PT3
+{
+Ha ha, pìkná rána.
+}
+
+$holdtime 2
+!HG_AMBUSH_PT4
+{
+Dobrá, máme ho...
+}
+
+$holdtime 2.2
+!HG_DRAG1A
+{
+Kam toho Freemana vùbec vleèeme?
+}
+
+$holdtime 2
+!HG_DRAG2A
+{
+Na povrch k výslechu.
+}
+
+$holdtime 3.5
+!HG_DRAG3A
+{
+K èemu sakra? Máme ho. Mìli bychom ho zabít.
+}
+
+$holdtime 2.5
+!HG_DRAG4A
+{
+Ech... A co když najdou jeho tìlo?
+}
+
+$holdtime 2.1
+!HG_DRAG5A
+{
+Tìlo? Jaký tìlo?
+}
+
+$holdtime 3
+!HG_DRAG6A
+{
+Ha ha ha ha!!!
+}
+
+$holdtime 6.5
+!HG_SUCKS
+{
+Zabil jsem dvanáct tupých vìdátorù a ani jeden se nebránil. Nìco tady smrdí.
+}
+
+$holdtime 6.5
+!HG_CIVVIES
+{
+Nepøihlásil jsem se kvùli tomuhle. Monstra, to jo, ale civilisty? Kdo vùbec naplánoval tuhle operaci?
+}
+
+$holdtime 10
+!HG_ABANDON
+{
+Zapomeòte na Freemana! Poèítáme ztráty a stahujeme se! Každý, kdo zùstal dole, tak jede na vlastní pìst! Opakuji, pokud jste ještì dole, jste – 
+}
+
+$holdtime 13.3
+$chained !HG_LEBUZ_PT2
+!HG_LEBUZ
+{
+No tak! Coopere, slyšíte mì? Zapomeòte na Freemana. Opouštíme základnu. Jestli máte nìjaké poslední cíle na bombardovaní, oznaète je na technické mapì. V opaèném pøípadì odtamtud vypadnìte.
+}
+
+$holdtime 6
+!HG_LEBUZ_PT2
+{
+Opakuji, stahujeme se a zahajujeme nálety. Zadejte nám cíle a dostaòte se odtamtud!
+}
+
+//============================================================
+// Black Mesa Intercom (VOX) (generic)
+//============================================================
+
+$color  208 104 255
+$color2 104  52 128
+ 
+$holdtime 1.5
+!NA0
+{
+Pøístup zamítnut.
+}
+ 
+$holdtime 2.5
+!NA1
+{
+Pøístup je zamítnut.
+}
+
+$holdtime 2
+!NA2
+{
+Neautorizovaný pøístup.
+}
+ 
+$holdtime 1.7
+!NA3
+{
+Nelegální pøístup.
+}
+ 
+$holdtime 2
+!NA4
+{
+Tyto dveøe jsou zamèeny.
+} 
+ 
+$holdtime 2
+!NA5
+{
+Neautorizovaný pøístup.
+} 
+ 
+$holdtime 2
+!NA6
+{
+Vstup zakázán.
+}
+ 
+$holdtime 2
+!NA7
+{
+Vstup nepovolen.
+}
+ 
+$holdtime 3
+!NA8
+{
+Žádný neautorizovaný personál.
+}
+  
+$holdtime 4.5
+!NA9
+{
+Nemáte pøístup k tomuto zaøízení.
+}
+  
+$holdtime 3
+!NA10
+{
+Bohužel, nemùžete vstoupit.
+} 
+
+$holdtime 3
+!NA11
+{
+Bohužel, tyto dveøe jsou zamèeny.
+}
+  
+$holdtime 4
+!NA12
+{
+Opuste prosím tuto oblast.
+}
+  
+$holdtime 3
+!NA13
+{
+Jdìte prosím pryè od dveøí.
+} 
+  
+$holdtime 2.4
+!NA14
+{
+Nedostanete se dovnitø!
+}
+  
+$holdtime 2.7
+!NA15
+{
+Vstup není možný.
+}
+  
+$holdtime 2.7
+!NA16
+{
+Budete tohle dìlat celý den?
+}
+  
+$holdtime 2.5
+!NA17
+{
+Okamžitì odejdìte!
+} 
+  
+$holdtime 3
+!NA18
+{
+Ne, ne a ne!
+}
+
+$holdtime 1.5
+!EA0
+{
+Pøístup poskytnut.
+}
+
+$holdtime 1.5
+!EA1
+{
+Pøístup povolen.
+}
+
+$holdtime 1.5
+!EA2
+{
+Vstup poskytnut.
+} 
+
+$holdtime 1.5
+!EA3
+{
+Vstup povolen.
+} 
+
+$holdtime 2
+!EA4
+{
+Pøístup autorizován.
+} 
+
+$holdtime 2
+!EA5
+{
+Vstup je povolen.
+}
+
+$holdtime 2
+!EA6
+{
+Pøístup autorizován.
+} 
+
+$holdtime 3.2
+!EA7
+{
+Pøístup do zaøízení, poskytnut.
+}
+
+$holdtime 1.5
+!EA8
+{
+Pøístup poskytnut.
+} 
+
+$holdtime 2.7
+!ND0
+{
+Bezpeènostní uzamèení povoleno.
+}
+
+$holdtime 2.7
+!ND1
+{
+Zabezpeète oblast, zákaz vstupu.
+} 
+
+$holdtime 2.7
+!ND2
+{
+Bezpeènostní uzamèení, zákaz vstupu.
+} 
+
+$holdtime 2.5
+!ND3
+{
+Zabezpeète dveøe, zákaz vstupu.
+} 
+
+$holdtime 2.7
+!ND4
+{
+Bezpeènostní systém je platný.
+}  
+
+$holdtime 3.5
+!ND5
+{
+Bezpeènostní systém vyzbrojen, zákaz vstupu.
+} 
+ 
+$holdtime 2
+!ND6
+{
+Dveøe jsou zabezpeèeny.
+}
+ 
+$holdtime 3
+!ND7
+{
+Nelegální pøístup, odejdìte.
+} 
+ 
+$holdtime 3
+!ED0
+{
+Bezpeènostní uzamèení zrušeno.
+} 
+
+$holdtime 3
+!ED1
+{
+Zabezpeèení vyklizeno, pokraèujte.
+} 
+
+$holdtime 3
+!ED2
+{
+Bezpeènostní uzamèení uvolnìno.
+}  
+
+$holdtime 3
+!ED3
+{
+Zrušení zabezpeèení akceptováno.
+}  
+ 
+$holdtime 3
+!ED4
+{
+Bezpeènostní pøístup uznán.
+}
+  
+$holdtime 3
+!ED5
+{
+Bezpeènostní systém zrušen.
+}
+  
+$holdtime 3
+!ED6
+{
+Zabezpeèení dveøí zrušeno.
+}
+  
+$holdtime 3
+!NF0
+{
+Nouzové ochranné dveøe aktivovány.
+}
+  
+$holdtime 3
+!NF1
+{
+Nouzový ochranný štít aktivován.
+}
+  
+$holdtime 3.3
+!NF3
+{
+Protivýbušný štít porušen.
+}
+  
+$holdtime 3
+!EF0
+{
+Nouzové ochranné dveøe, otevøít.
+}
+  
+$holdtime 3.3
+!EF1
+{
+Nouzový ochranný štít deaktivován.
+}
+
+$holdtime 3.3
+!EF3
+{
+Protivýbušný štít je otevøen.
+}
+ 
+$holdtime 3.3
+!NFIRE0
+{
+Protipožární dveøe jsou uzavøeny.
+}
+  
+$holdtime 3.3
+!EFIRE0
+{
+Protipožární dveøe, otevøít.
+} 
+  
+$holdtime 3.5
+!NCHEM0
+{
+Dveøe izolující únik chemikálií aktivovány.
+} 
+  
+$holdtime 3.5
+!ECHEM0
+{
+Dveøe izolující únik chemikálií, otevøít.
+}
+  
+$holdtime 3.3
+!NRAD0
+{
+Protiradiaèní dveøe aktivovány.
+}
+  
+$holdtime 3.3
+!ERAD0
+{
+Protiradiaèní dveøe, otevøít.
+}
+  
+$holdtime 3.3
+!NCON0
+{
+Nouzové izolaèní dveøe jsou zamèené.
+} 
+  
+$holdtime 3.3
+!ECON0
+{
+Nouzové izolaèní dveøe jsou odemèené.
+} 
+  
+$holdtime 3.3
+!NG0
+{
+Promiòte, tyto dveøe jsou nefunkèní.
+}
+  
+$holdtime 3.3
+!NG1
+{
+Promiòte, tyto dveøe jsou mimo provoz.
+}
+  
+$holdtime 4
+!NG2
+{
+Detekováno poškození dveøí, zavolejte prosím servisní personál.
+}
+
+$holdtime 3.5
+!NH0
+{
+Vstup zakázán, údržbáøská oblast.
+}
+
+$holdtime 4
+!NH1
+{
+Žádnému personálu není dovoleno vstupovat do údržbáøské oblasti.
+}
+
+$holdtime 3.5
+!EH0
+{
+Pøístup do údržbaøské oblasti poskytnut.
+} 
+
+$holdtime 3
+!EH1
+{
+Dveøe do údržbáøské oblasti otevøeny.
+} 
+
+$holdtime 5
+!T0
+{
+Ohromné nebezpeèí, obranný systém je v této zónì vyzbrojen.
+}
+
+$holdtime 4
+!T1
+{
+Nebezpeèná oblast, obranný systém aktivován.
+} 
+
+$holdtime 4
+!T2
+{
+Nebezpeèí, obranný systém ochranného pásu vìžièek vyzbrojen.
+}
+
+$holdtime 4.5
+!T3
+{
+Ohromné nebezpeèí, nejbližší obranný systém aktivován.
+} 
+ 
+$holdtime 4.5
+!T4
+{
+Nebezpeèí, základní obranný systém vìžièek se mùže zapnout.
+}
+ 
+$holdtime 4
+!T5
+{
+Nebezpeèí, automatická obranný systém aktivován.
+} 
+ 
+$holdtime 3
+!WE0
+{
+Varování, kabel s vysokým napìtím.
+} 
+
+$holdtime 3
+!WE1
+{
+Varování, kabel pod vysokým proudem.
+}
+
+$holdtime 3
+!WE2
+{
+Varování, nebezpeèí elektrického šoku.
+}
+
+$holdtime 4
+!WE3
+{
+Varování, nebezpeèí tìžkého eletrického šoku.
+}
+
+$holdtime 3.5
+!DR0
+{
+Nebezpeèí, detekován únik radiace.
+}
+
+$holdtime 4
+!DR1
+{
+Nebezpeèí, detekováno ohrožení radiací.
+}
+
+$holdtime 4
+!DR2
+{
+Nebezpeèí, detekována vysoká úroveò radiace.
+}
+
+$holdtime 5
+!DR4
+{
+Nebezpeèí, bezpeènostní porušení, detekována extrémní úroveò radiace.
+}
+
+$holdtime 5
+!DC0
+{
+Nebezpeèí, únik chemikálií, v oblasti nyní panuje vážné zdravotní ohrožení.
+}
+
+$holdtime 4.5
+!DC1
+{
+Nebezpeèí, únik chemické chladící kapaliny, zóna zdravotního ohrožení.
+}
+
+$holdtime 5.5
+!DC2
+{
+Nebezpeèí, porušení izolace chemikálií, veškerý personál evakuujte tuto oblast.
+}
+
+$holdtime 4
+!DC3
+{
+Nebezpeèí, únik superchlazených chemikálií.
+}
+
+$holdtime 4
+!DC4
+{
+Nebezpeèí, únik superchlazeného hélia.
+} 
+
+$holdtime 4.5
+!DB0
+{
+Nebezpeèí, únik biologicky nebezpeèné kapaliny v bezprostøední oblasti.
+} 
+
+$holdtime 5.5
+!DB1
+{
+Nebezpeèí, únik chladící kapaliny, nyní je v této oblasti vážné biologické ohrožení.
+} 
+
+$holdtime 5
+!DB2
+{
+Nebezpeèí, biologicky nebezpeèná kapalina vypuštìna, evakuujte oblast.
+} 
+ 
+$holdtime 5
+!DB3
+{
+Nebezpeèí, detekováno biologické ohrožení v bezprostøední oblasti.
+} 
+ 
+$holdtime 3
+!TR_A
+{
+3, 2, 1.
+} 
+
+$holdtime 3
+!TR_B
+{
+Systém zamìøení deaktivován.
+} 
+
+//============================================================
+// Black Mesa Base Computer (VOX) Level Subtitles
+//============================================================
+
+$holdtime 7
+!C1A0_0
+{
+Agente Coomere, nahlašte se na povrchu takticko-operaèního støediska.
+}
+
+$holdtime 6.7
+!C1A0_1
+{
+Inspekèní tým je oèekáván v doku obsluhy radioaktivních látek.
+}
+
+$holdtime 6.7
+!C1A0_2
+{
+Agente 16, dostavte se do øídící podúrovnì 2.
+}
+
+$holdtime 6
+!C1A0_3
+{
+Doktore Johnsone, zavolejte prosím do observatoøe Tank 1.
+}
+
+$holdtime 7
+!C1A0_4
+{
+Doktore Weste, dostavte se prosím do reaktoru komplexu Lambda.
+}
+
+$holdtime 5.5
+!C1A0_5
+{
+Doktore Crossi, zavolejte prosím na èislo 729.
+}
+
+$holdtime 5.5
+!C1A0_6
+{
+Seržant Bailey je oèekáván na povrchu na kontrolním stanoviši Bravo.
+}
+
+$holdtime 7
+!C1A0_7
+{
+Kryogenní bezpeènostní skupino, ohlašte prosím svùj stav do 11:00.
+}
+
+$holdtime 7.5
+!C1A0_8
+{
+Šifrovaná zpráva pro kapitána Blacka, velící a komunikaèní centrum.
+}
+
+$holdtime 8.2
+!C1A0_9
+{
+Vìdecký personál v sektor C, dostavte se do testovací laboratoøe anomálních materiálù.
+}
+
+$holdtime 8
+!C1A0_10
+{
+Doktor Freeman a se okamžitì dostaví do testovací laboratoøe anomálních materiálù.
+}
+
+$holdtime 8
+!C1A0_11
+{
+Upozornìní. Odpálení rakety v experimentální pohonné laboratoøi za 90 minut.
+}
+
+$holdtime 5
+!C1A0_12
+{
+Vodní elektrárna momentálnì pracuje na 60 procent.
+}
+
+$holdtime 5.7
+!C1A0_13
+{
+Teplota na povrchu nad Black Mesou je 34 °C.
+}
+ 
+$holdtime 6.8
+!C1A0_14
+{
+Dùstojník startu ohlašuje, že nasazení satelitu alfa je nominální.
+}
+  
+$holdtime 6.8
+!C1A0_15
+{
+Doktor Birdwell hlásí, že supervodivá výmìna je aktivována.
+}
+  
+$holdtime 8
+!C1A0_16
+{
+Upozorìní. Nahlašte jakékoliv bezpeènostní porušení na øídící podúroveò 1.
+}
+  
+$holdtime 7
+!C1A0_17
+{
+Upozornìní. Služební personál ukliïte prosím helikoptérový hangár 1.
+}
+  
+$holdtime 6
+!C1A0_18
+{
+Štítová kontrolní skupina hlásí primární reaktor nominální.
+}
+  
+$holdtime 6.7
+!C1A0_19
+{
+Pøepravní kontrola hlásí že všechny systémy jsou pøipraveny.
+}
+  
+$holdtime 7.6
+!C1A0_20
+{
+Doktore Viktore, dostavte se prosím do superchlazené laserové laboratoøe.
+}
+  
+$holdtime 6
+!C1A0_21
+{
+Seržante Guthrie, ihned se dostavte na venkovní vozový park.
+}
+  
+$holdtime 6
+!C1A0_22
+{
+Kontrolní tým pøepravy uranu do sektoru D.
+}
+
+$holdtime 9
+!C1A1_0
+{
+Varování, vysokoenergetická detonace detekována v materiálních laboratoøích.
+}
+
+$holdtime 7
+!C1A1_1
+{
+Upozornìní, bezpeènostní personál do sektoru C okamžitì.
+}
+
+$holdtime 7.5
+!C1A1_2
+{
+Varování, neautorizované biologické formy detekovány v sektoru C.
+}
+
+$holdtime 9
+!C1A1_3
+{
+Varování, neautorizované biologické formy detekovány v údržbáøském prostoru chladící kapaliny.
+}
+ 
+$holdtime 8
+!C1A1_4
+{
+Kontrolní tým jakéhokoli poškození do sektoru C ihned.
+}
+ 
+$holdtime 7
+!C1A1_5
+{
+Varování, porucha výtahu v sektoru C. Nepoužívat.
+}
+ 
+$holdtime 7
+!C1A1_6
+{
+Varování, biologické nebezpeèí v sektoru B a C.
+} 
+ 
+$holdtime 8.1
+!C1A1_7
+{
+Upozornìní. Vìdecký personál v sektoru C okamžitì evakuujte prostor.
+} 
+ 
+$holdtime 8
+!C1A1_8
+{
+Varování, detekována povodeò v podúrovni 3 v sektoru B.
+} 
+ 
+$holdtime 8.5
+!C1A1_9
+{
+Varování, anomální energetické pole detekováno v øídícím centru.
+} 
+ 
+$holdtime 8
+!C1A1_10
+{
+Upozornìní. Jakýkoliv vìdecký personál v sektoru C, nahlašte prosím stav.
+} 
+ 
+$holdtime 8.1
+!C1A1_11
+{
+Upozornìní. Vìdecký personál v sektoru C nahlašte prosím ihned stav.
+} 
+
+$holdtime 6.5
+!C1A2_0
+{
+Nouzový úklidový tým do zpracovatelského závodu biologického odpadu.
+} 
+
+$holdtime 8
+!C1A2_1
+{
+Upozornìní, øídící personál okamžitì evakuujte sektor D.
+} 
+
+$holdtime 6
+!C1A2_2
+{
+Upozornìní, bezpeènostní personál do sektoru D.
+} 
+
+$holdtime 6
+!C1A2_3
+{
+Servisní tým, zkontrolujte výtah 1 v sektoru C.
+} 
+
+$holdtime 8.4
+!C1A2_4
+{
+Varování, neautorizované biologické formy detekovány ve vìtracích šachtách.
+}
+
+$holdtime 6
+!C1A2_5
+{
+Poruèík Backman a úklidový tým, do podúrovnì 3.
+}
+
+$holdtime 8
+!C1A2_6
+{
+Nebezpeèí, obranný systém vìžièek aktivován v sektoru D.
+}
+
+$holdtime 9
+!C1A2_7
+{
+Bezpeènostní dùstojník hlásí ranìné v sektoru D, nutna lékáøská pomoc.
+}
+
+$holdtime 9
+!C1A2_8
+{
+Extrémní nebezpeèí, všechny obranné systémy vìžièek v sektoru D aktivovány. 
+}
+
+$holdtime 7.5
+!C1A2_9
+{
+Personál opravující vìžièky, do skladu vysoce bezpeèných materiálù.
+}
+
+$holdtime 8
+!C1A2_10
+{
+Upozornìní. Nebezpeèí elektrického šoku detekováno v øídícím centru.
+}
+
+$holdtime 8.5
+!C1A2_11
+{
+Bezpeènostní dùstojník hlásí lékaøskou pohotovost, øídící centrum.
+}
+
+$holdtime 8.5
+!C1A3_0
+{
+Upozornìní. Veškerý vìdecký personál dostavte se na povrch pro okamžitý výslech.
+}
+
+$holdtime 8
+!C1A3_1
+{
+Veškerý personál evakuujte sklad vysoce bezpeèných materiálù.
+}
+
+$holdtime 7
+!C1A3_2
+{
+Nouzový uranovo-izolaèní tým, dostavte se do sektoru D.
+}
+
+$holdtime 7
+!C1A3_3
+{
+Údržbáøský tým vìžièek, do centrálního pøíkazového a komunikaèního centra.
+}
+
+$holdtime 8
+!C1A3_4
+{
+Vojenský personál, pronásledujte „Kilo India Lima“ s extrémní silou.
+}
+
+$holdtime 8
+!C1A3_5
+{
+Upozornìní, tento ohlašovací systém je právì pod kontrolou vojákù.
+}
+
+$holdtime 8
+!C1A3_6
+{
+Jednotka „Hledat a znièit“ Bravo, hlásí že sekundární cíl je zrušen.
+}
+
+$holdtime 8
+!C1A3_7
+{
+Jednotka Bravo hlásí, že zaøízení „Hotel Sierra Mike“ je zabezpeèeno.
+}
+
+$holdtime 7.5
+!C1A3_8
+{
+Upozornìní pro veškerý vojenský personál. Bilogicko-chemicko-atomová výstraha.
+}
+
+$holdtime 8
+!C1A3_9
+{
+Upozornìní pro veškerý vojenský personál. Mimoøádná bilogicko-chemicko-atomová výstraha.
+}
+ 
+$holdtime 9
+!C1A3_10
+{
+Upozornìní. Ohlašovací systém Black Mesa je právì pod kontrolou vojákù.
+}
+ 
+$holdtime 8
+!C1A3_warn
+{
+Pozor. Upozornìní na bezpeènostní uzamknutí. Bezpeènostní dveøe se zamknou.
+}
+ 
+$holdtime 12
+!C1A3_lock
+{
+Bezpeènostní dveøe zamknuty. 5, 4, 3, 2, 1, uzamknutí aktivováno.
+}
+
+$holdtime 8
+!C1A4_0
+{
+Upozornìní. Pokusný start rakety odvolán.
+}
+
+$holdtime 6
+!C1A4_1
+{
+Opravující skupino, dostavte se k øízení trai v sektoru E.
+}
+
+$holdtime 6
+!C1A4_2
+{
+Údržbáøský modrý tým, zkontrolujte úroveò chladící kapaliny výmìny tepla.
+}
+
+$holdtime 7
+!C1A4_3
+{
+Údržbáøský zelený tým, zkontrolujte napìtí na kabelu 729.
+} 
+
+$holdtime 9
+!C1A4_4
+{
+Lékaøský tým do skladu materiálù, tým Bravo hlásí ranìné.
+} 
+
+$holdtime 7
+!C1A4_5
+{
+Jednotka alfa odejdìte, odpor vìdeckého personálu je extrémní.
+}
+
+$holdtime 9
+!C1A4_6
+{
+Upozornìní. Veškerý bezpeènostní personál Black Mesy hledán pro okamžitý výslech.
+}
+
+$holdtime 9.2
+!C1A4_7
+{
+Upozornìní. Gordon Freeman a se hlásí u vojenského personálu pro okamžitou bezpeènostní kontrolu.
+}
+
+$holdtime 9
+!C1A4_8
+{
+Varování, nepøátelské biologické formy detekovány v øízení trai v sektoru E.
+}
+
+$holdtime 6.2
+!FUEL_OFF
+{
+Palivo a energie musí být odjišeny k aktivaci startu rakety.
+}
+ 
+$holdtime 8
+!C2A1_0
+{
+Varování. Porucha elektøiny na trati. Zkrontrolujte energetické zaøízení nižší úrovnì.
+}
+ 
+$holdtime 7.5
+!C2A1_1
+{
+Žlutý údržbáøský tým, spravte prosím vysílaè 394.
+}
+ 
+$holdtime 8.5
+!C2A1_2
+{
+Upozornìní. Gordon Freeman a se dostaví k vojenskému personálu pro okamžitou bezpeènostní kontrolu.
+}
+  
+$holdtime 6
+!C2A1_3
+{
+Tým Delta hlásí že kontrola startu je zabezpeèena.
+}
+  
+$holdtime 8
+!C2A1_4
+{
+Nebezpeèí, obranný systém vìžièek aktivován v silu E.
+}
+ 
+$holdtime 5
+!C2A1_5
+{
+Kontrola trati v sektoru E ohlašte prosím stav.
+}
+ 
+$holdtime 6
+!C2A1_6
+{
+Echo jednotka hlásí porušení hranice v sektoru E.
+} 
+  
+$holdtime 9.6
+!C2A1_7
+{
+Upozornìní, jednotko „Hledat a znièit“, jdìte do kódu 3. Odstraòte všechny biologické formy.
+} 
+   
+$holdtime 8.7
+!C2A1_8
+{
+Nebezpeèí, neautorizovaná detonace detekována v experimentální pohonné laboratoøi.
+} 
+ 
+$holdtime 4
+!POWER_OFF
+{
+Hlavní pøívod energie je vypnut.
+} 
+ 
+$holdtime 3
+!POWER_ON
+{
+Hlavní pøívod energie je zapnut.
+} 
+ 
+$holdtime 7
+!C2A2_0
+{
+Upozornìní, vykliïte okamžitì startovací oblast v silu E.
+} 
+ 
+$holdtime 7
+!C2A2_1
+{
+Izolaèní inspekèní tým, do pokroèilé biologicko-výzkumné laboratoøe.
+} 
+ 
+$holdtime 7
+!C2A2_2
+{
+Lékaøský tým do sektoru E, tým Echo má ranìné.
+} 
+ 
+$holdtime 9
+!C2A2_3
+{
+Upozornìní, vojenský personál oprávnìn ke stíhání Gordona Freemana s extrémní silou.
+} 
+ 
+$holdtime 9
+!C2A2_4
+{
+Upozornìní, oddíl v Silu E, Freeman se možná nachází za vaším ochranným pásmem.
+} 
+ 
+$holdtime 5.5
+!C2A2_5
+{
+Detekována kontrola rozjetí vlaku..
+} 
+ 
+$holdtime 8.2
+!C2A2_6
+{
+Lékaøský tým do sektoru E, oddílu echo se nepodaøilo dosáhnout stanovištì.
+} 
+ 
+$holdtime 7
+!C2A2_7
+{
+Nakládací prostor satelitní rakety hlásí stav zelená.
+} 
+ 
+$holdtime 19
+!C2A2_launch
+{
+Systém startu satelitu aktivován. 5, 4, 3, 2, 1. Start aktivován.
+} 
+
+$holdtime 6.5
+!C2A4_0
+{
+Varování. Nouzový izolaèní sytém aktivován.
+} 
+
+$holdtime 6.5
+!C2A4_1
+{
+Upozornìní. Detekováno porušení biologické izolace.
+} 
+
+$holdtime 7
+!C2A4_2
+{
+Varování, biologický sterilizaèní sytém aktivován.
+} 
+
+$holdtime 9.5
+!C2A4_3
+{
+Upozornìní, cizí mimozemská vojenská síla detekována v pokroèilé biologické výzkumné laboratoøi.
+}
+
+$holdtime 9.2
+!C2A4_4
+{
+'Hledat a znièit' jednotka hlásí že potøebuje podporu, zapojení s extrémním odporem.
+} 
+ 
+$holdtime 7.7
+!C2A4_5
+{
+Upozornìní pro povrchní zamezovací jednotku, detekována cizí mimozemská jednotka.
+} 
+  
+$holdtime 5
+!C2A4_6
+{
+Stav vysokoenergetického laseru je zelená.
+} 
+  
+$holdtime 7.5
+!C2A4_7
+{
+Porucha systému mimozemské izolace, použijte sterilizaèní komoru.
+} 
+   
+$holdtime 8.3
+!C2A4_8
+{
+Upozornìní. Veškerý vojenský personál na povrchu vykliïte helikoptérový hangár 4.
+} 
+   
+$holdtime 9
+!C2A4_9
+{
+Nepøátelské mimozemské porušení, povrchní stanovištì alfa, a stanovištì delta.
+} 
+   
+$holdtime 12
+!C2A4_10
+{
+Upozornìní pro povrchní izolaèní jednotku, použijte jakoukoliv sílu k stíhání Gordona Freemana. Jste oprávnìní støílet pøi dohledu.
+} 
+   
+$holdtime 7.5
+!C2A4_11
+{
+Upozornìní pro izolaèní jednotku na povrchu, Freeman se možná pøibližuje k vašemu ochrannému pásmu.
+} 
+   
+$holdtime 7
+!C2A4_12
+{
+Gordone, veškerý vìdecký personál bude vypovìzen ze služby dokud se nevzdáte.
+} 
+   
+$holdtime 5
+!C2A4_ster
+{
+Sterilizaèní systém aktivován.
+}
+   
+$holdtime 5
+!C3A1_0
+{
+Varování, detekována porucha primární antény.
+}
+   
+$holdtime 6.2
+!C3A1_1
+{
+Vykliïte venkovní vozový park pro nouzovou lékaøskou helikoptéru.
+}
+   
+$holdtime 6
+!C3A1_2
+{
+Varování, detekována snaha o prùnik do bezpeènostní zbrojnice.
+}
+   
+$holdtime 7.1
+!C3A1_3
+{
+Varování, detekována unikající radiace v oblasti primární antény.
+}
+   
+$holdtime 10
+!C3A1_4
+{
+'Hledat a znièit' jednotka kilo, centrální pøíkazové centrum hlásí nepøátelské mimozemské jednotky uvnitø ochranného pásma.
+}
+     
+$holdtime 7
+!C3A1_5
+{
+Zpráva pro Gordona Freemana, tentokrát neuteèeš.
+}
+     
+$holdtime 8
+!C3A1_6
+{
+Upozornìní pro všechny jednotky, odpadlík Freeman je teï váš primární cíl.
+} 
+     
+$holdtime 8
+!C3A1_7
+{
+Upozornìní pro pozùstalé izolaèní jednotky, Freeman má možná experimentální zbraò.
+} 
+      
+$holdtime 8.2
+!C3A1_8
+{
+Všem zamìstnancùm, evakuujte komplex Lambda, detekována extrémní dimenzionální porucha.
+} 
+      
+$holdtime 9.4
+!C3A1_9
+{
+Požární kontrolní tým do zbrojnice na povrchu, stanovištì delta, povrchní vodní elektrárna.
+} 
+      
+$holdtime 7
+!C3A2_0
+{
+Varování, detekována aktivita mezidimenzionálního energetického pole.
+}
+      
+$holdtime 9
+!C3A2_1
+{
+Varování, detekována neautorizovaná biologická síla v mezidimenzionálním energetickém poli.
+}
+      
+$holdtime 8.5
+!C3A2_2
+{
+Všem zamìstnancùm, evakuujte komplex Lambda, detekována extrémní dimenzionální porucha.
+}
+      
+$holdtime 8
+!C3A2_3
+{
+Neautorizovaná aktivita detekována v jádru hlavního reaktoru.
+} 
+      
+$holdtime 9.5
+!C3A2_4
+{
+Nebezpeèí, vysokoenergetická výmìna detekována v doku obsluhy radioaktivních látek.
+} 
+      
+$holdtime 7.5
+!C3A2_5
+{
+Biologická síla detekována v primárním chladícím systému.
+}  
+      
+$holdtime 6
+!C3A2_6
+{
+Komplex Lambda hlásí dimenzionální kontaminaci.
+} 
+      
+$holdtime 8
+!C3A2_7
+{
+Komplex Lambda hlásí poruchu systému dimenzionální izolace.
+} 
+      
+$holdtime 4
+!C3A2_target
+{
+Systém zamìøení satelitu povolen.
+} 
+      
+$holdtime 11
+!C3A2_portal
+{
+Varování, úroveò výkonu mezidimenzionálního portálového zaøízení je 120 procent.
+} 
+      
+$holdtime 9
+!C3A2_core
+{
+Uporoznìní pro personál v komplexu Lambda, primární jádro aktivováno.
+}  
+
+//==============================================================================
+// HEV Suit
+//==============================================================================
+
+$color  255 192 58
+$color2 128  96 29
+
+$holdtime 11
+!HEV_A0
+{
+Vítejte v obleku HEV ètvrté generace, ochranném systému pro použití v nebezpeèném prostøedí.
+} 
+
+$holdtime 11
+$chained !HEV_AAx_PT2
+!HEV_AAx
+{
+Vítejte v obleku HEV ètvrté generace, ochranném systému pro použití v nebezpeèném prostøedí.
+} 
+
+$holdtime 4.5
+$chained !HEV_AAx_PT3
+!HEV_AAx_PT2
+{
+Pancíø odolný vùèi vysokému nárazu: aktivován.
+}
+
+$holdtime 4.5
+$chained !HEV_AAx_PT4
+!HEV_AAx_PT3
+{
+Atmosférické kontaminaèní senzory: aktivovány.
+}
+
+$holdtime 3.5
+$chained !HEV_AAx_PT5
+!HEV_AAx_PT4
+{
+Monitorování životních funkcí: aktivováno.
+}
+
+$holdtime 3.5
+$chained !HEV_AAx_PT6
+!HEV_AAx_PT5
+{
+Automatické léèebné systémy: aktivovány.
+}
+
+$holdtime 4.2
+$chained !HEV_AAx_PT7
+!HEV_AAx_PT6
+{
+Systém výbìru obranné zbranì: aktivován.
+}
+
+$holdtime 3.6
+$chained !HEV_AAx_PT8
+!HEV_AAx_PT7
+{
+Monitorování úrovnì munice: aktivováno.
+}
+
+$holdtime 3.7
+$chained !HEV_AAx_PT9
+!HEV_AAx_PT8
+{
+Komunikaèní rozhraní: aktivováno.
+}
+
+$holdtime 3
+!HEV_AAx_PT9
+{
+Pøejeme vám bezpeèný den.
+}
+
+$holdtime 3.5
+!HEV_A1
+{
+Systém napomáhání k pohybu: aktivován.
+}
+
+$holdtime 4.2
+!HEV_A2
+{
+Pancíø odolný vùèi vysokému nárazu: aktivován.
+}
+
+$holdtime 4.2
+!HEV_A3
+{
+Atmosférické kontaminaèní senzory: aktivovány.
+}
+
+$holdtime 3.5
+!HEV_A4
+{
+Monitorování životních funkcí: aktivováno.
+}
+
+$holdtime 3.7
+!HEV_A5
+{
+Monitorování úrovnì munice: aktivováno.
+}
+
+$holdtime 3.7
+!HEV_A6
+{
+Komunikaèní rozhraní: aktivováno.
+}
+
+$holdtime 4.2
+!HEV_A7
+{
+Systém výbìru obranné zbranì: aktivován.
+}
+
+$holdtime 3.5
+!HEV_A8
+{
+Automatické léèebné systémy: aktivovány.
+}
+
+$holdtime 4
+!HEV_A9
+{
+Úroveò energie je: 100 %.
+}
+
+$holdtime 4
+!HEV_A10
+{
+Pøejeme vám bezpeèný den.
+}
+
+$holdtime 5
+!HEV_MED0
+{
+Nedostateèné lékaøské zásoby k spravení poškození.
+}
+
+$holdtime 4.5
+!HEV_MED1
+{
+Automatické léèebné systémy: aktivovány.
+}
+
+$holdtime 4
+!HEV_MED2
+{
+Probíhá lékaøské ošetøení.
+}
+
+$holdtime 7
+!HEV_HEAL0
+{
+Rána sterilizována. Podán morfin.
+}
+
+$holdtime 7
+!HEV_HEAL1
+{
+Použito lokální škrtidlo. Krvácení bylo zastaveno.
+}
+
+$holdtime 3.7
+!HEV_HEAL2
+{
+Krvácení bylo zastaveno.
+}
+
+$holdtime 4
+!HEV_HEAL3
+{
+Podána krevní plazma.
+}
+
+$holdtime 4.5
+!HEV_HEAL4
+{
+Podána protilátka.
+}
+
+$holdtime 4.5
+!HEV_HEAL5
+{
+Podán protilék.
+}
+
+$holdtime 4
+!HEV_HEAL6
+{
+Rána sterilizována.
+}
+
+$holdtime 4.2
+!HEV_HEAL7
+{
+Podán morfin.
+}
+
+$holdtime 4.7
+!HEV_HEAL8
+{
+Zdravotní poškození spraveno.
+}
+
+$holdtime 4
+!HEV_DMG0
+{
+Detekovány menší tržné rány.
+}
+
+$holdtime 4
+!HEV_DMG1
+{
+Detekovány velké tržné rány.
+}	
+
+$holdtime 4
+!HEV_DMG2
+{
+Detekováno vnitøní krvácení.
+}
+
+$holdtime 5
+!HEV_DMG3
+{
+Varování. Detekován toxin v krvi.
+}
+
+$holdtime 4
+!HEV_DMG4
+{
+Detekována drobnìjší zlomenina.
+} 
+ 
+$holdtime 4
+!HEV_DMG5
+{
+Detekována vážná zlomenina.
+}  
+ 
+$holdtime 4
+!HEV_DMG6
+{
+Detekována ztráta krve.
+} 
+  
+$holdtime 4
+!HEV_DMG7
+{
+Hledejte lékáøskou pomoc.
+} 
+  
+$holdtime 4
+!HEV_HLTH0
+{
+Varování. Známky života klesají.
+} 
+  
+$holdtime 4.1
+!HEV_HLTH1
+{
+Známky života klesají.
+} 
+  
+$holdtime 4.5
+!HEV_HLTH2
+{
+Varování. Známky života jsou na kritické úrovni.
+} 
+  
+$holdtime 5
+!HEV_HLTH3
+{
+Nebezpeèí. Hrozí smrt uživatele.
+} 
+   
+$holdtime 6
+!HEV_HLTH4
+{
+Známky života klesají. Evakuujte oblast.
+} 
+    
+$holdtime 6
+!HEV_HLTH5
+{
+Varování. Známky života jsou na kritické úrovni. Evakuujte oblast.
+}  
+   
+$holdtime 10
+!HEV_HLTH6
+{
+Nebezpeèí. Hrozí smrt uživatele. Okamžitì evakuujte oblast.
+} 
+   
+$holdtime 5
+!HEV_SHOCK
+{
+Varování. Detekováno elektrické poškození.
+} 
+   
+$holdtime 5
+!HEV_FIRE
+{
+Varování. Detekováno extrémní tepelné poškození.
+} 
+   
+$holdtime 5
+!HEV_AIM_ON
+{
+Systém automatického namíøení na cíl: aktivován.
+} 
+   
+$holdtime 5
+!HEV_AIM_OFF
+{
+Systém automatického namíøení na cíl: deaktivován.
+}
+   
+$holdtime 3.5
+!HEV_BATTERY
+{
+Sebrány baterie do HEV.
+}
+   
+$holdtime 3
+!HEV_MEDKIT
+{
+Automatická lékarnièka.
+}
+ 
+$holdtime 6.5
+!HEV_0P
+{
+Varování. Úroveò energie HEV je pod 5 %.
+}
+    
+$holdtime 3
+!HEV_1P
+{
+Energie obnovena na: 10 %.
+}
+
+$holdtime 3
+!HEV_2P
+{
+Energie obnovena na: 15 %.
+}
+
+$holdtime 3
+!HEV_3P
+{
+Energie obnovena na: 20 %.
+}
+
+$holdtime 4
+!HEV_4P
+{
+Energie obnovena na: 25 %.
+}
+
+$holdtime 3
+!HEV_5P
+{
+Energie obnovena na: 30 %.
+}
+
+$holdtime 4
+!HEV_6P
+{
+Energie obnovena na: 35 %.
+}  
+ 
+$holdtime 3
+!HEV_7P
+{
+Energie obnovena na: 40 %.
+} 
+ 
+$holdtime 4
+!HEV_8P
+{
+Energie obnovena na: 45 %.
+} 
+  
+$holdtime 3
+!HEV_9P
+{
+Energie obnovena na: 50 %.
+}
+  
+$holdtime 4
+!HEV_10P
+{
+Energie obnovena na: 55 %.
+} 
+   
+$holdtime 3
+!HEV_11P
+{
+Energie obnovena na: 60 %.
+}
+   
+$holdtime 4
+!HEV_12P
+{
+Energie obnovena na: 65 %.
+}
+   
+$holdtime 3
+!HEV_13P
+{
+Energie obnovena na: 70 %.
+} 
+    
+$holdtime 4
+!HEV_14P
+{
+Energie obnovena na: 75 %.
+} 
+
+$holdtime 3
+!HEV_15P
+{
+Energie obnovena na: 80 %.
+} 
+
+$holdtime 4
+!HEV_16P
+{
+Energie obnovena na: 85 %.
+}  
+ 
+$holdtime 3
+!HEV_17P
+{
+Energie obnovena na: 90 %.
+}  
+ 
+$holdtime 4
+!HEV_18P
+{
+Energie obnovena na: 95 %.
+}   
+  
+$holdtime 4.5
+!HEV_19P
+{
+Úroveò energie je: 100 %.
+} 
+  
+$holdtime 2.5
+!HEV_AMO0
+{
+Munice je vyèerpána.
+} 
+   
+$holdtime 3.5
+!HEV_DET0
+{
+Varování. Detekováno biologické nebezpeèí.
+} 
+    
+$holdtime 3.5
+!HEV_DET1
+{
+Varování. Detekovány nebezpeèné chemikálie.
+}
+    
+$holdtime 5
+!HEV_DET2
+{
+Varování. Detekovány nebezpeèné úrovnì radiace.
+}
+
+//============================================================
+// Nihilanth
+//============================================================
+
+$color  255 140 140
+$color2 255  70  70
+
+$holdtime 8
+!NIL_ALONE
+{
+Sám... Nejsi sám... Nejsi sám...
+}
+
+$holdtime 4
+!NIL_COMES
+{
+Pøijdou... Další...
+}
+
+$holdtime 8
+!NIL_DECEIVE
+{
+Oklamán... Budeš oklamán...
+}
+
+$holdtime 7
+!NIL_DIE
+{
+Zemøete... Všichni zemøete... Všichni zemøete...
+}
+
+$holdtime 5
+!NIL_DONE
+{
+Udìlal... Co jsi to udìlal...
+}
+
+$holdtime 5.5
+!NIL_FREEMAN
+{
+Freemane...
+}
+
+$holdtime 8
+!NIL_LAST
+{
+Poslední... Jsi... Poslední... Jsi...
+}
+
+$holdtime 13.5
+!NIL_NOTMAN
+{
+Jsi èlovìk... On není èlovìk... Èeká na tebe... Na tebe...
+}
+
+$holdtime 8
+!NIL_NOWDIE
+{
+Nyní zemøeš... Nyní zemøeš... Nyní...
+}
+
+$holdtime 8
+!NIL_SLAVES
+{
+Jejích otroci... Jsme jejích otroci... Jsme...
+}
+
+$holdtime 5.5
+!NIL_THELAST
+{
+Poslední... Jsem poslední...
+}
+
+$holdtime 7
+!NIL_THETRUTH
+{
+Pravdu... Nikdy nepoznáš... Pravdu...
+}
+
+$holdtime 7
+!NIL_THIEVES
+{
+Zlodìji... Všichni jste zlodìji... Všichni jste...
+}
+
+$holdtime 5
+!NIL_WIN
+{
+Vyhrát... Nemùžeš vyhrát...
+}
+
+//============================================================
+// GMan
+//============================================================
+
+$color  136 144 176
+$color2  68  72  88
+
+$holdtime 17
+!GM_SUIT
+{
+Gordon Freeman osobnì, nebo spíše v ochranném obleku. Dovolil jsem se vás osvobodit od vašich zbraní. Vìtšina z nich byla majetkem vlády. Pokud jde o oblek, myslím, že si ho zasloužíte...
+}
+
+$holdtime 13
+!GM_NASTY
+{
+Hranice svìtù, Xen, je teï pod naší kontrolou, a to díky vám. Udìlal jste poøádný kus dobré práce. Jsem ohromen...
+}
+
+$holdtime 20
+!GM_POTENTIAL
+{
+Proto jsem tady, pane Freemane. Doporuèil jsem vaše služby mým zamìstnavatelùm, a povìøili mì, abych vám nabídnul pracovní nabídku. Souhlasí se mnou, že máte neomezený potenciál...
+}
+
+$holdtime 13.5
+!GM_STEPIN
+{
+Dokázal jste, že jste rozhodný èlovìk, takže si myslím, že nebudete mít problém rozhodnout se. Máte-li zájem, staèí vstoupit do portálu a budu to brát jako souhlas...
+}
+
+$holdtime 13.5
+!GM_OTHERWISE
+{
+V opaèném pøípadì, hmm, no... Vám nabízím bitvu bez šance na vítìzství. Bylo by to ponìkud zklamání po tom všem, co jste právì pøežil...
+}
+
+$holdtime 2
+!GM_1CHOOSE
+{
+Èas si vybrat...
+}
+
+$holdtime 2
+!GM_2CHOOSE
+{
+Je èas si vybrat...
+}
+
+$holdtime 5.2
+!GM_WISE
+{
+Moudrá volba, pane Freemane. Uvidíme se pozdìji...
+}
+
+$holdtime 3.5
+!GM_WONTWORK
+{
+Dobrá, zdá se, že nechcete spolupracovat.
+}
+
+$holdtime 3
+!GM_REGRET
+{
+Nic ve zlém, pane Freemane...
+}
