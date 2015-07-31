@@ -30,15 +30,15 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 #define ID_BACKGROUND	0
 #define ID_BANNER		1
 
-#define ID_EASY	  	2
+#define ID_EASY	  		2
 #define ID_MEDIUM	  	3
 #define ID_DIFFICULT  	4
 #define ID_CANCEL		5
 
 #define ID_MSGBOX	 	6
 #define ID_MSGTEXT	 	7
-#define ID_YES		130
-#define ID_NO	 	131
+#define ID_YES			130
+#define ID_NO	 		131
 
 typedef struct
 {
@@ -139,23 +139,28 @@ static void UI_NewGame_Callback( void *self, int event )
 
 	switch( item->id )
 	{
-	case ID_EASY:
-		UI_PromptDialog( 1.0f );
+		case ID_EASY:
+			UI_PromptDialog( 1.0f );
 		break;
-	case ID_MEDIUM:
-		UI_PromptDialog( 2.0f );
+
+		case ID_MEDIUM:
+			UI_PromptDialog( 2.0f );
 		break;
-	case ID_DIFFICULT:
-		UI_PromptDialog( 3.0f );
+
+		case ID_DIFFICULT:
+			UI_PromptDialog( 3.0f );
 		break;
-	case ID_CANCEL:
-		UI_PopMenu();
+
+		case ID_CANCEL:
+			UI_PopMenu();
 		break;
-	case ID_YES:
-		UI_NewGame_StartGame( uiNewGame.skill );
+
+		case ID_YES:
+			UI_NewGame_StartGame( uiNewGame.skill );
 		break;
-	case ID_NO:
-		UI_PromptDialog( 1.0f ); // clear skill
+
+		case ID_NO:
+			UI_PromptDialog( 1.0f ); // clear skill
 		break;
 	}
 }
@@ -168,7 +173,6 @@ UI_MsgBox_Ownerdraw
 static void UI_MsgBox_Ownerdraw( void *self )
 {
 	menuCommon_s	*item = (menuCommon_s *)self;
-
 	UI_FillRect( item->x, item->y, item->width, item->height, uiPromptBgColor );
 }
 

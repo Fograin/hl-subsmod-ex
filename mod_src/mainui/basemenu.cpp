@@ -453,32 +453,40 @@ void UI_AddItem( menuFramework_s *menu, void *item )
 
 	switch( generic->type )
 	{
-	case QMTYPE_SCROLLLIST:
-		UI_ScrollList_Init((menuScrollList_s *)item );
+		case QMTYPE_SCROLLLIST:
+			UI_ScrollList_Init((menuScrollList_s *)item );
 		break;
-	case QMTYPE_SPINCONTROL:
-		UI_SpinControl_Init((menuSpinControl_s *)item );
+
+		case QMTYPE_SPINCONTROL:
+			UI_SpinControl_Init((menuSpinControl_s *)item );
 		break;
-	case QMTYPE_CHECKBOX:
-		UI_CheckBox_Init((menuCheckBox_s *)item );
+
+		case QMTYPE_CHECKBOX:
+			UI_CheckBox_Init((menuCheckBox_s *)item );
 		break;
-	case QMTYPE_SLIDER:
-		UI_Slider_Init((menuSlider_s *)item );
+
+		case QMTYPE_SLIDER:
+			UI_Slider_Init((menuSlider_s *)item );
 		break;
-	case QMTYPE_FIELD:
-		UI_Field_Init((menuField_s *)item );
+
+		case QMTYPE_FIELD:
+			UI_Field_Init((menuField_s *)item );
 		break;
-	case QMTYPE_ACTION:
-		UI_Action_Init((menuAction_s *)item );
+
+		case QMTYPE_ACTION:
+			UI_Action_Init((menuAction_s *)item );
 		break;
-	case QMTYPE_BITMAP:
-		UI_Bitmap_Init((menuBitmap_s *)item );
+
+		case QMTYPE_BITMAP:
+			UI_Bitmap_Init((menuBitmap_s *)item );
 		break;
-	case QMTYPE_BM_BUTTON:
-		UI_PicButton_Init((menuPicButton_s *)item );
+
+		case QMTYPE_BM_BUTTON:
+			UI_PicButton_Init((menuPicButton_s *)item );
 		break;
-	default:
-		HOST_ERROR( "UI_AddItem: unknown item type (%i)\n", generic->type );
+
+		default:
+			HOST_ERROR( "UI_AddItem: unknown item type (%i)\n", generic->type );
 	}
 }
 
@@ -638,29 +646,36 @@ void UI_DrawMenu( menuFramework_s *menu )
 
 		switch( item->type )
 		{
-		case QMTYPE_SCROLLLIST:
-			UI_ScrollList_Draw((menuScrollList_s *)item );
+			case QMTYPE_SCROLLLIST:
+				UI_ScrollList_Draw((menuScrollList_s *)item );
 			break;
-		case QMTYPE_SPINCONTROL:
-			UI_SpinControl_Draw((menuSpinControl_s *)item );
+
+			case QMTYPE_SPINCONTROL:
+				UI_SpinControl_Draw((menuSpinControl_s *)item );
 			break;
-		case QMTYPE_CHECKBOX:
-			UI_CheckBox_Draw((menuCheckBox_s *)item );
+
+			case QMTYPE_CHECKBOX:
+				UI_CheckBox_Draw((menuCheckBox_s *)item );
 			break;
-		case QMTYPE_SLIDER:
-			UI_Slider_Draw((menuSlider_s *)item );
+
+			case QMTYPE_SLIDER:
+				UI_Slider_Draw((menuSlider_s *)item );
 			break;
-		case QMTYPE_FIELD:
-			UI_Field_Draw((menuField_s *)item );
+
+			case QMTYPE_FIELD:
+				UI_Field_Draw((menuField_s *)item );
 			break;
-		case QMTYPE_ACTION:
-			UI_Action_Draw((menuAction_s *)item );
+
+			case QMTYPE_ACTION:
+				UI_Action_Draw((menuAction_s *)item );
 			break;
-		case QMTYPE_BITMAP:
-			UI_Bitmap_Draw((menuBitmap_s *)item );
+
+			case QMTYPE_BITMAP:
+				UI_Bitmap_Draw((menuBitmap_s *)item );
 			break;
-		case QMTYPE_BM_BUTTON:
-			UI_PicButton_Draw((menuPicButton_s *)item );
+
+			case QMTYPE_BM_BUTTON:
+				UI_PicButton_Draw((menuPicButton_s *)item );
 			break;
 		}
 	}
@@ -718,32 +733,40 @@ const char *UI_DefaultKey( menuFramework_s *menu, int key, int down )
 	{
 		switch( item->type )
 		{
-		case QMTYPE_SCROLLLIST:
-			sound = UI_ScrollList_Key((menuScrollList_s *)item, key, down );
+			case QMTYPE_SCROLLLIST:
+				sound = UI_ScrollList_Key((menuScrollList_s *)item, key, down );
 			break;
-		case QMTYPE_SPINCONTROL:
-			sound = UI_SpinControl_Key((menuSpinControl_s *)item, key, down );
+
+			case QMTYPE_SPINCONTROL:
+				sound = UI_SpinControl_Key((menuSpinControl_s *)item, key, down );
 			break;
-		case QMTYPE_CHECKBOX:
-			sound = UI_CheckBox_Key((menuCheckBox_s *)item, key, down );
+
+			case QMTYPE_CHECKBOX:
+				sound = UI_CheckBox_Key((menuCheckBox_s *)item, key, down );
 			break;
-		case QMTYPE_SLIDER:
-			sound = UI_Slider_Key((menuSlider_s *)item, key, down );
+
+			case QMTYPE_SLIDER:
+				sound = UI_Slider_Key((menuSlider_s *)item, key, down );
 			break;
-		case QMTYPE_FIELD:
-			sound = UI_Field_Key((menuField_s *)item, key, down );
+
+			case QMTYPE_FIELD:
+				sound = UI_Field_Key((menuField_s *)item, key, down );
 			break;
-		case QMTYPE_ACTION:
-			sound = UI_Action_Key((menuAction_s *)item, key, down );
+
+			case QMTYPE_ACTION:
+				sound = UI_Action_Key((menuAction_s *)item, key, down );
 			break;
-		case QMTYPE_BITMAP:
-			sound = UI_Bitmap_Key((menuBitmap_s *)item, key, down );
+
+			case QMTYPE_BITMAP:
+				sound = UI_Bitmap_Key((menuBitmap_s *)item, key, down );
 			break;
-		case QMTYPE_BM_BUTTON:
-			sound = UI_PicButton_Key((menuPicButton_s *)item, key, down );
+
+			case QMTYPE_BM_BUTTON:
+				sound = UI_PicButton_Key((menuPicButton_s *)item, key, down );
 			break;
 		}
-		if( sound ) return sound; // key was handled
+		if( sound )
+			return sound; // key was handled
 	}
 
 	// system keys are always wait for keys down and never keys up
@@ -1331,10 +1354,10 @@ void UI_Precache( void )
 	UI_LoadGame_Precache();
 	UI_SaveGame_Precache();
 	UI_SaveLoad_Precache();
-	UI_MultiPlayer_Precache();
+
 	UI_Options_Precache();
-	UI_InternetGames_Precache();
-	UI_LanGame_Precache();
+
+
 	UI_PlayerSetup_Precache();
 	UI_Controls_Precache();
 	UI_AdvControls_Precache();
@@ -1529,10 +1552,7 @@ void UI_Init( void )
 	Cmd_AddCommand( "menu_loadgame", UI_LoadGame_Menu );
 	Cmd_AddCommand( "menu_savegame", UI_SaveGame_Menu );
 	Cmd_AddCommand( "menu_saveload", UI_SaveLoad_Menu );
-	Cmd_AddCommand( "menu_multiplayer", UI_MultiPlayer_Menu );
 	Cmd_AddCommand( "menu_options", UI_Options_Menu );
-	Cmd_AddCommand( "menu_langame", UI_LanGame_Menu );
-	Cmd_AddCommand( "menu_intenetgames", UI_InternetGames_Menu );
 	Cmd_AddCommand( "menu_playersetup", UI_PlayerSetup_Menu );
 	Cmd_AddCommand( "menu_controls", UI_Controls_Menu );
 	Cmd_AddCommand( "menu_advcontrols", UI_AdvControls_Menu );

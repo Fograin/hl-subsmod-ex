@@ -97,6 +97,8 @@ void UI_DrawTitleAnim()
 
 void UI_SetTitleAnim( int anim_state, menuPicButton_s *button )
 {
+	// Fograin92: Disabled
+	/*
 	// skip buttons which don't call new menu
 	if( !button || PreClickDepth == uiStatic.menuDepth && anim_state == AS_TO_TITLE )
 		return;
@@ -127,6 +129,7 @@ void UI_SetTitleAnim( int anim_state, menuPicButton_s *button )
 	
 	transition_initial_time = uiStatic.realTime;
 	TransPic = button->pic;
+	*/
 }
 
 void UI_InitTitleAnim()

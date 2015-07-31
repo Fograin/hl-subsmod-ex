@@ -86,7 +86,7 @@ GNU General Public License for more details.
 #define UI_BANNER_HEIGHT	128
 
 // menu buttons dims
-#define UI_BUTTONS_WIDTH		240
+#define UI_BUTTONS_WIDTH		256
 #define UI_BUTTONS_HEIGHT		40
 #define UI_BUTTON_CHARWIDTH		14	// empirically determined value
 
@@ -438,10 +438,7 @@ void UI_NewGame_Precache( void );
 void UI_LoadGame_Precache( void );
 void UI_SaveGame_Precache( void );
 void UI_SaveLoad_Precache( void );
-void UI_MultiPlayer_Precache( void );
 void UI_Options_Precache( void );
-void UI_InternetGames_Precache( void );
-void UI_LanGame_Precache( void );
 void UI_PlayerSetup_Precache( void );
 void UI_Controls_Precache( void );
 void UI_AdvControls_Precache( void );
@@ -461,10 +458,7 @@ void UI_NewGame_Menu( void );
 void UI_LoadGame_Menu( void );
 void UI_SaveGame_Menu( void );
 void UI_SaveLoad_Menu( void );
-void UI_MultiPlayer_Menu( void );
 void UI_Options_Menu( void );
-void UI_InternetGames_Menu( void );
-void UI_LanGame_Menu( void );
 void UI_PlayerSetup_Menu( void );
 void UI_Controls_Menu( void );
 void UI_AdvControls_Menu( void );

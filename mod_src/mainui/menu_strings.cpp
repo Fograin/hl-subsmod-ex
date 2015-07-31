@@ -152,7 +152,7 @@ char *MenuStrings[HINT_MAXSTRINGS] =
 "",
 "",	// 130
 "",
-"Display mode",
+"",
 "",
 "",
 "",
@@ -191,7 +191,7 @@ char *MenuStrings[HINT_MAXSTRINGS] =
 "",
 "",
 "",	// 170
-"Reverse mouse",
+"",
 "",
 "",
 "",
@@ -204,16 +204,16 @@ char *MenuStrings[HINT_MAXSTRINGS] =
 "",
 "",
 "",
-"Mouse sensitivity",
 "",
 "",
 "",
-"Return to game.",
-"Start a new game.",
+"",
+"",
+"",
 "",	// 190
-"Load a previously saved game.",
-"Load a saved game, save the current game.",
-"Change game settings, configure controls",
+"",
+"",
+"",
 "",
 "",
 "",
@@ -254,13 +254,13 @@ char *MenuStrings[HINT_MAXSTRINGS] =
 "",
 "",
 "",
-"Starting a Hazard Course will exit\nany current game, OK to exit?",
-"",	// filled in UI_LoadCustomStrings
-"Are you sure you want to quit?",
 "",
 "",
 "",
-"Starting a new game will exit\nany current game, OK to exit?",	// 240
+"",
+"",
+"",
+"",	// 240
 "",
 "",
 "",
@@ -420,9 +420,9 @@ char *MenuStrings[HINT_MAXSTRINGS] =
 "",
 "",
 "",
-"Find more about Valve's product lineup",	// 400
+"",	// 400
 "",
-"http://store.steampowered.com/app/70/",
+"",
 "",
 "",
 "",
@@ -550,7 +550,7 @@ char *MenuStrings[HINT_MAXSTRINGS] =
 "",
 "",
 "",
-"Select a custom game",	// 530
+"",	// 530
 "",
 "",
 "",
@@ -575,29 +575,7 @@ char *MenuStrings[HINT_MAXSTRINGS] =
 
 void UI_InitAliasStrings( void )
 {
-	char token[1024];
-
-	// some strings needs to be initialized here
-	sprintf( token, "Quit %s without\nsaving current game?", gMenu.m_gameinfo.title );
-	MenuStrings[HINT_QUIT_ACTIVE] = StringCopy( token );
-
-	sprintf( token, "Learn how to play %s", gMenu.m_gameinfo.title );
-	MenuStrings[HINT_HAZARD_COURSE] = StringCopy( token );
-
-	sprintf( token, "Play %s on the 'easy' skill setting", gMenu.m_gameinfo.title );
-	MenuStrings[HINT_SKILL_EASY] = StringCopy( token );
-
-	sprintf( token, "Play %s on the 'medium' skill setting", gMenu.m_gameinfo.title );
-	MenuStrings[HINT_SKILL_NORMAL] = StringCopy( token );
-
-	sprintf( token, "Play %s on the 'difficult' skill setting", gMenu.m_gameinfo.title );
-	MenuStrings[HINT_SKILL_HARD] = StringCopy( token );
-
-	sprintf( token, "Quit playing %s", gMenu.m_gameinfo.title );
-	MenuStrings[HINT_QUIT_BUTTON] = StringCopy( token );
-
-	sprintf( token, "Search for %s servers, configure character", gMenu.m_gameinfo.title );
-	MenuStrings[HINT_MULTIPLAYER] = StringCopy( token );
+	
 }
 
 void UI_LoadCustomStrings( void )
