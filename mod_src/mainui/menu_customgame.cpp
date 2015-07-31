@@ -272,17 +272,6 @@ static void UI_CustomGame_Init( void )
 
 	UI_UtilSetupPicButton( &uiCustomGame.load, PC_ACTIVATE );
 
-	uiCustomGame.go2url.generic.id = ID_GOTOSITE;
-	uiCustomGame.go2url.generic.type = QMTYPE_BM_BUTTON;
-	uiCustomGame.go2url.generic.flags = QMF_HIGHLIGHTIFFOCUS|QMF_DROPSHADOW;
-	uiCustomGame.go2url.generic.x = 72;
-	uiCustomGame.go2url.generic.y = 280;
-	uiCustomGame.go2url.generic.name = "Visit web site";
-	uiCustomGame.go2url.generic.statusText = "Visit the web site of game developrs";
-	uiCustomGame.go2url.generic.callback = UI_CustomGame_Callback;
-
-	UI_UtilSetupPicButton( &uiCustomGame.go2url, PC_VISIT_WEB_SITE );
-
 	uiCustomGame.done.generic.id = ID_DONE;
 	uiCustomGame.done.generic.type = QMTYPE_BM_BUTTON;
 	uiCustomGame.done.generic.flags = QMF_HIGHLIGHTIFFOCUS|QMF_DROPSHADOW;
@@ -352,7 +341,6 @@ static void UI_CustomGame_Init( void )
 	UI_AddItem( &uiCustomGame.menu, (void *)&uiCustomGame.background );
 	UI_AddItem( &uiCustomGame.menu, (void *)&uiCustomGame.banner );
 	UI_AddItem( &uiCustomGame.menu, (void *)&uiCustomGame.load );
-	UI_AddItem( &uiCustomGame.menu, (void *)&uiCustomGame.go2url );
 	UI_AddItem( &uiCustomGame.menu, (void *)&uiCustomGame.done );
 	UI_AddItem( &uiCustomGame.menu, (void *)&uiCustomGame.hintMessage );
 	UI_AddItem( &uiCustomGame.menu, (void *)&uiCustomGame.modList );

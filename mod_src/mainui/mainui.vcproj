@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="subsmod_mainmenu"
+	Name="xash_menu"
 	ProjectGUID="{7106FDE7-46F9-495B-BED2-14E0DE925C03}"
 	RootNamespace="gameui_menu"
 	TargetFrameworkVersion="0"
@@ -245,6 +245,18 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="basemenu.h"
+				>
+			</File>
+			<File
+				RelativePath="enginecallback.h"
+				>
+			</File>
+			<File
+				RelativePath="extdll.h"
+				>
+			</File>
+			<File
 				RelativePath="menu_advcontrols.cpp"
 				>
 				<FileConfiguration
@@ -309,6 +321,10 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
+			</File>
+			<File
+				RelativePath="menu_btnsbmp_table.h"
+				>
 			</File>
 			<File
 				RelativePath="menu_configuration.cpp"
@@ -663,6 +679,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="menu_strings.h"
+				>
+			</File>
+			<File
 				RelativePath="menu_video.cpp"
 				>
 				<FileConfiguration
@@ -729,6 +749,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="menufont.H"
+				>
+			</File>
+			<File
 				RelativePath="udll_int.cpp"
 				>
 				<FileConfiguration
@@ -773,6 +797,10 @@
 				</FileConfiguration>
 			</File>
 			<File
+				RelativePath="ui_title_anim.h"
+				>
+			</File>
+			<File
 				RelativePath="utils.cpp"
 				>
 				<FileConfiguration
@@ -793,39 +821,6 @@
 						PreprocessorDefinitions=""
 					/>
 				</FileConfiguration>
-			</File>
-		</Filter>
-		<Filter
-			Name="Header Files"
-			Filter="h;hpp;hxx;hm;inl"
-			>
-			<File
-				RelativePath="basemenu.h"
-				>
-			</File>
-			<File
-				RelativePath="enginecallback.h"
-				>
-			</File>
-			<File
-				RelativePath="extdll.h"
-				>
-			</File>
-			<File
-				RelativePath="menu_btnsbmp_table.h"
-				>
-			</File>
-			<File
-				RelativePath="menu_strings.h"
-				>
-			</File>
-			<File
-				RelativePath="menufont.H"
-				>
-			</File>
-			<File
-				RelativePath="ui_title_anim.h"
-				>
 			</File>
 			<File
 				RelativePath="utils.h"

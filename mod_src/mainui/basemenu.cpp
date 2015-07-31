@@ -37,39 +37,39 @@ cvar_t		*ui_showmodels;
 uiStatic_t	uiStatic;
 
 char		uiEmptyString[256];
-const char	*uiSoundIn	= "media/launch_upmenu1.wav";
-const char	*uiSoundOut	= "media/launch_dnmenu1.wav";
-const char	*uiSoundLaunch	= "media/launch_select2.wav";
-const char	*uiSoundGlow	= "media/launch_glow1.wav";
-const char	*uiSoundBuzz	= "media/launch_deny2.wav";
-const char	*uiSoundKey	= "media/launch_select1.wav";
+const char	*uiSoundIn			= "media/launch_upmenu1.wav";
+const char	*uiSoundOut			= "media/launch_dnmenu1.wav";
+const char	*uiSoundLaunch		= "media/launch_select2.wav";
+const char	*uiSoundGlow		= "media/launch_glow1.wav";
+const char	*uiSoundBuzz		= "media/launch_deny2.wav";
+const char	*uiSoundKey			= "media/launch_select1.wav";
 const char	*uiSoundRemoveKey	= "media/launch_deny1.wav";
-const char	*uiSoundMove	= "";		// Xash3D not use movesound
-const char	*uiSoundNull	= "";
+const char	*uiSoundMove		= "";		// Xash3D not use movesound
+const char	*uiSoundNull		= "";
 
-int		uiColorHelp	= 0xFFFFFFFF;	// 255, 255, 255, 255	// hint letters color
-int		uiPromptBgColor	= 0xFF404040;	// 64,  64,  64,  255	// dialog background color
+int		uiColorHelp			= 0xFFFFFFFF;	// 255, 255, 255, 255	// hint letters color
+int		uiPromptBgColor		= 0xFF404040;	// 64,  64,  64,  255	// dialog background color
 int		uiPromptTextColor	= 0xFFF0B418;	// 255, 160,  0,  255	// dialog or button letters color
 int		uiPromptFocusColor	= 0xFFFFFF00;	// 255, 255,  0,  255	// dialog or button focus letters color
 int		uiInputTextColor	= 0xFFC0C0C0;	// 192, 192, 192, 255
-int		uiInputBgColor	= 0xFF404040;	// 64,  64,  64,  255	// field, scrollist, checkbox background color
-int		uiInputFgColor	= 0xFF555555;	// 85,  85,  85,  255	// field, scrollist, checkbox foreground color
-int		uiColorWhite	= 0xFFFFFFFF;	// 255, 255, 255, 255	// useful for bitmaps
-int		uiColorDkGrey	= 0xFF404040;	// 64,  64,  64,  255	// shadow and grayed items
-int		uiColorBlack	= 0xFF000000;	//  0,   0,   0,  255	// some controls background
-int		uiColorConsole	= 0xFFF0B418;	// just for reference 
+int		uiInputBgColor		= 0xFF404040;	// 64,  64,  64,  255	// field, scrollist, checkbox background color
+int		uiInputFgColor		= 0xFF555555;	// 85,  85,  85,  255	// field, scrollist, checkbox foreground color
+int		uiColorWhite		= 0xFFFFFFFF;	// 255, 255, 255, 255	// useful for bitmaps
+int		uiColorDkGrey		= 0xFF404040;	// 64,  64,  64,  255	// shadow and grayed items
+int		uiColorBlack		= 0xFF000000;	//  0,   0,   0,  255	// some controls background
+int		uiColorConsole		= 0xFFF0B418;	// just for reference 
 
 // color presets (this is nasty hack to allow color presets to part of text)
 const int g_iColorTable[8] =
 {
-0xFF000000, // black
-0xFFFF0000, // red
-0xFF00FF00, // green
-0xFFFFFF00, // yellow
-0xFF0000FF, // blue
-0xFF00FFFF, // cyan
-0xFFF0B418, // dialog or button letters color
-0xFFFFFFFF, // white
+	0xFF000000, // black
+	0xFFFF0000, // red
+	0xFF00FF00, // green
+	0xFFFFFF00, // yellow
+	0xFF0000FF, // blue
+	0xFF00FFFF, // cyan
+	0xFFF0B418, // dialog or button letters color
+	0xFFFFFFFF, // white
 };
 
 /*

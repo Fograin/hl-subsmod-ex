@@ -310,7 +310,7 @@ static void UI_LanGame_Init( void )
 	uiLanGame.joinGame.generic.statusText = "Join to selected game";
 	uiLanGame.joinGame.generic.callback = UI_LanGame_Callback;
 
-	UI_UtilSetupPicButton( &uiLanGame.joinGame, PC_JOIN_GAME );
+
 
 	uiLanGame.createGame.generic.id = ID_CREATEGAME;
 	uiLanGame.createGame.generic.type = QMTYPE_BM_BUTTON;
@@ -321,7 +321,7 @@ static void UI_LanGame_Init( void )
 	uiLanGame.createGame.generic.statusText = "Create new LAN game";
 	uiLanGame.createGame.generic.callback = UI_LanGame_Callback;
 
-	UI_UtilSetupPicButton( &uiLanGame.createGame, PC_CREATE_GAME );
+
 
 	uiLanGame.gameInfo.generic.id = ID_GAMEINFO;
 	uiLanGame.gameInfo.generic.type = QMTYPE_BM_BUTTON;
@@ -332,7 +332,7 @@ static void UI_LanGame_Init( void )
 	uiLanGame.gameInfo.generic.statusText = "Get detail game info";
 	uiLanGame.gameInfo.generic.callback = UI_LanGame_Callback;
 
-	UI_UtilSetupPicButton( &uiLanGame.gameInfo, PC_VIEW_GAME_INFO );
+
 
 	uiLanGame.refresh.generic.id = ID_REFRESH;
 	uiLanGame.refresh.generic.type = QMTYPE_BM_BUTTON;
@@ -343,7 +343,6 @@ static void UI_LanGame_Init( void )
 	uiLanGame.refresh.generic.statusText = "Refresh servers list";
 	uiLanGame.refresh.generic.callback = UI_LanGame_Callback;
 
-	UI_UtilSetupPicButton( &uiLanGame.refresh, PC_REFRESH );
 
 	uiLanGame.done.generic.id = ID_DONE;
 	uiLanGame.done.generic.type = QMTYPE_BM_BUTTON;

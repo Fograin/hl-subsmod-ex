@@ -34,18 +34,18 @@ GNU General Public License for more details.
 
 #include "netadr.h"
 
-#define ART_BACKGROUND		"gfx/shell/splash"
-#define UI_SLIDER_MAIN		"gfx/shell/slider"
-#define UI_LEFTARROW		"gfx/shell/larrowdefault"
+#define ART_BACKGROUND			"gfx/shell/splash"
+#define UI_SLIDER_MAIN			"gfx/shell/slider"
+#define UI_LEFTARROW			"gfx/shell/larrowdefault"
 #define UI_LEFTARROWFOCUS		"gfx/shell/larrowflyover"
 #define UI_LEFTARROWPRESSED		"gfx/shell/larrowpressed"
-#define UI_RIGHTARROW		"gfx/shell/rarrowdefault"
+#define UI_RIGHTARROW			"gfx/shell/rarrowdefault"
 #define UI_RIGHTARROWFOCUS		"gfx/shell/rarrowflyover"
-#define UI_RIGHTARROWPRESSED		"gfx/shell/rarrowpressed"
-#define UI_UPARROW			"gfx/shell/uparrowd"
-#define UI_UPARROWFOCUS		"gfx/shell/uparrowf"
+#define UI_RIGHTARROWPRESSED	"gfx/shell/rarrowpressed"
+#define UI_UPARROW				"gfx/shell/uparrowd"
+#define UI_UPARROWFOCUS			"gfx/shell/uparrowf"
 #define UI_UPARROWPRESSED		"gfx/shell/uparrowp"
-#define UI_DOWNARROW		"gfx/shell/dnarrowd"
+#define UI_DOWNARROW			"gfx/shell/dnarrowd"
 #define UI_DOWNARROWFOCUS		"gfx/shell/dnarrowf"
 #define UI_DOWNARROWPRESSED		"gfx/shell/dnarrowp"
 #define UI_CHECKBOX_EMPTY		"gfx/shell/cb_empty"
@@ -56,15 +56,15 @@ GNU General Public License for more details.
 
 #define UI_CURSOR_SIZE		40
 
-#define UI_MAX_MENUDEPTH		8
-#define UI_MAX_MENUITEMS		64
+#define UI_MAX_MENUDEPTH	8
+#define UI_MAX_MENUITEMS	64
 
-#define UI_PULSE_DIVISOR		75
+#define UI_PULSE_DIVISOR	75
 #define UI_BLINK_TIME		250
 #define UI_BLINK_MASK		499
 
 #define UI_SMALL_CHAR_WIDTH		10
-#define UI_SMALL_CHAR_HEIGHT		20
+#define UI_SMALL_CHAR_HEIGHT	20
 #define UI_MED_CHAR_WIDTH		18
 #define UI_MED_CHAR_HEIGHT		26
 #define UI_BIG_CHAR_WIDTH		20
@@ -83,7 +83,7 @@ GNU General Public License for more details.
 #define UI_BANNER_POSX		72
 #define UI_BANNER_POSY		72
 #define UI_BANNER_WIDTH		736
-#define UI_BANNER_HEIGHT		128
+#define UI_BANNER_HEIGHT	128
 
 // menu buttons dims
 #define UI_BUTTONS_WIDTH		240
@@ -110,26 +110,26 @@ typedef enum
 #define QMF_LEFT_JUSTIFY		(1<<0)
 #define QMF_CENTER_JUSTIFY		(1<<1)
 #define QMF_RIGHT_JUSTIFY		(1<<2)
-#define QMF_GRAYED			(1<<3)	// Grays and disables
-#define QMF_INACTIVE		(1<<4)	// Disables any input
-#define QMF_HIDDEN			(1<<5)	// Doesn't draw
-#define QMF_NUMBERSONLY		(1<<6)	// Edit field is only numbers
-#define QMF_LOWERCASE		(1<<7)	// Edit field is all lower case
-#define QMF_UPPERCASE		(1<<8)	// Edit field is all upper case
+#define QMF_GRAYED				(1<<3)	// Grays and disables
+#define QMF_INACTIVE			(1<<4)	// Disables any input
+#define QMF_HIDDEN				(1<<5)	// Doesn't draw
+#define QMF_NUMBERSONLY			(1<<6)	// Edit field is only numbers
+#define QMF_LOWERCASE			(1<<7)	// Edit field is all lower case
+#define QMF_UPPERCASE			(1<<8)	// Edit field is all upper case
 #define QMF_DRAW_ADDITIVE		(1<<9)	// enable additive for this bitmap
 #define QMF_PULSEIFFOCUS		(1<<10)
-#define QMF_HIGHLIGHTIFFOCUS		(1<<11)
-#define QMF_SMALLFONT		(1<<12)
-#define QMF_BIGFONT			(1<<13)
-#define QMF_DROPSHADOW		(1<<14)
-#define QMF_SILENT			(1<<15)	// Don't play sounds
+#define QMF_HIGHLIGHTIFFOCUS	(1<<11)
+#define QMF_SMALLFONT			(1<<12)
+#define QMF_BIGFONT				(1<<13)
+#define QMF_DROPSHADOW			(1<<14)
+#define QMF_SILENT				(1<<15)	// Don't play sounds
 #define QMF_HASMOUSEFOCUS		(1<<16)
-#define QMF_MOUSEONLY		(1<<17)	// Only mouse input allowed
-#define QMF_FOCUSBEHIND		(1<<18)	// Focus draws behind normal item
-#define QMF_NOTIFY			(1<<19)	// draw notify at right screen side
+#define QMF_MOUSEONLY			(1<<17)	// Only mouse input allowed
+#define QMF_FOCUSBEHIND			(1<<18)	// Focus draws behind normal item
+#define QMF_NOTIFY				(1<<19)	// draw notify at right screen side
 #define QMF_ACT_ONRELEASE		(1<<20)	// call Key_Event when button is released
 #define QMF_ALLOW_COLORSTRINGS	(1<<21)	// allow colorstring in MENU_FIELD
-#define QMF_HIDEINPUT		(1<<22)	// used for "password" field
+#define QMF_HIDEINPUT			(1<<22)	// used for "password" field
 
 // Callback notifications
 #define QM_GOTFOCUS			1

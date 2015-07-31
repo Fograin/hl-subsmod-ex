@@ -125,8 +125,6 @@ static void UI_MultiPlayer_Init( void )
 	uiMultiPlayer.internetGames.generic.statusText = "View list of a game internet servers and join the one of your choise";
 	uiMultiPlayer.internetGames.generic.callback = UI_MultiPlayer_Callback;
 
-	UI_UtilSetupPicButton( &uiMultiPlayer.internetGames, PC_INET_GAME );
-
 	uiMultiPlayer.spectateGames.generic.id = ID_SPECTATEGAMES;
 	uiMultiPlayer.spectateGames.generic.type = QMTYPE_BM_BUTTON;
 	uiMultiPlayer.spectateGames.generic.flags = QMF_HIGHLIGHTIFFOCUS|QMF_DROPSHADOW|QMF_NOTIFY|QMF_GRAYED;
@@ -135,8 +133,6 @@ static void UI_MultiPlayer_Init( void )
 	uiMultiPlayer.spectateGames.generic.name = "Spectate games";
 	uiMultiPlayer.spectateGames.generic.statusText = "Spectate internet games";
 	uiMultiPlayer.spectateGames.generic.callback = UI_MultiPlayer_Callback;
-
-	UI_UtilSetupPicButton( &uiMultiPlayer.spectateGames, PC_SPECTATE_GAMES );
 
 	uiMultiPlayer.LANGame.generic.id = ID_LANGAME;
 	uiMultiPlayer.LANGame.generic.type = QMTYPE_BM_BUTTON;
@@ -147,7 +143,6 @@ static void UI_MultiPlayer_Init( void )
 	uiMultiPlayer.LANGame.generic.statusText = "Set up the game on the local area network";
 	uiMultiPlayer.LANGame.generic.callback = UI_MultiPlayer_Callback;
 
-	UI_UtilSetupPicButton( &uiMultiPlayer.LANGame, PC_LAN_GAME );
 
 	uiMultiPlayer.Customize.generic.id = ID_CUSTOMIZE;
 	uiMultiPlayer.Customize.generic.type = QMTYPE_BM_BUTTON;
@@ -157,8 +152,6 @@ static void UI_MultiPlayer_Init( void )
 	uiMultiPlayer.Customize.generic.name = "Customize";
 	uiMultiPlayer.Customize.generic.statusText = "Choose your player name, and select visual options for your character";
 	uiMultiPlayer.Customize.generic.callback = UI_MultiPlayer_Callback;
-
-	UI_UtilSetupPicButton( &uiMultiPlayer.Customize, PC_CUSTOMIZE );
 
 	uiMultiPlayer.Controls.generic.id = ID_CONTROLS;
 	uiMultiPlayer.Controls.generic.type = QMTYPE_BM_BUTTON;

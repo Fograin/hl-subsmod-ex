@@ -203,18 +203,7 @@ static void UI_Options_Init( void )
 	uiOptions.video.generic.name = "Video";
 	uiOptions.video.generic.statusText = "Change screen size, video mode and gamma";
 	uiOptions.video.generic.callback = UI_Options_Callback;
-
 	UI_UtilSetupPicButton( &uiOptions.video, PC_VIDEO );
-
-	uiOptions.update.generic.id = ID_UPDATE;
-	uiOptions.update.generic.type = QMTYPE_BM_BUTTON;
-	uiOptions.update.generic.flags = QMF_HIGHLIGHTIFFOCUS|QMF_DROPSHADOW|QMF_NOTIFY;
-	uiOptions.update.generic.x = 72;
-	uiOptions.update.generic.y = 380;
-	uiOptions.update.generic.name = "Update";
-	uiOptions.update.generic.statusText = "Donwload the latest version of the Xash3D engine";
-	uiOptions.update.generic.callback = UI_Options_Callback;
-	UI_UtilSetupPicButton(&uiOptions.update,PC_UPDATE);
 
 	if( !strlen( gMenu.m_gameinfo.update_url ))
 		uiOptions.update.generic.flags |= QMF_GRAYED;

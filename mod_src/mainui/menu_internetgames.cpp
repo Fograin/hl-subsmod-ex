@@ -310,8 +310,6 @@ static void UI_InternetGames_Init( void )
 	uiInternetGames.joinGame.generic.statusText = "Join to selected game";
 	uiInternetGames.joinGame.generic.callback = UI_InternetGames_Callback;
 
-	UI_UtilSetupPicButton( &uiInternetGames.joinGame, PC_JOIN_GAME );
-
 	uiInternetGames.createGame.generic.id = ID_CREATEGAME;
 	uiInternetGames.createGame.generic.type = QMTYPE_BM_BUTTON;
 	uiInternetGames.createGame.generic.flags = QMF_HIGHLIGHTIFFOCUS|QMF_DROPSHADOW;
@@ -321,7 +319,6 @@ static void UI_InternetGames_Init( void )
 	uiInternetGames.createGame.generic.statusText = "Create new Internet game";
 	uiInternetGames.createGame.generic.callback = UI_InternetGames_Callback;
 
-	UI_UtilSetupPicButton( &uiInternetGames.createGame, PC_CREATE_GAME );
 
 	uiInternetGames.gameInfo.generic.id = ID_GAMEINFO;
 	uiInternetGames.gameInfo.generic.type = QMTYPE_BM_BUTTON;
@@ -332,7 +329,6 @@ static void UI_InternetGames_Init( void )
 	uiInternetGames.gameInfo.generic.statusText = "Get detail game info";
 	uiInternetGames.gameInfo.generic.callback = UI_InternetGames_Callback;
 
-	UI_UtilSetupPicButton( &uiInternetGames.gameInfo, PC_VIEW_GAME_INFO );
 
 	uiInternetGames.refresh.generic.id = ID_REFRESH;
 	uiInternetGames.refresh.generic.type = QMTYPE_BM_BUTTON;
@@ -342,8 +338,6 @@ static void UI_InternetGames_Init( void )
 	uiInternetGames.refresh.generic.name = "Refresh";
 	uiInternetGames.refresh.generic.statusText = "Refresh servers list";
 	uiInternetGames.refresh.generic.callback = UI_InternetGames_Callback;
-
-	UI_UtilSetupPicButton( &uiInternetGames.refresh, PC_REFRESH );
 
 	uiInternetGames.done.generic.id = ID_DONE;
 	uiInternetGames.done.generic.type = QMTYPE_BM_BUTTON;
