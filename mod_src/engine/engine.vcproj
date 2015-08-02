@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="subsmod_engine"
+	Name="xash_engine"
 	ProjectGUID="{5EA2BC88-DB67-4B64-AA2F-C2BCA4D82169}"
 	RootNamespace="engine_dll"
 	TargetFrameworkVersion="0"
@@ -152,7 +152,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="./,common,common/imagelib,common/soundlib,server,client,client/vgui,../common,../game_shared,../pm_shared,../utils/vgui/include"
+				AdditionalIncludeDirectories="./;common;common/imagelib;common/soundlib;server;client;client/vgui;../common;../game_shared;../pm_shared;../utils/vgui/include;../subs_mod;../cl_dll"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;_CRT_SECURE_NO_WARNINGS"
 				StringPooling="true"
 				RuntimeLibrary="2"

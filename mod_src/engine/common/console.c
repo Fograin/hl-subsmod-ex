@@ -1871,9 +1871,9 @@ void Con_DrawVersion( void )
 			return;
 	}
 
-	if( host.force_draw_version || draw_version )
-		Q_snprintf( curbuild, MAX_STRING, "Xash3D v%i/%g (build %i)", PROTOCOL_VERSION, XASH_VERSION, Q_buildnum( ));
-	else Q_snprintf( curbuild, MAX_STRING, "v%i/%g (build %i)", PROTOCOL_VERSION, XASH_VERSION, Q_buildnum( )); 
+	// Fograin92: Subtitles MOD version
+	Q_snprintf( curbuild, MAX_STRING, "Half-Life: Subtitles MOD 4.0.0 (rev: %i) ALPHA VERSION", Q_buildnum() );
+
 	Con_DrawStringLen( curbuild, &stringLen, &charH );
 	start = scr_width->integer - stringLen * 1.05f;
 	stringLen = Con_StringLength( curbuild );

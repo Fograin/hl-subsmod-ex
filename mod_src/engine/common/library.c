@@ -16,6 +16,11 @@ GNU General Public License for more details.
 #include "common.h"
 #include "library.h"
 
+// Fograin92: Fix for missing IMAGE_SIZEOF_BASE_RELOCATION def
+#ifndef IMAGE_SIZEOF_BASE_RELOCATION
+	#define IMAGE_SIZEOF_BASE_RELOCATION (sizeof(IMAGE_BASE_RELOCATION))
+#endif
+
 /*
 ---------------------------------------------------------------
 

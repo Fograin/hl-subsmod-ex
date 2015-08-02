@@ -589,7 +589,10 @@ void SV_InitClientMove( void )
 	svgame.pmove->COM_LoadFile = COM_LoadFile;
 	svgame.pmove->COM_FreeFile = COM_FreeFile;
 	svgame.pmove->memfgets = COM_MemFgets;
-	svgame.pmove->PM_PlaySound = pfnPlaySound;
+
+	//svgame.pmove->PM_PlaySound = pfnPlaySound;
+	svgame.pmove->PM_PlaySound_Hooked = pfnPlaySound;	// Fograin92: Sound hooked
+	
 	svgame.pmove->PM_TraceTexture = pfnTraceTexture;
 	svgame.pmove->PM_PlaybackEventFull = pfnPlaybackEventFull;
 	svgame.pmove->PM_PlayerTraceEx = pfnPlayerTraceEx;
