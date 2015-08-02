@@ -48,7 +48,7 @@ const char	*uiSoundMove		= "";		// Xash3D not use movesound
 const char	*uiSoundNull		= "";
 
 int		uiColorHelp			= 0xFFFFFFFF;	// 255, 255, 255, 255	// hint letters color
-int		uiPromptBgColor		= 0xFF404040;	// 64,  64,  64,  255	// dialog background color
+int		uiPromptBgColor		= 0x505050FF;	// 64,  64,  64,  255	// dialog background color
 int		uiPromptTextColor	= 0xFFF0B418;	// 255, 160,  0,  255	// dialog or button letters color
 int		uiPromptFocusColor	= 0xFFFFFF00;	// 255, 255,  0,  255	// dialog or button focus letters color
 int		uiInputTextColor	= 0xFFC0C0C0;	// 192, 192, 192, 255
