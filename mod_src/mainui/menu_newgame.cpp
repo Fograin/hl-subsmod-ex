@@ -253,11 +253,11 @@ static void UI_NewGame_Init( void )
 	uiNewGame.msgBox.generic.id = ID_MSGBOX;
 	uiNewGame.msgBox.generic.type = QMTYPE_ACTION;
 	uiNewGame.msgBox.generic.flags = QMF_INACTIVE|QMF_HIDDEN;
-	uiNewGame.msgBox.generic.ownerdraw = UI_MsgBox_Ownerdraw; // just a fill rectangle
+	uiNewGame.msgBox.generic.ownerdraw = UI_MsgBox_Ownerdraw;
 	uiNewGame.msgBox.generic.x = 192;
-	uiNewGame.msgBox.generic.y = 256;
+	uiNewGame.msgBox.generic.y = 50;
 	uiNewGame.msgBox.generic.width = 640;
-	uiNewGame.msgBox.generic.height = 256;
+	uiNewGame.msgBox.generic.height = 300;
 
 	uiNewGame.dlgMessage1.generic.id = ID_MSGTEXT;
 	uiNewGame.dlgMessage1.generic.type = QMTYPE_ACTION;

@@ -56,7 +56,11 @@ const char *MenuButtons[PC_BUTTONCOUNT] =
 	"Custom Game",
 	"Activate",
 	"Refresh list",
-	"Deactivate"
+	"Deactivate",
+	"Extras",
+	"Uplink",
+	"Boot Camp",
+	"Credits"
 };
 
 /*

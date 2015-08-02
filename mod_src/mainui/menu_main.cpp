@@ -27,13 +27,6 @@ This product contains software technology licensed from Id Software, Inc. ("Id T
 #include "menu_btnsbmp_table.h"
 #include "menu_strings.h"
 
-#define ART_MINIMIZE_N	"gfx/shell/min_n"
-#define ART_MINIMIZE_F	"gfx/shell/min_f"
-#define ART_MINIMIZE_D	"gfx/shell/min_d"
-#define ART_CLOSEBTN_N	"gfx/shell/cls_n"
-#define ART_CLOSEBTN_F	"gfx/shell/cls_f"
-#define ART_CLOSEBTN_D	"gfx/shell/cls_d"
-
 
 #define ID_BACKGROUND		0
 
@@ -44,15 +37,25 @@ This product contains software technology licensed from Id Software, Inc. ("Id T
 #define ID_BTN_OPTIONS			4
 #define ID_BTN_SAVERESTORE		5	
 #define ID_BTN_LANGUAGE			6	// Fograin92: Change language button
-//#define ID_BTN_CREDITS			7
+#define ID_BTN_CREDITS			7
 #define ID_BTN_EXTRAS			8
 #define ID_BTN_QUIT				9
 
 // New Game dialog
-#define ID_NEWGAME_WINDOW		20
-#define ID_NEWGAME_TEXT			21
-#define ID_NEWGAME_BTN_YES	 	22
-#define ID_NEWGAME_BTN_NO		23
+#define ART_NG_HEADER			"gfx/shell/menu_newgame_header"
+#define ART_NG_HL				"gfx/shell/menu_newgame_hl"
+#define ID_ART_NG_HEADER		201
+#define ID_ART_NG_HL			202
+
+#define ID_NEWGAME_WINDOW			20
+#define ID_NEWGAME_BTN_HLHAZARD		21	// HL - Hazard Course
+#define ID_NEWGAME_BTN_HLSTORY		22	// HL - New Game
+#define ID_NEWGAME_BTN_HLUPLINK		23	// HL - Uplink
+#define ID_NEWGAME_BTN_BSHAZARD		24	// BS - Hazard Course
+#define ID_NEWGAME_BTN_BSSTORY		25	// BS - New Game
+#define ID_NEWGAME_BTN_OFBOOT		26	// OF - Boot Camp
+#define ID_NEWGAME_BTN_OFSTORY		27	// OF - New Game
+#define ID_NEWGAME_BTN_NO			28
 
 // Quit Game dialog
 #define ID_QUIT_WINDOW	 	30
@@ -76,15 +79,22 @@ typedef struct
 	menuPicButton_s	configuration;
 	menuPicButton_s	saveRestore;
 	menuPicButton_s	customGame;
-	//menuPicButton_s	credits;
-	//menuPicButton_s	extras;
+	menuPicButton_s	credits;
+	menuPicButton_s	extras;
 	menuPicButton_s	quit;
 
 	// New Game dialog
+	menuBitmap_s	newgameArtHeader;
+	menuBitmap_s	newgameArtHL;
 	menuAction_s	newgameDialog;
-	menuAction_s	newgameMessage;
-	menuPicButton_s	newgameBtnYes;
-	menuPicButton_s	newgameBtnNo;
+	menuPicButton_s	newgameBtnHLHazard;		// HL - Hazard Course
+	menuPicButton_s	newgameBtnHLStory;		// HL - New Game
+	menuPicButton_s	newgameBtnHLUplink;		// HL - Uplink
+	menuPicButton_s	newgameBtnBSHazard;		// BS - Hazard Course
+	menuPicButton_s	newgameBtnBSStory;		// BS - New Game
+	menuPicButton_s	newgameBtnOFBoot;		// OF - Boot Camp
+	menuPicButton_s	newgameBtnOFStory;		// OF - New Game
+	menuPicButton_s	newgameBtnNo;			// Cancel
 
 	// Quit Game dialog
 	menuAction_s	quitDialog;
@@ -101,16 +111,13 @@ static uiMain_t		uiMain;
 //============================
 static void UI_Background_Ownerdraw( void *self )
 {
-	menuCommon_s	*item = (menuCommon_s *)self;
-
-	// map has background
+	// Map has .bsp background
 	if( CVAR_GET_FLOAT( "cl_background" ))
 		return;
 
+	// Draw 2D image background
+	menuCommon_s	*item = (menuCommon_s *)self;
 	UI_DrawBackground_Callback( self );
-
-	//if (uiStatic.m_fHaveSteamBackground || uiStatic.m_fDisableLogo)
-	//	return; // no logos for steam background
 }
 
 
@@ -126,25 +133,35 @@ static void UI_MainMenu_ToggleButtons( int iMenuID )
 	uiMain.configuration.generic.flags	^= QMF_INACTIVE|QMF_GRAYED;
 	uiMain.saveRestore.generic.flags	^= QMF_INACTIVE|QMF_GRAYED;
 	uiMain.customGame.generic.flags		^= QMF_INACTIVE|QMF_GRAYED;
-	//uiMain.credits.generic.flags		^= QMF_INACTIVE|QMF_GRAYED;
-	//uiMain.extras.generic.flags		^= QMF_INACTIVE|QMF_GRAYED;
+	uiMain.credits.generic.flags		^= QMF_INACTIVE|QMF_GRAYED;
+	uiMain.extras.generic.flags			^= QMF_INACTIVE|QMF_GRAYED;
 	uiMain.quit.generic.flags			^= QMF_INACTIVE|QMF_GRAYED;
 
 
 	// Show/Hide proper popup window/sub-menu
 	if (iMenuID == ID_NEWGAME_WINDOW)
 	{
-		uiMain.newgameDialog.generic.flags ^= QMF_HIDDEN;
-		uiMain.newgameMessage.generic.flags ^= QMF_HIDDEN;
-		uiMain.newgameBtnNo.generic.flags ^= QMF_HIDDEN;
-		uiMain.newgameBtnYes.generic.flags ^= QMF_HIDDEN;
+		uiMain.newgameDialog.generic.flags		^= QMF_HIDDEN;
+		uiMain.newgameArtHeader.generic.flags	^= QMF_HIDDEN;
+		uiMain.newgameArtHL.generic.flags		^= QMF_HIDDEN;
+
+		uiMain.newgameBtnHLHazard.generic.flags		^= QMF_HIDDEN;
+		uiMain.newgameBtnHLStory.generic.flags		^= QMF_HIDDEN;
+		uiMain.newgameBtnHLUplink.generic.flags		^= QMF_HIDDEN;
+		uiMain.newgameBtnBSHazard.generic.flags		^= QMF_HIDDEN;
+		uiMain.newgameBtnBSStory.generic.flags		^= QMF_HIDDEN;
+		uiMain.newgameBtnOFBoot.generic.flags		^= QMF_HIDDEN;
+		uiMain.newgameBtnOFStory.generic.flags		^= QMF_HIDDEN;
+
+		uiMain.newgameBtnNo.generic.flags		^= QMF_HIDDEN;
+		
 	}
 	else if (iMenuID == ID_QUIT_WINDOW)
 	{
-		uiMain.quitDialog.generic.flags ^= QMF_HIDDEN;
-		uiMain.quitMessage.generic.flags ^= QMF_HIDDEN;
-		uiMain.quitBtnNo.generic.flags ^= QMF_HIDDEN;
-		uiMain.quitBtnYes.generic.flags ^= QMF_HIDDEN;
+		uiMain.quitDialog.generic.flags		^= QMF_HIDDEN;
+		uiMain.quitMessage.generic.flags	^= QMF_HIDDEN;
+		uiMain.quitBtnNo.generic.flags		^= QMF_HIDDEN;
+		uiMain.quitBtnYes.generic.flags		^= QMF_HIDDEN;
 	}
 
 }
@@ -159,8 +176,15 @@ static void UI_Window_NewGame( void *self )
 
 	// Draw border
 	UI_DrawRectangleExt( item->x, item->y, item->width, item->height, 0xFFDBA500, 1 );
+
 	// Draw center
 	UI_FillRect( item->x, item->y, item->width, item->height, 0xCC000000 );
+
+	// Draw separator [---]
+	UI_FillRect( item->x+15, item->y+55, item->width-30, 1, 0xFFDBA500 );
+
+	// Draw separator [---]
+	UI_FillRect( item->x+15, item->y+515, item->width-30, 1, 0xFFDBA500 );
 }
 
 //================================
@@ -271,6 +295,7 @@ static void UI_Main_Callback( void *self, int event )
 				UI_MainMenu_ToggleButtons(ID_QUIT_WINDOW);
 		break;
 
+		/*
 		case ID_NEWGAME_BTN_YES:
 			if( !( uiMain.newgameMessage.generic.flags & QMF_HIDDEN ))
 
@@ -288,6 +313,7 @@ static void UI_Main_Callback( void *self, int event )
 
 	CLIENT_COMMAND( FALSE, "hazardcourse\n" );
 		break;
+		*/
 	
 		case ID_NEWGAME_BTN_NO:
 				UI_MainMenu_ToggleButtons(ID_NEWGAME_WINDOW);
@@ -325,7 +351,7 @@ static void UI_Main_Init( void )
 	uiMain.console.generic.name = "Console";
 	uiMain.console.generic.flags = QMF_HIGHLIGHTIFFOCUS|QMF_DROPSHADOW;
 	uiMain.console.generic.x = 72;
-	uiMain.console.generic.y = CL_IsActive() ? 180 : 230;
+	uiMain.console.generic.y = 180;
 	uiMain.console.generic.callback = UI_Main_Callback;
 	UI_UtilSetupPicButton( &uiMain.console, PC_CONSOLE );
 
@@ -349,21 +375,6 @@ static void UI_Main_Init( void )
 	uiMain.newGame.generic.callback = UI_Main_Callback;
 	UI_UtilSetupPicButton( &uiMain.newGame, PC_NEW_GAME );
 
-
-
-
-	// Fograin92: Hazard Course / Boot Camp button
-	/*
-	uiMain.hazardCourse.generic.id = ID_HAZARDCOURSE;
-	uiMain.hazardCourse.generic.type = QMTYPE_BM_BUTTON;
-	uiMain.hazardCourse.generic.name = "Hazard course";
-	uiMain.hazardCourse.generic.flags = QMF_HIGHLIGHTIFFOCUS|QMF_DROPSHADOW|QMF_NOTIFY;
-	uiMain.hazardCourse.generic.x = 72;
-	uiMain.hazardCourse.generic.y = 330;
-	uiMain.hazardCourse.generic.callback = UI_Main_Callback;
-	UI_UtilSetupPicButton( &uiMain.hazardCourse, PC_HAZARD_COURSE );
-	*/
-
 	// Fograin92: SAVE or LOAD game buttons
 	uiMain.saveRestore.generic.id = ID_BTN_SAVERESTORE;
 	uiMain.saveRestore.generic.type = QMTYPE_BM_BUTTON;
@@ -380,7 +391,7 @@ static void UI_Main_Init( void )
 		UI_UtilSetupPicButton( &uiMain.saveRestore, PC_LOAD_GAME );
 	}
 	uiMain.saveRestore.generic.x = 72;
-	uiMain.saveRestore.generic.y = 380;
+	uiMain.saveRestore.generic.y = 330;
 	uiMain.saveRestore.generic.callback = UI_Main_Callback;
 
 	// Fograin92: Options button
@@ -389,7 +400,7 @@ static void UI_Main_Init( void )
 	uiMain.configuration.generic.flags = QMF_HIGHLIGHTIFFOCUS|QMF_DROPSHADOW|QMF_NOTIFY;
 	uiMain.configuration.generic.name = "Configuration";
 	uiMain.configuration.generic.x = 72;
-	uiMain.configuration.generic.y = 430;
+	uiMain.configuration.generic.y = 380;
 	uiMain.configuration.generic.callback = UI_Main_Callback;
 	UI_UtilSetupPicButton( &uiMain.configuration, PC_CONFIG );
 
@@ -399,9 +410,29 @@ static void UI_Main_Init( void )
 	uiMain.customGame.generic.flags = QMF_HIGHLIGHTIFFOCUS|QMF_DROPSHADOW|QMF_NOTIFY;
 	uiMain.customGame.generic.name = "Custom Game";
 	uiMain.customGame.generic.x = 72;
-	uiMain.customGame.generic.y = 480;
+	uiMain.customGame.generic.y = 430;
 	uiMain.customGame.generic.callback = UI_Main_Callback;
 	UI_UtilSetupPicButton( &uiMain.customGame, PC_CUSTOM_GAME );
+
+	// Fograin92: Extras button
+	uiMain.extras.generic.id = ID_BTN_EXTRAS;
+	uiMain.extras.generic.type = QMTYPE_BM_BUTTON;
+	uiMain.extras.generic.flags = QMF_HIGHLIGHTIFFOCUS|QMF_DROPSHADOW|QMF_NOTIFY;
+	uiMain.extras.generic.name = "Extras";
+	uiMain.extras.generic.x = 72;
+	uiMain.extras.generic.y = 480;
+	uiMain.extras.generic.callback = UI_Main_Callback;
+	UI_UtilSetupPicButton( &uiMain.extras, PC_EXTRAS );
+
+	// Fograin92: Credits button
+	uiMain.credits.generic.id = ID_BTN_QUIT;
+	uiMain.credits.generic.type = QMTYPE_BM_BUTTON;
+	uiMain.credits.generic.flags = QMF_HIGHLIGHTIFFOCUS|QMF_DROPSHADOW|QMF_NOTIFY;
+	uiMain.credits.generic.name = "Credits";
+	uiMain.credits.generic.x = 72;
+	uiMain.credits.generic.y = 530;
+	uiMain.credits.generic.callback = UI_Main_Callback;
+	UI_UtilSetupPicButton( &uiMain.credits, PC_CREDITS );
 
 	// Fograin92: Quit game button
 	uiMain.quit.generic.id = ID_BTN_QUIT;
@@ -409,48 +440,123 @@ static void UI_Main_Init( void )
 	uiMain.quit.generic.flags = QMF_HIGHLIGHTIFFOCUS|QMF_DROPSHADOW|QMF_NOTIFY;
 	uiMain.quit.generic.name = "Quit";
 	uiMain.quit.generic.x = 72;
-	uiMain.quit.generic.y = 530;
+	uiMain.quit.generic.y = 580;
 	uiMain.quit.generic.callback = UI_Main_Callback;
 	UI_UtilSetupPicButton( &uiMain.quit, PC_QUIT );
 
 
-
-
-
+	//=================
 	// New Game dialog
+	//=================
+
+	// Dialog window
 	uiMain.newgameDialog.generic.id = ID_NEWGAME_WINDOW;
 	uiMain.newgameDialog.generic.type = QMTYPE_ACTION;
 	uiMain.newgameDialog.generic.flags = QMF_INACTIVE|QMF_HIDDEN;
-	uiMain.newgameDialog.generic.ownerdraw = UI_Window_NewGame; // just a fill rectangle
+	uiMain.newgameDialog.generic.ownerdraw = UI_Window_NewGame;
 	uiMain.newgameDialog.generic.x = 192;
-	uiMain.newgameDialog.generic.y = 256;
-	uiMain.newgameDialog.generic.width = 640;
-	uiMain.newgameDialog.generic.height = 256;
+	uiMain.newgameDialog.generic.y = 220;
+	uiMain.newgameDialog.generic.width = 515;
+	uiMain.newgameDialog.generic.height = 400;
 
-	uiMain.newgameMessage.generic.id = ID_NEWGAME_WINDOW;
-	uiMain.newgameMessage.generic.type = QMTYPE_ACTION;
-	uiMain.newgameMessage.generic.flags = QMF_INACTIVE|QMF_DROPSHADOW|QMF_HIDDEN|QMF_CENTER_JUSTIFY;
-	uiMain.newgameMessage.generic.name = "Start new game?";
-	uiMain.newgameMessage.generic.x = 192;
-	uiMain.newgameMessage.generic.y = 280;
-	uiMain.newgameMessage.generic.width = 640;
-	uiMain.newgameMessage.generic.height = 256;
+	// Header text
+	uiMain.newgameArtHeader.generic.id		= ID_ART_NG_HEADER;
+	uiMain.newgameArtHeader.generic.type	= QMTYPE_BITMAP;
+	uiMain.newgameArtHeader.generic.flags	= QMF_INACTIVE|QMF_HIDDEN|QMF_DRAW_ADDITIVE;
+	uiMain.newgameArtHeader.generic.x		= 200;
+	uiMain.newgameArtHeader.generic.y		= 220;
+	uiMain.newgameArtHeader.generic.width	= 400;
+	uiMain.newgameArtHeader.generic.height	= 40;
+	uiMain.newgameArtHeader.pic				= ART_NG_HEADER;
 
-	uiMain.newgameBtnYes.generic.id = ID_NEWGAME_BTN_YES;
-	uiMain.newgameBtnYes.generic.type = QMTYPE_BM_BUTTON;
-	uiMain.newgameBtnYes.generic.flags = QMF_HIGHLIGHTIFFOCUS|QMF_DROPSHADOW|QMF_HIDDEN;
-	uiMain.newgameBtnYes.generic.name = "Ok";
-	uiMain.newgameBtnYes.generic.x = 380;
-	uiMain.newgameBtnYes.generic.y = 460;
-	uiMain.newgameBtnYes.generic.callback = UI_Main_Callback;
-	UI_UtilSetupPicButton( &uiMain.newgameBtnYes, PC_OK );
+	// Game logos
+	uiMain.newgameArtHL.generic.id		= ID_ART_NG_HL;
+	uiMain.newgameArtHL.generic.type	= QMTYPE_BITMAP;
+	uiMain.newgameArtHL.generic.flags	= QMF_INACTIVE|QMF_HIDDEN|QMF_DRAW_ADDITIVE;
+	uiMain.newgameArtHL.generic.x		= 200;
+	uiMain.newgameArtHL.generic.y		= 260;
+	uiMain.newgameArtHL.generic.width	= 500;
+	uiMain.newgameArtHL.generic.height	= 220;
+	uiMain.newgameArtHL.pic				= ART_NG_HL;
 
+	// HL - Hazard Course button
+	uiMain.newgameBtnHLHazard.generic.id = ID_NEWGAME_BTN_HLHAZARD;
+	uiMain.newgameBtnHLHazard.generic.type = QMTYPE_BM_BUTTON;
+	uiMain.newgameBtnHLHazard.generic.flags = QMF_HIGHLIGHTIFFOCUS|QMF_DROPSHADOW|QMF_HIDDEN;
+	uiMain.newgameBtnHLHazard.generic.name = "Hazard Course";
+	uiMain.newgameBtnHLHazard.generic.x = 210;
+	uiMain.newgameBtnHLHazard.generic.y = 470;
+	uiMain.newgameBtnHLHazard.generic.callback = UI_Main_Callback;
+	UI_UtilSetupPicButton( &uiMain.newgameBtnHLHazard, PC_HAZARD_COURSE );
+
+	// HL - New Game button
+	uiMain.newgameBtnHLStory.generic.id = ID_NEWGAME_BTN_HLSTORY;
+	uiMain.newgameBtnHLStory.generic.type = QMTYPE_BM_BUTTON;
+	uiMain.newgameBtnHLStory.generic.flags = QMF_HIGHLIGHTIFFOCUS|QMF_DROPSHADOW|QMF_HIDDEN;
+	uiMain.newgameBtnHLStory.generic.name = "New Game";
+	uiMain.newgameBtnHLStory.generic.x = 210;
+	uiMain.newgameBtnHLStory.generic.y = 495;
+	uiMain.newgameBtnHLStory.generic.callback = UI_Main_Callback;
+	UI_UtilSetupPicButton( &uiMain.newgameBtnHLStory, PC_NEW_GAME );
+
+	// HL - Uplink button
+	uiMain.newgameBtnHLUplink.generic.id = ID_NEWGAME_BTN_HLUPLINK;
+	uiMain.newgameBtnHLUplink.generic.type = QMTYPE_BM_BUTTON;
+	uiMain.newgameBtnHLUplink.generic.flags = QMF_HIGHLIGHTIFFOCUS|QMF_DROPSHADOW|QMF_HIDDEN;
+	uiMain.newgameBtnHLUplink.generic.name = "Uplink";
+	uiMain.newgameBtnHLUplink.generic.x = 210;
+	uiMain.newgameBtnHLUplink.generic.y = 520;
+	uiMain.newgameBtnHLUplink.generic.callback = UI_Main_Callback;
+	UI_UtilSetupPicButton( &uiMain.newgameBtnHLUplink, PC_UPLINK );
+
+	// BS - Hazard Course button
+	uiMain.newgameBtnBSHazard.generic.id = ID_NEWGAME_BTN_BSHAZARD;
+	uiMain.newgameBtnBSHazard.generic.type = QMTYPE_BM_BUTTON;
+	uiMain.newgameBtnBSHazard.generic.flags = QMF_HIGHLIGHTIFFOCUS|QMF_DROPSHADOW|QMF_HIDDEN;
+	uiMain.newgameBtnBSHazard.generic.name = "Hazard Course";
+	uiMain.newgameBtnBSHazard.generic.x = 375;
+	uiMain.newgameBtnBSHazard.generic.y = 470;
+	uiMain.newgameBtnBSHazard.generic.callback = UI_Main_Callback;
+	UI_UtilSetupPicButton( &uiMain.newgameBtnBSHazard, PC_HAZARD_COURSE );
+
+	// BS - Hazard Course button
+	uiMain.newgameBtnBSStory.generic.id = ID_NEWGAME_BTN_BSSTORY;
+	uiMain.newgameBtnBSStory.generic.type = QMTYPE_BM_BUTTON;
+	uiMain.newgameBtnBSStory.generic.flags = QMF_HIGHLIGHTIFFOCUS|QMF_DROPSHADOW|QMF_HIDDEN;
+	uiMain.newgameBtnBSStory.generic.name = "New Game";
+	uiMain.newgameBtnBSStory.generic.x = 375;
+	uiMain.newgameBtnBSStory.generic.y = 495;
+	uiMain.newgameBtnBSStory.generic.callback = UI_Main_Callback;
+	UI_UtilSetupPicButton( &uiMain.newgameBtnBSStory, PC_NEW_GAME );
+
+	// OF - Boot Camp button
+	uiMain.newgameBtnOFBoot.generic.id = ID_NEWGAME_BTN_OFBOOT;
+	uiMain.newgameBtnOFBoot.generic.type = QMTYPE_BM_BUTTON;
+	uiMain.newgameBtnOFBoot.generic.flags = QMF_HIGHLIGHTIFFOCUS|QMF_DROPSHADOW|QMF_HIDDEN;
+	uiMain.newgameBtnOFBoot.generic.name = "Boot Camp";
+	uiMain.newgameBtnOFBoot.generic.x = 540;
+	uiMain.newgameBtnOFBoot.generic.y = 470;
+	uiMain.newgameBtnOFBoot.generic.callback = UI_Main_Callback;
+	UI_UtilSetupPicButton( &uiMain.newgameBtnOFBoot, PC_BOOTCAMP );
+
+	// OF - Boot Camp button
+	uiMain.newgameBtnOFStory.generic.id = ID_NEWGAME_BTN_OFSTORY;
+	uiMain.newgameBtnOFStory.generic.type = QMTYPE_BM_BUTTON;
+	uiMain.newgameBtnOFStory.generic.flags = QMF_HIGHLIGHTIFFOCUS|QMF_DROPSHADOW|QMF_HIDDEN;
+	uiMain.newgameBtnOFStory.generic.name = "New Game";
+	uiMain.newgameBtnOFStory.generic.x = 540;
+	uiMain.newgameBtnOFStory.generic.y = 495;
+	uiMain.newgameBtnOFStory.generic.callback = UI_Main_Callback;
+	UI_UtilSetupPicButton( &uiMain.newgameBtnOFStory, PC_NEW_GAME );
+
+	
+	// Cancel button
 	uiMain.newgameBtnNo.generic.id = ID_NEWGAME_BTN_NO;
 	uiMain.newgameBtnNo.generic.type = QMTYPE_BM_BUTTON;
 	uiMain.newgameBtnNo.generic.flags = QMF_HIGHLIGHTIFFOCUS|QMF_DROPSHADOW|QMF_HIDDEN;
 	uiMain.newgameBtnNo.generic.name = "Cancel";
-	uiMain.newgameBtnNo.generic.x = 530;
-	uiMain.newgameBtnNo.generic.y = 460;
+	uiMain.newgameBtnNo.generic.x = 625;
+	uiMain.newgameBtnNo.generic.y = 585;
 	uiMain.newgameBtnNo.generic.callback = UI_Main_Callback;
 	UI_UtilSetupPicButton( &uiMain.newgameBtnNo, PC_CANCEL );
 
@@ -504,19 +610,30 @@ static void UI_Main_Init( void )
 
 	// Fograin92: Add items
 	UI_AddItem( &uiMain.menu, (void *)&uiMain.background );
-	if ( gpGlobals->developer )
-		UI_AddItem( &uiMain.menu, (void *)&uiMain.console );
+
+	UI_AddItem( &uiMain.menu, (void *)&uiMain.console );
 	UI_AddItem( &uiMain.menu, (void *)&uiMain.resumeGame );
 	UI_AddItem( &uiMain.menu, (void *)&uiMain.newGame );
 	UI_AddItem( &uiMain.menu, (void *)&uiMain.saveRestore );
 	UI_AddItem( &uiMain.menu, (void *)&uiMain.configuration );
 	UI_AddItem( &uiMain.menu, (void *)&uiMain.customGame );
+	UI_AddItem( &uiMain.menu, (void *)&uiMain.extras );
+	UI_AddItem( &uiMain.menu, (void *)&uiMain.credits );
 	UI_AddItem( &uiMain.menu, (void *)&uiMain.quit );
 
+	
 	UI_AddItem( &uiMain.menu, (void *)&uiMain.newgameDialog );
-	UI_AddItem( &uiMain.menu, (void *)&uiMain.newgameMessage );
+	UI_AddItem( &uiMain.menu, (void *)&uiMain.newgameArtHeader );
+	UI_AddItem( &uiMain.menu, (void *)&uiMain.newgameArtHL );
+	UI_AddItem( &uiMain.menu, (void *)&uiMain.newgameBtnOFBoot );
+	UI_AddItem( &uiMain.menu, (void *)&uiMain.newgameBtnOFStory );
+	UI_AddItem( &uiMain.menu, (void *)&uiMain.newgameBtnBSHazard );
+	UI_AddItem( &uiMain.menu, (void *)&uiMain.newgameBtnBSStory );
+	UI_AddItem( &uiMain.menu, (void *)&uiMain.newgameBtnHLHazard );
+	UI_AddItem( &uiMain.menu, (void *)&uiMain.newgameBtnHLStory );
+	UI_AddItem( &uiMain.menu, (void *)&uiMain.newgameBtnHLUplink );
 	UI_AddItem( &uiMain.menu, (void *)&uiMain.newgameBtnNo );
-	UI_AddItem( &uiMain.menu, (void *)&uiMain.newgameBtnYes );
+
 	
 	UI_AddItem( &uiMain.menu, (void *)&uiMain.quitDialog );
 	UI_AddItem( &uiMain.menu, (void *)&uiMain.quitMessage );
@@ -532,12 +649,8 @@ UI_Main_Precache
 void UI_Main_Precache( void )
 {
 	PIC_Load( ART_BACKGROUND );
-	PIC_Load( ART_MINIMIZE_N );
-	PIC_Load( ART_MINIMIZE_F );
-	PIC_Load( ART_MINIMIZE_D );
-	PIC_Load( ART_CLOSEBTN_N );
-	PIC_Load( ART_CLOSEBTN_F );
-	PIC_Load( ART_CLOSEBTN_D );
+	PIC_Load( ART_NG_HEADER );
+	PIC_Load( ART_NG_HL );
 }
 
 /*
