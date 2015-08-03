@@ -27,11 +27,11 @@ GNU General Public License for more details.
 #define FILE_BUFF_SIZE		2048
 #define PAK_LOAD_OK			0
 #define PAK_LOAD_COULDNT_OPEN		1
-#define PAK_LOAD_BAD_HEADER		2
+#define PAK_LOAD_BAD_HEADER			2
 #define PAK_LOAD_BAD_FOLDERS		3
-#define PAK_LOAD_TOO_MANY_FILES	4
-#define PAK_LOAD_NO_FILES		5
-#define PAK_LOAD_CORRUPTED		6	
+#define PAK_LOAD_TOO_MANY_FILES		4
+#define PAK_LOAD_NO_FILES			5
+#define PAK_LOAD_CORRUPTED			6	
 
 typedef struct stringlist_s
 {
@@ -103,6 +103,7 @@ searchpath_t	fs_directpath;		// static direct path
 char		fs_rootdir[MAX_SYSPATH];	// engine root directory
 char		fs_basedir[MAX_SYSPATH];	// base directory of game
 char		fs_falldir[MAX_SYSPATH];	// game falling directory
+char		fs_falldirB[MAX_SYSPATH];	// Fograin92: Used for mounting third game
 char		fs_gamedir[MAX_SYSPATH];	// game current directory
 char		gs_basedir[MAX_SYSPATH];	// initial dir before loading gameinfo.txt (used for compilers too)
 qboolean		fs_ext_path = false;	// attempt to read\write from ./ or ../ pathes 
@@ -909,6 +910,11 @@ void FS_Rescan( void )
 		FS_AddGameHierarchy( GI->basedir, 0 );
 	if( Q_stricmp( GI->basedir, GI->falldir ) && Q_stricmp( GI->gamedir, GI->falldir ))
 		FS_AddGameHierarchy( GI->falldir, 0 );
+	// Fograin92: Scan second falldir (aka mount third game)
+	if( Q_stricmp( GI->basedir, GI->falldirB ) && Q_stricmp( GI->gamedir, GI->falldirB ))
+		FS_AddGameHierarchy( GI->falldirB, 0 );
+
+
 	FS_AddGameHierarchy( GI->gamedir, FS_GAMEDIR_PATH );
 }
 
@@ -987,6 +993,10 @@ static qboolean FS_WriteGameInfo( const char *filepath, gameinfo_t *GameInfo )
 
 	if( Q_strlen( GameInfo->falldir ))
 		FS_Printf( f, "fallback_dir\t\"%s\"\n", GameInfo->falldir );
+
+	// Fograin92: Used for third game mount
+	if( Q_strlen( GameInfo->falldirB ))
+		FS_Printf( f, "fallback_dirB\t\"%s\"\n", GameInfo->falldirB );
 
 	if( Q_strlen( GameInfo->title ))
 		FS_Printf( f, "title\t\t\"%s\"\n", GameInfo->title );
@@ -1089,6 +1099,7 @@ void FS_CreateDefaultGameInfo( const char *filename )
 	defGI.max_particles = 4096;
 	defGI.version = 1.0;
 	defGI.falldir[0] = '\0';
+	defGI.falldirB[0] = '\0';	// Fograin92
 
 	Q_strncpy( defGI.title, "New Game", sizeof( defGI.title ));
 	Q_strncpy( defGI.gamedir, gs_basedir, sizeof( defGI.gamedir ));
@@ -1130,6 +1141,7 @@ static qboolean FS_ParseLiblistGam( const char *filename, const char *gamedir, g
 	GameInfo->max_particles = 4096;
 	GameInfo->version = 1.0f;
 	GameInfo->falldir[0] = '\0';
+	GameInfo->falldirB[0] = '\0';	// Fograin92
 	
 	Q_strncpy( GameInfo->title, "New Game", sizeof( GameInfo->title ));
 	Q_strncpy( GameInfo->gamedir, gamedir, sizeof( GameInfo->gamedir ));
@@ -1165,6 +1177,11 @@ static qboolean FS_ParseLiblistGam( const char *filename, const char *gamedir, g
 		if( !Q_stricmp( token, "fallback_dir" ))
 		{
 			pfile = COM_ParseFile( pfile, GameInfo->falldir );
+		}
+		// Fograin92: Used to mount third game
+		if( !Q_stricmp( token, "fallback_dirB" ))
+		{
+			pfile = COM_ParseFile( pfile, GameInfo->falldirB );
 		}
 		else if( !Q_stricmp( token, "startmap" ))
 		{
@@ -1248,6 +1265,10 @@ static qboolean FS_ParseLiblistGam( const char *filename, const char *gamedir, g
 	if( !FS_SysFolderExists( va( "%s\\%s", host.rootdir, GameInfo->falldir )))
 		GameInfo->falldir[0] = '\0';
 
+	// Fograin92: Second falldir
+	if( !FS_SysFolderExists( va( "%s\\%s", host.rootdir, GameInfo->falldirB )))
+		GameInfo->falldirB[0] = '\0';
+
 	Mem_Free( afile );
 
 	return true;
@@ -1307,6 +1328,7 @@ static qboolean FS_ParseGameInfo( const char *gamedir, gameinfo_t *GameInfo )
 	GameInfo->max_particles = 4096;
 	GameInfo->version = 1.0f;
 	GameInfo->falldir[0] = '\0';
+	GameInfo->falldirB[0] = '\0';	// Fograin92
 	
 	Q_strncpy( GameInfo->title, "New Game", sizeof( GameInfo->title ));
 	Q_strncpy( GameInfo->sp_entity, "info_player_start", sizeof( GameInfo->sp_entity ));
@@ -1340,6 +1362,13 @@ static qboolean FS_ParseGameInfo( const char *gamedir, gameinfo_t *GameInfo )
 			pfile = COM_ParseFile( pfile, fs_path );
 			if( Q_stricmp( fs_path, GameInfo->basedir ) || Q_stricmp( fs_path, GameInfo->falldir ))
 				Q_strncpy( GameInfo->falldir, fs_path, sizeof( GameInfo->falldir ));
+		}
+		// Fograin92: Used to mount third game
+		else if( !Q_stricmp( token, "fallback_dirB" ))
+		{
+			pfile = COM_ParseFile( pfile, fs_path );
+			if( Q_stricmp( fs_path, GameInfo->basedir ) || Q_stricmp( fs_path, GameInfo->falldirB ))
+				Q_strncpy( GameInfo->falldirB, fs_path, sizeof( GameInfo->falldirB ));
 		}
 		else if( !Q_stricmp( token, "gamedir" ))
 		{
@@ -1486,6 +1515,10 @@ static qboolean FS_ParseGameInfo( const char *gamedir, gameinfo_t *GameInfo )
 
 	if( !FS_SysFolderExists( va( "%s\\%s", host.rootdir, GameInfo->falldir )))
 		GameInfo->falldir[0] = '\0';
+
+	// Fograin92: Second falldir
+	if( !FS_SysFolderExists( va( "%s\\%s", host.rootdir, GameInfo->falldirB )))
+		GameInfo->falldirB[0] = '\0';
 
 	if( afile != NULL )
 		Mem_Free( afile );

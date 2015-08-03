@@ -1710,7 +1710,8 @@ void Con_DrawSolidConsole( float frac )
 		byte	*color = g_color_table[7];
 		int	stringLen, width = 0, charH;
 
-		Q_snprintf( curbuild, MAX_STRING, "Xash3D %i/%g (hw build %i)", PROTOCOL_VERSION, XASH_VERSION, Q_buildnum( ));
+		//Q_snprintf( curbuild, MAX_STRING, "Xash3D %i/%g (hw build %i)", PROTOCOL_VERSION, XASH_VERSION, Q_buildnum( ));
+		Q_snprintf( curbuild, MAX_STRING, "Half-Life: Subtitles MOD 4.0.0 (rev: %i) ALPHA VERSION << ", Q_buildnum() );	// Fograin92
 		Con_DrawStringLen( curbuild, &stringLen, &charH );
 		start = scr_width->integer - stringLen;
 		stringLen = Con_StringLength( curbuild );

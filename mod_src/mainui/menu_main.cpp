@@ -253,6 +253,9 @@ static void UI_Main_Callback( void *self, int event )
 
 	switch( item->id )
 	{
+		//============================
+		// Main Menu buttons handler
+		//============================
 		case ID_BTN_CONSOLE:
 			UI_SetActiveMenu( FALSE );
 			KEY_SetDest( KEY_CONSOLE );
@@ -285,6 +288,135 @@ static void UI_Main_Callback( void *self, int event )
 			UI_MainMenu_ToggleButtons(ID_QUIT_WINDOW);
 		break;
 
+		//=================================
+		// New Game dialog buttons handler
+		//=================================
+
+		// Exec - HL: Hazard Course
+		case ID_NEWGAME_BTN_HLHAZARD:
+			//if( !( uiMain.newgameMessage.generic.flags & QMF_HIDDEN ))
+
+			// If player is already ingame, end current session
+			if( CVAR_GET_FLOAT( "host_serverstate" ) && CVAR_GET_FLOAT( "maxplayers" ) > 1 )
+				HOST_ENDGAME( "end of the game" );
+
+			//	CVAR_SET_FLOAT( "skill", 1.0f );	// We will set skill in options menu
+			CVAR_SET_FLOAT( "deathmatch", 0.0f );	// This is not deathmatch
+			CVAR_SET_FLOAT( "teamplay", 0.0f );		// This is not teamplay
+			CVAR_SET_FLOAT( "coop", 0.0f );			// This is not CO-OP
+			CVAR_SET_FLOAT( "pausable", 1.0f );		// Enable pause
+	
+			BACKGROUND_TRACK( NULL, NULL );		// STFU current soundtrack
+
+			//CLIENT_COMMAND( FALSE, "hazardcourse\n" );
+			CLIENT_COMMAND( FALSE, "map t0a0\n" );	// Start Hazard Course
+		break;
+
+		// Exec - HL: New Game
+		case ID_NEWGAME_BTN_HLSTORY:
+			// If player is already ingame, end current session
+			if( CVAR_GET_FLOAT( "host_serverstate" ) && CVAR_GET_FLOAT( "maxplayers" ) > 1 )
+				HOST_ENDGAME( "end of the game" );
+
+			CVAR_SET_FLOAT( "deathmatch", 0.0f );	// This is not deathmatch
+			CVAR_SET_FLOAT( "teamplay", 0.0f );		// This is not teamplay
+			CVAR_SET_FLOAT( "coop", 0.0f );			// This is not CO-OP
+			CVAR_SET_FLOAT( "pausable", 1.0f );		// Enable pause
+	
+			BACKGROUND_TRACK( NULL, NULL );		// STFU current soundtrack
+
+			CLIENT_COMMAND( FALSE, "map c0a0\n" );
+		break;
+
+		// Exec - HL: Uplink
+		case ID_NEWGAME_BTN_HLUPLINK:
+			// If player is already ingame, end current session
+			if( CVAR_GET_FLOAT( "host_serverstate" ) && CVAR_GET_FLOAT( "maxplayers" ) > 1 )
+				HOST_ENDGAME( "end of the game" );
+
+			CVAR_SET_FLOAT( "deathmatch", 0.0f );	// This is not deathmatch
+			CVAR_SET_FLOAT( "teamplay", 0.0f );		// This is not teamplay
+			CVAR_SET_FLOAT( "coop", 0.0f );			// This is not CO-OP
+			CVAR_SET_FLOAT( "pausable", 1.0f );		// Enable pause
+	
+			BACKGROUND_TRACK( NULL, NULL );		// STFU current soundtrack
+
+			CLIENT_COMMAND( FALSE, "map c1a1\n" );	// TODO: Change this
+		break;
+
+		// Exec - BS: Hazard Course
+		case ID_NEWGAME_BTN_BSHAZARD:
+			// If player is already ingame, end current session
+			if( CVAR_GET_FLOAT( "host_serverstate" ) && CVAR_GET_FLOAT( "maxplayers" ) > 1 )
+				HOST_ENDGAME( "end of the game" );
+
+			CVAR_SET_FLOAT( "deathmatch", 0.0f );	// This is not deathmatch
+			CVAR_SET_FLOAT( "teamplay", 0.0f );		// This is not teamplay
+			CVAR_SET_FLOAT( "coop", 0.0f );			// This is not CO-OP
+			CVAR_SET_FLOAT( "pausable", 1.0f );		// Enable pause
+	
+			BACKGROUND_TRACK( NULL, NULL );		// STFU current soundtrack
+
+			CLIENT_COMMAND( FALSE, "map ba_hazard1\n" );
+		break;
+
+		// Exec - BS: New Game
+		case ID_NEWGAME_BTN_BSSTORY:
+			// If player is already ingame, end current session
+			if( CVAR_GET_FLOAT( "host_serverstate" ) && CVAR_GET_FLOAT( "maxplayers" ) > 1 )
+				HOST_ENDGAME( "end of the game" );
+
+			CVAR_SET_FLOAT( "deathmatch", 0.0f );	// This is not deathmatch
+			CVAR_SET_FLOAT( "teamplay", 0.0f );		// This is not teamplay
+			CVAR_SET_FLOAT( "coop", 0.0f );			// This is not CO-OP
+			CVAR_SET_FLOAT( "pausable", 1.0f );		// Enable pause
+	
+			BACKGROUND_TRACK( NULL, NULL );		// STFU current soundtrack
+
+			CLIENT_COMMAND( FALSE, "map ba_tram1\n" );
+		break;
+
+		// Exec - OF: Boot Camp
+		case ID_NEWGAME_BTN_OFBOOT:
+			// If player is already ingame, end current session
+			if( CVAR_GET_FLOAT( "host_serverstate" ) && CVAR_GET_FLOAT( "maxplayers" ) > 1 )
+				HOST_ENDGAME( "end of the game" );
+
+			CVAR_SET_FLOAT( "deathmatch", 0.0f );	// This is not deathmatch
+			CVAR_SET_FLOAT( "teamplay", 0.0f );		// This is not teamplay
+			CVAR_SET_FLOAT( "coop", 0.0f );			// This is not CO-OP
+			CVAR_SET_FLOAT( "pausable", 1.0f );		// Enable pause
+	
+			BACKGROUND_TRACK( NULL, NULL );		// STFU current soundtrack
+
+			CLIENT_COMMAND( FALSE, "map ofboot0\n" );
+		break;
+
+		// Exec - OF: New Game
+		case ID_NEWGAME_BTN_OFSTORY:
+			// If player is already ingame, end current session
+			if( CVAR_GET_FLOAT( "host_serverstate" ) && CVAR_GET_FLOAT( "maxplayers" ) > 1 )
+				HOST_ENDGAME( "end of the game" );
+
+			CVAR_SET_FLOAT( "deathmatch", 0.0f );	// This is not deathmatch
+			CVAR_SET_FLOAT( "teamplay", 0.0f );		// This is not teamplay
+			CVAR_SET_FLOAT( "coop", 0.0f );			// This is not CO-OP
+			CVAR_SET_FLOAT( "pausable", 1.0f );		// Enable pause
+	
+			BACKGROUND_TRACK( NULL, NULL );		// STFU current soundtrack
+
+			CLIENT_COMMAND( FALSE, "map of0a0\n" );
+		break;
+
+
+		// Close new game dialog
+		case ID_NEWGAME_BTN_NO:
+				UI_MainMenu_ToggleButtons(ID_NEWGAME_WINDOW);
+		break;
+
+
+
+
 	
 		case ID_QUIT_BTN_YES:
 			if( !( uiMain.quitMessage.generic.flags & QMF_HIDDEN ))
@@ -315,9 +447,7 @@ static void UI_Main_Callback( void *self, int event )
 		break;
 		*/
 	
-		case ID_NEWGAME_BTN_NO:
-				UI_MainMenu_ToggleButtons(ID_NEWGAME_WINDOW);
-		break;
+		
 	}
 }
 

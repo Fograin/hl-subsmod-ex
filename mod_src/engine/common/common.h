@@ -159,7 +159,8 @@ typedef struct gameinfo_s
 	char		gamefolder[64];	// used for change game '-game x'
 	char		basedir[64];	// base game directory (like 'id1' for Quake or 'valve' for Half-Life)
 	char		gamedir[64];	// game directory (can be match with basedir, used as game dir and as write path)
-	char		falldir[64];	// used as second basedir 
+	char		falldir[64];	// used as second basedir
+	char		falldirB[64];	// Fograin92: Used as a third basedir
 	char		startmap[64];	// map to start singleplayer game
 	char		trainmap[64];	// map to start hazard course (if specified)
 	char		title[64];	// Game Main Title
