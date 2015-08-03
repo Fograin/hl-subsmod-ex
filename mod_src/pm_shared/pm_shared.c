@@ -198,8 +198,9 @@ void PM_InitTextureTypes()
 	gcTextures = 0;
 	memset(buffer, 0, 512);
 
-	fileSize = pmove->COM_FileSize( "sound/materials.txt" );
-	pMemFile = pmove->COM_LoadFile( "sound/materials.txt", 5, NULL );
+	// Fograin92: materials.txt is now loaded from scripts directory
+	fileSize = pmove->COM_FileSize( "scripts/materials.txt" );
+	pMemFile = pmove->COM_LoadFile( "scripts/materials.txt", 5, NULL );
 	if ( !pMemFile )
 		return;
 

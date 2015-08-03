@@ -673,7 +673,7 @@ void VOX_Init( void )
 	Q_memset( g_Sentences, 0, sizeof( g_Sentences ));
 	g_numSentences = 0;
 
-	VOX_ReadSentenceFile( "sound/sentences.txt" );
+	VOX_ReadSentenceFile( "scripts/sentences.txt" );	// Fograin92: sentences.txt is now located inside scripts directory
 }
 
 

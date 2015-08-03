@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="subsmod_server"
+	Name="sm_hl_server"
 	ProjectGUID="{76086D5A-EE78-4DBF-96DA-D1F1B0051404}"
 	RootNamespace="subsmod_server"
 	TargetFrameworkVersion="0"
@@ -80,7 +80,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				IgnoreImportLibrary="true"
-				OutputFile="E:\Steam\steamapps\common\Half-Life\0_subs4\local\mod_files\subsmod\bin\server.dll"
+				OutputFile="E:\Steam\steamapps\common\Half-Life\0_subs4\local\mod_files\sm_hl\bin\server.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ModuleDefinitionFile=".\hl.def"

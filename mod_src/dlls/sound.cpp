@@ -1282,7 +1282,7 @@ void SENTENCEG_Init()
 
 	
 	int filePos = 0, fileSize;
-	byte *pMemFile = g_engfuncs.pfnLoadFileForMe( "sound/sentences.txt", &fileSize );
+	byte *pMemFile = g_engfuncs.pfnLoadFileForMe( "scripts/sentences.txt", &fileSize );	// Fograin92: sentences.txt is now located inside scripts directory
 	if ( !pMemFile )
 		return;
 
@@ -1556,7 +1556,7 @@ void TEXTURETYPE_Init()
 	gcTextures = 0;
 	memset(buffer, 0, 512);
 
-	pMemFile = g_engfuncs.pfnLoadFileForMe( "sound/materials.txt", &fileSize );
+	pMemFile = g_engfuncs.pfnLoadFileForMe( "scripts/materials.txt", &fileSize );	// Fograin92: materials.txt is now loaded from scripts directory
 	if ( !pMemFile )
 		return;
 

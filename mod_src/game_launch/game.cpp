@@ -15,7 +15,7 @@ GNU General Public License for more details.
 
 #include <windows.h>
 
-#define GAME_PATH	"subsmod"	// default dir to start from
+#define GAME_PATH	"sm_hl"	// default dir to start from
 
 typedef void (*pfnChangeGame)( const char *progname );
 typedef int (*pfnInit)( const char *progname, int bChangeGame, pfnChangeGame func );

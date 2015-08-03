@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="subsmod_launcher"
+	Name="sm_hl_launcher"
 	ProjectGUID="{C67A2167-C4A7-42BB-82A9-790763B3E3CD}"
 	RootNamespace="subsmod_launcher"
 	TargetFrameworkVersion="0"
@@ -76,7 +76,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalDependencies="msvcrt.lib odbc32.lib odbccp32.lib"
-				OutputFile="E:\Steam\steamapps\common\Half-Life\0_subs4\local\mod_files\subsmod.exe"
+				OutputFile="E:\Steam\steamapps\common\Half-Life\0_subs4\local\mod_files\sm_hl.exe"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				IgnoreDefaultLibraryNames="libcmt.lib"

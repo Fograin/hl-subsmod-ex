@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="subsmod_client"
+	Name="sm_hl_client"
 	ProjectGUID="{17D8004C-5F92-4571-BC3C-B2EDE1DD908C}"
 	RootNamespace="subsmod_client"
 	TargetFrameworkVersion="0"
@@ -178,7 +178,7 @@
 				Name="VCLinkerTool"
 				IgnoreImportLibrary="true"
 				AdditionalDependencies="winmm.lib ../utils/vgui/lib/win32_vc6/vgui.lib wsock32.lib"
-				OutputFile="E:\Steam\steamapps\common\Half-Life\0_subs4\local\mod_files\subsmod\bin\client.dll"
+				OutputFile="E:\Steam\steamapps\common\Half-Life\0_subs4\local\mod_files\sm_hl\bin\client.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
 				ProgramDatabaseFile=".\..\temp\cl_dll\!release/client.pdb"
