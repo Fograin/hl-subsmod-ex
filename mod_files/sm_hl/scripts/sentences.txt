@@ -547,7 +547,7 @@ HEV_A10 fvox/safe_day, bell
 HEV_DEAD0 fvox/beep beep, beep beep, beep, beep, flatline
 HEV_DEAD1 fvox/beep beep, beep beep, beep, flatline
 
-HEV_MED0 fvox/(p140) boop, boop, boop, (p100) innsufficient_medical
+HEV_MED0 fvox/(p140) boop, boop, boop, (p100) innsuficient_medical
 HEV_MED1 fvox/(p140) boop, boop, boop, (p100) automedic_on
 HEV_MED2 fvox/(p140) boop, boop, boop, (p100) administering_medical
 
@@ -594,8 +594,8 @@ HEV_44PISTOL fvox/blip get_44pistol acquired
 HEV_RPG fvox/blip get_rpg acquired
 HEV_SATCHEL fvox/blip get_satchel acquired
 HEV_TRIPMINE fvox/blip get_tripmine acquired
-HEV_HORNET fvox/blip get_alien_wpn
-HEV_SQUEEK fvox/blip get_alien_wpn
+HEV_HORNET fvox/blip get_alien_wpn acquired
+HEV_SQUEEK fvox/blip get_alien_wpn acquired
 HEV_EGON fvox/blip get_egon acquired
 HEV_GAUSS fvox/blip get_gauss acquired
 HEV_XBOW fvox/blip get_crossbow acquired
@@ -649,7 +649,6 @@ HEV_DET1 fvox/blip blip blip, chemical_detected
 HEV_DET2 fvox/blip blip blip, radiation_detected
 HEV_DET3 fvox/blip blip blip, bio_reading
 HEV_DET4 fvox/blip blip blip, antitoxin_shot(e50), onehundred percent
-HEV_DET5 fvox/blip blip blip, antitoxin_shot(e25) radiation_detected(e50), onehundred percent
 
 
 // monster_barney -> Follower OK
@@ -835,7 +834,6 @@ BA_BS_POK4 barney/ba_later
 // monster_barney -> Stop
 BA_STOP0 barney/stop1
 BA_STOP1 barney/stop2
-BA_STOP2 barney/stop3
 
 // monster_barney -> Narrative
 BA_HAZ_OK0 holo/tr_ba_use
@@ -1217,7 +1215,6 @@ SC_DIS1A scientist/c1a0_sci_dis1a
 SC_DIS1B scientist/c1a0_sci_dis1b
 SC_DIS1C scientist/c1a0_sci_dis1c
 SC_DIS1D scientist/c1a0_sci_dis1d
-
 SC_DIS2A scientist/c1a0_sci_dis2a
 SC_DIS3A scientist/c1a0_sci_dis3a
 SC_DIS4A scientist/c1a0_sci_dis4a
@@ -1239,7 +1236,6 @@ SC_GETAWAY scientist/c1a0_sci_getaway
 SC_GMORN scientist/c1a0_sci_gm
 SC_BIGDAY scientist/c1a0_sci_bigday
 SC_SAMPLE scientist/c1a0_sci_samp
-SC_NOTTHAT scientist/c1a0_sci_desk
 
 SC_LOCK1A scientist/c1a0_sci_lock1a
 SC_LOCK2A scientist/c1a0_sci_lock2a
@@ -1249,7 +1245,6 @@ SC_LOCK5A scientist/c1a0_sci_lock5a
 SC_LOCK6A scientist/c1a0_sci_lock6a
 SC_LOCK7A scientist/c1a0_sci_lock7a
 SC_LOCK8A scientist/c1a0_sci_lock8a
-SC_LOCK9A scientist/c1a0_sci_lock9a
 
 SC_CRIT1A scientist/c1a0_sci_crit1a
 SC_CRIT2A scientist/c1a0_sci_crit2a
@@ -1265,7 +1260,7 @@ SC_CONSOLE2A scientist/c1a1_sci_2scan
 SC_CONSOLE3A scientist/c1a1_sci_3scan
 SC_CONSOLE4A scientist/c1a1_sci_4scan
 SC_CONSOLE5A scientist/c1a1_sci_5scan
-SC_CONSOLERPT scientist/c1a1_sci_scanrpt
+SC_CONSOLERPT scientist/c1a0_sci_scanrpt
 
 SC_ZOMBIE1A scientist/c1a2_sci_1zomb
 SC_ZOMBIE3A scientist/c1a2_sci_3zomb
@@ -1623,50 +1618,50 @@ HOLO_USETRAIN holo/tr_holo_usetrain
 
 
 // Hazard Course hologram [bshift]
-BS_HOLO_4JUMPS ba_holo/tr_holo_4jumps
-BS_HOLO_ARMOR ba_holo/tr_holo_armor
-BS_HOLO_BREAKBOX ba_holo/tr_holo_breakbox
-BS_HOLO_BREATH ba_holo/tr_holo_breath
-BS_HOLO_BUTTON ba_holo/tr_holo_button
-BS_HOLO_CHARGER ba_holo/tr_holo_charger
-BS_HOLO_COMMENCING ba_holo/tr_holo_commencing
-BS_HOLO_CONGRATS ba_holo/tr_holo_congrats
-BS_HOLO_DONE ba_holo/tr_holo_done
-BS_HOLO_DROWN ba_holo/tr_holo_drown
-BS_HOLO_DUCK ba_holo/tr_holo_duck
-BS_HOLO_FALLSHORT ba_holo/tr_holo_fallshort
-BS_HOLO_FANTASTIC ba_holo/tr_holo_fantastic
-BS_HOLO_FLASHLIGHT ba_holo/tr_holo_flashlight
-BS_HOLO_GREATWORK ba_holo/tr_holo_greatwork
-BS_HOLO_GRENADE ba_holo/tr_holo_grenade
-BS_HOLO_HEVNOUSE ba_holo/tr_holo_hevnouse
-BS_HOLO_HITALL ba_holo/tr_holo_hitall
-BS_HOLO_INJURY ba_holo/tr_holo_injury
-BS_HOLO_INTRO ba_holo/tr_holo_intro
-BS_HOLO_JDUCK ba_holo/tr_holo_jduck
-BS_HOLO_JUMP ba_holo/tr_holo_jump
-BS_HOLO_JUMPDOWN ba_holo/tr_holo_jumpdown
-BS_HOLO_JUMPGAP ba_holo/tr_holo_jumpgap
-BS_HOLO_KEEPTRYING ba_holo/tr_holo_keeptrying
-BS_HOLO_LADDER ba_holo/tr_holo_ladder
-BS_HOLO_LEADGUARD ba_holo/tr_holo_leadguard
-BS_HOLO_LIGHTOFF ba_holo/tr_holo_lightoff
-BS_HOLO_LONGJUMP ba_holo/tr_holo_longjump
-BS_HOLO_MEDKIT ba_holo/tr_holo_medkit
-BS_HOLO_MOVE ba_holo/tr_holo_move
-BS_HOLO_NICEJOB ba_holo/tr_holo_nicejob
-BS_HOLO_PIPEDUCK ba_holo/tr_holo_pipeduck
-BS_HOLO_PULLBOX ba_holo/tr_holo_pullbox
-BS_HOLO_PUSHBOX ba_holo/tr_holo_pushbox
-BS_HOLO_RADIATION ba_holo/tr_holo_radiation
-BS_HOLO_RETRY ba_holo/tr_holo_retry
-BS_HOLO_RUNSTART ba_holo/tr_holo_runstart
-BS_HOLO_SPINBRIDGE ba_holo/tr_holo_spinbridge
-BS_HOLO_STARTLIFT ba_holo/tr_holo_startlift
-BS_HOLO_STEAM ba_holo/tr_holo_steam
-BS_HOLO_TARGET ba_holo/tr_holo_target
-BS_HOLO_TRYAGAIN ba_holo/tr_holo_tryagain
-BS_HOLO_USETRAIN ba_holo/tr_holo_usetrain
+BS_4JUMPS ba_holo/tr_holo_4jumps
+BS_ARMOR ba_holo/tr_holo_armor
+BS_BREAKBOX ba_holo/tr_holo_breakbox
+BS_BREATH ba_holo/tr_holo_breath
+BS_BUTTON ba_holo/tr_holo_button
+BS_CHARGER ba_holo/tr_holo_charger
+BS_COMMENCING ba_holo/tr_holo_commencing
+BS_CONGRATS ba_holo/tr_holo_congrats
+BS_DONE ba_holo/tr_holo_done
+BS_DROWN ba_holo/tr_holo_drown
+BS_DUCK ba_holo/tr_holo_duck
+BS_FALLSHORT ba_holo/tr_holo_fallshort
+BS_FANTASTIC ba_holo/tr_holo_fantastic
+BS_FLASHLIGHT ba_holo/tr_holo_flashlight
+BS_GREATWORK ba_holo/tr_holo_greatwork
+BS_GRENADE ba_holo/tr_holo_grenade
+BS_HEVNOUSE ba_holo/tr_holo_hevnouse
+BS_HITALL ba_holo/tr_holo_hitall
+BS_INJURY ba_holo/tr_holo_injury
+BS_INTRO ba_holo/tr_holo_intro
+BS_JDUCK ba_holo/tr_holo_jduck
+BS_JUMP ba_holo/tr_holo_jump
+BS_JUMPDOWN ba_holo/tr_holo_jumpdown
+BS_JUMPGAP ba_holo/tr_holo_jumpgap
+BS_KEEPTRYING ba_holo/tr_holo_keeptrying
+BS_LADDER ba_holo/tr_holo_ladder
+BS_LEADGUARD ba_holo/tr_holo_leadguard
+BS_LIGHTOFF ba_holo/tr_holo_lightoff
+BS_LONGJUMP ba_holo/tr_holo_longjump
+BS_MEDKIT ba_holo/tr_holo_medkit
+BS_MOVE ba_holo/tr_holo_move
+BS_NICEJOB ba_holo/tr_holo_nicejob
+BS_PIPEDUCK ba_holo/tr_holo_pipeduck
+BS_PULLBOX ba_holo/tr_holo_pullbox
+BS_PUSHBOX ba_holo/tr_holo_pushbox
+BS_RADIATION ba_holo/tr_holo_radiation
+BS_RETRY ba_holo/tr_holo_retry
+BS_RUNSTART ba_holo/tr_holo_runstart
+BS_SPINBRIDGE ba_holo/tr_holo_spinbridge
+BS_STARTLIFT ba_holo/tr_holo_startlift
+BS_STEAM ba_holo/tr_holo_steam
+BS_TARGET ba_holo/tr_holo_target
+BS_TRYAGAIN ba_holo/tr_holo_tryagain
+BS_USETRAIN ba_holo/tr_holo_usetrain
 
 // monster_otis
 OT_OK0 otis/reputation
