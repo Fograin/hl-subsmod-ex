@@ -757,10 +757,6 @@ BA_ATTACK3 barney/whatisthat
 BA_ATTACK4 barney/diebloodsucker
 BA_ATTACK5 barney/aimforhead
 
-// monster_barney -> Attack [bshift]
-BA_BS_ATTACK0 barney/ba_openfire(e50)
-BA_BS_ATTACK1 barney/ba_openfire(s50)
-
 // monster_barney -> Hear
 BA_HEAR0 barney/hearsomething
 BA_HEAR1 barney/icanhear
@@ -829,7 +825,6 @@ BA_BS_POK0 barney/ba_pok0
 BA_BS_POK1 barney/ba_pok1
 BA_BS_POK2 barney/ba_pok2
 BA_BS_POK3 barney/ba_pok3
-BA_BS_POK4 barney/ba_later
 
 // monster_barney -> Stop
 BA_STOP0 barney/stop1
@@ -1191,7 +1186,6 @@ SC_BS_POK3 scientist/sc_pok3
 SC_BS_POK4 scientist/sc_pok4
 SC_BS_POK5 scientist/sc_pok5
 SC_BS_POK6 scientist/sc_pok6
-SC_BS_POK7 scientist/sci_bother
 
 // monster_scientist -> Misc
 SC_NOGO scientist/dontgothere
@@ -1646,7 +1640,6 @@ BS_KEEPTRYING ba_holo/tr_holo_keeptrying
 BS_LADDER ba_holo/tr_holo_ladder
 BS_LEADGUARD ba_holo/tr_holo_leadguard
 BS_LIGHTOFF ba_holo/tr_holo_lightoff
-BS_LONGJUMP ba_holo/tr_holo_longjump
 BS_MEDKIT ba_holo/tr_holo_medkit
 BS_MOVE ba_holo/tr_holo_move
 BS_NICEJOB ba_holo/tr_holo_nicejob
