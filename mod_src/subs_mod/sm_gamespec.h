@@ -12,8 +12,8 @@
 // Custom .txt files to load, shared goes first
 static const char * const pCustomTitleFilesArray[] = 
 {
-	"sm_valve_base.txt",
-	"sm_valve_subs.txt",
+	"scripts/sm_text_base.txt",
+	"scripts/sm_text_subs.txt",
 };
 
 // Sentences for subtitles testing (impulse 98)
