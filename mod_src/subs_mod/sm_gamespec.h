@@ -16,41 +16,7 @@ static const char * const pCustomTitleFilesArray[] =
 	"scripts/sm_text_subs.txt",
 };
 
-// Sentences for subtitles testing (impulse 98)
-static const char * const pPlayerSpeechSentences[] =
-{
-	"!SC_GMORN",
-	"!SC_BIGDAY",
-	"!SC_THANKGOD",
-	"!SC_BLIND",
-	"!SC_TAU4A",
-	"!SC_GLUON2A",
-	"!SC_FOOL",
-	"!SC_ZOMBIE5A",
-	"!SC_CRIT1A",
-	"!SC_HAZ_WAIT0",
-	"!SC_PIDLE1",
-	"!SC_PIDLE4",
-	"!SC_FEAR7",
-	"!SC_FEAR8",
-	"!SC_FEAR9",
-	"!SC_FEAR10",
-	"!SC_FEAR11",
-	"!SC_FEAR12",
-	"!SC_HEAL3",
-	"!SC_HEAL4",
-	"!SC_HEAL5",
-	"!SC_HEAL6",
-	"!SC_HEAL7",
-	"!SC_QUESTION24",
-	"!SC_QUESTION25",
-	"!SC_QUESTION26",
-	"!SC_ANSWER27",
-	"!SC_ANSWER28",
-	"!SC_ANSWER29",
-	"!SC_CONSOLE1A",
-};
-
+// Fix sentences, Half-Life Barney
 static const client_textmessage_sentence_t pHLBarneySounds[] =
 {
 	{ "/ba_attack1.wav",		"!BA_ATTACK"	},
@@ -68,12 +34,14 @@ static const client_textmessage_sentence_t pHLBarneySounds[] =
 	{ "/heybuddy.wav",			"!BA_HELLO5"	},
 };
 
+// Fix sentences, Half-Life GMan
 static const client_textmessage_sentence_t pHLGManSounds[] =
 {
 	{ "/gman_noreg.wav",	"!GM_REGRET"	},
 	{ "/gman_wise.wav",		"!GM_WISE"		},
 };
 
+// Fix sentences, Half-Life Human Grunts
 static const client_textmessage_sentence_t pHLHGruntSounds[] =
 {
 	{ "/gr_die1.wav",			"!HG_DIE"		},
@@ -90,6 +58,7 @@ static const client_textmessage_sentence_t pHLHGruntSounds[] =
 	{ "/c2a5_hg_lebuz.wav",		"!HG_LEBUZ"		},
 };
 
+// Fix sentences, Half-Life Gina Hologram
 static const client_textmessage_sentence_t pHLHoloSounds[] =
 {
 	{ "/tr_holo_breath.wav",		"!HOLO_BREATH"		},
@@ -105,6 +74,7 @@ static const client_textmessage_sentence_t pHLHoloSounds[] =
 	{ "/tr_holo_radiation.wav",		"!HOLO_RADIATION"	},
 };
 
+// Fix sentences, Half-Life Nihilanth
 static const client_textmessage_sentence_t pHLNihilanthSounds[] =
 {
 	{ "/nil_alone.wav",			"!NIL_ALONE"	},
@@ -123,6 +93,7 @@ static const client_textmessage_sentence_t pHLNihilanthSounds[] =
 	{ "/nil_win.wav",			"!NIL_WIN"		},
 };
 
+// Fix sentences, Half-Life Scientist
 static const client_textmessage_sentence_t pHLScientistSounds[] =
 {
 	{ "/sci_dragoff.wav",			"!SC_DRAGOFF"	},
@@ -162,6 +133,7 @@ static const client_textmessage_sentence_t pHLScientistSounds[] =
 	{ "/c1a4_sci_tent.wav",			"!SC_TENT"		},
 };
 
+// Fix sentences, Half-Life Train Ride
 static const client_textmessage_sentence_t pHLTRideSounds[] =
 {
 	{ "/c0a0_tr_arrive.wav",	"!TR_ARRIVE"	},
@@ -174,6 +146,20 @@ static const client_textmessage_sentence_t pHLTRideSounds[] =
 	{ "/c0a0_tr_noeat.wav",		"!TR_NOEAT"		},
 	{ "/c0a0_tr_time.wav",		"!TR_TIME"		},
 	{ "/c0a0_tr_tourn.wav",		"!TR_TOURN"		},
+};
+
+// Fix sentences, Blue-Shift Train Ride
+static const client_textmessage_sentence_t pBSTramSounds[] =
+{
+	{ "/ba_tram0.wav",		"!BA_TRAM0"		},
+	{ "/ba_tram1.wav",		"!BA_TRAM1"		},
+	{ "/ba_tram2.wav",		"!BA_TRAM2"		},
+	{ "/ba_tram3.wav",		"!BA_TRAM3"		},
+	{ "/ba_tram4.wav",		"!BA_TRAM4"		},
+	{ "/ba_tram5.wav",		"!BA_TRAM5"		},
+	{ "/ba_tram6.wav",		"!BA_TRAM6"		},
+	{ "/ba_tram7.wav",		"!BA_TRAM7"		},
+	{ "/ba_tram8.wav",		"!BA_TRAM8"		},
 };
 
 static const client_textmessage_sndgroup_t pSoundGroups[] = 
@@ -219,6 +205,100 @@ static const client_textmessage_sndgroup_t pSoundGroups[] =
     { "weapons",		strlen("weapons"),		NULL,				0								},
     { "x",				strlen("x"),			NULL,				0								},
     { "zombie",			strlen("zombie"),		NULL,				0								},
+
+	// Blue-Shift sentence fixes
+	{ "tram",			strlen("tram"),			pBSTramSounds,		ARRAYSIZE(pBSTramSounds)		},
 };
+
+// Fograin92: Blue Shift map list
+static const char * const pBSmaps[] = 
+{
+	"ba_canal1",
+	"ba_canal1b",
+	"ba_canal2",
+	"ba_canal3",
+	"ba_elevator",
+	"ba_hazard1",
+	"ba_hazard2",
+	"ba_hazard3",
+	"ba_hazard4",
+	"ba_hazard5",
+	"ba_hazard6",
+	"ba_maint",
+	"ba_outro",
+	"ba_power1",
+	"ba_power2",
+	"ba_security1",
+	"ba_security2",
+	"ba_teleport1",
+	"ba_teleport2",
+	"ba_tram1",
+	"ba_tram2",
+	"ba_tram3",
+	"ba_xen1",
+	"ba_xen2",
+	"ba_xen3",
+	"ba_xen4",
+	"ba_xen5",
+	"ba_xen6",
+	"ba_yard1",
+	"ba_yard2",
+	"ba_yard3",
+	"ba_yard3a",
+	"ba_yard3b",
+	"ba_yard4",
+	"ba_yard4a",
+	"ba_yard5",
+	"ba_yard5a",
+};
+
+// Fograin92: Opposing Force map list
+static const char * const pOFmaps[] = 
+{
+	"of0a0",
+	"of1a1",
+	"of1a2",
+	"of1a3",
+	"of1a4",
+	"of1a4b",
+	"of1a5",
+	"of1a5b",
+	"of1a6",
+	"of2a1",
+	"of2a1b",
+	"of2a2",
+	"of2a3",
+	"of2a4",
+	"of2a5",
+	"of2a6",
+	"of3a1",
+	"of3a1b",
+	"of3a2",
+	"of3a4",
+	"of3a5",
+	"of3a6",
+	"of4a1",
+	"of4a2",
+	"of4a3",
+	"of4a4",
+	"of4a5",
+	"of5a1",
+	"of5a2",
+	"of5a3",
+	"of5a4",
+	"of6a1",
+	"of6a2",
+	"of6a3",
+	"of6a4",
+	"of6a4b",
+	"of6a5",
+	"of7a0",
+	"ofboot0",
+	"ofboot1",
+	"ofboot2",
+	"ofboot3",
+	"ofboot4",
+};
+
 
 #endif // _SUBS_MOD_GAMESPEC_H

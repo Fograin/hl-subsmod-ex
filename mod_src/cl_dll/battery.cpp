@@ -83,7 +83,11 @@ int CHudBattery::Draw(float flTime)
 	rc = *m_prc2;
 	rc.top  += m_iHeight * ((float)(100-(min(100,m_iBat))) * 0.01);	// battery can go from 0 to 100 so * 0.01 goes from 0 to 1
 
-	UnpackRGB(r,g,b, RGB_YELLOWISH);
+	// Fograin92: A little changes
+	//UnpackRGB(r,g,b, RGB_YELLOWISH);
+	r = SM_HUDcolor(1);
+	g = SM_HUDcolor(2);
+	b = SM_HUDcolor(3);
 
 	if (!(gHUD.m_iWeaponBits & (1<<(WEAPON_SUIT)) ))
 		return 1;

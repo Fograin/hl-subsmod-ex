@@ -2850,10 +2850,37 @@ void CBasePlayer::Spawn( void )
 	}
 
 	m_lastx = m_lasty = 0;
-	
 	m_flNextChatTime = gpGlobals->time;
-
 	g_pGameRules->PlayerSpawn( this );
+
+
+	// Fograin92: Check if this is Blue Shift map
+	for (int i=0; i<ARRAYSIZE(pBSmaps); i++)
+	{
+		// Fograin92: Blue Shift map recognized
+		if (!strcmp( STRING(gpGlobals->mapname), pBSmaps[i]))
+		{
+			ALERT( at_console, "^3SM -> Game -> Blue Shift\n");
+			CVAR_SET_FLOAT( "sm_hud", 1.0 );
+			return;
+		}
+	}
+
+	// Fograin92: Check if this is Opposing Force map
+	for (int i=0; i<ARRAYSIZE(pOFmaps); i++)
+	{
+		// Fograin92: Opposing Force map recognized
+		if (!strcmp( STRING(gpGlobals->mapname), pOFmaps[i]))
+		{
+			ALERT( at_console, "^3SM -> Game -> Opposing Force\n");
+			CVAR_SET_FLOAT( "sm_hud", 2.0 );
+			return;
+		}
+	}
+
+	// Fograin92: This is default Half-Life / Uplink map
+	ALERT( at_console, "^3SM -> Game -> Half-Life\n");
+	CVAR_SET_FLOAT( "sm_hud", 0.0 );
 }
 
 
@@ -3353,6 +3380,7 @@ ImpulseCommands
 ============
 */
 extern float g_flWeaponCheat;
+//int BSi = 0;	// Fograin92: Good old n' silly testing method
 
 void CBasePlayer::ImpulseCommands( )
 {
@@ -3364,32 +3392,81 @@ void CBasePlayer::ImpulseCommands( )
 	int iImpulse = (int)pev->impulse;
 	switch (iImpulse)
 	{
-	case 99:
-		{
+		/*
+		// Fograin92: Good old n' silly testing method
+		// This case will be removed in future
+		case 98:
+ 		{
+			switch(BSi)
+			{
+				case 0:			PlaySentence( "!BS_MOVE", 4, VOL_NORM, ATTN_NORM );	break;
+				case 1:			PlaySentence( "!BS_NICEJOB", 4, VOL_NORM, ATTN_NORM );	break;
+				case 2:			PlaySentence( "!BS_PIPEDUCK", 4, VOL_NORM, ATTN_NORM );	break;
+				case 3:			PlaySentence( "!BS_PULLBOX", 4, VOL_NORM, ATTN_NORM );	break;
+				case 4:			PlaySentence( "!BS_PUSHBOX", 4, VOL_NORM, ATTN_NORM );	break;
+				case 5:			PlaySentence( "!BS_RADIATION", 4, VOL_NORM, ATTN_NORM );	break;
+				case 6:			PlaySentence( "!BS_RETRY", 4, VOL_NORM, ATTN_NORM );	break;
+				case 7:			PlaySentence( "!BS_RUNSTART", 4, VOL_NORM, ATTN_NORM );	break;
+				case 8:			PlaySentence( "!BS_SPINBRIDGE", 4, VOL_NORM, ATTN_NORM );	break;
+				case 9:			PlaySentence( "!BS_STARTLIFT", 4, VOL_NORM, ATTN_NORM );	break;
+				case 10:		PlaySentence( "!BS_STEAM", 4, VOL_NORM, ATTN_NORM );	break;
+				case 11:		PlaySentence( "!BS_TARGET", 4, VOL_NORM, ATTN_NORM );	break;
+				case 12:		PlaySentence( "!BS_TRYAGAIN", 4, VOL_NORM, ATTN_NORM );	break;
+				case 13:		PlaySentence( "!BS_USETRAIN", 4, VOL_NORM, ATTN_NORM );	break;
+				case 14:		PlaySentence( "!xxx", 4, VOL_NORM, ATTN_NORM );	break;
+				case 15:		PlaySentence( "!BS_DROWN", 4, VOL_NORM, ATTN_NORM );	break;
+				case 16:		PlaySentence( "!BS_DUCK", 4, VOL_NORM, ATTN_NORM );	break;
+				case 17:		PlaySentence( "!BS_FALLSHORT", 4, VOL_NORM, ATTN_NORM );	break;
+				case 18:		PlaySentence( "!BS_FANTASTIC", 4, VOL_NORM, ATTN_NORM );	break;
+				case 19:		PlaySentence( "!BS_FLASHLIGHT", 4, VOL_NORM, ATTN_NORM );	break;
+				case 20:		PlaySentence( "!BS_GREATWORK", 4, VOL_NORM, ATTN_NORM );	break;
+				case 21:		PlaySentence( "!BS_GRENADE", 4, VOL_NORM, ATTN_NORM );	break;
+				case 22:		PlaySentence( "!BS_HEVNOUSE", 4, VOL_NORM, ATTN_NORM );	break;
+				case 23:		PlaySentence( "!BS_HITALL", 4, VOL_NORM, ATTN_NORM );	break;
+				case 24:		PlaySentence( "!BS_INJURY", 4, VOL_NORM, ATTN_NORM );	break;
+				case 25:		PlaySentence( "!BS_INTRO", 4, VOL_NORM, ATTN_NORM );	break;
+				case 26:		PlaySentence( "!BS_JDUCK", 4, VOL_NORM, ATTN_NORM );	break;
+				case 27:		PlaySentence( "!BS_JUMP", 4, VOL_NORM, ATTN_NORM );	break;
+				case 28:		PlaySentence( "!BS_JUMPDOWN", 4, VOL_NORM, ATTN_NORM );	break;
+				case 29:		PlaySentence( "!BS_JUMPGAP", 4, VOL_NORM, ATTN_NORM );	break;
+				case 30:		PlaySentence( "!BS_KEEPTRYING", 4, VOL_NORM, ATTN_NORM );	break;
+				case 31:		PlaySentence( "!BS_LADDER", 4, VOL_NORM, ATTN_NORM );	break;
+				case 32:		PlaySentence( "!BS_LEADGUARD", 4, VOL_NORM, ATTN_NORM );	break;
+				case 33:		PlaySentence( "!BS_LIGHTOFF", 4, VOL_NORM, ATTN_NORM );	break;
+				case 34:		PlaySentence( "!BS_LONGJUMP", 4, VOL_NORM, ATTN_NORM );	break;
+				case 35:		PlaySentence( "!BS_MEDKIT", 4, VOL_NORM, ATTN_NORM );	break;
+			}
+			BSi++;
+ 		break;
+ 		}
+		*/
 
-		int iOn;
 
-		if (!gmsgLogo)
+		case 99:
 		{
-			iOn = 1;
-			gmsgLogo = REG_USER_MSG("Logo", 1);
-		} 
-		else 
-		{
-			iOn = 0;
+			int iOn;
+			if (!gmsgLogo)
+			{
+				iOn = 1;
+				gmsgLogo = REG_USER_MSG("Logo", 1);
+			} 
+			else 
+			{
+				iOn = 0;
+			}
+			
+			ASSERT( gmsgLogo > 0 );
+			// send "health" update message
+			MESSAGE_BEGIN( MSG_ONE, gmsgLogo, NULL, pev );
+				WRITE_BYTE(iOn);
+			MESSAGE_END();
+
+			if(!iOn)
+				gmsgLogo = 0;
+			break;
 		}
-		
-		ASSERT( gmsgLogo > 0 );
-		// send "health" update message
-		MESSAGE_BEGIN( MSG_ONE, gmsgLogo, NULL, pev );
-			WRITE_BYTE(iOn);
-		MESSAGE_END();
 
-		if(!iOn)
-			gmsgLogo = 0;
-		break;
-		}
-	case 100:
+		case 100:
         // temporary flashlight for level designers
         if ( FlashlightIsOn() )
 		{
@@ -3459,6 +3536,8 @@ void CBasePlayer::CheatImpulseCommands( int iImpulse )
 			}
 			break;
 		}
+
+	// Fograin92: Sentences testing purposes
 
 
 	case 101:

@@ -445,8 +445,12 @@ cvar_t	sk_player_arm3	= { "sk_player_arm3","1" };
 cvar_t	sk_player_leg1	= { "sk_player_leg1","1" };
 cvar_t	sk_player_leg2	= { "sk_player_leg2","1" };
 cvar_t	sk_player_leg3	= { "sk_player_leg3","1" };
-
 // END Cvars for Skill Level settings
+
+
+// Half-Life Subtitles MOD CVARs
+cvar_t	sm_hud	= { "sm_hud",	"0"};
+
 
 // Register your console variables here
 // This gets called one time when the game is initialied
@@ -478,8 +482,11 @@ void GameDLLInit( void )
 	CVAR_REGISTER (&teamoverride);
 	CVAR_REGISTER (&defaultteam);
 	CVAR_REGISTER (&allowmonsters);
-
 	CVAR_REGISTER (&mp_chattime);
+
+	// Half-Life Subtitles MOD CVARs
+	CVAR_REGISTER (&sm_hud);
+
 
 // REGISTER CVARS FOR SKILL LEVEL STUFF
 	// Agrunt

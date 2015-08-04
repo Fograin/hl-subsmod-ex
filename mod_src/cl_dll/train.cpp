@@ -54,7 +54,11 @@ int CHudTrain::Draw(float fTime)
 	{
 		int r, g, b, x, y;
 
-		UnpackRGB(r,g,b, RGB_YELLOWISH);
+		// Fograin92: A little changes
+		//UnpackRGB(r,g,b, RGB_YELLOWISH);
+		r = SM_HUDcolor(1);
+		g = SM_HUDcolor(2);
+		b = SM_HUDcolor(3);
 		SPR_Set(m_HL_HSPRITE, r, g, b );
 
 		// This should show up to the right and part way up the armor number

@@ -126,7 +126,12 @@ int CHud :: MsgFunc_Concuss( const char *pszName, int iSize, void *pbuf )
 	m_iConcussionEffect = READ_BYTE();
 	if (m_iConcussionEffect)
 	{
-		UnpackRGB(r, g, b, RGB_YELLOWISH);	// Vit_amiN: fixed
+		//UnpackRGB(r, g, b, RGB_YELLOWISH);	// Vit_amiN: fixed
+		// Fograin92: A little changes
+		//UnpackRGB(r,g,b, RGB_YELLOWISH);
+		r = SM_HUDcolor(1);
+		g = SM_HUDcolor(2);
+		b = SM_HUDcolor(3);
 		this->m_StatusIcons.EnableIcon("dmg_concuss", r, g, b);
 	} else
 		this->m_StatusIcons.DisableIcon("dmg_concuss");

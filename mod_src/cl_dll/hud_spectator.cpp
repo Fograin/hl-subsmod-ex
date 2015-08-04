@@ -1204,8 +1204,13 @@ void CHudSpectator::DrawOverviewEntities()
 	
 
 	z = m_OverviewData.layersHeights[0] * zScale;
-	// get yellow/brown HUD color
-	UnpackRGB(ir,ig,ib, RGB_YELLOWISH);
+
+	// Fograin92: A little changes
+	//UnpackRGB(ir,ig,ib, RGB_YELLOWISH);
+	ir = SM_HUDcolor(1);
+	ig = SM_HUDcolor(2);
+	ib = SM_HUDcolor(3);
+	
 	r = (float)ir/255.0f;
 	g = (float)ig/255.0f;
 	b = (float)ib/255.0f;

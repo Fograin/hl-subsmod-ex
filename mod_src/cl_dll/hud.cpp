@@ -707,4 +707,42 @@ float CHud::GetSensitivity( void )
 	return m_flMouseSensitivity;
 }
 
+// Fograin92: Very simple function to return proper HUD color
+int SM_HUDcolor(int iColor)
+{
+	// Blue-Shift HUD
+	if (CVAR_GET_FLOAT("sm_hud") == 1.0 )
+	{
+		// 0,96,180 (Blue Shift) 
+		if (iColor == 1)
+			return 0;
+		else if (iColor == 2)
+			return 96;
+		else if (iColor == 3)
+			return 180;
+	}
 
+	// Opposing Force HUD
+	else if (CVAR_GET_FLOAT("sm_hud") == 2.0 )
+	{
+		// 0,160,0 (Opposing Force)
+		if (iColor == 1)
+			return 0;
+		else if (iColor == 2)
+			return 160;
+		else if (iColor == 3)
+			return 0;
+	}
+
+	// Half-Life HUD
+	else
+	{
+		// 255,160,0 (Half-Life)
+		if (iColor == 1)
+			return 255;
+		else if (iColor == 2)
+			return 160;
+		else if (iColor == 3)
+			return 0;
+	}
+}

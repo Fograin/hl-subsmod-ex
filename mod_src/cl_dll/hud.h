@@ -549,7 +549,7 @@ class CHud
 {
 private:
 	HUDLIST						*m_pHudList;
-	HL_HSPRITE						m_hsprLogo;
+	HL_HSPRITE					m_hsprLogo;
 	int							m_iLogo;
 	client_sprite_t				*m_pSpriteList;
 	int							m_iSpriteCount;
@@ -646,12 +646,8 @@ public:
 
 	// sprite indexes
 	int m_HUD_number_0;
-
-
 	void AddHudElem(CHudBase *p);
-
 	float GetSensitivity();
-
 };
 
 class TeamFortressViewport;
@@ -665,3 +661,5 @@ extern int g_iUser1;
 extern int g_iUser2;
 extern int g_iUser3;
 
+// Half-Life: Subtitles MOD functions
+int SM_HUDcolor(int iColor);

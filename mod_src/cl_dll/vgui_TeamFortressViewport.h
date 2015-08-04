@@ -1720,7 +1720,12 @@ public:
 		// Draw the vertical line
 		int HealthWidth = gHUD.GetSpriteRect(gHUD.m_HUD_number_0).right - gHUD.GetSpriteRect(gHUD.m_HUD_number_0).left;
 		x += HealthWidth / 2;
-		UnpackRGB(r, g, b, RGB_YELLOWISH);	// Vit_amiN: fixed to use HUD color
+		//UnpackRGB(r, g, b, RGB_YELLOWISH);	// Vit_amiN: fixed to use HUD color
+		// Fograin92: A little changes
+		//UnpackRGB(r,g,b, RGB_YELLOWISH);
+		r = SM_HUDcolor(1);
+		g = SM_HUDcolor(2);
+		b = SM_HUDcolor(3);
 		FillRGBA(x, iYPos + 5, HealthWidth / 10, gHUD.m_iFontHeight, r, g, b, a);
 	}
 };

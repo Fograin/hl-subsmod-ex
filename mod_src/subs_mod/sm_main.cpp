@@ -559,24 +559,6 @@ void VGUI_MsgsBasePanel::SyncSubElements()
     float sync_time = gHUD.m_flTime;
     GetTextMsgsPanel()->SynchronizeFull(show_sub, sync_time);
     GetSubtMsgsPanel()->SynchronizeFull(show_sub, sync_time);
-    
-    
-    /*
-    // FINDME: FIXME: for test only
-    if (int(sync_time * 937) % 71 == 0)
-    {
-        #include "sm_defines.h"
-        #include "sm_gamespec.h"
-        SM_Hook_Shared_PM_PlaySound(
-                                        pPlayerSpeechSentences[ rand() % ARRAYSIZE(pPlayerSpeechSentences)],
-                                        CHAN_VOICE,
-                                        1.0,
-                                        ATTN_NORM,
-                                        0,
-                                        100
-                                   );
-    }
-    */
 }
 
 void VGUI_MsgsBasePanel::ClrTextMessages()
