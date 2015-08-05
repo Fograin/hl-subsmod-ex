@@ -278,6 +278,13 @@ Please stand back from the automated door until it has fully opened. Before exit
 }
 
 
+//=============================//
+// Train ride (Opposing Force)
+//=============================//
+$color  224 224 224
+$color2 112 112 112
+
+
 //===============================================//
 // Gina Cross Hologram (Half-Life Hazard Course)
 //===============================================//
@@ -1895,6 +1902,85 @@ $holdtime 2
 !OT_LEFTOVERS
 {
 Otis: I'll get the leftovers!
+}
+
+
+//===================================//
+// Barney (Opposing Force) Subtitles
+//===================================//
+$holdtime 3.5
+!BA_OF_HELLO0
+{
+Hi! What part of the armed forces are you with?
+}
+
+$holdtime 4.5
+!BA_OF_HELLO1
+{
+Alright, a soldier! Now we're gonna see some action!
+}
+
+$holdtime 2.2
+!BA_OF_HELLO2
+{
+Hello, soldier, sir.
+}
+
+$holdtime 6
+!BA_BOMBOFF
+{
+Are you crazy!? I'm not opening this door until someone turns that bomb off!
+}
+
+$holdtime 4.4
+!BA_CLOSEONE
+{
+Phew, that was a close one! You better get in here!
+}
+
+$holdtime 7.5
+$chained !BA_STORAGEUNIT_PT2
+!BA_STORAGEUNIT
+{
+It's not going to be easy from here on now. The only way out is through the Level 4 Storage Unit, but it's a mess down there!
+}
+
+$holdtime 9.5
+!BA_STORAGEUNIT_PT2
+{
+The Black Ops were using it as a staging point until the aliens came in. If you do make it through, make sure you have them come back for us.
+}
+
+$holdtime 10
+$chained !BA_NASTYTHING_PT2
+!BA_NASTYTHING
+{
+I guess you're a good guy, Corporal. Listen, you've got to get down below. There's something coming through and it's the nastiest looking thing yet!
+}
+
+$holdtime 4.5
+$chained !BA_NASTYTHING_PT3
+!BA_NASTYTHING_PT2
+{
+Some of your buddies went down there a while ago and I haven't seen them since...
+}
+
+$holdtime 9.5
+!BA_NASTYTHING_PT3
+{
+I've got some weapons I've piled up in here, you better take as much as you can carry, 'cause I think this is it. Good luck, Corporal.
+}
+
+$holdtime 2.5
+!OF1A5_BARN1
+{
+Have you seen the new IG-88?
+}
+
+$holdtime 3.5
+!OF1A5_BARN2
+{
+What the he... What is that, doc?
 }
 
 
@@ -4130,6 +4216,145 @@ Look out!
 }
 
 
+//=======================================//
+// Scientists (Opposing Force Subtitles)
+//=======================================//
+$holdtime 7.5
+!SC_COUNTING1
+{
+...three, four, five... one, two...
+}
+
+$holdtime 4.5
+!SC_COUNTING2
+{
+...three, four, five...
+}
+
+$holdtime 11
+$chained !SC_WOKENUP_PT2
+!SC_WOKENUP
+{
+Oh, you've woken up. Corporal Shephard, is it? I've read the tag on your uniform. I'm glad to see my life saving efforts weren't in vain. I can't say the same for him.
+}
+
+$holdtime 13.5
+$chained !SC_WOKENUP_PT3
+!SC_WOKENUP_PT2
+{
+I'm afraid you have been through a serious accident. Most of your friends didn't make it. I was hoping that you soldiers had come to rescue us, but now it seems we are all in the same situation.
+}
+
+$holdtime 6.5
+!SC_WOKENUP_PT3
+{
+I think I saw a radio near the crash site where I found you. Perhaps you can go there and radio for help?
+}
+
+$holdtime 8
+!SC_BETTERLUCK
+{
+I'm afraid these troops aren't going to make it. I hope you have better luck out there, or I fear none of us will get through this alive.
+}
+
+$holdtime 13
+!SC_GONOMEHINT
+{
+Have you ever seen such a magnificent species? These crabs can completely control their host's nervous system. Can you imagine what the next stage of mutation looks like?
+}
+
+$holdtime 3
+!SC_IHAVENT
+{
+No, I haven't, but a friend of mine...
+}
+
+$holdtime 3.5
+!SC_SEENSPECIES
+{
+I don't know! I've never seen that species before!
+}
+
+$holdtime 3.5
+!SC_FREEMAN
+{
+You've got to believe me. Freeman could be anywhere!
+}
+
+$holdtime 7
+!SC_WHATSWORSE
+{
+I don't know what's worse. You soldiers under orders to silence the facility or these vile aliens!
+}
+
+$holdtime 7
+!SC_HIDMYSELF
+{
+When all the fighting started, I hid myself here. I don't think any of them above have survived.
+}
+
+$holdtime 7
+!SC_PUTDOWN
+{
+Put that thing down! Why must you security guards always insist on playing with our prototypes.
+}
+
+$holdtime 3
+!SC_NOTAGAIN
+{
+Be careful! No! NOT AGAIN!
+}
+
+$holdtime 9
+!SC_TRAPPED
+{
+I'm afraid I've trapped myself here to escape those... "beasts". Would you be so kind as to operate that transporter?
+}
+
+$holdtime 6
+!SC_HELPACCESS
+{
+Thank you for releasing me. I can help you access any secured area in this lab.
+}
+
+$holdtime 15.5
+$chained !SC_GRAPPLETAPE_PT2
+!SC_GRAPPLETAPE
+{
+Ah, yes, Walter! We were finally able to successfully detach one of the barnacle creatures from its point of gestation. As before, we were still only able to coerce the creature into latching onto organic materials.
+}
+
+$holdtime 17
+!SC_GRAPPLETAPE_PT2
+{
+Unfortunately, the Administrator has called me down to the Anomalous Materials lab this morning for an important experiment, so I don't have any time to further my analysis. Take specimen number 1176 and log anything else you can find.
+}
+
+$holdtime 3
+!SC_PLEASE
+{
+Please! Don't kill me.
+}
+
+$holdtime 7
+!SC_GETALONG
+{
+Oh no! You're one of the... "them". Can't we just get along?
+}
+
+$holdtime 3
+!SC_GOFREEMAN
+{
+It's ready! You must go, now!
+}
+
+$holdtime 3.5
+!SC_HURRY
+{
+HURRY UP FREEMAN! I CAN'T KEEP IT OPEN FOREVER!
+}
+
+
 //========================//
 // Human Grunts (generic)
 //========================//
@@ -6217,6 +6442,7 @@ $holdtime 9.5
 ATTENTION: Lambda Complex personnel; Primary Core activated.
 }
 
+
 //=====================================================//
 // Black Mesa Base Computer (VOX) Blue-Shift sentences
 //=====================================================//
@@ -6231,6 +6457,65 @@ $holdtime 7.5
 {
 Warning! Extreme electromagnetic field hazard in Sector C.
 }
+
+
+//=========================================================//
+// Black Mesa Base Computer (VOX) Opposing Force sentences
+//=========================================================//
+$holdtime 6.7
+!OF_C1A0_0
+{
+Immediate medical attention required in sector 27.
+}
+
+$holdtime 12.5
+!OF_C1A0_1
+{
+Operations personnel report to emergency control zone for contamination cleanup, Alpha Seven access required.
+}
+
+$holdtime 8
+!OF_C1A0_2
+{
+Attention! Supply team required in lower maintenance chamber sub sector B.
+}
+
+$holdtime 5.8
+!OF_C1A0_3
+{
+Security breach detected in silo 32.
+}
+
+$holdtime 12
+!OF_C1A0_4
+{
+Warning! Extreme radiation leak detected in reactor core 8, time to reach minimum safe distance, 40 minutes.
+}
+
+$holdtime 7.5
+!OF_C1A0_5
+{
+Doctor Guthrie report to inspection laboratory 6 immediately!
+}
+
+$holdtime 8.2
+!OF_C1A0_6
+{
+Attention! Doctor Freeman report to research administration center for questioning.
+}
+
+$holdtime 10.3
+!OF_C1A0_7
+{
+Remaining science personnel report to medical laboratory 6 for radiation exposure inspection.
+}
+
+$holdtime 11.5
+!OF_C1A0_8
+{
+Warning! Severe damage detected in ventillation systems under research laboratory 2, evacuate area immediately!
+}
+
 
 //==========//
 // HEV Suit
@@ -7026,6 +7311,62 @@ $holdtime 3.5
 !GM_REGRET
 {
 No regrets, Mr. Freeman...
+}
+
+
+//=======================//
+// GMan (Opposing Force)
+//=======================//
+$holdtime 14
+$chained !OF7A0_GM01_PT2
+!OF7A0_GM01
+{
+So, Corporal Shephard, we meet at last. Please, don't think that I've been avoiding you, a great many matters require my attention in these... troubled times.
+}
+
+$holdtime 13.5
+$chained !OF7A0_GM01_PT3
+!OF7A0_GM01_PT2
+{
+I do hope you understand, and now I require a further indulgence on your part. I cannot close my report until every loose end has been tied up.
+}
+
+$holdtime 9
+!OF7A0_GM01_PT3
+{
+The biggest embarrassment has been Black Mesa facility, but I think that's finally taken care of itself.
+}
+
+$holdtime 1.5
+!OF7A0_GM02
+{
+Quite so.
+}
+
+$holdtime 11.5
+$chained !OF7A0_GM03_PT2
+!OF7A0_GM03
+{
+But there's still the lingering matter of witnesses. I admit I have a fascination with those who adapt and survive against all odds.
+}
+
+$holdtime 8
+!OF7A0_GM03_PT2
+{
+They rather remind me of myself. If for no other reason, I have argued to preserve you for a time.
+}
+
+$holdtime 19.5
+$chained !OF7A0_GM04_PT2
+!OF7A0_GM04
+{
+While I believe a civil servant like yourself understands the importance of... discretion, my employers are not quite so trusting, and rather than continually subject you to the irresistible human temptation of telling all, we have decided to...
+}
+
+$holdtime 12
+!OF7A0_GM04_PT2
+{
+Convey you to somewhere where you can do no possible harm, and where no harm can come to you. I'm sure you can imagine there are worse alternatives.
 }
 
 
@@ -8217,4 +8558,282 @@ $holdtime 15.5
 {
 Here you'll find your standard armor vest and helmet. These will help protect you against any physical threat you may encounter while performing your duties. When your armor becomes too damaged to be useful, you'll need to find a fresh vest or helmet to protect yourself.
 }
+
+
+//=======================//
+// Otis (Opposing Force)
+//=======================//
+$color	126 192 255
+$color2  63 96 128
+
+$holdtime 3
+!OT_OK0
+{
+So, my reputation precedes me.
+}
+
+$holdtime 3
+!OT_OK1
+{
+I have a better chance of survival with you!
+}
+
+$holdtime 3
+!OT_OK2
+{
+See, now, we have a better chance if we stay together!
+}
+
+$holdtime 2
+!OT_OK3
+{
+Alright, let's go!
+}
+
+$holdtime 3
+!OT_OK4
+{
+Okay, heh, I don't wanna die alone!
+}
+
+$holdtime 3
+!OT_OK5
+{
+Sure! I have nothing better to do!
+}
+
+$holdtime 3
+!OT_OK6
+{
+Oh yeah, sure, we'll work better as a team!
+}
+
+$holdtime 3
+!OT_WAIT0
+{
+Okay, if you're sure you don't want my help.
+}
+
+$holdtime 3
+!OT_WAIT1
+{
+Yeah, I think I'll stay here, and die!
+}
+
+$holdtime 3
+!OT_WAIT2
+{
+You go on. I'm just slowing you down!
+}
+
+$holdtime 2
+!OT_WAIT3
+{
+Yeah, I'll wait here.
+}
+
+$holdtime 4
+!OT_WAIT4
+{
+Ok, I'll see you later then?
+}
+
+$holdtime 4
+!OT_WAIT5
+{
+I'll... I'll stay here and pretend to guard this area.
+}
+
+$holdtime 2
+!OT_WAIT6
+{
+Don't leave me alone here!
+}
+
+$holdtime 2
+!OT_HELLO0
+{
+Hello, soldier, sir.
+}
+
+$holdtime 3
+!OT_HELLO1
+{
+Alright, a soldier! I'm saved!
+}
+
+$holdtime 1.5
+!OT_HELLO2
+{
+Heya, sir!
+}
+
+$holdtime 1.5
+!OT_HELLO3
+{
+Hey, soldier!
+}
+
+$holdtime 4.5
+!OT_QUESTION0
+{
+I tell you, wouldn't you just love a cold beer right about now? I know I would.
+}
+
+$holdtime 3
+!OT_QUESTION1
+{
+Are you leading us in the right direction?
+}
+
+$holdtime 2.5
+!OT_QUESTION2
+{
+Eh, how much worse can it get?
+}
+
+$holdtime 3
+!OT_QUESTION3
+{
+Hey, I bet you're glad you got me with ya, huh?
+}
+
+$holdtime 5.5
+!OT_QUESTION4
+{
+So, do you guys train for alien combat, or is this just a special occasion?
+}
+
+$holdtime 3
+!OT_QUESTION5
+{
+Oh man. Did you see somethin' move?
+}
+
+$holdtime 3
+!OT_QUESTION6
+{
+Did you hear that weird noise?
+}
+
+$holdtime 1.5
+!OT_ANSWER0
+{
+Ye, uh-huh.
+}
+
+$holdtime 1.5
+!OT_ANSWER1
+{
+Yes, sir.
+}
+
+$holdtime 1.5
+!OT_ANSWER2
+{
+You betcha.
+}
+
+$holdtime 2
+!OT_ANSWER3
+{
+Alright, alright.
+}
+
+$holdtime 1
+!OT_ANSWER4
+{
+Yup.
+}
+
+$holdtime 1.5
+!OT_ANSWER5
+{
+Yeah, sure.
+}
+
+$holdtime 1.5
+!OT_ANSWER6
+{
+No way.
+}
+
+$holdtime 2
+!OT_ANSWER7
+{
+Huh, I very much doubt it.
+}
+
+$holdtime 2
+!OT_ANSWER8
+{
+Don't hold your breath.
+}
+
+$holdtime 3
+!OT_ANSWER9
+{
+Uh... No! No.
+}
+
+$holdtime 2
+!OT_ANSWER10
+{
+I don't think so.
+}
+
+$holdtime 4
+!OT_ANSWER11
+{
+Now, either I have deja vu, or you repeat yourself.
+}
+
+$holdtime 1
+!OT_ANSWER12
+{
+Nope!
+}
+
+$holdtime 1.5
+!OT_ANSWER13
+{
+No, sir.
+}
+
+$holdtime 3.3
+!OT_ANSWER14
+{
+Now, I'm probably not the one you wanna ask.
+}
+
+$holdtime 1.8
+!OT_ANSWER15
+{
+I suppose.
+}
+
+$holdtime 1.5
+!OT_ANSWER16
+{
+Hell if I know.
+}
+
+$holdtime 2.8
+!OT_ANSWER17
+{
+Whoa, I can't wrap my brain around it.
+}
+
+$holdtime 2
+!OT_ANSWER18
+{
+Maybe so, maybe no.
+}
+
+$holdtime 2
+!OT_ANSWER19
+{
+Do you speak English much?
+}
+
 

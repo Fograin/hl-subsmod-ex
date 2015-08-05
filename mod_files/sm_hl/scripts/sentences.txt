@@ -1697,6 +1697,7 @@ OT_ANSWER7 otis/doubt
 OT_ANSWER8 otis/breath
 OT_ANSWER9 otis/no
 OT_ANSWER10 otis/dontguess
+OT_ANSWER11 otis/dejavu
 OT_ANSWER12 otis/nope
 OT_ANSWER13 otis/nosir
 OT_ANSWER14 otis/dontask
@@ -1705,7 +1706,7 @@ OT_ANSWER16 otis/hell
 OT_ANSWER17 otis/cantfigure
 OT_ANSWER18 otis/maybe
 OT_ANSWER19 otis/talkmuch
-OT_ANSWER20 otis/dejavu
+
 
 OT_KILL0 otis/gotone
 OT_KILL1 otis/another
