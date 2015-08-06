@@ -5,7 +5,7 @@
 
 Usage info:
 Everything that's located here is published under GNU GPL v3 licence.
-To get more info, read license.txt
+To get more info, read licenses.txt
 
 Credits:
 You can always find up-to-date version of credits file here:
