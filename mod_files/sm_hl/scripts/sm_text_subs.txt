@@ -10129,4 +10129,243 @@ $holdtime 2.5
 This is a restricted area, soldier!
 }
 
+$holdtime 2
+!RC_YESSIR
+{
+Sir, yes, sir!
+}
 
+$holdtime 1.5
+!MP_PISTOL01
+{
+Thanks, Corporal.
+}
+
+$holdtime 4
+!INTRO_FG1_L1
+{
+Tower: Man, if this is another "search and rescue" operation, I'm gonna be pissed!	
+}
+
+$holdtime 5
+!INTRO_FG2_L1
+{
+Jackson: Yeah, I'm gonna be pissed too when I gotta search and rescue your sorry ass!
+}
+
+$holdtime 4
+!INTRO_FG1_L2
+{
+Tower: Hey, Shephard! I think Jackson here's got the hots for you.
+}
+
+$holdtime 2
+!INTRO_FG2_L2
+{
+Jackson: Screw you, Tower!
+}
+
+$holdtime 2.3
+!INTRO_FG1_L3
+{
+Tower: Hey man, where the hell are we anyway?	
+}
+
+$holdtime 5.5
+!INTRO_FG2_L3
+{
+Jackson: Well, the pilot thought we were headin' to your mother's house, heh. So far this all looks familiar.
+}
+
+$holdtime 2
+!INTRO_FG1_L4
+{
+Tower: Yeah, that's real cute, Jackson.
+}
+
+$holdtime 2.2
+!INTRO_FG2_L4
+{
+Jackson: Anytime, anywhere!
+}
+
+$holdtime 1.7
+!INTRO_FG1_L5
+{
+Tower: Hey man, you smell that?	
+}
+
+$holdtime 1.5
+!INTRO_FG2_L5
+{
+Jackson: Smell what?
+}
+
+$holdtime 4.5
+!INTRO_FG1_L6
+{
+Tower: Smells like... smells like another babysittin' job to me, man!	
+}
+
+$holdtime 2
+!INTRO_FG2_L6
+{
+Jackson: Heh heh, no shit, man!	
+}
+
+$holdtime 8
+!INTRO_FG3_L1
+{
+Babysittin' job my ass! This has training mission written all over it! Why else would they have kept our orders from us for so long, huh?
+}
+
+$holdtime 7
+!INTRO_FG1_L7
+{
+Tower: Yeah, what the hell is that all about? Throwin' our asses in this hunk of junk and not even tellin' us what we're goin' in for, man.
+}
+
+$holdtime 2
+!INTRO_FG1_L8
+{
+Tower: Sir, yes, sir!
+}
+
+$holdtime 5.3
+!INTRO_FG2_L7
+{
+Jackson: Well, I don't really give a damn what we're going in for. Long as I get to kill me something!
+}
+
+$holdtime 2
+!INTRO_FG3_L2
+{
+Random soldier: I heard that!
+}
+
+$holdtime 4
+!INTRO_FG4_L1
+{
+Hey, you sleepin' over there? You want me to fluff your pillow for you?
+}
+
+$holdtime 5
+!INTRO_FG4_L2
+{
+What the hell kind of mission is this, anyway? We didn't even get a briefing before take-off!
+}
+
+	
+	
+	
+	
+	
+
+
+
+
+//===============================//
+// Opposing Force Military Radio
+//===============================//
+$color  96 255 96
+$color2 48 128 48
+
+$holdtime 7.7
+$chained !RD_YOUREALIVE_PT2
+!RD_YOUREALIVE
+{
+Radio: Shephard you're alive! Listen, we've been cut off pretty bad and orders are coming down to pull out! Repeat! Pull out!
+}
+
+$holdtime 11
+!RD_YOUREALIVE_PT2
+{
+Apparently, they've got other plans for Black Mesa now. If you can make your way through the transit system, you can probably reach the surface where we are pulling out. Good Luck! Over.
+}
+
+$holdtime 4.3
+!RD_TRANSIT
+{
+Radio: Get through the transit system to the extraction point! Don't-
+}
+
+$holdtime 13
+!RD_RALLYPOINT
+{
+Radio: All units, retreat to the rally point! I say, retreat to the rally point! (Medic!) Orders have been changed. We are pulling out! The safety of any units left behind cannot be guaranteed!
+}
+
+$holdtime 9
+!RD_LEFTBEHIND
+{
+Radio: Corporal Shephard, we've been left behind as well. We are onto your position now. Stand back from the maintenance door. We're gonna blow it!
+}
+
+$holdtime 12
+!RD_MAYDAY
+{
+Radio: Mayday! Mayday! Anyone copy? This is Tango Charlie Four Zero Niner, we're under attack! Repeat! Black Operators smashed the station and opened fire on us! Request backup immediately! Over.
+}
+
+$holdtime 13
+!RD_SOMEWORM
+{
+Radio: X-Ray Zulu, are you there?! We need backup in the waste sector! It's some sort of worm creature! Tower and Eddy is down, and I've lost contact with the rest of the squad. We need backup now! Now, damn it, Now!
+}
+
+$holdtime 10.3
+!RD_MORARFIELD
+{
+Radio: Adrian? Is that you? Listen, we're hold up across the mortar field, but we're pinned down by a group of Black Ops. We'll open the bunker door, but you better get over here quick!
+}
+
+$holdtime 3.5
+!RD_BOOT0
+{
+Radio: I hear you loud, and clear. We'll move to your position.
+}
+
+
+
+//============================//
+// Black Ops (Opposing Force)
+//============================//
+$color  255 140 140
+$color2 255  70  70
+
+$holdtime 4
+!BO_CLEANUP
+{
+Why do we always have to clean up a mess the grunts can't handle?
+}
+
+$holdtime 5
+!BO_PACKAGE
+{
+Tell me about it. I just wanna deliver the package and get out of here!
+}
+
+$holdtime 3.5
+!BO_SOONER
+{
+Yeah. Sooner or later the grunts are gonna figure it out.
+}
+
+$holdtime 5
+!BO_BECAREFUL
+{
+Be careful with that thing! One false move and this whole facility is gone.
+}
+
+$holdtime 5.5
+!BO_COVERED
+{
+I've got it covered. You just keep your eyes open, there are still some targets running around out there.
+}
+
+$holdtime 2.5
+!BO_GETDOWN
+{
+Get down! I hear something.
+}
+ 
