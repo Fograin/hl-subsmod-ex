@@ -103,8 +103,9 @@ GNU General Public License for more details.
 #define MAX_MODEL_BITS		11
 #define MAX_MODELS			(1<<MAX_MODEL_BITS)	// 11 bits == 2048 models
 
-#define MAX_SOUND_BITS		11
-#define MAX_SOUNDS			(1<<MAX_SOUND_BITS)	// 11 bits == 2048 sounds
+// Fograin92: Changed bits from 11(2048) to 12(4096)
+#define MAX_SOUND_BITS		12
+#define MAX_SOUNDS			(1<<MAX_SOUND_BITS)	// 12 bits == 4096 sounds
 
 #define MAX_ENTITY_BITS		12
 #define MAX_EDICTS			(1<<MAX_ENTITY_BITS)// 12 bits = 4096 edicts

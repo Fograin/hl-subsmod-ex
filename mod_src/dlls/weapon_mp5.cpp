@@ -1,17 +1,13 @@
-/***
-*
-*	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
-*	All Rights Reserved.
-*
-*   Use, distribution, and modification of this source code and/or resulting
-*   object code is restricted to non-commercial enhancements to products from
-*   Valve LLC.  All other use, distribution, or modification is prohibited
-*   without written permission from Valve LLC.
-*
-****/
+//=============================================================//
+//	Half-Life Subtitles MOD - Frag grenade weapon
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	This product contains software technology licensed from:
+//	Valve LLC.
+//	Id Software, Inc. ("Id Technology")
+//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
 
 #include "extdll.h"
 #include "util.h"
@@ -64,10 +60,12 @@ void CMP5::Spawn( )
 void CMP5::Precache( void )
 {
 	PRECACHE_MODEL("models/v_9mmAR.mdl");
+	PRECACHE_MODEL("models/v_9mmAR_bs.mdl");	// Fograin92
+	PRECACHE_MODEL("models/v_9mmAR_of.mdl");	// Fograin92
 	PRECACHE_MODEL("models/w_9mmAR.mdl");
 	PRECACHE_MODEL("models/p_9mmAR.mdl");
 
-	m_iShell = PRECACHE_MODEL ("models/shell.mdl");// brass shellTE_MODEL
+	m_iShell = PRECACHE_MODEL ("models/shell.mdl");// brass shell TE_MODEL
 
 	PRECACHE_MODEL("models/grenade.mdl");	// grenade
 
@@ -119,9 +117,18 @@ int CMP5::AddToPlayer( CBasePlayer *pPlayer )
 	return FALSE;
 }
 
+// Fograin92: The correct model will be deployed
 BOOL CMP5::Deploy( )
 {
-	return DefaultDeploy( "models/v_9mmAR.mdl", "models/p_9mmAR.mdl", MP5_DEPLOY, "mp5" );
+	// Blue Shift
+	if (CVAR_GET_FLOAT("sm_hud") == 1.0 )
+		return DefaultDeploy( "models/v_9mmAR_bs.mdl", "models/p_9mmAR.mdl", MP5_DEPLOY, "mp5" );
+	// Opposing Force
+	else if (CVAR_GET_FLOAT("sm_hud") == 2.0 )
+		return DefaultDeploy( "models/v_9mmAR_of.mdl", "models/p_9mmAR.mdl", MP5_DEPLOY, "mp5" );
+	// Half-Life
+	else
+		return DefaultDeploy( "models/v_9mmAR.mdl", "models/p_9mmAR.mdl", MP5_DEPLOY, "mp5" );
 }
 
 

@@ -102,7 +102,6 @@ ST_CLEAR0 shocktrooper/dup blis dup
 ST_CHECK0 shocktrooper/kss kss
 
 
-
 // monster_hgrunt -> Grenade alert
 HG_GREN0 hgrunt/clik(p120) grenade! clik
 HG_GREN1 hgrunt/(t30) clik take!(e75) cover!(s5) clik
@@ -1540,7 +1539,7 @@ RO_OUTRO1 rosenberg/ro_outro1
 RO_OUTRO2 rosenberg/ro_outro2
 
 
-//GMAN
+// monster_gman -> HL
 GM_1MUMBLE gman/gman_mumble1
 GM_2MUMBLE gman/gman_mumble2
 GM_3MUMBLE gman/gman_mumble3
@@ -1559,7 +1558,7 @@ GM_WISE gman/gman_wise
 GM_REGRET gman/gman_noreg
 GM_WONTWORK gman/gman_nowork
 
-// G-Man outro speech
+// monster_gman -> OF
 OF7A0_GM01 gman/of7a0_gm01
 OF7A0_GM02 gman/of7a0_gm02
 OF7A0_GM03 gman/of7a0_gm03
@@ -1707,7 +1706,6 @@ OT_ANSWER17 otis/cantfigure
 OT_ANSWER18 otis/maybe
 OT_ANSWER19 otis/talkmuch
 
-
 OT_KILL0 otis/gotone
 OT_KILL1 otis/another
 OT_KILL2 otis/buttugly
@@ -1764,7 +1762,7 @@ OT_MORTAL1 otis/hitbad
 OT_MISC0 otis/stupidmachines
 OT_MISC1 otis/quarter
 
-//scripts
+// monster_otis -> Narrative
 OT_NOTOPEN otis/of1a1_ot01
 OT_FOUNDVEST otis/of1a1_ot02
 OT_GOODLUCK otis/of1a1_ot03
@@ -1782,7 +1780,7 @@ OT_MMMM otis/mmmm
 OT_LEFTOVERS otis/leftovers
 
 
-// monster_hgrunt_ally
+// monster_human_grunt_ally
 FG_QUESTION0 fgrunt/seensquad
 FG_QUESTION1 fgrunt/current
 FG_QUESTION2 fgrunt/coverup
@@ -1847,10 +1845,9 @@ FG_WAIT1 fgrunt/orders
 FG_WAIT2 fgrunt/scout
 FG_WAIT3 fgrunt/guardduty
 
-FG_STOP0 fgrunt/sorry
+FG_STOP0 fgrunt/leave
 FG_STOP1 fgrunt/post
 FG_STOP2 fgrunt/stay
-FG_STOP3 fgrunt/leave
 
 FG_KILL0 fgrunt/oneshot
 FG_KILL1 fgrunt/killer
@@ -1859,9 +1856,6 @@ FG_KILL3 fgrunt/tag
 FG_KILL4 fgrunt/corporal
 FG_KILL5 fgrunt/talking
 FG_KILL6 fgrunt/take
-FG_KILL7 fgrunt/sniper
-FG_KILL8 fgrunt/checkin
-FG_KILL9 fgrunt/area
 
 FG_SHOT0 fgrunt/check
 FG_SHOT1 fgrunt/wantsome
@@ -1915,79 +1909,60 @@ FG_MORTAL0 fgrunt/hitbad
 FG_MORTAL1 fgrunt/critical
 FG_MORTAL2 fgrunt/sdamage
 
-FG_CURE1 fgrunt/needmedic
-FG_CURE2 fgrunt/hurt
-FG_CURE3 fgrunt/hell
-FG_CURE4 fgrunt/feel
-
+FG_CURE0 fgrunt/needmedic
+FG_CURE1 fgrunt/hurt
+FG_CURE2 fgrunt/hell
+FG_CURE3 fgrunt/feel
 FG_MAKEIT fgrunt/makeit
 
 
-
-// TORCH GRUNT
+//monster_human_torch_ally 
 TG_OPEN0 fgrunt/locksmith
 TG_OPEN1 fgrunt/stand
 TG_OPEN2 fgrunt/through
-
 TG_NOTOPEN0 fgrunt/blocked
 TG_NOTOPEN1 fgrunt/thick
 TG_NOTOPEN2 fgrunt/cutting
 TG_NOTOPEN3 fgrunt/situations
-
 TG_CUTIT fgrunt/of5a3_fg01
 
-
-
-// MEDIC GRUNT
+// monster_human_medic_ally 
 MG_HEAL0 fgrunt/sting
 MG_HEAL1 fgrunt/onepiece
-MG_HEAL3 fgrunt/frosty
-
+MG_HEAL2 fgrunt/frosty
 MG_NOTHEAL0 fgrunt/nohealth
 
-
-// LEVEL SPECIFIC
+// monster_human_grunt_ally -> Narrative
 FG_COOPER fgrunt/of1a6_fg01
 FG_MADEIT fgrunt/of1a6_fg02
 FG_TOHANGAR fgrunt/of1a6_fg03
 FG_MESSAROUND fgrunt/of1a6_fg04
 FG_TALK fgrunt/of1a6_fg05
-
 FG_GETOUT fgrunt/of2a1_fg01
-
 FG_BITOFF fgrunt/of2a4_fg01
 FG_OWNASSES fgrunt/of2a4_fg02
 FG_YOUWITHUS fgrunt/of2a4_fg03
-
 FG_DOWNTHERE fgrunt/of2a5_fg01
 FG_NEEDMEDIC fgrunt/of2a5_fg02
 FG_FIXEDUP fgrunt/of2a5_fg03
 FG_THANKSDOC fgrunt/of2a5_fg04
-
 FG_BRIEFING fgrunt/of2a6_fg01
 FG_SAMETEAM fgrunt/of2a6_fg02
 FG_KEEPMOVING fgrunt/of2a6_fg03
-
 FG_WIPEDOUT fgrunt/of3a4_fg01
-
 FG_MASKFREAKS fgrunt/of5a1_fg01
 FG_PATIENT fgrunt/of5a1_fg02
 FG_TABLES fgrunt/of5a1_fg03
 FG_SUPRISE fgrunt/of5a1_fg04
-
 FG_EVAC fgrunt/of5a3_fg01
 FG_DAMNWALLS fgrunt/of5a3_fg02
 FG_FIREPOWER fgrunt/of5a3_fg03
 FG_STANDOFF fgrunt/of5a3_fg04
 FG_STANDBACK fgrunt/of5a3_fg05
-
 FG_BLACKOPS fgrunt/of6a1_fg01
 FG_LETSGO fgrunt/of6a1_fg02
-
 FG_YES fgrunt/siryessir
 FG_GROUPYES fgrunt/yessir
-
-// BOOT CAMP MP
 
 FG_POK0 fgrunt/restricted.wav
 FG_POK1 fgrunt/restricted2.wav

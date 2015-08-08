@@ -1,17 +1,13 @@
-/***
-*
-*	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
-*	All Rights Reserved.
-*
-*   Use, distribution, and modification of this source code and/or resulting
-*   object code is restricted to non-commercial enhancements to products from
-*   Valve LLC.  All other use, distribution, or modification is prohibited
-*   without written permission from Valve LLC.
-*
-****/
+//=============================================================//
+//	Half-Life Subtitles MOD - Frag grenade weapon
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	This product contains software technology licensed from:
+//	Valve LLC.
+//	Id Software, Inc. ("Id Technology")
+//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
 #include "extdll.h"
 #include "util.h"
 #include "cbase.h"
@@ -58,6 +54,8 @@ void CHandGrenade::Precache( void )
 {
 	PRECACHE_MODEL("models/w_grenade.mdl");
 	PRECACHE_MODEL("models/v_grenade.mdl");
+	PRECACHE_MODEL("models/v_grenade_bs.mdl");	// Fograin92
+	PRECACHE_MODEL("models/v_grenade_of.mdl");	// Fograin92
 	PRECACHE_MODEL("models/p_grenade.mdl");
 }
 
@@ -78,11 +76,20 @@ int CHandGrenade::GetItemInfo(ItemInfo *p)
 	return 1;
 }
 
-
+// Fograin92: The correct model will be deployed
 BOOL CHandGrenade::Deploy( )
 {
 	m_flReleaseThrow = -1;
-	return DefaultDeploy( "models/v_grenade.mdl", "models/p_grenade.mdl", HANDGRENADE_DRAW, "crowbar" );
+	
+	// Blue Shift
+	if (CVAR_GET_FLOAT("sm_hud") == 1.0 )
+		return DefaultDeploy( "models/v_grenade_bs.mdl", "models/p_grenade.mdl", HANDGRENADE_DRAW, "crowbar" );
+	// Opposing Force
+	else if (CVAR_GET_FLOAT("sm_hud") == 2.0 )
+		return DefaultDeploy( "models/v_grenade_of.mdl", "models/p_grenade.mdl", HANDGRENADE_DRAW, "crowbar" );
+	// Half-Life
+	else
+		return DefaultDeploy( "models/v_grenade.mdl", "models/p_grenade.mdl", HANDGRENADE_DRAW, "crowbar" );
 }
 
 BOOL CHandGrenade::CanHolster( void )

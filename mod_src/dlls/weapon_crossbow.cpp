@@ -1,5 +1,5 @@
 //=============================================================//
-//	Half-Life Subtitles MOD - Crowbar weapon
+//	Half-Life Subtitles MOD - Crossbow weapon
 //	https://github.com/Fograin/hl-subsmod-ex
 //	
 //	This product contains software technology licensed from:
@@ -275,6 +275,8 @@ void CCrossbow::Precache( void )
 {
 	PRECACHE_MODEL("models/w_crossbow.mdl");
 	PRECACHE_MODEL("models/v_crossbow.mdl");
+	PRECACHE_MODEL("models/v_crossbow_of.mdl");	// Fograin92
+	PRECACHE_MODEL("models/v_crossbow_bs.mdl");	// Fograin92
 	PRECACHE_MODEL("models/p_crossbow.mdl");
 
 	PRECACHE_SOUND("weapons/xbow_fire1.wav");
@@ -303,12 +305,33 @@ int CCrossbow::GetItemInfo(ItemInfo *p)
 	return 1;
 }
 
-
+// Fograin92: The correct model will be deployed
 BOOL CCrossbow::Deploy( )
 {
-	if (m_iClip)
-		return DefaultDeploy( "models/v_crossbow.mdl", "models/p_crossbow.mdl", CROSSBOW_DRAW1, "bow" );
-	return DefaultDeploy( "models/v_crossbow.mdl", "models/p_crossbow.mdl", CROSSBOW_DRAW2, "bow" );
+	// Blue Shift
+	if (CVAR_GET_FLOAT("sm_hud") == 1.0 )
+	{
+		if (m_iClip)
+			return DefaultDeploy( "models/v_crossbow_bs.mdl", "models/p_crossbow.mdl", CROSSBOW_DRAW1, "bow" );
+		else
+			return DefaultDeploy( "models/v_crossbow_bs.mdl", "models/p_crossbow.mdl", CROSSBOW_DRAW2, "bow" );
+	}
+	// Opposing Force
+	else if (CVAR_GET_FLOAT("sm_hud") == 2.0 )
+	{
+		if (m_iClip)
+			return DefaultDeploy( "models/v_crossbow_of.mdl", "models/p_crossbow.mdl", CROSSBOW_DRAW1, "bow" );
+		else
+			return DefaultDeploy( "models/v_crossbow_of.mdl", "models/p_crossbow.mdl", CROSSBOW_DRAW2, "bow" );
+	}
+	// Half-Life
+	else
+	{
+		if (m_iClip)
+			return DefaultDeploy( "models/v_crossbow.mdl", "models/p_crossbow.mdl", CROSSBOW_DRAW1, "bow" );
+		else
+			return DefaultDeploy( "models/v_crossbow.mdl", "models/p_crossbow.mdl", CROSSBOW_DRAW2, "bow" );
+	}
 }
 
 void CCrossbow::Holster( int skiplocal /* = 0 */ )

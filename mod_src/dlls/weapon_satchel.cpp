@@ -1,17 +1,13 @@
-/***
-*
-*	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
-*	All Rights Reserved.
-*
-*   Use, distribution, and modification of this source code and/or resulting
-*   object code is restricted to non-commercial enhancements to products from
-*   Valve LLC.  All other use, distribution, or modification is prohibited
-*   without written permission from Valve LLC.
-*
-****/
+//=============================================================//
+//	Half-Life Subtitles MOD - 357. Satchel charge
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	This product contains software technology licensed from:
+//	Valve LLC.
+//	Id Software, Inc. ("Id Technology")
+//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
 #if !defined( OEM_BUILD ) && !defined( HLDEMO_BUILD )
 
 #include "extdll.h"
@@ -228,6 +224,10 @@ void CSatchel::Precache( void )
 {
 	PRECACHE_MODEL("models/v_satchel.mdl");
 	PRECACHE_MODEL("models/v_satchel_radio.mdl");
+	PRECACHE_MODEL("models/v_satchel_bs.mdl");			// Fograin92
+	PRECACHE_MODEL("models/v_satchel_radio_bs.mdl");	// Fograin92
+	PRECACHE_MODEL("models/v_satchel_of.mdl");			// Fograin92
+	PRECACHE_MODEL("models/v_satchel_radio_of.mdl");	// Fograin92
 	PRECACHE_MODEL("models/w_satchel.mdl");
 	PRECACHE_MODEL("models/p_satchel.mdl");
 	PRECACHE_MODEL("models/p_satchel_radio.mdl");
@@ -289,18 +289,37 @@ BOOL CSatchel::CanDeploy( void )
 	return FALSE;
 }
 
+// Fograin92: The correct model will be deployed
 BOOL CSatchel::Deploy( )
 {
-
 	m_pPlayer->m_flNextAttack = UTIL_WeaponTimeBase() + 1.0;
 	m_flTimeWeaponIdle = UTIL_WeaponTimeBase() + UTIL_SharedRandomFloat( m_pPlayer->random_seed, 10, 15 );
 
-	if ( m_chargeReady )
-		return DefaultDeploy( "models/v_satchel_radio.mdl", "models/p_satchel_radio.mdl", SATCHEL_RADIO_DRAW, "hive" );
+	// Blue Shift
+	if (CVAR_GET_FLOAT("sm_hud") == 1.0 )
+	{
+		if ( m_chargeReady )
+			return DefaultDeploy( "models/v_satchel_radio_bs.mdl", "models/p_satchel_radio.mdl", SATCHEL_RADIO_DRAW, "hive" );
+		else
+			return DefaultDeploy( "models/v_satchel_bs.mdl", "models/p_satchel.mdl", SATCHEL_DRAW, "trip" );
+	}
+	// Opposing Force
+	else if (CVAR_GET_FLOAT("sm_hud") == 2.0 )
+	{
+		if ( m_chargeReady )
+			return DefaultDeploy( "models/v_satchel_radio_of.mdl", "models/p_satchel_radio.mdl", SATCHEL_RADIO_DRAW, "hive" );
+		else
+			return DefaultDeploy( "models/v_satchel_of.mdl", "models/p_satchel.mdl", SATCHEL_DRAW, "trip" );
+	}
+	// Half-Life
 	else
-		return DefaultDeploy( "models/v_satchel.mdl", "models/p_satchel.mdl", SATCHEL_DRAW, "trip" );
+	{
+		if ( m_chargeReady )
+			return DefaultDeploy( "models/v_satchel_radio.mdl", "models/p_satchel_radio.mdl", SATCHEL_RADIO_DRAW, "hive" );
+		else
+			return DefaultDeploy( "models/v_satchel.mdl", "models/p_satchel.mdl", SATCHEL_DRAW, "trip" );
+	}
 
-	
 	return TRUE;
 }
 

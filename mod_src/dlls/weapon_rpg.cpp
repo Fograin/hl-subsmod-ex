@@ -1,17 +1,13 @@
-/***
-*
-*	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
-*	All Rights Reserved.
-*
-*   Use, distribution, and modification of this source code and/or resulting
-*   object code is restricted to non-commercial enhancements to products from
-*   Valve LLC.  All other use, distribution, or modification is prohibited
-*   without written permission from Valve LLC.
-*
-****/
+//=============================================================//
+//	Half-Life Subtitles MOD - 357. RPG Weapon
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	This product contains software technology licensed from:
+//	Valve LLC.
+//	Id Software, Inc. ("Id Technology")
+//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
 #if !defined( OEM_BUILD )
 
 #include "extdll.h"
@@ -360,6 +356,8 @@ void CRpg::Precache( void )
 {
 	PRECACHE_MODEL("models/w_rpg.mdl");
 	PRECACHE_MODEL("models/v_rpg.mdl");
+	PRECACHE_MODEL("models/v_rpg_of.mdl");	// Fograin92
+	PRECACHE_MODEL("models/v_rpg_bs.mdl");	// Fograin92
 	PRECACHE_MODEL("models/p_rpg.mdl");
 
 	PRECACHE_SOUND("items/9mmclip1.wav");
@@ -403,14 +401,33 @@ int CRpg::AddToPlayer( CBasePlayer *pPlayer )
 	return FALSE;
 }
 
+// Fograin92: The correct model will be deployed
 BOOL CRpg::Deploy( )
 {
-	if ( m_iClip == 0 )
+	// Blue Shift
+	if (CVAR_GET_FLOAT("sm_hud") == 1.0 )
 	{
-		return DefaultDeploy( "models/v_rpg.mdl", "models/p_rpg.mdl", RPG_DRAW_UL, "rpg" );
+		if ( m_iClip == 0 )
+			return DefaultDeploy( "models/v_rpg_bs.mdl", "models/p_rpg.mdl", RPG_DRAW_UL, "rpg" );
+		else
+			return DefaultDeploy( "models/v_rpg_bs.mdl", "models/p_rpg.mdl", RPG_DRAW1, "rpg" );
 	}
-
-	return DefaultDeploy( "models/v_rpg.mdl", "models/p_rpg.mdl", RPG_DRAW1, "rpg" );
+	// Opposing Force
+	else if (CVAR_GET_FLOAT("sm_hud") == 2.0 )
+	{
+		if ( m_iClip == 0 )
+			return DefaultDeploy( "models/v_rpg_of.mdl", "models/p_rpg.mdl", RPG_DRAW_UL, "rpg" );
+		else
+			return DefaultDeploy( "models/v_rpg_of.mdl", "models/p_rpg.mdl", RPG_DRAW1, "rpg" );
+	}
+	// Half-Life
+	else
+	{
+		if ( m_iClip == 0 )
+			return DefaultDeploy( "models/v_rpg.mdl", "models/p_rpg.mdl", RPG_DRAW_UL, "rpg" );
+		else
+			return DefaultDeploy( "models/v_rpg.mdl", "models/p_rpg.mdl", RPG_DRAW1, "rpg" );
+	}
 }
 
 

@@ -1,15 +1,15 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual C++ Express 2008
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "subsmod_server", "dlls\hl.vcproj", "{76086D5A-EE78-4DBF-96DA-D1F1B0051404}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sm_hl_server", "dlls\hl.vcproj", "{76086D5A-EE78-4DBF-96DA-D1F1B0051404}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "subsmod_client", "cl_dll\cl_dll.vcproj", "{17D8004C-5F92-4571-BC3C-B2EDE1DD908C}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sm_hl_client", "cl_dll\cl_dll.vcproj", "{17D8004C-5F92-4571-BC3C-B2EDE1DD908C}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "subsmod_mainmenu", "mainui\mainui.vcproj", "{7106FDE7-46F9-495B-BED2-14E0DE925C03}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xash_menu", "mainui\mainui.vcproj", "{7106FDE7-46F9-495B-BED2-14E0DE925C03}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "subsmod_engine", "engine\engine.vcproj", "{5EA2BC88-DB67-4B64-AA2F-C2BCA4D82169}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "xash_engine", "engine\engine.vcproj", "{5EA2BC88-DB67-4B64-AA2F-C2BCA4D82169}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "subsmod_launcher", "game_launch\game.vcproj", "{C67A2167-C4A7-42BB-82A9-790763B3E3CD}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "sm_hl_launcher", "game_launch\game.vcproj", "{C67A2167-C4A7-42BB-82A9-790763B3E3CD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

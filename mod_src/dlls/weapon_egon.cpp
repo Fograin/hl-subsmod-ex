@@ -1,17 +1,13 @@
-/***
-*
-*	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
-*	All Rights Reserved.
-*
-*   Use, distribution, and modification of this source code and/or resulting
-*   object code is restricted to non-commercial enhancements to products from
-*   Valve LLC.  All other use, distribution, or modification is prohibited
-*   without written permission from Valve LLC.
-*
-****/
+//=============================================================//
+//	Half-Life Subtitles MOD - Egon weapon
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	This product contains software technology licensed from:
+//	Valve LLC.
+//	Id Software, Inc. ("Id Technology")
+//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
 #if !defined( OEM_BUILD ) && !defined( HLDEMO_BUILD )
 
 #include "extdll.h"
@@ -67,6 +63,8 @@ void CEgon::Precache( void )
 {
 	PRECACHE_MODEL("models/w_egon.mdl");
 	PRECACHE_MODEL("models/v_egon.mdl");
+	PRECACHE_MODEL("models/v_egon_bs.mdl");		// Fograin92
+	PRECACHE_MODEL("models/v_egon_of.mdl");		// Fograin92
 	PRECACHE_MODEL("models/p_egon.mdl");
 
 	PRECACHE_MODEL("models/w_9mmclip.mdl");
@@ -85,12 +83,21 @@ void CEgon::Precache( void )
 	m_usEgonStop = PRECACHE_EVENT ( 1, "events/egon_stop.sc" );
 }
 
-
+// Fograin92: The correct model will be deployed
 BOOL CEgon::Deploy( void )
 {
 	m_deployed = FALSE;
 	m_fireState = FIRE_OFF;
-	return DefaultDeploy( "models/v_egon.mdl", "models/p_egon.mdl", EGON_DRAW, "egon" );
+
+	// Blue Shift
+	if (CVAR_GET_FLOAT("sm_hud") == 1.0 )
+		return DefaultDeploy( "models/v_egon_bs.mdl", "models/p_egon.mdl", EGON_DRAW, "egon" );
+	// Opposing Force
+	else if (CVAR_GET_FLOAT("sm_hud") == 2.0 )
+		return DefaultDeploy( "models/v_egon_of.mdl", "models/p_egon.mdl", EGON_DRAW, "egon" );
+	// Half-Life
+	else
+		return DefaultDeploy( "models/v_egon.mdl", "models/p_egon.mdl", EGON_DRAW, "egon" );
 }
 
 int CEgon::AddToPlayer( CBasePlayer *pPlayer )
