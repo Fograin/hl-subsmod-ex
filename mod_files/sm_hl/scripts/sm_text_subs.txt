@@ -24,6 +24,7 @@ $fadein 0.01
 $fxtime 0.25
 $fadeout 0.5
 
+
 //========================//
 // Train ride (Half-Life)
 //========================//
@@ -168,6 +169,7 @@ Thank you, and have a very safe and productive day!
 }
 
 
+
 //========================//
 // Train ride (Blue-Shift)
 //========================//
@@ -278,11 +280,43 @@ Please stand back from the automated door until it has fully opened. Before exit
 }
 
 
+
 //=============================//
 // Train ride (Opposing Force)
 //=============================//
 $color  224 224 224
 $color2 112 112 112
+
+$holdtime 12
+!OF_TRAM1
+{
+This train is... is-is-is inbound from... from Sector C... Please keep your limbs in-in-inside the train at all times.
+}
+
+$holdtime 16
+!OF_TRAM2
+{
+If you have an associate with a background in the areas of: Theoretical Physics, Biotechnology, or other high-tech disciplines, please contact our civilian recruiting di-di-division.
+}
+
+$holdtime 20
+!OF_TRAM3
+{
+A re-re-re... a reminder to all Black Mesa personnel... Regular radiation and biohazard s-s-screenings are a requirement of continued employment in the, in the, in the... in the Black Mesa Research Facility.
+}
+
+$holdtime 12
+!OF_TRAM4
+{
+Do-do-do not... do not attempt to open the doors until the train has come to a complete halt at the, at the station platform.
+}
+
+$holdtime 3
+!OF_TRAM5
+{
+Now arriving at...
+}
+
 
 
 //===============================================//
@@ -619,6 +653,7 @@ $holdtime 9.5
 {
 Congratulations on completing the Black Mesa Hazard Course! You are now fully certified for use of the H.E.V. Mark 4 protective system!
 }
+
 
 
 //==================//
@@ -1336,6 +1371,7 @@ Didn't you already ask me that?
 }
 
 
+
 //============================//
 // Barney Scripted Subtitles
 //============================//
@@ -1647,6 +1683,7 @@ I'm gonna stay down here. If I see anything looks like it doesn't belong here, I
 }
 
 
+
 //===============================//
 // Barney (Blue-Shift) Subtitles
 //===============================//
@@ -1905,6 +1942,7 @@ Otis: I'll get the leftovers!
 }
 
 
+
 //===================================//
 // Barney (Opposing Force) Subtitles
 //===================================//
@@ -1982,6 +2020,7 @@ $holdtime 3.5
 {
 What the he... What is that, doc?
 }
+
 
 
 //=====================//
@@ -3161,6 +3200,7 @@ Weren't you supposed to be in the test chamber half an hour ago?
 }
 
 
+
 //==============================//
 // Scientist Scripted Subtitles
 //==============================//
@@ -3908,6 +3948,7 @@ FREEMAN, YOU FOOL!!!
 }
 
 
+
 //===================================//
 // Scientists (Blue-Shift Subtitles)
 //===================================//
@@ -4216,6 +4257,7 @@ Look out!
 }
 
 
+
 //=======================================//
 // Scientists (Opposing Force Subtitles)
 //=======================================//
@@ -4353,6 +4395,7 @@ $holdtime 3.5
 {
 HURRY UP FREEMAN! I CAN'T KEEP IT OPEN FOREVER!
 }
+
 
 
 //========================//
@@ -4848,6 +4891,7 @@ Everything ok there?
 }
 
 
+
 //=========================//
 // Human Grunts (scripted)
 //=========================//
@@ -4976,6 +5020,7 @@ Repeat, we are pulling out and commencing air strikes. Give us targets or get be
 }
 
 
+
 //====================================//
 // Human Grunts (Blue-Shift Subtitles)
 //====================================//
@@ -5014,6 +5059,7 @@ $holdtime 4
 {
 Alright, we got that bastard. What's the status on Freeman?
 }
+
 
 
 //=====================================//
@@ -5687,6 +5733,7 @@ $holdtime 3
 {
 20 seconds remaining.
 }
+
 
 
 //================================================//
@@ -6443,6 +6490,7 @@ ATTENTION: Lambda Complex personnel; Primary Core activated.
 }
 
 
+
 //=====================================================//
 // Black Mesa Base Computer (VOX) Blue-Shift sentences
 //=====================================================//
@@ -6457,6 +6505,7 @@ $holdtime 7.5
 {
 Warning! Extreme electromagnetic field hazard in Sector C.
 }
+
 
 
 //=========================================================//
@@ -6515,6 +6564,7 @@ $holdtime 11.5
 {
 Warning! Severe damage detected in ventillation systems under research laboratory 2, evacuate area immediately!
 }
+
 
 
 //==========//
@@ -7156,6 +7206,7 @@ WARNING: Power movement system, overload.
 }
 
 
+
 //===========//
 // Nihilanth
 //===========//
@@ -7247,6 +7298,7 @@ Win... you cannot win...
 }
 
 
+
 //======//
 // GMan
 //======//
@@ -7314,6 +7366,7 @@ No regrets, Mr. Freeman...
 }
 
 
+
 //=======================//
 // GMan (Opposing Force)
 //=======================//
@@ -7368,6 +7421,7 @@ $holdtime 12
 {
 Convey you to somewhere where you can do no possible harm, and where no harm can come to you. I'm sure you can imagine there are worse alternatives.
 }
+
 
 
 //================================================//
@@ -8225,6 +8279,7 @@ Then again, we're all lucky. Thanks to you, however, we were actually able to pu
 }
 
 
+
 //============================================//
 // Barney Hologram (Blue-Shift Hazard Course)
 //============================================//
@@ -8558,6 +8613,7 @@ $holdtime 15.5
 {
 Here you'll find your standard armor vest and helmet. These will help protect you against any physical threat you may encounter while performing your duties. When your armor becomes too damaged to be useful, you'll need to find a fresh vest or helmet to protect yourself.
 }
+
 
 
 //=======================//
@@ -9177,12 +9233,12 @@ I think they're plannin' on blowin' up the base. Now-now, why do you think they 
 }
 
 
+
 //========================================//
 // Friendly Human Grunts (Opposing Force)
 //========================================//
 $color  96 255 96
 $color2 48 128 48
-
 
 $holdtime 3
 !FG_QUESTION0
@@ -10255,12 +10311,23 @@ $holdtime 5
 What the hell kind of mission is this, anyway? We didn't even get a briefing before take-off!
 }
 
-	
-	
-	
-	
-	
+$holdtime 7
+!INTRO_DR_L1
+{
+Sergeant: Do you have a problem, private?! I will give you your orders when we have reached the LZ. You got that, soldier?
+}
 
+$holdtime 5
+!INTRO_DR_L2
+{
+Sergeant: OK, listen up, people! We have an extremely hostile situation on our hand!
+}
+
+$holdtime 8.3
+!INTRO_DR_L3
+{
+Sergeant: Recon has not been able to determine the amount of opposition, so let's keep this tight. Your mission is to get- Shit! Goddamn it!
+}
 
 
 
@@ -10368,4 +10435,867 @@ $holdtime 2.5
 {
 Get down! I hear something.
 }
- 
+
+
+
+//=================================//
+// Drill Instructor (Opposing Force)
+//=================================//
+$color  255 222 152
+$color2 128 111  76
+
+$holdtime 2.5
+!DR_ADD01
+{
+You eyeballin' me, boy?!
+}
+
+$holdtime 2.5
+!DR_ADD02
+{
+Are you touching me, dirtbag?!
+}
+
+$holdtime 2.8
+!DR_ADD03
+{
+What is your major malfunction?
+}
+
+$holdtime 5
+!DR_ADD04
+{
+It's time to kick ass and chew bubble gum, and I'm all out of bubble gum!
+}
+
+$holdtime 4
+!DR_ADD05
+{
+I eat concertina wire and piss napalm!
+}
+
+$holdtime 2.5
+!DR_ADD06
+{
+God has a hard-on for Marines!
+}
+
+$holdtime 2.5
+!DR_ADD07
+{
+I eat Green Berets for breakfast!
+}
+
+$holdtime 3
+!DR_ADD08
+{
+You'd best get your head on straight, maggot!
+}
+
+$holdtime 2.5
+!DR_ADD09
+{
+Soldier, you are all ate up!
+}
+
+$holdtime 4
+!DR_ADD10
+{
+Son, I will break you down like an M16!
+}
+
+$holdtime 5.2
+!DR_ADD11
+{
+I smell smoke! And where there's smoke, there's fire! You better move it, soldier!
+}
+
+$holdtime 3
+!DR_ADD12
+{
+I will smoke you like a Cuban cigar!
+}
+
+$holdtime 2.3
+!DR_ADD13
+{
+Drop and give me twenty, maggot!
+}
+
+$holdtime 2.5
+!DR_ADD14
+{
+Get down and break them elbows!
+}
+
+$holdtime 3
+!DR_ADD15
+{
+What's your first general order, dirtbag?
+}
+
+$holdtime 7
+!DR_ADD16
+{
+Where you from, soldier? Texas! Holy cow! You know what comes from Texas, don't you?
+}
+
+$holdtime 4.3
+!DR_ADD17
+{
+Can I be in charge around here? Well, thank you very much!
+}
+
+$holdtime 3
+!DR_ADD18
+{
+You had better square yourself away, Marine!
+}
+
+$holdtime 3
+!DR_ADD19
+{
+You better move like you've got a purpose!
+}
+
+$holdtime 2.5
+!DR_DR2_ADD01
+{
+You eyeballin' me, boy?!
+}
+
+$holdtime 2.5
+!DR_DR2_ADD02
+{
+Are you touching me, dirtbag?!
+}
+
+$holdtime 3.5
+!DR_DR2_ADD03
+{
+What is your major malfunction, dirtbag?
+}
+
+$holdtime 5
+!DR_DR2_ADD04
+{
+It's time to kick ass and chew bubble gum, and I'm all out of bubble gum!
+}
+
+$holdtime 3.5
+!DR_DR2_ADD05
+{
+I eat concertina wire and piss napalm!
+}
+
+$holdtime 3.5
+!DR_DR2_ADD06
+{
+What is your major malfunction, dirtbag?
+}
+
+$holdtime 2.8
+!DR_DR2_ADD07
+{
+I eat Green Berets for breakfast!
+}
+
+$holdtime 3
+!DR_DR2_ADD08
+{
+You'd best get your head on straight!
+}
+
+$holdtime 2.8
+!DR_DR2_ADD09
+{
+Soldier, you are all ate up!
+}
+
+$holdtime 4
+!DR_DR2_ADD10
+{
+Dirtbag! I will break you down like an M16!
+}
+
+$holdtime 5.2
+!DR_DR2_ADD11
+{
+I smell smoke! And where there's smoke, there's fire! You better move it, soldier!
+}
+
+$holdtime 3
+!DR_DR2_ADD12
+{
+I will smoke you like a Cuban cigar!
+}
+
+$holdtime 2
+!DR_DR2_ADD13
+{
+Drop and give me twenty!
+}
+
+$holdtime 2.5
+!DR_DR2_ADD14
+{
+Get down and break them elbows!
+}
+
+$holdtime 3
+!DR_DR2_ADD15
+{
+What's your first general order, dirtbag?
+}
+
+$holdtime 7
+!DR_DR2_ADD16
+{
+Where you from, soldier? Texas! Holy cow! You know what comes from Texas, don't you?
+}
+
+$holdtime 4.3
+!DR_DR2_ADD17
+{
+Can I be in charge around here? Well, thank you very much!
+}
+
+$holdtime 3
+!DR_DR2_ADD18
+{
+You had better square yourself away, maggot!
+}
+
+$holdtime 3
+!DR_DR2_ADD19
+{
+You better move like you've got a purpose!
+}
+
+$holdtime 2.5
+!DR_POK0
+{
+Are you touching me, dirtbag?!
+}
+
+$holdtime 3.5
+!DR_POK1
+{
+What is your major malfunction, dirtbag?
+}
+
+$holdtime 4
+!DR_POK2
+{
+Dirtbag! I will break you down like an M16!
+}
+
+$holdtime 3
+!DR_POK3
+{
+I will smoke you like a Cuban cigar!
+}
+
+$holdtime 4.3
+!DR_POK4
+{
+Can I be in charge around here? Well, thank you very much!
+}
+
+$holdtime 3
+!DR_POK5
+{
+You had better square yourself away, maggot!
+}
+
+$holdtime 12
+!DR_BARRACKS01
+{
+Rise and shine, ladies! My name is Senior Drill Instructor Dwight T. Barnes. The first and last words I wanna hear out of your stinkin' holes is "Sir"! Do I make myself clear?!
+}
+
+$holdtime 16
+!DR_BARRACKS02
+{
+My goal is simple! As a right now you are all maggots! You will not speak until spoken to, you will not sleep unless told to do so! When I ask you to jump, you will reply with "How high?" Do you get me?
+}
+
+$holdtime 2.5
+!DR_BARRACKS03
+{
+What's your name, dirtbag?!
+}
+
+$holdtime 2.5
+!DR_BARRACKS04
+{
+Sound off like you got a pair!
+}
+
+$holdtime 8.5
+$chained !DR_BARRACKS05_PT2
+!DR_BARRACKS05
+{
+Corporal Shephard, huh? Looks more like corporal dog meat to me! Seems your name was mysteriously bumped to the top of the advanced training list.
+}
+
+$holdtime 9.3
+!DR_BARRACKS05_PT2
+{
+My suggestion to you is to get your ass down to the training center and report to drill instructor Sharp ASAP. Now move it, Corporal!
+}
+
+$holdtime 4
+!DR_BARRACKS06
+{
+One! Two! Three! Four!
+}
+
+$holdtime 3.5
+!DR_BARRACKS07
+{
+You call that a push up? All the way down!
+}
+
+$holdtime 7
+!DR_BARRACKS08
+{
+One! Two! Three! Four! I-Love-The-Marine-Corp!
+}
+
+$holdtime 8
+$chained !DR_FIFTHROOM01_PT2
+!DR_FIFTHROOM01
+{
+Holy sheep shit, you made it! What's that on your vest, soldier? Did that sting a little? Well suck it up and drive on!
+}
+
+$holdtime 6.6
+!DR_FIFTHROOM01_PT2
+{
+I'm not through with you yet! Proceed through that door into the small staging room and await my instructions!
+}
+
+$holdtime 14
+$chained !DR_FIRSTROOM01_PT2
+!DR_FIRSTROOM01
+{
+Alright, maggot, listen up! I don't care what your previous outfit was like, but around here we do things my way! Follow my instructions carefully and by the end of the day I'll have you eating danger and crapping victory!
+}
+
+$holdtime 5.5
+!DR_FIRSTROOM01_PT2
+{
+Now move your butt, soldier! I will meet you on the other side in the armory!
+}
+
+$holdtime 8
+!DR_FOURTHROOM01
+{
+You're gonna have to pick the pace, dirtbag! My beloved Corp does not have the patience to wait around for your worthless butt!
+}
+
+$holdtime 5.8
+$chained !DR_FOURTHROOM02_PT2
+!DR_FOURTHROOM02
+{
+The following areas will simulate many of the environmental hazards you are likely to encounter in the field!
+}
+
+$holdtime 7.7
+$chained !DR_FOURTHROOM02_PT3
+!DR_FOURTHROOM02_PT2
+{
+Run through it as quickly as you can and try to avoid taking too much damage. A dead marine is a worthless marine!
+}
+
+$holdtime 3.7
+!DR_FOURTHROOM02_PT3
+{
+I will see you up ahead if you can make it through alive!
+}
+
+$holdtime 12.5
+!DR_LIVEFIRE01
+{
+OK, soldier! This is a live fire exercise! This run will give you a taste of what it's like to be in the field. Keep your head low and move between cover! I wanna see your face in the dirt, soldier!
+}
+
+$holdtime 2
+!DR_LIVEFIRE02
+{
+Go! Go! Go!
+}
+
+$holdtime 3
+!DR_LIVEFIRE03
+{
+Climb that rope ladder! Get your ass up there!
+}
+
+$holdtime 4
+!DR_LIVEFIRE04
+{
+Hit the dirt, soldier! Move it! Move it! Move it!
+}
+
+$holdtime 2
+!DR_LIVEFIRE05
+{
+Keep your head down!
+}
+
+$holdtime 2.5
+!DR_LIVEFIRE06
+{
+You better move like you've got a purpose!
+}
+
+$holdtime 1.5
+!DR_LIVEFIRE07
+{
+Stay low!
+}
+
+$holdtime 2
+!DR_LIVEFIRE08
+{
+Keep your ass down!
+}
+
+$holdtime 4
+!DR_LIVEFIRE09
+{
+Get your ass down, or it will get blown off!
+}
+
+$holdtime 6
+!DR_LIVEFIRE10
+{
+Well, I'll be damned! You actually managed to make it through my favorite trainin' exercise in one piece!
+}
+
+$holdtime 4
+!DR_LIVEFIRE11
+{
+Very good, soldier! Move on for your next phase of training!
+}
+
+$holdtime 2
+!DR_OC101
+{
+Move it! Move it!
+}
+
+$holdtime 5
+!DR_OC102
+{
+Alright, maggot. Let's see if you can move your butt through my obstacle course!
+}
+
+$holdtime 4.3
+!DR_OC103
+{
+On your mark! Get set! Go! Go! Go!
+}
+
+$holdtime 4
+!DR_OC104
+{
+Run up and over those platforms! Move! Move! Move!
+}
+
+$holdtime 3.5
+!DR_OC105
+{
+Duck! Now jump! Get your sorry ass moving!
+}
+
+$holdtime 8
+!DR_OC106
+{
+Get your ass down that hill! Scale that wall! Hurry it up! My dear sweet grandmother moves faster than you, dirtbag!
+}
+
+$holdtime 2
+!DR_OC106A
+{
+Get your ass down that hill!
+}
+
+$holdtime 1.5
+!DR_OC106B
+{
+Scale that wall!
+}
+
+$holdtime 1
+!DR_OC106C
+{
+Hurry it up!
+}
+
+$holdtime 4
+!DR_OC106D
+{
+My dear sweet grandmother moves faster than you, dirtbag!
+}
+
+$holdtime 4.5
+!DR_OC107
+{
+Do not fall in that water! Get over that beam! Move it maggot!
+}
+
+$holdtime 2
+!DR_OC107A
+{
+Do not fall in that water!
+}
+
+$holdtime 2
+!DR_OC107B
+{
+Get over that beam!
+}
+
+$holdtime 1.5
+!DR_OC107C
+{
+Move it maggot!
+}
+
+$holdtime 5
+!DR_OC108
+{
+I thought we were training soldiers here! Are you trying to embarrass me?!
+}
+
+$holdtime 5
+!DR_OC109
+{
+Proceed to the next area. Come on, double time it! Move! Move! Move!
+}
+
+$holdtime 8
+!DR_PISTOL01
+{
+Your weapon is your best friend. It is your only friend! And to be more effective, soldier, you must master your weapon!
+}
+
+$holdtime 13
+$chained !DR_PISTOL02_PT2
+!DR_PISTOL02
+{
+On the table, you will see your standard issue sidearm. Pick it up and step over to the pistol range. The object of this exercise is to familiarize yourself with the functions and use of your weapon.
+}
+
+$holdtime 6
+!DR_PISTOL02_PT2
+{
+The goal is for you to place six shots within the inner circle of each target. You may begin!
+}
+
+$holdtime 3
+!DR_PISTOL03
+{
+You may proceed to the next section of the training course!
+}
+
+$holdtime 10
+!DR_RIFLE01
+{
+This exercise will train you in the use of a long range sniper rifle. Proceed to the table, pick up the sniper rifle, and position yourself on the firing line.
+}
+
+$holdtime 7.5
+$chained !DR_RIFLE02_PT2
+!DR_RIFLE02
+{
+In this exercise, you will be firing at targets both moving and stationary at medium, long, and extreme ranges.
+}
+
+$holdtime 9.5
+!DR_RIFLE02_PT2
+{
+As you will notice, your sniper rifle comes equipped with a scope. Use this scope to magnify your view, making the distant targets easier to see.
+}
+
+$holdtime 8
+!DR_RIFLE03
+{
+In the distance, you will notice three stationary targets partially concealed. Hit each of these targets to advance to the next stage of targets.
+}
+
+$holdtime 5.5
+!DR_RIFLE04
+{
+Good! Now let's see how you do with simple moving targets at that range, soldier!
+}
+
+$holdtime 5
+!DR_RIFLE05
+{
+Make sure to take careful aim, soldier! Patience is key for those crucial shots!
+}
+
+$holdtime 7.5
+!DR_RIFLE06
+{
+Very good! Now let's see if you can hit the moving targets at long range! Make sure to take your time and line up those shots, soldier!
+}
+
+$holdtime 5
+!DR_RIFLE07
+{
+Not bad, not bad at all, soldier! Now let's see if you can do the same at extreme range!
+}
+
+$holdtime 6.5
+!DR_RIFLE08
+{
+Unbelievable! You can actually shoot! I'd actually consider lettin' you cover my ass in a firefight!
+}
+
+$holdtime 5.5
+!DR_RIFLE09
+{
+I'm finished with you, soldier! Proceed to the next area and report to the next drill instructor!
+}
+
+$holdtime 4.3
+!DR_ROPE01
+{
+Let's see if you can climb faster than you can run! Ready?!
+}
+
+$holdtime 7
+!DR_ROPE02
+{
+Very good! Maybe there's hope for you yet. Now, do you wanna to come up here and try to knock me off?!
+}
+
+$holdtime 6.5
+!DR_ROPE03
+{
+You can definitely climb better than you can run. Now let's see if you can use these ropes for more than just simple climbing!
+}
+
+$holdtime 4
+!DR_ROPE04
+{
+Jump! Catch that rope and use your momentum to swing across that water!
+}
+
+$holdtime 4
+!DR_ROPE05
+{
+What is your problem, soldier? Get back up and try it again!
+}
+
+$holdtime 5.8
+!DR_ROPE05B
+{
+What is your problem, soldier? Get back up and try again! I do not have all day, ladies!
+}
+
+$holdtime 7
+!DR_ROPE06
+{
+This might take more coordination than you have, soldier. I want you to swing from rope to rope and meet me at the end of the course!
+}
+
+$holdtime 5.5
+!DR_ROPE07
+{
+I'm almost impressed, soldier! Meet me in the next section and let's see if I can shake you up a bit.
+}
+
+$holdtime 9.7
+$chained !DR_SECONDROOM01_PT2
+!DR_SECONDROOM01
+{
+Mounted on the wall below me, you will see a PCV. This is a Powered Combat Vest. Use it correctly, and I guarantee it will save your life!
+}
+
+$holdtime 8.5
+!DR_SECONDROOM01_PT2
+{
+Your PCV is able to recharge from battery power, or it can interface and recharge with commercial, military, and HEV charging stations!
+}
+
+$holdtime 11
+!DR_SECONDROOM02
+{
+What are you waiting for?! Grab that PCV and get it fully charged! Trust me, maggot, you're gonna need it! I'll meet you in the next area to demonstrate some of your vest's capabilities!
+}
+
+$holdtime 8
+!DR_SEVENROOM01
+{
+Well, I'll be damned! You may just have what it takes to be a soldier. Now double time it over to the next portion of your training!
+}
+
+$holdtime 8.8
+$chained !DR_SIXTHROOM01_PT2
+!DR_SIXTHROOM01
+{
+In addition to providing protection, your PCV has other capabilities. Once the light goes out, the door in front of you will open.
+}
+
+$holdtime 7.7
+!DR_SIXTHROOM01_PT2
+{
+Activate your night vision goggles to navigate this maze and exit on the other side. Now move like you've got a purpose!
+}
+
+$holdtime 3
+!DR_SOUND4
+{
+What is your major malfunction?!
+}
+
+$holdtime 8
+$chained !DR_SQUAD01_PT2
+!DR_SQUAD01
+{
+Alright, dirtbag, you've proven yourself a capable grunt! Now let's see if there's any leadership qualities in that sorry carcass of yours!
+}
+
+$holdtime 7
+!DR_SQUAD01_PT2
+{
+To became an effective leader, you must familiarize yourself with the skill set of each soldier in your platoon!
+}
+
+$holdtime 12.3
+!DR_SQUAD02
+{
+The first type of soldier you will meet is the Engineer. Engineers have a knack for getting you in and out of places that are otherwise inaccessible! Take charge and have him follow you to the sealed door!
+}
+
+$holdtime 9
+!DR_SQUAD03
+{
+As you can see, this soldier may prove quite useful in the field! Once you've breached the room, proceed through the door and meet the next type of soldier!
+}
+
+$holdtime 8
+$chained !DR_SQUAD04_PT2
+!DR_SQUAD04
+{
+The Medic can be one of the most valued soldiers on the field. They have the ability to heal both you and your fellow squad members!
+}
+
+$holdtime 12
+!DR_SQUAD04_PT2
+{
+To receive medical attention, simply hold down your use key and the Medic will apply first aid. Once the Medic has attended to your wounds, proceed to the next area to complete your training!
+}
+
+$holdtime 6.3
+$chained !DR_SQUAD05_PT2
+!DR_SQUAD05
+{
+Listen up, soldier! During the course of your missions, you may not be in direct contact with your squad!
+}
+
+$holdtime 11
+!DR_SQUAD05_PT2
+{
+In these situations, you will need to utilize any available military radios. These radios can be used to call in reinforcements or gain vital military intelligence!
+}
+
+$holdtime 3
+!DR_SQUAD06
+{
+Approach the radio and use it, soldier!
+}
+
+$holdtime 12
+!DR_SQUAD07
+{
+Congratulations, soldier! You're no longer a low life maggot! I'm proud to say you are a soldier! I'm sure you'll be a credit to your unit. Now report to duty, soldier!
+}
+
+$holdtime 9
+!DR_THIRDROOM01
+{
+The armored vest that your military has provided you with will keep you alive. Step onto the mark and this will be demonstrated for you.
+}
+
+$holdtime 14
+!DR_THIRDROOM02
+{
+As you can see, you are not dead! Your PCV absorbed the damage at the cost of some of its power. Keep your PCV charged and your chances of survival in the field are very high. Proceed to the next area.
+}
+
+
+
+//===============================//
+// Osprey Intro (Opposing Force)
+//===============================//
+$color  255 255 255
+$color2 128 128 128
+
+$holdtime 6
+!OSPREY_INTRO1	// hq_proceed
+{
+HQ: OK, Goose 7. Proceed to sector 112 LZ and rendezvous with Alpha Bravo Tango. Over!
+}
+
+$holdtime 1.5
+!OSPREY_INTRO2	// g7_copy_hq
+{
+Goose 7: Copy that, HQ.
+}
+
+$holdtime 2
+!OSPREY_INTRO3	// g7_watch_vector
+{
+Goose 7: Watch your vector, Goose 3. It's getting little tight in here!
+}
+
+$holdtime 2
+!OSPREY_INTRO4	// g3_copy
+{
+Goose 3: Roger that, we copy.
+}
+
+$holdtime 2
+!OSPREY_INTRO5	// g7_view_lz
+{
+Goose 7: Anyone out there got a good view at LZ yet?
+}
+
+$holdtime 2
+!OSPREY_INTRO6	// w6_cant_see
+{
+W6: Negative, Goose 7. I can see some activity up there, but I can't tell what it is.
+}
+
+$holdtime 2
+$chained !OSPREY_INTRO7_PT2
+!OSPREY_INTRO7	// g7_goose3_down
+{
+*static*
+}
+
+$holdtime 3
+!OSPREY_INTRO7_PT2	// g7_goose3_down
+{
+Goose 7: HOLY SHIT! GOOSE 3 IS DOWN! GOOSE 3 IS DOWN!
+}
+
+$holdtime 2
+!OSPREY_INTRO7_PT2	// hq_the_hell
+{
+HQ: What the hell is going on out there?!
+}
+
+$holdtime 2
+!OSPREY_INTRO7_PT2	// w6_watchit
+{
+W6: Watch it Goose 7, you've got something coming up on your-
+}
+
