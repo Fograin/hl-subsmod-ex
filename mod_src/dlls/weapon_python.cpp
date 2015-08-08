@@ -111,16 +111,14 @@ BOOL CPython::Deploy( )
 		pev->body = 0;
 	}
 
-	// Blue Shift
-	if (CVAR_GET_FLOAT("sm_hud") == 1.0 )
+#ifndef CLIENT_DLL
+	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
 		return DefaultDeploy( "models/v_357_bs.mdl", "models/p_357.mdl", PYTHON_DRAW, "python", UseDecrement(), pev->body );
-	// Opposing Force
-	else if (CVAR_GET_FLOAT("sm_hud") == 2.0 )
+	
+	if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
 		return DefaultDeploy( "models/v_357_of.mdl", "models/p_357.mdl", PYTHON_DRAW, "python", UseDecrement(), pev->body );
-	// Half-Life
-	else
-		return DefaultDeploy( "models/v_357.mdl", "models/p_357.mdl", PYTHON_DRAW, "python", UseDecrement(), pev->body );
-
+#endif
+	return DefaultDeploy( "models/v_357.mdl", "models/p_357.mdl", PYTHON_DRAW, "python", UseDecrement(), pev->body );
 }
 
 

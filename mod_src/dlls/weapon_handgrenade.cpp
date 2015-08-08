@@ -80,16 +80,16 @@ int CHandGrenade::GetItemInfo(ItemInfo *p)
 BOOL CHandGrenade::Deploy( )
 {
 	m_flReleaseThrow = -1;
-	
-	// Blue Shift
-	if (CVAR_GET_FLOAT("sm_hud") == 1.0 )
+
+#ifndef CLIENT_DLL
+	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
 		return DefaultDeploy( "models/v_grenade_bs.mdl", "models/p_grenade.mdl", HANDGRENADE_DRAW, "crowbar" );
-	// Opposing Force
-	else if (CVAR_GET_FLOAT("sm_hud") == 2.0 )
+	
+	if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
 		return DefaultDeploy( "models/v_grenade_of.mdl", "models/p_grenade.mdl", HANDGRENADE_DRAW, "crowbar" );
-	// Half-Life
-	else
-		return DefaultDeploy( "models/v_grenade.mdl", "models/p_grenade.mdl", HANDGRENADE_DRAW, "crowbar" );
+#endif
+	return DefaultDeploy( "models/v_grenade.mdl", "models/p_grenade.mdl", HANDGRENADE_DRAW, "crowbar" );
+	
 }
 
 BOOL CHandGrenade::CanHolster( void )

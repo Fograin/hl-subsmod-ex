@@ -68,6 +68,7 @@ void CGlock::Precache( void )
 	m_usFireGlock2 = PRECACHE_EVENT( 1, "events/glock2.sc" );
 }
 
+
 int CGlock::GetItemInfo(ItemInfo *p)
 {
 	p->pszName = STRING(pev->classname);
@@ -89,16 +90,14 @@ int CGlock::GetItemInfo(ItemInfo *p)
 BOOL CGlock::Deploy( )
 {
 	// pev->body = 1;
-
-	// Blue Shift
-	if (CVAR_GET_FLOAT("sm_hud") == 1.0 )
+#ifndef CLIENT_DLL
+	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
 		return DefaultDeploy( "models/v_9mmhandgun_bs.mdl", "models/p_9mmhandgun.mdl", GLOCK_DRAW, "onehanded", 0 );
-	// Opposing Force
-	else if (CVAR_GET_FLOAT("sm_hud") == 2.0 )
+	
+	if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
 		return DefaultDeploy( "models/v_9mmhandgun_of.mdl", "models/p_9mmhandgun.mdl", GLOCK_DRAW, "onehanded", 0 );
-	// Half-Life
-	else
-		return DefaultDeploy( "models/v_9mmhandgun.mdl", "models/p_9mmhandgun.mdl", GLOCK_DRAW, "onehanded", 0 );
+#endif
+	return DefaultDeploy( "models/v_9mmhandgun.mdl", "models/p_9mmhandgun.mdl", GLOCK_DRAW, "onehanded", 0 );	
 }
 
 void CGlock::SecondaryAttack( void )

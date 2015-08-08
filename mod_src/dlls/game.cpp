@@ -449,8 +449,8 @@ cvar_t	sk_player_leg3	= { "sk_player_leg3","1" };
 
 
 // Half-Life Subtitles MOD CVARs
-cvar_t	sm_hud	= { "sm_hud",	"0"};
-
+cvar_t	sm_hud	= { "sm_hud",	"0"};	// Used for HUD color, also it holds value of current loaded game (HL, OF, BS)
+cvar_t	sm_hev_pick	= { "sm_hev_pick",	"1"};	// Should HEV emit weapon pickup sentences?
 
 // Register your console variables here
 // This gets called one time when the game is initialied
@@ -486,6 +486,7 @@ void GameDLLInit( void )
 
 	// Half-Life Subtitles MOD CVARs
 	CVAR_REGISTER (&sm_hud);
+	CVAR_REGISTER (&sm_hev_pick);
 
 
 // REGISTER CVARS FOR SKILL LEVEL STUFF

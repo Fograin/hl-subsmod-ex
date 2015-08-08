@@ -216,7 +216,7 @@
 		</Configuration>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\..\temp\dlls\!debug"
+			OutputDirectory="E:\Steam\steamapps\common\Half-Life\0_subs4\local\mod_files\subsmod\bin\"
 			IntermediateDirectory=".\..\temp\dlls\!debug"
 			ConfigurationType="2"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
@@ -228,8 +228,8 @@
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
-				CommandLine="copy $(TargetDir)hl.dll &quot;D:\Xash3D\valve\dlls\hl.dll&quot;&#x0D;&#x0A;"
-				Outputs="D:\Xash3D\valve\dlls\hl.dll"
+				CommandLine=""
+				Outputs=""
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -249,7 +249,7 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\dlls,..\engine,..\common,..\game_shared,..\pm_shared,..\"
+				AdditionalIncludeDirectories="..\dlls;..\engine;..\common;..\game_shared;..\pm_shared;..\;..\subs_mod;..\public"
 				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;QUIVER;VOXEL;QUAKE2;VALVE_DLL;CLIENT_WEAPONS"
 				MinimalRebuild="true"
 				RuntimeLibrary="1"
@@ -261,6 +261,7 @@
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
+				DisableSpecificWarnings="4482;4996;4005"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -277,7 +278,8 @@
 			<Tool
 				Name="VCLinkerTool"
 				IgnoreImportLibrary="true"
-				OutputFile=".\..\temp\dlls\!debug/hl.dll"
+				AdditionalOptions="-dev -console"
+				OutputFile="E:\Steam\steamapps\common\Half-Life\0_subs4\local\mod_files\sm_hl\bin\server.dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				ModuleDefinitionFile=".\hl.def"

@@ -89,15 +89,17 @@ BOOL CEgon::Deploy( void )
 	m_deployed = FALSE;
 	m_fireState = FIRE_OFF;
 
-	// Blue Shift
-	if (CVAR_GET_FLOAT("sm_hud") == 1.0 )
+#ifndef CLIENT_DLL
+
+	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
 		return DefaultDeploy( "models/v_egon_bs.mdl", "models/p_egon.mdl", EGON_DRAW, "egon" );
-	// Opposing Force
-	else if (CVAR_GET_FLOAT("sm_hud") == 2.0 )
+	
+	if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
 		return DefaultDeploy( "models/v_egon_of.mdl", "models/p_egon.mdl", EGON_DRAW, "egon" );
-	// Half-Life
-	else
-		return DefaultDeploy( "models/v_egon.mdl", "models/p_egon.mdl", EGON_DRAW, "egon" );
+
+#endif
+	return DefaultDeploy( "models/v_egon.mdl", "models/p_egon.mdl", EGON_DRAW, "egon" );
+
 }
 
 int CEgon::AddToPlayer( CBasePlayer *pPlayer )

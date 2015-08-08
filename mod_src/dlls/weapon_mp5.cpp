@@ -120,15 +120,14 @@ int CMP5::AddToPlayer( CBasePlayer *pPlayer )
 // Fograin92: The correct model will be deployed
 BOOL CMP5::Deploy( )
 {
-	// Blue Shift
-	if (CVAR_GET_FLOAT("sm_hud") == 1.0 )
+#ifndef CLIENT_DLL
+	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
 		return DefaultDeploy( "models/v_9mmAR_bs.mdl", "models/p_9mmAR.mdl", MP5_DEPLOY, "mp5" );
-	// Opposing Force
-	else if (CVAR_GET_FLOAT("sm_hud") == 2.0 )
+	
+	if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
 		return DefaultDeploy( "models/v_9mmAR_of.mdl", "models/p_9mmAR.mdl", MP5_DEPLOY, "mp5" );
-	// Half-Life
-	else
-		return DefaultDeploy( "models/v_9mmAR.mdl", "models/p_9mmAR.mdl", MP5_DEPLOY, "mp5" );
+#endif
+	return DefaultDeploy( "models/v_9mmAR.mdl", "models/p_9mmAR.mdl", MP5_DEPLOY, "mp5" );
 }
 
 

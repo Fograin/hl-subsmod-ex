@@ -3535,31 +3535,30 @@ void CBasePlayer::CheatImpulseCommands( int iImpulse )
 	case 101:
 		gEvilImpulse101 = TRUE;
 		GiveNamedItem( "item_suit" );
-		GiveNamedItem( "item_battery" );
+	
 		GiveNamedItem( "weapon_crowbar" );
 		GiveNamedItem( "weapon_9mmhandgun" );
 		GiveNamedItem( "ammo_9mmclip" );
-		GiveNamedItem( "weapon_shotgun" );
-		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "weapon_357" );
+		GiveNamedItem( "ammo_357" );
 		GiveNamedItem( "weapon_9mmAR" );
 		GiveNamedItem( "ammo_9mmAR" );
 		GiveNamedItem( "ammo_ARgrenades" );
-		GiveNamedItem( "weapon_handgrenade" );
-		GiveNamedItem( "weapon_tripmine" );
-#ifndef OEM_BUILD
-		GiveNamedItem( "weapon_357" );
-		GiveNamedItem( "ammo_357" );
+		GiveNamedItem( "weapon_shotgun" );
+		GiveNamedItem( "ammo_buckshot" );
 		GiveNamedItem( "weapon_crossbow" );
 		GiveNamedItem( "ammo_crossbow" );
-		GiveNamedItem( "weapon_egon" );
-		GiveNamedItem( "weapon_gauss" );
-		GiveNamedItem( "ammo_gaussclip" );
 		GiveNamedItem( "weapon_rpg" );
 		GiveNamedItem( "ammo_rpgclip" );
-		GiveNamedItem( "weapon_satchel" );
-		GiveNamedItem( "weapon_snark" );
+		GiveNamedItem( "weapon_gauss" );
+		GiveNamedItem( "ammo_gaussclip" );
+		GiveNamedItem( "weapon_egon" );
 		GiveNamedItem( "weapon_hornetgun" );
-#endif
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_satchel" );
+		GiveNamedItem( "weapon_tripmine" );
+		GiveNamedItem( "weapon_snark" );
+		
 		gEvilImpulse101 = FALSE;
 		break;
 
@@ -3728,6 +3727,28 @@ int CBasePlayer::AddPlayerItem( CBasePlayerItem *pItem )
 		if ( g_pGameRules->FShouldSwitchWeapon( this, pItem ) )
 		{
 			SwitchWeapon( pItem );
+		}
+
+		// Fograin92: HEV pickup sentence
+		if (CVAR_GET_FLOAT("sm_hev_pick") == 1)
+		{
+			if (FClassnameIs( pItem->pev, "weapon_glock" ))				SetSuitUpdate("!HEV_PISTOL",	FALSE, SUIT_NEXT_IN_5MIN);
+			else if (FClassnameIs( pItem->pev, "weapon_9mmhandgun" ))	SetSuitUpdate("!HEV_PISTOL",	FALSE, SUIT_NEXT_IN_5MIN);
+			else if (FClassnameIs( pItem->pev, "weapon_shotgun" ))		SetSuitUpdate("!HEV_SHOTGUN",	FALSE, SUIT_NEXT_IN_5MIN);
+			else if (FClassnameIs( pItem->pev, "weapon_handgrenade" ))	SetSuitUpdate("!HEV_GRENADE",	FALSE, SUIT_NEXT_IN_5MIN);
+			else if (FClassnameIs( pItem->pev, "weapon_mp5" ))			SetSuitUpdate("!HEV_ASSAULT",	FALSE, SUIT_NEXT_IN_5MIN);
+			else if (FClassnameIs( pItem->pev, "weapon_9mmAR" ))		SetSuitUpdate("!HEV_ASSAULT",	FALSE, SUIT_NEXT_IN_5MIN);
+			else if (FClassnameIs( pItem->pev, "weapon_python" ))		SetSuitUpdate("!HEV_44PISTOL",	FALSE, SUIT_NEXT_IN_5MIN);
+			else if (FClassnameIs( pItem->pev, "weapon_357" ))			SetSuitUpdate("!HEV_44PISTOL",	FALSE, SUIT_NEXT_IN_5MIN);
+			else if (FClassnameIs( pItem->pev, "weapon_rpg" ))			SetSuitUpdate("!HEV_RPG",		FALSE, SUIT_NEXT_IN_5MIN);
+			else if (FClassnameIs( pItem->pev, "weapon_satchel" ))		SetSuitUpdate("!HEV_SATCHEL",	FALSE, SUIT_NEXT_IN_5MIN);
+			else if (FClassnameIs( pItem->pev, "weapon_tripmine" ))		SetSuitUpdate("!HEV_TRIPMINE",	FALSE, SUIT_NEXT_IN_5MIN);
+			else if (FClassnameIs( pItem->pev, "weapon_hornetgun" ))	SetSuitUpdate("!HEV_HORNET",	FALSE, SUIT_NEXT_IN_5MIN);
+			else if (FClassnameIs( pItem->pev, "weapon_snark" ))		SetSuitUpdate("!HEV_SQUEEK",	FALSE, SUIT_NEXT_IN_5MIN);
+			else if (FClassnameIs( pItem->pev, "weapon_egon" ))			SetSuitUpdate("!HEV_EGON",		FALSE, SUIT_NEXT_IN_5MIN);
+			else if (FClassnameIs( pItem->pev, "weapon_gauss" ))		SetSuitUpdate("!HEV_GAUSS",		FALSE, SUIT_NEXT_IN_5MIN);
+			else if (FClassnameIs( pItem->pev, "weapon_crossbow" ))		SetSuitUpdate("!HEV_XBOW",		FALSE, SUIT_NEXT_IN_5MIN);
+			else if (FClassnameIs( pItem->pev, "weapon_crowbar" ))		SetSuitUpdate("!HEV_CROWBAR",	FALSE, SUIT_NEXT_IN_5MIN);
 		}
 
 		return TRUE;

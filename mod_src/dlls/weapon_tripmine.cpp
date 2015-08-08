@@ -409,15 +409,14 @@ BOOL CTripmine::Deploy( )
 {
 	pev->body = 0;	// Vit_amiN: set the correct bodygroup
 
-	// Blue Shift
-	if (CVAR_GET_FLOAT("sm_hud") == 1.0 )
+#ifndef CLIENT_DLL
+	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
 		return DefaultDeploy( "models/v_tripmine_bs.mdl", "models/p_tripmine.mdl", TRIPMINE_DRAW, "trip" );
-	// Opposing Force
-	else if (CVAR_GET_FLOAT("sm_hud") == 2.0 )
+	
+	if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
 		return DefaultDeploy( "models/v_tripmine_of.mdl", "models/p_tripmine.mdl", TRIPMINE_DRAW, "trip" );
-	// Half-Life
-	else
-		return DefaultDeploy( "models/v_tripmine.mdl", "models/p_tripmine.mdl", TRIPMINE_DRAW, "trip" );
+#endif
+	return DefaultDeploy( "models/v_tripmine.mdl", "models/p_tripmine.mdl", TRIPMINE_DRAW, "trip" );
 }
 
 

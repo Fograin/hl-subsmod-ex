@@ -75,6 +75,7 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalOptions="-dev -console"
 				AdditionalDependencies="msvcrt.lib odbc32.lib odbccp32.lib"
 				OutputFile="E:\Steam\steamapps\common\Half-Life\0_subs4\local\mod_files\sm_hl.exe"
 				LinkIncremental="1"

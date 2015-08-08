@@ -127,15 +127,14 @@ BOOL CGauss::Deploy( )
 {
 	m_pPlayer->m_flPlayAftershock = 0.0;
 
-	// Blue Shift
-	if (CVAR_GET_FLOAT("sm_hud") == 1.0 )
+#ifndef CLIENT_DLL
+	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
 		return DefaultDeploy( "models/v_gauss_bs.mdl", "models/p_gauss.mdl", GAUSS_DRAW, "gauss" );
-	// Opposing Force
-	else if (CVAR_GET_FLOAT("sm_hud") == 2.0 )
+	
+	if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
 		return DefaultDeploy( "models/v_gauss_of.mdl", "models/p_gauss.mdl", GAUSS_DRAW, "gauss" );
-	// Half-Life
-	else
-		return DefaultDeploy( "models/v_gauss.mdl", "models/p_gauss.mdl", GAUSS_DRAW, "gauss" );
+#endif
+	return DefaultDeploy( "models/v_gauss.mdl", "models/p_gauss.mdl", GAUSS_DRAW, "gauss" );
 }
 
 void CGauss::Holster( int skiplocal /* = 0 */ )

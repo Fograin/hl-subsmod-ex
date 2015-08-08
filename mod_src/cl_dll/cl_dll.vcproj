@@ -17,7 +17,7 @@
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
-			OutputDirectory=".\..\temp\cl_dll\!debug"
+			OutputDirectory="E:\Steam\steamapps\common\Half-Life\0_subs4\local\mod_files\subsmod\bin\"
 			IntermediateDirectory=".\..\temp\cl_dll\!debug"
 			ConfigurationType="2"
 			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC60.vsprops"
@@ -30,8 +30,8 @@
 			/>
 			<Tool
 				Name="VCCustomBuildTool"
-				CommandLine="copy $(TargetDir)client.dll &quot;D:\Xash3D\valve\cl_dlls\client.dll&quot;&#x0D;&#x0A;"
-				Outputs="D:\Xash3D\valve\cl_dlls\client.dll"
+				CommandLine=""
+				Outputs=""
 			/>
 			<Tool
 				Name="VCXMLDataGeneratorTool"
@@ -51,8 +51,8 @@
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
-				AdditionalIncludeDirectories="..\dlls,..\common,..\pm_shared,..\engine,..\utils\vgui\include,..\game_shared"
-				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;CLIENT_DLL;CLIENT_WEAPONS"
+				AdditionalIncludeDirectories="..\dlls;..\common;..\pm_shared;..\engine;..\utils\vgui\include;..\game_shared;..\subs_mod;..\public"
+				PreprocessorDefinitions="_DEBUG;WIN32;_WINDOWS;CLIENT_DLL;CLIENT_WEAPONS;_CRT_SECURE_NO_WARNINGS"
 				MinimalRebuild="true"
 				RuntimeLibrary="1"
 				RuntimeTypeInfo="true"
@@ -64,6 +64,7 @@
 				WarningLevel="3"
 				SuppressStartupBanner="true"
 				DebugInformationFormat="4"
+				DisableSpecificWarnings="4482;4996;4005"
 			/>
 			<Tool
 				Name="VCManagedResourceCompilerTool"
@@ -78,8 +79,9 @@
 			/>
 			<Tool
 				Name="VCLinkerTool"
+				AdditionalOptions="-dev -console"
 				AdditionalDependencies="odbc32.lib odbccp32.lib winmm.lib ../utils/vgui/lib/win32_vc6/vgui.lib wsock32.lib"
-				OutputFile="..\temp\cl_dll\!debug/client.dll"
+				OutputFile="E:\Steam\steamapps\common\Half-Life\0_subs4\local\mod_files\sm_hl\bin\client.dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
 				GenerateDebugInformation="true"

@@ -111,15 +111,14 @@ int CShotgun::GetItemInfo(ItemInfo *p)
 // Fograin92: The correct model will be deployed
 BOOL CShotgun::Deploy( )
 {
-	// Blue Shift
-	if (CVAR_GET_FLOAT("sm_hud") == 1.0 )
+#ifndef CLIENT_DLL
+	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
 		return DefaultDeploy( "models/v_shotgun_bs.mdl", "models/p_shotgun.mdl", SHOTGUN_DRAW, "shotgun" );
-	// Opposing Force
-	else if (CVAR_GET_FLOAT("sm_hud") == 2.0 )
+	
+	if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
 		return DefaultDeploy( "models/v_shotgun_of.mdl", "models/p_shotgun.mdl", SHOTGUN_DRAW, "shotgun" );
-	// Half-Life
-	else
-		return DefaultDeploy( "models/v_shotgun.mdl", "models/p_shotgun.mdl", SHOTGUN_DRAW, "shotgun" );
+#endif
+	return DefaultDeploy( "models/v_shotgun.mdl", "models/p_shotgun.mdl", SHOTGUN_DRAW, "shotgun" );
 }
 
 void CShotgun::PrimaryAttack()
