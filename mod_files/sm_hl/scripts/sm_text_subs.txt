@@ -8836,4 +8836,1297 @@ $holdtime 2
 Do you speak English much?
 }
 
+$holdtime 2.5
+!OT_KILL0
+{
+Haha, I can't believe I got that guy!
+}
+
+$holdtime 2.5
+!OT_KILL1
+{
+That's right! I got another one!
+}
+
+$holdtime 3
+!OT_KILL2
+{
+I think I got a ripe one!
+}
+
+$holdtime 3
+!OT_KILL3
+{
+Oh yeah, baby, did you see that?
+}
+
+$holdtime 3
+!OT_KILL4
+{
+Oh, that was way too close for comfort!
+}
+
+$holdtime 4.5
+!OT_KILL5
+{
+Hmm, I'd love to hang that over my fireplace! You know, if I had one.
+}
+
+$holdtime 3
+!OT_KILL6
+{
+You just think it's all about you!
+}
+
+$holdtime 3
+!OT_MAD0
+{
+You know, nobody likes a bully!
+}
+
+$holdtime 3.5
+!OT_MAD1
+{
+I'm only willing to take so much abuse!
+}
+
+$holdtime 3.5
+!OT_MAD2
+{
+Now don't make me go and throw down or something!
+}
+
+$holdtime 2
+!OT_MAD3
+{
+That's it, I've had it!
+}
+
+$holdtime 3.5
+!OT_SHOT0
+{
+Hey, I thought we were becoming friends.
+}
+
+$holdtime 3
+!OT_SHOT1
+{
+Watch where you aim that thing, pally!
+}
+
+$holdtime 3
+!OT_SHOT2
+{
+Hey, control your weapon, buddy!
+}
+
+$holdtime 2.5
+!OT_SHOT3
+{
+Damn! Cut it out!
+}
+
+$holdtime 2.5
+!OT_SHOT4
+{
+Hey, quit it now! I mean it!
+}
+
+$holdtime 3
+!OT_SHOT5
+{
+I can get pretty ornery when I'm angry!
+}
+
+$holdtime 4
+!OT_IDLE0
+{
+My mom is gonna worry when I don't make it home tonight!
+}
+
+$holdtime 4
+!OT_IDLE1
+{
+Fighting aliens is not in my job description.
+}
+
+$holdtime 4.5
+!OT_IDLE2
+{
+Believe it or not, I was a wuss in high school! I know, it's hard to believe!
+}
+
+$holdtime 3
+!OT_IDLE3
+{
+And I was supposed to play bridge tonight!
+}
+
+$holdtime 3.5
+!OT_IDLE4
+{
+Maybe I should guard that closet over there.
+}
+
+$holdtime 3.5
+!OT_IDLE5
+{
+Huh, my cousin is the one that got me this job!
+}
+
+$holdtime 4.5
+!OT_IDLE6
+{
+I gotta say, that mall security job is looking pretty good right now!
+}
+
+$holdtime 2
+!OT_ATTACK0
+{
+Hey, I'm right behind you!
+}
+
+$holdtime 2
+!OT_ATTACK1
+{
+I'll get the leftovers!
+}
+
+$holdtime 2
+!OT_ATTACK2
+{
+I got your back!
+}
+
+$holdtime 2
+!OT_ATTACK3
+{
+Die! Die! Die!
+}
+
+$holdtime 3
+!OT_HEAR0
+{
+Hey, do you hear something?
+}
+
+$holdtime 3
+!OT_HEAR1
+{
+That definitely sounds alien.
+}
+
+$holdtime 3.5
+!OT_SMELL0
+{
+Oh man, do you smell that?
+}
+
+$holdtime 3
+!OT_SMELL1
+{
+It smells worse than a chili cook off!
+}
+
+$holdtime 4
+!OT_SMELL2
+{
+I'm so glad I didn't take the janitor job. Yuk!
+}
+
+$holdtime 2.5
+!OT_CUREA
+{
+Aw, that's going to leave a scar.
+}
+
+$holdtime 3.3
+!OT_CUREB
+{
+I hope the military has good medical insurance.
+}
+
+$holdtime 3.3
+!OT_CUREC
+{
+Medic! See, now I always wanted to say that.
+}
+
+$holdtime 2.8
+!OT_SCARED0
+{
+I knew we couldn't trust you guys!
+}
+
+$holdtime 2.5
+!OT_SCARED1
+{
+Hey, what did they ever do to you?
+}
+
+$holdtime 2.8
+!OT_WOUND0
+{
+Eh, it's only a flesh wound.
+}
+
+$holdtime 3
+!OT_WOUND1
+{
+I don't wanna die a virgin!
+}
+
+$holdtime 2.5
+!OT_MORTAL0
+{
+Damn it! I knew I was gonna be the one killed!
+}
+
+$holdtime 5
+!OT_MORTAL1
+{
+Okay, now see, heh, that one's going to slow me down. Yeah, ow.
+}
+
+$holdtime 3.5
+!OT_MISC0
+{
+Stupid machines! Why don't these ever seem to work?
+}
+
+$holdtime 3
+!OT_MISC1
+{
+Hey, uh, you wouldn't have a quarter I can borrow, would ya?
+}
+
+$holdtime 3
+!OT_MISC1
+{
+Hey, uh, you wouldn't have a quarter I can borrow, would ya?
+}
+
+$holdtime 11.2
+$chained !OT_NOTOPEN_PT2
+!OT_NOTOPEN
+{
+Sorry, Shephard, sir. See, now I was told not to open this door for ya until you agreed to help us. Besides, you wouldn't wanna go out there without your armor vest anyway.
+}
+
+$holdtime 6
+!OT_NOTOPEN_PT2
+{
+I left it for you where the other soldiers are getting treated. Just, uh, you know, come on back here when you've found it.
+}
+
+$holdtime 5
+$chained !OT_FOUNDVEST_PT2
+!OT_FOUNDVEST
+{
+Okay, Shephard, I see you found your power vest. That should keep you safe out there.
+}
+
+$holdtime 9
+!OT_FOUNDVEST_PT2
+{
+See, now I've heard rumors that you troops may not actually be here to rescue us. Just don't forget about us out there, alrighty? Okay, I'll let you through now.
+}
+
+$holdtime 1.7
+!OT_GOODLUCK
+{
+Good luck, sir!
+}
+
+$holdtime 5.3
+!OT_FINDMORE
+{
+Personally, I think if we could find more soldiers like you, we may come out of this A-okay!
+}
+
+// edit audio file
+$holdtime 2
+!OT_SCREAMING
+{
+Those poor bastards.
+}
+
+$holdtime 6.5
+!OT_TRUSTYA
+{
+I'm not sure I can trust you, but I don't know what else to do at this point. If you make it out of here, don't forget me!
+}
+
+$holdtime 4
+!OT_TRANSPORTER
+{
+Huh! What's this? Some sort of transporter gun?
+}
+
+$holdtime 7.6
+$chained !OT_TELLSECRET_PT2
+!OT_TELLSECRET
+{
+Now, now, don't hurt me, and I'll tell you a secret. I've been hiding up here listening. These Black Ops have some sort of bomb!
+}
+
+$holdtime 6
+!OT_TELLSECRET_PT2
+{
+I think they're plannin' on blowin' up the base. Now-now, why do you think they would do such a thing?
+}
+
+
+//========================================//
+// Friendly Human Grunts (Opposing Force)
+//========================================//
+$color  96 255 96
+$color2 48 128 48
+
+
+$holdtime 3
+!FG_QUESTION0
+{
+Have you seen any other soldiers from my platoon?
+}
+
+$holdtime 3
+!FG_QUESTION1
+{
+The current situation is looking pretty grim.
+}
+
+$holdtime 3.5
+!FG_QUESTION2
+{
+Government cover ups were not in my job description!
+}
+
+$holdtime 3
+!FG_QUESTION3
+{
+This whole operation is out of control!
+}
+
+$holdtime 4
+!FG_QUESTION4
+{
+Do you have any idea who's in charge of this operation?
+}
+
+$holdtime 3
+!FG_QUESTION5
+{
+I got a bad feeling about this mission.
+}
+
+$holdtime 3
+!FG_QUEST0
+{
+I got a bad feeling about this mission.
+}
+
+$holdtime 3
+!FG_QUEST1
+{
+The current situation is looking pretty grim.
+}
+
+$holdtime 1.5
+!FG_ANSWER0
+{
+Uh, roger that.
+}
+
+$holdtime 2
+!FG_ANSWER1
+{
+Squad, quiet down!
+}
+
+$holdtime 1.5
+!FG_GREN0
+{
+Incoming!
+}
+
+$holdtime 1.5
+!FG_GREN1
+{
+Grenade!
+}
+
+$holdtime 1.5
+!FG_ALERT0
+{
+Alien alert!
+}
+
+$holdtime 1.5
+!FG_ALERT1
+{
+Get down!
+}
+
+$holdtime 1.5
+!FG_ALERT2
+{
+We've got bogies!
+}
+
+$holdtime 2
+!FG_ALERT3
+{
+Squad, we've got hostiles!
+}
+
+$holdtime 1.5
+!FG_MONSTER0
+{
+Alien alert!
+}
+
+$holdtime 1.5
+!FG_MONSTER1
+{
+Alien movement!
+}
+
+$holdtime 1.5
+!FG_COVER0
+{
+Clear this area!
+}
+
+$holdtime 1.5
+!FG_COVER1
+{
+Take cover!
+}
+
+$holdtime 2
+!FG_COVER2
+{
+Squad, stay down!
+}
+
+$holdtime 1.5
+!FG_CLEAR0
+{
+Clear this area!
+}
+
+$holdtime 2
+!FG_CLEAR1
+{
+Area secure, sir.
+}
+
+$holdtime 2
+!FG_THROW0
+{
+FIRE IN THE HOLE!
+}
+
+$holdtime 1.5
+!FG_THROW1
+{
+Grenade!
+}
+
+$holdtime 1.5
+!FG_CHARGE0
+{
+Let's go!
+}
+
+$holdtime 1.2
+!FG_CHARGE1
+{
+Get some!
+}
+
+$holdtime 1.5
+!FG_CHARGE2
+{
+Move in!
+}
+
+$holdtime 2
+!FG_TAUNT0
+{
+Mister, you're going down!
+}
+
+$holdtime 2
+!FG_TAUNT1
+{
+You got nothing!
+}
+
+$holdtime 2
+!FG_TAUNT2
+{
+One shot, one kill.
+}
+
+$holdtime 1.2
+!FG_TAUNT3
+{
+Get some!
+}
+
+$holdtime 1.7
+!FG_TAUNT4
+{
+Watch those corners.
+}
+
+$holdtime 1.5
+!FG_TAUNT5
+{
+We need backup!
+}
+
+$holdtime 2.7
+!FG_OK0
+{
+Sure, we can do more damage that way.
+}
+
+$holdtime 1.5
+!FG_OK1
+{
+I got your six.
+}
+
+$holdtime 1.5
+!FG_OK2
+{
+Moving out, Corporal.
+}
+
+$holdtime 3.2
+!FG_OK3
+{
+You got it, Corporal. I'll be right behind you.
+}
+
+$holdtime 2
+!FG_OK4
+{
+Let's get the hell outta here!
+}
+
+$holdtime 1.5
+!FG_OK5
+{
+Affirmative, sir.
+}
+
+$holdtime 1.7
+!FG_OK6
+{
+Right away, sir!
+}
+
+$holdtime 1.7
+!FG_OK7
+{
+At your command, sir!
+}
+
+$holdtime 2
+!FG_OK8
+{
+I will not fail you, sir.
+}
+
+$holdtime 1.5
+!FG_OK9
+{
+Yes, sir.
+}
+
+$holdtime 2
+!FG_SCARED0
+{
+Hey, did you hear something?
+}
+
+$holdtime 2
+!FG_SCARED1
+{
+Sir, I hear something!
+}
+
+$holdtime 2
+!FG_WAIT0
+{
+Okay, I'll secure this area.
+}
+
+$holdtime 2
+!FG_WAIT1
+{
+I'll stay here and await further orders.
+}
+
+$holdtime 2
+!FG_WAIT2
+{
+All right, you scout ahead!
+}
+
+$holdtime 1.5
+!FG_WAIT3
+{
+Guard duty, eh?
+}
+
+$holdtime 2
+!FG_STOP0
+{
+Sir, I can't leave my post.
+}
+
+$holdtime 2
+!FG_STOP1
+{
+This is my post, sir.
+}
+
+$holdtime 2
+!FG_STOP2
+{
+I've been ordered to stay here, sir!
+}
+
+$holdtime 2
+!FG_KILL0
+{
+One shot, one kill!
+}
+
+$holdtime 2.5
+!FG_KILL1
+{
+I'm a natural born alien killer.
+}
+
+$holdtime 2.5
+!FG_KILL2
+{
+Heh, sniper school sure paid off today!
+}
+
+$holdtime 2.5
+!FG_KILL3
+{
+I'll tag 'em, you bag 'em.
+}
+
+$holdtime 2
+!FG_KILL4
+{
+Did you see that one, Corporal?
+}
+
+$holdtime 2
+!FG_KILL5
+{
+That's what I'm talking about!
+}
+
+$holdtime 1.5
+!FG_KILL6
+{
+Take this!
+}
+
+$holdtime 2
+!FG_SHOT0
+{
+Okay, check in!
+}
+
+$holdtime 2
+!FG_SHOT1
+{
+You want some of me?!
+}
+
+$holdtime 1.7
+!FG_SHOT2
+{
+Check your zone!
+}
+
+$holdtime 2
+!FG_SHOT3
+{
+Watch it, Corporal!
+}
+
+$holdtime 2
+!FG_SHOT4
+{
+Watch your fire, sir!
+}
+
+$holdtime 2.4
+!FG_SHOT5
+{
+Friendly fire, friendly fire!
+}
+
+$holdtime 2
+!FG_CHECK0
+{
+Okay, check in!
+}
+
+$holdtime 2
+!FG_CHECK1
+{
+Check your zone!
+}
+
+$holdtime 2.3
+!FG_IDLE0
+{
+I was told to guard this area.
+}
+
+$holdtime 2.3
+!FG_IDLE1
+{
+Boy, this is some first mission.
+}
+
+$holdtime 3
+!FG_IDLE2
+{
+I was told this is gonna be a baby sitting job!
+}
+
+$holdtime 3.5
+!FG_IDLE3
+{
+Government cover ups were not in my job description!
+}
+
+$holdtime 3
+!FG_IDLE4
+{
+If only Drill Instructor Barnes could see me now!
+}
+
+$holdtime 3
+!FG_IDLE5
+{
+Have you seen any other soldiers from my platoon?
+}
+
+$holdtime 4
+!FG_IDLE6
+{
+Just when I was getting short, I've gotta pull this assignment!
+}
+
+$holdtime 6.5
+!FG_IDLE7
+{
+Man, if we make it out of here alive, I'm gonna buy you all a round of beers. Hell, I'll buy the whole damn bar!
+}
+
+$holdtime 3.2
+!FG_IDLE8
+{
+I bet you can get lost in this place really easy!
+}
+
+$holdtime 2.7
+!FG_IDLE9
+{
+This mission is way beyond FUBAR!
+}
+
+$holdtime 2.7
+!FG_IDLE10
+{
+Man, my dogs are barking!
+}
+
+$holdtime 3
+!FG_IDLE11
+{
+This place make boot camp seem like Disney Land!
+}
+
+$holdtime 2
+!FG_IDLE12
+{
+Recon team, check in!
+}
+
+$holdtime 1.5
+!FG_ATTACK0
+{
+Flank 'em!
+}
+
+$holdtime 2
+!FG_ATTACK1
+{
+You want some of me?!
+}
+
+$holdtime 2
+!FG_ATTACK2
+{
+Let's kill these freaks!
+}
+
+$holdtime 1.8
+!FG_ATTACK3
+{
+Go, recon!
+}
+
+$holdtime 2
+!FG_ATTACK4
+{
+Let's go, rapid fire!
+}
+
+$holdtime 1.8
+!FG_ATTACK5
+{
+Sweep that sector!
+}
+
+$holdtime 2
+!FG_ATTACK6
+{
+I need suppressing fire!
+}
+
+$holdtime 2
+!FG_ATTACK7
+{
+Let's go, marines!
+}
+
+$holdtime 1
+!FG_ATTACK8
+{
+Move up!
+}
+
+$holdtime 1.5
+!FG_ATTACK9
+{
+Let's go!
+}
+
+$holdtime 1.5
+!FG_ATTACK10
+{
+Covering fire!
+}
+
+$holdtime 2
+!FG_ATTACK11
+{
+We're gonna kick your ass!
+}
+
+$holdtime 2
+!FG_MAD0
+{
+We're gonna kick your ass!
+}
+
+$holdtime 1
+!FG_MAD1
+{
+Shephard!
+}
+
+$holdtime 3.5
+!FG_HELLO0
+{
+Shephard! You're a sight for sore eyes.
+}
+
+$holdtime 3.5
+!FG_HELLO1
+{
+Sir! It's good to see another man in uniform.
+}
+
+$holdtime 2
+!FG_HELLO2
+{
+Sir! Hello, sir!
+}
+
+$holdtime 2.5
+!FG_WOUND0
+{
+I'm hit, but I'll hang tough.
+}
+
+$holdtime 2.5
+!FG_WOUND1
+{
+It's okay, sir. It's just a flesh wound.
+}
+
+$holdtime 2.5
+!FG_WOUND2
+{
+I don't think I can make it, sir.
+}
+
+$holdtime 2.5
+!FG_MORTAL0
+{
+Corporal, I'm hit pretty bad!
+}
+
+$holdtime 3.3
+!FG_MORTAL1
+{
+That last shot was critical. I can't go on.
+}
+
+$holdtime 2.5
+!FG_MORTAL2
+{
+I've taken serious damage, sir.
+}
+
+$holdtime 2.3
+!FG_CURE0
+{
+Sir, I think you may need a medic.
+}
+
+$holdtime 2
+!FG_CURE1
+{
+You look pretty hurt, sir.
+}
+
+$holdtime 2.2
+!FG_CURE2
+{
+Corporal, you look like hell!
+}
+
+$holdtime 3
+!FG_CURE3
+{
+Man, Corporal. You look just like I feel.
+}
+
+$holdtime 2.5
+!FG_MAKEIT
+{
+I don't think I can make it, sir!
+}
+
+$holdtime 3
+!TG_OPEN0
+{
+Who needs a locksmith, eh, Shephard?
+}
+
+$holdtime 3.2
+!TG_OPEN1
+{
+Stand back, Corporal. This should only take a minute.
+}
+
+$holdtime 2.7
+!TG_OPEN2
+{
+I'll have you through here in no time.
+}
+
+$holdtime 3.3
+!TG_NOTOPEN0
+{
+Sorry, Corporal. This door is barricaded from the other side.
+}
+
+$holdtime 2.7
+!TG_NOTOPEN1
+{
+That barricade is way too thick.
+}
+
+$holdtime 3
+!TG_NOTOPEN2
+{
+Cutting through this door is not a good idea.
+}
+
+$holdtime 3.3
+!TG_NOTOPEN3
+{
+Sorry, sir, I'm not trained for situations like this.
+}
+
+$holdtime 4
+!TG_CUTIT
+{
+Shephard! Oh man. We thought you made evac already!
+}
+
+$holdtime 2
+!MG_HEAL0
+{
+This might sting a bit.
+}
+
+$holdtime 3.5
+!MG_HEAL1
+{
+Keeping you in one piece is proving to be quite a challenge!
+}
+
+$holdtime 2.5
+!MG_HEAL2
+{
+This outta keep you frosty, Corporal.
+}
+
+$holdtime 3
+!MG_NOTHEAL0
+{
+Sorry, sir. That's all I can do for you.
+}
+
+$holdtime 10.5
+$chained !FG_COOPER_PT2
+!FG_COOPER
+{
+Come in, Cooper. Do you copy? Forget about Freeman! We're abandoning the base. If you have any last bomb targets, mark them on the tactical map.
+}
+
+$holdtime 9
+!FG_COOPER_PT2
+{
+Otherwise, get the hell out of there! Repeat, we are pulling out and commencing air strikes. Give us targets, or get below!
+}
+
+$holdtime 11
+!FG_MADEIT
+{
+Shephard, you've made it. I take it you didn't find Freeman? Forget it, Corporal. We are puling out. The air strike has started. Get to the hangar while we await evac.
+}
+
+$holdtime 4
+!FG_TOHANGAR
+{
+I said get to the hangar, Shephard. That is an order!
+}
+
+$holdtime 4
+!FG_MESSAROUND
+{
+Where's Freeman? We don't have time to mess around here!
+}
+
+$holdtime 3
+!FG_TALK
+{
+I'm not lettin' you go until you talk!
+}
+
+$holdtime 3
+!FG_TALK
+{
+I'm not lettin' you go until you talk!
+}
+
+$holdtime 7.2
+!FG_GETOUT
+{
+You've got the get out of here. Listen to me, Shephard. Those things... they'll kill all of us!
+}
+
+$holdtime 5.3
+!FG_BITOFF
+{
+Looks like somebody really screwed up, Corporal. Seems the brass bit off more than they could chew!
+}
+
+$holdtime 4
+!FG_OWNASSES
+{
+Yeah, well, forget about Freeman! We've got to save our own asses!
+}
+
+$holdtime 2
+!FG_YOUWITHUS
+{
+You with us, Corporal?
+}
+
+$holdtime 6.5
+$chained !FG_DOWNTHERE_PT2
+!FG_DOWNTHERE
+{
+Shephard, what the hell were you doing down there? Listen, we need to get our asses down to the extraction point near Lambda sector.
+}
+
+$holdtime 8
+$chained !FG_DOWNTHERE_PT3
+!FG_DOWNTHERE_PT2
+{
+With any luck, we'll even get a shot at Freeman on our way out. Now, this transit system should take us there, but the door is sealed up pretty tight.
+}
+
+$holdtime 3
+!FG_DOWNTHERE_PT3
+{
+Jeez, where's an engineer when you need one?
+}
+
+$holdtime 5.5
+!FG_NEEDMEDIC
+{
+Engineer: Corporal, I don't think I'm gonna make it! I need a Medic bad!
+}
+
+$holdtime 3.5
+!FG_FIXEDUP
+{
+Medic: Don't worry, soldier. I'll have you fixed up in no time.
+}
+
+$holdtime 1.5
+!FG_THANKSDOC
+{
+Engineer: Thanks, doc!
+}
+
+$holdtime 6
+!FG_BRIEFING
+{
+Corporal, what the hell is going on here? Nobody told us about Black Operations in the mission briefing!
+}
+
+$holdtime 4
+!FG_SAMETEAM
+{
+Yeah, I mean we're all on the same team, right? Right?!
+}
+
+$holdtime 6
+!FG_KEEPMOVING
+{
+Well, I'm not sure what their mission is, but we need to keep moving! There's gotta be a transit car somewhere on these tracks.
+}
+
+$holdtime 6
+!FG_WIPEDOUT
+{
+Don't go in there, Corporal. That... monster... wiped out my squad...
+}
+
+$holdtime 5
+!FG_MASKFREAKS
+{
+Hey, man, good to see ya. Wow, I can't believe you made it pass those masked freaks.
+}
+
+$holdtime 9.5
+!FG_PATIENT
+{
+Those snipers have pinned us down here pretty good. We tried making a break for it, but they know we're here. They're just waitin' for their shots, and those bastards are patient!
+}
+
+$holdtime 7
+!FG_TABLES
+{
+Yeah, I'd love to turn the tables on those guys! Get my hands on one of those rifles! Show them a thing or two about patience!
+}
+
+$holdtime 6
+!FG_SUPRISE
+{
+Hey! With you here now, we have the element of surprise on our side! They're not expecting three of us. 
+}
+
+$holdtime 4
+!FG_EVAC
+{
+Shephard, oh man! We thought you might evac already!
+}
+
+$holdtime 11
+!FG_DAMNWALLS
+{
+It's good to see you, sir! It's a real mess out there. I mean these... things are coming out of the damn walls. Ain't no way around them either. They just keep coming!
+}
+
+$holdtime 6
+!FG_FIREPOWER
+{
+We may just have enough firepower to push through now! With very least we can give it our best shoot. 
+}
+
+$holdtime 9.3
+!FG_STANDOFF
+{
+I heard about some kind of big standoff at the dam up ahead. I say we make our break for it now. It ain't gonna get any better, that's for sure, and I bet they could use our help.
+}
+
+$holdtime 4
+!FG_STANDBACK
+{
+It's Shephard! Hey, stand back, and I'll cut it. We're gonna need your help!
+}
+
+$holdtime 8
+!FG_BLACKOPS
+{
+Shephard! I don't know what those Black Ops are up to, but it doesn't involve getting us out of here alive. We've got no choice but to fight our way out!
+}
+
+$holdtime 1
+!FG_LETSGO
+{
+Let's go!
+}
+
+$holdtime 1.5
+!FG_YES
+{
+Sir, yes, sir!
+}
+
+$holdtime 2
+!FG_GROUPYES
+{
+Sir, yes, sir!
+}
+
+$holdtime 3.5
+!FG_POK0
+{
+I'm sorry, Corporal. This is a restricted area.
+}
+
+$holdtime 2.5
+!FG_POK1
+{
+This is a restricted area, soldier!
+}
+
 
