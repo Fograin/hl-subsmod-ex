@@ -1001,7 +1001,7 @@ typedef struct sentenceg
 
 } SENTENCEG;
 
-#define CSENTENCEG_MAX 200					// max number of sentence groups
+#define CSENTENCEG_MAX 512	// Fograin92: Changed from 200 to 512, cuz fuck it
 // globals
 
 SENTENCEG rgsentenceg[CSENTENCEG_MAX];
@@ -1258,16 +1258,17 @@ void SENTENCEG_Stop(edict_t *entity, int isentenceg, int ipick)
 	STOP_SOUND(entity, CHAN_VOICE, buffer);
 }
 
+
 // open sentences.txt, scan for groups, build rgsentenceg
 // Should be called from world spawn, only works on the
 // first call and is ignored subsequently.
-
 void SENTENCEG_Init()
 {
 	char buffer[512];
 	char szgroup[64];
 	int i, j;
 	int isentencegs;
+	int iSeqNumber = 0;	// Fograin92: Used to count loaded sentences
 
 	if (fSentencesInit)
 		return;
@@ -1310,7 +1311,7 @@ void SENTENCEG_Init()
 
 		if (gcallsentences > CVOXFILESENTENCEMAX)
 		{
-			ALERT (at_error, "Too many sentences in sentences.txt!\n");
+			ALERT (at_console, "^1Too many sentences in sentences.txt!\n");
 			break;
 		}
 
@@ -1319,7 +1320,7 @@ void SENTENCEG_Init()
 		const char *pString = buffer + i;
 
 		if ( strlen( pString ) >= CBSENTENCENAME_MAX )
-			ALERT( at_warning, "Sentence %s longer than %d letters\n", pString, CBSENTENCENAME_MAX-1 );
+			ALERT( at_warning, "^1Sentence %s longer than %d letters\n", pString, CBSENTENCENAME_MAX-1 );
 
 		strcpy( gszallsentencenames[gcallsentences++], pString );
 
@@ -1348,7 +1349,7 @@ void SENTENCEG_Init()
 			isentencegs++;
 			if (isentencegs >= CSENTENCEG_MAX)
 			{
-				ALERT (at_error, "Too many sentence groups in sentences.txt!\n");
+				ALERT (at_console, "^1Too many sentence groups in sentences.txt!\n");
 				break;
 			}
 
@@ -1365,7 +1366,12 @@ void SENTENCEG_Init()
 			if (isentencegs >= 0)
 				rgsentenceg[isentencegs].count++;
 		}
+
+		iSeqNumber++; // Fograin92
 	}
+
+	// Fograin92: Display some info
+	ALERT( at_console, "^2Loaded %d sentences.\n", iSeqNumber);
 
 	g_engfuncs.pfnFreeFile( pMemFile );
 	

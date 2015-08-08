@@ -16,10 +16,10 @@
 #include	"util.h"
 #include	"cbase.h"
 #include	"monsters.h"
-#include	"schedule.h"
+#include	"ai_schedule.h"
 #include	"talkmonster.h"
-#include	"defaultai.h"
-#include	"scripted.h"
+#include	"ai_default.h"
+#include	"ai_scripted.h"
 #include	"soundent.h"
 #include	"animation.h"
 

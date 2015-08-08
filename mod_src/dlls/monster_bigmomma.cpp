@@ -21,7 +21,7 @@
 #include	"util.h"
 #include	"cbase.h"
 #include	"monsters.h"
-#include	"schedule.h"
+#include	"ai_schedule.h"
 #include	"decals.h"
 #include	"weapons.h"
 #include	"game.h"

@@ -28,7 +28,7 @@
 #include "animation.h"
 #include "saverestore.h"
 #include "weapons.h"
-#include "scripted.h"
+#include "ai_scripted.h"
 #include "squadmonster.h"
 #include "decals.h"
 #include "soundent.h"

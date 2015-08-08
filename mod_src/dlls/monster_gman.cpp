@@ -19,7 +19,7 @@
 #include	"util.h"
 #include	"cbase.h"
 #include	"monsters.h"
-#include	"schedule.h"
+#include	"ai_schedule.h"
 #include	"weapons.h"
 
 //=========================================================

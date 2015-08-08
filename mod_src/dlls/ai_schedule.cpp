@@ -21,9 +21,9 @@
 #include "cbase.h"
 #include "monsters.h"
 #include "animation.h"
-#include "scripted.h"
+#include "ai_scripted.h"
 #include "nodes.h"
-#include "defaultai.h"
+#include "ai_default.h"
 #include "soundent.h"
 
 extern CGraph WorldGraph;

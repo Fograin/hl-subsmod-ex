@@ -22,7 +22,7 @@
 #include	"cbase.h"
 #include	"nodes.h"
 #include	"monsters.h"
-#include	"schedule.h"
+#include	"ai_schedule.h"
 #include	"customentity.h"
 #include	"weapons.h"
 #include	"effects.h"

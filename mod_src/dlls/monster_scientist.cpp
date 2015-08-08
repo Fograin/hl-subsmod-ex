@@ -21,9 +21,9 @@
 #include	"cbase.h"
 #include	"monsters.h"
 #include	"talkmonster.h"
-#include	"schedule.h"
-#include	"defaultai.h"
-#include	"scripted.h"
+#include	"ai_schedule.h"
+#include	"ai_default.h"
+#include	"ai_scripted.h"
 #include	"animation.h"
 #include	"soundent.h"
 

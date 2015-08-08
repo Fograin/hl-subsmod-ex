@@ -20,7 +20,7 @@
 #include	"util.h"
 #include	"cbase.h"
 #include	"monsters.h"
-#include	"schedule.h"
+#include	"ai_schedule.h"
 #include	"nodes.h"
 #include	"effects.h"
 #include	"decals.h"

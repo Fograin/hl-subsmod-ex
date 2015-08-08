@@ -19,11 +19,11 @@
 #include	"util.h"
 #include	"cbase.h"
 #include	"monsters.h"
-#include	"schedule.h"
-#include	"defaultai.h"
+#include	"ai_schedule.h"
+#include	"ai_default.h"
 #include	"soundent.h"
 #include	"nodes.h"
-#include	"scripted.h"
+#include	"ai_scripted.h"
 
 //=========================================================
 // Fail

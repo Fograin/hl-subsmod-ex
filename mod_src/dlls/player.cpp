@@ -2763,6 +2763,7 @@ ReturnSpot:
 	return pSpot->edict();
 }
 
+// Fograin92: Called everytime player spawns (map transition, load)
 void CBasePlayer::Spawn( void )
 {
 	pev->classname		= MAKE_STRING("player");
@@ -2785,22 +2786,20 @@ void CBasePlayer::Spawn( void )
 	m_bitsHUDDamage		= -1;
 	m_bitsDamageType	= 0;
 	m_afPhysicsFlags	= 0;
-	m_fLongJump			= FALSE;// no longjump module. 
+	m_fLongJump			= FALSE; // No longjump module. 
 
 	g_engfuncs.pfnSetPhysicsKeyValue( edict(), "slj", "0" );
 	g_engfuncs.pfnSetPhysicsKeyValue( edict(), "hl", "1" );
 
-	pev->fov = m_iFOV				= 0;// init field of view.
-	m_iClientFOV		= -1; // make sure fov reset is sent
+	pev->fov = m_iFOV	= 0; // Init field of view.
+	m_iClientFOV		= -1; // Make sure fov reset is sent
+	m_flNextDecalTime	= 0; // let this player decal as soon as he spawns.
 
-	m_flNextDecalTime	= 0;// let this player decal as soon as he spawns.
+	m_flgeigerDelay = gpGlobals->time + 2.0;	// wait a few seconds until user-defined message registrations are recieved by all clients
 
-	m_flgeigerDelay = gpGlobals->time + 2.0;	// wait a few seconds until user-defined message registrations
-												// are recieved by all clients
-	
 	m_flTimeStepSound	= 0;
 	m_iStepLeft = 0;
-	m_flFieldOfView		= 0.5;// some monsters use this to determine whether or not the player is looking at them.
+	m_flFieldOfView		= 0.5; // Some monsters use this to determine whether or not the player is looking at them.
 
 	m_bloodColor	= BLOOD_COLOR_RED;
 	m_flNextAttack	= UTIL_WeaponTimeBase();
@@ -2809,7 +2808,7 @@ void CBasePlayer::Spawn( void )
 	m_iFlashBattery = 99;
 	m_flFlashLightTime = 1; // force first message
 
-// dont let uninitialized value here hurt the player
+	// dont let uninitialized value here hurt the player
 	m_flFallVelocity = 0;
 
 	g_pGameRules->SetDefaultPlayerTeam( this );
@@ -2829,9 +2828,7 @@ void CBasePlayer::Spawn( void )
 	m_HackedGunPos		= Vector( 0, 32, 0 );
 
 	if ( m_iPlayerSound == SOUNDLIST_EMPTY )
-	{
 		ALERT ( at_console, "Couldn't alloc player sound slot!\n" );
-	}
 
 	m_fNoPlayerSound = FALSE;// normal sound behavior.
 
@@ -2860,7 +2857,7 @@ void CBasePlayer::Spawn( void )
 		// Fograin92: Blue Shift map recognized
 		if (!strcmp( STRING(gpGlobals->mapname), pBSmaps[i]))
 		{
-			ALERT( at_console, "^3SM -> Game -> Blue Shift\n");
+			ALERT( at_console, "^4SM -> Game -> Blue Shift\n");
 			CVAR_SET_FLOAT( "sm_hud", 1.0 );
 			return;
 		}
@@ -2872,7 +2869,7 @@ void CBasePlayer::Spawn( void )
 		// Fograin92: Opposing Force map recognized
 		if (!strcmp( STRING(gpGlobals->mapname), pOFmaps[i]))
 		{
-			ALERT( at_console, "^3SM -> Game -> Opposing Force\n");
+			ALERT( at_console, "^2SM -> Game -> Opposing Force\n");
 			CVAR_SET_FLOAT( "sm_hud", 2.0 );
 			return;
 		}
@@ -2893,13 +2890,9 @@ void CBasePlayer :: Precache( void )
 	if ( WorldGraph.m_fGraphPresent && !WorldGraph.m_fGraphPointersSet )
 	{
 		if ( !WorldGraph.FSetGraphPointers() )
-		{
 			ALERT ( at_console, "**Graph pointers were not set!\n");
-		}
 		else
-		{
 			ALERT ( at_console, "**Graph Pointers Set!\n" );
-		} 
 	}
 
 	// SOUNDS / MODELS ARE PRECACHED in ClientPrecache() (game specific)
@@ -3392,49 +3385,51 @@ void CBasePlayer::ImpulseCommands( )
 	int iImpulse = (int)pev->impulse;
 	switch (iImpulse)
 	{
-		/*
+		
 		// Fograin92: Good old n' silly testing method
 		// This case will be removed in future
+		/*
 		case 98:
  		{
 			switch(BSi)
 			{
-				case 0:			PlaySentence( "!BS_MOVE", 4, VOL_NORM, ATTN_NORM );	break;
-				case 1:			PlaySentence( "!BS_NICEJOB", 4, VOL_NORM, ATTN_NORM );	break;
-				case 2:			PlaySentence( "!BS_PIPEDUCK", 4, VOL_NORM, ATTN_NORM );	break;
-				case 3:			PlaySentence( "!BS_PULLBOX", 4, VOL_NORM, ATTN_NORM );	break;
-				case 4:			PlaySentence( "!BS_PUSHBOX", 4, VOL_NORM, ATTN_NORM );	break;
-				case 5:			PlaySentence( "!BS_RADIATION", 4, VOL_NORM, ATTN_NORM );	break;
-				case 6:			PlaySentence( "!BS_RETRY", 4, VOL_NORM, ATTN_NORM );	break;
-				case 7:			PlaySentence( "!BS_RUNSTART", 4, VOL_NORM, ATTN_NORM );	break;
-				case 8:			PlaySentence( "!BS_SPINBRIDGE", 4, VOL_NORM, ATTN_NORM );	break;
-				case 9:			PlaySentence( "!BS_STARTLIFT", 4, VOL_NORM, ATTN_NORM );	break;
-				case 10:		PlaySentence( "!BS_STEAM", 4, VOL_NORM, ATTN_NORM );	break;
-				case 11:		PlaySentence( "!BS_TARGET", 4, VOL_NORM, ATTN_NORM );	break;
-				case 12:		PlaySentence( "!BS_TRYAGAIN", 4, VOL_NORM, ATTN_NORM );	break;
-				case 13:		PlaySentence( "!BS_USETRAIN", 4, VOL_NORM, ATTN_NORM );	break;
-				case 14:		PlaySentence( "!xxx", 4, VOL_NORM, ATTN_NORM );	break;
-				case 15:		PlaySentence( "!BS_DROWN", 4, VOL_NORM, ATTN_NORM );	break;
-				case 16:		PlaySentence( "!BS_DUCK", 4, VOL_NORM, ATTN_NORM );	break;
-				case 17:		PlaySentence( "!BS_FALLSHORT", 4, VOL_NORM, ATTN_NORM );	break;
-				case 18:		PlaySentence( "!BS_FANTASTIC", 4, VOL_NORM, ATTN_NORM );	break;
-				case 19:		PlaySentence( "!BS_FLASHLIGHT", 4, VOL_NORM, ATTN_NORM );	break;
-				case 20:		PlaySentence( "!BS_GREATWORK", 4, VOL_NORM, ATTN_NORM );	break;
-				case 21:		PlaySentence( "!BS_GRENADE", 4, VOL_NORM, ATTN_NORM );	break;
-				case 22:		PlaySentence( "!BS_HEVNOUSE", 4, VOL_NORM, ATTN_NORM );	break;
-				case 23:		PlaySentence( "!BS_HITALL", 4, VOL_NORM, ATTN_NORM );	break;
-				case 24:		PlaySentence( "!BS_INJURY", 4, VOL_NORM, ATTN_NORM );	break;
-				case 25:		PlaySentence( "!BS_INTRO", 4, VOL_NORM, ATTN_NORM );	break;
-				case 26:		PlaySentence( "!BS_JDUCK", 4, VOL_NORM, ATTN_NORM );	break;
-				case 27:		PlaySentence( "!BS_JUMP", 4, VOL_NORM, ATTN_NORM );	break;
-				case 28:		PlaySentence( "!BS_JUMPDOWN", 4, VOL_NORM, ATTN_NORM );	break;
-				case 29:		PlaySentence( "!BS_JUMPGAP", 4, VOL_NORM, ATTN_NORM );	break;
-				case 30:		PlaySentence( "!BS_KEEPTRYING", 4, VOL_NORM, ATTN_NORM );	break;
-				case 31:		PlaySentence( "!BS_LADDER", 4, VOL_NORM, ATTN_NORM );	break;
-				case 32:		PlaySentence( "!BS_LEADGUARD", 4, VOL_NORM, ATTN_NORM );	break;
-				case 33:		PlaySentence( "!BS_LIGHTOFF", 4, VOL_NORM, ATTN_NORM );	break;
-				case 34:		PlaySentence( "!BS_LONGJUMP", 4, VOL_NORM, ATTN_NORM );	break;
-				case 35:		PlaySentence( "!BS_MEDKIT", 4, VOL_NORM, ATTN_NORM );	break;
+				case 0:			PlaySentence( "!INTRO_DR_L1", 4, VOL_NORM, ATTN_NORM );	break;
+				case 1:			PlaySentence( "!INTRO_DR_L2", 4, VOL_NORM, ATTN_NORM );	break;
+				case 2:			PlaySentence( "!INTRO_DR_L3", 4, VOL_NORM, ATTN_NORM );	break;
+				case 3:			PlaySentence( "!xxx", 4, VOL_NORM, ATTN_NORM );	break;
+				case 4:			PlaySentence( "!DR_ROPE05", 4, VOL_NORM, ATTN_NORM );	break;
+				case 5:			PlaySentence( "!DR_ROPE05B", 4, VOL_NORM, ATTN_NORM );	break;
+				case 6:			PlaySentence( "!DR_ROPE06", 4, VOL_NORM, ATTN_NORM );	break;
+				case 7:			PlaySentence( "!DR_ROPE07", 4, VOL_NORM, ATTN_NORM );	break;
+				case 8:			PlaySentence( "!DR_SECONDROOM01", 4, VOL_NORM, ATTN_NORM );	break;
+				case 9:			PlaySentence( "!DR_SECONDROOM02", 4, VOL_NORM, ATTN_NORM );	break;
+				case 10:		PlaySentence( "!DR_SEVENROOM01", 4, VOL_NORM, ATTN_NORM );	break;
+				case 11:		PlaySentence( "!DR_SIXTHROOM01", 4, VOL_NORM, ATTN_NORM );	break;
+				case 12:		PlaySentence( "!DR_SOUND4", 4, VOL_NORM, ATTN_NORM );	break;
+				case 13:		PlaySentence( "!DR_SQUAD01", 4, VOL_NORM, ATTN_NORM );	break;
+				case 14:		PlaySentence( "!DR_SQUAD02", 4, VOL_NORM, ATTN_NORM );	break;
+				case 15:		PlaySentence( "!DR_SQUAD03", 4, VOL_NORM, ATTN_NORM );	break;
+				case 16:		PlaySentence( "!DR_SQUAD04", 4, VOL_NORM, ATTN_NORM );	break;
+				case 17:		PlaySentence( "!DR_SQUAD05", 4, VOL_NORM, ATTN_NORM );	break;
+				case 18:		PlaySentence( "!DR_SQUAD06", 4, VOL_NORM, ATTN_NORM );	break;
+				case 19:		PlaySentence( "!DR_SQUAD07", 4, VOL_NORM, ATTN_NORM );	break;
+				case 20:		PlaySentence( "!DR_THIRDROOM01", 4, VOL_NORM, ATTN_NORM );	break;
+				case 21:		PlaySentence( "!DR_THIRDROOM02", 4, VOL_NORM, ATTN_NORM );	break;
+				case 22:		PlaySentence( "!xx", 4, VOL_NORM, ATTN_NORM );	break;
+				case 23:		PlaySentence( "!xxx", 4, VOL_NORM, ATTN_NORM );	break;
+				case 24:		PlaySentence( "!xxx", 4, VOL_NORM, ATTN_NORM );	break;
+				case 25:		PlaySentence( "!OT_ATTACK1", 4, VOL_NORM, ATTN_NORM );	break;
+				case 26:		PlaySentence( "!OT_ATTACK2", 4, VOL_NORM, ATTN_NORM );	break;
+				case 27:		PlaySentence( "!OT_ATTACK3", 4, VOL_NORM, ATTN_NORM );	break;
+				case 28:		PlaySentence( "!OT_HEAR0", 4, VOL_NORM, ATTN_NORM );	break;
+				case 29:		PlaySentence( "!OT_HEAR1", 4, VOL_NORM, ATTN_NORM );	break;
+				case 30:		PlaySentence( "!OT_SMELL0", 4, VOL_NORM, ATTN_NORM );	break;
+				case 31:		PlaySentence( "!OT_SMELL1", 4, VOL_NORM, ATTN_NORM );	break;
+				case 32:		PlaySentence( "!OT_SMELL2", 4, VOL_NORM, ATTN_NORM );	break;
+				case 33:		PlaySentence( "!OT_SMELL3", 4, VOL_NORM, ATTN_NORM );	break;
+				case 34:		PlaySentence( "!x", 4, VOL_NORM, ATTN_NORM );	break;
+				case 35:		PlaySentence( "!OTx_OK3", 4, VOL_NORM, ATTN_NORM );	break;
+				case 36:		PlaySentence( "!OTx_OK4", 4, VOL_NORM, ATTN_NORM );	break;
 			}
 			BSi++;
  		break;
@@ -3536,9 +3531,6 @@ void CBasePlayer::CheatImpulseCommands( int iImpulse )
 			}
 			break;
 		}
-
-	// Fograin92: Sentences testing purposes
-
 
 	case 101:
 		gEvilImpulse101 = TRUE;

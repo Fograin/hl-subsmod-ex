@@ -32,9 +32,9 @@
 #include "saverestore.h"
 #endif
 
-#include "schedule.h"
-#include "scripted.h"
-#include "defaultai.h"
+#include "ai_schedule.h"
+#include "ai_scripted.h"
+#include "ai_default.h"
 
 
 
