@@ -1,5 +1,5 @@
 //=============================================================//
-//	Half-Life Subtitles MOD - Frag grenade weapon
+//	Half-Life Subtitles MOD
 //	https://github.com/Fograin/hl-subsmod-ex
 //	
 //	This product contains software technology licensed from:
@@ -187,9 +187,17 @@ void CMP5::PrimaryAttack()
 
 	PLAYBACK_EVENT_FULL( flags, m_pPlayer->edict(), m_usMP5, 0.0, (float *)&g_vecZero, (float *)&g_vecZero, vecDir.x, vecDir.y, 0, 0, 0, 0 );
 
+#ifndef CLIENT_DLL
 	if (!m_iClip && m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] <= 0)
-		// HEV suit - indicate out of ammo condition
-		m_pPlayer->SetSuitUpdate("!HEV_AMO0", FALSE, 0);
+	{
+		// Fograin92: Only if this is HL1 game
+		if (CVAR_GET_FLOAT("sm_hud") == 0)
+		{
+			// HEV suit - indicate out of ammo condition
+			m_pPlayer->SetSuitUpdate("!HEV_AMO0", FALSE, 0);
+		}
+	}
+#endif
 
 	m_flNextPrimaryAttack = UTIL_WeaponTimeBase() + 0.1;
 
@@ -248,9 +256,17 @@ void CMP5::SecondaryAttack( void )
 	m_flNextSecondaryAttack = UTIL_WeaponTimeBase() + 1;
 	m_flTimeWeaponIdle = UTIL_WeaponTimeBase() + 5;// idle pretty soon after shooting.
 
+#ifndef CLIENT_DLL
 	if (!m_pPlayer->m_rgAmmo[m_iSecondaryAmmoType])
-		// HEV suit - indicate out of ammo condition
-		m_pPlayer->SetSuitUpdate("!HEV_AMO0", FALSE, 0);
+	{
+		// Fograin92: Only if this is HL1 game
+		if (CVAR_GET_FLOAT("sm_hud") == 0)
+		{
+			// HEV suit - indicate out of ammo condition
+			m_pPlayer->SetSuitUpdate("!HEV_AMO0", FALSE, 0);
+		}
+	}
+#endif
 }
 
 void CMP5::Reload( void )

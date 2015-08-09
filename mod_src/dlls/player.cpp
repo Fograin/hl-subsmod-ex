@@ -1,25 +1,13 @@
-	/***
-*
-*	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
-*	All Rights Reserved.
-*
-*   Use, distribution, and modification of this source code and/or resulting
-*   object code is restricted to non-commercial enhancements to products from
-*   Valve LLC.  All other use, distribution, or modification is prohibited
-*   without written permission from Valve LLC.
-*
-****/
-/*
-
-===== player.cpp ========================================================
-
-  functions dealing with the player
-
-*/
-
+//=============================================================//
+//	Half-Life Subtitles MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	This product contains software technology licensed from:
+//	Valve LLC.
+//	Id Software, Inc. ("Id Technology")
+//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
 #include "extdll.h"
 #include "util.h"
 
@@ -551,17 +539,25 @@ int CBasePlayer :: TakeDamage( entvars_t *pevInflictor, entvars_t *pevAttacker, 
 
 		if (bitsDamage & DMG_CLUB)
 		{
-			if (fmajor)
-				SetSuitUpdate("!HEV_DMG4", FALSE, SUIT_NEXT_IN_30SEC);	// minor fracture
+			// Fograin92: Only if this is HL1 game
+			if (CVAR_GET_FLOAT("sm_hud") == 0)
+			{
+				if (fmajor)
+					SetSuitUpdate("!HEV_DMG4", FALSE, SUIT_NEXT_IN_30SEC);	// minor fracture
+			}
 			bitsDamage &= ~DMG_CLUB;
 			ffound = TRUE;
 		}
 		if (bitsDamage & (DMG_FALL | DMG_CRUSH))
 		{
-			if (fmajor)
-				SetSuitUpdate("!HEV_DMG5", FALSE, SUIT_NEXT_IN_30SEC);	// major fracture
-			else
-				SetSuitUpdate("!HEV_DMG4", FALSE, SUIT_NEXT_IN_30SEC);	// minor fracture
+			// Fograin92: Only if this is HL1 game
+			if (CVAR_GET_FLOAT("sm_hud") == 0)
+			{
+				if (fmajor)
+					SetSuitUpdate("!HEV_DMG5", FALSE, SUIT_NEXT_IN_30SEC);	// major fracture
+				else
+					SetSuitUpdate("!HEV_DMG4", FALSE, SUIT_NEXT_IN_30SEC);	// minor fracture
+			}
 	
 			bitsDamage &= ~(DMG_FALL | DMG_CRUSH);
 			ffound = TRUE;
@@ -569,21 +565,27 @@ int CBasePlayer :: TakeDamage( entvars_t *pevInflictor, entvars_t *pevAttacker, 
 		
 		if (bitsDamage & DMG_BULLET)
 		{
-			if (m_lastDamageAmount > 5)
-				SetSuitUpdate("!HEV_DMG6", FALSE, SUIT_NEXT_IN_30SEC);	// blood loss detected
-			//else
-			//	SetSuitUpdate("!HEV_DMG0", FALSE, SUIT_NEXT_IN_30SEC);	// minor laceration
-			
+			// Fograin92: Only if this is HL1 game
+			if (CVAR_GET_FLOAT("sm_hud") == 0)
+			{
+				if (m_lastDamageAmount > 5)
+					SetSuitUpdate("!HEV_DMG6", FALSE, SUIT_NEXT_IN_30SEC);	// blood loss detected
+			}
+
 			bitsDamage &= ~DMG_BULLET;
 			ffound = TRUE;
 		}
 
 		if (bitsDamage & DMG_SLASH)
 		{
-			if (fmajor)
-				SetSuitUpdate("!HEV_DMG1", FALSE, SUIT_NEXT_IN_30SEC);	// major laceration
-			else
-				SetSuitUpdate("!HEV_DMG0", FALSE, SUIT_NEXT_IN_30SEC);	// minor laceration
+			// Fograin92: Only if this is HL1 game
+			if (CVAR_GET_FLOAT("sm_hud") == 0)
+			{
+				if (fmajor)
+					SetSuitUpdate("!HEV_DMG1", FALSE, SUIT_NEXT_IN_30SEC);	// major laceration
+				else
+					SetSuitUpdate("!HEV_DMG0", FALSE, SUIT_NEXT_IN_30SEC);	// minor laceration
+			}
 
 			bitsDamage &= ~DMG_SLASH;
 			ffound = TRUE;
@@ -591,36 +593,49 @@ int CBasePlayer :: TakeDamage( entvars_t *pevInflictor, entvars_t *pevAttacker, 
 		
 		if (bitsDamage & DMG_SONIC)
 		{
-			if (fmajor)
-				SetSuitUpdate("!HEV_DMG2", FALSE, SUIT_NEXT_IN_1MIN);	// internal bleeding
+			// Fograin92: Only if this is HL1 game
+			if (CVAR_GET_FLOAT("sm_hud") == 0)
+			{
+				if (fmajor)
+					SetSuitUpdate("!HEV_DMG2", FALSE, SUIT_NEXT_IN_1MIN);	// internal bleeding
+			}
 			bitsDamage &= ~DMG_SONIC;
 			ffound = TRUE;
 		}
 
 		if (bitsDamage & (DMG_POISON | DMG_PARALYZE))
 		{
-			SetSuitUpdate("!HEV_DMG3", FALSE, SUIT_NEXT_IN_1MIN);	// blood toxins detected
+			// Fograin92: Only if this is HL1 game
+			if (CVAR_GET_FLOAT("sm_hud") == 0)
+				SetSuitUpdate("!HEV_DMG3", FALSE, SUIT_NEXT_IN_1MIN);	// blood toxins detected
+
 			bitsDamage &= ~(DMG_POISON | DMG_PARALYZE);
 			ffound = TRUE;
 		}
 
 		if (bitsDamage & DMG_ACID)
 		{
-			SetSuitUpdate("!HEV_DET1", FALSE, SUIT_NEXT_IN_1MIN);	// hazardous chemicals detected
+			// Fograin92: Only if this is HL1 game
+			if (CVAR_GET_FLOAT("sm_hud") == 0)
+				SetSuitUpdate("!HEV_DET1", FALSE, SUIT_NEXT_IN_1MIN);	// hazardous chemicals detected
 			bitsDamage &= ~DMG_ACID;
 			ffound = TRUE;
 		}
 
 		if (bitsDamage & DMG_NERVEGAS)
 		{
-			SetSuitUpdate("!HEV_DET0", FALSE, SUIT_NEXT_IN_1MIN);	// biohazard detected
+			// Fograin92: Only if this is HL1 game
+			if (CVAR_GET_FLOAT("sm_hud") == 0)
+				SetSuitUpdate("!HEV_DET0", FALSE, SUIT_NEXT_IN_1MIN);	// biohazard detected
 			bitsDamage &= ~DMG_NERVEGAS;
 			ffound = TRUE;
 		}
 
 		if (bitsDamage & DMG_RADIATION)
 		{
-			SetSuitUpdate("!HEV_DET2", FALSE, SUIT_NEXT_IN_1MIN);	// radiation detected
+			// Fograin92: Only if this is HL1 game
+			if (CVAR_GET_FLOAT("sm_hud") == 0)
+				SetSuitUpdate("!HEV_DET2", FALSE, SUIT_NEXT_IN_1MIN);	// radiation detected
 			bitsDamage &= ~DMG_RADIATION;
 			ffound = TRUE;
 		}
@@ -635,30 +650,41 @@ int CBasePlayer :: TakeDamage( entvars_t *pevInflictor, entvars_t *pevAttacker, 
 
 	if (fTookDamage && !ftrivial && fmajor && flHealthPrev >= 75) 
 	{
-		// first time we take major damage...
-		// turn automedic on if not on
-		SetSuitUpdate("!HEV_MED1", FALSE, SUIT_NEXT_IN_30MIN);	// automedic on
+		// Fograin92: Only if this is HL1 game
+		if (CVAR_GET_FLOAT("sm_hud") == 0)
+		{
+			// first time we take major damage...
+			// turn automedic on if not on
+			SetSuitUpdate("!HEV_MED1", FALSE, SUIT_NEXT_IN_30MIN);	// automedic on
 
-		// give morphine shot if not given recently
-		SetSuitUpdate("!HEV_HEAL7", FALSE, SUIT_NEXT_IN_30MIN);	// morphine shot
+			// give morphine shot if not given recently
+			SetSuitUpdate("!HEV_HEAL7", FALSE, SUIT_NEXT_IN_30MIN);	// morphine shot
+		}
 	}
 	
 	if (fTookDamage && !ftrivial && fcritical && flHealthPrev < 75)
 	{
+		// Fograin92: Only if this is HL1 game
+		if (CVAR_GET_FLOAT("sm_hud") == 0)
+		{
 
-		// already took major damage, now it's critical...
-		if (pev->health < 6)
-			SetSuitUpdate("!HEV_HLTH3", FALSE, SUIT_NEXT_IN_10MIN);	// near death
-		else if (pev->health < 20)
-			SetSuitUpdate("!HEV_HLTH2", FALSE, SUIT_NEXT_IN_10MIN);	// health critical
-	
-		// give critical health warnings
-		if (!RANDOM_LONG(0,3) && flHealthPrev < 50)
-			SetSuitUpdate("!HEV_DMG7", FALSE, SUIT_NEXT_IN_5MIN); //seek medical attention
+			// already took major damage, now it's critical...
+			if (pev->health < 6)
+				SetSuitUpdate("!HEV_HLTH3", FALSE, SUIT_NEXT_IN_10MIN);	// near death
+			else if (pev->health < 20)
+				SetSuitUpdate("!HEV_HLTH2", FALSE, SUIT_NEXT_IN_10MIN);	// health critical
+		
+			// give critical health warnings
+			if (!RANDOM_LONG(0,3) && flHealthPrev < 50)
+				SetSuitUpdate("!HEV_DMG7", FALSE, SUIT_NEXT_IN_5MIN); //seek medical attention
+		}
 	}
 
 	// if we're taking time based damage, warn about its continuing effects
 	if (fTookDamage && (bitsDamageType & DMG_TIMEBASED) && flHealthPrev < 75)
+	{
+		// Fograin92: Only if this is HL1 game
+		if (CVAR_GET_FLOAT("sm_hud") == 0)
 		{
 			if (flHealthPrev < 50)
 			{
@@ -668,6 +694,7 @@ int CBasePlayer :: TakeDamage( entvars_t *pevInflictor, entvars_t *pevAttacker, 
 			else
 				SetSuitUpdate("!HEV_HLTH1", FALSE, SUIT_NEXT_IN_10MIN);	// health dropping
 		}
+	}
 
 	return fTookDamage;
 }
@@ -2050,7 +2077,10 @@ void CBasePlayer::CheckTimeBasedDamage()
 					{
 						m_rgbTimeBasedDamage[i] = 0;
 						m_rgItems[ITEM_ANTIDOTE]--;
-						SetSuitUpdate("!HEV_HEAL4", FALSE, SUIT_REPEAT_OK);
+
+						// Fograin92: Only if this is HL1 game
+						if (CVAR_GET_FLOAT("sm_hud") == 0)
+							SetSuitUpdate("!HEV_HEAL4", FALSE, SUIT_REPEAT_OK);
 					}
 				}
 
@@ -2177,8 +2207,6 @@ CheckSuitUpdate
 Play suit update if it's time
 ================
 */
-
-#define SUITUPDATETIME	3.5
 #define SUITFIRSTUPDATETIME 0.1
 
 void CBasePlayer::CheckSuitUpdate()
@@ -2194,42 +2222,57 @@ void CBasePlayer::CheckSuitUpdate()
 	// if in range of radiation source, ping geiger counter
 	UpdateGeigerCounter();
 
-	if ( g_pGameRules->IsMultiplayer() )
-	{
-		// don't bother updating HEV voice in multiplayer.
-		return;
-	}
-
 	if ( gpGlobals->time >= m_flSuitUpdate && m_flSuitUpdate > 0)
 	{
 		// play a sentence off of the end of the queue
 		for (i = 0; i < CSUITPLAYLIST; i++)
-			{
+		{
 			if (isentence = m_rgSuitPlayList[isearch])
 				break;
 			
 			if (++isearch == CSUITPLAYLIST)
 				isearch = 0;
-			}
+		}
 
 		if (isentence)
 		{
 			m_rgSuitPlayList[isearch] = 0;
+
 			if (isentence > 0)
 			{
 				// play sentence number
-
 				char sentence[CBSENTENCENAME_MAX+1];
 				strcpy(sentence, "!");
 				strcat(sentence, gszallsentencenames[isentence]);
 				EMIT_SOUND_SUIT(ENT(pev), sentence);
+
+				//ALERT( at_console, "SE: %s\n", sentence );
+				// Fograin92: Fix update time for HEV Weapon pickups
+				if (!strcmp( sentence, "!HEV_PISTOL"))	m_flSuitUpdate = gpGlobals->time + 4.4;
+				else if (!strcmp( sentence, "!HEV_SHOTGUN"))	m_flSuitUpdate = gpGlobals->time + 2.3;
+				else if (!strcmp( sentence, "!HEV_GRENADE"))	m_flSuitUpdate = gpGlobals->time + 3.0;
+				else if (!strcmp( sentence, "!HEV_ASSAULT"))	m_flSuitUpdate = gpGlobals->time + 6.5;
+				else if (!strcmp( sentence, "!HEV_44PISTOL"))	m_flSuitUpdate = gpGlobals->time + 3.5;
+				else if (!strcmp( sentence, "!HEV_RPG"))		m_flSuitUpdate = gpGlobals->time + 3.6;
+				else if (!strcmp( sentence, "!HEV_SATCHEL"))	m_flSuitUpdate = gpGlobals->time + 4.0;
+				else if (!strcmp( sentence, "!HEV_TRIPMINE"))	m_flSuitUpdate = gpGlobals->time + 4.5;
+				else if (!strcmp( sentence, "!HEV_HORNET"))		m_flSuitUpdate = gpGlobals->time + 3.5;
+				else if (!strcmp( sentence, "!HEV_SQUEEK"))		m_flSuitUpdate = gpGlobals->time + 4.0;
+				else if (!strcmp( sentence, "!HEV_EGON"))		m_flSuitUpdate = gpGlobals->time + 3.7;
+				else if (!strcmp( sentence, "!HEV_GAUSS"))		m_flSuitUpdate = gpGlobals->time + 5.0;
+				else if (!strcmp( sentence, "!HEV_XBOW"))		m_flSuitUpdate = gpGlobals->time + 3.9;
+				else if (!strcmp( sentence, "!HEV_CROWBAR"))	m_flSuitUpdate = gpGlobals->time + 3.2;
+				else
+					m_flSuitUpdate = gpGlobals->time + 4.0;
 			}
 			else
 			{
 				// play sentence group
 				EMIT_GROUPID_SUIT(ENT(pev), -isentence);
+				m_flSuitUpdate = gpGlobals->time + 4.0;
 			}
-		m_flSuitUpdate = gpGlobals->time + SUITUPDATETIME;
+
+			//ALERT( at_console, "HAX: %.0f\n", m_flSuitUpdate );
 		}
 		else
 			// queue is empty, don't check 
@@ -2254,14 +2297,7 @@ void CBasePlayer::SetSuitUpdate(char *name, int fgroup, int iNoRepeatTime)
 	if ( !(pev->weapons & (1<<WEAPON_SUIT)) )
 		return;
 
-	if ( g_pGameRules->IsMultiplayer() )
-	{
-		// due to static channel design, etc. We don't play HEV sounds in multiplayer right now.
-		return;
-	}
-
 	// if name == NULL, then clear out the queue
-
 	if (!name)
 	{
 		for (i = 0; i < CSUITPLAYLIST; i++)
@@ -2282,35 +2318,33 @@ void CBasePlayer::SetSuitUpdate(char *name, int fgroup, int iNoRepeatTime)
 	// check norepeat list - this list lets us cancel
 	// the playback of words or sentences that have already
 	// been played within a certain time.
-
 	for (i = 0; i < CSUITNOREPEAT; i++)
 	{
 		if (isentence == m_rgiSuitNoRepeat[i])
-			{
+		{
 			// this sentence or group is already in 
 			// the norepeat list
 
 			if (m_rgflSuitNoRepeatTime[i] < gpGlobals->time)
-				{
+			{
 				// norepeat time has expired, clear it out
 				m_rgiSuitNoRepeat[i] = 0;
 				m_rgflSuitNoRepeatTime[i] = 0.0;
 				iempty = i;
 				break;
-				}
+			}
 			else
-				{
+			{
 				// don't play, still marked as norepeat
 				return;
-				}
 			}
+		}
 		// keep track of empty slot
 		if (!m_rgiSuitNoRepeat[i])
 			iempty = i;
 	}
 
 	// sentence is not in norepeat list, save if norepeat time was given
-
 	if (iNoRepeatTime)
 	{
 		if (iempty < 0)
@@ -2320,7 +2354,6 @@ void CBasePlayer::SetSuitUpdate(char *name, int fgroup, int iNoRepeatTime)
 	}
 
 	// find empty spot in queue, or overwrite last spot
-	
 	m_rgSuitPlayList[m_iSuitPlayNext++] = isentence;
 	if (m_iSuitPlayNext == CSUITPLAYLIST)
 		m_iSuitPlayNext = 0;
@@ -2328,12 +2361,12 @@ void CBasePlayer::SetSuitUpdate(char *name, int fgroup, int iNoRepeatTime)
 	if (m_flSuitUpdate <= gpGlobals->time)
 	{
 		if (m_flSuitUpdate == 0)
-			// play queue is empty, don't delay too long before playback
-			m_flSuitUpdate = gpGlobals->time + SUITFIRSTUPDATETIME;
-		else 
-			m_flSuitUpdate = gpGlobals->time + SUITUPDATETIME; 
+			m_flSuitUpdate = gpGlobals->time + 0.1;	// play queue is empty, don't delay too long before playback
+		else
+			m_flSuitUpdate = gpGlobals->time + 4.0;
 	}
 
+	CheckSuitUpdate();
 }
 
 /*
@@ -3373,7 +3406,7 @@ ImpulseCommands
 ============
 */
 extern float g_flWeaponCheat;
-//int BSi = 0;	// Fograin92: Good old n' silly testing method
+int BSi = 0;	// Fograin92: Good old n' silly testing method
 
 void CBasePlayer::ImpulseCommands( )
 {
@@ -3388,26 +3421,26 @@ void CBasePlayer::ImpulseCommands( )
 		
 		// Fograin92: Good old n' silly testing method
 		// This case will be removed in future
-		/*
+		
 		case 98:
  		{
 			switch(BSi)
 			{
-				case 0:			PlaySentence( "!INTRO_DR_L1", 4, VOL_NORM, ATTN_NORM );	break;
-				case 1:			PlaySentence( "!INTRO_DR_L2", 4, VOL_NORM, ATTN_NORM );	break;
-				case 2:			PlaySentence( "!INTRO_DR_L3", 4, VOL_NORM, ATTN_NORM );	break;
-				case 3:			PlaySentence( "!xxx", 4, VOL_NORM, ATTN_NORM );	break;
-				case 4:			PlaySentence( "!DR_ROPE05", 4, VOL_NORM, ATTN_NORM );	break;
-				case 5:			PlaySentence( "!DR_ROPE05B", 4, VOL_NORM, ATTN_NORM );	break;
-				case 6:			PlaySentence( "!DR_ROPE06", 4, VOL_NORM, ATTN_NORM );	break;
-				case 7:			PlaySentence( "!DR_ROPE07", 4, VOL_NORM, ATTN_NORM );	break;
-				case 8:			PlaySentence( "!DR_SECONDROOM01", 4, VOL_NORM, ATTN_NORM );	break;
-				case 9:			PlaySentence( "!DR_SECONDROOM02", 4, VOL_NORM, ATTN_NORM );	break;
-				case 10:		PlaySentence( "!DR_SEVENROOM01", 4, VOL_NORM, ATTN_NORM );	break;
-				case 11:		PlaySentence( "!DR_SIXTHROOM01", 4, VOL_NORM, ATTN_NORM );	break;
-				case 12:		PlaySentence( "!DR_SOUND4", 4, VOL_NORM, ATTN_NORM );	break;
-				case 13:		PlaySentence( "!DR_SQUAD01", 4, VOL_NORM, ATTN_NORM );	break;
-				case 14:		PlaySentence( "!DR_SQUAD02", 4, VOL_NORM, ATTN_NORM );	break;
+				case 0:			PlaySentence( "!HEV_PISTOL", 4, VOL_NORM, ATTN_NORM );	break;
+				case 1:			PlaySentence( "!HEV_SHOTGUN", 4, VOL_NORM, ATTN_NORM );	break;
+				case 2:			PlaySentence( "!HEV_GRENADE", 4, VOL_NORM, ATTN_NORM );	break;
+				case 3:			PlaySentence( "!HEV_ASSAULT", 4, VOL_NORM, ATTN_NORM );	break;
+				case 4:			PlaySentence( "!HEV_44PISTOL", 4, VOL_NORM, ATTN_NORM );	break;
+				case 5:			PlaySentence( "!HEV_RPG", 4, VOL_NORM, ATTN_NORM );	break;
+				case 6:			PlaySentence( "!HEV_SATCHEL", 4, VOL_NORM, ATTN_NORM );	break;
+				case 7:			PlaySentence( "!HEV_TRIPMINE", 4, VOL_NORM, ATTN_NORM );	break;
+				case 8:			PlaySentence( "!HEV_HORNET", 4, VOL_NORM, ATTN_NORM );	break;
+				case 9:			PlaySentence( "!HEV_SQUEEK", 4, VOL_NORM, ATTN_NORM );	break;
+				case 10:		PlaySentence( "!HEV_EGON", 4, VOL_NORM, ATTN_NORM );	break;
+				case 11:		PlaySentence( "!HEV_GAUSS", 4, VOL_NORM, ATTN_NORM );	break;
+				case 12:		PlaySentence( "!HEV_XBOW", 4, VOL_NORM, ATTN_NORM );	break;
+				case 13:		PlaySentence( "!HEV_CROWBAR", 4, VOL_NORM, ATTN_NORM );	break;
+				case 14:		PlaySentence( "!xxx", 4, VOL_NORM, ATTN_NORM );	break;
 				case 15:		PlaySentence( "!DR_SQUAD03", 4, VOL_NORM, ATTN_NORM );	break;
 				case 16:		PlaySentence( "!DR_SQUAD04", 4, VOL_NORM, ATTN_NORM );	break;
 				case 17:		PlaySentence( "!DR_SQUAD05", 4, VOL_NORM, ATTN_NORM );	break;
@@ -3434,7 +3467,7 @@ void CBasePlayer::ImpulseCommands( )
 			BSi++;
  		break;
  		}
-		*/
+		
 
 
 		case 99:

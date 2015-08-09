@@ -7073,7 +7073,7 @@ $holdtime 5
 9mm semi-automatic handgun, acquired.
 }
 
-$holdtime 3.3
+$holdtime 3
 !HEV_SHOTGUN
 {
 Combat shotgun, acquired.
@@ -7085,7 +7085,7 @@ $holdtime 3.3
 Fragmentation grenade, acquired.
 }
 
-$holdtime 7
+$holdtime 6.8
 !HEV_ASSAULT
 {
 9mm fully automatic weapon with grenade launcher, acquired.
@@ -7139,10 +7139,16 @@ $holdtime 5.5
 Experimental hyper-velocity projectile weapon, acquired.
 }
 
-$holdtime 4
+$holdtime 4.5
 !HEV_XBOW
 {
 High velocity stealth crossbow, acquired.
+}
+
+$holdtime 4
+!HEV_CROWBAR
+{
+Unidentified weapon, acquired.
 }
 
 $holdtime 2.5

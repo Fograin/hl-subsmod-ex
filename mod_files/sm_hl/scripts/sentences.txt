@@ -585,19 +585,20 @@ HEV_AIM_OFF fvox/blip targetting_system deactivated
 HEV_BATTERY fvox/blip get_battery acquired
 HEV_MEDKIT fvox/blip get_medkit(v80)
 
-HEV_PISTOL fvox/blip get_pistol acquired
-HEV_SHOTGUN fvox/blip get_shotgun
-HEV_GRENADE fvox/blip get_grenade acquired
-HEV_ASSAULT fvox/blip get_assault acquired
-HEV_44PISTOL fvox/blip get_44pistol acquired
-HEV_RPG fvox/blip get_rpg acquired
-HEV_SATCHEL fvox/blip get_satchel acquired
-HEV_TRIPMINE fvox/blip get_tripmine acquired
-HEV_HORNET fvox/blip get_alien_wpn acquired
-HEV_SQUEEK fvox/blip get_alien_wpn acquired
-HEV_EGON fvox/blip get_egon acquired
-HEV_GAUSS fvox/blip get_gauss acquired
-HEV_XBOW fvox/blip get_crossbow acquired
+HEV_PISTOL fvox/get_pistol acquired
+HEV_SHOTGUN fvox/get_shotgun
+HEV_GRENADE fvox/get_grenade acquired
+HEV_ASSAULT fvox/get_assault acquired
+HEV_44PISTOL fvox/get_44pistol acquired
+HEV_RPG fvox/get_rpg acquired
+HEV_SATCHEL fvox/get_satchel acquired
+HEV_TRIPMINE fvox/get_tripmine acquired
+HEV_HORNET fvox/get_alien_wpn acquired
+HEV_SQUEEK fvox/get_alien_wpn acquired
+HEV_EGON fvox/get_egon acquired
+HEV_GAUSS fvox/get_gauss acquired
+HEV_XBOW fvox/get_crossbow acquired
+HEV_CROWBAR fvox/get_crowbar acquired
 
 HEV_9MM fvox/blip get_9mmclip acquired
 HEV_44AMMO fvox/blip get_44ammo acquired

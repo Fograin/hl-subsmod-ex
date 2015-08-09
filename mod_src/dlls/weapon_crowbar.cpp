@@ -1,5 +1,5 @@
 //=============================================================//
-//	Half-Life Subtitles MOD - Crowbar weapon
+//	Half-Life Subtitles MOD
 //	https://github.com/Fograin/hl-subsmod-ex
 //	
 //	This product contains software technology licensed from:

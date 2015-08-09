@@ -1,5 +1,5 @@
 //=============================================================//
-//	Half-Life Subtitles MOD - 357. Satchel charge
+//	Half-Life Subtitles MOD
 //	https://github.com/Fograin/hl-subsmod-ex
 //	
 //	This product contains software technology licensed from:
@@ -175,10 +175,17 @@ void CShotgun::PrimaryAttack()
 
 	PLAYBACK_EVENT_FULL( flags, m_pPlayer->edict(), m_usSingleFire, 0.0, (float *)&g_vecZero, (float *)&g_vecZero, vecDir.x, vecDir.y, 0, 0, 0, 0 );
 
-
+#ifndef CLIENT_DLL
 	if (!m_iClip && m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] <= 0)
-		// HEV suit - indicate out of ammo condition
-		m_pPlayer->SetSuitUpdate("!HEV_AMO0", FALSE, 0);
+	{
+		// Fograin92: Only if this is HL1 game
+		if (CVAR_GET_FLOAT("sm_hud") == 0)
+		{
+			// HEV suit - indicate out of ammo condition
+			m_pPlayer->SetSuitUpdate("!HEV_AMO0", FALSE, 0);
+		}
+	}
+#endif
 
 	if (m_iClip != 0)
 		m_flPumpTime = gpGlobals->time + 0.5;
@@ -250,9 +257,17 @@ void CShotgun::SecondaryAttack( void )
 		
 	PLAYBACK_EVENT_FULL( flags, m_pPlayer->edict(), m_usDoubleFire, 0.0, (float *)&g_vecZero, (float *)&g_vecZero, vecDir.x, vecDir.y, 0, 0, 0, 0 );
 
+#ifndef CLIENT_DLL
 	if (!m_iClip && m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] <= 0)
-		// HEV suit - indicate out of ammo condition
-		m_pPlayer->SetSuitUpdate("!HEV_AMO0", FALSE, 0);
+	{
+		// Fograin92: Only if this is HL1 game
+		if (CVAR_GET_FLOAT("sm_hud") == 0)
+		{
+			// HEV suit - indicate out of ammo condition
+			m_pPlayer->SetSuitUpdate("!HEV_AMO0", FALSE, 0);
+		}
+	}
+#endif
 
 	if (m_iClip != 0)
 		m_flPumpTime = gpGlobals->time + 0.95;
