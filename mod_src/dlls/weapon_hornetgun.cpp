@@ -8,7 +8,6 @@
 //
 //	Before using any parts of this code, read licence.txt file 
 //=============================================================//
-#if !defined( OEM_BUILD ) && !defined( HLDEMO_BUILD )
 
 #include "extdll.h"
 #include "util.h"
@@ -297,5 +296,3 @@ void CHgun::WeaponIdle( void )
 	}
 	SendWeaponAnim( iAnim );
 }
-
-#endif

@@ -8,7 +8,6 @@
 //
 //	Before using any parts of this code, read licence.txt file 
 //=============================================================//
-#if !defined( OEM_BUILD ) && !defined( HLDEMO_BUILD )
 
 #include "extdll.h"
 #include "util.h"
@@ -336,7 +335,7 @@ void CCrossbow::Holster( int skiplocal /* = 0 */ )
 {
 	m_fInReload = FALSE;// cancel any reload in progress.
 
-	if ( IsZoomActive() )
+	if ( m_fInZoom )
 	{
 		SecondaryAttack( );
 	}
@@ -352,9 +351,9 @@ void CCrossbow::PrimaryAttack( void )
 {
 
 #ifdef CLIENT_DLL
-	if ( IsZoomActive() && bIsMultiplayer() )
+	if ( m_fInZoom && bIsMultiplayer() )
 #else
-	if ( IsZoomActive() && g_pGameRules->IsMultiplayer() )
+	if ( m_fInZoom && g_pGameRules->IsMultiplayer() )
 #endif
 	{
 		FireSniperBolt();
@@ -484,8 +483,16 @@ void CCrossbow::FireBolt()
 
 void CCrossbow::SecondaryAttack()
 {
-	// 0 means reset to default fov; Vit_amiN: uses IsZoomActive() now
-	m_pPlayer->pev->fov = m_pPlayer->m_iFOV = IsZoomActive() ? 0 : 20;
+	if ( m_pPlayer->pev->fov != 0 )
+	{
+		m_pPlayer->pev->fov = m_pPlayer->m_iFOV = 0; // 0 means reset to default fov
+		m_fInZoom = 0;
+	}
+	else if ( m_pPlayer->pev->fov != 20 )
+	{
+		m_pPlayer->pev->fov = m_pPlayer->m_iFOV = 20;
+		m_fInZoom = 1;
+	}
 
 	pev->nextthink = UTIL_WeaponTimeBase() + 0.1;
 	m_flNextSecondaryAttack = UTIL_WeaponTimeBase() + 1.0;
@@ -497,7 +504,7 @@ void CCrossbow::Reload( void )
 	if ( m_pPlayer->ammo_bolts <= 0 )
 		return;
 
-	if ( IsZoomActive() )
+	if ( m_pPlayer->pev->fov != 0 )
 	{
 		SecondaryAttack();
 	}
@@ -547,12 +554,6 @@ void CCrossbow::WeaponIdle( void )
 	}
 }
 
-BOOL CCrossbow::IsZoomActive()
-{
-	return m_pPlayer && ( m_pPlayer->pev->fov != 0.0f );
-}
-
-
 class CCrossbowAmmo : public CBasePlayerAmmo
 {
 	void Spawn( void )
@@ -577,7 +578,3 @@ class CCrossbowAmmo : public CBasePlayerAmmo
 	}
 };
 LINK_ENTITY_TO_CLASS( ammo_crossbow, CCrossbowAmmo );
-
-
-
-#endif

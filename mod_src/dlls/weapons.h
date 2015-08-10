@@ -536,7 +536,7 @@ public:
 	void WeaponIdle( void );
 	float m_flSoundDelay;
 
-	BOOL IsZoomActive( void );	// Vit_amiN
+	BOOL m_fInZoom;	// don't save this. 
 
 	virtual BOOL UseDecrement( void )
 	{ 
@@ -601,7 +601,7 @@ public:
 	void Reload( void );
 	void WeaponIdle( void );
 
-	BOOL IsZoomActive( void );	// Vit_amiN
+	int m_fInZoom; // don't save this
 
 	virtual BOOL UseDecrement( void )
 	{ 

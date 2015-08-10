@@ -8,8 +8,6 @@
 //
 //	Before using any parts of this code, read licence.txt file 
 //=============================================================//
-#if !defined( OEM_BUILD ) && !defined( HLDEMO_BUILD )
-
 #include "extdll.h"
 #include "util.h"
 #include "cbase.h"
@@ -295,25 +293,32 @@ BOOL CSatchel::Deploy( )
 	m_pPlayer->m_flNextAttack = UTIL_WeaponTimeBase() + 1.0;
 	m_flTimeWeaponIdle = UTIL_WeaponTimeBase() + UTIL_SharedRandomFloat( m_pPlayer->random_seed, 10, 15 );
 
-	if ( m_chargeReady )
-	{
-		if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
-			return DefaultDeploy( "models/v_satchel_radio_bs.mdl", "models/p_satchel_radio.mdl", SATCHEL_RADIO_DRAW, "hive" );
-		if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
-			return DefaultDeploy( "models/v_satchel_radio_of.mdl", "models/p_satchel_radio.mdl", SATCHEL_RADIO_DRAW, "hive" );
+#ifndef CLIENT_DLL
 
-		return DefaultDeploy( "models/v_satchel_radio.mdl", "models/p_satchel_radio.mdl", SATCHEL_RADIO_DRAW, "hive" );
+	// Blue Shift
+	if (CVAR_GET_FLOAT("sm_hud") == 1 )
+	{
+		if ( m_chargeReady )
+			return DefaultDeploy( "models/v_satchel_radio_bs.mdl", "models/p_satchel_radio.mdl", SATCHEL_RADIO_DRAW, "hive" );
+		else
+			return DefaultDeploy( "models/v_satchel_bs.mdl", "models/p_satchel.mdl", SATCHEL_DRAW, "trip" );
+	}
+	
+	// Opposing Force
+	if (CVAR_GET_FLOAT("sm_hud") == 2 )
+	{
+		if ( m_chargeReady )
+			return DefaultDeploy( "models/v_satchel_radio_of.mdl", "models/p_satchel_radio.mdl", SATCHEL_RADIO_DRAW, "hive" );
+		else
+			return DefaultDeploy( "models/v_satchel_of.mdl", "models/p_satchel.mdl", SATCHEL_DRAW, "trip" );
 	}
 
-#ifndef CLIENT_DLL
-	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
-		return DefaultDeploy( "models/v_satchel_bs.mdl", "models/p_satchel.mdl", SATCHEL_DRAW, "trip" );
-	
-	if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
-		return DefaultDeploy( "models/v_satchel_of.mdl", "models/p_satchel.mdl", SATCHEL_DRAW, "trip" );
 #endif
 	
-	return DefaultDeploy( "models/v_satchel.mdl", "models/p_satchel.mdl", SATCHEL_DRAW, "trip" );
+	if ( m_chargeReady )
+		return DefaultDeploy( "models/v_satchel_radio.mdl", "models/p_satchel_radio.mdl", SATCHEL_RADIO_DRAW, "hive" );
+	else
+		return DefaultDeploy( "models/v_satchel.mdl", "models/p_satchel.mdl", SATCHEL_DRAW, "trip" );
 }
 
 
@@ -502,5 +507,3 @@ void DeactivateSatchels( CBasePlayer *pOwner )
 		pFind = FIND_ENTITY_BY_CLASSNAME( pFind, "monster_satchel" );
 	}
 }
-
-#endif

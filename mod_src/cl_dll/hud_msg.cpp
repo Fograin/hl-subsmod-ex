@@ -25,11 +25,11 @@
 
 extern BEAM *pBeam;
 extern BEAM *pBeam2;
-extern TEMPENTITY *pFlare;	// Vit_amiN
+//extern TEMPENTITY *pFlare;	// Vit_amiN
 
-extern float g_lastFOV;			// Vit_amiN
-extern bool g_hasPredictedFOV;	// Vit_amiN
-extern int CL_ButtonBits(int);	// Vit_amiN
+//extern float g_lastFOV;			// Vit_amiN
+//extern bool g_hasPredictedFOV;	// Vit_amiN
+//extern int CL_ButtonBits(int);	// Vit_amiN
 
 /// USER-DEFINED SERVER MESSAGE HANDLERS
 
@@ -54,9 +54,9 @@ int CHud :: MsgFunc_ResetHUD(const char *pszName, int iSize, void *pbuf )
 	m_iConcussionEffect = 0;
 
 	// Vit_amiN: reset the FOV
-	m_iFOV = 0;	// default_fov
-	g_lastFOV = 0.0f;
-	g_hasPredictedFOV = false;
+	//m_iFOV = 0;	// default_fov
+	//g_lastFOV = 0.0f;
+	//g_hasPredictedFOV = false;
 
 	return 1;
 }
@@ -82,7 +82,7 @@ void CHud :: MsgFunc_InitHUD( const char *pszName, int iSize, void *pbuf )
 
 	//Probably not a good place to put this.
 	pBeam = pBeam2 = NULL;
-	pFlare = NULL;	// Vit_amiN: clear egon's beam flare
+	//pFlare = NULL;	// Vit_amiN: clear egon's beam flare
 }
 
 

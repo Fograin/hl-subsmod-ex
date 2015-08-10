@@ -305,88 +305,44 @@ void W_Precache(void)
 	memset( CBasePlayerItem::AmmoInfoArray, 0, sizeof(CBasePlayerItem::AmmoInfoArray) );
 	giAmmoIndex = 0;
 
-	// custom items...
 
-	// common world objects
+	// Precache HL Items
 	UTIL_PrecacheOther( "item_suit" );
 	UTIL_PrecacheOther( "item_battery" );
 	UTIL_PrecacheOther( "item_antidote" );
 	UTIL_PrecacheOther( "item_security" );
 	UTIL_PrecacheOther( "item_longjump" );
+	UTIL_PrecacheOther( "item_healthkit" );	// Fograin92: Fix for missing healthkit precache
 
-	// shotgun
-	UTIL_PrecacheOtherWeapon( "weapon_shotgun" );
-	UTIL_PrecacheOther( "ammo_buckshot" );
-
-	// crowbar
+	// Precache HL Weapons
 	UTIL_PrecacheOtherWeapon( "weapon_crowbar" );
-
-	// glock
 	UTIL_PrecacheOtherWeapon( "weapon_9mmhandgun" );
-	UTIL_PrecacheOther( "ammo_9mmclip" );
-
-	// mp5
+	UTIL_PrecacheOtherWeapon( "weapon_357" );
 	UTIL_PrecacheOtherWeapon( "weapon_9mmAR" );
+	UTIL_PrecacheOtherWeapon( "weapon_shotgun" );
+	UTIL_PrecacheOtherWeapon( "weapon_crossbow" );
+	UTIL_PrecacheOtherWeapon( "weapon_rpg" );
+	UTIL_PrecacheOtherWeapon( "weapon_gauss" );
+	UTIL_PrecacheOtherWeapon( "weapon_egon" );
+	UTIL_PrecacheOtherWeapon( "weapon_hornetgun" );
+	UTIL_PrecacheOtherWeapon( "weapon_handgrenade");
+	UTIL_PrecacheOtherWeapon( "weapon_satchel" );
+	UTIL_PrecacheOtherWeapon( "weapon_tripmine" );
+	UTIL_PrecacheOtherWeapon( "weapon_snark" );
+
+	// Precache HL Ammo
+	UTIL_PrecacheOther( "ammo_9mmclip" );
+	UTIL_PrecacheOther( "ammo_357" );
 	UTIL_PrecacheOther( "ammo_9mmAR" );
 	UTIL_PrecacheOther( "ammo_ARgrenades" );
-
-#if !defined( OEM_BUILD ) && !defined( HLDEMO_BUILD )
-	// python
-	UTIL_PrecacheOtherWeapon( "weapon_357" );
-	UTIL_PrecacheOther( "ammo_357" );
-#endif
-	
-#if !defined( OEM_BUILD ) && !defined( HLDEMO_BUILD )
-	// gauss
-	UTIL_PrecacheOtherWeapon( "weapon_gauss" );
-	UTIL_PrecacheOther( "ammo_gaussclip" );
-#endif
-
-#if !defined( OEM_BUILD ) && !defined( HLDEMO_BUILD )
-	// rpg
-	UTIL_PrecacheOtherWeapon( "weapon_rpg" );
-	UTIL_PrecacheOther( "ammo_rpgclip" );
-#endif
-
-#if !defined( OEM_BUILD ) && !defined( HLDEMO_BUILD )
-	// crossbow
-	UTIL_PrecacheOtherWeapon( "weapon_crossbow" );
+	UTIL_PrecacheOther( "ammo_buckshot" );
 	UTIL_PrecacheOther( "ammo_crossbow" );
-#endif
-
-#if !defined( OEM_BUILD ) && !defined( HLDEMO_BUILD )
-	// egon
-	UTIL_PrecacheOtherWeapon( "weapon_egon" );
-#endif
-
-	// tripmine
-	UTIL_PrecacheOtherWeapon( "weapon_tripmine" );
-
-#if !defined( OEM_BUILD ) && !defined( HLDEMO_BUILD )
-	// satchel charge
-	UTIL_PrecacheOtherWeapon( "weapon_satchel" );
-#endif
-
-	// hand grenade
-	UTIL_PrecacheOtherWeapon("weapon_handgrenade");
-
-#if !defined( OEM_BUILD ) && !defined( HLDEMO_BUILD )
-	// squeak grenade
-	UTIL_PrecacheOtherWeapon( "weapon_snark" );
-#endif
-
-#if !defined( OEM_BUILD ) && !defined( HLDEMO_BUILD )
-	// hornetgun
-	UTIL_PrecacheOtherWeapon( "weapon_hornetgun" );
-#endif
+	UTIL_PrecacheOther( "ammo_rpgclip" );
+	UTIL_PrecacheOther( "ammo_gaussclip" );
 
 
-#if !defined( OEM_BUILD ) && !defined( HLDEMO_BUILD )
-	if ( g_pGameRules->IsDeathmatch() )
-	{
-		UTIL_PrecacheOther( "weaponbox" );// container for dropped deathmatch weapons
-	}
-#endif
+	// Fograin92: Precache it everytime, not only in MP
+	UTIL_PrecacheOther( "weaponbox" );// container for dropped deathmatch weapons
 
 	g_sModelIndexFireball = PRECACHE_MODEL ("sprites/zerogxplode.spr");// fireball
 	g_sModelIndexWExplosion = PRECACHE_MODEL ("sprites/WXplo1.spr");// underwater fireball
@@ -415,7 +371,6 @@ void W_Precache(void)
 	PRECACHE_SOUND ("weapons/bullet_hit2.wav");	// hit by bullet
 	
 	PRECACHE_SOUND ("items/weapondrop1.wav");// weapon falls to the ground
-
 }
 
 
@@ -1131,7 +1086,7 @@ void CBasePlayerAmmo :: DefaultTouch( CBaseEntity *pOther )
 int CBasePlayerWeapon::ExtractAmmo( CBasePlayerWeapon *pWeapon )
 {
 	int			iReturn;
-	iReturn = FALSE;	// Vit_amiN: must return initialized var
+	//iReturn = FALSE;	// Vit_amiN: must return initialized var
 
 	if ( pszAmmo1() != NULL )
 	{

@@ -8,7 +8,6 @@
 //
 //	Before using any parts of this code, read licence.txt file 
 //=============================================================//
-
 #include "extdll.h"
 #include "util.h"
 #include "cbase.h"
@@ -22,16 +21,16 @@
 #include "weapons.h"
 
 
-//-------------------------------------------------------------
-// Wall mounted health kit
-//-------------------------------------------------------------
+
+//===============================================//
+// func_healthcharger - Wall mounted health kit
+//===============================================//
 class CWallHealth : public CBaseToggle
 {
 public:
 	void Spawn( );
 	void Precache( void );
 	void EXPORT Off(void);
-	void EXPORT Recharge(void);
 	void KeyValue( KeyValueData *pkvd );
 	void Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value );
 	virtual int	ObjectCaps( void ) { return (CBaseToggle :: ObjectCaps() | FCAP_CONTINUOUS_USE) & ~FCAP_ACROSS_TRANSITION; }
@@ -41,7 +40,6 @@ public:
 	static	TYPEDESCRIPTION m_SaveData[];
 
 	float m_flNextCharge; 
-	int		m_iReactivate ; // DeathMatch Delay until reactvated
 	int		m_iJuice;
 	int		m_iOn;			// 0 = off, 1 = startup, 2 = going
 	float   m_flSoundTime;
@@ -50,35 +48,30 @@ public:
 TYPEDESCRIPTION CWallHealth::m_SaveData[] =
 {
 	DEFINE_FIELD( CWallHealth, m_flNextCharge, FIELD_TIME),
-	DEFINE_FIELD( CWallHealth, m_iReactivate, FIELD_INTEGER),
 	DEFINE_FIELD( CWallHealth, m_iJuice, FIELD_INTEGER),
 	DEFINE_FIELD( CWallHealth, m_iOn, FIELD_INTEGER),
 	DEFINE_FIELD( CWallHealth, m_flSoundTime, FIELD_TIME),
 };
-
 IMPLEMENT_SAVERESTORE( CWallHealth, CBaseEntity );
+
 
 LINK_ENTITY_TO_CLASS(func_healthcharger, CWallHealth);
 
 
 void CWallHealth::KeyValue( KeyValueData *pkvd )
 {
-	if (	FStrEq(pkvd->szKeyName, "style") ||
-				FStrEq(pkvd->szKeyName, "height") ||
-				FStrEq(pkvd->szKeyName, "value1") ||
-				FStrEq(pkvd->szKeyName, "value2") ||
-				FStrEq(pkvd->szKeyName, "value3"))
+	if (FStrEq(pkvd->szKeyName, "style") ||
+		FStrEq(pkvd->szKeyName, "height") ||
+		FStrEq(pkvd->szKeyName, "value1") ||
+		FStrEq(pkvd->szKeyName, "value2") ||
+		FStrEq(pkvd->szKeyName, "value3"))
 	{
-		pkvd->fHandled = TRUE;
-	}
-	else if (FStrEq(pkvd->szKeyName, "dmdelay"))
-	{
-		m_iReactivate = atoi(pkvd->szValue);
 		pkvd->fHandled = TRUE;
 	}
 	else
 		CBaseToggle::KeyValue( pkvd );
 }
+
 
 void CWallHealth::Spawn()
 {
@@ -95,6 +88,7 @@ void CWallHealth::Spawn()
 
 }
 
+
 void CWallHealth::Precache()
 {
 	PRECACHE_SOUND("items/medshot4.wav");
@@ -108,6 +102,7 @@ void CWallHealth::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE u
 	// Make sure that we have a caller
 	if (!pActivator)
 		return;
+
 	// if it's not a player, ignore
 	if ( !pActivator->IsPlayer() )
 		return;
@@ -119,7 +114,7 @@ void CWallHealth::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE u
 		Off();
 	}
 
-	// if the player doesn't have the suit (Vit_amiN: or the player is not wounded), or there is no juice left, make the deny noise
+	// if the player doesn't have the suit (Vit_amiN: or the player is not wounded) or there is no juice left, make the deny noise
 	if ((m_iJuice <= 0) || !((pActivator->pev->weapons & (1<<WEAPON_SUIT)) && (pActivator->pev->health < pActivator->pev->max_health)))
 	{
 		if (m_flSoundTime <= gpGlobals->time)
@@ -134,7 +129,6 @@ void CWallHealth::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE u
 	SetThink(&CWallHealth::Off);
 
 	// Time to recharge yet?
-
 	if (m_flNextCharge >= gpGlobals->time)
 		return;
 
@@ -151,23 +145,12 @@ void CWallHealth::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE u
 		EMIT_SOUND(ENT(pev), CHAN_STATIC, "items/medcharge4.wav", 1.0, ATTN_NORM );
 	}
 
-
 	// charge the player
 	if ( pActivator->TakeHealth( 1, DMG_GENERIC ) )
-	{
 		m_iJuice--;
-	}
 
 	// govern the rate of charge
 	m_flNextCharge = gpGlobals->time + 0.1;
-}
-
-void CWallHealth::Recharge(void)
-{
-		EMIT_SOUND(ENT(pev), CHAN_ITEM, "items/medshot4.wav", 1.0, ATTN_NORM );
-	m_iJuice = gSkillData.healthchargerCapacity;
-	pev->frame = 0;			
-	SetThink( &CBaseEntity::SUB_DoNothing );
 }
 
 void CWallHealth::Off(void)
@@ -177,26 +160,20 @@ void CWallHealth::Off(void)
 		STOP_SOUND( ENT(pev), CHAN_STATIC, "items/medcharge4.wav" );
 
 	m_iOn = 0;
-
-	if ((!m_iJuice) &&  ( ( m_iReactivate = g_pGameRules->FlHealthChargerRechargeTime() ) > 0) )
-	{
-		pev->nextthink = pev->ltime + m_iReactivate;
-		SetThink(&CWallHealth::Recharge);
-	}
-	else
-		SetThink( &CBaseEntity::SUB_DoNothing );
+	SetThink( &CBaseEntity::SUB_DoNothing );
 }
 
 
 
-
+//==========================================//
+// func_recharge - Wall mounted HEV charger
+//==========================================//
 class CRecharge : public CBaseToggle
 {
 public:
 	void Spawn( );
 	void Precache( void );
 	void EXPORT Off(void);
-	void EXPORT Recharge(void);
 	void KeyValue( KeyValueData *pkvd );
 	void Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value );
 	virtual int	ObjectCaps( void ) { return (CBaseToggle :: ObjectCaps() | FCAP_CONTINUOUS_USE) & ~FCAP_ACROSS_TRANSITION; }
@@ -206,7 +183,6 @@ public:
 	static	TYPEDESCRIPTION m_SaveData[];
 
 	float m_flNextCharge; 
-	int		m_iReactivate ; // DeathMatch Delay until reactvated
 	int		m_iJuice;
 	int		m_iOn;			// 0 = off, 1 = startup, 2 = going
 	float   m_flSoundTime;
@@ -215,12 +191,10 @@ public:
 TYPEDESCRIPTION CRecharge::m_SaveData[] =
 {
 	DEFINE_FIELD( CRecharge, m_flNextCharge, FIELD_TIME ),
-	DEFINE_FIELD( CRecharge, m_iReactivate, FIELD_INTEGER),
 	DEFINE_FIELD( CRecharge, m_iJuice, FIELD_INTEGER),
 	DEFINE_FIELD( CRecharge, m_iOn, FIELD_INTEGER),
 	DEFINE_FIELD( CRecharge, m_flSoundTime, FIELD_TIME ),
 };
-
 IMPLEMENT_SAVERESTORE( CRecharge, CBaseEntity );
 
 LINK_ENTITY_TO_CLASS(func_recharge, CRecharge);
@@ -236,14 +210,10 @@ void CRecharge::KeyValue( KeyValueData *pkvd )
 	{
 		pkvd->fHandled = TRUE;
 	}
-	else if (FStrEq(pkvd->szKeyName, "dmdelay"))
-	{
-		m_iReactivate = atoi(pkvd->szValue);
-		pkvd->fHandled = TRUE;
-	}
 	else
 		CBaseToggle::KeyValue( pkvd );
 }
+
 
 void CRecharge::Spawn()
 {
@@ -258,6 +228,7 @@ void CRecharge::Spawn()
 	m_iJuice = gSkillData.suitchargerCapacity;
 	pev->frame = 0;			
 }
+
 
 void CRecharge::Precache()
 {
@@ -280,8 +251,8 @@ void CRecharge::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE use
 		Off();
 	}
 
-	// if the player doesn't have the suit (Vit_amiN: or the suit is fully charged), or there is no juice left, make the deny noise
-	if ((m_iJuice <= 0) || !((pActivator->pev->weapons & (1<<WEAPON_SUIT)) && (pActivator->pev->armorvalue < MAX_NORMAL_BATTERY)))
+	// if the player doesn't have the suit (Vit_amiN: or the suit is fully charged, Fograin92: Or player it's playing Blue Shift), or there is no juice left, make the deny noise
+	if ((m_iJuice <= 0) || !((pActivator->pev->weapons & (1<<WEAPON_SUIT)) && (pActivator->pev->armorvalue < MAX_NORMAL_BATTERY)) || (CVAR_GET_FLOAT("sm_hud") == 1.0 ))
 	{
 		if (m_flSoundTime <= gpGlobals->time)
 		{
@@ -295,7 +266,6 @@ void CRecharge::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE use
 	SetThink(&CRecharge::Off);
 
 	// Time to recharge yet?
-
 	if (m_flNextCharge >= gpGlobals->time)
 		return;
 
@@ -306,7 +276,6 @@ void CRecharge::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE use
 	m_hActivator = pActivator;
 
 	//only recharge the player
-
 	if (!m_hActivator->IsPlayer() )
 		return;
 	
@@ -338,12 +307,6 @@ void CRecharge::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE use
 	m_flNextCharge = gpGlobals->time + 0.1;
 }
 
-void CRecharge::Recharge(void)
-{
-	m_iJuice = gSkillData.suitchargerCapacity;
-	pev->frame = 0;			
-	SetThink( &CBaseEntity::SUB_DoNothing );
-}
 
 void CRecharge::Off(void)
 {
@@ -352,12 +315,5 @@ void CRecharge::Off(void)
 		STOP_SOUND( ENT(pev), CHAN_STATIC, "items/suitcharge1.wav" );
 
 	m_iOn = 0;
-
-	if ((!m_iJuice) &&  ( ( m_iReactivate = g_pGameRules->FlHEVChargerRechargeTime() ) > 0) )
-	{
-		pev->nextthink = pev->ltime + m_iReactivate;
-		SetThink(&CRecharge::Recharge);
-	}
-	else
-		SetThink( &CBaseEntity::SUB_DoNothing );
+	SetThink( &CBaseEntity::SUB_DoNothing );
 }

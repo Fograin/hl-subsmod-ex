@@ -269,11 +269,9 @@ int CCrowbar::Swing( int fFirst )
 					EMIT_SOUND(ENT(m_pPlayer->pev), CHAN_ITEM, "weapons/cbar_hitbod3.wav", 1, ATTN_NORM); break;
 				}
 				m_pPlayer->m_iWeaponVolume = CROWBAR_BODYHIT_VOLUME;
+
 				if ( !pEntity->IsAlive() )
-				{
-					m_flNextPrimaryAttack = UTIL_WeaponTimeBase() + 0.25;	// Vit_amiN: fixed the 'rapid crowbar'
-					return TRUE;
-				}
+					  return TRUE;
 				else
 					flVol = 0.1;
 

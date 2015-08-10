@@ -8,7 +8,6 @@
 //
 //	Before using any parts of this code, read licence.txt file 
 //=============================================================//
-#if !defined( OEM_BUILD ) && !defined( HLDEMO_BUILD )
 
 #include "extdll.h"
 #include "util.h"
@@ -126,7 +125,7 @@ void CPython::Holster( int skiplocal /* = 0 */ )
 {
 	m_fInReload = FALSE;// cancel any reload in progress.
 
-	if ( IsZoomActive() )
+	if ( m_fInZoom )
 	{
 		SecondaryAttack();
 	}
@@ -147,8 +146,16 @@ void CPython::SecondaryAttack( void )
 		return;
 	}
 
-	// 0 means reset to default fov; Vit_amiN: uses IsZoomActive() now
-	m_pPlayer->pev->fov = m_pPlayer->m_iFOV = IsZoomActive() ? 0 : 40;
+	if ( m_pPlayer->pev->fov != 0 )
+	{
+		m_fInZoom = FALSE;
+		m_pPlayer->pev->fov = m_pPlayer->m_iFOV = 0;  // 0 means reset to default fov
+	}
+	else if ( m_pPlayer->pev->fov != 40 )
+	{
+		m_fInZoom = TRUE;
+		m_pPlayer->pev->fov = m_pPlayer->m_iFOV = 40;
+	}
 
 	m_flNextSecondaryAttack = UTIL_WeaponTimeBase() + 0.5;
 }
@@ -226,9 +233,10 @@ void CPython::Reload( void )
 	if ( m_pPlayer->ammo_357 <= 0 )
 		return;
 
-	if ( IsZoomActive() )
+	if ( m_pPlayer->pev->fov != 0 )
 	{
-		SecondaryAttack();
+		m_fInZoom = FALSE;
+		m_pPlayer->pev->fov = m_pPlayer->m_iFOV = 0;  // 0 means reset to default fov
 	}
 
 	int bUseScope = FALSE;
@@ -294,11 +302,6 @@ void CPython::WeaponIdle( void )
 	SendWeaponAnim( iAnim, UseDecrement() ? 1 : 0, bUseScope );
 }
 
-BOOL CPython::IsZoomActive()
-{
-	return m_pPlayer && ( m_pPlayer->pev->fov != 0.0f );
-}
-
 class CPythonAmmo : public CBasePlayerAmmo
 {
 	void Spawn( void )
@@ -323,6 +326,3 @@ class CPythonAmmo : public CBasePlayerAmmo
 	}
 };
 LINK_ENTITY_TO_CLASS( ammo_357, CPythonAmmo );
-
-
-#endif

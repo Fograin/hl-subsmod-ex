@@ -1382,8 +1382,8 @@ enum EGON_FIREMODE { FIRE_NARROW, FIRE_WIDE};
 
 BEAM *pBeam;
 BEAM *pBeam2;
-TEMPENTITY *pFlare;	// Vit_amiN: egon's beam flare
-
+//TEMPENTITY *pFlare;	// Vit_amiN: egon's beam flare
+/*
 void EV_EgonFlareCallback( struct tempent_s *ent, float frametime, float currenttime )
 {
 	float delta = currenttime - ent->tentOffset.z;	// time past since the last scale
@@ -1393,6 +1393,7 @@ void EV_EgonFlareCallback( struct tempent_s *ent, float frametime, float current
 		ent->tentOffset.z = currenttime;
 	}
 }
+*/
 
 void EV_EgonFire( event_args_t *args )
 {
@@ -1425,7 +1426,7 @@ void EV_EgonFire( event_args_t *args )
 	if ( EV_IsLocal( idx ) )
 		gEngfuncs.pEventAPI->EV_WeaponAnimation ( g_fireAnims1[ gEngfuncs.pfnRandomLong( 0, 3 ) ], 1 );
 
-	if ( iStartup == 1 && EV_IsLocal( idx ) && !(pBeam || pBeam2 || pFlare) && cl_lw->value ) //Adrian: Added the cl_lw check for those lital people that hate weapon prediction.
+	if ( iStartup == 1 && EV_IsLocal( idx ) && !pBeam && !pBeam2 && cl_lw->value ) //Adrian: Added the cl_lw check for those lital people that hate weapon prediction.
 	{
 		vec3_t vecSrc, vecEnd, origin, angles, forward, right, up;
 		pmtrace_t tr;
@@ -1476,14 +1477,16 @@ void EV_EgonFire( event_args_t *args )
 			pBeam2 = gEngfuncs.pEfxAPI->R_BeamEntPoint ( idx | 0x1000, tr.endpos, iBeamModelIndex, 99999, 5.0, 0.08, 0.7, 25, 0, 0, r, g, b );
 
 			// Vit_amiN: egon beam flare
-			pFlare = gEngfuncs.pEfxAPI->R_TempSprite ( tr.endpos, vec3_origin, 1.0, gEngfuncs.pEventAPI->EV_FindModelIndex( EGON_FLARE_SPRITE ), kRenderGlow, kRenderFxNoDissipation, 1.0, 99999, FTENT_SPRCYCLE | FTENT_PERSIST );
+			//pFlare = gEngfuncs.pEfxAPI->R_TempSprite ( tr.endpos, vec3_origin, 1.0, gEngfuncs.pEventAPI->EV_FindModelIndex( EGON_FLARE_SPRITE ), kRenderGlow, kRenderFxNoDissipation, 1.0, 99999, FTENT_SPRCYCLE | FTENT_PERSIST );
 		}
 	}
 	// Vit_amiN: store the last mode for EV_EgonStop()
+	/*
 	if ( pFlare )
 	{
 		pFlare->tentOffset.x = (iFireMode == FIRE_WIDE) ? 1.0f : 0.0f;
 	}
+	*/
 }
 
 void EV_EgonStop( event_args_t *args )
@@ -1515,6 +1518,7 @@ void EV_EgonStop( event_args_t *args )
 		}
 
 		// Vit_amiN: egon beam flare
+		/*
 		if ( pFlare )	
 		{
 			pFlare->die = gEngfuncs.GetClientTime();
@@ -1534,6 +1538,7 @@ void EV_EgonStop( event_args_t *args )
 
 			pFlare = NULL;
 		}
+		*/
 	}
 }
 //======================

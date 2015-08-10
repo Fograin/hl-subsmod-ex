@@ -8,8 +8,6 @@
 //
 //	Before using any parts of this code, read licence.txt file 
 //=============================================================//
-#if !defined( OEM_BUILD ) && !defined( HLDEMO_BUILD )
-
 #include "extdll.h"
 #include "util.h"
 #include "cbase.h"
@@ -603,5 +601,3 @@ void CSqueak::WeaponIdle( void )
 	}
 	SendWeaponAnim( iAnim );
 }
-
-#endif

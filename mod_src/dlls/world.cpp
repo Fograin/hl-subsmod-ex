@@ -1,17 +1,13 @@
-/***
-*
-*	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
-*	All Rights Reserved.
-*
-*   Use, distribution, and modification of this source code and/or resulting
-*   object code is restricted to non-commercial enhancements to products from
-*   Valve LLC.  All other use, distribution, or modification is prohibited
-*   without written permission from Valve LLC.
-*
-****/
+//=============================================================//
+//	Half-Life Subtitles MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	This product contains software technology licensed from:
+//	Valve LLC.
+//	Id Software, Inc. ("Id Technology")
+//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
 /*
 
 ===== world.cpp ========================================================
@@ -34,6 +30,7 @@
 #include "gamerules.h"
 #include "teamplay_gamerules.h"
 #include "physcallback.h"
+#include "sm_gamespec.h"	// Fograin92
 
 extern CGraph WorldGraph;
 extern CSoundEnt *pSoundEnt;
@@ -489,6 +486,42 @@ void CWorld :: Precache( void )
 #endif
 
 	CVAR_SET_STRING("room_type", "0");// clear DSP
+
+	// Fograin92: We set "sm_hud" value to default HL one
+	CVAR_SET_FLOAT( "sm_hud", 0.0 );
+
+	// Fograin92: Check if this is Blue Shift map
+	for (int i=0; i<ARRAYSIZE(pBSmaps); i++)
+	{
+		// Fograin92: Blue Shift map recognized
+		if (!strcmp( STRING(gpGlobals->mapname), pBSmaps[i]))
+		{
+			// Change value to BS
+			CVAR_SET_FLOAT( "sm_hud", 1.0 );
+			break;
+		}
+	}
+
+	// Fograin92: Check if this is Opposing Force map
+	for (int i=0; i<ARRAYSIZE(pOFmaps); i++)
+	{
+		// Fograin92: Opposing Force map recognized
+		if (!strcmp( STRING(gpGlobals->mapname), pOFmaps[i]))
+		{
+			// Change value to OF
+			CVAR_SET_FLOAT( "sm_hud", 2.0 );
+			break;
+		}
+	}
+
+	// Fograin92: Notify about game type
+	if (CVAR_GET_FLOAT("sm_hud") == 1)
+		ALERT( at_console, "^4SM -> Game -> Blue Shift\n");
+	else if (CVAR_GET_FLOAT("sm_hud") == 1)
+		ALERT( at_console, "^2SM -> Game -> Opposing Force\n");
+	else
+		ALERT( at_console, "^3SM -> Game -> Half-Life\n");
+
 
 	// Set up game rules
 	if (g_pGameRules)

@@ -33,7 +33,7 @@
 
 extern globalvars_t *gpGlobals;
 extern int g_iUser1;
-extern bool g_hasPredictedFOV;	// Vit_amiN: from HUD
+//extern bool g_hasPredictedFOV;	// Vit_amiN: from HUD
 
 // Pool of client side entities/entvars_t
 static entvars_t	ev[ 32 ];
@@ -429,11 +429,14 @@ CBasePlayer::SelectLastItem
 */
 void CBasePlayer::SelectLastItem(void)
 {
+	/*
 	// Vit_amiN: added a check if it cannot be deployed
 	if ( !m_pLastItem || !m_pLastItem->CanDeploy() )
 	{
 		return;
-	}
+	}*/
+	if (!m_pLastItem)
+		return;
 
 	if ( m_pActiveItem && !m_pActiveItem->CanHolster() )
 	{
@@ -919,7 +922,7 @@ void HUD_WeaponsPostThink( local_state_s *from, local_state_s *to, usercmd_t *cm
 	to->client.fuser2					= player.m_flNextAmmoBurn;
 	to->client.fuser3					= player.m_flAmmoStartCharge;
 	to->client.maxspeed					= player.pev->maxspeed;
-	g_hasPredictedFOV					= true;	// Vit_amiN: ready
+	//g_hasPredictedFOV					= true;	// Vit_amiN: ready
 
 	//HL Weapons
 	to->client.vuser1[0]				= player.ammo_9mm;

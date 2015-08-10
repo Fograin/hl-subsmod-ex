@@ -8,8 +8,6 @@
 //
 //	Before using any parts of this code, read licence.txt file 
 //=============================================================//
-#if !defined( OEM_BUILD )
-
 #include "extdll.h"
 #include "util.h"
 #include "cbase.h"
@@ -628,5 +626,3 @@ class CRpgAmmo : public CBasePlayerAmmo
 	}
 };
 LINK_ENTITY_TO_CLASS( ammo_rpgclip, CRpgAmmo );
-
-#endif

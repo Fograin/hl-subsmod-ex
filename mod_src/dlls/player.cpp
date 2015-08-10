@@ -106,34 +106,6 @@ TYPEDESCRIPTION	CBasePlayer::m_playerSaveData[] =
 	DEFINE_FIELD( CBasePlayer, m_pTank, FIELD_EHANDLE ),
 	DEFINE_FIELD( CBasePlayer, m_iHideHUD, FIELD_INTEGER ),
 	DEFINE_FIELD( CBasePlayer, m_iFOV, FIELD_INTEGER ),
-	
-	//DEFINE_FIELD( CBasePlayer, m_fDeadTime, FIELD_FLOAT ), // only used in multiplayer games
-	//DEFINE_FIELD( CBasePlayer, m_fGameHUDInitialized, FIELD_INTEGER ), // only used in multiplayer games
-	//DEFINE_FIELD( CBasePlayer, m_flStopExtraSoundTime, FIELD_TIME ),
-	//DEFINE_FIELD( CBasePlayer, m_fKnownItem, FIELD_INTEGER ), // reset to zero on load
-	//DEFINE_FIELD( CBasePlayer, m_iPlayerSound, FIELD_INTEGER ),	// Don't restore, set in Precache()
-	//DEFINE_FIELD( CBasePlayer, m_pentSndLast, FIELD_EDICT ),	// Don't restore, client needs reset
-	//DEFINE_FIELD( CBasePlayer, m_flSndRoomtype, FIELD_FLOAT ),	// Don't restore, client needs reset
-	//DEFINE_FIELD( CBasePlayer, m_flSndRange, FIELD_FLOAT ),	// Don't restore, client needs reset
-	//DEFINE_FIELD( CBasePlayer, m_fNewAmmo, FIELD_INTEGER ), // Don't restore, client needs reset
-	//DEFINE_FIELD( CBasePlayer, m_flgeigerRange, FIELD_FLOAT ),	// Don't restore, reset in Precache()
-	//DEFINE_FIELD( CBasePlayer, m_flgeigerDelay, FIELD_FLOAT ),	// Don't restore, reset in Precache()
-	//DEFINE_FIELD( CBasePlayer, m_igeigerRangePrev, FIELD_FLOAT ),	// Don't restore, reset in Precache()
-	//DEFINE_FIELD( CBasePlayer, m_iStepLeft, FIELD_INTEGER ), // Don't need to restore
-	//DEFINE_ARRAY( CBasePlayer, m_szTextureName, FIELD_CHARACTER, CBTEXTURENAMEMAX ), // Don't need to restore
-	//DEFINE_FIELD( CBasePlayer, m_chTextureType, FIELD_CHARACTER ), // Don't need to restore
-	//DEFINE_FIELD( CBasePlayer, m_fNoPlayerSound, FIELD_BOOLEAN ), // Don't need to restore, debug
-	//DEFINE_FIELD( CBasePlayer, m_iUpdateTime, FIELD_INTEGER ), // Don't need to restore
-	//DEFINE_FIELD( CBasePlayer, m_iClientHealth, FIELD_INTEGER ), // Don't restore, client needs reset
-	//DEFINE_FIELD( CBasePlayer, m_iClientBattery, FIELD_INTEGER ), // Don't restore, client needs reset
-	//DEFINE_FIELD( CBasePlayer, m_iClientHideHUD, FIELD_INTEGER ), // Don't restore, client needs reset
-	//DEFINE_FIELD( CBasePlayer, m_fWeapon, FIELD_BOOLEAN ),  // Don't restore, client needs reset
-	//DEFINE_FIELD( CBasePlayer, m_nCustomSprayFrames, FIELD_INTEGER ), // Don't restore, depends on server message after spawning and only matters in multiplayer
-	//DEFINE_FIELD( CBasePlayer, m_vecAutoAim, FIELD_VECTOR ), // Don't save/restore - this is recomputed
-	//DEFINE_ARRAY( CBasePlayer, m_rgAmmoLast, FIELD_INTEGER, MAX_AMMO_SLOTS ), // Don't need to restore
-	//DEFINE_FIELD( CBasePlayer, m_fOnTarget, FIELD_BOOLEAN ), // Don't need to restore
-	//DEFINE_FIELD( CBasePlayer, m_nCustomSprayFrames, FIELD_INTEGER ), // Don't need to restore
-	
 };	
 
 
@@ -1822,7 +1794,7 @@ void CBasePlayer::PreThink(void)
 	
 	CheckTimeBasedDamage();
 
-	CheckSuitUpdate();
+	CheckSuitUpdate();	// Fograin92
 
 	if (pev->deadflag >= DEAD_DYING)
 	{
@@ -2272,7 +2244,7 @@ void CBasePlayer::CheckSuitUpdate()
 				m_flSuitUpdate = gpGlobals->time + 4.0;
 			}
 
-			//ALERT( at_console, "HAX: %.0f\n", m_flSuitUpdate );
+			ALERT( at_console, "HAX: %.0f\n", m_flSuitUpdate );
 		}
 		else
 			// queue is empty, don't check 
@@ -2882,35 +2854,6 @@ void CBasePlayer::Spawn( void )
 	m_lastx = m_lasty = 0;
 	m_flNextChatTime = gpGlobals->time;
 	g_pGameRules->PlayerSpawn( this );
-
-
-	// Fograin92: Check if this is Blue Shift map
-	for (int i=0; i<ARRAYSIZE(pBSmaps); i++)
-	{
-		// Fograin92: Blue Shift map recognized
-		if (!strcmp( STRING(gpGlobals->mapname), pBSmaps[i]))
-		{
-			ALERT( at_console, "^4SM -> Game -> Blue Shift\n");
-			CVAR_SET_FLOAT( "sm_hud", 1.0 );
-			return;
-		}
-	}
-
-	// Fograin92: Check if this is Opposing Force map
-	for (int i=0; i<ARRAYSIZE(pOFmaps); i++)
-	{
-		// Fograin92: Opposing Force map recognized
-		if (!strcmp( STRING(gpGlobals->mapname), pOFmaps[i]))
-		{
-			ALERT( at_console, "^2SM -> Game -> Opposing Force\n");
-			CVAR_SET_FLOAT( "sm_hud", 2.0 );
-			return;
-		}
-	}
-
-	// Fograin92: This is default Half-Life / Uplink map
-	ALERT( at_console, "^3SM -> Game -> Half-Life\n");
-	CVAR_SET_FLOAT( "sm_hud", 0.0 );
 }
 
 
@@ -2954,14 +2897,14 @@ void CBasePlayer :: Precache( void )
 	if ( gInitHUD )
 		m_fInitHUD = TRUE;
 	
-	pev->fov = m_iFOV;	// Vit_amiN: restore the FOV on level change or map/saved game load
+	//pev->fov = m_iFOV;	// Vit_amiN: restore the FOV on level change or map/saved game load
 
 	// Vit_amiN: to guarantee the correctness of the weapons prediction system initial state
 	// we must initialize ammo counters here, before actual calls to any predicting function
 	// (e.g. UpdateClientData(), HUD_WeaponsPostThink(), HUD_TxferPredictionData()) will be
 	// made.
 	// It should be touched on a level transition, too.
-	TabulateAmmo();
+	//TabulateAmmo();
 }
 
 
@@ -3145,8 +3088,7 @@ void CBasePlayer::SelectItem(const char *pstr)
 
 void CBasePlayer::SelectLastItem(void)
 {
-	// Vit_amiN: added a check if it cannot be deployed
-	if ( !m_pLastItem || !m_pLastItem->CanDeploy() )
+	if (!m_pLastItem)
 	{
 		return;
 	}
@@ -3539,7 +3481,6 @@ void CBasePlayer::ImpulseCommands( )
 //=========================================================
 void CBasePlayer::CheatImpulseCommands( int iImpulse )
 {
-#if !defined( HLDEMO_BUILD )
 	if ( g_flWeaponCheat == 0.0 )
 	{
 		return;
@@ -3709,7 +3650,6 @@ void CBasePlayer::CheatImpulseCommands( int iImpulse )
 		}
 		break;
 	}
-#endif	// HLDEMO_BUILD
 }
 
 //
@@ -3762,9 +3702,10 @@ int CBasePlayer::AddPlayerItem( CBasePlayerItem *pItem )
 			SwitchWeapon( pItem );
 		}
 
-		// Fograin92: HEV pickup sentence
-		if (CVAR_GET_FLOAT("sm_hev_pick") == 1)
+		// Fograin92: Only if we have HEV weapon pickup sounds enabled AND only when it's HL1
+		if ( CVAR_GET_FLOAT("sm_hev_pick") == 1 && CVAR_GET_FLOAT("sm_hud") == 0) 
 		{
+			// Fograin92: HEV pickup sentence
 			if (FClassnameIs( pItem->pev, "weapon_glock" ))				SetSuitUpdate("!HEV_PISTOL",	FALSE, SUIT_NEXT_IN_5MIN);
 			else if (FClassnameIs( pItem->pev, "weapon_9mmhandgun" ))	SetSuitUpdate("!HEV_PISTOL",	FALSE, SUIT_NEXT_IN_5MIN);
 			else if (FClassnameIs( pItem->pev, "weapon_shotgun" ))		SetSuitUpdate("!HEV_SHOTGUN",	FALSE, SUIT_NEXT_IN_5MIN);
@@ -4010,6 +3951,8 @@ void CBasePlayer :: UpdateClientData( void )
 			WRITE_BYTE( 0 );
 		MESSAGE_END();
 
+		/*
+
 		// Vit_amiN: client's flashlight could run out of sync
 		MESSAGE_BEGIN( MSG_ONE, gmsgFlashlight, NULL, pev );
 			WRITE_BYTE( FlashlightIsOn() );
@@ -4022,6 +3965,7 @@ void CBasePlayer :: UpdateClientData( void )
 		MESSAGE_END();
 
 		m_iClientHideHUD = -1;	// Vit_amiN: forcing to update
+		*/
 
 		if ( !m_fGameHUDInitialized )
 		{
@@ -4217,6 +4161,8 @@ void CBasePlayer :: UpdateClientData( void )
 			MESSAGE_END();
 		}
 
+		/*
+
 		for ( int i = 0; i < MAX_AMMO_SLOTS; i++ )
 		{
 			m_rgAmmoLast[i] = 0;	// Vit_amiN: force remaining ammo to be sent
@@ -4224,6 +4170,7 @@ void CBasePlayer :: UpdateClientData( void )
 
 		m_iClientFOV = -1;			// Vit_amiN: force client weapons to be sent
 
+		*/
 		// FIXME: check if no more messages are required
 	}
 
@@ -4416,12 +4363,7 @@ Vector CBasePlayer :: AutoaimDeflection( Vector &vecSrc, float flDist, float flD
 
 	if ( g_psv_aim->value == 0 )
 	{
-		if ( m_lastx != 0 || m_lasty != 0 )	// Vit_amiN: reset angles
-		{
-			m_vecAutoAim.x = 1.0f;
-			ResetAutoaim( );
-			m_lastx = m_lasty = 0;
-		}
+		m_fOnTarget = FALSE;
 		return g_vecZero;
 	}
 

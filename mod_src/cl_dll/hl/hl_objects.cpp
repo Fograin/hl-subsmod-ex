@@ -28,7 +28,7 @@
 
 extern BEAM *pBeam;
 extern BEAM *pBeam2;
-extern TEMPENTITY *pFlare;	// Vit_amiN: egon's energy flare
+//extern TEMPENTITY *pFlare;	// Vit_amiN: egon's energy flare
 void HUD_GetLastOrg( float *org );
 
 void UpdateBeams ( void )
@@ -76,6 +76,7 @@ void UpdateBeams ( void )
 		pBeam2->die	   = gEngfuncs.GetClientTime() + 0.1; // We keep it alive just a little bit forward in the future, just in case.
 	}
 
+	/*
 	if ( pFlare )	// Vit_amiN: beam flare
 	{
 		pFlare->entity.origin = tr.endpos;
@@ -96,7 +97,8 @@ void UpdateBeams ( void )
 				}
 			}
 		}
-	}
+		
+	}*/
 }
 
 /*
@@ -108,6 +110,6 @@ Add game specific, client-side objects here
 */
 void Game_AddObjects( void )
 {
-	if ( pBeam || pBeam2 || pFlare )	// Vit_amiN: egon flare added
+	if ( pBeam && pBeam2 )
 		UpdateBeams();
 }
