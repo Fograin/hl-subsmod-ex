@@ -834,48 +834,30 @@ BA_STOP1 barney/stop2
 BA_HAZ_OK0 holo/tr_ba_use
 BA_HAZ_WAIT0 holo/tr_ba_unuse
 BA_LIGHTSON holo/tr_ba_lightson
-
 BA_LATE barney/c1a0_ba_late
 BA_HEADDOWN barney/c1a0_ba_headdown
 BA_DESK barney/c1a0_ba_desk
 BA_BUTTON barney/c1a0_ba_button
 BA_HEVNO barney/c1a0_ba_hevno
 BA_HEVYES barney/c1a0_ba_hevyes
-
 BA_GLAD barney/c1a1_ba_glad
-
 BA_BULLSQUID barney/c1a2_ba_bullsquid
-BA_ZOMBIE2 barney/c1a2_ba_2zomb
-BA_ZOMBIE4 barney/c1a2_ba_4zomb
 BA_CLIMB barney/c1a2_ba_climb
 BA_SLEW barney/c1a2_ba_slew
 BA_SURFACE barney/c1a2_ba_surface
 BA_TOPSIDE barney/c1a2_ba_top
-
 BA_WHISPER barney/c1a4_ba_wisp
 BA_TENTACLE barney/c1a4_ba_octo1
-
 BA_HUB1A barney/c2a1_ba_hub1a
 BA_HUB2A barney/c2a1_ba_hub2a
 BA_AGAIN barney/c2a1_ba_again
 BA_LAUNCH barney/c2a2_ba_launch
 BA_ASSN barney/c2a3_ba_assn
-BA_LONGNITE barney/c2a4_ba_longnite
-BA_STERIL barney/c2a4_ba_steril
-BA_TEACH barney/c2a4_ba_teach
-BA_ARG1A barney/c2a4_ba_arg1a
-BA_ARG2A barney/c2a4_ba_arg3a
-BA_ARG3A barney/c2a4_ba_arg5a
 BA_TAU1A barney/c2a4_ba_1tau
 BA_TAU3A barney/c2a4_ba_3tau
 BA_TAU5A barney/c2a4_ba_5tau
 BA_ALIVE barney/c2a4_ba_alive
-
-BA_LETMEOUT barney/c2a5_ba_letout
-BA_RPG barney/c2a5_ba_rpg
 BA_HELPME barney/c2a5_ba_helpme
-BA_SNIPED barney/c2a5_ba_sniped
-
 BA_SURVEY2A barney/c3a2_ba_2surv
 BA_SURVEY4A barney/c3a2_ba_4surv
 BA_SURVEY6A barney/c3a2_ba_6surv
@@ -887,7 +869,6 @@ BA_BOMBOFF barney/of6a4_ba01
 BA_CLOSEONE barney/of6a4_ba02
 BA_STORAGEUNIT barney/of6a4_ba03
 BA_NASTYTHING barney/of6a4_ba04
-
 OF1A5_BARN1 barney/OF1A5_BA01
 OF1A5_BARN2 barney/OF1A5_BA02
 BA_ZOMBIE2 barney/c1a2_ba_2zomb
@@ -904,12 +885,8 @@ BA_SEC2_DESK2 barney/ba_security2_desk2
 BA_SEC2_ADMIN barney/ba_security2_admin
 BA_SEC2_RANGE1 barney/ba_security2_range1
 BA_SEC2_RANGE2 barney/ba_security2_range2
-
 BA_HEY barney/ba_heeey
-
-BA_CANAL_WOUND2 barney/ba_canal_wound1
 BA_CANAL_DEATH1 barney/ba_canal_death1
-
 BA_POWER1 barney/ba_power1
 BA_POWER2 barney/ba_power2
 BA_POWER3 barney/ba_power3
@@ -917,9 +894,61 @@ BA_POWER4 barney/ba_power4
 BA_POWER_WOUND1 barney/ba_power_wound1
 BA_POWER_WOUND2 barney/ba_power_wound2
 BA_DIE1 barney/ba_die1
-
 BA_AREYOUCRAZY barney/ba_crazy
 BA_CHAT1 barney/ba_friends
+
+// monster_barney -> Extra
+BA_GOFORIT 		barney/c1a2_ba_goforit
+BA_OCT2			barney/c1a4_ba_octo2
+BA_OCT4			barney/c1a4_ba_octo4
+BA_ARG1A 		barney/c2a4_ba_arg1a
+BA_ARG2A 		barney/c2a4_ba_arg3a
+BA_ARG3A 		barney/c2a4_ba_arg5a
+BA_LONGNITE 	barney/c2a4_ba_longnite
+BA_STERIL 		barney/c2a4_ba_steril
+BA_TEACH 		barney/c2a4_ba_teach
+BA_LETMEOUT 	barney/c2a5_ba_letout
+BA_RPG 			barney/c2a5_ba_rpg
+BA_SNIPED 		barney/c2a5_ba_sniped
+BA_UPL1 		barney/c3a1_ba_1sat
+BA_UPL2 		barney/c3a1_ba_3sat
+BA_UPL3 		barney/c3a1_ba_5sat
+BA_CANAL_W2		barney/ba_canal_wound1
+BA_AFRAID		barney/die
+BA_AFRAID2		barney/killme
+BA_MONSTEREAT	barney/ba_becareful1
+BA_BTN1			barney/ba_button1
+BA_BTN2			barney/ba_button2
+BA_WCRAZY		barney/ba_crazywoman
+BA_DOOROPN1		barney/ba_door1
+BA_DOOROPN2		barney/ba_door2
+BA_GEN0			barney/ba_generic0
+BA_GEN1			barney/ba_generic1
+BA_GEN2			barney/ba_generic2
+BA_HEV			barney/ba_gethev
+BA_HELPOX		barney/ba_helpox
+BA_INTERNET		barney/ba_internet
+BA_SKNOW		barney/ba_know
+BA_MAIN_SEC1	barney/ba_main_sec1
+BA_MAIN_SEC2	barney/ba_main_sec2
+BA_MAIN_SEC3	barney/ba_main_sec3
+BA_MAIN_SEC4	barney/ba_main_sec4
+BA_MAIN_SEC5	barney/ba_main_sec5
+BA_MAIN_SEC6	barney/ba_main_sec6
+BA_MAIN_SEC7	barney/ba_main_sec7
+BA_MAIN_SEC8	barney/ba_main_sec8
+BA_MAIN_SEC9	barney/ba_main_sec9
+BA_MAIN_SEC10	barney/ba_main_sec10
+BA_MAIN_SEC11	barney/ba_main_sec11
+BA_PIZZA		barney/ba_pizza
+BA_REKT			barney/ba_rekt
+BA_SEAL0		barney/ba_soldiers3
+BA_SEAL1		barney/ba_sec_seal1
+BA_SEAL2		barney/ba_sec_seal2
+BA_SEAL3		barney/ba_sec_seal3
+BA_SEAL4		barney/ba_sec_seal4
+BA_SOLDIERS1	barney/ba_soldiers1
+BA_SOLDIERS2	barney/ba_soldiers2
 
 
 // monster_scientist -> OK
@@ -1201,9 +1230,7 @@ SC_HAZ_WAIT0 holo/tr_sci_unuse
 SC_GOODWORK ba_holo/tr_sci_gwbarney
 SC_HARDLYNOTICE holo/tr_sci_hardlynoticed
 SC_NEXTSTATION holo/tr_sci_nextstation
-
 SC_1MUMBLE scientist/c1a0_sci_mumble
-
 SC_DISA scientist/c1a0_sci_disa
 SC_DIS1A scientist/c1a0_sci_dis1a
 SC_DIS1B scientist/c1a0_sci_dis1b
@@ -1225,12 +1252,10 @@ SC_DIS14A scientist/c1a0_sci_dis14a
 SC_DIS15A scientist/c1a0_sci_dis15a
 SC_DIS16A scientist/c1a0_sci_dis16a
 SC_DIS17A scientist/c1a0_sci_dis17a
-
 SC_GETAWAY scientist/c1a0_sci_getaway
 SC_GMORN scientist/c1a0_sci_gm
 SC_BIGDAY scientist/c1a0_sci_bigday
 SC_SAMPLE scientist/c1a0_sci_samp
-
 SC_LOCK1A scientist/c1a0_sci_lock1a
 SC_LOCK2A scientist/c1a0_sci_lock2a
 SC_LOCK3A scientist/c1a0_sci_lock3a
@@ -1239,34 +1264,23 @@ SC_LOCK5A scientist/c1a0_sci_lock5a
 SC_LOCK6A scientist/c1a0_sci_lock6a
 SC_LOCK7A scientist/c1a0_sci_lock7a
 SC_LOCK8A scientist/c1a0_sci_lock8a
-
 SC_CRIT1A scientist/c1a0_sci_crit1a
 SC_CRIT2A scientist/c1a0_sci_crit2a
 SC_CRIT3A scientist/c1a0_sci_crit3a
-
 SC_CTRL1A scientist/c1a0_sci_ctrl1a
 SC_CTRL2A scientist/c1a0_sci_ctrl2a
 SC_CTRL3A scientist/c1a0_sci_ctrl3a
 SC_CTRL4A scientist/c1a0_sci_ctrl4a
-
 SC_CONSOLE1A scientist/c1a1_sci_1scan
 SC_CONSOLE2A scientist/c1a1_sci_2scan
 SC_CONSOLE3A scientist/c1a1_sci_3scan
 SC_CONSOLE4A scientist/c1a1_sci_4scan
 SC_CONSOLE5A scientist/c1a1_sci_5scan
 SC_CONSOLERPT scientist/c1a0_sci_scanrpt
-
-SC_ZOMBIE1A scientist/c1a2_sci_1zomb
-SC_ZOMBIE3A scientist/c1a2_sci_3zomb
-SC_ZOMBIE5A scientist/c1a2_sci_5zomb
-SC_ZOMBIE6A scientist/c1a2_sci_6zomb
-
 SC_DANGLING scientist/c1a2_sci_dangling
 SC_DARKROOM scientist/c1a2_sci_darkroom
-SC_ELEVATOR scientist/c1a2_sci_elevator
 SC_LOUNGE scientist/c1a2_sci_lounge
 SC_TRANSMISSION scientist/c1a2_sci_transm
-
 SC_1MAN scientist/c1a3_sci_1man
 SC_ATLAST scientist/c1a3_sci_atlast
 SC_RESCUED scientist/c1a3_sci_rescued
@@ -1274,8 +1288,6 @@ SC_SILO1A scientist/c1a3_sci_silo1a
 SC_SILO2A scientist/c1a3_sci_silo2a
 SC_TEAM scientist/c1a3_sci_team
 SC_THANKGOD scientist/c1a3_sci_thankgod
-
-SC_TRAINEND scientist/c1a4_sci_trainend
 SC_ROCKET scientist/c1a4_sci_rocket
 SC_BLIND scientist/c1a4_sci_blind
 SC_POWEROFF scientist/c1a4_sci_pwroff
@@ -1283,25 +1295,16 @@ SC_POWERON scientist/c1a4_sci_pwr
 SC_GENER scientist/c1a4_sci_gener
 SC_TRUST scientist/c1a4_sci_trust
 SC_TENT scientist/c1a4_sci_tent
-
 SC_ICKY scientist/c2a3_sci_icky
 SC_TRACK scientist/c2a3_sci_track
-
-SC_ARG1A scientist/c2a4_sci_arg2a
-SC_ARG2A scientist/c2a4_sci_arg4a
-
 SC_TAU2A scientist/c2a4_sci_2tau
 SC_TAU4A scientist/c2a4_sci_4tau
-
 SC_1PSURG scientist/c2a4_sci_scanner
 SC_2PSURG scientist/c2a4_sci_sugicaloff
 SC_3PSURG scientist/c2a4_sci_surgury
 SC_ALLDIE scientist/c2a4_sci_alldie
 SC_LETOUT scientist/c2a4_sci_letout
-
 SC_BOOBIE scientist/c2a5_sci_boobie
-SC_LEBUZ scientist/c2a5_sci_lebuz
-
 SC_STRAWS scientist/c3a2_sci_straws
 SC_GLUON2A scientist/c3a2_sci_2glu
 SC_FLOOD scientist/c3a2_sci_flood
@@ -1330,8 +1333,6 @@ SC_SEENSPECIES scientist/of1a5_sc02
 SC_FREEMAN scientist/of1a6_sc01
 SC_WHATSWORSE scientist/of2a2_sc01
 SC_HIDMYSELF scientist/of2a3_sc01
-SC_PUTDOWN scientist/of3a2_sc01
-SC_NOTAGAIN scientist/of3a2_sc02
 SC_TRAPPED scientist/of3a4_sc01
 SC_HELPACCESS scientist/of3a4_sc02
 SC_GRAPPLETAPE scientist/of4a1_sc01
@@ -1383,6 +1384,42 @@ SC_POWER_ALT1 scientist/sc_power_alt1
 SC_POWER_ALT2 scientist/sc_power_alt2
 SC_POWER_WOUND1 scientist/sc_power_wound1
 SC_POWER_WOUND2 scientist/sc_power_wound2
+
+// monster_scientist -> Narrative EXTRA
+SC_ZOMBIE1A	scientist/c1a2_sci_1zomb
+SC_ZOMBIE3A scientist/c1a2_sci_3zomb
+SC_ZOMBIE5A scientist/c1a2_sci_5zomb
+SC_ZOMBIE6A scientist/c1a2_sci_6zomb
+SC_ELEVATOR scientist/c1a2_sci_elevator
+SC_TRAINEND scientist/c1a4_sci_trainend
+SC_ARG1A 	scientist/c2a4_sci_arg2a
+SC_ARG2A 	scientist/c2a4_sci_arg4a
+SC_LEBUZ 	scientist/c2a5_sci_lebuz
+SC_PUTDOWN 	scientist/of3a2_sc01
+SC_NOTAGAIN scientist/of3a2_sc02
+SC_UPL1		scientist/c3a1_sci_2sat
+SC_UPL2		scientist/c3a1_sci_4sat
+SC_UPL3		scientist/c3a1_sci_6sat
+SC_UPL4		scientist/c3a1_sci_dome
+SC_UPL5		scientist/c3a1_sci_done
+SC_PROTECT	scientist/protectme
+SC_WHU		scientist/whoareyou
+SC_CHIMP	scientist/chimp
+SC_CROWBAR	scientist/crowbar
+SC_EEGG1	scientist/egg_crash1
+SC_EEGG2	scientist/egg_crash2
+SC_EEGG3	scientist/egg_crash3
+SC_HELPU	scientist/icanhelp
+SC_ETRACK1	scientist/scie_track1
+SC_ETRACK2	scientist/scie_track2
+SC_ETRACK3	scientist/scie_track3
+SC_OSPR1	scientist/scie_ded1
+SC_OSPR2	scientist/scie_ded2
+SC_GMAN1	scientist/scie_gman1
+SC_GMAN2	scientist/scie_gman2
+SC_GMAN3	scientist/scie_gman3
+SC_TIES		scientist/ties
+SC_YAWN		scientist/yawn
 
 
 // monster_rosenberg -> Ok
