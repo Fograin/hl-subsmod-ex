@@ -1973,22 +1973,22 @@ ARGH! Oh shit!
 // Barney (Uplink Extra) Subtitles
 //=================================//
 
-$holdtime 2
+$holdtime 3
 !BA_GOFORIT
 {
 Alright, let's go for it!
 }
 
-$holdtime 3
+$holdtime 4
 !BA_OCT2
 {
-Hey, hey you take me down!
+HEY, HEY YOU TAKE ME DOWN!
 }
 
-$holdtime 3
+$holdtime 4
 !BA_OCT4
 {
-Hey, eat this you bastard!
+HEY! EAT THIS YOU BASTARD!
 }
 
 $holdtime 3.3
@@ -2027,44 +2027,44 @@ $holdtime 11
 These sterilizers come in handy. You ever find yourself in a bind, just duck into one of these booths, hit the big button. They're supposed to kill microorganisms, but they work on the big stuff too.
 }
 
-$holdtime 4.5
+$holdtime 5.5
 !BA_LETMEOUT
 {
 Hey! Hey! Hey, lemme outta here!
 }
 
-$holdtime 9.5
+$holdtime 10
 !BA_RPG
 {
 This is your lucky day. There's rocket propelled grenade launcher in there. Laser sight and everything. Now, if you can figure a way in, you'll be an even match for these bastards.
 }
 
-$holdtime 3
+$holdtime 4
 !BA_SNIPED
 {
 I've been hit! Stay back! Sniper got me!
 }
 
-$holdtime 3
+$holdtime 3.5
 !BA_UPL1
 {
 Open up the Reactor Complex so we can get down to safety!
 }
 
-$holdtime 3
+$holdtime 2
 !BA_UPL2
 {
 So send it already!
 }
 
-$holdtime 1.5
+$holdtime 2
 !BA_UPL3
 {
 What about this guy?
 }
 
 $holdtime 9.5
-!BA_CANAL_WOUND2
+!BA_CANAL_W2
 {
 Look, I'm chewed up pretty bad and I think my leg's broken. So you better go on without me. Get yourself out of here while you still can.
 }
@@ -2081,7 +2081,7 @@ $holdtime 2
 No, don't kill me!
 }
 
-$holdtime 4
+$holdtime 5
 !BA_MONSTEREAT
 {
 Hey, try not to get eaten by a monster or anything, okay?
@@ -2093,31 +2093,31 @@ $holdtime 2
 Let's see if this works.
 }
 
-$holdtime 2
+$holdtime 3
 !BA_BTN2
 {
 Alright, this should only take a second.
 }
 
-$holdtime 1
+$holdtime 2
 !BA_WCRAZY
 {
 You crazy woman!
 }
 
-$holdtime 1
+$holdtime 2
 !BA_DOOROPN1
 {
 I'll get that door open.
 }
 
-$holdtime 3
+$holdtime 4
 !BA_DOOROPN2
 {
-This door is locked. See if you can activate it from the console.
+This door is locked. See if you can activate it from the console!
 }
 
-$holdtime 3
+$holdtime 2
 !BA_GEN0
 {
 Hold on a minute!
@@ -2135,16 +2135,16 @@ $holdtime 2
 Good job!
 }
 
-$holdtime 2
+$holdtime 3
 !BA_HEV
 {
 Man, I need to get me one of them HEV suits.
 }
 
-$holdtime 2
+$holdtime 4
 !BA_HELPOX
 {
-Hey, can you give me a hand?
+Hey! Can you give me a hand?
 }
 
 $holdtime 2
@@ -2159,109 +2159,109 @@ $holdtime 4
 I don't know anything! I'm not even with the science team!
 }
 
-$holdtime 3
+$holdtime 4
 !BA_MAIN_SEC1
 {
-The Central Security Station is right over here. Follow me.
+The Central Security Station is right over here. Follow me!
 }
 
-$holdtime 3
+$holdtime 1.5
 !BA_MAIN_SEC2
 {
 Follow me.
 }
 
-$holdtime 3
+$holdtime 1.5
 !BA_MAIN_SEC3
 {
 Almost there.
 }
 
-$holdtime 4
+$holdtime 5.5
 !BA_MAIN_SEC4
 {
 My access code should open this and unlock any door around the Central Transit Hub.
 }
 
-$holdtime 4
+$holdtime 10.5
 !BA_MAIN_SEC5
 {
 From this room, we can monitor transmissions, check up on the transit lines, open and close all the security gates at the hub. Heck, even track HEV suit movement.
 }
 
-$holdtime 4
+$holdtime 6.5
 !BA_MAIN_SEC6
 {
 The file room is on the other side of the hub. I'll open all the security gates between here and there for you.
 }
 
-$holdtime 4
+$holdtime 7
 !BA_MAIN_SEC7
 {
 We got an access violation at some of the gates near where you are. Better be careful, I think you got company.
 }
 
-$holdtime 4
+$holdtime 8
 !BA_MAIN_SEC8
 {
 We need to get some repairs done if we're gonna have chance to listen in on these soldiers, but there's something blocking the maintenance access door.
 }
 
-$holdtime 4
+$holdtime 8.5
 !BA_MAIN_SEC9
 {
 I guess the best way to get up there would be through the loading dock and storage bays. If you follow me, I can unlock the door and get you on your way.
 }
 
-$holdtime 4
+$holdtime 5
 !BA_MAIN_SEC10
 {
-Maybe you can somehow lure it onto the bridge and use that as a weapon.
+Maybe you can somehow lure it onto the bridge and use that as a weapon!
 }
 
-$holdtime 4
+$holdtime 2
 !BA_MAIN_SEC11
 {
-The bridge controls are up there.
+The bridge controls are up there!
 }
 
-$holdtime 4
+$holdtime 3.5
 !BA_PIZZA
 {
 If you're hungry, help yourself to some pizza over there.
 }
 
-$holdtime 4
+$holdtime 6
 !BA_SEAL0
 {
 Hey, where did you come from? We should stick together, this place is crawling with soldiers!
 }
 
-$holdtime 4
+$holdtime 13
 !BA_SEAL1
 {
 Yeah, I've got the clearance codes to the security station, but I'm not leaving until those soldiers down there have been cleared out. If you can't take 'em out, maybe you can seal 'em off. Either way, it's not safe for me to leave here.
 }
 
-$holdtime 4
+$holdtime 7
 !BA_SEAL2
 {
-I'm not going with you until you either take out those soldiers downstairs or cut 'em off. It's too dangerous.
+I'm not going with you until you either take out those soldiers downstairs or cut them off. It's too dangerous!
 }
 
-$holdtime 4
+$holdtime 5
 !BA_SEAL3
 {
-I told you, I'm not leaving as long as those soldiers are running around down there.
+I told you, I'm not leaving as long as those soldiers are running around down there!
 }
 
-$holdtime 4
+$holdtime 6.5
 !BA_SEAL4
 {
 I was worried you wouldn't make it. Anyway, let's get to the security station. You lead the way.
 }
 
-$holdtime 4
+$holdtime 5.5
 !BA_SOLDIERS1
 {
 Soldiers, everywhere! They're killing everyone!
@@ -4574,11 +4574,6 @@ HURRY UP FREEMAN! I CAN'T KEEP IT OPEN FOREVER!
 //=======================================//
 // Scientists (Uplink / Extra Subtitles)
 //=======================================//
-$holdtime 3
-!SC_ZOMBIE1A
-{
-GET OUT OF THERE! RUN MAN, RUN!
-}
 
 $holdtime 2
 !SC_ZOMBIE3A
@@ -4598,10 +4593,10 @@ $holdtime 4
 Don't just stand there, pick up that gun and shoot it!
 }
 
-$holdtime 10
+$holdtime 11
 !SC_ELEVATOR
 {
-You can make it up to elevator shaft. You should able to get to surface. Try to send help, and let world what has happened.
+You can make it up to elevator shaft. You should able to get to surface. Try to send help, and let world what has happened...
 }
 
 $holdtime 10.5
@@ -4616,13 +4611,13 @@ $holdtime 3
 It's not our fault, I tell you.
 }
 
-$holdtime 4
+$holdtime 4.5
 !SC_ARG2A
 {
 Nature made them, we were only studying them.
 }
 
-$holdtime 5.7
+$holdtime 6.2
 $chained !SC_LEBUZ_PT2
 !SC_LEBUZ
 {
@@ -4647,37 +4642,37 @@ $holdtime 3
 Be careful! No! NOT AGAIN!
 }
 
-$holdtime 4
+$holdtime 5
 !SC_UPL1
 {
 I'm sorry, but those doors will not open until we send the "All-Clear".
 }
 
-$holdtime 13
+$holdtime 14
 !SC_UPL2
 {
 I would love to do that, but the area bombardment has made a wreck of my transmitter, the cables are separate, we have to aim it by hand and I'm getting high radiation levels in the transmitter dome. Nobody but a fool would go in there.
 }
 
-$holdtime 13
+$holdtime 11
 !SC_UPL3
 {
 Yes. You could survive in that suit of yours. Very well. I will lower security on the satellite access elevator, and you can go up into the dome. I'll try to help you over the intercom.
 }
 
-$holdtime 13
+$holdtime 9
 !SC_UPL4
 {
 You want to work quickly. Tune the transmitter to US NRC. I repeat! Tune to the US NRC!
 }
 
-$holdtime 5
+$holdtime 7
 !SC_UPL5
 {
 Excellent. I'm sending the "All-Clear" and the door should open now. We'll meet you down below.
 }
 
-$holdtime 5
+$holdtime 3
 !SC_PROTECT
 {
 I can get you some valuable supplies, if you'll protect me.
@@ -4689,97 +4684,91 @@ $holdtime 5
 Who are you? I've been waiting here for ages, hoping someone would come along.
 }
 
-$holdtime 5
+$holdtime 9
 !SC_CHIMP
 {
 You know, this sort of reminds me when I was involved in the space program. There was an incident with one of the chimps...
 }
 
-$holdtime 5
+$holdtime 7.5
 !SC_CROWBAR
 {
 Do you think that, perhaps, I could have a crowbar of my own? Perhaps, then, an automatic rifle?
 }
 
-$holdtime 5
+$holdtime 2
 !SC_EEGG1
 {
-Interesting.
+Interesting...
 }
 
-$holdtime 5
+$holdtime 2
 !SC_EEGG2
 {
 That shouldn't happen.
 }
 
-$holdtime 5
+$holdtime 3
 !SC_EEGG3
 {
 You know, theoretically, this is impossible.
 }
 
-$holdtime 5
+$holdtime 2.5
 !SC_HELPU
 {
 I suppose I can help.
 }
 
-$holdtime 7
+$holdtime 8
 !SC_ETRACK1
 {
-Uh, I only know the id number to Gordon's HEV suit. No others. Couldn't you just let me go?
+Uh, I only know the ID number to Gordon's HEV suit. No others. Couldn't you just let me go?
 }
 
-$holdtime 2
+$holdtime 3
 !SC_ETRACK2
 {
 Scientists! I'm saved!
 }
 
-$holdtime 2
+$holdtime 18
 !SC_ETRACK3
 {
 Oh dear. You've come just in time, but it may be too late for Gordon. Military forces are tracking his position with some success. Maybe you could destroy these tracking devices before Gordon finds himself in the wrong hands. He's our only hope!
 }
 
-$holdtime 10
+$holdtime 6
 !SC_OSPR1
 {
-Hello. It's no surprise that a fellow scientist found her way through the ceiling hatch before any of those damned soldiers. They came after me, so I locked myself up here, but they may have got the best of me anyway.
+They came after me, so I locked myself up here, but they may have got the best of me anyway...
 }
 
-$holdtime 2
+$holdtime 12
 !SC_OSPR2
 {
 It's not too late for you, though. Grab some of this military weaponry and see if you can take that Osprey out of the sky. At least that will stop their reinforcements.
 }
 
-$holdtime 2
+$holdtime 4
 !SC_GMAN1
 {
 Where am I? I've got to get out of here!
 }
 
-$holdtime 2
+$holdtime 4
 !SC_GMAN2
 {
 You, with the briefcase. You've got to help me out of here!
 }
 
-$holdtime 2
+$holdtime 4
 !SC_GMAN3
 {
 Hello? Where are you going? Sir! Please!
 }
 
-$holdtime 2
-!SC_TIES
-{
-The least they could do is let us wear differing ties. I really don't understand this uniform policy.
-}
-
-$holdtime 2
+$holdtime 7
 !SC_TIES
 {
 The least they could do is let us wear differing ties. I really don't understand this uniform policy.
