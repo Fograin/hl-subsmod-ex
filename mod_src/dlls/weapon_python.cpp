@@ -17,8 +17,8 @@
 #include "player.h"
 #include "gamerules.h"
 
-
-enum python_e {
+enum python_e
+{
 	PYTHON_IDLE1 = 0,
 	PYTHON_FIDGET,
 	PYTHON_FIRE1,
@@ -28,6 +28,7 @@ enum python_e {
 	PYTHON_IDLE2,
 	PYTHON_IDLE3
 };
+
 
 LINK_ENTITY_TO_CLASS( weapon_python, CPython );
 LINK_ENTITY_TO_CLASS( weapon_357, CPython );
@@ -123,13 +124,7 @@ BOOL CPython::Deploy( )
 
 void CPython::Holster( int skiplocal /* = 0 */ )
 {
-	m_fInReload = FALSE;// cancel any reload in progress.
-
-	if ( m_fInZoom )
-	{
-		SecondaryAttack();
-	}
-
+	m_fInReload = FALSE; // cancel any reload in progress.
 	m_pPlayer->m_flNextAttack = UTIL_WeaponTimeBase() + 1.0;
 	m_flTimeWeaponIdle = UTIL_WeaponTimeBase() + UTIL_SharedRandomFloat( m_pPlayer->random_seed, 10, 15 );
 	SendWeaponAnim( PYTHON_HOLSTER );
@@ -137,27 +132,7 @@ void CPython::Holster( int skiplocal /* = 0 */ )
 
 void CPython::SecondaryAttack( void )
 {
-#ifdef CLIENT_DLL
-	if ( !bIsMultiplayer() )
-#else
-	if ( !g_pGameRules->IsMultiplayer() )
-#endif
-	{
-		return;
-	}
-
-	if ( m_pPlayer->pev->fov != 0 )
-	{
-		m_fInZoom = FALSE;
-		m_pPlayer->pev->fov = m_pPlayer->m_iFOV = 0;  // 0 means reset to default fov
-	}
-	else if ( m_pPlayer->pev->fov != 40 )
-	{
-		m_fInZoom = TRUE;
-		m_pPlayer->pev->fov = m_pPlayer->m_iFOV = 40;
-	}
-
-	m_flNextSecondaryAttack = UTIL_WeaponTimeBase() + 0.5;
+	return;
 }
 
 void CPython::PrimaryAttack()
@@ -233,18 +208,7 @@ void CPython::Reload( void )
 	if ( m_pPlayer->ammo_357 <= 0 )
 		return;
 
-	if ( m_pPlayer->pev->fov != 0 )
-	{
-		m_fInZoom = FALSE;
-		m_pPlayer->pev->fov = m_pPlayer->m_iFOV = 0;  // 0 means reset to default fov
-	}
-
 	int bUseScope = FALSE;
-#ifdef CLIENT_DLL
-	bUseScope = bIsMultiplayer();
-#else
-	bUseScope = g_pGameRules->IsMultiplayer();
-#endif
 
 	if (DefaultReload( 6, PYTHON_RELOAD, 2.0, bUseScope ))
 	{

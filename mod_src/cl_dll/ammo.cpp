@@ -303,7 +303,7 @@ void CHudAmmo::Reset(void)
 	m_fFade = 0;
 	m_iFlags |= HUD_ACTIVE; //!!!
 
-	//m_pWeapon = NULL;	// Vit_amiN: reset the crosshair
+	m_pWeapon = NULL;	// Vit_amiN: reset the crosshair
 	gpActiveSel = NULL;
 	gHUD.m_iHideHUDDisplay = 0;
 
@@ -583,7 +583,7 @@ int CHudAmmo::MsgFunc_CurWeapon(const char *pszName, int iSize, void *pbuf )
 	if ( iId < 1 )
 	{
 		SetCrosshair(0, nullrc, 0, 0, 0);
-		//m_pWeapon = NULL;	// Vit_amiN: player died or had weapons stripped,
+		m_pWeapon = NULL;	// Vit_amiN: player died or had weapons stripped,
 		gpActiveSel = NULL;	// remove active weapon and close selection list
 		return 0;
 	}

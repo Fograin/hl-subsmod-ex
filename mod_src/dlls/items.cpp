@@ -117,7 +117,8 @@ void CItem::ItemTouch( CBaseEntity *pOther )
 		g_pGameRules->PlayerGotItem( pPlayer, this );	// player grabbed the item.
 		UTIL_Remove( this );
 	}
-
+	else if(gEvilImpulse101)	// Fix for Impulse 101 spawning
+		UTIL_Remove( this );
 }
 
 
@@ -300,7 +301,7 @@ class CItemSuit : public CItem
 		Precache( );
 
 		// Fograin92: If this is Opposing Force, we use PCV model
-		if (CVAR_GET_FLOAT("sm_hud") == 2 )
+		if (CVAR_GET_FLOAT("sm_hud") == 2.0 )
 			SET_MODEL(ENT(pev), "models/w_pcv.mdl");
 		else
 			SET_MODEL(ENT(pev), "models/w_suit.mdl");
@@ -321,7 +322,7 @@ class CItemSuit : public CItem
 			return FALSE;
 
 		// Fograin92: Only if this is HL1 game
-		if (CVAR_GET_FLOAT("sm_hud") == 0)
+		if (CVAR_GET_FLOAT("sm_hud") == 0.0)
 		{
 			// Only if it's not impulse 101 (aka. STFU logon spam when testing)
 			if (!gEvilImpulse101)
@@ -384,7 +385,7 @@ class CItemBattery : public CItem
 
 
 			// Fograin92: Only if this is HL1 game
-			if (CVAR_GET_FLOAT("sm_hud") == 0)
+			if (CVAR_GET_FLOAT("sm_hud") == 0.0)
 			{
 				// Suit reports new power level
 				// For some reason this wasn't working in release build -- round it.

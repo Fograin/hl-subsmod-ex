@@ -20,11 +20,8 @@
 #include "shake.h"
 #include "gamerules.h"
 
-
-#define	GAUSS_PRIMARY_CHARGE_VOLUME	256// how loud gauss is while charging
-#define GAUSS_PRIMARY_FIRE_VOLUME	450// how loud gauss is when discharged
-
-enum gauss_e {
+enum gauss_e
+{
 	GAUSS_IDLE = 0,
 	GAUSS_IDLE2,
 	GAUSS_FIDGET,
@@ -35,6 +32,9 @@ enum gauss_e {
 	GAUSS_HOLSTER,
 	GAUSS_DRAW
 };
+
+#define	GAUSS_PRIMARY_CHARGE_VOLUME	256// how loud gauss is while charging
+#define GAUSS_PRIMARY_FIRE_VOLUME	450// how loud gauss is when discharged
 
 LINK_ENTITY_TO_CLASS( weapon_gauss, CGauss );
 
@@ -290,7 +290,7 @@ void CGauss::SecondaryAttack()
 			EMIT_SOUND_DYN(ENT(m_pPlayer->pev), CHAN_ITEM,   "weapons/electro6.wav", 1.0, ATTN_NORM, 0, 75 + RANDOM_LONG(0,0x3f));
 			
 			// Vit_amiN: stop the spinning sound with the 1 frame delay on the client
-			//PLAYBACK_EVENT_FULL( FEV_NOTHOST | FEV_RELIABLE, m_pPlayer->edict(), m_usGaussFire, 0.01, (float *)&m_pPlayer->pev->origin, (float *)&m_pPlayer->pev->angles, 0.0, 0.0, 0, 0, 0, 1 );
+			PLAYBACK_EVENT_FULL( FEV_NOTHOST | FEV_RELIABLE, m_pPlayer->edict(), m_usGaussFire, 0.01, (float *)&m_pPlayer->pev->origin, (float *)&m_pPlayer->pev->angles, 0.0, 0.0, 0, 0, 0, 1 );
 			
 			m_fInAttack = 0;
 			m_flTimeWeaponIdle = UTIL_WeaponTimeBase() + 1.0;

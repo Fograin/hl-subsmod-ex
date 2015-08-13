@@ -18,15 +18,8 @@
 #include "player.h"
 #include "gamerules.h"
 
-
-#define	CROWBAR_BODYHIT_VOLUME 128
-#define	CROWBAR_WALLHIT_VOLUME 512
-
-LINK_ENTITY_TO_CLASS( weapon_crowbar, CCrowbar );
-
-
-
-enum gauss_e {
+enum crowbar_e
+{
 	CROWBAR_IDLE = 0,
 	CROWBAR_DRAW,
 	CROWBAR_HOLSTER,
@@ -38,6 +31,11 @@ enum gauss_e {
 	CROWBAR_ATTACK3HIT
 };
 
+
+#define	CROWBAR_BODYHIT_VOLUME 128
+#define	CROWBAR_WALLHIT_VOLUME 512
+
+LINK_ENTITY_TO_CLASS( weapon_crowbar, CCrowbar );
 
 void CCrowbar::Spawn( )
 {
@@ -85,7 +83,7 @@ int CCrowbar::GetItemInfo(ItemInfo *p)
 // Fograin92: The correct model will be deployed
 BOOL CCrowbar::Deploy( )
 {
-#ifndef CLIENT_DLL
+//#ifndef CLIENT_DLL
 	
 	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
 		return DefaultDeploy( "models/v_crowbar_bs.mdl", "models/p_crowbar.mdl", CROWBAR_DRAW, "crowbar" );
@@ -93,9 +91,10 @@ BOOL CCrowbar::Deploy( )
 	if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
 		return DefaultDeploy( "models/v_crowbar_of.mdl", "models/p_crowbar.mdl", CROWBAR_DRAW, "crowbar" );
 
-#endif
+//#endif
 	return DefaultDeploy( "models/v_crowbar.mdl", "models/p_crowbar.mdl", CROWBAR_DRAW, "crowbar" );
 }
+
 
 void CCrowbar::Holster( int skiplocal /* = 0 */ )
 {
@@ -271,7 +270,10 @@ int CCrowbar::Swing( int fFirst )
 				m_pPlayer->m_iWeaponVolume = CROWBAR_BODYHIT_VOLUME;
 
 				if ( !pEntity->IsAlive() )
-					  return TRUE;
+				{
+					m_flNextPrimaryAttack = UTIL_WeaponTimeBase() + 0.25;	// Vit_amiN: fixed the 'rapid crowbar'
+					return TRUE;
+				}
 				else
 					flVol = 0.1;
 

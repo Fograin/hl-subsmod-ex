@@ -515,9 +515,9 @@ void CWorld :: Precache( void )
 	}
 
 	// Fograin92: Notify about game type
-	if (CVAR_GET_FLOAT("sm_hud") == 1)
+	if (CVAR_GET_FLOAT("sm_hud") == 1.0)
 		ALERT( at_console, "^4SM -> Game -> Blue Shift\n");
-	else if (CVAR_GET_FLOAT("sm_hud") == 1)
+	else if (CVAR_GET_FLOAT("sm_hud") == 2.0)
 		ALERT( at_console, "^2SM -> Game -> Opposing Force\n");
 	else
 		ALERT( at_console, "^3SM -> Game -> Half-Life\n");

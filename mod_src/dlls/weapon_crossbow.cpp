@@ -230,7 +230,8 @@ void CCrossbowBolt::ExplodeThink( void )
 }
 #endif
 
-enum crossbow_e {
+enum crossbow_e
+{
 	CROSSBOW_IDLE1 = 0,	// full
 	CROSSBOW_IDLE2,		// empty
 	CROSSBOW_FIDGET1,	// full
@@ -333,9 +334,9 @@ BOOL CCrossbow::Deploy( )
 
 void CCrossbow::Holster( int skiplocal /* = 0 */ )
 {
-	m_fInReload = FALSE;// cancel any reload in progress.
+	m_fInReload = FALSE;	// cancel any reload in progress.
 
-	if ( m_fInZoom )
+	if ( IsZoomActive() )	// Vit_amiN 
 	{
 		SecondaryAttack( );
 	}
@@ -351,9 +352,9 @@ void CCrossbow::PrimaryAttack( void )
 {
 
 #ifdef CLIENT_DLL
-	if ( m_fInZoom && bIsMultiplayer() )
+	if ( IsZoomActive() && bIsMultiplayer() )	// Vit_amiN 
 #else
-	if ( m_fInZoom && g_pGameRules->IsMultiplayer() )
+	if ( IsZoomActive() && g_pGameRules->IsMultiplayer() )	// Vit_amiN 
 #endif
 	{
 		FireSniperBolt();
@@ -483,16 +484,8 @@ void CCrossbow::FireBolt()
 
 void CCrossbow::SecondaryAttack()
 {
-	if ( m_pPlayer->pev->fov != 0 )
-	{
-		m_pPlayer->pev->fov = m_pPlayer->m_iFOV = 0; // 0 means reset to default fov
-		m_fInZoom = 0;
-	}
-	else if ( m_pPlayer->pev->fov != 20 )
-	{
-		m_pPlayer->pev->fov = m_pPlayer->m_iFOV = 20;
-		m_fInZoom = 1;
-	}
+	// 0 means reset to default fov; Vit_amiN: uses IsZoomActive() now
+	m_pPlayer->pev->fov = m_pPlayer->m_iFOV = IsZoomActive() ? 0 : 20;
 
 	pev->nextthink = UTIL_WeaponTimeBase() + 0.1;
 	m_flNextSecondaryAttack = UTIL_WeaponTimeBase() + 1.0;
@@ -504,15 +497,18 @@ void CCrossbow::Reload( void )
 	if ( m_pPlayer->ammo_bolts <= 0 )
 		return;
 
-	if ( m_pPlayer->pev->fov != 0 )
-	{
+	if ( IsZoomActive() )	// Vit_amiN
 		SecondaryAttack();
-	}
 
 	if ( DefaultReload( 5, CROSSBOW_RELOAD, 4.5 ) )
 	{
 		EMIT_SOUND_DYN(ENT(m_pPlayer->pev), CHAN_ITEM, "weapons/xbow_reload1.wav", RANDOM_FLOAT(0.95, 1.0), ATTN_NORM, 0, 93 + RANDOM_LONG(0,0xF));
 	}
+}
+
+BOOL CCrossbow::IsZoomActive()
+{
+	return m_pPlayer && ( m_pPlayer->pev->fov != 0.0f );
 }
 
 

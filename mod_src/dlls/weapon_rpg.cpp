@@ -17,10 +17,8 @@
 #include "player.h"
 #include "gamerules.h"
 
-
-
-
-enum rpg_e {
+enum rpg_e
+{
 	RPG_IDLE = 0,
 	RPG_FIDGET,
 	RPG_RELOAD,		// to reload

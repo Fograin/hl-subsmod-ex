@@ -17,22 +17,22 @@
 #include "player.h"
 #include "gamerules.h"
 
-enum satchel_e {
+enum satchel_e
+{
 	SATCHEL_IDLE1 = 0,
 	SATCHEL_FIDGET1,
 	SATCHEL_DRAW,
 	SATCHEL_DROP
 };
 
-enum satchel_radio_e {
+enum satchel_radio_e
+{
 	SATCHEL_RADIO_IDLE1 = 0,
 	SATCHEL_RADIO_FIDGET1,
 	SATCHEL_RADIO_DRAW,
 	SATCHEL_RADIO_FIRE,
 	SATCHEL_RADIO_HOLSTER
 };
-
-
 
 class CSatchelCharge : public CGrenade
 {
@@ -293,7 +293,7 @@ BOOL CSatchel::Deploy( )
 	m_pPlayer->m_flNextAttack = UTIL_WeaponTimeBase() + 1.0;
 	m_flTimeWeaponIdle = UTIL_WeaponTimeBase() + UTIL_SharedRandomFloat( m_pPlayer->random_seed, 10, 15 );
 
-#ifndef CLIENT_DLL
+//#ifndef CLIENT_DLL
 
 	// Blue Shift
 	if (CVAR_GET_FLOAT("sm_hud") == 1 )
@@ -305,7 +305,7 @@ BOOL CSatchel::Deploy( )
 	}
 	
 	// Opposing Force
-	if (CVAR_GET_FLOAT("sm_hud") == 2 )
+	else if (CVAR_GET_FLOAT("sm_hud") == 2 )
 	{
 		if ( m_chargeReady )
 			return DefaultDeploy( "models/v_satchel_radio_of.mdl", "models/p_satchel_radio.mdl", SATCHEL_RADIO_DRAW, "hive" );
@@ -313,12 +313,16 @@ BOOL CSatchel::Deploy( )
 			return DefaultDeploy( "models/v_satchel_of.mdl", "models/p_satchel.mdl", SATCHEL_DRAW, "trip" );
 	}
 
-#endif
+	else
+	{
+
+//#endif
 	
 	if ( m_chargeReady )
 		return DefaultDeploy( "models/v_satchel_radio.mdl", "models/p_satchel_radio.mdl", SATCHEL_RADIO_DRAW, "hive" );
 	else
 		return DefaultDeploy( "models/v_satchel.mdl", "models/p_satchel.mdl", SATCHEL_DRAW, "trip" );
+	}
 }
 
 

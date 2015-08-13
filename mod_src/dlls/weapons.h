@@ -453,44 +453,11 @@ public:
 	int m_cAmmoTypes;// how many ammo types packed into this box (if packed by a level designer)
 };
 
-#ifdef CLIENT_DLL
-bool bIsMultiplayer ( void );
-void LoadVModel ( char *szViewModel, CBasePlayer *m_pPlayer );
-#endif
-
-class CGlock : public CBasePlayerWeapon
-{
-public:
-	void Spawn( void );
-	void Precache( void );
-	int iItemSlot( void ) { return 2; }
-	int GetItemInfo(ItemInfo *p);
-
-	void PrimaryAttack( void );
-	void SecondaryAttack( void );
-	void GlockFire( float flSpread, float flCycleTime, BOOL fUseAutoAim );
-	BOOL Deploy( void );
-	void Reload( void );
-	void WeaponIdle( void );
-
-	virtual BOOL UseDecrement( void )
-	{ 
-#if defined( CLIENT_WEAPONS )
-		return TRUE;
-#else
-		return FALSE;
-#endif
-	}
-
-private:
-	int m_iShell;
-	
-
-	unsigned short m_usFireGlock1;
-	unsigned short m_usFireGlock2;
-};
 
 
+//===============//
+// weapon_crowbar
+//===============//
 class CCrowbar : public CBasePlayerWeapon
 {
 public:
@@ -520,6 +487,53 @@ private:
 	unsigned short m_usCrowbar;
 };
 
+
+
+//===============//
+// weapon_glock 
+//===============//
+#ifdef CLIENT_DLL
+bool bIsMultiplayer ( void );
+void LoadVModel ( char *szViewModel, CBasePlayer *m_pPlayer );
+#endif
+
+class CGlock : public CBasePlayerWeapon
+{
+public:
+	void Spawn( void );
+	void Precache( void );
+	int iItemSlot( void ) { return 2; }
+	int GetItemInfo(ItemInfo *p);
+
+	void PrimaryAttack( void );
+	void SecondaryAttack( void );
+	void GlockFire( float flSpread, float flCycleTime, BOOL fUseAutoAim );
+	BOOL Deploy( void );
+	void Holster( int skiplocal = 0 );
+	void Reload( void );
+	void WeaponIdle( void );
+
+	virtual BOOL UseDecrement( void )
+	{ 
+#if defined( CLIENT_WEAPONS )
+		return TRUE;
+#else
+		return FALSE;
+#endif
+	}
+
+private:
+	int m_iShell;
+	
+	unsigned short m_usFireGlock1;
+	unsigned short m_usFireGlock2;
+};
+
+
+
+//===============//
+// weapon_python
+//===============//
 class CPython : public CBasePlayerWeapon
 {
 public:
@@ -551,6 +565,11 @@ private:
 	unsigned short m_usFirePython;
 };
 
+
+
+//==============//
+// weapon_9mmAR
+//==============//
 class CMP5 : public CBasePlayerWeapon
 {
 public:
@@ -564,6 +583,7 @@ public:
 	void SecondaryAttack( void );
 	int SecondaryAmmoIndex( void );
 	BOOL Deploy( void );
+	void Holster( int skiplocal = 0 );
 	void Reload( void );
 	void WeaponIdle( void );
 	float m_flNextAnimTime;
@@ -583,40 +603,11 @@ private:
 	unsigned short m_usMP52;
 };
 
-class CCrossbow : public CBasePlayerWeapon
-{
-public:
-	void Spawn( void );
-	void Precache( void );
-	int iItemSlot( ) { return 3; }
-	int GetItemInfo(ItemInfo *p);
 
-	void FireBolt( void );
-	void FireSniperBolt( void );
-	void PrimaryAttack( void );
-	void SecondaryAttack( void );
-	int AddToPlayer( CBasePlayer *pPlayer );
-	BOOL Deploy( );
-	void Holster( int skiplocal = 0 );
-	void Reload( void );
-	void WeaponIdle( void );
 
-	int m_fInZoom; // don't save this
-
-	virtual BOOL UseDecrement( void )
-	{ 
-#if defined( CLIENT_WEAPONS )
-		return TRUE;
-#else
-		return FALSE;
-#endif
-	}
-
-private:
-	unsigned short m_usCrossbow;
-	unsigned short m_usCrossbow2;
-};
-
+//================//
+// weapon_shotgun
+//================//
 class CShotgun : public CBasePlayerWeapon
 {
 public:
@@ -637,6 +628,7 @@ public:
 	void PrimaryAttack( void );
 	void SecondaryAttack( void );
 	BOOL Deploy( );
+	void Holster( int skiplocal = 0 );
 	void Reload( void );
 	void WeaponIdle( void );
 	int m_fInReload;
@@ -657,6 +649,50 @@ private:
 	unsigned short m_usSingleFire;
 };
 
+
+
+//=================//
+// weapon_crossbow
+//=================//
+class CCrossbow : public CBasePlayerWeapon
+{
+public:
+	void Spawn( void );
+	void Precache( void );
+	int iItemSlot( ) { return 3; }
+	int GetItemInfo(ItemInfo *p);
+
+	void FireBolt( void );
+	void FireSniperBolt( void );
+	void PrimaryAttack( void );
+	void SecondaryAttack( void );
+	int AddToPlayer( CBasePlayer *pPlayer );
+	BOOL Deploy( );
+	void Holster( int skiplocal = 0 );
+	void Reload( void );
+	void WeaponIdle( void );
+
+	BOOL IsZoomActive( void );	// Vit_amiN
+
+	virtual BOOL UseDecrement( void )
+	{ 
+#if defined( CLIENT_WEAPONS )
+		return TRUE;
+#else
+		return FALSE;
+#endif
+	}
+
+private:
+	unsigned short m_usCrossbow;
+	unsigned short m_usCrossbow2;
+};
+
+
+
+//============//
+// weapon_rpg
+//============//
 class CLaserSpot : public CBaseEntity
 {
 	void Spawn( void );
@@ -735,6 +771,10 @@ public:
 	CRpg *m_pLauncher;// pointer back to the launcher that fired me. 
 };
 
+
+//==============//
+// weapon_gauss
+//==============//
 class CGauss : public CBasePlayerWeapon
 {
 public:
@@ -784,6 +824,11 @@ private:
 	unsigned short m_usGaussSpin;
 };
 
+
+
+//=============//
+// weapon_egon
+//=============//
 class CEgon : public CBasePlayerWeapon
 {
 public:
@@ -849,6 +894,11 @@ private:
 	unsigned short m_usEgonFire;
 };
 
+
+
+//==================//
+// weapon_hornetgun
+//==================//
 class CHgun : public CBasePlayerWeapon
 {
 public:
@@ -885,6 +935,9 @@ private:
 
 
 
+//====================//
+// weapon_handgrenade
+//====================//
 class CHandGrenade : public CBasePlayerWeapon
 {
 public:
@@ -909,6 +962,10 @@ public:
 	}
 };
 
+
+//================//
+// weapon_satchel
+//================//
 class CSatchel : public CBasePlayerWeapon
 {
 public:
@@ -946,6 +1003,10 @@ public:
 };
 
 
+
+//=================//
+// weapon_tripmine
+//=================//
 class CTripmine : public CBasePlayerWeapon
 {
 public:
@@ -979,6 +1040,11 @@ private:
 
 };
 
+
+
+//===============//
+// weapon_squeak
+//===============//
 class CSqueak : public CBasePlayerWeapon
 {
 public:

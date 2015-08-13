@@ -31,8 +31,6 @@ enum mp5_e
 	MP5_FIRE3,
 };
 
-
-
 LINK_ENTITY_TO_CLASS( weapon_mp5, CMP5 );
 LINK_ENTITY_TO_CLASS( weapon_9mmAR, CMP5 );
 
@@ -128,6 +126,12 @@ BOOL CMP5::Deploy( )
 		return DefaultDeploy( "models/v_9mmAR_of.mdl", "models/p_9mmAR.mdl", MP5_DEPLOY, "mp5" );
 #endif
 	return DefaultDeploy( "models/v_9mmAR.mdl", "models/p_9mmAR.mdl", MP5_DEPLOY, "mp5" );
+}
+
+void CMP5::Holster( int skiplocal /* = 0 */ )
+{
+	m_pPlayer->m_flNextAttack = UTIL_WeaponTimeBase() + 0.5;
+	SendWeaponAnim( MP5_IDLE1 );	// TOFIX: We need holster anim
 }
 
 

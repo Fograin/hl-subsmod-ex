@@ -18,14 +18,16 @@
 #include "soundent.h"
 #include "gamerules.h"
 
-enum w_squeak_e {
+enum w_squeak_e
+{
 	WSQUEAK_IDLE1 = 0,
 	WSQUEAK_FIDGET,
 	WSQUEAK_JUMP,
 	WSQUEAK_RUN,
 };
 
-enum squeak_e {
+enum squeak_e
+{
 	SQUEAK_IDLE1 = 0,
 	SQUEAK_FIDGETFIT,
 	SQUEAK_FIDGETNIP,

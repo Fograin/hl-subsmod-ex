@@ -19,7 +19,6 @@
 #include "hornet.h"
 #include "gamerules.h"
 
-
 enum hgun_e {
 	HGUN_IDLE1 = 0,
 	HGUN_FIDGETSWAY,
@@ -34,7 +33,6 @@ enum firemode_e
 	FIREMODE_TRACK = 0,
 	FIREMODE_FAST
 };
-
 
 LINK_ENTITY_TO_CLASS( weapon_hornetgun, CHgun );
 

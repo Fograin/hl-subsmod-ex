@@ -16,10 +16,8 @@
 #include "nodes.h"
 #include "player.h"
 
-
-#define	HANDGRENADE_PRIMARY_VOLUME		450
-
-enum handgrenade_e {
+enum handgrenade_e
+{
 	HANDGRENADE_IDLE = 0,
 	HANDGRENADE_FIDGET,
 	HANDGRENADE_PINPULL,
@@ -30,6 +28,7 @@ enum handgrenade_e {
 	HANDGRENADE_DRAW
 };
 
+#define	HANDGRENADE_PRIMARY_VOLUME		450
 
 LINK_ENTITY_TO_CLASS( weapon_handgrenade, CHandGrenade );
 

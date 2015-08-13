@@ -1086,7 +1086,7 @@ void CBasePlayerAmmo :: DefaultTouch( CBaseEntity *pOther )
 int CBasePlayerWeapon::ExtractAmmo( CBasePlayerWeapon *pWeapon )
 {
 	int			iReturn;
-	//iReturn = FALSE;	// Vit_amiN: must return initialized var
+	iReturn = FALSE;	// Vit_amiN: must return initialized var
 
 	if ( pszAmmo1() != NULL )
 	{

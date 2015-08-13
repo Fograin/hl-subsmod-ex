@@ -22,7 +22,8 @@
 #define VECTOR_CONE_DM_SHOTGUN	Vector( 0.08716, 0.04362, 0.00  )// 10 degrees by 5 degrees
 #define VECTOR_CONE_DM_DOUBLESHOTGUN Vector( 0.17365, 0.04362, 0.00 ) // 20 degrees by 5 degrees
 
-enum shotgun_e {
+enum shotgun_e
+{
 	SHOTGUN_IDLE = 0,
 	SHOTGUN_FIRE,
 	SHOTGUN_FIRE2,
@@ -120,6 +121,13 @@ BOOL CShotgun::Deploy( )
 #endif
 	return DefaultDeploy( "models/v_shotgun.mdl", "models/p_shotgun.mdl", SHOTGUN_DRAW, "shotgun" );
 }
+
+void CShotgun::Holster( int skiplocal /* = 0 */ )
+{
+	m_pPlayer->m_flNextAttack = UTIL_WeaponTimeBase() + 0.5;
+	SendWeaponAnim( SHOTGUN_HOLSTER );
+}
+
 
 void CShotgun::PrimaryAttack()
 {

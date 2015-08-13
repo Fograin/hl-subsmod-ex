@@ -30,7 +30,8 @@
 #define EGON_SWITCH_NARROW_TIME			0.75			// Time it takes to switch fire modes
 #define EGON_SWITCH_WIDE_TIME			1.5
 
-enum egon_e {
+enum egon_e
+{
 	EGON_IDLE1 = 0,
 	EGON_FIDGET1,
 	EGON_ALTFIREON,

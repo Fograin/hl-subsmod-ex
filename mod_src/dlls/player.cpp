@@ -2218,7 +2218,6 @@ void CBasePlayer::CheckSuitUpdate()
 				strcat(sentence, gszallsentencenames[isentence]);
 				EMIT_SOUND_SUIT(ENT(pev), sentence);
 
-				//ALERT( at_console, "SE: %s\n", sentence );
 				// Fograin92: Fix update time for HEV Weapon pickups
 				if (!strcmp( sentence, "!HEV_PISTOL"))	m_flSuitUpdate = gpGlobals->time + 4.4;
 				else if (!strcmp( sentence, "!HEV_SHOTGUN"))	m_flSuitUpdate = gpGlobals->time + 2.3;
@@ -2244,7 +2243,7 @@ void CBasePlayer::CheckSuitUpdate()
 				m_flSuitUpdate = gpGlobals->time + 4.0;
 			}
 
-			ALERT( at_console, "HAX: %.0f\n", m_flSuitUpdate );
+			//ALERT( at_console, "HAX: %.0f\n", m_flSuitUpdate );	// Fograin92: test
 		}
 		else
 			// queue is empty, don't check 
@@ -2897,14 +2896,14 @@ void CBasePlayer :: Precache( void )
 	if ( gInitHUD )
 		m_fInitHUD = TRUE;
 	
-	//pev->fov = m_iFOV;	// Vit_amiN: restore the FOV on level change or map/saved game load
+	pev->fov = m_iFOV;	// Vit_amiN: restore the FOV on level change or map/saved game load
 
 	// Vit_amiN: to guarantee the correctness of the weapons prediction system initial state
 	// we must initialize ammo counters here, before actual calls to any predicting function
 	// (e.g. UpdateClientData(), HUD_WeaponsPostThink(), HUD_TxferPredictionData()) will be
 	// made.
 	// It should be touched on a level transition, too.
-	//TabulateAmmo();
+	TabulateAmmo();
 }
 
 
@@ -3037,6 +3036,22 @@ void CBasePlayer::SelectNextItem( int iItem )
 	}
 }
 
+// Fograin92: Second part of weapon switch function, it will draw new weapon
+void CBasePlayer::SelectItemX()
+{
+	m_pLastItem = m_pActiveItem;
+	m_pActiveItem = pGItem;
+
+	if (m_pActiveItem)
+	{
+		ALERT( at_console, "^2SM->DEPLOYING: %s\n", STRING(m_pActiveItem->pev->classname) );
+		m_pActiveItem->Deploy( );
+		m_pActiveItem->UpdateItemInfo( );
+	}
+	
+}
+
+// Fograin92: We selected new weapon
 void CBasePlayer::SelectItem(const char *pstr)
 {
 	if (!pstr)
@@ -3065,33 +3080,50 @@ void CBasePlayer::SelectItem(const char *pstr)
 	if (!pItem)
 		return;
 
-	
 	if (pItem == m_pActiveItem)
 		return;
 
 	ResetAutoaim( );
 
-	// FIX, this needs to queue them up and delay
-	if (m_pActiveItem)
-		m_pActiveItem->Holster( );
-	
-	m_pLastItem = m_pActiveItem;
-	m_pActiveItem = pItem;
-
 	if (m_pActiveItem)
 	{
-		m_pActiveItem->Deploy( );
-		m_pActiveItem->UpdateItemInfo( );
+		// Fograin92: Get our currently deployed weapon
+		ALERT( at_console, "^2SM->HOLSTERING: %s\n", STRING(m_pActiveItem->pev->classname) );
+
+		SetThink( &CBasePlayer::SelectItemX );	// Exec second part of the draw function
+	
+		// Next weapon deployment time fixes
+		if (FClassnameIs(m_pActiveItem->pev, "weapon_crowbar"))			pev->nextthink = gpGlobals->time + 1.0;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_9mmhandgun"))	pev->nextthink = gpGlobals->time + 1.0;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_glock"))		pev->nextthink = gpGlobals->time + 1.0;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_357"))			pev->nextthink = gpGlobals->time + 1.0;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_python"))		pev->nextthink = gpGlobals->time + 1.0;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_9mmAR"))		pev->nextthink = gpGlobals->time + 1.0;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_mp5"))			pev->nextthink = gpGlobals->time + 1.0;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_shotgun"))		pev->nextthink = gpGlobals->time + 1.0;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_crossbow"))		pev->nextthink = gpGlobals->time + 1.0;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_rpg"))			pev->nextthink = gpGlobals->time + 1.0;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_gauss"))		pev->nextthink = gpGlobals->time + 1.0;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_egon"))			pev->nextthink = gpGlobals->time + 1.0;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_hornetgun"))	pev->nextthink = gpGlobals->time + 1.0;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_handgrenade"))	pev->nextthink = gpGlobals->time + 1.0;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_handgrenade"))	pev->nextthink = gpGlobals->time + 1.0;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_satchel"))		pev->nextthink = gpGlobals->time + 1.0;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_tripmine"))		pev->nextthink = gpGlobals->time + 1.0;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_snark"))		pev->nextthink = gpGlobals->time + 1.0;
+
+		m_pActiveItem->Holster( );
 	}
+
+	pGItem = pItem;
 }
 
 
 void CBasePlayer::SelectLastItem(void)
 {
-	if (!m_pLastItem)
-	{
+	// Vit_amiN: added a check if it cannot be deployed
+	if ( !m_pLastItem || !m_pLastItem->CanDeploy() )
 		return;
-	}
 
 	if ( m_pActiveItem && !m_pActiveItem->CanHolster() )
 	{
@@ -3368,43 +3400,43 @@ void CBasePlayer::ImpulseCommands( )
  		{
 			switch(BSi)
 			{
-				case 0:			PlaySentence( "!HEV_PISTOL", 4, VOL_NORM, ATTN_NORM );	break;
-				case 1:			PlaySentence( "!HEV_SHOTGUN", 4, VOL_NORM, ATTN_NORM );	break;
-				case 2:			PlaySentence( "!HEV_GRENADE", 4, VOL_NORM, ATTN_NORM );	break;
-				case 3:			PlaySentence( "!HEV_ASSAULT", 4, VOL_NORM, ATTN_NORM );	break;
-				case 4:			PlaySentence( "!HEV_44PISTOL", 4, VOL_NORM, ATTN_NORM );	break;
-				case 5:			PlaySentence( "!HEV_RPG", 4, VOL_NORM, ATTN_NORM );	break;
-				case 6:			PlaySentence( "!HEV_SATCHEL", 4, VOL_NORM, ATTN_NORM );	break;
-				case 7:			PlaySentence( "!HEV_TRIPMINE", 4, VOL_NORM, ATTN_NORM );	break;
-				case 8:			PlaySentence( "!HEV_HORNET", 4, VOL_NORM, ATTN_NORM );	break;
-				case 9:			PlaySentence( "!HEV_SQUEEK", 4, VOL_NORM, ATTN_NORM );	break;
-				case 10:		PlaySentence( "!HEV_EGON", 4, VOL_NORM, ATTN_NORM );	break;
-				case 11:		PlaySentence( "!HEV_GAUSS", 4, VOL_NORM, ATTN_NORM );	break;
-				case 12:		PlaySentence( "!HEV_XBOW", 4, VOL_NORM, ATTN_NORM );	break;
-				case 13:		PlaySentence( "!HEV_CROWBAR", 4, VOL_NORM, ATTN_NORM );	break;
-				case 14:		PlaySentence( "!xxx", 4, VOL_NORM, ATTN_NORM );	break;
-				case 15:		PlaySentence( "!DR_SQUAD03", 4, VOL_NORM, ATTN_NORM );	break;
-				case 16:		PlaySentence( "!DR_SQUAD04", 4, VOL_NORM, ATTN_NORM );	break;
-				case 17:		PlaySentence( "!DR_SQUAD05", 4, VOL_NORM, ATTN_NORM );	break;
-				case 18:		PlaySentence( "!DR_SQUAD06", 4, VOL_NORM, ATTN_NORM );	break;
-				case 19:		PlaySentence( "!DR_SQUAD07", 4, VOL_NORM, ATTN_NORM );	break;
-				case 20:		PlaySentence( "!DR_THIRDROOM01", 4, VOL_NORM, ATTN_NORM );	break;
-				case 21:		PlaySentence( "!DR_THIRDROOM02", 4, VOL_NORM, ATTN_NORM );	break;
-				case 22:		PlaySentence( "!xx", 4, VOL_NORM, ATTN_NORM );	break;
-				case 23:		PlaySentence( "!xxx", 4, VOL_NORM, ATTN_NORM );	break;
-				case 24:		PlaySentence( "!xxx", 4, VOL_NORM, ATTN_NORM );	break;
-				case 25:		PlaySentence( "!OT_ATTACK1", 4, VOL_NORM, ATTN_NORM );	break;
-				case 26:		PlaySentence( "!OT_ATTACK2", 4, VOL_NORM, ATTN_NORM );	break;
-				case 27:		PlaySentence( "!OT_ATTACK3", 4, VOL_NORM, ATTN_NORM );	break;
-				case 28:		PlaySentence( "!OT_HEAR0", 4, VOL_NORM, ATTN_NORM );	break;
-				case 29:		PlaySentence( "!OT_HEAR1", 4, VOL_NORM, ATTN_NORM );	break;
-				case 30:		PlaySentence( "!OT_SMELL0", 4, VOL_NORM, ATTN_NORM );	break;
-				case 31:		PlaySentence( "!OT_SMELL1", 4, VOL_NORM, ATTN_NORM );	break;
-				case 32:		PlaySentence( "!OT_SMELL2", 4, VOL_NORM, ATTN_NORM );	break;
-				case 33:		PlaySentence( "!OT_SMELL3", 4, VOL_NORM, ATTN_NORM );	break;
-				case 34:		PlaySentence( "!x", 4, VOL_NORM, ATTN_NORM );	break;
-				case 35:		PlaySentence( "!OTx_OK3", 4, VOL_NORM, ATTN_NORM );	break;
-				case 36:		PlaySentence( "!OTx_OK4", 4, VOL_NORM, ATTN_NORM );	break;
+				case 0:			PlaySentence( "!SC_ZOMBIE3A", 4, VOL_NORM, ATTN_NORM );	break;
+				case 1:			PlaySentence( "!SC_ZOMBIE1A", 4, VOL_NORM, ATTN_NORM );	break;
+				case 2:			PlaySentence( "!SC_ZOMBIE5A", 4, VOL_NORM, ATTN_NORM );	break;
+				case 3:			PlaySentence( "!SC_ZOMBIE6A", 4, VOL_NORM, ATTN_NORM );	break;
+				case 4:			PlaySentence( "!SC_ELEVATOR", 4, VOL_NORM, ATTN_NORM );	break;
+				case 5:			PlaySentence( "!SC_TRAINEND", 4, VOL_NORM, ATTN_NORM );	break;
+				case 6:			PlaySentence( "!SC_ARG1A", 4, VOL_NORM, ATTN_NORM );	break;
+				case 7:			PlaySentence( "!SC_ARG2A", 4, VOL_NORM, ATTN_NORM );	break;
+				case 8:			PlaySentence( "!SC_LEBUZ", 4, VOL_NORM, ATTN_NORM );	break;
+				case 9:			PlaySentence( "!SC_PUTDOWN", 4, VOL_NORM, ATTN_NORM );	break;
+				case 10:		PlaySentence( "!SC_NOTAGAIN", 4, VOL_NORM, ATTN_NORM );	break;
+				case 11:		PlaySentence( "!SC_UPL1", 4, VOL_NORM, ATTN_NORM );	break;
+				case 12:		PlaySentence( "!SC_UPL2", 4, VOL_NORM, ATTN_NORM );	break;
+				case 13:		PlaySentence( "!SC_UPL3", 4, VOL_NORM, ATTN_NORM );	break;
+				case 14:		PlaySentence( "!SC_UPL4", 4, VOL_NORM, ATTN_NORM );	break;
+				case 15:		PlaySentence( "!SC_UPL5", 4, VOL_NORM, ATTN_NORM );	break;
+				case 16:		PlaySentence( "!SC_PROTECT", 4, VOL_NORM, ATTN_NORM );	break;
+				case 17:		PlaySentence( "!SC_WHU", 4, VOL_NORM, ATTN_NORM );	break;
+				case 18:		PlaySentence( "!SC_CHIMP", 4, VOL_NORM, ATTN_NORM );	break;
+				case 19:		PlaySentence( "!SC_CROWBAR", 4, VOL_NORM, ATTN_NORM );	break;
+				case 20:		PlaySentence( "!SC_EEGG1", 4, VOL_NORM, ATTN_NORM );	break;
+				case 21:		PlaySentence( "!SC_EEGG2", 4, VOL_NORM, ATTN_NORM );	break;
+				case 22:		PlaySentence( "!SC_EEGG3", 4, VOL_NORM, ATTN_NORM );	break;
+				case 23:		PlaySentence( "!SC_HELPU", 4, VOL_NORM, ATTN_NORM );	break;
+				case 24:		PlaySentence( "!SC_ETRACK1", 4, VOL_NORM, ATTN_NORM );	break;
+				case 25:		PlaySentence( "!SC_ETRACK2", 4, VOL_NORM, ATTN_NORM );	break;
+				case 26:		PlaySentence( "!SC_ETRACK3", 4, VOL_NORM, ATTN_NORM );	break;
+				case 27:		PlaySentence( "!SC_OSPR1", 4, VOL_NORM, ATTN_NORM );	break;
+				case 28:		PlaySentence( "!SC_OSPR2", 4, VOL_NORM, ATTN_NORM );	break;
+				case 29:		PlaySentence( "!SC_GMAN1", 4, VOL_NORM, ATTN_NORM );	break;
+				case 30:		PlaySentence( "!SC_GMAN2", 4, VOL_NORM, ATTN_NORM );	break;
+				case 31:		PlaySentence( "!SC_GMAN3", 4, VOL_NORM, ATTN_NORM );	break;
+				case 32:		PlaySentence( "!SC_TIES", 4, VOL_NORM, ATTN_NORM );	break;
+				case 33:		PlaySentence( "!BA_MAIN_SEC3", 4, VOL_NORM, ATTN_NORM );	break;
+				case 34:		PlaySentence( "!BA_MAIN_SEC4", 4, VOL_NORM, ATTN_NORM );	break;
+				case 35:		PlaySentence( "!BA_MAIN_SEC5", 4, VOL_NORM, ATTN_NORM );	break;
+				case 36:		PlaySentence( "!BA_MAIN_SEC6", 4, VOL_NORM, ATTN_NORM );	break;
 			}
 			BSi++;
  		break;
@@ -3951,8 +3983,7 @@ void CBasePlayer :: UpdateClientData( void )
 			WRITE_BYTE( 0 );
 		MESSAGE_END();
 
-		/*
-
+	
 		// Vit_amiN: client's flashlight could run out of sync
 		MESSAGE_BEGIN( MSG_ONE, gmsgFlashlight, NULL, pev );
 			WRITE_BYTE( FlashlightIsOn() );
@@ -3965,7 +3996,7 @@ void CBasePlayer :: UpdateClientData( void )
 		MESSAGE_END();
 
 		m_iClientHideHUD = -1;	// Vit_amiN: forcing to update
-		*/
+		
 
 		if ( !m_fGameHUDInitialized )
 		{
@@ -4161,16 +4192,14 @@ void CBasePlayer :: UpdateClientData( void )
 			MESSAGE_END();
 		}
 
-		/*
-
+		
+		// Vit_amiN: force remaining ammo to be sent
 		for ( int i = 0; i < MAX_AMMO_SLOTS; i++ )
-		{
-			m_rgAmmoLast[i] = 0;	// Vit_amiN: force remaining ammo to be sent
-		}
+			m_rgAmmoLast[i] = 0;	
 
-		m_iClientFOV = -1;			// Vit_amiN: force client weapons to be sent
+		m_iClientFOV = -1;	// Vit_amiN: force client weapons to be sent
 
-		*/
+		
 		// FIXME: check if no more messages are required
 	}
 
@@ -4363,7 +4392,12 @@ Vector CBasePlayer :: AutoaimDeflection( Vector &vecSrc, float flDist, float flD
 
 	if ( g_psv_aim->value == 0 )
 	{
-		m_fOnTarget = FALSE;
+		if ( m_lastx != 0 || m_lasty != 0 )	// Vit_amiN: reset angles
+		{
+			m_vecAutoAim.x = 1.0f;
+			ResetAutoaim( );
+			m_lastx = m_lasty = 0;
+		}
 		return g_vecZero;
 	}
 
