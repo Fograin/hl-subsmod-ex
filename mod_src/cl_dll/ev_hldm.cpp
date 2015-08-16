@@ -460,7 +460,7 @@ void EV_FireGlock1( event_args_t *args )
 	empty = args->bparam1;
 	AngleVectors( angles, forward, right, up );
 
-	shell = gEngfuncs.pEventAPI->EV_FindModelIndex ("models/weapons/shell_pistol.mdl");	// brass shell
+	shell = gEngfuncs.pEventAPI->EV_FindModelIndex ("models/shell.mdl");	// brass shell
 
 	if ( EV_IsLocal( idx ) )
 	{
@@ -504,7 +504,7 @@ void EV_FireGlock2( event_args_t *args )
 
 	AngleVectors( angles, forward, right, up );
 
-	shell = gEngfuncs.pEventAPI->EV_FindModelIndex ("models/weapons/shell_pistol.mdl");// brass shell
+	shell = gEngfuncs.pEventAPI->EV_FindModelIndex ("models/shell.mdl");// brass shell
 
 	if ( EV_IsLocal( idx ) )
 	{
@@ -558,7 +558,7 @@ void EV_FireShotGunDouble( event_args_t *args )
 
 	AngleVectors( angles, forward, right, up );
 
-	shell = gEngfuncs.pEventAPI->EV_FindModelIndex ("models/weapons/shell_shotgun.mdl");// brass shell
+	shell = gEngfuncs.pEventAPI->EV_FindModelIndex ("models/shotgunshell.mdl");// brass shell
 
 	if ( EV_IsLocal( idx ) )
 	{
@@ -612,7 +612,7 @@ void EV_FireShotGunSingle( event_args_t *args )
 
 	AngleVectors( angles, forward, right, up );
 
-	shell = gEngfuncs.pEventAPI->EV_FindModelIndex ("models/weapons/shell_shotgun.mdl");// brass shell
+	shell = gEngfuncs.pEventAPI->EV_FindModelIndex ("models/shotgunshell.mdl");// brass shell
 
 	if ( EV_IsLocal( idx ) )
 	{
@@ -669,7 +669,7 @@ void EV_FireMP5( event_args_t *args )
 
 	AngleVectors( angles, forward, right, up );
 
-	shell = gEngfuncs.pEventAPI->EV_FindModelIndex ("models/weapons/shell_pistol.mdl");// brass shell
+	shell = gEngfuncs.pEventAPI->EV_FindModelIndex ("models/shell.mdl");// brass shell
 	
 	if ( EV_IsLocal( idx ) )
 	{
@@ -1259,7 +1259,7 @@ void EV_FireCrossbow2( event_args_t *args )
 				 gEngfuncs.pEfxAPI->R_SparkShower( tr.endpos );
 
 			vec3_t vBoltAngles;
-			int iModelIndex = gEngfuncs.pEventAPI->EV_FindModelIndex( "models/weapons/crossbow_bolt.mdl" );
+			int iModelIndex = gEngfuncs.pEventAPI->EV_FindModelIndex( "models/crossbow_bolt.mdl" );
 
 			VectorAngles( forward, vBoltAngles );
 

@@ -471,7 +471,7 @@ void CIchthyosaur :: Spawn()
 {
 	Precache( );
 
-	SET_MODEL(ENT(pev), "models/npcs/alien_icky.mdl");
+	SET_MODEL(ENT(pev), "models/icky.mdl");
 	UTIL_SetSize( pev, Vector( -32, -32, -32 ), Vector( 32, 32, 32 ) );
 
 	pev->solid			= SOLID_BBOX;
@@ -508,7 +508,7 @@ void CIchthyosaur :: Spawn()
 //=========================================================
 void CIchthyosaur :: Precache()
 {
-	PRECACHE_MODEL("models/npcs/alien_icky.mdl");
+	PRECACHE_MODEL("models/icky.mdl");
 
 	PRECACHE_SOUND_ARRAY( pIdleSounds );
 	PRECACHE_SOUND_ARRAY( pAlertSounds );

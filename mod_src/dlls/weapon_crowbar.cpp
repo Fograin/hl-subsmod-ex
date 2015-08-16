@@ -50,11 +50,11 @@ void CCrowbar::Spawn( )
 
 void CCrowbar::Precache( void )
 {
-	PRECACHE_MODEL("models/weapons/v_crowbar.mdl");
-	PRECACHE_MODEL("models/weapons/v_crowbar_bs.mdl");	// Fograin92
-	PRECACHE_MODEL("models/weapons/v_crowbar_of.mdl");	// Fograin92
+	PRECACHE_MODEL("models/v_crowbar.mdl");
+	PRECACHE_MODEL("models/v_crowbar_bs.mdl");	// Fograin92
+	PRECACHE_MODEL("models/v_crowbar_of.mdl");	// Fograin92
 	PRECACHE_MODEL("models/w_crowbar.mdl");
-	PRECACHE_MODEL("models/weapons/p_crowbar.mdl");
+	PRECACHE_MODEL("models/p_crowbar.mdl");
 	PRECACHE_SOUND("weapons/cbar_hit1.wav");
 	PRECACHE_SOUND("weapons/cbar_hit2.wav");
 	PRECACHE_SOUND("weapons/cbar_hitbod1.wav");
@@ -84,12 +84,12 @@ int CCrowbar::GetItemInfo(ItemInfo *p)
 BOOL CCrowbar::Deploy( )
 {
 	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
-		return DefaultDeploy( "models/weapons/v_crowbar_bs.mdl", "models/weapons/p_crowbar.mdl", CROWBAR_DRAW, "crowbar" );
+		return DefaultDeploy( "models/v_crowbar_bs.mdl", "models/p_crowbar.mdl", CROWBAR_DRAW, "crowbar" );
 	
 	if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
-		return DefaultDeploy( "models/weapons/v_crowbar_of.mdl", "models/weapons/p_crowbar.mdl", CROWBAR_DRAW, "crowbar" );
+		return DefaultDeploy( "models/v_crowbar_of.mdl", "models/p_crowbar.mdl", CROWBAR_DRAW, "crowbar" );
 
-	return DefaultDeploy( "models/weapons/v_crowbar.mdl", "models/weapons/p_crowbar.mdl", CROWBAR_DRAW, "crowbar" );
+	return DefaultDeploy( "models/v_crowbar.mdl", "models/p_crowbar.mdl", CROWBAR_DRAW, "crowbar" );
 }
 
 

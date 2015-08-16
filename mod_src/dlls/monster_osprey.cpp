@@ -146,7 +146,7 @@ void COsprey :: Spawn( void )
 	pev->movetype = MOVETYPE_FLY;
 	pev->solid = SOLID_BBOX;
 
-	SET_MODEL(ENT(pev), "models/npcs/vehicle_osprey.mdl");
+	SET_MODEL(ENT(pev), "models/osprey.mdl");
 	UTIL_SetSize(pev, Vector( -400, -400, -100), Vector(400, 400, 32));
 	UTIL_SetOrigin( pev, pev->origin );
 
@@ -182,8 +182,8 @@ void COsprey::Precache( void )
 {
 	UTIL_PrecacheOther( "monster_human_grunt" );
 
-	PRECACHE_MODEL("models/npcs/vehicle_osprey.mdl");
-	PRECACHE_MODEL("models/weapons/hvr.mdl");	// Fograin92: Is this even used?
+	PRECACHE_MODEL("models/osprey.mdl");
+	PRECACHE_MODEL("models/hvr.mdl");	// Fograin92: Is this even used?
 
 	PRECACHE_SOUND("apache/ap_rotor4.wav");
 	PRECACHE_SOUND("weapons/mortarhit.wav");
@@ -191,9 +191,9 @@ void COsprey::Precache( void )
 	m_iSpriteTexture = PRECACHE_MODEL( "sprites/rope.spr" );
 
 	m_iExplode	= PRECACHE_MODEL( "sprites/fexplo.spr" );
-	m_iBodyGibs = PRECACHE_MODEL( "models/gibs/gibs_osprey_body.mdl" );
-	m_iEngineGibs = PRECACHE_MODEL( "models/gibs/gibs_osprey_engine.mdl" );
-	m_iTailGibs = PRECACHE_MODEL( "models/gibs/gibs_osprey_tail.mdl" );
+	m_iBodyGibs = PRECACHE_MODEL( "models/osprey_bodygibs.mdl" );
+	m_iEngineGibs = PRECACHE_MODEL( "models/osprey_enginegibs.mdl" );
+	m_iTailGibs = PRECACHE_MODEL( "models/osprey_tailgibs.mdl" );
 }
 
 void COsprey::CommandUse( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value )

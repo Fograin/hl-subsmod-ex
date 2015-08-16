@@ -116,7 +116,7 @@ void CRoach :: Spawn()
 {
 	Precache( );
 
-	SET_MODEL(ENT(pev), "models/npcs/other_roach.mdl");
+	SET_MODEL(ENT(pev), "models/roach.mdl");
 	UTIL_SetSize( pev, Vector( -1, -1, 0 ), Vector( 1, 1, 2 ) );
 
 	pev->solid			= SOLID_SLIDEBOX;
@@ -143,7 +143,7 @@ void CRoach :: Spawn()
 //=========================================================
 void CRoach :: Precache()
 {
-	PRECACHE_MODEL("models/npcs/other_roach.mdl");
+	PRECACHE_MODEL("models/roach.mdl");
 
 	PRECACHE_SOUND("roach/rch_die.wav");
 	PRECACHE_SOUND("roach/rch_walk.wav");

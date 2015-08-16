@@ -178,7 +178,7 @@ const char *CLeech::pAlertSounds[] =
 void CLeech::Spawn( void )
 {
 	Precache();
-	SET_MODEL(ENT(pev), "models/npcs/other_leech.mdl");
+	SET_MODEL(ENT(pev), "models/leech.mdl");
 	// Just for fun
 	//	SET_MODEL(ENT(pev), "models/icky.mdl"); // Fograin92: HOLY SHIT
 	
@@ -292,7 +292,7 @@ void CLeech::Precache( void )
 	int i;
 
 	//PRECACHE_MODEL("models/icky.mdl");
-	PRECACHE_MODEL("models/npcs/other_leech.mdl");
+	PRECACHE_MODEL("models/leech.mdl");
 
 	for ( i = 0; i < ARRAYSIZE( pAttackSounds ); i++ )
 		PRECACHE_SOUND((char *)pAttackSounds[i]);

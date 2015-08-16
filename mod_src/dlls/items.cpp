@@ -145,13 +145,13 @@ class CItemAntidote : public CItem
 	void Spawn( void )
 	{ 
 		Precache( );
-		SET_MODEL(ENT(pev), "models/items/w_antidote.mdl");
+		SET_MODEL(ENT(pev), "models/w_antidote.mdl");
 		CItem::Spawn( );
 	}
 
 	void Precache( void )
 	{
-		PRECACHE_MODEL ("models/items/w_antidote.mdl");
+		PRECACHE_MODEL ("models/w_antidote.mdl");
 	}
 
 	BOOL MyTouch( CBasePlayer *pPlayer )
@@ -176,13 +176,13 @@ class CItemSecurity : public CItem
 	void Spawn( void )
 	{ 
 		Precache( );
-		SET_MODEL(ENT(pev), "models/items/w_security.mdl");
+		SET_MODEL(ENT(pev), "models/w_security.mdl");
 		CItem::Spawn( );
 	}
 
 	void Precache( void )
 	{
-		PRECACHE_MODEL ("models/items/w_security.mdl");
+		PRECACHE_MODEL ("models/w_security.mdl");
 	}
 
 	BOOL MyTouch( CBasePlayer *pPlayer )
@@ -302,17 +302,17 @@ class CItemSuit : public CItem
 
 		// Fograin92: If this is Opposing Force, we use PCV model
 		if (CVAR_GET_FLOAT("sm_hud") == 2.0 )
-			SET_MODEL(ENT(pev), "models/items/w_pcv.mdl");
+			SET_MODEL(ENT(pev), "models/w_pcv.mdl");
 		else
-			SET_MODEL(ENT(pev), "models/items/w_suit.mdl");
+			SET_MODEL(ENT(pev), "models/w_suit.mdl");
 
 		CItem::Spawn( );
 	}
 
 	void Precache( void )
 	{
-		PRECACHE_MODEL ("models/items/w_suit.mdl");
-		PRECACHE_MODEL ("models/items/w_pcv.mdl");
+		PRECACHE_MODEL ("models/w_suit.mdl");
+		PRECACHE_MODEL ("models/w_pcv.mdl");
 	}
 
 	BOOL MyTouch( CBasePlayer *pPlayer )
@@ -350,13 +350,13 @@ class CItemBattery : public CItem
 	void Spawn( void )
 	{ 
 		Precache( );
-		SET_MODEL(ENT(pev), "models/items/w_battery.mdl");
+		SET_MODEL(ENT(pev), "models/w_battery.mdl");
 		CItem::Spawn( );
 	}
 
 	void Precache( void )
 	{
-		PRECACHE_MODEL ("models/items/w_battery.mdl");
+		PRECACHE_MODEL ("models/w_battery.mdl");
 		PRECACHE_SOUND( "items/gunpickup2.wav" );
 	}
 
@@ -414,13 +414,13 @@ class CItemLongJump : public CItem
 	void Spawn( void )
 	{ 
 		Precache( );
-		SET_MODEL(ENT(pev), "models/items/w_longjump.mdl");
+		SET_MODEL(ENT(pev), "models/w_longjump.mdl");
 		CItem::Spawn( );
 	}
 
 	void Precache( void )
 	{
-		PRECACHE_MODEL ("models/items/w_longjump.mdl");
+		PRECACHE_MODEL ("models/w_longjump.mdl");
 	}
 
 	BOOL MyTouch( CBasePlayer *pPlayer )
@@ -457,13 +457,13 @@ class CHealthKit : public CItem
 	void CHealthKit :: Spawn( void )
 	{
 		Precache( );
-		SET_MODEL(ENT(pev), "models/items/w_medkit.mdl");
+		SET_MODEL(ENT(pev), "models/w_medkit.mdl");
 		CItem::Spawn();
 	}
 
 	void CHealthKit::Precache( void )
 	{
-		PRECACHE_MODEL("models/items/w_medkit.mdl");
+		PRECACHE_MODEL("models/w_medkit.mdl");
 		PRECACHE_SOUND("items/smallmedkit1.wav");
 	}
 

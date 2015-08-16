@@ -231,7 +231,7 @@ void CFlockingFlyer :: Spawn( )
 //=========================================================
 void CFlockingFlyer :: Precache( )
 {
-	PRECACHE_MODEL("models/npcs/alien_boid.mdl");
+	PRECACHE_MODEL("models/boid.mdl");
 	CFlockingFlyerFlock::PrecacheFlockSounds();
 }
 
@@ -321,7 +321,7 @@ void CFlockingFlyer :: SpawnCommonCode( )
 	m_fPathBlocked	= FALSE;// obstacles will be detected
 	m_flFieldOfView	= 0.2;
 
-	SET_MODEL(ENT(pev), "models/npcs/alien_boid.mdl");
+	SET_MODEL(ENT(pev), "models/boid.mdl");
 	UTIL_SetSize(pev, Vector(-5,-5,0), Vector(5,5,2));
 }
 

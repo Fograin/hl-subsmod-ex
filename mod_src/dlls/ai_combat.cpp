@@ -61,7 +61,7 @@ void CGib :: SpawnStickyGibs( entvars_t *pevVictim, Vector vecOrigin, int cGibs 
 	{
 		CGib *pGib = GetClassPtr( (CGib *)NULL );
 
-		pGib->Spawn( "models/gibs/stickygib.mdl" );
+		pGib->Spawn( "models/stickygib.mdl" );
 		pGib->pev->body = RANDOM_LONG(0,2);
 
 		if ( pevVictim )
@@ -119,7 +119,7 @@ void CGib :: SpawnStickyGibs( entvars_t *pevVictim, Vector vecOrigin, int cGibs 
 void CGib :: SpawnHeadGib( entvars_t *pevVictim )
 {
 	CGib *pGib = GetClassPtr( (CGib *)NULL );
-	pGib->Spawn( "models/gibs/gibs_human.mdl" );// throw one head
+	pGib->Spawn( "models/hgibs.mdl" );// throw one head
 	pGib->pev->body = 0;
 
 	if ( pevVictim )
@@ -177,13 +177,13 @@ void CGib :: SpawnRandomGibs( entvars_t *pevVictim, int cGibs, int human )
 		if ( human )
 		{
 			// human pieces
-			pGib->Spawn( "models/gibs/gibs_human.mdl" );
+			pGib->Spawn( "models/hgibs.mdl" );
 			pGib->pev->body = RANDOM_LONG(1,HUMAN_GIB_COUNT-1);// start at one to avoid throwing random amounts of skulls (0th gib)
 		}
 		else
 		{
 			// aliens
-			pGib->Spawn( "models/gibs/gibs_alien.mdl" );
+			pGib->Spawn( "models/agibs.mdl" );
 			pGib->pev->body = RANDOM_LONG(0,ALIEN_GIB_COUNT-1);
 		}
 		

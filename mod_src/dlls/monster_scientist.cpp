@@ -654,7 +654,7 @@ void CScientist :: Spawn( void )
 {
 	Precache( );
 
-	SET_MODEL(ENT(pev), "models/npcs/human_scientist.mdl");
+	SET_MODEL(ENT(pev), "models/scientist.mdl");
 	UTIL_SetSize(pev, VEC_HUMAN_HULL_MIN, VEC_HUMAN_HULL_MAX);
 
 	pev->solid			= SOLID_SLIDEBOX;
@@ -690,7 +690,7 @@ void CScientist :: Spawn( void )
 //=========================================================
 void CScientist :: Precache( void )
 {
-	PRECACHE_MODEL("models/npcs/human_scientist.mdl");
+	PRECACHE_MODEL("models/scientist.mdl");
 	PRECACHE_SOUND("scientist/sci_pain1.wav");
 	PRECACHE_SOUND("scientist/sci_pain2.wav");
 	PRECACHE_SOUND("scientist/sci_pain3.wav");
@@ -1123,8 +1123,8 @@ LINK_ENTITY_TO_CLASS( monster_scientist_dead, CDeadScientist );
 //
 void CDeadScientist :: Spawn( )
 {
-	PRECACHE_MODEL("models/npcs/human_scientist.mdl");
-	SET_MODEL(ENT(pev), "models/npcs/human_scientist.mdl");
+	PRECACHE_MODEL("models/scientist.mdl");
+	SET_MODEL(ENT(pev), "models/scientist.mdl");
 	
 	pev->effects		= 0;
 	pev->sequence		= 0;
@@ -1205,8 +1205,8 @@ SITTING_ANIM_sitting3
 //
 void CSittingScientist :: Spawn( )
 {
-	PRECACHE_MODEL("models/npcs/human_scientist.mdl");
-	SET_MODEL(ENT(pev), "models/npcs/human_scientist.mdl");
+	PRECACHE_MODEL("models/scientist.mdl");
+	SET_MODEL(ENT(pev), "models/scientist.mdl");
 	Precache();
 	InitBoneControllers();
 

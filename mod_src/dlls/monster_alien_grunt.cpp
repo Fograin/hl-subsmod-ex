@@ -8,10 +8,6 @@
 //
 //	Before using any parts of this code, read licence.txt file 
 //=============================================================//
-
-//=========================================================
-// Agrunt - Dominant, warlike alien grunt monster
-//=========================================================
 #include	"extdll.h"
 #include	"util.h"
 #include	"cbase.h"

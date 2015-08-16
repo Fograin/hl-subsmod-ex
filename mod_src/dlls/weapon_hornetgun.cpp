@@ -56,9 +56,9 @@ void CHgun::Spawn( )
 
 void CHgun::Precache( void )
 {
-	PRECACHE_MODEL("models/weapons/v_hgun.mdl");
+	PRECACHE_MODEL("models/v_hgun.mdl");
 	PRECACHE_MODEL("models/w_hgun.mdl");
-	PRECACHE_MODEL("models/weapons/p_hgun.mdl");
+	PRECACHE_MODEL("models/p_hgun.mdl");
 
 	m_usHornetFire = PRECACHE_EVENT ( 1, "events/firehornet.sc" );
 
@@ -106,7 +106,7 @@ int CHgun::GetItemInfo(ItemInfo *p)
 
 BOOL CHgun::Deploy( )
 {
-	return DefaultDeploy( "models/weapons/v_hgun.mdl", "models/weapons/p_hgun.mdl", HGUN_UP, "hive" );
+	return DefaultDeploy( "models/v_hgun.mdl", "models/p_hgun.mdl", HGUN_UP, "hive" );
 }
 
 void CHgun::Holster( int skiplocal /* = 0 */ )

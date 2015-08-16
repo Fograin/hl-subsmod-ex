@@ -8,10 +8,6 @@
 //
 //	Before using any parts of this code, read licence.txt file 
 //=============================================================//
-
-//=========================================================
-// Alien slave monster
-//=========================================================
 #include	"extdll.h"
 #include	"util.h"
 #include	"cbase.h"
@@ -35,6 +31,10 @@ extern DLL_GLOBAL int		g_iSkillLevel;
 
 #define		ISLAVE_MAX_BEAMS	8
 
+
+//=====================//
+// monster_alien_slave
+//=====================//
 class CISlave : public CSquadMonster
 {
 public:
@@ -90,26 +90,18 @@ public:
 	static const char *pDeathSounds[];
 };
 LINK_ENTITY_TO_CLASS( monster_alien_slave, CISlave );
-LINK_ENTITY_TO_CLASS( monster_vortigaunt, CISlave );
 
 
 TYPEDESCRIPTION	CISlave::m_SaveData[] = 
 {
 	DEFINE_FIELD( CISlave, m_iBravery, FIELD_INTEGER ),
-
 	DEFINE_ARRAY( CISlave, m_pBeam, FIELD_CLASSPTR, ISLAVE_MAX_BEAMS ),
 	DEFINE_FIELD( CISlave, m_iBeams, FIELD_INTEGER ),
 	DEFINE_FIELD( CISlave, m_flNextAttack, FIELD_TIME ),
-
 	DEFINE_FIELD( CISlave, m_voicePitch, FIELD_INTEGER ),
-
 	DEFINE_FIELD( CISlave, m_hDead, FIELD_EHANDLE ),
-
 };
-
 IMPLEMENT_SAVERESTORE( CISlave, CSquadMonster );
-
-
 
 
 const char *CISlave::pAttackHitSounds[] = 
@@ -522,7 +514,7 @@ void CISlave :: Spawn()
 {
 	Precache( );
 
-	SET_MODEL(ENT(pev), "models/npcs/alien_slave.mdl");
+	SET_MODEL(ENT(pev), "models/islave.mdl");
 	UTIL_SetSize(pev, VEC_HUMAN_HULL_MIN, VEC_HUMAN_HULL_MAX);
 
 	pev->solid			= SOLID_SLIDEBOX;
@@ -547,7 +539,7 @@ void CISlave :: Precache()
 {
 	int i;
 
-	PRECACHE_MODEL("models/npcs/alien_slave.mdl");
+	PRECACHE_MODEL("models/islave.mdl");
 	PRECACHE_MODEL("sprites/lgtning.spr");
 	PRECACHE_SOUND("debris/zap1.wav");
 	PRECACHE_SOUND("debris/zap4.wav");

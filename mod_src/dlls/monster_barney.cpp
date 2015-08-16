@@ -398,7 +398,7 @@ void CBarney :: Spawn()
 {
 	Precache( );
 
-	SET_MODEL(ENT(pev), "models/npcs/human_barney.mdl");
+	SET_MODEL(ENT(pev), "models/barney.mdl");
 	UTIL_SetSize(pev, VEC_HUMAN_HULL_MIN, VEC_HUMAN_HULL_MAX);
 
 	pev->solid			= SOLID_SLIDEBOX;
@@ -423,7 +423,7 @@ void CBarney :: Spawn()
 //=========================================================
 void CBarney :: Precache()
 {
-	PRECACHE_MODEL("models/npcs/human_barney.mdl");
+	PRECACHE_MODEL("models/barney.mdl");
 
 	PRECACHE_SOUND("barney/ba_attack1.wav" );
 	PRECACHE_SOUND("barney/ba_attack2.wav" );
@@ -810,8 +810,8 @@ LINK_ENTITY_TO_CLASS( monster_barney_dead, CDeadBarney );
 //=========================================================
 void CDeadBarney :: Spawn( )
 {
-	PRECACHE_MODEL("models/npcs/human_barney.mdl");
-	SET_MODEL(ENT(pev), "models/npcs/human_barney.mdl");
+	PRECACHE_MODEL("models/barney.mdl");
+	SET_MODEL(ENT(pev), "models/barney.mdl");
 
 	pev->effects		= 0;
 	pev->yaw_speed		= 8;

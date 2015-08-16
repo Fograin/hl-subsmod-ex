@@ -1157,7 +1157,7 @@ IMPLEMENT_SAVERESTORE( CWeaponBox, CBaseEntity );
 //=========================================================
 void CWeaponBox::Precache( void )
 {
-	PRECACHE_MODEL("models/weapons/weaponbox.mdl");
+	PRECACHE_MODEL("models/w_weaponbox.mdl");
 }
 
 //=========================================================
@@ -1189,7 +1189,7 @@ void CWeaponBox::Spawn( void )
 
 	UTIL_SetSize( pev, g_vecZero, g_vecZero );
 
-	SET_MODEL( ENT(pev), "models/weapons/weaponbox.mdl");
+	SET_MODEL( ENT(pev), "models/w_weaponbox.mdl");
 }
 
 //=========================================================

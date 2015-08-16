@@ -79,7 +79,7 @@ void CBaseSpectator::SpectatorImpulseCommand(void)
 		bFound = FALSE;
 		while (1)
 		{
-			pCurrentGoal = FIND_ENTITY_BY_CLASSNAME(pCurrentGoal, "info_player_deathmatch");
+			pCurrentGoal = FIND_ENTITY_BY_CLASSNAME(pCurrentGoal, "info_player_start");
 			// Looped around, failure
 			if (pCurrentGoal == pPreviousGoal)
 			{

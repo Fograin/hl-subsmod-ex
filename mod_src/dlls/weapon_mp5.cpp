@@ -57,17 +57,17 @@ void CMP5::Spawn( )
 
 void CMP5::Precache( void )
 {
-	PRECACHE_MODEL("models/weapons/v_9mmAR.mdl");
-	PRECACHE_MODEL("models/weapons/v_9mmAR_bs.mdl");	// Fograin92
-	PRECACHE_MODEL("models/weapons/v_9mmAR_of.mdl");	// Fograin92
+	PRECACHE_MODEL("models/v_9mmAR.mdl");
+	PRECACHE_MODEL("models/v_9mmAR_bs.mdl");	// Fograin92
+	PRECACHE_MODEL("models/v_9mmAR_of.mdl");	// Fograin92
 	PRECACHE_MODEL("models/w_9mmAR.mdl");
-	PRECACHE_MODEL("models/weapons/p_9mmAR.mdl");
+	PRECACHE_MODEL("models/p_9mmAR.mdl");
 
-	m_iShell = PRECACHE_MODEL ("models/weapons/shell_pistol.mdl");// brass shell TE_MODEL
+	m_iShell = PRECACHE_MODEL ("models/shell.mdl");// brass shell TE_MODEL
 
-	PRECACHE_MODEL("models/weapons/ar_grenade.mdl");	// grenade
+	PRECACHE_MODEL("models/grenade.mdl");	// grenade
 
-	PRECACHE_MODEL("models/weapons/ammo_9mmMP5.mdl");
+	PRECACHE_MODEL("models/w_9mmARclip.mdl");
 	PRECACHE_SOUND("items/9mmclip1.wav");              
 
 	PRECACHE_SOUND("items/clipinsert1.wav");
@@ -120,12 +120,12 @@ BOOL CMP5::Deploy( )
 {
 #ifndef CLIENT_DLL
 	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
-		return DefaultDeploy( "models/weapons/v_9mmAR_bs.mdl", "models/weapons/p_9mmAR.mdl", MP5_DEPLOY, "mp5" );
+		return DefaultDeploy( "models/v_9mmAR_bs.mdl", "models/p_9mmAR.mdl", MP5_DEPLOY, "mp5" );
 	
 	if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
-		return DefaultDeploy( "models/weapons/v_9mmAR_of.mdl", "models/weapons/p_9mmAR.mdl", MP5_DEPLOY, "mp5" );
+		return DefaultDeploy( "models/v_9mmAR_of.mdl", "models/p_9mmAR.mdl", MP5_DEPLOY, "mp5" );
 #endif
-	return DefaultDeploy( "models/weapons/v_9mmAR.mdl", "models/weapons/p_9mmAR.mdl", MP5_DEPLOY, "mp5" );
+	return DefaultDeploy( "models/v_9mmAR.mdl", "models/p_9mmAR.mdl", MP5_DEPLOY, "mp5" );
 }
 
 void CMP5::Holster( int skiplocal /* = 0 */ )
@@ -316,12 +316,12 @@ class CMP5AmmoClip : public CBasePlayerAmmo
 	void Spawn( void )
 	{ 
 		Precache( );
-		SET_MODEL(ENT(pev), "models/weapons/ammo_9mmMP5.mdl");
+		SET_MODEL(ENT(pev), "models/w_9mmARclip.mdl");
 		CBasePlayerAmmo::Spawn( );
 	}
 	void Precache( void )
 	{
-		PRECACHE_MODEL ("models/weapons/ammo_9mmMP5.mdl");
+		PRECACHE_MODEL ("models/w_9mmARclip.mdl");
 		PRECACHE_SOUND("items/9mmclip1.wav");
 	}
 	BOOL AddAmmo( CBaseEntity *pOther ) 
@@ -344,12 +344,12 @@ class CMP5Chainammo : public CBasePlayerAmmo
 	void Spawn( void )
 	{ 
 		Precache( );
-		SET_MODEL(ENT(pev), "models/weapons/ammo_9mmBIG.mdl");
+		SET_MODEL(ENT(pev), "models/w_chainammo.mdl");
 		CBasePlayerAmmo::Spawn( );
 	}
 	void Precache( void )
 	{
-		PRECACHE_MODEL ("models/weapons/ammo_9mmBIG.mdl");
+		PRECACHE_MODEL ("models/w_chainammo.mdl");
 		PRECACHE_SOUND("items/9mmclip1.wav");
 	}
 	BOOL AddAmmo( CBaseEntity *pOther ) 
@@ -370,12 +370,12 @@ class CMP5AmmoGrenade : public CBasePlayerAmmo
 	void Spawn( void )
 	{ 
 		Precache( );
-		SET_MODEL(ENT(pev), "models/weapons/ammo_ARgrenade.mdl");
+		SET_MODEL(ENT(pev), "models/w_ARgrenade.mdl");
 		CBasePlayerAmmo::Spawn( );
 	}
 	void Precache( void )
 	{
-		PRECACHE_MODEL ("models/weapons/ammo_ARgrenade.mdl");
+		PRECACHE_MODEL ("models/w_ARgrenade.mdl");
 		PRECACHE_SOUND("items/9mmclip1.wav");
 	}
 	BOOL AddAmmo( CBaseEntity *pOther ) 
