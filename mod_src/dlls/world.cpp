@@ -579,7 +579,7 @@ void CWorld :: Precache( void )
 	else
 	{
 		PRECACHE_MODEL( "models/hgibs.mdl" );
-		PRECACHE_MODEL( "models/agibs.mdl" );
+		PRECACHE_MODEL( "models/gibs/gibs_alien.mdl" );
 	}
 
 	PRECACHE_SOUND ("weapons/ric1.wav");

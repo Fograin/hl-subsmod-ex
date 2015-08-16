@@ -4714,6 +4714,8 @@ BOOL CBasePlayer :: SwitchWeapon( CBasePlayerItem *pWeapon )
 	return TRUE;
 }
 
+// Fograin92: DEAD HEV Suit prop should be moved somewhere
+
 //=========================================================
 // Dead HEV suit prop
 //=========================================================
@@ -4772,6 +4774,7 @@ void CDeadHEV :: Spawn( void )
 
 	MonsterInitDead();
 }
+
 
 
 class CStripWeapons : public CPointEntity

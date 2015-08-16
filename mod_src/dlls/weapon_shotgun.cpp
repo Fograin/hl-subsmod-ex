@@ -52,13 +52,13 @@ void CShotgun::Spawn( )
 
 void CShotgun::Precache( void )
 {
-	PRECACHE_MODEL("models/v_shotgun.mdl");
-	PRECACHE_MODEL("models/v_shotgun_bs.mdl");	// Fograin92
-	PRECACHE_MODEL("models/v_shotgun_of.mdl");	// Fograin92
+	PRECACHE_MODEL("models/weapons/v_shotgun.mdl");
+	PRECACHE_MODEL("models/weapons/v_shotgun_bs.mdl");	// Fograin92
+	PRECACHE_MODEL("models/weapons/v_shotgun_of.mdl");	// Fograin92
 	PRECACHE_MODEL("models/w_shotgun.mdl");
-	PRECACHE_MODEL("models/p_shotgun.mdl");
+	PRECACHE_MODEL("models/weapons/p_shotgun.mdl");
 
-	m_iShell = PRECACHE_MODEL ("models/shotgunshell.mdl");// shotgun shell
+	m_iShell = PRECACHE_MODEL ("models/weapons/shell_shotgun.mdl");// shotgun shell
 
 	PRECACHE_SOUND("items/9mmclip1.wav");              
 
@@ -112,14 +112,13 @@ int CShotgun::GetItemInfo(ItemInfo *p)
 // Fograin92: The correct model will be deployed
 BOOL CShotgun::Deploy( )
 {
-#ifndef CLIENT_DLL
 	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
-		return DefaultDeploy( "models/v_shotgun_bs.mdl", "models/p_shotgun.mdl", SHOTGUN_DRAW, "shotgun" );
+		return DefaultDeploy( "models/weapons/v_shotgun_bs.mdl", "models/weapons/p_shotgun.mdl", SHOTGUN_DRAW, "shotgun" );
 	
 	if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
-		return DefaultDeploy( "models/v_shotgun_of.mdl", "models/p_shotgun.mdl", SHOTGUN_DRAW, "shotgun" );
-#endif
-	return DefaultDeploy( "models/v_shotgun.mdl", "models/p_shotgun.mdl", SHOTGUN_DRAW, "shotgun" );
+		return DefaultDeploy( "models/weapons/v_shotgun_of.mdl", "models/weapons/p_shotgun.mdl", SHOTGUN_DRAW, "shotgun" );
+
+	return DefaultDeploy( "models/weapons/v_shotgun.mdl", "models/weapons/p_shotgun.mdl", SHOTGUN_DRAW, "shotgun" );
 }
 
 void CShotgun::Holster( int skiplocal /* = 0 */ )
@@ -406,12 +405,12 @@ class CShotgunAmmo : public CBasePlayerAmmo
 	void Spawn( void )
 	{ 
 		Precache( );
-		SET_MODEL(ENT(pev), "models/w_shotbox.mdl");
+		SET_MODEL(ENT(pev), "models/weapons/ammo_shotgun.mdl");
 		CBasePlayerAmmo::Spawn( );
 	}
 	void Precache( void )
 	{
-		PRECACHE_MODEL ("models/w_shotbox.mdl");
+		PRECACHE_MODEL ("models/weapons/ammo_shotgun.mdl");
 		PRECACHE_SOUND("items/9mmclip1.wav");
 	}
 	BOOL AddAmmo( CBaseEntity *pOther ) 

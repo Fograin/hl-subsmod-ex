@@ -1,17 +1,14 @@
-/***
-*
-*	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
-*	All Rights Reserved.
-*
-*   This source code contains proprietary and confidential information of
-*   Valve LLC and its suppliers.  Access to this code is restricted to
-*   persons who have executed a written SDK license with Valve.  Any access,
-*   use or distribution of this code by or to any unlicensed person is illegal.
-*
-****/
+//=============================================================//
+//	Half-Life Subtitles MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	This product contains software technology licensed from:
+//	Valve LLC.
+//	Id Software, Inc. ("Id Technology")
+//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
+
 #include "extdll.h"
 #include "util.h"
 #include "cbase.h"
@@ -149,7 +146,7 @@ void COsprey :: Spawn( void )
 	pev->movetype = MOVETYPE_FLY;
 	pev->solid = SOLID_BBOX;
 
-	SET_MODEL(ENT(pev), "models/osprey.mdl");
+	SET_MODEL(ENT(pev), "models/npcs/vehicle_osprey.mdl");
 	UTIL_SetSize(pev, Vector( -400, -400, -100), Vector(400, 400, 32));
 	UTIL_SetOrigin( pev, pev->origin );
 
@@ -185,8 +182,8 @@ void COsprey::Precache( void )
 {
 	UTIL_PrecacheOther( "monster_human_grunt" );
 
-	PRECACHE_MODEL("models/osprey.mdl");
-	PRECACHE_MODEL("models/HVR.mdl");
+	PRECACHE_MODEL("models/npcs/vehicle_osprey.mdl");
+	PRECACHE_MODEL("models/weapons/hvr.mdl");	// Fograin92: Is this even used?
 
 	PRECACHE_SOUND("apache/ap_rotor4.wav");
 	PRECACHE_SOUND("weapons/mortarhit.wav");
@@ -194,9 +191,9 @@ void COsprey::Precache( void )
 	m_iSpriteTexture = PRECACHE_MODEL( "sprites/rope.spr" );
 
 	m_iExplode	= PRECACHE_MODEL( "sprites/fexplo.spr" );
-	m_iTailGibs = PRECACHE_MODEL( "models/osprey_tailgibs.mdl" );
-	m_iBodyGibs = PRECACHE_MODEL( "models/osprey_bodygibs.mdl" );
-	m_iEngineGibs = PRECACHE_MODEL( "models/osprey_enginegibs.mdl" );
+	m_iBodyGibs = PRECACHE_MODEL( "models/gibs/gibs_osprey_body.mdl" );
+	m_iEngineGibs = PRECACHE_MODEL( "models/gibs/gibs_osprey_engine.mdl" );
+	m_iTailGibs = PRECACHE_MODEL( "models/gibs/gibs_osprey_tail.mdl" );
 }
 
 void COsprey::CommandUse( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value )

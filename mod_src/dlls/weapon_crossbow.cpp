@@ -61,7 +61,7 @@ void CCrossbowBolt::Spawn( )
 
 	pev->gravity = 0.5;
 
-	SET_MODEL(ENT(pev), "models/crossbow_bolt.mdl");
+	SET_MODEL(ENT(pev), "models/weapons/crossbow_bolt.mdl");
 
 	UTIL_SetOrigin( pev, pev->origin );
 	UTIL_SetSize(pev, Vector(0, 0, 0), Vector(0, 0, 0));
@@ -74,7 +74,7 @@ void CCrossbowBolt::Spawn( )
 
 void CCrossbowBolt::Precache( )
 {
-	PRECACHE_MODEL ("models/crossbow_bolt.mdl");
+	PRECACHE_MODEL ("models/weapons/crossbow_bolt.mdl");
 	PRECACHE_SOUND("weapons/xbow_hitbod1.wav");
 	PRECACHE_SOUND("weapons/xbow_hitbod2.wav");
 	PRECACHE_SOUND("weapons/xbow_fly1.wav");
@@ -274,10 +274,10 @@ int CCrossbow::AddToPlayer( CBasePlayer *pPlayer )
 void CCrossbow::Precache( void )
 {
 	PRECACHE_MODEL("models/w_crossbow.mdl");
-	PRECACHE_MODEL("models/v_crossbow.mdl");
-	PRECACHE_MODEL("models/v_crossbow_of.mdl");	// Fograin92
-	PRECACHE_MODEL("models/v_crossbow_bs.mdl");	// Fograin92
-	PRECACHE_MODEL("models/p_crossbow.mdl");
+	PRECACHE_MODEL("models/weapons/v_crossbow.mdl");
+	PRECACHE_MODEL("models/weapons/v_crossbow_of.mdl");	// Fograin92
+	PRECACHE_MODEL("models/weapons/v_crossbow_bs.mdl");	// Fograin92
+	PRECACHE_MODEL("models/weapons/p_crossbow.mdl");
 
 	PRECACHE_SOUND("weapons/xbow_fire1.wav");
 	PRECACHE_SOUND("weapons/xbow_reload1.wav");
@@ -308,28 +308,28 @@ int CCrossbow::GetItemInfo(ItemInfo *p)
 // Fograin92: The correct model will be deployed
 BOOL CCrossbow::Deploy( )
 {
-#ifndef CLIENT_DLL
+//#ifndef CLIENT_DLL
 	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
 	{
 		if (m_iClip)
-			return DefaultDeploy( "models/v_crossbow_bs.mdl", "models/p_crossbow.mdl", CROSSBOW_DRAW1, "bow" );
+			return DefaultDeploy( "models/weapons/v_crossbow_bs.mdl", "models/weapons/p_crossbow.mdl", CROSSBOW_DRAW1, "bow" );
 		else
-			return DefaultDeploy( "models/v_crossbow_bs.mdl", "models/p_crossbow.mdl", CROSSBOW_DRAW2, "bow" );
+			return DefaultDeploy( "models/weapons/v_crossbow_bs.mdl", "models/weapons/p_crossbow.mdl", CROSSBOW_DRAW2, "bow" );
 	}
 	
 	if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
 	{
 		if (m_iClip)
-			return DefaultDeploy( "models/v_crossbow_of.mdl", "models/p_crossbow.mdl", CROSSBOW_DRAW1, "bow" );
+			return DefaultDeploy( "models/weapons/v_crossbow_of.mdl", "models/weapons/p_crossbow.mdl", CROSSBOW_DRAW1, "bow" );
 		else
-			return DefaultDeploy( "models/v_crossbow_of.mdl", "models/p_crossbow.mdl", CROSSBOW_DRAW2, "bow" );
+			return DefaultDeploy( "models/weapons/v_crossbow_of.mdl", "models/weapons/p_crossbow.mdl", CROSSBOW_DRAW2, "bow" );
 	}
-#endif
+//#endif
 
 	if (m_iClip)
-		return DefaultDeploy( "models/v_crossbow.mdl", "models/p_crossbow.mdl", CROSSBOW_DRAW1, "bow" );
+		return DefaultDeploy( "models/weapons/v_crossbow.mdl", "models/weapons/p_crossbow.mdl", CROSSBOW_DRAW1, "bow" );
 	else
-		return DefaultDeploy( "models/v_crossbow.mdl", "models/p_crossbow.mdl", CROSSBOW_DRAW2, "bow" );
+		return DefaultDeploy( "models/weapons/v_crossbow.mdl", "models/weapons/p_crossbow.mdl", CROSSBOW_DRAW2, "bow" );
 }
 
 void CCrossbow::Holster( int skiplocal /* = 0 */ )
@@ -555,12 +555,12 @@ class CCrossbowAmmo : public CBasePlayerAmmo
 	void Spawn( void )
 	{ 
 		Precache( );
-		SET_MODEL(ENT(pev), "models/w_crossbow_clip.mdl");
+		SET_MODEL(ENT(pev), "models/weapons/ammo_xbow.mdl");
 		CBasePlayerAmmo::Spawn( );
 	}
 	void Precache( void )
 	{
-		PRECACHE_MODEL ("models/w_crossbow_clip.mdl");
+		PRECACHE_MODEL ("models/weapons/ammo_xbow.mdl");
 		PRECACHE_SOUND("items/9mmclip1.wav");
 	}
 	BOOL AddAmmo( CBaseEntity *pOther ) 

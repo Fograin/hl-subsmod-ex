@@ -1,9 +1,13 @@
-//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
+//=============================================================//
+//	Half-Life Subtitles MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	This product contains software technology licensed from:
+//	Valve LLC.
+//	Id Software, Inc. ("Id Technology")
 //
-// Purpose: 
-//
-// $NoKeywords: $
-//=============================================================================
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
 
 // view/refresh setup functions
 
@@ -1388,21 +1392,21 @@ int V_FindViewModelByWeaponModel(int weaponindex)
 {
 
 	static char * modelmap[][2] =	{
-		{ "models/p_crossbow.mdl",		"models/v_crossbow.mdl"		},
-		{ "models/p_crowbar.mdl",		"models/v_crowbar.mdl"		},
-		{ "models/p_egon.mdl",			"models/v_egon.mdl"			},
-		{ "models/p_gauss.mdl",			"models/v_gauss.mdl"		},
-		{ "models/p_9mmhandgun.mdl",	"models/v_9mmhandgun.mdl"	},
-		{ "models/p_grenade.mdl",		"models/v_grenade.mdl"		},
-		{ "models/p_hgun.mdl",			"models/v_hgun.mdl"			},
-		{ "models/p_9mmAR.mdl",			"models/v_9mmAR.mdl"		},
-		{ "models/p_357.mdl",			"models/v_357.mdl"			},
-		{ "models/p_rpg.mdl",			"models/v_rpg.mdl"			},
-		{ "models/p_shotgun.mdl",		"models/v_shotgun.mdl"		},
-		{ "models/p_squeak.mdl",		"models/v_squeak.mdl"		},
-		{ "models/p_tripmine.mdl",		"models/v_tripmine.mdl"		},
-		{ "models/p_satchel_radio.mdl",	"models/v_satchel_radio.mdl"},
-		{ "models/p_satchel.mdl",		"models/v_satchel.mdl"		},
+		{ "models/weapons/p_crossbow.mdl",		"models/weapons/v_crossbow.mdl"		},
+		{ "models/weapons/p_crowbar.mdl",		"models/weapons/v_crowbar.mdl"		},
+		{ "models/weapons/p_egon.mdl",			"models/weapons/v_egon.mdl"			},
+		{ "models/weapons/p_gauss.mdl",			"models/weapons/v_gauss.mdl"		},
+		{ "models/weapons/p_9mmhandgun.mdl",	"models/weapons/v_9mmhandgun.mdl"	},
+		{ "models/weapons/p_grenade.mdl",		"models/weapons/v_grenade.mdl"		},
+		{ "models/weapons/p_hgun.mdl",			"models/weapons/v_hgun.mdl"			},
+		{ "models/weapons/p_9mmAR.mdl",			"models/weapons/v_9mmAR.mdl"		},
+		{ "models/weapons/p_357.mdl",			"models/weapons/v_357.mdl"			},
+		{ "models/weapons/p_rpg.mdl",			"models/weapons/v_rpg.mdl"			},
+		{ "models/weapons/p_shotgun.mdl",		"models/weapons/v_shotgun.mdl"		},
+		{ "models/weapons/p_squeak.mdl",		"models/weapons/v_squeak.mdl"		},
+		{ "models/weapons/p_tripmine.mdl",		"models/weapons/v_tripmine.mdl"		},
+		{ "models/weapons/p_satchel_radio.mdl",	"models/weapons/v_satchel_radio.mdl"},	// Fograin92: This will be changed in future
+		{ "models/weapons/p_satchel.mdl",		"models/weapons/v_satchel.mdl"		},
 		{ NULL, NULL } };
 
 	struct model_s * weaponModel = IEngineStudio.GetModelByIndex( weaponindex );

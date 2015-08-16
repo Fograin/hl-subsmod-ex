@@ -48,7 +48,7 @@ const float GARG_ATTACKDIST = 80.0;
 #define GARG_STOMP_SPRITE_NAME		"sprites/gargeye1.spr"
 #define GARG_STOMP_BUZZ_SOUND		"weapons/mine_charge.wav"
 #define GARG_FLAME_LENGTH			330
-#define GARG_GIB_MODEL				"models/metalplategibs.mdl"
+#define GARG_GIB_MODEL				"models/gibs_gargantua.mdl"	// Fograin92: We need to change this, Gargantua needs it's own gibs.
 
 #define ATTN_GARG					(ATTN_NORM)
 
@@ -746,7 +746,7 @@ void CGargantua :: Spawn()
 {
 	Precache( );
 
-	SET_MODEL(ENT(pev), "models/garg.mdl");
+	SET_MODEL(ENT(pev), "models/npcs/alien_gargantua.mdl");
 	UTIL_SetSize( pev, Vector( -32, -32, 0 ), Vector( 32, 32, 64 ) );
 
 	pev->solid			= SOLID_SLIDEBOX;
@@ -775,7 +775,7 @@ void CGargantua :: Precache()
 {
 	int i;
 
-	PRECACHE_MODEL("models/garg.mdl");
+	PRECACHE_MODEL("models/npcs/alien_gargantua.mdl");
 	PRECACHE_MODEL( GARG_EYE_SPRITE_NAME );
 	PRECACHE_MODEL( GARG_BEAM_SPRITE_NAME );
 	PRECACHE_MODEL( GARG_BEAM_SPRITE2 );

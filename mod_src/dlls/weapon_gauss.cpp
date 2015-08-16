@@ -71,10 +71,10 @@ void CGauss::Spawn( )
 void CGauss::Precache( void )
 {
 	PRECACHE_MODEL("models/w_gauss.mdl");
-	PRECACHE_MODEL("models/v_gauss.mdl");
-	PRECACHE_MODEL("models/v_gauss_of.mdl");	// Fograin92
-	PRECACHE_MODEL("models/v_gauss_bs.mdl");	// Fograin92
-	PRECACHE_MODEL("models/p_gauss.mdl");
+	PRECACHE_MODEL("models/weapons/v_gauss.mdl");
+	PRECACHE_MODEL("models/weapons/v_gauss_of.mdl");	// Fograin92
+	PRECACHE_MODEL("models/weapons/v_gauss_bs.mdl");	// Fograin92
+	PRECACHE_MODEL("models/weapons/p_gauss.mdl");
 
 	PRECACHE_SOUND("items/9mmclip1.wav");
 
@@ -126,14 +126,13 @@ BOOL CGauss::Deploy( )
 {
 	m_pPlayer->m_flPlayAftershock = 0.0;
 
-#ifndef CLIENT_DLL
 	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
-		return DefaultDeploy( "models/v_gauss_bs.mdl", "models/p_gauss.mdl", GAUSS_DRAW, "gauss" );
+		return DefaultDeploy( "models/weapons/v_gauss_bs.mdl", "models/weapons/p_gauss.mdl", GAUSS_DRAW, "gauss" );
 	
 	if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
-		return DefaultDeploy( "models/v_gauss_of.mdl", "models/p_gauss.mdl", GAUSS_DRAW, "gauss" );
-#endif
-	return DefaultDeploy( "models/v_gauss.mdl", "models/p_gauss.mdl", GAUSS_DRAW, "gauss" );
+		return DefaultDeploy( "models/weapons/v_gauss_of.mdl", "models/weapons/p_gauss.mdl", GAUSS_DRAW, "gauss" );
+
+	return DefaultDeploy( "models/weapons/v_gauss.mdl", "models/weapons/p_gauss.mdl", GAUSS_DRAW, "gauss" );
 }
 
 void CGauss::Holster( int skiplocal /* = 0 */ )
@@ -607,12 +606,12 @@ class CGaussAmmo : public CBasePlayerAmmo
 	void Spawn( void )
 	{ 
 		Precache( );
-		SET_MODEL(ENT(pev), "models/w_gaussammo.mdl");
+		SET_MODEL(ENT(pev), "models/weapons/ammo_gauss.mdl");
 		CBasePlayerAmmo::Spawn( );
 	}
 	void Precache( void )
 	{
-		PRECACHE_MODEL ("models/w_gaussammo.mdl");
+		PRECACHE_MODEL ("models/weapons/ammo_gauss.mdl");
 		PRECACHE_SOUND("items/9mmclip1.wav");
 	}
 	BOOL AddAmmo( CBaseEntity *pOther ) 

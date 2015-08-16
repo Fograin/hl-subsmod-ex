@@ -119,7 +119,7 @@ void CRpgRocket :: Spawn( void )
 	pev->movetype = MOVETYPE_BOUNCE;
 	pev->solid = SOLID_BBOX;
 
-	SET_MODEL(ENT(pev), "models/rpgrocket.mdl");
+	SET_MODEL(ENT(pev), "models/weapons/rpgrocket.mdl");
 	UTIL_SetSize(pev, Vector( 0, 0, 0), Vector(0, 0, 0));
 	UTIL_SetOrigin( pev, pev->origin );
 
@@ -158,7 +158,7 @@ void CRpgRocket :: RocketTouch ( CBaseEntity *pOther )
 //=========================================================
 void CRpgRocket :: Precache( void )
 {
-	PRECACHE_MODEL("models/rpgrocket.mdl");
+	PRECACHE_MODEL("models/weapons/rpgrocket.mdl");
 	m_iTrail = PRECACHE_MODEL("sprites/smoke.spr");
 	PRECACHE_SOUND ("weapons/rocket1.wav");
 }
@@ -351,10 +351,10 @@ void CRpg::Spawn( )
 void CRpg::Precache( void )
 {
 	PRECACHE_MODEL("models/w_rpg.mdl");
-	PRECACHE_MODEL("models/v_rpg.mdl");
-	PRECACHE_MODEL("models/v_rpg_of.mdl");	// Fograin92
-	PRECACHE_MODEL("models/v_rpg_bs.mdl");	// Fograin92
-	PRECACHE_MODEL("models/p_rpg.mdl");
+	PRECACHE_MODEL("models/weapons/v_rpg.mdl");
+	PRECACHE_MODEL("models/weapons/v_rpg_of.mdl");	// Fograin92
+	PRECACHE_MODEL("models/weapons/v_rpg_bs.mdl");	// Fograin92
+	PRECACHE_MODEL("models/weapons/p_rpg.mdl");
 
 	PRECACHE_SOUND("items/9mmclip1.wav");
 
@@ -404,23 +404,23 @@ BOOL CRpg::Deploy( )
 	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
 	{
 		if ( m_iClip == 0 )
-			return DefaultDeploy( "models/v_rpg_bs.mdl", "models/p_rpg.mdl", RPG_DRAW_UL, "rpg" );
+			return DefaultDeploy( "models/weapons/v_rpg_bs.mdl", "models/weapons/p_rpg.mdl", RPG_DRAW_UL, "rpg" );
 		else
-			return DefaultDeploy( "models/v_rpg_bs.mdl", "models/p_rpg.mdl", RPG_DRAW1, "rpg" );
+			return DefaultDeploy( "models/weapons/v_rpg_bs.mdl", "models/weapons/p_rpg.mdl", RPG_DRAW1, "rpg" );
 	}
 	
 	if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
 	{
 		if ( m_iClip == 0 )
-			return DefaultDeploy( "models/v_rpg_of.mdl", "models/p_rpg.mdl", RPG_DRAW_UL, "rpg" );
+			return DefaultDeploy( "models/weapons/v_rpg_of.mdl", "models/weapons/p_rpg.mdl", RPG_DRAW_UL, "rpg" );
 		else
-			return DefaultDeploy( "models/v_rpg_of.mdl", "models/p_rpg.mdl", RPG_DRAW1, "rpg" );
+			return DefaultDeploy( "models/weapons/v_rpg_of.mdl", "models/weapons/p_rpg.mdl", RPG_DRAW1, "rpg" );
 	}
 #endif
 	if ( m_iClip == 0 )
-		return DefaultDeploy( "models/v_rpg.mdl", "models/p_rpg.mdl", RPG_DRAW_UL, "rpg" );
+		return DefaultDeploy( "models/weapons/v_rpg.mdl", "models/weapons/p_rpg.mdl", RPG_DRAW_UL, "rpg" );
 	else
-		return DefaultDeploy( "models/v_rpg.mdl", "models/p_rpg.mdl", RPG_DRAW1, "rpg" );
+		return DefaultDeploy( "models/weapons/v_rpg.mdl", "models/weapons/p_rpg.mdl", RPG_DRAW1, "rpg" );
 }
 
 
@@ -589,12 +589,12 @@ class CRpgAmmo : public CBasePlayerAmmo
 	void Spawn( void )
 	{ 
 		Precache( );
-		SET_MODEL(ENT(pev), "models/w_rpgammo.mdl");
+		SET_MODEL(ENT(pev), "models/weapons/ammo_rpg.mdl");
 		CBasePlayerAmmo::Spawn( );
 	}
 	void Precache( void )
 	{
-		PRECACHE_MODEL ("models/w_rpgammo.mdl");
+		PRECACHE_MODEL ("models/weapons/ammo_rpg.mdl");
 		PRECACHE_SOUND("items/9mmclip1.wav");
 	}
 	BOOL AddAmmo( CBaseEntity *pOther ) 

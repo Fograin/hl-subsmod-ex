@@ -1,22 +1,13 @@
-/***
-*
-*	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
-*	All Rights Reserved.
-*
-*   This source code contains proprietary and confidential information of
-*   Valve LLC and its suppliers.  Access to this code is restricted to
-*   persons who have executed a written SDK license with Valve.  Any access,
-*   use or distribution of this code by or to any unlicensed person is illegal.
-*
-****/
-/*
-
-===== turret.cpp ========================================================
-
-*/
+//=============================================================//
+//	Half-Life Subtitles MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	This product contains software technology licensed from:
+//	Valve LLC.
+//	Id Software, Inc. ("Id Technology")
+//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
 
 //
 // TODO: 
@@ -294,7 +285,7 @@ void CBaseTurret::Precache( )
 void CTurret::Spawn()
 { 
 	Precache( );
-	SET_MODEL(ENT(pev), "models/turret.mdl");
+	SET_MODEL(ENT(pev), "models/npcs/other_turret.mdl");
 	pev->health			= gSkillData.turretHealth;
 	m_HackedGunPos		= Vector( 0, 0, 12.75 );
 	m_flMaxSpin =		TURRET_MAXSPIN;
@@ -320,14 +311,14 @@ void CTurret::Spawn()
 void CTurret::Precache()
 {
 	CBaseTurret::Precache( );
-	PRECACHE_MODEL ("models/turret.mdl");	
+	PRECACHE_MODEL ("models/npcs/other_turret.mdl");	
 	PRECACHE_MODEL (TURRET_GLOW_SPRITE);
 }
 
 void CMiniTurret::Spawn()
 { 
 	Precache( );
-	SET_MODEL(ENT(pev), "models/miniturret.mdl");
+	SET_MODEL(ENT(pev), "models/npcs/other_turret_mini.mdl");
 	pev->health			= gSkillData.miniturretHealth;
 	m_HackedGunPos		= Vector( 0, 0, 12.75 );
 	m_flMaxSpin = 0;
@@ -347,7 +338,7 @@ void CMiniTurret::Spawn()
 void CMiniTurret::Precache()
 {
 	CBaseTurret::Precache( );
-	PRECACHE_MODEL ("models/miniturret.mdl");	
+	PRECACHE_MODEL ("models/npcs/other_turret_mini.mdl");	
 	PRECACHE_SOUND("weapons/hks1.wav");
 	PRECACHE_SOUND("weapons/hks2.wav");
 	PRECACHE_SOUND("weapons/hks3.wav");
@@ -1160,13 +1151,13 @@ LINK_ENTITY_TO_CLASS( monster_sentry, CSentry );
 void CSentry::Precache()
 {
 	CBaseTurret::Precache( );
-	PRECACHE_MODEL ("models/sentry.mdl");	
+	PRECACHE_MODEL ("models/npcs/other_sentry.mdl");	
 }
 
 void CSentry::Spawn()
 { 
 	Precache( );
-	SET_MODEL(ENT(pev), "models/sentry.mdl");
+	SET_MODEL(ENT(pev), "models/npcs/other_sentry.mdl");
 	pev->health			= gSkillData.sentryHealth;
 	m_HackedGunPos		= Vector( 0, 0, 48 );
 	pev->view_ofs.z		= 48;

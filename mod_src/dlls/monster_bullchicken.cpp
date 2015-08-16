@@ -1,17 +1,14 @@
-/***
-*
-*	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
-*	All Rights Reserved.
-*
-*   This source code contains proprietary and confidential information of
-*   Valve LLC and its suppliers.  Access to this code is restricted to
-*   persons who have executed a written SDK license with Valve.  Any access,
-*   use or distribution of this code by or to any unlicensed person is illegal.
-*
-****/
+//=============================================================//
+//	Half-Life Subtitles MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	This product contains software technology licensed from:
+//	Valve LLC.
+//	Id Software, Inc. ("Id Technology")
+//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
+
 //=========================================================
 // bullsquid - big, spotty tentacle-mouthed meanie.
 //=========================================================
@@ -670,7 +667,7 @@ void CBullsquid :: Spawn()
 {
 	Precache( );
 
-	SET_MODEL(ENT(pev), "models/bullsquid.mdl");
+	SET_MODEL(ENT(pev), "models/npcs/alien_bullsquid.mdl");
 	UTIL_SetSize( pev, Vector( -32, -32, 0 ), Vector( 32, 32, 64 ) );
 
 	pev->solid			= SOLID_SLIDEBOX;
@@ -692,7 +689,7 @@ void CBullsquid :: Spawn()
 //=========================================================
 void CBullsquid :: Precache()
 {
-	PRECACHE_MODEL("models/bullsquid.mdl");
+	PRECACHE_MODEL("models/npcs/alien_bullsquid.mdl");
 	
 	PRECACHE_MODEL("sprites/bigspit.spr");// spit projectile.
 	

@@ -50,11 +50,11 @@ void CGlock::Spawn( )
 
 void CGlock::Precache( void )
 {
-	PRECACHE_MODEL("models/v_9mmhandgun.mdl");
-	PRECACHE_MODEL("models/v_9mmhandgun_bs.mdl");	// Fograin92
-	PRECACHE_MODEL("models/v_9mmhandgun_of.mdl");	// Fograin92
+	PRECACHE_MODEL("models/weapons/v_9mmhandgun.mdl");
+	PRECACHE_MODEL("models/weapons/v_9mmhandgun_bs.mdl");	// Fograin92
+	PRECACHE_MODEL("models/weapons/v_9mmhandgun_of.mdl");	// Fograin92
 	PRECACHE_MODEL("models/w_9mmhandgun.mdl");
-	PRECACHE_MODEL("models/p_9mmhandgun.mdl");
+	PRECACHE_MODEL("models/weapons/p_9mmhandgun.mdl");
 
 	m_iShell = PRECACHE_MODEL ("models/shell.mdl");// brass shell
 
@@ -93,12 +93,12 @@ BOOL CGlock::Deploy( )
 	// pev->body = 1;
 
 	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
-		return DefaultDeploy( "models/v_9mmhandgun_bs.mdl", "models/p_9mmhandgun.mdl", GLOCK_DRAW, "onehanded", 0 );
+		return DefaultDeploy( "models/weapons/v_9mmhandgun_bs.mdl", "models/weapons/p_9mmhandgun.mdl", GLOCK_DRAW, "onehanded", 0 );
 	
 	if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
-		return DefaultDeploy( "models/v_9mmhandgun_of.mdl", "models/p_9mmhandgun.mdl", GLOCK_DRAW, "onehanded", 0 );
+		return DefaultDeploy( "models/weapons/v_9mmhandgun_of.mdl", "models/weapons/p_9mmhandgun.mdl", GLOCK_DRAW, "onehanded", 0 );
 
-	return DefaultDeploy( "models/v_9mmhandgun.mdl", "models/p_9mmhandgun.mdl", GLOCK_DRAW, "onehanded", 0 );	
+	return DefaultDeploy( "models/weapons/v_9mmhandgun.mdl", "models/weapons/p_9mmhandgun.mdl", GLOCK_DRAW, "onehanded", 0 );	
 }
 
 void CGlock::Holster( int skiplocal /* = 0 */ )
@@ -259,12 +259,12 @@ class CGlockAmmo : public CBasePlayerAmmo
 	void Spawn( void )
 	{ 
 		Precache( );
-		SET_MODEL(ENT(pev), "models/w_9mmclip.mdl");
+		SET_MODEL(ENT(pev), "models/weapons/ammo_9mmPistol.mdl");
 		CBasePlayerAmmo::Spawn( );
 	}
 	void Precache( void )
 	{
-		PRECACHE_MODEL ("models/w_9mmclip.mdl");
+		PRECACHE_MODEL ("models/weapons/ammo_9mmPistol.mdl");
 		PRECACHE_SOUND("items/9mmclip1.wav");
 	}
 	BOOL AddAmmo( CBaseEntity *pOther ) 

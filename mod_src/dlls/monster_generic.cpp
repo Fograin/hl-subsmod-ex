@@ -1,17 +1,14 @@
-/***
-*
-*	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
-*	All Rights Reserved.
-*
-*   This source code contains proprietary and confidential information of
-*   Valve LLC and its suppliers.  Access to this code is restricted to
-*   persons who have executed a written SDK license with Valve.  Any access,
-*   use or distribution of this code by or to any unlicensed person is illegal.
-*
-****/
+//=============================================================//
+//	Half-Life Subtitles MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	This product contains software technology licensed from:
+//	Valve LLC.
+//	Id Software, Inc. ("Id Technology")
+//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
+
 //=========================================================
 // Generic Monster - purely for scripted sequence work.
 //=========================================================
@@ -98,13 +95,6 @@ void CGenericMonster :: Spawn()
 	Precache();
 
 	SET_MODEL( ENT(pev), STRING(pev->model) );
-
-/*
-	if ( FStrEq( STRING(pev->model), "models/player.mdl" ) )
-		UTIL_SetSize(pev, VEC_HUMAN_HULL_MIN, VEC_HUMAN_HULL_MAX);
-	else
-		UTIL_SetSize(pev, VEC_HULL_MIN, VEC_HULL_MAX);
-*/
 
 	if ( FStrEq( STRING(pev->model), "models/player.mdl" ) || FStrEq( STRING(pev->model), "models/holo.mdl" ) )
 		UTIL_SetSize(pev, VEC_HULL_MIN, VEC_HULL_MAX);

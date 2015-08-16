@@ -10,9 +10,7 @@
 //=============================================================//
 
 /*
-
-	h_tentacle.cpp - silo of death tentacle monster (half life)
-
+h_tentacle.cpp - silo of death tentacle monster (half life)
 */
 
 #include	"extdll.h"
@@ -252,7 +250,7 @@ void CTentacle :: Spawn( )
 	pev->health			= 75;
 	pev->sequence		= 0;
 
-	SET_MODEL(ENT(pev), "models/tentacle2.mdl");
+	SET_MODEL(ENT(pev), "models/npcs/alien_tentacle_arm.mdl");
 	UTIL_SetSize( pev, Vector( -32, -32, 0 ), Vector( 32, 32, 64 ) );
 
 	pev->takedamage		= DAMAGE_AIM;
@@ -289,7 +287,7 @@ void CTentacle :: Spawn( )
 
 void CTentacle :: Precache( )
 {
-	PRECACHE_MODEL("models/tentacle2.mdl");
+	PRECACHE_MODEL("models/ncps/alien_tentacle_arm.mdl");
 
 	PRECACHE_SOUND("ambience/flies.wav");
 	PRECACHE_SOUND("ambience/squirm2.wav");

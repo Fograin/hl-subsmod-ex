@@ -1,17 +1,14 @@
-/***
-*
-*	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
-*	All Rights Reserved.
-*
-*   This source code contains proprietary and confidential information of
-*   Valve LLC and its suppliers.  Access to this code is restricted to
-*   persons who have executed a written SDK license with Valve.  Any access,
-*   use or distribution of this code by or to any unlicensed person is illegal.
-*
-****/
+//=============================================================//
+//	Half-Life Subtitles MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	This product contains software technology licensed from:
+//	Valve LLC.
+//	Id Software, Inc. ("Id Technology")
+//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
+
 //=========================================================
 // Houndeye - spooky sonic dog. 
 //=========================================================
@@ -330,7 +327,7 @@ void CHoundeye :: Spawn()
 {
 	Precache( );
 
-	SET_MODEL(ENT(pev), "models/houndeye.mdl");
+	SET_MODEL(ENT(pev), "models/npcs/alien_houndeye.mdl");
 	UTIL_SetSize(pev, Vector ( -16, -16, 0 ), Vector ( 16, 16, 36 ) );
 
 	pev->solid			= SOLID_SLIDEBOX;
@@ -353,7 +350,7 @@ void CHoundeye :: Spawn()
 //=========================================================
 void CHoundeye :: Precache()
 {
-	PRECACHE_MODEL("models/houndeye.mdl");
+	PRECACHE_MODEL("models/npcs/alien_houndeye.mdl");
 
 	PRECACHE_SOUND("houndeye/he_alert1.wav");
 	PRECACHE_SOUND("houndeye/he_alert2.wav");

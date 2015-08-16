@@ -1,23 +1,17 @@
-/***
-*
-*	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
-*	All Rights Reserved.
-*
-*   Use, distribution, and modification of this source code and/or resulting
-*   object code is restricted to non-commercial enhancements to products from
-*   Valve LLC.  All other use, distribution, or modification is prohibited
-*   without written permission from Valve LLC.
-*
-****/
+//=============================================================//
+//	Half-Life Subtitles MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	This product contains software technology licensed from:
+//	Valve LLC.
+//	Id Software, Inc. ("Id Technology")
+//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
 /*
 
-===== combat.cpp ========================================================
-
+===== combat.cpp =======================================================
   functions dealing with damage infliction & death
-
 */
 
 #include "extdll.h"
@@ -67,7 +61,7 @@ void CGib :: SpawnStickyGibs( entvars_t *pevVictim, Vector vecOrigin, int cGibs 
 	{
 		CGib *pGib = GetClassPtr( (CGib *)NULL );
 
-		pGib->Spawn( "models/stickygib.mdl" );
+		pGib->Spawn( "models/gibs/stickygib.mdl" );
 		pGib->pev->body = RANDOM_LONG(0,2);
 
 		if ( pevVictim )
@@ -125,17 +119,8 @@ void CGib :: SpawnStickyGibs( entvars_t *pevVictim, Vector vecOrigin, int cGibs 
 void CGib :: SpawnHeadGib( entvars_t *pevVictim )
 {
 	CGib *pGib = GetClassPtr( (CGib *)NULL );
-
-	if ( g_Language == LANGUAGE_GERMAN )
-	{
-		pGib->Spawn( "models/germangibs.mdl" );// throw one head
-		pGib->pev->body = 0;
-	}
-	else
-	{
-		pGib->Spawn( "models/hgibs.mdl" );// throw one head
-		pGib->pev->body = 0;
-	}
+	pGib->Spawn( "models/gibs/gibs_human.mdl" );// throw one head
+	pGib->pev->body = 0;
 
 	if ( pevVictim )
 	{
@@ -188,26 +173,20 @@ void CGib :: SpawnRandomGibs( entvars_t *pevVictim, int cGibs, int human )
 	{
 		CGib *pGib = GetClassPtr( (CGib *)NULL );
 
-		if ( g_Language == LANGUAGE_GERMAN )
+		
+		if ( human )
 		{
-			pGib->Spawn( "models/germangibs.mdl" );
-			pGib->pev->body = RANDOM_LONG(0,GERMAN_GIB_COUNT-1);
+			// human pieces
+			pGib->Spawn( "models/gibs/gibs_human.mdl" );
+			pGib->pev->body = RANDOM_LONG(1,HUMAN_GIB_COUNT-1);// start at one to avoid throwing random amounts of skulls (0th gib)
 		}
 		else
 		{
-			if ( human )
-			{
-				// human pieces
-				pGib->Spawn( "models/hgibs.mdl" );
-				pGib->pev->body = RANDOM_LONG(1,HUMAN_GIB_COUNT-1);// start at one to avoid throwing random amounts of skulls (0th gib)
-			}
-			else
-			{
-				// aliens
-				pGib->Spawn( "models/agibs.mdl" );
-				pGib->pev->body = RANDOM_LONG(0,ALIEN_GIB_COUNT-1);
-			}
+			// aliens
+			pGib->Spawn( "models/gibs/gibs_alien.mdl" );
+			pGib->pev->body = RANDOM_LONG(0,ALIEN_GIB_COUNT-1);
 		}
+		
 
 		if ( pevVictim )
 		{

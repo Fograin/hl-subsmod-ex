@@ -1,9 +1,13 @@
-//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
+//=============================================================//
+//	Half-Life Subtitles MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	This product contains software technology licensed from:
+//	Valve LLC.
+//	Id Software, Inc. ("Id Technology")
 //
-// Purpose: 
-//
-// $NoKeywords: $
-//=============================================================================
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
 
 // Client side entity management functions
 

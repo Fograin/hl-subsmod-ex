@@ -112,7 +112,7 @@ void CSqueakGrenade :: Spawn( void )
 	pev->movetype = MOVETYPE_BOUNCE;
 	pev->solid = SOLID_BBOX;
 
-	SET_MODEL(ENT(pev), "models/w_squeak.mdl");
+	SET_MODEL(ENT(pev), "models/npcs/alien_snark.mdl");
 	UTIL_SetSize(pev, Vector( -4, -4, 0), Vector(4, 4, 8));
 	UTIL_SetOrigin( pev, pev->origin );
 
@@ -144,7 +144,7 @@ void CSqueakGrenade :: Spawn( void )
 
 void CSqueakGrenade::Precache( void )
 {
-	PRECACHE_MODEL("models/w_squeak.mdl");
+	PRECACHE_MODEL("models/npcs/alien_snark.mdl");
 	PRECACHE_SOUND("squeek/sqk_blast1.wav");
 	PRECACHE_SOUND("common/bodysplat.wav");
 	PRECACHE_SOUND("squeek/sqk_die1.wav");

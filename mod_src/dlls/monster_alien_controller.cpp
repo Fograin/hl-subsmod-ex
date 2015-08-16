@@ -9,11 +9,9 @@
 //	Before using any parts of this code, read licence.txt file 
 //=============================================================//
 
-
 //=========================================================
 // CONTROLLER
 //=========================================================
-
 #include	"extdll.h"
 #include	"util.h"
 #include	"cbase.h"
@@ -26,11 +24,11 @@
 //=========================================================
 // Monster's Anim Events Go Here
 //=========================================================
-#define	CONTROLLER_AE_HEAD_OPEN		1
-#define	CONTROLLER_AE_BALL_SHOOT	2
-#define	CONTROLLER_AE_SMALL_SHOOT	3
-#define CONTROLLER_AE_POWERUP_FULL	4
-#define CONTROLLER_AE_POWERUP_HALF	5
+#define	CONTROLLER_AE_HEAD_OPEN			1
+#define	CONTROLLER_AE_BALL_SHOOT		2
+#define	CONTROLLER_AE_SMALL_SHOOT		3
+#define CONTROLLER_AE_POWERUP_FULL		4
+#define CONTROLLER_AE_POWERUP_HALF		5
 
 #define CONTROLLER_FLINCH_DELAY			2		// at most one flinch every n secs
 
@@ -96,7 +94,6 @@ public:
 	Vector m_velocity;
 	int m_fInCombat;
 };
-
 LINK_ENTITY_TO_CLASS( monster_alien_controller, CController );
 
 TYPEDESCRIPTION	CController::m_SaveData[] = 
@@ -357,7 +354,7 @@ void CController :: Spawn()
 {
 	Precache( );
 
-	SET_MODEL(ENT(pev), "models/controller.mdl");
+	SET_MODEL(ENT(pev), "models/npcs/alien_controller.mdl");
 	UTIL_SetSize( pev, Vector( -32, -32, 0 ), Vector( 32, 32, 64 ));
 
 	pev->solid			= SOLID_SLIDEBOX;
@@ -377,7 +374,7 @@ void CController :: Spawn()
 //=========================================================
 void CController :: Precache()
 {
-	PRECACHE_MODEL("models/controller.mdl");
+	PRECACHE_MODEL("models/npcs/alien_controller.mdl");
 
 	PRECACHE_SOUND_ARRAY( pAttackSounds );
 	PRECACHE_SOUND_ARRAY( pIdleSounds );

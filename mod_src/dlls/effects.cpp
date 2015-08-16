@@ -1385,14 +1385,7 @@ LINK_ENTITY_TO_CLASS( gibshooter, CGibShooter );
 
 void CGibShooter :: Precache ( void )
 {
-	if ( g_Language == LANGUAGE_GERMAN )
-	{
-		m_iGibModelIndex = PRECACHE_MODEL ("models/germanygibs.mdl");
-	}
-	else
-	{
-		m_iGibModelIndex = PRECACHE_MODEL ("models/hgibs.mdl");
-	}
+	m_iGibModelIndex = PRECACHE_MODEL ("models/gibs/gibs_human.mdl");
 }
 
 
@@ -1454,11 +1447,12 @@ void CGibShooter::Spawn( void )
 
 CGib *CGibShooter :: CreateGib ( void )
 {
+	// Fograin92: We could use this cvar
 	if ( CVAR_GET_FLOAT("violence_hgibs") == 0 )
 		return NULL;
 
 	CGib *pGib = GetClassPtr( (CGib *)NULL );
-	pGib->Spawn( "models/hgibs.mdl" );
+	pGib->Spawn( "models/gibs/gibs_human.mdl" );
 	pGib->m_bloodColor = BLOOD_COLOR_RED;
 
 	if ( pev->body <= 1 )
@@ -2155,7 +2149,7 @@ public:
 
 void CEnvBeverage :: Precache ( void )
 {
-	PRECACHE_MODEL( "models/can.mdl" );
+	PRECACHE_MODEL( "models/props/can.mdl" );
 	PRECACHE_SOUND( "weapons/g_bounce3.wav" );
 }
 
@@ -2225,7 +2219,7 @@ void CItemSoda::Spawn( void )
 	pev->solid = SOLID_NOT;
 	pev->movetype = MOVETYPE_TOSS;
 
-	SET_MODEL ( ENT(pev), "models/can.mdl" );
+	SET_MODEL ( ENT(pev), "models/props/can.mdl" );
 	UTIL_SetSize ( pev, Vector ( 0, 0, 0 ), Vector ( 0, 0, 0 ) );
 	
 	SetThink (&CItemSoda::CanThink);

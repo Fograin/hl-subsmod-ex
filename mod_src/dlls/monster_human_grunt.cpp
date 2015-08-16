@@ -1,20 +1,13 @@
-/***
-*
-*	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
-*	All Rights Reserved.
-*
-*   This source code contains proprietary and confidential information of
-*   Valve LLC and its suppliers.  Access to this code is restricted to
-*   persons who have executed a written SDK license with Valve.  Any access,
-*   use or distribution of this code by or to any unlicensed person is illegal.
-*
-****/
-//=========================================================
-// hgrunt
-//=========================================================
+//=============================================================//
+//	Half-Life Subtitles MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	This product contains software technology licensed from:
+//	Valve LLC.
+//	Id Software, Inc. ("Id Technology")
+//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
 
 //=========================================================
 // Hit groups!	
@@ -980,7 +973,7 @@ void CHGrunt :: Spawn()
 {
 	Precache( );
 
-	SET_MODEL(ENT(pev), "models/hgrunt.mdl");
+	SET_MODEL(ENT(pev), "models/npcs/human_grunt.mdl");
 	UTIL_SetSize(pev, VEC_HUMAN_HULL_MIN, VEC_HUMAN_HULL_MAX);
 
 	pev->solid			= SOLID_SLIDEBOX;
@@ -1045,7 +1038,7 @@ void CHGrunt :: Spawn()
 //=========================================================
 void CHGrunt :: Precache()
 {
-	PRECACHE_MODEL("models/hgrunt.mdl");
+	PRECACHE_MODEL("models/npcs/human_grunt.mdl");
 
 	PRECACHE_SOUND( "hgrunt/gr_mgun1.wav" );
 	PRECACHE_SOUND( "hgrunt/gr_mgun2.wav" );
@@ -1074,8 +1067,8 @@ void CHGrunt :: Precache()
 	else
 		m_voicePitch = 100;
 
-	m_iBrassShell = PRECACHE_MODEL ("models/shell.mdl");// brass shell
-	m_iShotgunShell = PRECACHE_MODEL ("models/shotgunshell.mdl");
+	m_iBrassShell = PRECACHE_MODEL ("models/weapons/shell_pistol.mdl");// brass shell
+	m_iShotgunShell = PRECACHE_MODEL ("models/weapons/shell_shotgun.mdl");
 }	
 
 //=========================================================
@@ -2466,8 +2459,8 @@ LINK_ENTITY_TO_CLASS( monster_hgrunt_dead, CDeadHGrunt );
 //=========================================================
 void CDeadHGrunt :: Spawn( void )
 {
-	PRECACHE_MODEL("models/hgrunt.mdl");
-	SET_MODEL(ENT(pev), "models/hgrunt.mdl");
+	PRECACHE_MODEL("models/npcs/human_grunt.mdl");
+	SET_MODEL(ENT(pev), "models/npcs/human_grunt.mdl");
 
 	pev->effects		= 0;
 	pev->yaw_speed		= 8;
