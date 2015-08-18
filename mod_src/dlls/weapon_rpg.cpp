@@ -400,7 +400,7 @@ int CRpg::AddToPlayer( CBasePlayer *pPlayer )
 // Fograin92: The correct model will be deployed
 BOOL CRpg::Deploy( )
 {
-#ifndef CLIENT_DLL
+
 	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
 	{
 		if ( m_iClip == 0 )
@@ -416,7 +416,7 @@ BOOL CRpg::Deploy( )
 		else
 			return DefaultDeploy( "models/v_rpg_of.mdl", "models/p_rpg.mdl", RPG_DRAW1, "rpg" );
 	}
-#endif
+
 	if ( m_iClip == 0 )
 		return DefaultDeploy( "models/v_rpg.mdl", "models/p_rpg.mdl", RPG_DRAW_UL, "rpg" );
 	else

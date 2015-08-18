@@ -111,13 +111,12 @@ BOOL CPython::Deploy( )
 		pev->body = 0;
 	}
 
-#ifndef CLIENT_DLL
 	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
 		return DefaultDeploy( "models/v_357_bs.mdl", "models/p_357.mdl", PYTHON_DRAW, "python", UseDecrement(), pev->body );
 	
 	if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
 		return DefaultDeploy( "models/v_357_of.mdl", "models/p_357.mdl", PYTHON_DRAW, "python", UseDecrement(), pev->body );
-#endif
+
 	return DefaultDeploy( "models/v_357.mdl", "models/p_357.mdl", PYTHON_DRAW, "python", UseDecrement(), pev->body );
 }
 
@@ -125,7 +124,7 @@ BOOL CPython::Deploy( )
 void CPython::Holster( int skiplocal /* = 0 */ )
 {
 	m_fInReload = FALSE; // cancel any reload in progress.
-	m_pPlayer->m_flNextAttack = UTIL_WeaponTimeBase() + 1.0;
+	m_pPlayer->m_flNextAttack = UTIL_WeaponTimeBase() + 0.5;
 	m_flTimeWeaponIdle = UTIL_WeaponTimeBase() + UTIL_SharedRandomFloat( m_pPlayer->random_seed, 10, 15 );
 	SendWeaponAnim( PYTHON_HOLSTER );
 }

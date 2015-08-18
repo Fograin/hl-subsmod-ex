@@ -1,8 +1,11 @@
-// ===================================================
-//  Half-Life Subtitles Mod: Sound Props Utils Source
-//                 written by Vit_amiN
-// ===================================================
-
+//=============================================================//
+//	Half-Life Subtitles MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	Written by: Vit_amiN
+//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
 #ifdef CLIENT_DLL
 	#include "..\cl_dll\wrect.h"
 	#include "..\cl_dll\cl_dll.h"
@@ -20,9 +23,6 @@ static char g_szSubPropsStr[ENG_MSG_MAX_BYTE_LEN];
 const char * const SM_READ_SUBTITLE(const char * const start_ptr, const void * & res_props)
 {
     const char * result = start_ptr;
-
-
-
 
     int sent_offs = 0;
     
@@ -92,8 +92,6 @@ const char * const SM_SUBTITLE_TO_STR(const char * const sentence, const client_
     );
     g_szSubPropsStr[ENG_MSG_MAX_BYTE_LEN - 1] = '\0';
 
-    
-    
     return g_szSubPropsStr;
 }
 

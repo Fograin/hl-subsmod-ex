@@ -1,8 +1,11 @@
-// ============================================
-//  Half-Life Subtitles Mod: Text Utils Source
-//			 written by Vit_amiN
-// ============================================
-
+//=============================================================//
+//	Half-Life Subtitles MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	Written by: Vit_amiN
+//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
 #include "port.h"
 #include "sm_consts.h"
 #include "sm_util_txt.h"

@@ -89,12 +89,7 @@ BOOL CEgon::Deploy( void )
 	m_deployed = FALSE;
 	m_fireState = FIRE_OFF;
 
-	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
-		return DefaultDeploy( "models/v_egon_bs.mdl", "models/p_egon.mdl", EGON_DRAW, "egon" );
-	
-	if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
-		return DefaultDeploy( "models/v_egon_of.mdl", "models/p_egon.mdl", EGON_DRAW, "egon" );
-
+	// Fograin92: Gluon gun is only used in HL1, we don't need multiple models
 	return DefaultDeploy( "models/v_egon.mdl", "models/p_egon.mdl", EGON_DRAW, "egon" );
 }
 

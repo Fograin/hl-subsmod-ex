@@ -471,20 +471,21 @@ BOOL CSqueak::Deploy( )
 	m_pPlayer->m_iWeaponVolume = QUIET_GUN_VOLUME;
 
 
-#ifndef CLIENT_DLL
 	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
 		return DefaultDeploy( "models/v_squeak_bs.mdl", "models/p_squeak.mdl", SQUEAK_UP, "squeak" );
 	
 	if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
 		return DefaultDeploy( "models/v_squeak_of.mdl", "models/p_squeak.mdl", SQUEAK_UP, "squeak" );
-#endif
+
 	return DefaultDeploy( "models/v_squeak.mdl", "models/p_squeak.mdl", SQUEAK_UP, "squeak" );	
 }
 
 
 void CSqueak::Holster( int skiplocal /* = 0 */ )
 {
-	m_pPlayer->m_flNextAttack = UTIL_WeaponTimeBase() + 0.5;
+	m_pPlayer->m_flNextAttack = UTIL_WeaponTimeBase() + 1.0;
+	SendWeaponAnim( SQUEAK_DOWN );
+	EMIT_SOUND(ENT(m_pPlayer->pev), CHAN_WEAPON, "common/null.wav", 1.0, ATTN_NORM);
 	
 	if ( !m_pPlayer->m_rgAmmo[ m_iPrimaryAmmoType ] )
 	{
@@ -493,9 +494,6 @@ void CSqueak::Holster( int skiplocal /* = 0 */ )
 		pev->nextthink = gpGlobals->time + 0.1;
 		return;
 	}
-	
-	SendWeaponAnim( SQUEAK_DOWN );
-	EMIT_SOUND(ENT(m_pPlayer->pev), CHAN_WEAPON, "common/null.wav", 1.0, ATTN_NORM);
 }
 
 

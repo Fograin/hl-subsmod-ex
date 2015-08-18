@@ -1,8 +1,12 @@
-// ==============================================
-//  Half-Life Subtitles Mod: Game-Specific Stuff
-//              written by Vit_amiN
-// ==============================================
-
+//=============================================================//
+//	Half-Life Subtitles MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	Written by: Vit_amiN
+//  Edits by: Fograin92
+//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
 #ifndef _SUBS_MOD_GAMESPEC_H
 #define _SUBS_MOD_GAMESPEC_H
 
@@ -14,7 +18,9 @@ static const char * const pCustomTitleFilesArray[] =
 {
 	"scripts/sm_text_base.txt",
 	"scripts/sm_text_subs.txt",
+	//"scripts/sm_text_CC.txt",	// Fograin92: Closed captions
 };
+
 
 // Fix sentences, Half-Life Barney
 static const client_textmessage_sentence_t pHLBarneySounds[] =
@@ -34,12 +40,14 @@ static const client_textmessage_sentence_t pHLBarneySounds[] =
 	{ "/heybuddy.wav",			"!BA_HELLO5"	},
 };
 
+
 // Fix sentences, Half-Life GMan
 static const client_textmessage_sentence_t pHLGManSounds[] =
 {
 	{ "/gman_noreg.wav",	"!GM_REGRET"	},
 	{ "/gman_wise.wav",		"!GM_WISE"		},
 };
+
 
 // Fix sentences, Half-Life Human Grunts
 static const client_textmessage_sentence_t pHLHGruntSounds[] =
@@ -58,6 +66,7 @@ static const client_textmessage_sentence_t pHLHGruntSounds[] =
 	{ "/c2a5_hg_lebuz.wav",		"!HG_LEBUZ"		},
 };
 
+
 // Fix sentences, Half-Life Gina Hologram
 static const client_textmessage_sentence_t pHLHoloSounds[] =
 {
@@ -73,6 +82,7 @@ static const client_textmessage_sentence_t pHLHoloSounds[] =
 	{ "/tr_holo_nicejob.wav",		"!HOLO_NICEJOB"		},
 	{ "/tr_holo_radiation.wav",		"!HOLO_RADIATION"	},
 };
+
 
 // Fix sentences, Half-Life Nihilanth
 static const client_textmessage_sentence_t pHLNihilanthSounds[] =
@@ -92,6 +102,7 @@ static const client_textmessage_sentence_t pHLNihilanthSounds[] =
 	{ "/nil_thieves.wav",		"!NIL_THIEVES"	},
 	{ "/nil_win.wav",			"!NIL_WIN"		},
 };
+
 
 // Fix sentences, Half-Life Scientist
 static const client_textmessage_sentence_t pHLScientistSounds[] =
@@ -133,6 +144,7 @@ static const client_textmessage_sentence_t pHLScientistSounds[] =
 	{ "/c1a4_sci_tent.wav",			"!SC_TENT"		},
 };
 
+
 // Fix sentences, Half-Life Train Ride
 static const client_textmessage_sentence_t pHLTRideSounds[] =
 {
@@ -148,6 +160,7 @@ static const client_textmessage_sentence_t pHLTRideSounds[] =
 	{ "/c0a0_tr_tourn.wav",		"!TR_TOURN"		},
 };
 
+
 // Fix sentences, Blue-Shift Train Ride
 static const client_textmessage_sentence_t pBSTramSounds[] =
 {
@@ -162,6 +175,24 @@ static const client_textmessage_sentence_t pBSTramSounds[] =
 	{ "/ba_tram8.wav",		"!BA_TRAM8"		},
 };
 
+// Fix sentences, Blue-Shift Hazard Course hologram
+static const client_textmessage_sentence_t pBSHoloSounds[] =
+{
+	{ "/tr_holo_breath.wav",		"!HOLO_BREATH"		},
+	{ "/tr_holo_done.wav",			"!HOLO_DONE"		},
+	{ "/tr_holo_fallshort.wav",		"!HOLO_FALLSHORT"	},
+	{ "/tr_holo_fantastic.wav",		"!HOLO_FANTASTIC"	},
+	{ "/tr_holo_flashlight.wav",	"!HOLO_FLASHLIGHT"	},
+	{ "/tr_holo_greatwork.wav",		"!HOLO_GREATWORK"	},
+	{ "/tr_holo_jumpdown.wav",		"!HOLO_JUMPDOWN"	},
+	{ "/tr_holo_keeptrying.wav",	"!HOLO_KEEPTRYING"	},
+	{ "/tr_holo_lightoff.wav",		"!HOLO_LIGHTOFF"	},
+	{ "/tr_holo_nicejob.wav",		"!HOLO_NICEJOB"		},
+	{ "/tr_holo_radiation.wav",		"!HOLO_RADIATION"	},
+};
+
+
+// Fix sentences
 static const client_textmessage_sndgroup_t pSoundGroups[] = 
 {
     { "agrunt",			strlen("agrunt"),		NULL,				0								},
@@ -206,9 +237,12 @@ static const client_textmessage_sndgroup_t pSoundGroups[] =
     { "x",				strlen("x"),			NULL,				0								},
     { "zombie",			strlen("zombie"),		NULL,				0								},
 
-	// Blue-Shift sentence fixes
+	// Blue Shift sentence fixes
 	{ "tram",			strlen("tram"),			pBSTramSounds,		ARRAYSIZE(pBSTramSounds)		},
+	{ "ba_holo",		strlen("ba_holo"),		pBSHoloSounds,		ARRAYSIZE(pBSHoloSounds)		},
 };
+
+
 
 // Fograin92: Blue Shift map list
 static const char * const pBSmaps[] = 
@@ -251,6 +285,7 @@ static const char * const pBSmaps[] =
 	"ba_yard5",
 	"ba_yard5a",
 };
+
 
 // Fograin92: Opposing Force map list
 static const char * const pOFmaps[] = 

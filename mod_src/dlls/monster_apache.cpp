@@ -1040,3 +1040,5 @@ void CApacheHVR :: AccelerateThink( void  )
 
 	pev->nextthink = gpGlobals->time + 0.1;
 }
+
+// monster_blkop_apache

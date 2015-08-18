@@ -72,8 +72,6 @@ void CGauss::Precache( void )
 {
 	PRECACHE_MODEL("models/w_gauss.mdl");
 	PRECACHE_MODEL("models/v_gauss.mdl");
-	PRECACHE_MODEL("models/v_gauss_of.mdl");	// Fograin92
-	PRECACHE_MODEL("models/v_gauss_bs.mdl");	// Fograin92
 	PRECACHE_MODEL("models/p_gauss.mdl");
 
 	PRECACHE_SOUND("items/9mmclip1.wav");
@@ -126,13 +124,8 @@ BOOL CGauss::Deploy( )
 {
 	m_pPlayer->m_flPlayAftershock = 0.0;
 
-	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
-		return DefaultDeploy( "models/v_gauss_bs.mdl", "models/p_gauss.mdl", GAUSS_DRAW, "gauss" );
-	
-	if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
-		return DefaultDeploy( "models/v_gauss_of.mdl", "models/p_gauss.mdl", GAUSS_DRAW, "gauss" );
-
-	return DefaultDeploy( "models/v_gauss.mdl", "models/p_gauss.mdl", GAUSS_DRAW, "gauss" );
+	// Fograin92: Gauss gun is only used in HL1, we don't need multiple models
+	return DefaultDeploy( "models/v_gauss.mdl", "models/p_gauss.mdl", GAUSS_DRAW, "gauss" );	
 }
 
 void CGauss::Holster( int skiplocal /* = 0 */ )

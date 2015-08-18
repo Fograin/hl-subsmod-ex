@@ -1,8 +1,12 @@
-// =============================================
-//  Half-Life Subtitles Mod: Sound Utils Source
-//              written by Vit_amiN
-// =============================================
-
+//=============================================================//
+//	Half-Life Subtitles MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	Written by: Vit_amiN
+//  Edits by: Fograin92
+//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
 #ifndef DISABLE_ENGINE_HOOKS
 
 #ifdef CLIENT_DLL
@@ -21,19 +25,9 @@
 #include "sm_util_snd.h"
 #include "sm_gamespec.h"
 
-/*
-//FIXME: extern struct? ALSO: search for 'playermove_t'
-extern "C"
-{
-//#include "mathlib.h"
-#include "pm_defs.h"
-extern playermove_t *pmove;
-}
-*/
 
 // 'Vector' class has operator 'float *' returns vec_t *
 extern "C" float Distance(const float *, const float *);
-
 static client_textmessage_sndprops_t snd_props;
 
 static const char * const SM_GetSoundMsgTokenName( const char * const pString )
@@ -128,17 +122,8 @@ static float SM_PlaySound_Hook_SENDFUNC__FIXME_(
         #else
             
             // FIXME: server may be isn't activated yet... use g_serveractive ?
-
-
             const char * sub_message = SM_SUBTITLE_TO_STR( sentence, &snd_props );
-        
-        
-        
-        
-        
-        
-        
-            
+
             // loop through all players
             for ( int i = 1; i <= gpGlobals->maxClients; i++ )
             {
@@ -157,16 +142,7 @@ static float SM_PlaySound_Hook_SENDFUNC__FIXME_(
                     }
                 }
             }
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
+
         #endif // CLIENT_DLL
         }
     }
@@ -176,14 +152,6 @@ static float SM_PlaySound_Hook_SENDFUNC__FIXME_(
 float SM_Hook_Shared_PM_PlaySound( const char * const pString, const int sndChannel, const float sndVolume, const float sndAttenuation, const int sndFlags, const int sndPitch )
 {
     return SM_PlaySound_Hook_SENDFUNC__FIXME_(0 /* FIXME: "clgame.pmove->player_index + 1" on client, "svgame.pmove->player_index + 1" on server; check if it needs +1 or exact index */, pString, NULL /* FIXME: NULL on client, ENTINDEX(first_param) (? -- check) on server */, sndChannel, sndVolume, sndAttenuation, sndFlags, sndPitch);
-    /*
-        FIXME:
-        hooked func calls:    
-            on client:    S_StartSound( NULL, clgame.pmove->player_index + 1, sndChannel, S_RegisterSound(pString), sndVolume, sndAttenuation, sndPitch, sndFlags );
-            on server:    edict_t    *ent = EDICT_NUM( svgame.pmove->player_index + 1 );
-                        if( SV_IsValidEdict(ent) )    SV_StartSound( ent, sndChannel, pString, sndVolume, sndAttenuation, sndFlags, sndPitch );
-
-*/
 }
 
 #ifdef CLIENT_DLL
@@ -191,20 +159,12 @@ float SM_Hook_Shared_PM_PlaySound( const char * const pString, const int sndChan
 float SM_Hook_Client_EV_PlaySound( const int entIndex, const char * const pString, const float * const vecOrigin, const int sndChannel, const float sndVolume, const float sndAttenuation, const int sndFlags, const int sndPitch )
 {
     return SM_PlaySound_Hook_SENDFUNC__FIXME_(entIndex, pString, vecOrigin, sndChannel, sndVolume, sndAttenuation, sndFlags, sndPitch);
-    /*
-        FIXME:
-        hooked func calls:    S_StartSound( vecOrigin, entIndex, sndChannel, S_RegisterSound(pString), sndVolume, sndAttenuation, sndPitch, sndFlags );
-    */
 }
 
 float SM_Hook_Client_pfnPlaySoundByName( const char * const pString, const float sndVolume )
 {
     const cl_entity_t * pPlayer = gEngfuncs.GetLocalPlayer();
     return SM_PlaySound_Hook_SENDFUNC__FIXME_(pPlayer ? pPlayer->index : 0 /* FIXME: cl.refdef.viewentity -- index подходит??? */, pString, NULL, CHAN_AUTO, sndVolume, ATTN_NORM, 0, PITCH_NORM);
-    /*
-        FIXME:
-        hooked func calls:    S_StartSound( NULL, cl.refdef.viewentity, CHAN_AUTO, S_RegisterSound(pString), sndVolume, ATTN_NORM, PITCH_NORM, 0 );
-    */
 }
 
 float SM_Hook_Client_pfnPlaySoundByIndex( const int sndIndex, const float sndVolume )

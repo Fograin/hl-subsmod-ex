@@ -1,8 +1,11 @@
-// =========================================
-//  Half-Life Subtitles Mod: Structs Header
-//            written by Vit_amiN
-// =========================================
-
+//=============================================================//
+//	Half-Life Subtitles MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	Written by: Vit_amiN
+//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
 #ifndef _SUBS_MOD_STRUCTS_H
 #define _SUBS_MOD_STRUCTS_H
 

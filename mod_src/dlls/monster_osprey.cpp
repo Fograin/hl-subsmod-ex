@@ -797,6 +797,6 @@ void COsprey::TraceAttack( entvars_t *pevAttacker, float flDamage, Vector vecDir
 }
 
 
-
+// monster_blkop_osprey
 
 

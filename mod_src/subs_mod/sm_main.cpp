@@ -1,8 +1,11 @@
-// ======================================
-//  Half-Life Subtitles Mod: Main Source
-//    written by Fograin92 & Vit_amiN
-// ======================================
-
+//=============================================================//
+//	Half-Life Subtitles MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	Written by: Vit_amiN
+//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
 #include <math.h>
 #include <VGUI_Color.h>
 #include "..\cl_dll\hud.h"

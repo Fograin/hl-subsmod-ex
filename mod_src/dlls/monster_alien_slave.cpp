@@ -23,8 +23,8 @@ extern DLL_GLOBAL int		g_iSkillLevel;
 //=========================================================
 // Monster's Anim Events Go Here
 //=========================================================
-#define		ISLAVE_AE_CLAW		( 1 )
-#define		ISLAVE_AE_CLAWRAKE	( 2 )
+#define		ISLAVE_AE_CLAW			( 1 )
+#define		ISLAVE_AE_CLAWRAKE		( 2 )
 #define		ISLAVE_AE_ZAP_POWERUP	( 3 )
 #define		ISLAVE_AE_ZAP_SHOOT		( 4 )
 #define		ISLAVE_AE_ZAP_DONE		( 5 )
@@ -852,3 +852,6 @@ void CISlave :: ClearBeams( )
 
 	STOP_SOUND( ENT(pev), CHAN_WEAPON, "debris/zap4.wav" );
 }
+
+
+// Fograin92: Place for "monster_alien_slave_dead"

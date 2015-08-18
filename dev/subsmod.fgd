@@ -46,9 +46,9 @@
 ]
 
 
-
+//==============//
 // BASE CLASSES
-
+//==============//
 @BaseClass = Sequence
 [
 	sequence(integer) : "Animation Sequence (editor)"
@@ -1027,6 +1027,18 @@
 		1: "Start on" : 0
 		2: "Play Once" : 0
 	]
+]
+
+// env_warpball (BS, OF)
+@PointClass iconsprite("sprites/env_warpball.spr") base(Targetname, Target) size(-32 -32 -32, 32 32 32) color(0 255 0) = env_warpball : "Warp In Ball"
+[
+	spawnflags(flags) =
+	[
+		1: "Remove On fire" : 0
+		2: "Kill Center" : 0
+	]
+	radius(string) : "Beam Radius" : "256"
+	warp_target(string) : "Warp Target" : ""
 ]
 
 // func_breakable
@@ -2126,12 +2138,13 @@
 // trigger_transition
 @SolidClass base(Targetname) = trigger_transition : "Trigger: Select Transition Area" []
 
+// trigger_playerfreeze (BS, OF)
+@PointClass base(Targetname, Targetx) = trigger_playerfreeze : "Trigger Player Freeze" []
 
 
 //======//
 // NPCS
 //======//
-
 
 
 // monstermaker
@@ -2744,6 +2757,17 @@
 // ITEMS
 //=======//
 
+// world_items
+@PointClass base(Weapon, Targetx) = world_items : "World Items" 
+[
+	type(choices) :"types" : 42 =
+	[
+		42: "Antidote"
+		43: "Security Card"
+		44: "Battery"
+		45: "Suit"
+	]
+]
 
 // item_airtank
 @PointClass size(-16 -16 0, 16 16 36) base(Weapon, Targetx) studio("models/w_oxygen.mdl") = item_airtank : "Oxygen tank" []
@@ -2772,17 +2796,29 @@
 	]
 ]
 
-// world_items
-@PointClass base(Weapon, Targetx) = world_items : "World Items" 
+// item_helmet (BS)
+@PointClass size(-16 -16 0, 16 16 36) base(Weapon, Targetx, RenderFields) = item_helmet : "Barney Helmet"
 [
-	type(choices) :"types" : 42 =
+	sequence(choices) : "Orientation" : 0 = 
 	[
-		42: "Antidote"
-		43: "Security Card"
-		44: "Battery"
-		45: "Suit"
+           0 : "Vertical"
+           1 : "Horizontal"
+	     2 : "Horizontal (Upside Down)"
+      ]
+]
+
+// item_armorvest (OF)
+@PointClass size(-16 -16 0, 16 16 36) base(Weapon, Targetx, RenderFields) = item_armorvest : "Barney Vest"
+[
+	sequence(choices) : "Orientation" : 0 = 
+	[
+           0 : "Upright"
+           1 : "Laying On Back"
+           2 : "Laying On Front"
+           3:  "Upright Leaning"
 	]
 ]
+
 
 
 //======//

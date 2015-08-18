@@ -308,7 +308,6 @@ int CCrossbow::GetItemInfo(ItemInfo *p)
 // Fograin92: The correct model will be deployed
 BOOL CCrossbow::Deploy( )
 {
-#ifndef CLIENT_DLL
 	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
 	{
 		if (m_iClip)
@@ -324,7 +323,6 @@ BOOL CCrossbow::Deploy( )
 		else
 			return DefaultDeploy( "models/v_crossbow_of.mdl", "models/p_crossbow.mdl", CROSSBOW_DRAW2, "bow" );
 	}
-#endif
 
 	if (m_iClip)
 		return DefaultDeploy( "models/v_crossbow.mdl", "models/p_crossbow.mdl", CROSSBOW_DRAW1, "bow" );

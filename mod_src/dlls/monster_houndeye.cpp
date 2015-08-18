@@ -1299,3 +1299,5 @@ Schedule_t *CHoundeye :: GetSchedule( void )
 
 	return CSquadMonster :: GetSchedule();
 }
+
+// monster_houndeye_dead

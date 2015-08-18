@@ -3036,24 +3036,23 @@ void CBasePlayer::SelectItem(const char *pstr)
 		SetThink( &CBasePlayer::SelectItemX );	// Exec second part of the draw function
 	
 		// Next weapon deployment time fixes
-		if (FClassnameIs(m_pActiveItem->pev, "weapon_crowbar"))			pev->nextthink = gpGlobals->time + 1.0;
-		else if (FClassnameIs(m_pActiveItem->pev, "weapon_9mmhandgun"))	pev->nextthink = gpGlobals->time + 1.0;
-		else if (FClassnameIs(m_pActiveItem->pev, "weapon_glock"))		pev->nextthink = gpGlobals->time + 1.0;
+		if (FClassnameIs(m_pActiveItem->pev, "weapon_crowbar"))				pev->nextthink = gpGlobals->time + 0.5;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_9mmhandgun"))		pev->nextthink = gpGlobals->time + 0.7;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_glock"))			pev->nextthink = gpGlobals->time + 0.7;
 		else if (FClassnameIs(m_pActiveItem->pev, "weapon_357"))			pev->nextthink = gpGlobals->time + 1.0;
-		else if (FClassnameIs(m_pActiveItem->pev, "weapon_python"))		pev->nextthink = gpGlobals->time + 1.0;
-		else if (FClassnameIs(m_pActiveItem->pev, "weapon_9mmAR"))		pev->nextthink = gpGlobals->time + 1.0;
-		else if (FClassnameIs(m_pActiveItem->pev, "weapon_mp5"))			pev->nextthink = gpGlobals->time + 1.0;
-		else if (FClassnameIs(m_pActiveItem->pev, "weapon_shotgun"))		pev->nextthink = gpGlobals->time + 1.0;
-		else if (FClassnameIs(m_pActiveItem->pev, "weapon_crossbow"))		pev->nextthink = gpGlobals->time + 1.0;
-		else if (FClassnameIs(m_pActiveItem->pev, "weapon_rpg"))			pev->nextthink = gpGlobals->time + 1.0;
-		else if (FClassnameIs(m_pActiveItem->pev, "weapon_gauss"))		pev->nextthink = gpGlobals->time + 1.0;
-		else if (FClassnameIs(m_pActiveItem->pev, "weapon_egon"))			pev->nextthink = gpGlobals->time + 1.0;
-		else if (FClassnameIs(m_pActiveItem->pev, "weapon_hornetgun"))	pev->nextthink = gpGlobals->time + 1.0;
-		else if (FClassnameIs(m_pActiveItem->pev, "weapon_handgrenade"))	pev->nextthink = gpGlobals->time + 1.0;
-		else if (FClassnameIs(m_pActiveItem->pev, "weapon_handgrenade"))	pev->nextthink = gpGlobals->time + 1.0;
-		else if (FClassnameIs(m_pActiveItem->pev, "weapon_satchel"))		pev->nextthink = gpGlobals->time + 1.0;
-		else if (FClassnameIs(m_pActiveItem->pev, "weapon_tripmine"))		pev->nextthink = gpGlobals->time + 1.0;
-		else if (FClassnameIs(m_pActiveItem->pev, "weapon_snark"))		pev->nextthink = gpGlobals->time + 1.0;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_python"))			pev->nextthink = gpGlobals->time + 0.5;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_9mmAR"))			pev->nextthink = gpGlobals->time + 0.5;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_mp5"))			pev->nextthink = gpGlobals->time + 0.5;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_shotgun"))		pev->nextthink = gpGlobals->time + 0.5;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_crossbow"))		pev->nextthink = gpGlobals->time + 0.5;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_rpg"))			pev->nextthink = gpGlobals->time + 0.5;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_gauss"))			pev->nextthink = gpGlobals->time + 0.5;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_egon"))			pev->nextthink = gpGlobals->time + 0.5;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_hornetgun"))		pev->nextthink = gpGlobals->time + 1.1;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_handgrenade"))	pev->nextthink = gpGlobals->time + 0.5;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_satchel"))		pev->nextthink = gpGlobals->time + 0.5;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_tripmine"))		pev->nextthink = gpGlobals->time + 0.5;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_snark"))			pev->nextthink = gpGlobals->time + 1.0;
 
 		m_pActiveItem->Holster( );
 	}

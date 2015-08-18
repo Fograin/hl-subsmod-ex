@@ -2046,6 +2046,10 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\monster_alien_voltigore.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\monster_apache.cpp"
 					>
 					<FileConfiguration
@@ -2263,6 +2267,10 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\monster_drillsergeant.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\monster_flyer.cpp"
 					>
 					<FileConfiguration
@@ -2356,6 +2364,10 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\monster_geneworm.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\monster_gman.cpp"
 					>
 					<FileConfiguration
@@ -2385,6 +2397,10 @@
 							PreprocessorDefinitions=""
 						/>
 					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\monster_gonome.cpp"
+					>
 				</File>
 				<File
 					RelativePath=".\monster_headcrab.cpp"
@@ -2511,6 +2527,18 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\monster_human_grunt_ally.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\monster_human_medic_ally.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\monster_human_torch_ally.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\monster_ichthyosaur.cpp"
 					>
 					<FileConfiguration
@@ -2571,6 +2599,10 @@
 							PreprocessorDefinitions=""
 						/>
 					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\monster_male_assassin.cpp"
+					>
 				</File>
 				<File
 					RelativePath=".\monster_nihilanth.cpp"
@@ -2635,6 +2667,18 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\monster_otis.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\monster_pitdrone.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\monster_pitworm.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\monster_rat.cpp"
 					>
 					<FileConfiguration
@@ -2666,6 +2710,18 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\monster_recruit.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\monster_robo_loader.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\monster_rosenberg.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\monster_scientist.cpp"
 					>
 					<FileConfiguration
@@ -2695,6 +2751,10 @@
 							PreprocessorDefinitions=""
 						/>
 					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\monster_shocktrooper.cpp"
+					>
 				</File>
 				<File
 					RelativePath=".\monster_tentacle.cpp"
@@ -3194,6 +3254,14 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\weapon_displacer.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\weapon_eagle.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\weapon_egon.cpp"
 					>
 					<FileConfiguration
@@ -3287,6 +3355,10 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\weapon_grapple.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\weapon_handgrenade.cpp"
 					>
 					<FileConfiguration
@@ -3349,6 +3421,14 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\weapon_knife.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\weapon_m249.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\weapon_mp5.cpp"
 					>
 					<FileConfiguration
@@ -3378,6 +3458,10 @@
 							PreprocessorDefinitions=""
 						/>
 					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\weapon_pipewrench.cpp"
+					>
 				</File>
 				<File
 					RelativePath=".\weapon_python.cpp"
@@ -3473,6 +3557,10 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\weapon_shockrifle.cpp"
+					>
+				</File>
+				<File
 					RelativePath=".\weapon_shotgun.cpp"
 					>
 					<FileConfiguration
@@ -3533,6 +3621,14 @@
 							PreprocessorDefinitions=""
 						/>
 					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\weapon_sniperrifle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\weapon_sporelauncher.cpp"
+					>
 				</File>
 				<File
 					RelativePath=".\weapon_tripmine.cpp"
