@@ -67,18 +67,20 @@
 #define MOVETYPE_NONE		0	// never moves
 //#define	MOVETYPE_ANGLENOCLIP	1
 //#define	MOVETYPE_ANGLECLIP		2
-#define MOVETYPE_WALK		3	// Player only - moving on the ground
-#define MOVETYPE_STEP		4	// gravity, special edge handling -- monsters use this
-#define MOVETYPE_FLY		5	// No gravity, but still collides with stuff
-#define MOVETYPE_TOSS		6	// gravity/collisions
-#define MOVETYPE_PUSH		7	// no clip to world, push and crush
-#define MOVETYPE_NOCLIP		8	// No gravity, no collisions, still do velocity/avelocity
+#define MOVETYPE_WALK			3	// Player only - moving on the ground
+#define MOVETYPE_STEP			4	// gravity, special edge handling -- monsters use this
+#define MOVETYPE_FLY			5	// No gravity, but still collides with stuff
+#define MOVETYPE_TOSS			6	// gravity/collisions
+#define MOVETYPE_PUSH			7	// no clip to world, push and crush
+#define MOVETYPE_NOCLIP			8	// No gravity, no collisions, still do velocity/avelocity
 #define MOVETYPE_FLYMISSILE		9	// extra size to monsters
-#define MOVETYPE_BOUNCE		10	// Just like Toss, but reflect velocity when contacting surfaces
+#define MOVETYPE_BOUNCE			10	// Just like Toss, but reflect velocity when contacting surfaces
 #define MOVETYPE_BOUNCEMISSILE	11	// bounce w/o gravity
-#define MOVETYPE_FOLLOW		12	// track movement of aiment
+#define MOVETYPE_FOLLOW			12	// track movement of aiment
 #define MOVETYPE_PUSHSTEP		13	// BSP model that needs physics/world collisions (uses nearest hull for world collision)
 #define MOVETYPE_COMPOUND		14	// glue two entities together (simple movewith)
+#define MOVETYPE_JETPACK		15	// Fograin92
+
 
 // edict->solid values
 // NOTE: Some movetypes will cause collisions independent of SOLID_NOT/SOLID_TRIGGER when the entity moves

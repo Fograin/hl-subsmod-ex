@@ -3254,11 +3254,11 @@
 					</FileConfiguration>
 				</File>
 				<File
-					RelativePath=".\weapon_displacer.cpp"
+					RelativePath=".\weapon_deagle.cpp"
 					>
 				</File>
 				<File
-					RelativePath=".\weapon_eagle.cpp"
+					RelativePath=".\weapon_displacer.cpp"
 					>
 				</File>
 				<File

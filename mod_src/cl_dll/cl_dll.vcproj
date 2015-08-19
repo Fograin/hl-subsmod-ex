@@ -1883,6 +1883,14 @@
 					>
 				</File>
 				<File
+					RelativePath="..\dlls\weapon_deagle.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\dlls\weapon_displacer.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\dlls\weapon_egon.cpp"
 					>
 				</File>
@@ -1895,6 +1903,10 @@
 					>
 				</File>
 				<File
+					RelativePath="..\dlls\weapon_grapple.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\dlls\weapon_handgrenade.cpp"
 					>
 				</File>
@@ -1903,7 +1915,19 @@
 					>
 				</File>
 				<File
+					RelativePath="..\dlls\weapon_knife.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\dlls\weapon_m249.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\dlls\weapon_mp5.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\dlls\weapon_pipewrench.cpp"
 					>
 				</File>
 				<File
@@ -1919,11 +1943,23 @@
 					>
 				</File>
 				<File
+					RelativePath="..\dlls\weapon_shockrifle.cpp"
+					>
+				</File>
+				<File
 					RelativePath="..\dlls\weapon_shotgun.cpp"
 					>
 				</File>
 				<File
 					RelativePath="..\dlls\weapon_snark.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\dlls\weapon_sniperrifle.cpp"
+					>
+				</File>
+				<File
+					RelativePath="..\dlls\weapon_sporelauncher.cpp"
 					>
 				</File>
 				<File

@@ -452,6 +452,15 @@ cvar_t	sk_player_leg3	= { "sk_player_leg3","1" };
 cvar_t	sm_hud	= { "sm_hud",	"0"};	// Used for HUD color, also it holds value of current loaded game (HL, OF, BS)
 cvar_t	sm_hev_pick	= { "sm_hev_pick",	"1"};	// Should HEV emit weapon pickup sentences?
 
+cvar_t	sk_bs_helmet1	= { "sk_bs_helmet1",	"1" };
+cvar_t	sk_bs_helmet2	= { "sk_bs_helmet2",	"1" };
+cvar_t	sk_bs_helmet3	= { "sk_bs_helmet3",	"1" };
+
+cvar_t	sk_bs_vest1	= { "sk_bs_vest1",	"1" };
+cvar_t	sk_bs_vest2	= { "sk_bs_vest2",	"1" };
+cvar_t	sk_bs_vest3	= { "sk_bs_vest3",	"1" };
+
+
 // Register your console variables here
 // This gets called one time when the game is initialied
 void GameDLLInit( void )
@@ -483,11 +492,6 @@ void GameDLLInit( void )
 	CVAR_REGISTER (&defaultteam);
 	CVAR_REGISTER (&allowmonsters);
 	CVAR_REGISTER (&mp_chattime);
-
-	// Half-Life Subtitles MOD CVARs
-	CVAR_REGISTER (&sm_hud);
-	CVAR_REGISTER (&sm_hev_pick);
-
 
 // REGISTER CVARS FOR SKILL LEVEL STUFF
 	// Agrunt
@@ -889,6 +893,19 @@ void GameDLLInit( void )
 	CVAR_REGISTER ( &sk_player_leg2 );
 	CVAR_REGISTER ( &sk_player_leg3 );
 // END REGISTER CVARS FOR SKILL LEVEL STUFF
+
+
+	// Half-Life Subtitles MOD CVARs
+	CVAR_REGISTER (&sm_hud);
+	CVAR_REGISTER (&sm_hev_pick);
+
+	CVAR_REGISTER (&sk_bs_helmet1);
+	CVAR_REGISTER (&sk_bs_helmet2);
+	CVAR_REGISTER (&sk_bs_helmet3);
+
+	CVAR_REGISTER (&sk_bs_vest1);
+	CVAR_REGISTER (&sk_bs_vest2);
+	CVAR_REGISTER (&sk_bs_vest3);
 
 	SERVER_COMMAND( "exec skill.cfg\n" );
 }

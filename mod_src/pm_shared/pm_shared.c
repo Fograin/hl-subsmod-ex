@@ -2286,7 +2286,8 @@ void PM_Physics_Toss()
 // add gravity
 	if ( pmove->movetype != MOVETYPE_FLY &&
 		 pmove->movetype != MOVETYPE_BOUNCEMISSILE &&
-		 pmove->movetype != MOVETYPE_FLYMISSILE )
+		 pmove->movetype != MOVETYPE_FLYMISSILE &&
+		 pmove->movetype != MOVETYPE_JETPACK)	// Fograin92
 		PM_AddGravity ();
 
 // move origin
@@ -2978,7 +2979,8 @@ void PM_PlayerMove ( qboolean server )
 			PM_LadderMove( pLadder );
 		}
 		else if ( pmove->movetype != MOVETYPE_WALK &&
-			      pmove->movetype != MOVETYPE_NOCLIP )
+			      pmove->movetype != MOVETYPE_NOCLIP &&
+				  pmove->movetype != MOVETYPE_JETPACK)	// Fograin92
 		{
 			// Clear ladder stuff unless player is noclipping
 			//  it will be set immediately again next frame if necessary
@@ -3001,6 +3003,11 @@ void PM_PlayerMove ( qboolean server )
 
 	case MOVETYPE_NONE:
 		break;
+
+	// Fograin92
+	case MOVETYPE_JETPACK:
+		PM_JetPackFly();
+	break;
 
 	case MOVETYPE_NOCLIP:
 		PM_NoClip();
@@ -3329,4 +3336,86 @@ void PM_Init( struct playermove_s *ppmove )
 	PM_InitTextureTypes();
 
 	pm_shared_initialized = 1;
+}
+
+// Fograin92: Placeholder
+void PM_JetPackFly (void)
+{
+	int		i;
+	vec3_t	wishvel;
+	float	wishspeed;
+	vec3_t	wishdir;
+	vec3_t	start, dest;
+	vec3_t  temp;
+	pmtrace_t	trace;
+
+	float speed, newspeed, addspeed, accelspeed;
+	
+	for (i=0 ; i<3 ; i++)
+		wishvel[i] = pmove->forward[i]*pmove->cmd.forwardmove + pmove->right[i]*pmove->cmd.sidemove;
+
+
+	// Copy it over and determine speed
+	VectorCopy (wishvel, wishdir);
+	wishspeed = VectorNormalize(wishdir);
+
+	// Cap speed.
+	if (wishspeed > pmove->maxspeed)
+	{
+		VectorScale (wishvel, pmove->maxspeed/wishspeed, wishvel);
+		wishspeed = pmove->maxspeed;
+	}
+	// Slow us down a bit.
+	wishspeed *= 0.9;
+
+	VectorAdd (pmove->velocity, pmove->basevelocity, pmove->velocity);
+// Water friction
+	VectorCopy(pmove->velocity, temp);
+	speed = VectorNormalize(temp);
+	if (speed)
+	{
+		newspeed = speed - pmove->frametime * speed * pmove->movevars->friction * pmove->friction;
+
+		if (newspeed < 0)
+			newspeed = 0;
+		VectorScale (pmove->velocity, newspeed/speed, pmove->velocity);
+	}
+	else
+		newspeed = 0;
+
+//
+// water acceleration
+//
+	if ( wishspeed < 0.1f )
+	{
+		return;
+	}
+
+	addspeed = wishspeed - newspeed;
+	if (addspeed > 0)
+	{
+
+		VectorNormalize(wishvel);
+		accelspeed = pmove->movevars->accelerate * wishspeed * pmove->frametime * pmove->friction;
+		if (accelspeed > addspeed)
+			accelspeed = addspeed;
+
+		for (i = 0; i < 3; i++)
+			pmove->velocity[i] += accelspeed * wishvel[i];
+	}
+
+// Now move
+// assume it is a stair or a slope, so press down from stepheight above
+	VectorMA (pmove->origin, pmove->frametime, pmove->velocity, dest);
+	VectorCopy (dest, start);
+	start[2] += pmove->movevars->stepsize + 1;
+	trace = pmove->PM_PlayerTrace (start, dest, PM_NORMAL, -1 );
+	if (!trace.startsolid && !trace.allsolid)	// FIXME: check steep slope?
+	{	// walked up the step, so just keep result and exit
+		VectorCopy (trace.endpos, pmove->origin);
+		return;
+	}
+	
+	// Try moving straight along out normal path.
+	PM_FlyMove ();
 }

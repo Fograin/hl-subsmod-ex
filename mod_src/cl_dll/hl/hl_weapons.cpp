@@ -1,17 +1,13 @@
-/***
-*
-*	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
-*	All Rights Reserved.
-*
-*   Use, distribution, and modification of this source code and/or resulting
-*   object code is restricted to non-commercial enhancements to products from
-*   Valve LLC.  All other use, distribution, or modification is prohibited
-*   without written permission from Valve LLC.
-*
-****/
+//=============================================================//
+//	Half-Life Subtitles MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	This product contains software technology licensed from:
+//	Valve LLC.
+//	Id Software, Inc. ("Id Technology")
+//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
 #include "extdll.h"
 #include "util.h"
 #include "cbase.h"
@@ -53,20 +49,22 @@ int   g_irunninggausspred = 0;
 vec3_t previousorigin;
 
 // HLDM Weapon placeholder entities.
-CGlock g_Glock;
-CCrowbar g_Crowbar;
-CPython g_Python;
-CMP5 g_Mp5;
-CCrossbow g_Crossbow;
-CShotgun g_Shotgun;
-CRpg g_Rpg;
-CGauss g_Gauss;
-CEgon g_Egon;
-CHgun g_HGun;
-CHandGrenade g_HandGren;
-CSatchel g_Satchel;
-CTripmine g_Tripmine;
-CSqueak g_Snark;
+// Fograin92: I don't know if we still need this, since we're SP only and prediction is OFF, but let's keep it here
+CGlock			g_Glock;
+CCrowbar		g_Crowbar;
+CPython			g_Python;
+CMP5			g_Mp5;
+CCrossbow		g_Crossbow;
+CShotgun		g_Shotgun;
+CRpg			g_Rpg;
+CGauss			g_Gauss;
+CEgon			g_Egon;
+CHgun			g_HGun;
+CHandGrenade	g_HandGren;
+CSatchel		g_Satchel;
+CTripmine		g_Tripmine;
+CSqueak			g_Snark;
+CGrapple		g_Grapple;	// Fograin92: Grapple weapon
 
 
 /*
@@ -623,20 +621,22 @@ void HUD_InitClientWeapons( void )
 	HUD_PrepEntity( &player		, NULL );
 
 	// Allocate slot(s) for each weapon that we are going to be predicting
+	// Fograin92: Weapon prediction is OFF, but let's keep this code anyways
 	HUD_PrepEntity( &g_Glock	, &player );
 	HUD_PrepEntity( &g_Crowbar	, &player );
 	HUD_PrepEntity( &g_Python	, &player );
-	HUD_PrepEntity( &g_Mp5	, &player );
+	HUD_PrepEntity( &g_Mp5		, &player );
 	HUD_PrepEntity( &g_Crossbow	, &player );
 	HUD_PrepEntity( &g_Shotgun	, &player );
-	HUD_PrepEntity( &g_Rpg	, &player );
+	HUD_PrepEntity( &g_Rpg		, &player );
 	HUD_PrepEntity( &g_Gauss	, &player );
-	HUD_PrepEntity( &g_Egon	, &player );
-	HUD_PrepEntity( &g_HGun	, &player );
+	HUD_PrepEntity( &g_Egon		, &player );
+	HUD_PrepEntity( &g_HGun		, &player );
 	HUD_PrepEntity( &g_HandGren	, &player );
 	HUD_PrepEntity( &g_Satchel	, &player );
 	HUD_PrepEntity( &g_Tripmine	, &player );
 	HUD_PrepEntity( &g_Snark	, &player );
+	HUD_PrepEntity( &g_Grapple	, &player );	// Fograin92: Grapple weapon
 }
 
 /*
@@ -756,6 +756,11 @@ void HUD_WeaponsPostThink( local_state_s *from, local_state_s *to, usercmd_t *cm
 
 		case WEAPON_SNARK:
 			pWeapon = &g_Snark;
+			break;
+
+		// Fograin92: Weapon grapple
+		case WEAPON_GRAPPLE:
+			pWeapon = &g_Grapple;
 			break;
 	}
 

@@ -49,7 +49,11 @@ void CMP5::Spawn( )
 	SET_MODEL(ENT(pev), "models/w_9mmAR.mdl");
 	m_iId = WEAPON_MP5;
 
-	m_iDefaultAmmo = MP5_DEFAULT_GIVE;
+	// Fograin92: If it's Opposing Force give 50 starting ammo instead of 25 (Thanks, Kevin "Rara" Clifford)
+	if (CVAR_GET_FLOAT("sm_hud") == 2 )
+		m_iDefaultAmmo = MP5_DEFAULT_GIVE_OF;
+	else
+		m_iDefaultAmmo = MP5_DEFAULT_GIVE;
 
 	FallInit();// get ready to fall down.
 }

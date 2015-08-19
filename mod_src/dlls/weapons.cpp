@@ -314,6 +314,10 @@ void W_Precache(void)
 	UTIL_PrecacheOther( "item_longjump" );
 	UTIL_PrecacheOther( "item_healthkit" );	// Fograin92: Fix for missing healthkit precache
 
+	// Precache BS items
+	UTIL_PrecacheOther( "item_helmet" );
+	UTIL_PrecacheOther( "item_armorvest" );
+
 	// Precache HL Weapons
 	UTIL_PrecacheOtherWeapon( "weapon_crowbar" );
 	UTIL_PrecacheOtherWeapon( "weapon_9mmhandgun" );
@@ -329,6 +333,9 @@ void W_Precache(void)
 	UTIL_PrecacheOtherWeapon( "weapon_satchel" );
 	UTIL_PrecacheOtherWeapon( "weapon_tripmine" );
 	UTIL_PrecacheOtherWeapon( "weapon_snark" );
+
+	// Precache OF Weapons
+	UTIL_PrecacheOtherWeapon( "weapon_grapple" );	// Rara
 
 	// Precache HL Ammo
 	UTIL_PrecacheOther( "ammo_9mmclip" );

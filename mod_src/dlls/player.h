@@ -31,6 +31,7 @@
 #define		PFLAG_DUCKING		( 1<<3 )		// In the process of ducking, but totally squatted yet
 #define		PFLAG_USING			( 1<<4 )		// Using a continuous entity
 #define		PFLAG_OBSERVER		( 1<<5 )		// player is locked in stationary cam mode. Spectators can move, observers can't.
+#define		PFLAG_ON_GRAPPLE 	( 1<<6 ) 		// Added Physics flag for grapple
 
 //
 // generic player
@@ -165,6 +166,12 @@ public:
 	CBasePlayerItem *m_pActiveItem;
 	CBasePlayerItem *m_pClientActiveItem;  // client version of the active item
 	CBasePlayerItem *m_pLastItem;
+
+	// Fograin92: Subtitles MOD stuff
+	int m_iGrappleExists;		// Rara: Grappling hook
+	CBaseEntity *m_MyGrapple;	// Rara: Grappling hook
+
+
 	// shared ammo slots
 	int	m_rgAmmo[MAX_AMMO_SLOTS];
 	int	m_rgAmmoLast[MAX_AMMO_SLOTS];

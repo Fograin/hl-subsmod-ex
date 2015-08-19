@@ -1766,6 +1766,12 @@ void CBasePlayer::UpdateStatusBar()
 
 void CBasePlayer::PreThink(void)
 {
+	// Fograin92: Grapple weapon
+	if( m_afPhysicsFlags & PFLAG_ON_GRAPPLE) // If we are on a grapple
+		pev->velocity = (m_MyGrapple->pev->origin - pev->origin) * 2;
+
+
+
 	int buttonsChanged = (m_afButtonLast ^ pev->button);	// These buttons have changed this frame
 	
 	// Debounced button codes for pressed/released
@@ -3053,6 +3059,7 @@ void CBasePlayer::SelectItem(const char *pstr)
 		else if (FClassnameIs(m_pActiveItem->pev, "weapon_satchel"))		pev->nextthink = gpGlobals->time + 0.5;
 		else if (FClassnameIs(m_pActiveItem->pev, "weapon_tripmine"))		pev->nextthink = gpGlobals->time + 0.5;
 		else if (FClassnameIs(m_pActiveItem->pev, "weapon_snark"))			pev->nextthink = gpGlobals->time + 1.0;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_grapple"))		pev->nextthink = gpGlobals->time + 1.0;
 
 		m_pActiveItem->Holster( );
 	}

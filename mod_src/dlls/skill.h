@@ -137,6 +137,10 @@ struct skilldata_t
 	float plrStomach;
 	float plrLeg;
 	float plrArm;
+
+// Fograin92: Blue Shift variables
+	float fSkill_bsHelmet;
+	float fSkill_bsVest;
 };
 
 extern	DLL_GLOBAL	skilldata_t	gSkillData;

@@ -489,3 +489,91 @@ class CHealthKit : public CItem
 };
 LINK_ENTITY_TO_CLASS( item_healthkit, CHealthKit );
 
+
+
+//=====================================//
+// item_helmet - Security Guard Helmet
+//=====================================//
+class CItemBsHelmet : public CItem
+{
+	void Spawn( void )
+	{ 
+		Precache( );
+		SET_MODEL(ENT(pev), "models/barney_helmet.mdl");
+		CItem::Spawn( );
+	}
+
+	void Precache( void )
+	{
+		PRECACHE_MODEL ("models/barney_helmet.mdl");
+		PRECACHE_SOUND( "items/gunpickup2.wav" );
+	}
+
+	BOOL MyTouch( CBasePlayer *pPlayer )
+	{
+		if ( pPlayer->pev->deadflag != DEAD_NO )
+			return FALSE;
+
+		// Fograin92: If current armor value is lower than max AND if it's Blue Shift
+		if ((pPlayer->pev->armorvalue < MAX_NORMAL_BATTERY) && (CVAR_GET_FLOAT("sm_hud") == 1.0 ))
+		{
+			pPlayer->pev->armorvalue += gSkillData.fSkill_bsHelmet;
+			pPlayer->pev->armorvalue = min(pPlayer->pev->armorvalue, MAX_NORMAL_BATTERY);
+
+			EMIT_SOUND( pPlayer->edict(), CHAN_ITEM, "items/gunpickup2.wav", 1, ATTN_NORM );
+
+			MESSAGE_BEGIN( MSG_ONE, gmsgItemPickup, NULL, pPlayer->pev );
+				WRITE_STRING( STRING(pev->classname) );
+			MESSAGE_END();
+
+			return TRUE;	
+		}
+
+		return FALSE;
+	}
+};
+LINK_ENTITY_TO_CLASS(item_helmet, CItemBsHelmet);
+
+
+//=====================================//
+// item_helmet - Security Guard Helmet
+//=====================================//
+class CItemBsVest : public CItem
+{
+	void Spawn( void )
+	{ 
+		Precache( );
+		SET_MODEL(ENT(pev), "models/barney_vest.mdl");
+		CItem::Spawn( );
+	}
+
+	void Precache( void )
+	{
+		PRECACHE_MODEL ("models/barney_vest.mdl");
+		PRECACHE_SOUND( "items/gunpickup2.wav" );
+	}
+
+	BOOL MyTouch( CBasePlayer *pPlayer )
+	{
+		if ( pPlayer->pev->deadflag != DEAD_NO )
+			return FALSE;
+
+		// Fograin92: If current armor value is lower than max AND if it's Blue Shift
+		if ((pPlayer->pev->armorvalue < MAX_NORMAL_BATTERY) && (CVAR_GET_FLOAT("sm_hud") == 1.0 ))
+		{
+			pPlayer->pev->armorvalue += gSkillData.fSkill_bsVest;
+			pPlayer->pev->armorvalue = min(pPlayer->pev->armorvalue, MAX_NORMAL_BATTERY);
+
+			EMIT_SOUND( pPlayer->edict(), CHAN_ITEM, "items/gunpickup2.wav", 1, ATTN_NORM );
+
+			MESSAGE_BEGIN( MSG_ONE, gmsgItemPickup, NULL, pPlayer->pev );
+				WRITE_STRING( STRING(pev->classname) );
+			MESSAGE_END();
+
+			return TRUE;	
+		}
+
+		return FALSE;
+	}
+};
+LINK_ENTITY_TO_CLASS(item_armorvest, CItemBsVest);

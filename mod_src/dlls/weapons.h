@@ -74,6 +74,7 @@ public:
 #define WEAPON_TRIPMINE			13
 #define	WEAPON_SATCHEL			14
 #define	WEAPON_SNARK			15
+#define WEAPON_GRAPPLE			16	// Rara
 
 #define WEAPON_ALLWEAPONS		(~(1<<WEAPON_SUIT))
 
@@ -100,6 +101,7 @@ public:
 #define SNARK_WEIGHT		5
 #define SATCHEL_WEIGHT		-10
 #define TRIPMINE_WEIGHT		-10
+#define GRAPPLE_WEIGHT		25	// Rara
 
 
 // weapon clip/carry ammo capacities
@@ -140,6 +142,7 @@ public:
 #define GLOCK_DEFAULT_GIVE			17
 #define PYTHON_DEFAULT_GIVE			6
 #define MP5_DEFAULT_GIVE			25
+#define MP5_DEFAULT_GIVE_OF			50	// Rara
 #define MP5_DEFAULT_AMMO			25
 #define MP5_M203_DEFAULT_GIVE		0
 #define SHOTGUN_DEFAULT_GIVE		12
@@ -1071,6 +1074,44 @@ public:
 
 private:
 	unsigned short m_usSnarkFire;
+};
+
+
+//====================================//
+// Written by: Kevin "Rara" Clifford
+// Edits by: Fograin92
+//====================================//
+class CGrapple : public CBasePlayerWeapon
+{
+public:
+
+	void Spawn(void);
+	void Precache(void);
+	int iItemSlot() { return 3; }
+	int GetItemInfo(ItemInfo *p);
+	int AddToPlayer(CBasePlayer *pPlayer);
+	void Holster(int skiplocal = 0);
+
+	void PrimaryAttack(void);
+	BOOL Deploy();
+	void WeaponIdle(void);
+
+	BOOL IsUseable(void);
+	void FlyThink(void);
+	void PullThink(void);
+
+	virtual BOOL UseDecrement(void)
+	{
+#if defined( CLIENT_WEAPONS )
+		return TRUE;
+#else
+		return FALSE;
+#endif
+	}
+
+private:
+	unsigned short m_usTongue;
+	unsigned short m_usTongue2;
 };
 
 

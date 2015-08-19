@@ -302,6 +302,11 @@ void CGameRules::RefreshSkillData ( void )
 	gSkillData.plrStomach = GetSkillCvar( "sk_player_stomach" );
 	gSkillData.plrLeg = GetSkillCvar( "sk_player_leg" );
 	gSkillData.plrArm = GetSkillCvar( "sk_player_arm" );
+
+
+	// Fograin92: Blue Shift variables
+	gSkillData.fSkill_bsHelmet	= GetSkillCvar( "sk_bs_helmet" );
+	gSkillData.fSkill_bsVest	= GetSkillCvar( "sk_bs_vest" );
 }
 
 //=========================================================
