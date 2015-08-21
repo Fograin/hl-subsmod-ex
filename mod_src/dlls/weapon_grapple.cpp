@@ -17,7 +17,6 @@
 
 	Edits by: Fograin92 and Kevin "Rara" Clifford
 */
-
 #include "extdll.h" 
 #include "util.h" 
 #include "cbase.h" 
@@ -31,7 +30,6 @@
 #include "vector.h"
 
 
-
 //=================//
 // Barnacle Tongue
 //=================//
@@ -42,12 +40,16 @@ public:
 	void Precache( void ); 
 	void EXPORT Move( void ); 
 	void EXPORT Hit( CBaseEntity* ); 
-	void Killed(entvars_t *pev, int gib); // Removes grapple
+	void Killed(entvars_t *pev, int gib);
+
 	static CGrappleHook* Create( Vector, Vector, CBasePlayer*);
 	int m_Chain; 
 	int m_iIsMoving; 
 	int m_iTrail_Length;
+	int m_iHitMonster;	// Fograin92: Used to handle what monster type we did hit
+
 	CBasePlayer *myowner;
+	CBaseEntity *myHitMonster;	// Fograin92: Pointer to our monster
 
 	unsigned short m_usTongue;
 };
@@ -63,7 +65,8 @@ void CGrappleHook :: Spawn( void )
 	pev->solid = SOLID_BBOX; 
 	pev->rendermode = kRenderNormal;
 	pev->renderamt = 0;
-	//pev->effects = EF_NODRAW; // Fograin92: We want to draw it
+
+	m_iHitMonster = 0; // Fograin92: We didn't hit any monsters
 
 	UTIL_SetSize( pev, Vector(0,0,0), Vector(0,0,0) ); 
 	UTIL_SetOrigin( pev, pev->origin ); 
@@ -80,38 +83,65 @@ void CGrappleHook :: Spawn( void )
 	pev->dmg = 0;
 }
 
+
 void CGrappleHook :: Precache( void ) 
 { 
 	m_Chain = PRECACHE_MODEL( "sprites/_tongue.spr" );	// Fograin92: Changed beam to proper tongue model
 	PRECACHE_MODEL( "models/v_bgrap_tonguetip.mdl" ); 
 	PRECACHE_SOUND("weapons/bgrapple_impact.wav");
-	//PRECACHE_SOUND("weapons/bgrapple_pull.wav");	// Tongue pull player
 }
 
+
 void CGrappleHook :: Hit( CBaseEntity* Target ) 
-{ 
+{
 	TraceResult TResult; 
 	Vector StartPosition;
-
-	EMIT_SOUND(ENT(pev), CHAN_WEAPON, "weapons/bgrapple_impact.wav", 1, ATTN_NORM);	// Fograin92: TODO, change it to be emited at source XYZ
-
 	Vector delta = Vector( 8, 8, 0 );
 	Vector mins = pev->origin - delta;
 	Vector maxs = pev->origin + delta;
 	maxs.z = pev->origin.z;
 
+	EMIT_SOUND(ENT(pev), CHAN_WEAPON, "weapons/bgrapple_impact.wav", 1, ATTN_NORM);
+
 #ifndef CLIENT_DLL
 
 	CBaseEntity *pList[1];
-	int count = UTIL_EntitiesInBox( pList, 1, mins, maxs, (FL_CLIENT|FL_MONSTER) );
+	int count = UTIL_EntitiesInBox( pList, 1, mins, maxs, (FL_MONSTER) );
+
+	// Fograin92: We did hit a monster
 	if ( count )
 	{
-		pev->velocity = pev->velocity.Normalize( );
-		myowner->m_afPhysicsFlags |= PFLAG_ON_GRAPPLE; //Set physics flag to "on grapple"
-		myowner->pev->movetype = MOVETYPE_BOUNCE; //Remove gravity effect on player
+		m_iHitMonster = 1;	// Fograin92: Let's assume we hit bigger monster.
+
+		// Fograin92: Loop through everything we did hit.
+		for (int i = 0; i < count; i++ )
+		{
+			ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> Hit ^3%s\n", STRING(pList[i]->pev->classname) );
+			myHitMonster = pList[i]; // Fograin92: Hook pointer to our monster.
+
+			// Fograin92: Check what did we hit
+			if ((FClassnameIs (pList[i]->pev, "monster_babycrab" ))
+				||	(FClassnameIs (pList[i]->pev, "monster_headcrab" ))
+				)
+			{
+				m_iHitMonster = 2;	// Fograin92: This is tiny monster.
+				SetTouch(NULL);		// Fograin92: Let's reset this, we don't want multiple HIT execs when target is moving.
+				break;
+			}
+		}
+
+		// Fograin92: If it's still "1" then we did hit bigger monster
+		if (m_iHitMonster == 1)
+		{
+			pev->velocity = pev->velocity.Normalize( );
+			myowner->m_afPhysicsFlags |= PFLAG_ON_GRAPPLE; // Set physics flag to "on grapple"
+			myowner->pev->movetype = MOVETYPE_BOUNCE; // Remove gravity effect on player
+			SetTouch(NULL);	// Fograin92: Let's reset this, we don't want multiple HIT execs when target is moving.
+		}
 	}
 	else
 	{
+		ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> Tongue hit a brush entity.\n");
 		TraceResult tr;
 		float rgfl1[3];
 		float rgfl2[3];
@@ -140,56 +170,78 @@ void CGrappleHook :: Hit( CBaseEntity* Target )
 			Killed(pev, 0);
 	}
 #endif
-
 }
 
 
-void CGrappleHook :: Killed(entvars_t *pev, int gib)
-{ 
-		myowner->pev->movetype = MOVETYPE_WALK; //Re-apply gravity
-		myowner->m_afPhysicsFlags &= ~PFLAG_ON_GRAPPLE; //Remove "on grapple" flag
-		myowner->m_iGrappleExists = 0;
-		SetThink(NULL);
-		SetTouch(NULL);
-		SUB_Remove( ); 
+void CGrappleHook::Killed(entvars_t *pev, int gib)
+{
+	ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> Tongue was killed.\n");
+
+	// Fograin92: Clear player
+	myowner->pev->movetype = MOVETYPE_WALK; //Re-apply gravity
+	myowner->m_afPhysicsFlags &= ~PFLAG_ON_GRAPPLE; //Remove "on grapple" flag
+	myowner->m_iGrappleExists = 0;
+	myowner->m_flNextAttack = UTIL_WeaponTimeBase() + 1.0;
+
+	// Fograin92: Clear tongue leftovers
+	m_iHitMonster = 0;
+	SetThink(NULL);
+	SetTouch(NULL);
+	SUB_Remove( ); 
 }
 
 
 CGrappleHook* CGrappleHook :: Create( Vector Pos, Vector Aim, CBasePlayer* Owner ) 
-{ 
+{
+	ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> Tongue spawned.\n");
 	CGrappleHook* Hook = GetClassPtr( (CGrappleHook*)NULL ); 
 	UTIL_SetOrigin( Hook->pev, Pos ); 
 	Hook->pev->angles = Aim; 
-	Hook->Spawn( ); 
-	Hook->SetTouch( &CGrappleHook :: Hit ); 
-	Hook->pev->owner = Owner->edict( );
+	Hook->Spawn(); 
+	Hook->SetTouch( &CGrappleHook::Hit ); 
+	Hook->pev->owner = Owner->edict();
 	Hook->myowner = Owner;
-	return Hook; 
+	return Hook;
 }
 
 
 void CGrappleHook :: Move( void ) 
-{ 
-	if( !myowner->IsAlive( ) ) //if owner is dead is
+{
+	// Fograin92: If owner (player) is dead or if he's not holding attack buttons
+	if( (!myowner->IsAlive()) || (!(myowner->pev->button & (IN_ATTACK|IN_ATTACK2))) )
 	{
-		Killed(pev, 0); //Remove grapple
+		Killed(pev, 0); // Remove tongue
 		return;
 	}
 
-	if(!(myowner->pev->button & (IN_ATTACK|IN_ATTACK2) )) //If owner is not pushing attack buttons
+	// Fograin92: We did hit a monster
+	if(m_iHitMonster > 0)
 	{
-		Killed(pev, 0); //Remove grapple
-		return;
+		// Fograin92: Let's "stick" grapple tongue XYZ to target's center XYZ
+		pev->origin = myHitMonster->Center();
+
+		// Fograin92: We did hit tiny monster, let's pull it
+		if(m_iHitMonster == 2)
+		{
+			myHitMonster->pev->movetype = MOVETYPE_FLY;	// Remove gravity effect on our pulled monster // Fograin92: Set this to MOVETYPE_BOUNCE to create rubber headcrab!
+			myHitMonster->pev->velocity = (myowner->pev->origin - myHitMonster->pev->origin) * 4;	// Pull our monster
+		}
+
+		// Fograin92: Check distance (player <-> monster)
+		float fDistance = (myowner->pev->origin - myHitMonster->pev->origin).Length2D();
+
+		// Fograin92: The monster is very close to player, let's OWN IT!
+		if (fDistance < 40)
+		{
+			ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> OWNED -> ^3%s\n", STRING(myHitMonster->pev->classname) );
+			myHitMonster->TakeDamage(myHitMonster->pev, myowner->pev, 1000, DMG_GENERIC);	// TODO: change this to skill.h data
+			Killed(pev, 0);	// Fograin92: Target died, kill tongue
+		}
+
 	}
 
-	/*
-	if( myowner->m_afPhysicsFlags & PFLAG_ON_GRAPPLE) //If we are on a grapple
-	{
-		myowner->pev->velocity * 10;
-	}
-	*/
-
-	MESSAGE_BEGIN( MSG_BROADCAST, SVC_TEMPENTITY ); //Draw 'chain'
+	// Fograin92: Draw tongue sprite
+	MESSAGE_BEGIN( MSG_BROADCAST, SVC_TEMPENTITY );
 		WRITE_BYTE( TE_BEAMENTPOINT ); 
 		WRITE_SHORT( myowner->entindex() + 0x1000 );	// short (start entity) 
 		WRITE_COORD( pev->origin.x );	// coord coord coord (end position) 
@@ -218,17 +270,17 @@ void CGrappleHook :: Move( void )
 //=================//
 enum grapple_e
 {
-	GRAPPLE_BREATHE = 0,
-	GRAPPLE_LONGIDLE,
-	GRAPPLE_SHORTIDLE,
-	GRAPPLE_COUGH,
-	GRAPPLE_DOWN,
-	GRAPPLE_UP,
-	GRAPPLE_FIRE,
-	GRAPPLE_FIREWAITING,
-	GRAPPLE_FIREREACHED,
-	GRAPPLE_FIRETRAVEL,
-	GRAPPLE_FIRERELEASE
+	GRAPPLE_BREATHE = 0,	// 2.6 sec
+	GRAPPLE_LONGIDLE,		// 10 sec
+	GRAPPLE_SHORTIDLE,		// 1.36 sec
+	GRAPPLE_COUGH,			// 4.63 sec
+	GRAPPLE_DOWN,			// 1.36 sec
+	GRAPPLE_UP,				// 1 sec
+	GRAPPLE_FIRE,			// 0.63 sec
+	GRAPPLE_FIREWAITING,	// 0.56 sec
+	GRAPPLE_FIREREACHED,	// 4.7 sec
+	GRAPPLE_FIRETRAVEL,		// 0.68 sec
+	GRAPPLE_FIRERELEASE		// 1.03 sec
 };
 LINK_ENTITY_TO_CLASS( weapon_grapple, CGrapple );
 
@@ -256,15 +308,13 @@ void CGrapple :: Precache( void )
 	PRECACHE_MODEL("models/p_bgrap.mdl");
 	PRECACHE_MODEL("models/w_bgrap.mdl");
 
-	PRECACHE_SOUND("weapons/bgrapple_pull.wav");	// Tongue pull player
-	PRECACHE_SOUND("weapons/bgrapple_fire.wav");	// Fire
-	PRECACHE_SOUND("weapons/bgrapple_release.wav");	// Remove tongue
+	PRECACHE_SOUND("weapons/bgrapple_pull.wav");
+	PRECACHE_SOUND("weapons/bgrapple_fire.wav");
+	PRECACHE_SOUND("weapons/bgrapple_release.wav");
+	PRECACHE_SOUND("weapons/bgrapple_wait.wav");
+	PRECACHE_SOUND("weapons/bgrapple_cough.wav");
 
 	UTIL_PrecacheOther("proj_hook");
-
-	m_usTongue = PRECACHE_EVENT ( 1, "events/grapple.sc" );
-	m_usTongue2 = PRECACHE_EVENT ( 1, "events/grapple.sc" );
-
 }
 
 
@@ -299,29 +349,32 @@ int CGrapple :: GetItemInfo( ItemInfo* Info )
 
 
 BOOL CGrapple :: Deploy( void ) 
-{ 
+{
+	pev->nextthink = gpGlobals->time + 1.0;
+	SetThink (&CGrapple::WeaponIdle); // Fograin92: Force IDLE think
 	return DefaultDeploy( "models/v_bgrap.mdl", "models/p_bgrap.mdl", GRAPPLE_UP, "hive", 0 );
 }
 
 
 void CGrapple::Holster( int skiplocal )
 {
+	STFU_Grapple();	// Fograin92: Stop looped sounds
 	m_pPlayer->m_flNextAttack = UTIL_WeaponTimeBase() + 0.5;
 	SendWeaponAnim( GRAPPLE_DOWN );	// Fograin92: Holster anim
+	pev->nextthink = gpGlobals->time + 0.1;
+	SetThink (NULL);
 }
 
 
-void CGrapple :: PrimaryAttack( ) 
-{ 
+void CGrapple::PrimaryAttack( ) 
+{
+	// Fograin92: If player already have a tongue
 	if( m_pPlayer->m_iGrappleExists ) //if player already has a grapple
-	{
 		return;
-	}
 
+	// Fograin92: If weapon is still on cooldown
 	if(m_flNextPrimaryAttack > gpGlobals->time)
-	{
 		return;
-	}
 
 	int flags;
 #if defined( CLIENT_WEAPONS )
@@ -330,7 +383,10 @@ void CGrapple :: PrimaryAttack( )
 	flags = 0;
 #endif
 
-	SendWeaponAnim( GRAPPLE_FIREWAITING, 1 );
+	SendWeaponAnim( GRAPPLE_FIRE, 1 );
+	SetThink(&CGrapple::FlyThink);
+	pev->nextthink = gpGlobals->time + 0.58;
+
 	EMIT_SOUND(ENT(m_pPlayer->pev), CHAN_WEAPON, "weapons/bgrapple_fire.wav", 1, ATTN_NORM);
 	m_pPlayer->m_iGrappleExists = 1;
 	m_pPlayer->SetAnimation( PLAYER_ATTACK1 ); 
@@ -339,150 +395,90 @@ void CGrapple :: PrimaryAttack( )
 	Vector AimingDir = gpGlobals->v_forward; 
 	Vector GunPosition = m_pPlayer->GetGunPosition( );
 
-//#ifndef CLIENT_DLL
-
-		// single player spread
-		GunPosition = GunPosition + gpGlobals->v_up * -4 + gpGlobals->v_right * 3 + gpGlobals->v_forward * 16;
-		m_pPlayer->m_MyGrapple = CGrappleHook :: Create( GunPosition, m_pPlayer->pev->v_angle, m_pPlayer );
-
-//#endif
-
-
-	EMIT_SOUND( ENT(m_pPlayer->pev), CHAN_WEAPON, "weapons/bgrapple_pull.wav", 1, ATTN_NORM);
-//		ALERT( at_console, "Think launched!!!\n" );
-
-		SetThink(&CGrapple::FlyThink);
-	pev->nextthink = gpGlobals->time + 0.1;
-
+	GunPosition = GunPosition + gpGlobals->v_up * -4 + gpGlobals->v_right * 3 + gpGlobals->v_forward * 16;
+	m_pPlayer->m_MyGrapple = CGrappleHook :: Create( GunPosition, m_pPlayer->pev->v_angle, m_pPlayer );
 }
 
 
 void CGrapple :: FlyThink( void ) 
 {
-	
+	// Fograin92: Grapple is pulling player
 	if( m_pPlayer->m_afPhysicsFlags & PFLAG_ON_GRAPPLE ) //If we are on a grapple
 	{
-		ALERT( at_console, "Splat, flying!!!\n" );
-
+		ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> Pulling player.\n");
 		SendWeaponAnim( GRAPPLE_FIRETRAVEL, 1 );
-		SetThink(&CGrapple::PullThink);
+		pev->nextthink = gpGlobals->time + 0.6;
 	}
 
-	if ( !m_pPlayer->m_iGrappleExists )
+	// Fograin92: Grapple tongue died
+	else if ( !m_pPlayer->m_iGrappleExists )
 	{
-		ALERT( at_console, "Release!\n" );
-
-		SendWeaponAnim( GRAPPLE_FIRERELEASE, 1 );
+		ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> Released grapple hook.\n");
 		EMIT_SOUND( ENT(m_pPlayer->pev), CHAN_WEAPON, "weapons/bgrapple_release.wav", 1, ATTN_NORM);
 
-		m_flNextPrimaryAttack = m_flNextPrimaryAttack + 0.1;	// Fograin92: Should this be 1?
-
-		if (m_flNextPrimaryAttack < UTIL_WeaponTimeBase() )
-		{
-			m_flNextPrimaryAttack = UTIL_WeaponTimeBase() + 0.25;
-		}
-
+		SendWeaponAnim( GRAPPLE_FIRERELEASE, 1 );
+		pev->nextthink = gpGlobals->time + 0.98;
 		SetThink (&CGrapple::WeaponIdle);
-		pev->nextthink = gpGlobals->time + 0.1;	// Fograin92: Should this be 1?
-		m_flTimeWeaponIdle = gpGlobals->time + 0.5;
-	}
-
-	pev->nextthink = gpGlobals->time + 0.1;
-}
-
-
-void CGrapple :: PullThink( void ) 
-{
-	if( m_pPlayer->m_afPhysicsFlags & PFLAG_ON_GRAPPLE ) //If we are on a grapple
-	{
-		ALERT( at_console, "PullThink!\n" );
-		TraceResult tr;
-
-		UTIL_MakeVectors (m_pPlayer->pev->v_angle);
-		Vector vecSrc = m_pPlayer->GetGunPosition();
-		Vector vecEnd = vecSrc + gpGlobals->v_forward * 48;
-
-#ifndef CLIENT_DLL
-		UTIL_TraceLine( vecSrc, vecEnd, dont_ignore_monsters, ENT( m_pPlayer->pev ), &tr );
-
-		ClearMultiDamage();
-		CBaseEntity *pEntity = CBaseEntity::Instance(tr.pHit);
-		//pEntity->TraceAttack(m_pPlayer->pev, gSkillData.plrDmgGrapple, gpGlobals->v_forward, &tr, DMG_CLUB || DMG_ALWAYSGIB );
-		pEntity->TraceAttack(m_pPlayer->pev, 20, gpGlobals->v_forward, &tr, DMG_CLUB || DMG_ALWAYSGIB );	// Fograin92: TODO, Add skill data
-		ApplyMultiDamage( m_pPlayer->pev, m_pPlayer->pev );
-
-#endif
-		pev->nextthink = gpGlobals->time + 0.1;
-	}
-	else 
-	{
-
-		ALERT( at_console, "Release 2!\n" );
-		SendWeaponAnim( GRAPPLE_FIRERELEASE, 1 );
-		EMIT_SOUND( ENT(m_pPlayer->pev), CHAN_WEAPON, "weapons/bgrapple_release.wav", 1, ATTN_NORM);
-
-		m_flNextPrimaryAttack = m_flNextPrimaryAttack + 0.1;	// Fograin92: Should this be 1?
-
+		
+		m_flNextPrimaryAttack = m_flNextPrimaryAttack + 0.5;	// Fograin92: Cooldown before we can use weapon again
 		if (m_flNextPrimaryAttack < UTIL_WeaponTimeBase() )
-		{
-			m_flNextPrimaryAttack = UTIL_WeaponTimeBase() + 1;
-		}
-
-		SetThink(&CGrapple::WeaponIdle);
-		pev->nextthink = gpGlobals->time + 0.1;		// Fograin92: 1
-		m_flTimeWeaponIdle = gpGlobals->time + 0.1;	// Fograin92: 0.5
-	}
-}
-
-
-void CGrapple :: WeaponIdle( void ) 
-{
-	int iAnim;
-	int fRand;
-	m_pPlayer->GetAutoaimVector( AUTOAIM_10DEGREES );
-		STOP_SOUND( ENT(pev), CHAN_WEAPON, "weapons/bgrapple_wait.wav" );
-
-		pev->nextthink = gpGlobals->time + 0.5;
-
-	if ( m_flTimeWeaponIdle > gpGlobals->time )
-	return;
-
-	fRand = RANDOM_LONG (0, 3);
-
-	if ( fRand < 3 )
-	{
-	switch ( RANDOM_LONG (0, 1) )
-		{
-	case 0:
-		iAnim = GRAPPLE_BREATHE ;
-		m_flTimeWeaponIdle = gpGlobals->time + 3;
-		SendWeaponAnim( iAnim, 1 );
-	break;
-
-	case 1:	
-		iAnim = GRAPPLE_LONGIDLE;
-		m_flTimeWeaponIdle = gpGlobals->time + 10;
-		SendWeaponAnim( iAnim, 1 );
-	break;
-		}
+			m_flNextPrimaryAttack = UTIL_WeaponTimeBase() + 0.25;
 	}
 	else
 	{
-	switch ( RANDOM_LONG (0, 1) )
-		{
-	case 0:	
-		iAnim = GRAPPLE_SHORTIDLE;
-		m_flTimeWeaponIdle = gpGlobals->time + 0.5;
-		EMIT_SOUND(ENT(m_pPlayer->pev), CHAN_WEAPON, "weapons/bgrapple_wait.wav", 1, ATTN_NORM);
-		SendWeaponAnim( iAnim, 1 );
-	break;
-
-	case 1:	
-		iAnim = GRAPPLE_COUGH;
-		m_flTimeWeaponIdle = gpGlobals->time + 4.5;
-		EMIT_SOUND(ENT(m_pPlayer->pev), CHAN_WEAPON, "weapons/bgrapple_cough.wav", 1, ATTN_NORM);
-		SendWeaponAnim( iAnim, 1 );
-	break;
-		}
+		ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> Tongue flying\n");
+		EMIT_SOUND( ENT(m_pPlayer->pev), CHAN_WEAPON, "weapons/bgrapple_pull.wav", 1, ATTN_NORM);
+		SendWeaponAnim( GRAPPLE_FIREWAITING, 1 );
+		pev->nextthink = gpGlobals->time + 0.56;
 	}
 }
+
+
+void CGrapple::WeaponIdle( void ) 
+{
+	STFU_Grapple();	// Fograin92: Let's shutup any looped idle sounds
+	int iAnim = 0;				// Fograin92: Animation number
+	int iRand = (rand()%100)+1;	// Fograin92: Random animation chance (1-100)
+	float flTime = 0.0;			// Fograin92: Next WeaponIdle think time
+
+	if(iRand >= 50)	
+	{
+		ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> BREATHE IDLE.\n");
+		iAnim = GRAPPLE_BREATHE;
+		pev->nextthink = gpGlobals->time + 2.6;
+	}
+	else if( (iRand < 50) && (iRand >= 25))
+	{
+		ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> LONG IDLE.\n");
+		iAnim = GRAPPLE_LONGIDLE;
+		pev->nextthink = gpGlobals->time + 10.0;
+	}
+	else if( (iRand < 25) && (iRand >= 5))
+	{
+		ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> SHORT IDLE.\n");
+		iAnim = GRAPPLE_SHORTIDLE;
+		pev->nextthink = gpGlobals->time + 1.36;
+		EMIT_SOUND(ENT(m_pPlayer->pev), CHAN_WEAPON, "weapons/bgrapple_wait.wav", 1, ATTN_NORM);
+	}
+	else if (iRand < 5)
+	{
+		// Fograin92: 'cough' idle is rare animation, that way we won't annoy players with it.
+		ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> COUGH IDLE.\n");
+		iAnim = GRAPPLE_COUGH;
+		pev->nextthink = gpGlobals->time + 4.63;
+		EMIT_SOUND(ENT(m_pPlayer->pev), CHAN_WEAPON, "weapons/bgrapple_cough.wav", 1, ATTN_NORM);
+	}
+
+	SendWeaponAnim( iAnim, 1 );
+}
+
+// Fograin92: Simple hacky function to shutup grapple sounds
+void CGrapple::STFU_Grapple(void)
+{
+	STOP_SOUND( ENT(m_pPlayer->pev), CHAN_WEAPON, "weapons/bgrapple_wait.wav" );
+	STOP_SOUND( ENT(m_pPlayer->pev), CHAN_WEAPON, "weapons/bgrapple_cough.wav" );
+	STOP_SOUND( ENT(m_pPlayer->pev), CHAN_WEAPON, "weapons/bgrapple_pull.wav" );
+}
+
+
+

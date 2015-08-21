@@ -1098,20 +1098,21 @@ public:
 
 	BOOL IsUseable(void);
 	void FlyThink(void);
-	void PullThink(void);
 
 	virtual BOOL UseDecrement(void)
 	{
-#if defined( CLIENT_WEAPONS )
-		return TRUE;
-#else
-		return FALSE;
-#endif
+		#if defined( CLIENT_WEAPONS )
+			return TRUE;
+		#else
+			return FALSE;
+		#endif
 	}
 
 private:
-	unsigned short m_usTongue;
-	unsigned short m_usTongue2;
+	void STFU_Grapple(void);	// Fograin92: Simple hacky function to shutup grapple sounds
+
+	//unsigned short m_usTongue;
+	//unsigned short m_usTongue2;
 };
 
 

@@ -1728,22 +1728,6 @@ void EV_FireGRAPPLE(event_args_t *args)
 	gEngfuncs.pEventAPI->EV_PlaySound( idx, origin, CHAN_WEAPON, "weapons/bgrapple_fire.wav", 1, ATTN_NORM, 0, 100 );
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 void EV_TrainPitchAdjust( event_args_t *args )
 {
 	int idx;
