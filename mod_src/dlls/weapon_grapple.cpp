@@ -163,8 +163,8 @@ void CGrappleHook :: Hit( CBaseEntity* Target )
 		if (pTextureName && myowner && (strnicmp (pTextureName, "xeno_", 5) == 0))
 		{
 			pev->velocity = pev->velocity.Normalize( );
-			myowner->m_afPhysicsFlags |= PFLAG_ON_GRAPPLE; //Set physics flag to "on grapple"
-			myowner->pev->movetype = MOVETYPE_BOUNCE; //Remove gravity effect on player
+			myowner->m_afPhysicsFlags |= PFLAG_ON_GRAPPLE; // Set physics flag to "on grapple"
+			myowner->pev->movetype = MOVETYPE_BOUNCE; // Remove gravity effect on player
 		}
 		else
 			Killed(pev, 0);
@@ -183,6 +183,10 @@ void CGrappleHook::Killed(entvars_t *pev, int gib)
 	myowner->m_iGrappleExists = 0;
 	myowner->m_flNextAttack = UTIL_WeaponTimeBase() + 1.0;
 
+	// Fograin92: Clear monster
+	if( (m_iHitMonster == 2) && (myHitMonster->IsAlive()) )
+		myHitMonster->pev->movetype = MOVETYPE_STEP;	// Re-apply gravity to the pulled monster, if it's alive
+	
 	// Fograin92: Clear tongue leftovers
 	m_iHitMonster = 0;
 	SetThink(NULL);
@@ -234,7 +238,7 @@ void CGrappleHook :: Move( void )
 		if (fDistance < 40)
 		{
 			ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> OWNED -> ^3%s\n", STRING(myHitMonster->pev->classname) );
-			myHitMonster->TakeDamage(myHitMonster->pev, myowner->pev, 1000, DMG_GENERIC);	// TODO: change this to skill.h data
+			myHitMonster->TakeDamage(myHitMonster->pev, myowner->pev, 5000, DMG_GENERIC);
 			Killed(pev, 0);	// Fograin92: Target died, kill tongue
 		}
 
