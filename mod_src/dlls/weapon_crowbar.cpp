@@ -8,7 +8,6 @@
 //
 //	Before using any parts of this code, read licence.txt file 
 //=============================================================//
-
 #include "extdll.h"
 #include "util.h"
 #include "cbase.h"
@@ -62,7 +61,7 @@ void CCrowbar::Precache( void )
 	PRECACHE_SOUND("weapons/cbar_hitbod3.wav");
 	PRECACHE_SOUND("weapons/cbar_miss1.wav");
 
-	m_usCrowbar = PRECACHE_EVENT ( 1, "events/crowbar.sc" );
+	//m_usCrowbar = PRECACHE_EVENT ( 1, "events/crowbar.sc" );
 }
 
 int CCrowbar::GetItemInfo(ItemInfo *p)
@@ -98,52 +97,6 @@ void CCrowbar::Holster( int skiplocal /* = 0 */ )
 	m_pPlayer->m_flNextAttack = UTIL_WeaponTimeBase() + 0.5;
 	SendWeaponAnim( CROWBAR_HOLSTER );
 }
-
-
-void FindHullIntersection( const Vector &vecSrc, TraceResult &tr, float *mins, float *maxs, edict_t *pEntity )
-{
-	int			i, j, k;
-	float		distance;
-	float		*minmaxs[2] = {mins, maxs};
-	TraceResult tmpTrace;
-	Vector		vecHullEnd = tr.vecEndPos;
-	Vector		vecEnd;
-
-	distance = 1e6f;
-
-	vecHullEnd = vecSrc + ((vecHullEnd - vecSrc)*2);
-	UTIL_TraceLine( vecSrc, vecHullEnd, dont_ignore_monsters, pEntity, &tmpTrace );
-	if ( tmpTrace.flFraction < 1.0 )
-	{
-		tr = tmpTrace;
-		return;
-	}
-
-	for ( i = 0; i < 2; i++ )
-	{
-		for ( j = 0; j < 2; j++ )
-		{
-			for ( k = 0; k < 2; k++ )
-			{
-				vecEnd.x = vecHullEnd.x + minmaxs[i][0];
-				vecEnd.y = vecHullEnd.y + minmaxs[j][1];
-				vecEnd.z = vecHullEnd.z + minmaxs[k][2];
-
-				UTIL_TraceLine( vecSrc, vecEnd, dont_ignore_monsters, pEntity, &tmpTrace );
-				if ( tmpTrace.flFraction < 1.0 )
-				{
-					float thisDistance = (tmpTrace.vecEndPos - vecSrc).Length();
-					if ( thisDistance < distance )
-					{
-						tr = tmpTrace;
-						distance = thisDistance;
-					}
-				}
-			}
-		}
-	}
-}
-
 
 void CCrowbar::PrimaryAttack()
 {
@@ -195,15 +148,26 @@ int CCrowbar::Swing( int fFirst )
 	}
 #endif
 
-	PLAYBACK_EVENT_FULL( FEV_NOTHOST, m_pPlayer->edict(), m_usCrowbar, 
-	0.0, (float *)&g_vecZero, (float *)&g_vecZero, 0, 0, 0,
-	0.0, 0, 0.0 );
+	//PLAYBACK_EVENT_FULL( FEV_NOTHOST, m_pPlayer->edict(), m_usCrowbar, 0.0, (float *)&g_vecZero, (float *)&g_vecZero, 0, 0, 0, 0.0, 0, 0.0 );
 
 
+	// Fograin92: Crowbar swing missed
 	if ( tr.flFraction >= 1.0 )
 	{
 		if (fFirst)
 		{
+			EMIT_SOUND(ENT(m_pPlayer->pev), CHAN_ITEM, "weapons/cbar_miss1.wav", 1, ATTN_NORM);
+
+			switch( ((m_iSwing++) % 2) + 1 )
+			{
+			case 0:
+				SendWeaponAnim( CROWBAR_ATTACK1MISS ); break;
+			case 1:
+				SendWeaponAnim( CROWBAR_ATTACK2MISS ); break;
+			case 2:
+				SendWeaponAnim( CROWBAR_ATTACK3MISS ); break;
+			}
+
 			// miss
 			m_flNextPrimaryAttack = UTIL_WeaponTimeBase() + 0.5;
 			

@@ -1380,7 +1380,7 @@ LINK_ENTITY_TO_CLASS( gibshooter, CGibShooter );
 
 void CGibShooter :: Precache ( void )
 {
-	m_iGibModelIndex = PRECACHE_MODEL ("models/hgibs.mdl");
+	m_iGibModelIndex = PRECACHE_MODEL ("models/SD/gibs_human_misc.mdl");
 }
 
 
@@ -1447,7 +1447,7 @@ CGib *CGibShooter :: CreateGib ( void )
 		return NULL;
 
 	CGib *pGib = GetClassPtr( (CGib *)NULL );
-	pGib->Spawn( "models/hgibs.mdl" );
+	pGib->Spawn( "models/SD/gibs_human_misc.mdl" );
 	pGib->m_bloodColor = BLOOD_COLOR_RED;
 
 	if ( pev->body <= 1 )

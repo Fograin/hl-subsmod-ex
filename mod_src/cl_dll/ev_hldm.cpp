@@ -44,29 +44,27 @@ extern cvar_t *cl_lw;
 
 extern "C"
 {
+	// HLDM
+	void EV_FireGlock1( struct event_args_s *args  );
+	void EV_FireGlock2( struct event_args_s *args  );
+	void EV_FireShotGunSingle( struct event_args_s *args  );
+	void EV_FireShotGunDouble( struct event_args_s *args  );
+	void EV_FireMP5( struct event_args_s *args  );
+	void EV_FireMP52( struct event_args_s *args  );
+	void EV_FirePython( struct event_args_s *args  );
+	void EV_FireGauss( struct event_args_s *args  );
+	void EV_SpinGauss( struct event_args_s *args  );
+	//void EV_Crowbar( struct event_args_s *args  );
+	void EV_FireCrossbow( struct event_args_s *args  );
+	void EV_FireCrossbow2( struct event_args_s *args  );
+	void EV_FireRpg( struct event_args_s *args  );
+	void EV_EgonFire( struct event_args_s *args  );
+	void EV_EgonStop( struct event_args_s *args  );
+	void EV_HornetGunFire( struct event_args_s *args  );
+	void EV_TripmineFire( struct event_args_s *args  );
+	void EV_SnarkFire( struct event_args_s *args  );
 
-// HLDM
-void EV_FireGlock1( struct event_args_s *args  );
-void EV_FireGlock2( struct event_args_s *args  );
-void EV_FireShotGunSingle( struct event_args_s *args  );
-void EV_FireShotGunDouble( struct event_args_s *args  );
-void EV_FireMP5( struct event_args_s *args  );
-void EV_FireMP52( struct event_args_s *args  );
-void EV_FirePython( struct event_args_s *args  );
-void EV_FireGauss( struct event_args_s *args  );
-void EV_SpinGauss( struct event_args_s *args  );
-void EV_Crowbar( struct event_args_s *args  );
-void EV_FireCrossbow( struct event_args_s *args  );
-void EV_FireCrossbow2( struct event_args_s *args  );
-void EV_FireRpg( struct event_args_s *args  );
-void EV_EgonFire( struct event_args_s *args  );
-void EV_EgonStop( struct event_args_s *args  );
-void EV_HornetGunFire( struct event_args_s *args  );
-void EV_TripmineFire( struct event_args_s *args  );
-void EV_SnarkFire( struct event_args_s *args  );
-void EV_FireGRAPPLE( struct event_args_s *args ); // Rara: GRAPPLE
-
-void EV_TrainPitchAdjust( struct event_args_s *args );
+	void EV_TrainPitchAdjust( struct event_args_s *args );
 }
 
 #define VECTOR_CONE_1DEGREES Vector( 0.00873, 0.00873, 0.00873 )
@@ -1113,7 +1111,7 @@ void EV_FireGauss( event_args_t *args )
 //======================
 //	   CROWBAR START
 //======================
-
+/*
 enum crowbar_e {
 	CROWBAR_IDLE = 0,
 	CROWBAR_DRAW,
@@ -1158,6 +1156,7 @@ void EV_Crowbar( event_args_t *args )
 		}
 	}
 }
+*/
 //======================
 //	   CROWBAR END 
 //======================
@@ -1687,46 +1686,6 @@ void EV_SnarkFire( event_args_t *args )
 //	   SQUEAK END
 //======================
 
-
-//====================================//
-// weapon_grapple
-// Written by: Kevin "Rara" Clifford
-// Edited by: Fograin92
-//====================================//
-enum grapple_e
-{
-	GRAPPLE_BREATHE = 0,
-	GRAPPLE_LONGIDLE,
-	GRAPPLE_SHORTIDLE,
-	GRAPPLE_COUGH,
-	GRAPPLE_DOWN,
-	GRAPPLE_UP,
-	GRAPPLE_FIRE,
-	GRAPPLE_FIREWAITING,
-	GRAPPLE_FIREREACHED,
-	GRAPPLE_FIRETRAVEL,
-	GRAPPLE_FIRERELEASE
-};
-
-// Fograin92: Rewritten, this puppy is now based on Hornet Gun copy-paste with edits
-void EV_FireGRAPPLE(event_args_t *args)
-{
-	int idx;
-	vec3_t origin, angles, vecSrc, forward, right, up;
-
-	idx = args->entindex;
-	VectorCopy( args->origin, origin );
-	VectorCopy( args->angles, angles );
-
-	//Only play the weapon anims if I shot it.
-	if ( EV_IsLocal( idx ) )
-	{
-		V_PunchAxis( 0, gEngfuncs.pfnRandomLong ( 0, 2 ) );
-		gEngfuncs.pEventAPI->EV_WeaponAnimation ( GRAPPLE_FIRE, 1 );
-	}
-
-	gEngfuncs.pEventAPI->EV_PlaySound( idx, origin, CHAN_WEAPON, "weapons/bgrapple_fire.wav", 1, ATTN_NORM, 0, 100 );
-}
 
 void EV_TrainPitchAdjust( event_args_t *args )
 {

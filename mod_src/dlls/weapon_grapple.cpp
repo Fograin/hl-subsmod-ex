@@ -42,16 +42,16 @@ public:
 	void EXPORT Hit( CBaseEntity* ); 
 	void Killed(entvars_t *pev, int gib);
 
-	static CGrappleHook* Create( Vector, Vector, CBasePlayer*);
-	int m_Chain; 
-	int m_iIsMoving; 
-	int m_iTrail_Length;
-	int m_iHitMonster;	// Fograin92: Used to handle what monster type we did hit
+	static	CGrappleHook* Create( Vector, Vector, CBasePlayer*);
+	int		m_Chain; 
+	int		m_iIsMoving; 
+	int		m_iTrail_Length;
+	int		m_iHitMonster;	// Fograin92: Used to handle what monster type we did hit
+	BOOL	bPullBack;		// Fograin92: Used to "pull-back" tongue after miss or release
 
 	CBasePlayer *myowner;
 	CBaseEntity *myHitMonster;	// Fograin92: Pointer to our monster
-
-	unsigned short m_usTongue;
+	CBeam		*m_pTongue;		// Fograin92: New tongue
 };
 LINK_ENTITY_TO_CLASS( proj_hook, CGrappleHook );
 
@@ -60,13 +60,14 @@ void CGrappleHook :: Spawn( void )
 { 
 	Precache( ); 
 
-	SET_MODEL( ENT(pev), "models/v_bgrap_tonguetip.mdl" );
-	pev->movetype = MOVETYPE_FLY; 
-	pev->solid = SOLID_BBOX; 
+	SET_MODEL( ENT(pev), "models/SD/v_bgrap_tonguetip.mdl" );
+	pev->movetype	= MOVETYPE_FLY; 
+	pev->solid		= SOLID_BBOX; 
 	pev->rendermode = kRenderNormal;
-	pev->renderamt = 0;
+	pev->renderamt	= 0;
 
-	m_iHitMonster = 0; // Fograin92: We didn't hit any monsters
+	m_iHitMonster = 0;	// Fograin92: We didn't hit any monsters
+	bPullBack = false;	// Fograin92: We just launched the tongue, we don't want to pull it back
 
 	UTIL_SetSize( pev, Vector(0,0,0), Vector(0,0,0) ); 
 	UTIL_SetOrigin( pev, pev->origin ); 
@@ -86,22 +87,22 @@ void CGrappleHook :: Spawn( void )
 
 void CGrappleHook :: Precache( void ) 
 { 
-	m_Chain = PRECACHE_MODEL( "sprites/_tongue.spr" );	// Fograin92: Changed beam to proper tongue model
-	PRECACHE_MODEL( "models/v_bgrap_tonguetip.mdl" ); 
+	PRECACHE_MODEL( "sprites/_tongue.spr" );
+	PRECACHE_MODEL( "models/SD/v_bgrap_tonguetip.mdl" ); 
 	PRECACHE_SOUND("weapons/bgrapple_impact.wav");
 }
 
 
 void CGrappleHook :: Hit( CBaseEntity* Target ) 
 {
+	EMIT_SOUND(ENT(pev), CHAN_WEAPON, "weapons/bgrapple_impact.wav", 1, ATTN_NORM);
+
 	TraceResult TResult; 
 	Vector StartPosition;
 	Vector delta = Vector( 8, 8, 0 );
 	Vector mins = pev->origin - delta;
 	Vector maxs = pev->origin + delta;
 	maxs.z = pev->origin.z;
-
-	EMIT_SOUND(ENT(pev), CHAN_WEAPON, "weapons/bgrapple_impact.wav", 1, ATTN_NORM);
 
 #ifndef CLIENT_DLL
 
@@ -127,6 +128,11 @@ void CGrappleHook :: Hit( CBaseEntity* Target )
 				m_iHitMonster = 2;	// Fograin92: This is tiny monster.
 				SetTouch(NULL);		// Fograin92: Let's reset this, we don't want multiple HIT execs when target is moving.
 				break;
+			}
+			else if (FClassnameIs (pList[i]->pev, "monster_barnacle" ))
+			{
+				// Fograin92: We did hit another barnacle
+				bPullBack = true;	// Let's pull back the tongue, we don't want any barnacle <-> barnacle love here...
 			}
 		}
 
@@ -167,7 +173,10 @@ void CGrappleHook :: Hit( CBaseEntity* Target )
 			myowner->pev->movetype = MOVETYPE_BOUNCE; // Remove gravity effect on player
 		}
 		else
-			Killed(pev, 0);
+		{
+			// Fograin92: We did hit a non organic wall, let's pull-back the tongue
+			bPullBack = true;
+		}
 	}
 #endif
 }
@@ -188,6 +197,10 @@ void CGrappleHook::Killed(entvars_t *pev, int gib)
 		myHitMonster->pev->movetype = MOVETYPE_STEP;	// Re-apply gravity to the pulled monster, if it's alive
 	
 	// Fograin92: Clear tongue leftovers
+	bPullBack = false;
+	UTIL_Remove( m_pTongue );
+	m_pTongue = NULL;
+
 	m_iHitMonster = 0;
 	SetThink(NULL);
 	SetTouch(NULL);
@@ -209,62 +222,87 @@ CGrappleHook* CGrappleHook :: Create( Vector Pos, Vector Aim, CBasePlayer* Owner
 }
 
 
-void CGrappleHook :: Move( void ) 
+void CGrappleHook::Move( void ) 
 {
-	// Fograin92: If owner (player) is dead or if he's not holding attack buttons
-	if( (!myowner->IsAlive()) || (!(myowner->pev->button & (IN_ATTACK|IN_ATTACK2))) )
+	// Fograin92: If owner (player) is dead
+	if( !myowner->IsAlive() )
 	{
-		Killed(pev, 0); // Remove tongue
+		Killed(pev, 0); // Remove tongue instantly
 		return;
 	}
 
-	// Fograin92: We did hit a monster
-	if(m_iHitMonster > 0)
+	// Fograin92: Player isn't holding attack buttons
+	if( !(myowner->pev->button & (IN_ATTACK|IN_ATTACK2)) )
 	{
-		// Fograin92: Let's "stick" grapple tongue XYZ to target's center XYZ
-		pev->origin = myHitMonster->Center();
-
-		// Fograin92: We did hit tiny monster, let's pull it
-		if(m_iHitMonster == 2)
-		{
-			myHitMonster->pev->movetype = MOVETYPE_FLY;	// Remove gravity effect on our pulled monster // Fograin92: Set this to MOVETYPE_BOUNCE to create rubber headcrab!
-			myHitMonster->pev->velocity = (myowner->pev->origin - myHitMonster->pev->origin) * 4;	// Pull our monster
-		}
-
-		// Fograin92: Check distance (player <-> monster)
-		float fDistance = (myowner->pev->origin - myHitMonster->pev->origin).Length2D();
-
-		// Fograin92: The monster is very close to player, let's OWN IT!
-		if (fDistance < 40)
-		{
-			ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> OWNED -> ^3%s\n", STRING(myHitMonster->pev->classname) );
-			myHitMonster->TakeDamage(myHitMonster->pev, myowner->pev, 5000, DMG_GENERIC);
-			Killed(pev, 0);	// Fograin92: Target died, kill tongue
-		}
-
+		bPullBack = true;	// Fograin92: We should pull the tongue back
 	}
 
-	// Fograin92: Draw tongue sprite
-	MESSAGE_BEGIN( MSG_BROADCAST, SVC_TEMPENTITY );
-		WRITE_BYTE( TE_BEAMENTPOINT ); 
-		WRITE_SHORT( myowner->entindex() + 0x1000 );	// short (start entity) 
-		WRITE_COORD( pev->origin.x );	// coord coord coord (end position) 
-		WRITE_COORD( pev->origin.y );
-		WRITE_COORD( pev->origin.z );
-		WRITE_SHORT( m_Chain );		// short (sprite index) 
-		WRITE_BYTE( 1 );	//start frame
-		WRITE_BYTE( 0 );	//rate
-		WRITE_BYTE( 1 );	//life
-		WRITE_BYTE( 20 );	//width 
-		WRITE_BYTE( 0 );		//noise
-		WRITE_BYTE( 255 );	//r
-		WRITE_BYTE( 255 );	//g
-		WRITE_BYTE( 255 );	//b
-		WRITE_BYTE( 255 );	//brightnes
-		WRITE_BYTE( 0 );		//scrollspeed
-	MESSAGE_END( );
+	// Fograin92: Animate pull-back tongue animation ONLY if we didn't hit a monster
+	if(bPullBack)
+	{
+		UTIL_MakeVectors( myowner->pev->v_angle + myowner->pev->punchangle ); 
+		Vector GunPosition = myowner->GetGunPosition();
+		GunPosition = GunPosition + gpGlobals->v_up * -4 + gpGlobals->v_right * 3 + gpGlobals->v_forward * 6;
 
-	pev->nextthink = gpGlobals->time + 0.1;
+		pev->velocity = (GunPosition - pev->origin) * 10;	// Pull back the tongue tip
+		float fDistance = (GunPosition - pev->origin).Length2D();	// Calculate distance between tongue tip and player
+		//ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> %f\n", fDistance );
+
+		if (fDistance < 40)
+		{
+			Killed(pev, 0);
+			return;
+		}
+		
+	}
+	else
+	{
+		// Fograin92: We did hit a monster
+		if(m_iHitMonster > 0)
+		{
+			// Fograin92: Let's "stick" grapple tongue XYZ to target's center XYZ
+			pev->origin = myHitMonster->Center();
+
+			// Fograin92: We did hit tiny monster, let's pull it
+			if(m_iHitMonster == 2)
+			{
+				myHitMonster->pev->movetype = MOVETYPE_FLY;	// Remove gravity effect on our pulled monster
+				myHitMonster->pev->velocity = (myowner->pev->origin - myHitMonster->pev->origin) * 4;	// Pull our monster
+			}
+
+			// Fograin92: Check distance (player <-> monster)
+			float fDistance = (myowner->pev->origin - myHitMonster->pev->origin).Length2D();
+
+			// Fograin92: The monster is very close to player, let's OWN IT!
+			if (fDistance < 40)
+			{
+				ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> OWNED -> ^3%s\n", STRING(myHitMonster->pev->classname) );
+				myHitMonster->TakeDamage(myHitMonster->pev, myowner->pev, 5000, DMG_GENERIC);
+				Killed(pev, 0);	// Fograin92: Target died, kill tongue
+			}
+
+		}
+	}
+
+	// Fograin92: If tongue (beam) exists
+	if( m_pTongue )
+	{
+		UTIL_MakeVectors( myowner->pev->v_angle + myowner->pev->punchangle ); 
+		Vector GunPosition = myowner->GetGunPosition();
+		GunPosition = GunPosition + gpGlobals->v_up * -4 + gpGlobals->v_right * 3 + gpGlobals->v_forward * 6;
+
+		m_pTongue->PointEntInit( GunPosition, this->entindex() );
+	}
+	else
+	{
+		// Fograin92: Create tongue (beam)
+		m_pTongue = CBeam::BeamCreate( "sprites/_tongue.spr", 8 );
+		m_pTongue->SetFlags( 0x20 );	// Solid beam
+		m_pTongue->SetColor( 100, 100, 100 );
+		m_pTongue->SetScrollRate( 20 );
+	}
+
+	pev->nextthink = gpGlobals->time + 0.01;
 }
 
 
@@ -295,22 +333,22 @@ BOOL CGrapple::IsUseable( void )
 }
 
 
-void CGrapple :: Spawn( void ) 
+void CGrapple::Spawn( void ) 
 { 
 	pev->classname = MAKE_STRING( "weapon_grapple" ); 
 	Precache( ); 
-	SET_MODEL(ENT(pev), "models/w_bgrap.mdl");
+	SET_MODEL(ENT(pev), "models/SD/w_bgrap.mdl");
 	m_iId = WEAPON_GRAPPLE; 
 	m_iDefaultAmmo = 1; 
 	FallInit( ); 
 }
 
 
-void CGrapple :: Precache( void ) 
+void CGrapple::Precache( void ) 
 { 
-	PRECACHE_MODEL("models/v_bgrap.mdl");
-	PRECACHE_MODEL("models/p_bgrap.mdl");
-	PRECACHE_MODEL("models/w_bgrap.mdl");
+	PRECACHE_MODEL("models/SD/v_bgrap.mdl");
+	PRECACHE_MODEL("models/SD/p_bgrap.mdl");
+	PRECACHE_MODEL("models/SD/w_bgrap.mdl");
 
 	PRECACHE_SOUND("weapons/bgrapple_pull.wav");
 	PRECACHE_SOUND("weapons/bgrapple_fire.wav");
@@ -335,7 +373,7 @@ int CGrapple::AddToPlayer( CBasePlayer *pPlayer )
 }
 
 
-int CGrapple :: GetItemInfo( ItemInfo* Info ) 
+int CGrapple::GetItemInfo( ItemInfo* Info ) 
 { 
 	Info->pszName = STRING( pev->classname ); 
 	Info->pszAmmo1 = NULL; 
@@ -352,11 +390,11 @@ int CGrapple :: GetItemInfo( ItemInfo* Info )
 }
 
 
-BOOL CGrapple :: Deploy( void ) 
+BOOL CGrapple::Deploy( void ) 
 {
 	pev->nextthink = gpGlobals->time + 1.0;
 	SetThink (&CGrapple::WeaponIdle); // Fograin92: Force IDLE think
-	return DefaultDeploy( "models/v_bgrap.mdl", "models/p_bgrap.mdl", GRAPPLE_UP, "hive", 0 );
+	return DefaultDeploy( "models/SD/v_bgrap.mdl", "models/SD/p_bgrap.mdl", GRAPPLE_UP, "hive", 0 );
 }
 
 
@@ -404,7 +442,7 @@ void CGrapple::PrimaryAttack( )
 }
 
 
-void CGrapple :: FlyThink( void ) 
+void CGrapple::FlyThink( void ) 
 {
 	// Fograin92: Grapple is pulling player
 	if( m_pPlayer->m_afPhysicsFlags & PFLAG_ON_GRAPPLE ) //If we are on a grapple
@@ -445,6 +483,7 @@ void CGrapple::WeaponIdle( void )
 	int iRand = (rand()%100)+1;	// Fograin92: Random animation chance (1-100)
 	float flTime = 0.0;			// Fograin92: Next WeaponIdle think time
 
+
 	if(iRand >= 50)	
 	{
 		ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> BREATHE IDLE.\n");
@@ -457,22 +496,24 @@ void CGrapple::WeaponIdle( void )
 		iAnim = GRAPPLE_LONGIDLE;
 		pev->nextthink = gpGlobals->time + 10.0;
 	}
-	else if( (iRand < 25) && (iRand >= 5))
+	else if( (iRand < 25) && (iRand >= 10))
 	{
 		ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> SHORT IDLE.\n");
 		iAnim = GRAPPLE_SHORTIDLE;
 		pev->nextthink = gpGlobals->time + 1.36;
 		EMIT_SOUND(ENT(m_pPlayer->pev), CHAN_WEAPON, "weapons/bgrapple_wait.wav", 1, ATTN_NORM);
 	}
-	else if (iRand < 5)
+	else if (iRand < 10)
 	{
 		// Fograin92: 'cough' idle is rare animation, that way we won't annoy players with it.
 		ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> COUGH IDLE.\n");
-		iAnim = GRAPPLE_COUGH;
-		pev->nextthink = gpGlobals->time + 4.63;
 		EMIT_SOUND(ENT(m_pPlayer->pev), CHAN_WEAPON, "weapons/bgrapple_cough.wav", 1, ATTN_NORM);
-	}
 
+		iAnim = GRAPPLE_COUGH;
+		pev->nextthink = gpGlobals->time + 3.33;
+		SetThink (&CGrapple::PukeGibs); // Fograin92: Second part of "cough" animation
+	}
+	
 	SendWeaponAnim( iAnim, 1 );
 }
 
@@ -484,5 +525,35 @@ void CGrapple::STFU_Grapple(void)
 	STOP_SOUND( ENT(m_pPlayer->pev), CHAN_WEAPON, "weapons/bgrapple_pull.wav" );
 }
 
+// Fograin92: Extension of "cough" animation, just for fun
+void CGrapple::PukeGibs(void)
+{
+	// Fograin92: Make sure we go back to idle anim after this
+	SetThink(&CGrapple::WeaponIdle);
+	pev->nextthink = gpGlobals->time + 1.3;
 
+#ifndef CLIENT_DLL
+
+	// Fograin92: Get proper XYZ values
+	UTIL_MakeVectors( m_pPlayer->pev->v_angle + m_pPlayer->pev->punchangle ); 
+	Vector GunPosition = m_pPlayer->GetGunPosition();
+	GunPosition = GunPosition + gpGlobals->v_up * -4 + gpGlobals->v_right * 3 + gpGlobals->v_forward * 16;
+
+	CGib *pGib = GetClassPtr( (CGib *)NULL );
+	pGib->Spawn( "models/SD/gibs_human_misc.mdl" );
+	pGib->m_bloodColor = BLOOD_COLOR_RED;
+	pGib->pev->body = RANDOM_LONG( 0, 10 );
+	pGib->pev->origin = GunPosition + gpGlobals->v_forward * 10;
+	pGib->pev->velocity = gpGlobals->v_forward * 100;
+
+	// Fograin92: Some spin variations
+	pGib->pev->avelocity.x = RANDOM_LONG( 200, 600 );
+	pGib->pev->avelocity.y = RANDOM_LONG( 200, 600 );
+	pGib->pev->avelocity.z = RANDOM_LONG( 100, 200 );
+
+	pGib->pev->nextthink = gpGlobals->time + 10.0;
+	pGib->SetThink( &CBaseEntity::SUB_FadeOut );
+
+#endif
+}
 

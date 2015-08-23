@@ -51,7 +51,7 @@ vec3_t previousorigin;
 // HLDM Weapon placeholder entities.
 // Fograin92: I don't know if we still need this, since we're SP only and prediction is OFF, but let's keep it here
 CGlock			g_Glock;
-CCrowbar		g_Crowbar;
+//CCrowbar		g_Crowbar;
 CPython			g_Python;
 CMP5			g_Mp5;
 CCrossbow		g_Crossbow;
@@ -623,7 +623,7 @@ void HUD_InitClientWeapons( void )
 	// Allocate slot(s) for each weapon that we are going to be predicting
 	// Fograin92: Weapon prediction is OFF, but let's keep this code anyways
 	HUD_PrepEntity( &g_Glock	, &player );
-	HUD_PrepEntity( &g_Crowbar	, &player );
+	//HUD_PrepEntity( &g_Crowbar	, &player );
 	HUD_PrepEntity( &g_Python	, &player );
 	HUD_PrepEntity( &g_Mp5		, &player );
 	HUD_PrepEntity( &g_Crossbow	, &player );
@@ -702,9 +702,11 @@ void HUD_WeaponsPostThink( local_state_s *from, local_state_s *to, usercmd_t *cm
 	// FIXME, make this a method in each weapon?  where you pass in an entity_state_t *?
 	switch ( from->client.m_iId )
 	{
+		/*
 		case WEAPON_CROWBAR:
 			pWeapon = &g_Crowbar;
 			break;
+			*/
 		
 		case WEAPON_GLOCK:
 			pWeapon = &g_Glock;

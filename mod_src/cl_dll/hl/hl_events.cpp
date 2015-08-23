@@ -18,30 +18,28 @@
 
 extern "C"
 {
+	// HLDM
+	void EV_FireGlock1( struct event_args_s *args  );
+	void EV_FireGlock2( struct event_args_s *args  );
+	void EV_FireShotGunSingle( struct event_args_s *args  );
+	void EV_FireShotGunDouble( struct event_args_s *args  );
+	void EV_FireMP5( struct event_args_s *args  );
+	void EV_FireMP52( struct event_args_s *args  );
+	void EV_FirePython( struct event_args_s *args  );
+	void EV_FireGauss( struct event_args_s *args  );
+	void EV_SpinGauss( struct event_args_s *args  );
+	//void EV_Crowbar( struct event_args_s *args );
+	void EV_FireCrossbow( struct event_args_s *args );
+	void EV_FireCrossbow2( struct event_args_s *args );
+	void EV_FireRpg( struct event_args_s *args );
+	void EV_EgonFire( struct event_args_s *args );
+	void EV_EgonStop( struct event_args_s *args );
+	void EV_HornetGunFire( struct event_args_s *args );
+	void EV_TripmineFire( struct event_args_s *args );
+	void EV_SnarkFire( struct event_args_s *args );
+	//void EV_FireGRAPPLE( struct event_args_s *args ); // Rara: GRAPPLE
 
-// HLDM
-void EV_FireGlock1( struct event_args_s *args  );
-void EV_FireGlock2( struct event_args_s *args  );
-void EV_FireShotGunSingle( struct event_args_s *args  );
-void EV_FireShotGunDouble( struct event_args_s *args  );
-void EV_FireMP5( struct event_args_s *args  );
-void EV_FireMP52( struct event_args_s *args  );
-void EV_FirePython( struct event_args_s *args  );
-void EV_FireGauss( struct event_args_s *args  );
-void EV_SpinGauss( struct event_args_s *args  );
-void EV_Crowbar( struct event_args_s *args );
-void EV_FireCrossbow( struct event_args_s *args );
-void EV_FireCrossbow2( struct event_args_s *args );
-void EV_FireRpg( struct event_args_s *args );
-void EV_EgonFire( struct event_args_s *args );
-void EV_EgonStop( struct event_args_s *args );
-void EV_HornetGunFire( struct event_args_s *args );
-void EV_TripmineFire( struct event_args_s *args );
-void EV_SnarkFire( struct event_args_s *args );
-void EV_FireGRAPPLE( struct event_args_s *args ); // Rara: GRAPPLE
-
-void EV_TrainPitchAdjust( struct event_args_s *args );
-
+	void EV_TrainPitchAdjust( struct event_args_s *args );
 }
 
 /*
@@ -69,7 +67,7 @@ void Game_HookEvents( void )
 	gEngfuncs.pfnHookEvent( "events/gauss.sc",					EV_FireGauss );
 	gEngfuncs.pfnHookEvent( "events/gaussspin.sc",				EV_SpinGauss );
 	gEngfuncs.pfnHookEvent( "events/train.sc",					EV_TrainPitchAdjust );
-	gEngfuncs.pfnHookEvent( "events/crowbar.sc",				EV_Crowbar );
+	//gEngfuncs.pfnHookEvent( "events/crowbar.sc",				EV_Crowbar );
 	gEngfuncs.pfnHookEvent( "events/crossbow1.sc",				EV_FireCrossbow );
 	gEngfuncs.pfnHookEvent( "events/crossbow2.sc",				EV_FireCrossbow2 );
 	gEngfuncs.pfnHookEvent( "events/rpg.sc",					EV_FireRpg );
@@ -80,5 +78,5 @@ void Game_HookEvents( void )
 	gEngfuncs.pfnHookEvent( "events/snarkfire.sc",				EV_SnarkFire );
 
 	// Fograin92: Subtitles MOD stuff
-	gEngfuncs.pfnHookEvent( "events/weapon_grapple.sc", 		EV_FireGRAPPLE ); // Rara
+	//gEngfuncs.pfnHookEvent( "events/weapon_grapple.sc", 		EV_FireGRAPPLE ); // Rara
 }
