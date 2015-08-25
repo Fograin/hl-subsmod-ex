@@ -30,6 +30,10 @@
 #include "shake.h"
 #include "hltv.h"
 
+// BUzer
+#include "windows.h"
+#include "gl/gl.h"
+
 // Spectator Mode
 extern "C" 
 {
@@ -107,6 +111,8 @@ cvar_t	*cl_bob;
 cvar_t	*cl_bobup;
 cvar_t	*cl_waterdist;
 cvar_t	*cl_chasedist;
+
+cvar_t	*g_cvShadows; // BUzer
 
 // These cvars are not registered (so users can't cheat), so set the ->value field directly
 // Register these cvars in V_Init() if needed for easy tweaking
@@ -1605,6 +1611,7 @@ void V_CalcSpectatorRefdef ( struct ref_params_s * pparams )
 
 }
 
+void SetupBuffer( void ); // BUzer
 
 
 void DLLEXPORT V_CalcRefdef( struct ref_params_s *pparams )
@@ -1641,6 +1648,9 @@ void DLLEXPORT V_CalcRefdef( struct ref_params_s *pparams )
 	}
 #endif
 */
+	// BUzer
+	if (g_cvShadows->value)
+		SetupBuffer();
 }
 
 /*
@@ -1692,6 +1702,9 @@ void V_Init (void)
 	cl_bobup			= gEngfuncs.pfnRegisterVariable( "cl_bobup","0.5", 0 );
 	cl_waterdist		= gEngfuncs.pfnRegisterVariable( "cl_waterdist","4", 0 );
 	cl_chasedist		= gEngfuncs.pfnRegisterVariable( "cl_chasedist","112", 0 );
+
+	// BUzer
+	g_cvShadows = gEngfuncs.pfnRegisterVariable ( "gl_shadows", "1", FCVAR_ARCHIVE );
 }
 
 
