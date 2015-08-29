@@ -30,7 +30,12 @@
 #include "player.h"
 #include "weapons.h"
 #include "gamerules.h"
+
+// Fograin92: Subtitles MOD stuff
 #include "sm_hook_snd.h"	// Vit_amiN
+#include "particle_defs.h"	// BG Particle system
+extern int gmsgParticles;	// BG Particle system
+
 
 
 float UTIL_WeaponTimeBase( void )
@@ -1177,6 +1182,7 @@ void UTIL_BloodDrips( const Vector &origin, const Vector &direction, int color, 
 	if ( color == DONT_BLEED || amount == 0 )
 		return;
 
+	/*
 	if ( g_Language == LANGUAGE_GERMAN && color == BLOOD_COLOR_RED )
 		color = 0;
 
@@ -1185,20 +1191,44 @@ void UTIL_BloodDrips( const Vector &origin, const Vector &direction, int color, 
 		// scale up blood effect in multiplayer for better visibility
 		amount *= 2;
 	}
+	*/
 
 	if ( amount > 255 )
 		amount = 255;
 
-	MESSAGE_BEGIN( MSG_PVS, SVC_TEMPENTITY, origin );
-		WRITE_BYTE( TE_BLOODSPRITE );
-		WRITE_COORD( origin.x);								// pos
-		WRITE_COORD( origin.y);
-		WRITE_COORD( origin.z);
-		WRITE_SHORT( g_sModelIndexBloodSpray );				// initial sprite model
-		WRITE_SHORT( g_sModelIndexBloodDrop );				// droplet sprite models
-		WRITE_BYTE( color );								// color index into host_basepal
-		WRITE_BYTE( min( max( 3, amount / 10 ), 16 ) );		// size
-	MESSAGE_END();
+	// Fograin92: Should we draw particle based blood?
+	if (CVAR_GET_FLOAT("sm_particles") > 0)
+	{
+		// Draw particle based blood
+		MESSAGE_BEGIN(MSG_ALL, gmsgParticles);
+			WRITE_SHORT(0);
+			WRITE_BYTE(0);
+			WRITE_COORD( origin.x );
+			WRITE_COORD( origin.y );
+			WRITE_COORD( origin.z );
+			WRITE_COORD( 0 );
+			WRITE_COORD( 0 );
+			WRITE_COORD( 0 );
+			if ( color == BLOOD_COLOR_RED )
+				WRITE_SHORT(iImpactBloodRed);
+			else
+				WRITE_SHORT(iImpactBloodYellow);
+		MESSAGE_END();
+	}
+	// Fograin92: Player disabled particle system, let's draw sprite blood instead
+	else
+	{
+		MESSAGE_BEGIN( MSG_PVS, SVC_TEMPENTITY, origin );
+			WRITE_BYTE( TE_BLOODSPRITE );
+			WRITE_COORD( origin.x);								// pos
+			WRITE_COORD( origin.y);
+			WRITE_COORD( origin.z);
+			WRITE_SHORT( g_sModelIndexBloodSpray );				// initial sprite model
+			WRITE_SHORT( g_sModelIndexBloodDrop );				// droplet sprite models
+			WRITE_BYTE( color );								// color index into host_basepal
+			WRITE_BYTE( min( max( 3, amount / 10 ), 16 ) );		// size
+		MESSAGE_END();
+	}
 }				
 
 Vector UTIL_RandomBloodVector( void )

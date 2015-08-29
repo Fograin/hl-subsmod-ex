@@ -420,6 +420,13 @@ void DispatchObjectCollsionBox( edict_t *pent )
 		SetObjectCollisionBox( &pent->v );
 }
 
+// Fograin92: BG Particle System
+void CBaseEntity::DontThink( void )
+{
+	m_fNextThink = 0;
+	pev->nextthink = 0;
+	m_fPevNextThink = 0;
+}
 
 void SaveWriteFields( SAVERESTOREDATA *pSaveData, const char *pname, void *pBaseData, TYPEDESCRIPTION *pFields, int fieldCount )
 {

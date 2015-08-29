@@ -24,7 +24,11 @@
 #include "game.h"
 #include "hltv.h"
 
-#include "sm_gamespec.h"	// Vit_amiN
+// Fograin92: Subtitles MOD stuff
+#include "sm_gamespec.h"		// Vit_amiN
+#include "particle_emitter.h"	// Fograin92: BG Particle System
+#include "func_grass.h"			// Fograin92: BG Particle System (Grass)
+
 
 // #define DUCKFIX
 
@@ -149,6 +153,10 @@ int gmsgTeamNames = 0;
 int gmsgStatusText = 0;
 int gmsgStatusValue = 0; 
 
+// Fograin92: Subtitles MOD stuff
+int gmsgParticles = 0;			// Fograin92: BG Particle System
+int gmsgGrassParticles = 0;		// Fograin92: BG Particle System (Grass)
+
 
 
 void LinkUserMessages( void )
@@ -194,7 +202,11 @@ void LinkUserMessages( void )
 	gmsgTeamNames = REG_USER_MSG( "TeamNames", -1 );
 
 	gmsgStatusText = REG_USER_MSG("StatusText", -1);
-	gmsgStatusValue = REG_USER_MSG("StatusValue", 3); 
+	gmsgStatusValue = REG_USER_MSG("StatusValue", 3);
+
+	// Fograin92: Subtitles MOD stuff
+	gmsgParticles		= REG_USER_MSG( "Particles",	-1 );	// BG Particles
+	gmsgGrassParticles	= REG_USER_MSG( "Grass",		-1 );	// BG Particles (Grass)
 
 }
 

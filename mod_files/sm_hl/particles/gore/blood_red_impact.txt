@@ -1,0 +1,32 @@
+//============================================//
+//	Half-Life Subtitles MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//============================================//
+
+// Base particle definitions
+texture materials/fx/blood_red_impact.tga
+starting_particles 2
+new_particles_per_second 0
+scale 0.1
+growth 0.7
+lifetime 0.1
+rotation_speed 128
+gravity 0
+transparency 222
+system_life 0.1
+display_mode 32
+falloff none
+fade_in 0
+fade_out 1
+
+// Animation
+starting_velocity_x 0.0
+starting_velocity_y 0.0
+starting_velocity_z 0.0
+velocity_var_x 0.1
+velocity_var_y 0.1
+velocity_var_z 0.1
+starting_frame 1
+ending_frame 1
+frames_in_image 1
+

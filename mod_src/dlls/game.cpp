@@ -448,13 +448,14 @@ cvar_t	sk_player_leg3	= { "sk_player_leg3","1" };
 // END Cvars for Skill Level settings
 
 
-// Half-Life Subtitles MOD CVARs
-cvar_t	sm_hud				= { "sm_hud",				"0"};	// Used for HUD color, also it holds value of current loaded game (HL, OF, BS)
-cvar_t	sm_hev_pick			= { "sm_hev_pick",			"1"};	// Should HEV emit weapon pickup sentences?
-cvar_t	sm_weapon_holster	= { "sm_weapon_holster",	"2"};	// 0 - Don't play holster animations, 1 - Holster anims only when using turrets and tracktrain, 2 - Just like 1, but also holster anims when switching weapons
-cvar_t	sm_HD_models		= { "sm_HD_models",			"1"};	// 0 - Use LD models, 1 - Use HD models
+// Fograin92: Half-Life Subtitles MOD CVARs
+cvar_t	sm_hud				= { "sm_hud",				"0", FCVAR_SERVER|FCVAR_ARCHIVE };	// Used for HUD color, also it holds value of current loaded game (HL, OF, BS)
+cvar_t	sm_hev_pick			= { "sm_hev_pick",			"1", FCVAR_SERVER|FCVAR_ARCHIVE };	// Should HEV emit weapon pickup sentences?
+cvar_t	sm_weapon_holster	= { "sm_weapon_holster",	"2", FCVAR_SERVER|FCVAR_ARCHIVE };	// 0 - Don't play holster animations, 1 - Holster anims only when using turrets and tracktrain, 2 - Just like 1, but also holster anims when switching weapons
+cvar_t	sm_HD_models		= { "sm_HD_models",			"1", FCVAR_SERVER|FCVAR_ARCHIVE };	// 0 - Use LD models, 1 - Use HD models
+cvar_t	sm_particles		= { "sm_particles",			"1", FCVAR_SERVER|FCVAR_ARCHIVE };	// BG Particles
 
-// Half-Life Subtitles MOD Skill CVARs
+// Fograin92: Half-Life Subtitles MOD Skill CVARs
 cvar_t	sk_bs_helmet1	= { "sk_bs_helmet1",	"1" };
 cvar_t	sk_bs_helmet2	= { "sk_bs_helmet2",	"1" };
 cvar_t	sk_bs_helmet3	= { "sk_bs_helmet3",	"1" };
@@ -899,12 +900,16 @@ void GameDLLInit( void )
 // END REGISTER CVARS FOR SKILL LEVEL STUFF
 
 
-	// Half-Life Subtitles MOD CVARs
+// Fograin92: Half-Life Subtitles MOD CVARs START
+
+	// Fograin92: Mod settings CVARs
 	CVAR_REGISTER (&sm_hud);
 	CVAR_REGISTER (&sm_hev_pick);
 	CVAR_REGISTER (&sm_weapon_holster);
 	CVAR_REGISTER (&sm_HD_models);
+	CVAR_REGISTER (&sm_particles);
 
+	// Fograin92: Mod skill data
 	CVAR_REGISTER (&sk_bs_helmet1);
 	CVAR_REGISTER (&sk_bs_helmet2);
 	CVAR_REGISTER (&sk_bs_helmet3);
@@ -912,6 +917,8 @@ void GameDLLInit( void )
 	CVAR_REGISTER (&sk_bs_vest1);
 	CVAR_REGISTER (&sk_bs_vest2);
 	CVAR_REGISTER (&sk_bs_vest3);
+
+// Fograin92: Half-Life Subtitles MOD CVARs END
 
 	SERVER_COMMAND( "exec skill.cfg\n" );
 }

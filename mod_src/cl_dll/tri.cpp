@@ -21,6 +21,8 @@
 #include "cl_entity.h"
 #include "triangleapi.h"
 
+#include "particle_header.h" // Fograin92: BG Particle System
+
 // BUzer start
 
 #include "windows.h"
@@ -298,8 +300,5 @@ Render any triangles with transparent rendermode needs here
 */
 void DLLEXPORT HUD_DrawTransparentTriangles( void )
 {
-
-#if defined( TEST_IT )
-//	Draw_Triangles();
-#endif
+	pParticleManager->UpdateSystems();	// Fograin92: BG Particle System
 }

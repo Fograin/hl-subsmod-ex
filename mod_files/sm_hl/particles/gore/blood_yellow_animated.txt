@@ -1,0 +1,32 @@
+//============================================//
+//	Half-Life Subtitles MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//============================================//
+
+// Base particle definitions
+texture materials/fx/blood_yellow_animated.tga
+starting_particles 0
+new_particles_per_second 0
+gravity 0.0
+scale 0.8
+lifetime 0.4
+system_life 0.4
+transparency 100
+display_mode 32
+emitter_shape point
+wind 0
+fade_out 1
+collision off
+light_check every_sort
+
+// Animation
+starting_velocity_x 0.0
+starting_velocity_y 0.0
+starting_velocity_z 0.0
+velocity_var_x 0.0
+velocity_var_y 0.0
+velocity_var_z 0.0
+starting_frame 1
+ending_frame 15
+frames_in_image 16
+fps 32

@@ -55,8 +55,10 @@
 #include "vgui_ScorePanel.h"
 #include "vgui_SpectatorPanel.h"
 
-#include "sm_gamespec.h"	// Vit_amiN
-#include "sm_main.h"		// Vit_amiN
+// Fograin92: Subtitles MOD stuff
+#include "sm_gamespec.h"		// Vit_amiN
+#include "sm_main.h"			// Vit_amiN
+#include "particle_header.h"	// Fograin92: BG Particle System
 
 extern int g_iVisibleMouse;
 class CCommandMenu;
@@ -624,6 +626,9 @@ void TeamFortressViewport::Initialize( void )
 	{
 		m_pMsgsBasePanel->Initialize();
 	}
+
+	pParticleManager->RemoveSystems();	// BG Particle System
+
 
 	// Make sure all menus are hidden
 	HideVGUIMenu();
@@ -2080,6 +2085,87 @@ void CDragNDropHandler::mouseReleased(MouseCode code,Panel* panel)
 	m_pPanel->setDragged(m_bDragging);
 	App::getInstance()->setMouseCapture(null);
 }
+
+// Fograin92: Subtitles MOD stuff
+
+// BG Particle System
+// reads a msg to control a particle emitter in server side
+int TeamFortressViewport::MsgFunc_Particles( const char *pszName, int iSize, void *pbuf )
+{
+	BEGIN_READ( pbuf, iSize );
+
+	particle_system_management pSystem;
+	pSystem.iID = READ_SHORT();
+	bool bTurnOff = (!!(READ_BYTE()));
+
+	// turn off means deleting the system client side
+	if(bTurnOff == true) {
+		pParticleManager->RemoveSystem(pSystem.iID);
+	} else {
+		// read the rest of the msg in
+		pSystem.vPosition.x = READ_COORD();
+		pSystem.vPosition.y = READ_COORD();
+		pSystem.vPosition.z = READ_COORD();
+		pSystem.vDirection.x = READ_COORD();
+		pSystem.vDirection.y = READ_COORD();
+		pSystem.vDirection.z = READ_COORD();
+		unsigned int iPresetSystem = READ_SHORT();
+
+		// to reinit particle on runtime we hijack preset 9999
+		if (iPresetSystem == 9999)
+		{
+			// BP - Clear Particle Systems
+			pParticleManager->RemoveSystems();	
+//			pParticleManager->RemoveTextures();
+			return 1;
+		}
+
+		// no present, we just create according to the file
+		if (iPresetSystem == 0) {
+			char sDefinitionFile[256];
+			_snprintf(sDefinitionFile, sizeof(sDefinitionFile) - 1, "%s\0", READ_STRING());
+
+			// create system
+			pParticleManager->CreateMappedPS(sDefinitionFile, &pSystem);
+		} else {
+			// create according to the presets
+			pParticleManager->CreatePresetPS(iPresetSystem, &pSystem);
+		}
+	}
+
+	return 1;
+}
+
+// BG Grass Entity 
+int TeamFortressViewport::MsgFunc_Grass( const char *pszName, int iSize, void *pbuf )
+{
+	BEGIN_READ( pbuf, iSize );
+
+	particle_system_management pSystem;
+	pSystem.iID = READ_SHORT();
+	bool bTurnOff = (!!(READ_BYTE()));
+
+	// turn off means deleting the system client side
+	if(bTurnOff == true) {
+		pParticleManager->RemoveSystem(pSystem.iID);
+	} else {
+		// read the rest of the msg in
+		pSystem.vAbsMax.x = READ_COORD();
+		pSystem.vAbsMax.y = READ_COORD();
+		pSystem.vAbsMax.z = READ_COORD();
+		pSystem.vAbsMin.x = READ_COORD();
+		pSystem.vAbsMin.y = READ_COORD();
+		pSystem.vAbsMin.z = READ_COORD();
+
+		char sDefinitionFile[256];
+		_snprintf(sDefinitionFile, sizeof(sDefinitionFile) - 1, "%s\0", READ_STRING());
+
+		pParticleManager->CreateGrassPS(sDefinitionFile, &pSystem);
+	}
+	return 1;
+}
+
+
 
 //================================================================
 // Number Key Input

@@ -690,6 +690,14 @@
 				>
 			</File>
 			<File
+				RelativePath=".\func_grass.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\func_grass.h"
+				>
+			</File>
+			<File
 				RelativePath="func_tank.cpp"
 				>
 				<FileConfiguration
@@ -1036,6 +1044,14 @@
 			</File>
 			<File
 				RelativePath="nodes.h"
+				>
+			</File>
+			<File
+				RelativePath=".\particle_emitter.cpp"
+				>
+			</File>
+			<File
+				RelativePath=".\particle_emitter.h"
 				>
 			</File>
 			<File

@@ -24,6 +24,8 @@
 #include "demo_api.h"
 #include "vgui_scorepanel.h"
 
+// Fograin92: Subtitles MOD stuff
+#include "particle_header.h"			// BG Particle System
 extern void SM_RegisterAllConVars();	// Vit_amiN
 
 
@@ -258,11 +260,32 @@ int __MsgFunc_AllowSpec(const char *pszName, int iSize, void *pbuf)
 		return gViewPort->MsgFunc_AllowSpec( pszName, iSize, pbuf );
 	return 0;
 }
- 
+
+// Fograin92: BG Particle System
+int __MsgFunc_Particles(const char *pszName, int iSize, void *pbuf)
+{
+	if (gViewPort)
+		return gViewPort->MsgFunc_Particles( pszName, iSize, pbuf );
+	return 0;
+}
+
+//  Fograin92: BG Grass Particle System
+int __MsgFunc_Grass(const char *pszName, int iSize, void *pbuf)
+{
+	if (gViewPort)
+		return gViewPort->MsgFunc_Grass( pszName, iSize, pbuf );
+	return 0;
+}
+
+
 // This is called every time the DLL is loaded
 void CHud :: Init( void )
 {
-	SM_RegisterAllConVars();	// Fograin92, Vit_amiN: reg cvars
+	// Fograin92: Subtitles MOD stuff
+	SM_RegisterAllConVars();	// Vit_amiN: reg cvars
+	HOOK_MESSAGE( Particles );	// BG Particle system
+	HOOK_MESSAGE( Grass );		// BG Grass
+
 
 	HOOK_MESSAGE( Logo );
 	HOOK_MESSAGE( ResetHUD );
@@ -308,6 +331,13 @@ void CHud :: Init( void )
 	m_pCvarStealMouse = CVAR_CREATE( "hud_capturemouse", "1", FCVAR_ARCHIVE );
 	m_pCvarDraw = CVAR_CREATE( "hud_draw", "1", FCVAR_ARCHIVE );
 	cl_lw = gEngfuncs.pfnGetCvarPointer( "cl_lw" );
+
+	// Fograin92: BG Particle System
+    g_ParticleCount = gEngfuncs.pfnRegisterVariable("cl_particlecount", "100", FCVAR_CLIENTDLL | FCVAR_ARCHIVE );
+ 	g_ParticleDebug = gEngfuncs.pfnRegisterVariable("cl_particledebug", "0", FCVAR_CLIENTDLL | FCVAR_ARCHIVE );
+	g_ParticleSorts = gEngfuncs.pfnRegisterVariable("cl_particlesorts", "0", FCVAR_CLIENTDLL | FCVAR_ARCHIVE );
+    CVAR_CREATE( "cl_grassamount", "100", FCVAR_CLIENTDLL | FCVAR_ARCHIVE );
+
 
 	m_pSpriteList = NULL;
 
@@ -355,6 +385,11 @@ void CHud :: Init( void )
 // cleans up memory allocated for m_rg* arrays
 CHud :: ~CHud()
 {
+	// Fograin92: Clear BG Particles
+	delete pParticleManager;
+	pParticleManager = NULL;
+
+
 	delete [] m_rgHL_HSPRITEs;
 	delete [] m_rgrcRects;
 	delete [] m_rgszSpriteNames;
@@ -517,6 +552,22 @@ void CHud :: VidInit( void )
 	m_StatusIcons.VidInit();
 
 	GetClientVoiceMgr()->VidInit();
+
+	// Fograin92: Subtitles MOD stuff
+
+// BG Particle System START
+	if(!pParticleManager)
+	{
+		pParticleManager = new CParticleSystemManager;
+		pParticleManager->PrecacheTextures();
+	}
+
+	if(pParticleManager)
+		delete pParticleManager;
+	pParticleManager = new CParticleSystemManager;
+// BG Particle System END
+
+
 }
 
 int CHud::MsgFunc_Logo(const char *pszName,  int iSize, void *pbuf)

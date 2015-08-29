@@ -27,6 +27,8 @@
 #include <stdlib.h> // atoi
 #include <ctype.h>  // isspace
 
+vec3_t flPlayerOrigin;	// Fograin92: Required for BG Particles
+
 #ifdef CLIENT_DLL
 	// Spectator Mode
 	int		iJumpSpectator;
@@ -2932,6 +2934,10 @@ void PM_PlayerMove ( qboolean server )
 	{
 		PM_SpectatorMove();
 		PM_CatagorizePosition();
+
+		// Fograin92: Export origin for particle blending of smoke
+		VectorCopy( pmove->origin, flPlayerOrigin );
+
 		return;
 	}
 
@@ -3163,6 +3169,9 @@ void PM_PlayerMove ( qboolean server )
 		PM_PlayWaterSounds();
 		break;
 	}
+
+	// Fograin92: Export origin for particle blending of smoke
+	VectorCopy( pmove->origin, flPlayerOrigin );
 }
 
 void PM_CreateStuckTable( void )

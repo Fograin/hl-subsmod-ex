@@ -544,11 +544,20 @@ public:
 	// Input
 	bool SlotInput( int iSlot );
 
+// Fograin92: Subtitles MOD stuff START
+
 	// Vit_amiN: Message panel interactions
 	void AddSMTextMessage( const int &, const client_textmessage_t        * const, const void * const, const float & );
 	void AddSMTextMessage( const int &, const client_textmessage_bundle_t * const, const void * const, const float & );
 	const client_textmessage_bundle_t * const GetSMClientMessage( const char * const );
 	void ClrSMTextMessages( void );
+
+	// BG Particle System
+	int MsgFunc_Particles( const char *pszName, int iSize, void *pbuf );
+	int MsgFunc_Grass( const char *pszName, int iSize, void *pbuf );
+
+
+// Fograin92: Subtitles MOD stuff END
 
 	virtual void paintBackground();
 

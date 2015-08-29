@@ -80,7 +80,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions="-dev -console"
-				AdditionalDependencies="odbc32.lib odbccp32.lib winmm.lib ../utils/vgui/lib/win32_vc6/vgui.lib wsock32.lib opengl32.lib glu32.lib"
+				AdditionalDependencies="odbc32.lib odbccp32.lib winmm.lib ../utils/vgui/lib/win32_vc6/vgui.lib wsock32.lib opengl32.lib glu32.lib ../opengl/DevIL.lib"
 				OutputFile="E:\Steam\steamapps\common\Half-Life\0_subs4\local\mod_files\sm_hl\bin\client.dll"
 				LinkIncremental="2"
 				SuppressStartupBanner="true"
@@ -152,7 +152,7 @@
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				InlineFunctionExpansion="1"
-				AdditionalIncludeDirectories="..\utils\vgui\include;..\engine;..\common;..\pm_shared;..\dlls;..\public;..\subs_mod;..\opengl"
+				AdditionalIncludeDirectories="..\utils\vgui\include;..\engine;..\common;..\pm_shared;..\game_shared;..\dlls;..\public;..\subs_mod;..\opengl"
 				PreprocessorDefinitions="WIN32;NDEBUG;_WINDOWS;CLIENT_DLL;CLIENT_WEAPONS;_CRT_SECURE_NO_WARNINGS"
 				StringPooling="true"
 				RuntimeLibrary="0"
@@ -179,7 +179,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				IgnoreImportLibrary="true"
-				AdditionalDependencies="winmm.lib ../utils/vgui/lib/win32_vc6/vgui.lib wsock32.lib opengl32.lib glu32.lib"
+				AdditionalDependencies="winmm.lib ../utils/vgui/lib/win32_vc6/vgui.lib wsock32.lib opengl32.lib glu32.lib ../opengl/DevIL.lib"
 				OutputFile="E:\Steam\steamapps\common\Half-Life\0_subs4\local\mod_files\sm_hl\bin\client.dll"
 				LinkIncremental="1"
 				SuppressStartupBanner="true"
@@ -519,6 +519,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\GameStudioModelRenderer.h"
+				>
+			</File>
+			<File
 				RelativePath="geiger.cpp"
 				>
 				<FileConfiguration
@@ -564,32 +568,6 @@
 			</File>
 			<File
 				RelativePath="health.h"
-				>
-			</File>
-			<File
-				RelativePath="hud.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-			</File>
-			<File
-				RelativePath="hud.h"
 				>
 			</File>
 			<File
@@ -2009,11 +1987,93 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="HUD"
+				>
+				<File
+					RelativePath="hud.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							AdditionalIncludeDirectories=""
+							PreprocessorDefinitions=""
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							AdditionalIncludeDirectories=""
+							PreprocessorDefinitions=""
+						/>
+					</FileConfiguration>
+				</File>
+				<File
+					RelativePath="hud.h"
+					>
+				</File>
+			</Filter>
+			<Filter
+				Name="particles"
+				>
+				<File
+					RelativePath=".\grass_particle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\grass_particles.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\mapped_particle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\mapped_particles.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\particle.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\particle.h"
+					>
+				</File>
+				<File
+					RelativePath=".\particle_header.h"
+					>
+				</File>
+				<File
+					RelativePath=".\particle_systems.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\particle_systems.h"
+					>
+				</File>
+				<File
+					RelativePath=".\particle_texture.h"
+					>
+				</File>
+				<File
+					RelativePath=".\system_manager.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\system_manager.h"
+					>
+				</File>
+				<File
+					RelativePath=".\tga_loader.cpp"
+					>
+				</File>
+			</Filter>
 		</Filter>
-		<File
-			RelativePath=".\GameStudioModelRenderer.h"
-			>
-		</File>
 	</Files>
 	<Globals>
 	</Globals>
