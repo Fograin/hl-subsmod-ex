@@ -1,25 +1,13 @@
-/***
-*
-*	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
-*	All Rights Reserved.
-*
-*   Use, distribution, and modification of this source code and/or resulting
-*   object code is restricted to non-commercial enhancements to products from
-*   Valve LLC.  All other use, distribution, or modification is prohibited
-*   without written permission from Valve LLC.
-*
-****/
-/*
-
-===== util.cpp ========================================================
-
-  Utility code.  Really not optional after all.
-
-*/
-
+//=============================================================//
+//	Half-Life Subtitles MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	This product contains software technology licensed from:
+//	Valve LLC.
+//	Id Software, Inc. ("Id Technology")
+//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
 #include "extdll.h"
 #include "util.h"
 #include "cbase.h"
@@ -35,7 +23,6 @@
 #include "sm_hook_snd.h"	// Vit_amiN
 #include "particle_defs.h"	// BG Particle system
 extern int gmsgParticles;	// BG Particle system
-
 
 
 float UTIL_WeaponTimeBase( void )
@@ -1182,24 +1169,13 @@ void UTIL_BloodDrips( const Vector &origin, const Vector &direction, int color, 
 	if ( color == DONT_BLEED || amount == 0 )
 		return;
 
-	/*
-	if ( g_Language == LANGUAGE_GERMAN && color == BLOOD_COLOR_RED )
-		color = 0;
-
-	if ( g_pGameRules->IsMultiplayer() )
-	{
-		// scale up blood effect in multiplayer for better visibility
-		amount *= 2;
-	}
-	*/
-
 	if ( amount > 255 )
 		amount = 255;
 
-	// Fograin92: Should we draw particle based blood?
-	if (CVAR_GET_FLOAT("sm_particles") > 0)
+
+	// Fograin92: Full particles (high setting)
+	if (CVAR_GET_FLOAT("sm_particles") == 2)
 	{
-		// Draw particle based blood
 		MESSAGE_BEGIN(MSG_ALL, gmsgParticles);
 			WRITE_SHORT(0);
 			WRITE_BYTE(0);
@@ -1215,7 +1191,25 @@ void UTIL_BloodDrips( const Vector &origin, const Vector &direction, int color, 
 				WRITE_SHORT(iImpactBloodYellow);
 		MESSAGE_END();
 	}
-	// Fograin92: Player disabled particle system, let's draw sprite blood instead
+	// Fograin92: Limited particles (medium setting)
+	else if (CVAR_GET_FLOAT("sm_particles") == 1)
+	{
+		MESSAGE_BEGIN(MSG_ALL, gmsgParticles);
+			WRITE_SHORT(0);
+			WRITE_BYTE(0);
+			WRITE_COORD( origin.x );
+			WRITE_COORD( origin.y );
+			WRITE_COORD( origin.z );
+			WRITE_COORD( 0 );
+			WRITE_COORD( 0 );
+			WRITE_COORD( 0 );
+			if ( color == BLOOD_COLOR_RED )
+				WRITE_SHORT(iImpactBloodRedLOW);
+			else
+				WRITE_SHORT(iImpactBloodYellowLOW);
+		MESSAGE_END();
+	}
+	// Fograin92: Disable particles, use sprites instead (low setting)
 	else
 	{
 		MESSAGE_BEGIN( MSG_PVS, SVC_TEMPENTITY, origin );

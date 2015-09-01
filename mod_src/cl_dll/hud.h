@@ -1,25 +1,16 @@
-/***
-*
-*	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
-*	All Rights Reserved.
-*
-*   Use, distribution, and modification of this source code and/or resulting
-*   object code is restricted to non-commercial enhancements to products from
-*   Valve LLC.  All other use, distribution, or modification is prohibited
-*   without written permission from Valve LLC.
-*
-****/
-//			
-//  hud.h
+//=============================================================//
+//	Half-Life Subtitles MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	This product contains software technology licensed from:
+//	Valve LLC.
+//	Id Software, Inc. ("Id Technology")
 //
-// class CHud declaration
-//
-// CHud handles the message, calculation, and drawing the HUD
-//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
 
+#ifndef HUD_H	// Fograin92: Redefinition fix
+#define HUD_H
 
 #define RGB_YELLOWISH 0x00FFA000 //255,160,0
 #define RGB_REDISH 0x00FF1010 //255,160,0
@@ -663,3 +654,5 @@ extern int g_iUser3;
 
 // Half-Life: Subtitles MOD functions
 int SM_HUDcolor(int iColor);
+
+#endif

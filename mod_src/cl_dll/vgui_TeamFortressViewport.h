@@ -1,10 +1,13 @@
-//========= Copyright © 1996-2002, Valve LLC, All rights reserved. ============
+//=============================================================//
+//	Half-Life Subtitles MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	This product contains software technology licensed from:
+//	Valve LLC.
+//	Id Software, Inc. ("Id Technology")
 //
-// Purpose: 
-//
-// $NoKeywords: $
-//=============================================================================
-
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
 #ifndef TEAMFORTRESSVIEWPORT_H
 #define TEAMFORTRESSVIEWPORT_H
 
@@ -31,9 +34,16 @@
 // custom scheme handling
 #include "vgui_SchemeManager.h"
 
+// Fograin92: Subtitles MOD stuff START
+
 #include "sm_hook_txt.h"	// Vit_amiN
 #include "sm_structs.h"		// Vit_amiN
 class VGUI_MsgsBasePanel;	// Vit_amiN
+
+#include "sm_hud.h"		// Fograin92
+class CHudNew;
+
+// Fograin92: Subtitles MOD stuff END
 
 #define TF_DEFS_ONLY
 #include "tf_defs.h"
@@ -576,7 +586,14 @@ public:
 	CClassMenuPanel	*m_pClassMenu;
 	ScorePanel		*m_pScoreBoard;
 	SpectatorPanel *		m_pSpectatorPanel;
-	VGUI_MsgsBasePanel *	m_pMsgsBasePanel;	// Fograin92, Vit_amiN
+
+// Fograin92: Subtitles MOD stuff START
+	VGUI_MsgsBasePanel		*m_pMsgsBasePanel;	// Fograin92, Vit_amiN
+	CHudNew					*m_pHudNew;			// Fograin92
+
+// Fograin92: Subtitles MOD stuff END
+
+
 	char			m_szServerName[ MAX_SERVERNAME_LENGTH ];
 };
 

@@ -12,6 +12,6 @@
 int Q_buildnum( void )
 {
 	// Do not touch this! Only author of Xash3D can increase buildnumbers!
-	// Fograin92: Sorry Mike, but fuck it. You will get proper Xash3D credits and build version in SubsMOD credits file.
-	return 54;
+	// Fograin92: Sorry Mike, you will get proper Xash3D credits and build version in SubsMOD credits file.
+	return 57;
 }

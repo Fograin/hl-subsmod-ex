@@ -1,17 +1,13 @@
-/***
-*
-*	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
-*	All Rights Reserved.
-*
-*   Use, distribution, and modification of this source code and/or resulting
-*   object code is restricted to non-commercial enhancements to products from
-*   Valve LLC.  All other use, distribution, or modification is prohibited
-*   without written permission from Valve LLC.
-*
-****/
+//=============================================================//
+//	Half-Life Subtitles MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	This product contains software technology licensed from:
+//	Valve LLC.
+//	Id Software, Inc. ("Id Technology")
+//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
 #include "extdll.h"
 #include "eiface.h"
 #include "util.h"
@@ -449,11 +445,11 @@ cvar_t	sk_player_leg3	= { "sk_player_leg3","1" };
 
 
 // Fograin92: Half-Life Subtitles MOD CVARs
-cvar_t	sm_hud				= { "sm_hud",				"0", FCVAR_SERVER|FCVAR_ARCHIVE };	// Used for HUD color, also it holds value of current loaded game (HL, OF, BS)
+cvar_t	sm_hud				= { "sm_hud",				"0"};	// Used for HUD color, also it holds value of current loaded game (HL, OF, BS)
 cvar_t	sm_hev_pick			= { "sm_hev_pick",			"1", FCVAR_SERVER|FCVAR_ARCHIVE };	// Should HEV emit weapon pickup sentences?
 cvar_t	sm_weapon_holster	= { "sm_weapon_holster",	"2", FCVAR_SERVER|FCVAR_ARCHIVE };	// 0 - Don't play holster animations, 1 - Holster anims only when using turrets and tracktrain, 2 - Just like 1, but also holster anims when switching weapons
 cvar_t	sm_HD_models		= { "sm_HD_models",			"1", FCVAR_SERVER|FCVAR_ARCHIVE };	// 0 - Use LD models, 1 - Use HD models
-cvar_t	sm_particles		= { "sm_particles",			"1", FCVAR_SERVER|FCVAR_ARCHIVE };	// BG Particles
+cvar_t	sm_particles		= { "sm_particles",			"2", FCVAR_SERVER|FCVAR_ARCHIVE };	// 0 - Don't use particle system (low setting), 1 - Limited particles (medium setting), 2 - Full particles (high setting)
 
 // Fograin92: Half-Life Subtitles MOD Skill CVARs
 cvar_t	sk_bs_helmet1	= { "sk_bs_helmet1",	"1" };

@@ -335,6 +335,12 @@ class CItemSuit : public CItem
 		}
 
 		pPlayer->pev->weapons |= (1<<WEAPON_SUIT);
+
+		// Fograin92: Let's send message to the client that we picked up HEV. (Required to invoke new HUD update)
+		MESSAGE_BEGIN( MSG_ONE, gmsgItemPickup, NULL, pPlayer->pev );
+				WRITE_STRING( STRING(pev->classname) );
+		MESSAGE_END();
+
 		return TRUE;
 	}
 };

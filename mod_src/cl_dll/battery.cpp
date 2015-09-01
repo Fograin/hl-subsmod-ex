@@ -25,6 +25,8 @@
 #include <string.h>
 #include <stdio.h>
 
+#include "sm_hud.h"	// Fograin92
+
 DECLARE_MESSAGE(m_Battery, Battery)
 
 int CHudBattery::Init(void)
@@ -68,12 +70,17 @@ int CHudBattery:: MsgFunc_Battery(const char *pszName,  int iSize, void *pbuf )
 		m_iBat = x;
 	}
 
+	gViewPort->m_pHudNew->SetArmorVar(x); // Fograin92: Send Armor value to our new HUD
+
 	return 1;
 }
 
 
 int CHudBattery::Draw(float flTime)
 {
+	// Fograin92: We are rendering battery/armor value using new HUD, skip this drawing part
+	return 1;
+
 	if ( gHUD.m_iHideHUDDisplay & HIDEHUD_HEALTH )
 		return 1;
 

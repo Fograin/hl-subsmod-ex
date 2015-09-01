@@ -29,6 +29,8 @@
 #include "ammohistory.h"
 #include "vgui_TeamFortressViewport.h"
 
+#include "sm_hud.h"		// Fograin92
+
 WEAPON *gpActiveSel;	// NULL means off, 1 means just the menu bar, otherwise
 						// this points to the active weapon menu item
 WEAPON *gpLastSel;		// Last weapon menu selection 
@@ -501,6 +503,7 @@ int CHudAmmo::MsgFunc_AmmoX(const char *pszName, int iSize, void *pbuf)
 
 int CHudAmmo::MsgFunc_AmmoPickup( const char *pszName, int iSize, void *pbuf )
 {
+	//gEngfuncs.Con_Printf( "^3MsgFunc_AmmoPickup\n" );
 	BEGIN_READ( pbuf, iSize );
 	int iIndex = READ_BYTE();
 	int iCount = READ_BYTE();
@@ -508,27 +511,38 @@ int CHudAmmo::MsgFunc_AmmoPickup( const char *pszName, int iSize, void *pbuf )
 	// Add ammo to the history
 	gHR.AddToHistory( HISTSLOT_AMMO, iIndex, abs(iCount) );
 
+	// Fograin92: Tell our new HUD that we picked up ammo
+	//gViewPort->m_pHudNew->PickedUpAmmo( szName );
+
 	return 1;
 }
 
 int CHudAmmo::MsgFunc_WeapPickup( const char *pszName, int iSize, void *pbuf )
 {
+	//gEngfuncs.Con_Printf( "^3MsgFunc_WeapPickup\n" );
 	BEGIN_READ( pbuf, iSize );
 	int iIndex = READ_BYTE();
 
 	// Add the weapon to the history
 	gHR.AddToHistory( HISTSLOT_WEAP, iIndex );
 
+	// Fograin92: Tell our new HUD that we picked up weapon
+	//gViewPort->m_pHudNew->PickedUpWeapon( szName );
+
 	return 1;
 }
 
 int CHudAmmo::MsgFunc_ItemPickup( const char *pszName, int iSize, void *pbuf )
 {
+	//gEngfuncs.Con_Printf( "^3MsgFunc_ItemPickup\n" );
 	BEGIN_READ( pbuf, iSize );
 	const char *szName = READ_STRING();
 
 	// Add the weapon to the history
 	gHR.AddToHistory( HISTSLOT_ITEM, szName );
+
+	// Fograin92: Tell our new HUD that we picked up item
+	gViewPort->m_pHudNew->PickedUpItem( szName );
 
 	return 1;
 }

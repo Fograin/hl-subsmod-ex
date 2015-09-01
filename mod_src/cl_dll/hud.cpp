@@ -8,9 +8,6 @@
 //
 //	Before using any parts of this code, read licence.txt file 
 //=============================================================//
-// implementation of CHud class
-//
-
 #include "hud.h"
 #include "cl_util.h"
 #include <string.h>
@@ -27,6 +24,7 @@
 // Fograin92: Subtitles MOD stuff
 #include "particle_header.h"			// BG Particle System
 extern void SM_RegisterAllConVars();	// Vit_amiN
+#include "sm_hud.h"						// Fograin92
 
 
 class CHLVoiceStatusHelper : public IVoiceStatusHelper
@@ -566,7 +564,6 @@ void CHud :: VidInit( void )
 		delete pParticleManager;
 	pParticleManager = new CParticleSystemManager;
 // BG Particle System END
-
 
 }
 

@@ -1,17 +1,13 @@
-/***
-*
-*	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
-*	All Rights Reserved.
-*
-*   Use, distribution, and modification of this source code and/or resulting
-*   object code is restricted to non-commercial enhancements to products from
-*   Valve LLC.  All other use, distribution, or modification is prohibited
-*   without written permission from Valve LLC.
-*
-****/
+//=============================================================//
+//	Half-Life Subtitles MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	This product contains software technology licensed from:
+//	Valve LLC.
+//	Id Software, Inc. ("Id Technology")
+//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
 //
 // Health.cpp
 //
@@ -26,6 +22,8 @@
 #include "cl_util.h"
 #include "parsemsg.h"
 #include <string.h>
+
+#include "sm_hud.h"	// Fograin92
 
 
 DECLARE_MESSAGE(m_Health, Health )
@@ -112,6 +110,8 @@ int CHudHealth:: MsgFunc_Health(const char *pszName,  int iSize, void *pbuf )
 		m_iHealth = x;
 	}
 
+	gViewPort->m_pHudNew->SetHealthVar(x); // Fograin92: Send Health value to our new HUD
+
 	return 1;
 }
 
@@ -173,6 +173,17 @@ void CHudHealth::GetPainColor( int &r, int &g, int &b )
 
 int CHudHealth::Draw(float flTime)
 {
+	// Fograin92: Check if we have HEV here and pass variable to our new HUD
+	if (gHUD.m_iWeaponBits & (1<<(WEAPON_SUIT)))
+		gViewPort->m_pHudNew->bHaveHEV = true;
+	else
+		gViewPort->m_pHudNew->bHaveHEV = false;
+
+	// Fograin92: We handle drawing part in our new HUD
+	return 1;	
+
+
+
 	int r, g, b;
 	int a = 0, x, y;
 	int HealthWidth;

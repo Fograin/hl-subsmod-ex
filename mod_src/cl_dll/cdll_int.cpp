@@ -201,7 +201,6 @@ redraw the HUD.
 int DLLEXPORT HUD_Redraw( float time, int intermission )
 {
 	gHUD.Redraw( time, intermission );
-
 	return 1;
 }
 

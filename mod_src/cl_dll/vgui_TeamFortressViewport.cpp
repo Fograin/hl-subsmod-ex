@@ -1,20 +1,13 @@
-//=========== (C) Copyright 1996-2002 Valve, L.L.C. All rights reserved. ===========
+//=============================================================//
+//	Half-Life Subtitles MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	This product contains software technology licensed from:
+//	Valve LLC.
+//	Id Software, Inc. ("Id Technology")
 //
-// The copyright to the contents herein is the property of Valve, L.L.C.
-// The contents may be used and/or copied only with the written permission of
-// Valve, L.L.C., or in accordance with the terms and conditions stipulated in
-// the agreement/contract under which the contents have been supplied.
-//
-// Purpose: Client DLL VGUI Viewport
-//
-// $Workfile:     $
-// $Date:         $
-//
-//-----------------------------------------------------------------------------
-// $Log: $
-//
-// $NoKeywords: $
-//=============================================================================
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
 #include<VGUI_Cursor.h>
 #include<VGUI_Frame.h>
 #include<VGUI_Label.h>
@@ -518,15 +511,16 @@ public:
 //================================================================
 TeamFortressViewport::TeamFortressViewport(int x,int y,int wide,int tall) : Panel(x,y,wide,tall), m_SchemeManager(wide,tall)
 {
-	gViewPort = this;
-	m_iInitialized = false;
-	m_pTeamMenu = NULL;
-	m_pClassMenu = NULL;
-	m_pScoreBoard = NULL;
-	m_pSpectatorPanel = NULL;
-	m_pMsgsBasePanel = NULL;	// Fograin92, Vit_amiN
-	m_pCurrentMenu = NULL;
-	m_pCurrentCommandMenu = NULL;
+	gViewPort		= this;
+	m_iInitialized	= false;
+	m_pTeamMenu				= NULL;
+	m_pClassMenu			= NULL;
+	m_pScoreBoard			= NULL;
+	m_pSpectatorPanel		= NULL;
+	m_pMsgsBasePanel		= NULL;	// Fograin92, Vit_amiN
+	//m_pHudNew				= NULL;	// Fograin92: First we want to make sure it's cleared.
+	m_pCurrentMenu			= NULL;
+	m_pCurrentCommandMenu	= NULL;
 
 	Initialize();
 	addInputSignal( new CViewPortInputHandler );
@@ -594,6 +588,13 @@ TeamFortressViewport::TeamFortressViewport(int x,int y,int wide,int tall) : Pane
 	m_SpectatorOptionsMenu = CreateCommandMenu("spectatormenu.txt", 1, YRES(32), true, CMENU_SIZE_X, BUTTON_SIZE_Y / 2, 0 );	// above bottom bar, flat design
 	m_SpectatorCameraMenu = CreateCommandMenu("spectcammenu.txt", 1, YRES(32), true, XRES( 200 ), BUTTON_SIZE_Y / 2, ScreenWidth - ( XRES ( 200 ) + 15 ) );	// above bottom bar, flat design
 	CreateServerBrowser();
+
+// Fograin92: Subtitles MOD stuff
+
+	// Fograin92: New HUD
+	m_pHudNew = new CHudNew();
+	m_pHudNew->setParent(this);
+	m_pHudNew->setVisible(true);
 }
 
 //-----------------------------------------------------------------------------
@@ -622,12 +623,23 @@ void TeamFortressViewport::Initialize( void )
 		m_pSpectatorPanel->EnableInsetView( false );	// Vit_amiN: close PIP mode inset
 		m_pSpectatorPanel->ShowMenu( false );			// Vit_amiN: close spectator menu
 	}
-	if (m_pMsgsBasePanel)	// Fograin92, Vit_amiN
+
+// Fograin92: Subtitles MOD stuff START
+
+	// Init subtitles
+	if (m_pMsgsBasePanel)	
 	{
+		// Fograin92, Vit_amiN
 		m_pMsgsBasePanel->Initialize();
 	}
 
+	// New HUD
+	if (m_pHudNew)
+		m_pHudNew->UpdateHUD();		// Update new HUD
+
 	pParticleManager->RemoveSystems();	// BG Particle System
+
+// Fograin92: Subtitles MOD stuff END
 
 
 	// Make sure all menus are hidden

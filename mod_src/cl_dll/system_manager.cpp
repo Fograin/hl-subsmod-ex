@@ -1,35 +1,12 @@
-/*
-    Copyright 2001 to 2004. The Battle Grounds Team and Contributors
-
-    This file is part of the Battle Grounds Modification for Half-Life.
-
-    The Battle Grounds Modification for Half-Life is free software;
-    you can redistribute it and/or modify it under the terms of the
-    GNU Lesser General Public License as published by the Free
-    Software Foundation; either version 2.1 of the License, or
-    (at your option) any later version.
-
-    The Battle Grounds Modification for Half-Life is distributed in
-    the hope that it will be useful, but WITHOUT ANY WARRANTY; without
-    even the implied warranty of MERCHANTABILITY or FITNESS FOR A
-    PARTICULAR PURPOSE.  See the GNU Lesser General Public License
-    for more details.
-
-    You should have received a copy of the GNU Lesser General Public
-    License along with The Battle Grounds Modification for Half-Life;
-    if not, write to the Free Software Foundation, Inc., 59 Temple Place,
-    Suite 330, Boston, MA  02111-1307  USA
-
-    You must obey the GNU Lesser General Public License in all respects for
-    all of the code used other than code distributed with the Half-Life
-    SDK developed by Valve.  If you modify this file, you may extend this
-    exception to your version of the file, but you are not obligated to do so.
-    If you do not wish to do so, delete this exception statement from your
-    version.
-*/
-
-// definition of the particle system manager
-
+//=============================================================//
+//	Half-Life Subtitles MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	This product contains software technology licensed from:
+//	The Battle Grounds Team and Contributors.
+//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
 #include "hud.h"
 #include "cl_util.h"
 #include <string.h>
@@ -40,8 +17,6 @@
 #include "event_api.h"
 #include "r_efx.h"
 #include "pm_shared.h"
-
-//#include "mmgr.h"
 
 CParticleSystemManager *pParticleManager = NULL;
 cvar_t* g_ParticleCount;
@@ -173,7 +148,7 @@ void CParticleSystemManager::UpdateSystems( void )
 // Handles all the present particle systems
 void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_system_management *pSystem)
 {
-	// Fograin92: Hit impact / Red blood particles
+	// Fograin92: Hit impact / Red blood particles (FULL FX)
 	if(iPreset == iImpactBloodRed)
 	{
 		CreateMappedPS("particles/gore/blood_red_animated.txt", pSystem);	// Blood impact animated
@@ -183,12 +158,30 @@ void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_syste
 		if(pSystem == NULL) return;
 	}
 
-	// Fograin92: Hit impact / Alien blood particles
+	// Fograin92: Hit impact / Red blood particles (LOW FX)
+	if(iPreset == iImpactBloodRedLOW)
+	{
+		CreateMappedPS("particles/gore/blood_red_animated.txt", pSystem);	// Blood impact animated
+		CreateMappedPS("particles/gore/blood_red_impact.txt", pSystem);		// Blood impact-mist
+
+		if(pSystem == NULL) return;
+	}
+
+	// Fograin92: Hit impact / Alien blood particles (FULL FX)
 	if(iPreset == iImpactBloodYellow)
 	{
 		CreateMappedPS("particles/gore/blood_yellow_animated.txt", pSystem);	// Blood impact animated
 		CreateMappedPS("particles/gore/blood_yellow_impact.txt", pSystem);		// Blood impact-mist
 		CreateMappedPS("particles/gore/blood_yellow_drips.txt", pSystem);		// Blood drips
+
+		if(pSystem == NULL) return;
+	}
+
+	// Fograin92: Hit impact / Alien blood particles (LOW FX)
+	if(iPreset == iImpactBloodYellowLOW)
+	{
+		CreateMappedPS("particles/gore/blood_yellow_animated.txt", pSystem);	// Blood impact animated
+		CreateMappedPS("particles/gore/blood_yellow_impact.txt", pSystem);		// Blood impact-mist
 
 		if(pSystem == NULL) return;
 	}

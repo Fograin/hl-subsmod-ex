@@ -23,6 +23,9 @@
 #define FALSE 0
 #endif
 
+#ifndef CL_UTIL_H	// Fograin92: Redefinition fix
+#define CL_UTIL_H
+
 // Macros to hook function calls into the HUD object
 #define HOOK_MESSAGE(x) gEngfuncs.pfnHookUserMsg(#x, __MsgFunc_##x );
 
@@ -160,3 +163,5 @@ inline void UnpackRGB(int &r, int &g, int &b, unsigned long ulRGB)\
 }
 
 HL_HSPRITE LoadSprite(const char *pszName);
+
+#endif

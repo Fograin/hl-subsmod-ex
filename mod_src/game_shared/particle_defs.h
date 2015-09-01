@@ -285,7 +285,9 @@ struct particle_texture_cache
 enum ParticleIDs
 {
 	iImpactBloodRed = 1,	// Fograin92: Hit impact / Red blood particles
-	iImpactBloodYellow
+	iImpactBloodRedLOW,		// Fograin92: Hit impact / Red blood particles (LOW FX)
+	iImpactBloodYellow,		// Fograin92: Hit impact / Yellow blood particles
+	iImpactBloodYellowLOW	// Fograin92: Hit impact / Yellow blood particles (LOW FX)
 };
 
 
