@@ -851,6 +851,7 @@ void CHudAmmo::UserCmd_PrevWeapon(void)
 
 int CHudAmmo::Draw(float flTime)
 {
+
 	int a, x, y, r, g, b;
 	int AmmoWidth;
 
@@ -871,6 +872,9 @@ int CHudAmmo::Draw(float flTime)
 
 	if (!m_pWeapon)
 		return 0;
+
+	// Fograin92: We're rendering ammo counters using new HUD, begone with this thing!
+	return 0;
 
 	WEAPON *pw = m_pWeapon; // shorthand
 

@@ -56,7 +56,7 @@ protected:
 	Font *pFont;				// Base FONT
 
 	// Health + Armor panels
-	int iHealthSizeX, iHealthSizeY;		// Health+Armor panel size
+	int				iHealthSizeX, iHealthSizeY;
 	Panel			*pHealthPanel;		// Health+Armor panel background/container
 	ImageHolder		*pHealthIcon;		// Health icon
 	int				iHealth;			// Health value
@@ -64,6 +64,33 @@ protected:
 	ImageHolder		*pArmorIcon;		// Armor icon HL
 	int				iArmor;				// Armor value
 	Label			*pArmorLab;			// Armor value text
+
+	// Ammo panel
+	int				iAmmoSizeX, iAmmoSizeY;			// Primary ammo panel size
+	int				iPrimaryClip, iPrimaryAmmo;		// Primary clip and ammo value
+	int				iSecondaryClip, iSecondaryAmmo;	// Secondary clip and ammo value
+
+	Panel			*pAmmoPanel;			// Primary ammo panel background/container
+	Label			*pPrimaryAmmoLab;		// Primary ammo label
+	
+	Panel			*pSecondaryAmmoPanel;	// Secondary ammo panel background/container
+	Label			*pSecondaryAmmoLab;		// Secondary ammo label
+
+	// Ammo icons
+	ImageHolder		*pIconAmmo9mm;			// 9mm (mp5) ammo icon
+	ImageHolder		*pIconAmmoGlock;		// 9mm (glock) ammo icon
+	ImageHolder		*pIconAmmo357;			// .44 ammo icon
+	ImageHolder		*pIconAmmoAR;			// AR grenade
+	ImageHolder		*pIconAmmoBuckshot;		// Shotgun ammo icon
+	ImageHolder		*pIconAmmoArrow;		// Crossbow arrows icon
+	ImageHolder		*pIconAmmoRocket;		// RPG rockets icon
+	ImageHolder		*pIconAmmoUranium;		// Depleted uranium icon
+	ImageHolder		*pIconAmmoBee;			// NO! NOT THE BEES!
+	ImageHolder		*pIconAmmoGrenade;
+	ImageHolder		*pIconAmmoSatchel;
+	ImageHolder		*pIconAmmoTripmine;
+	ImageHolder		*pIconAmmoSnark;
+
 };
 
 

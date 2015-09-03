@@ -120,10 +120,12 @@ public:
 	void _cdecl UserCmd_NextWeapon( void );
 	void _cdecl UserCmd_PrevWeapon( void );
 
+	WEAPON *m_pWeapon;	// Fograin92
+
 private:
 	float m_fFade;
 	RGBA  m_rgba;
-	WEAPON *m_pWeapon;
+//	WEAPON *m_pWeapon;	// Fograin92
 	int	m_HUD_bucket0;
 	int m_HUD_selection;
 

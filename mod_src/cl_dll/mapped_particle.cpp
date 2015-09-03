@@ -395,6 +395,8 @@ void CMappedParticle::Update( float flTimeSinceLastDraw )
 		{
 			if (pSys->iAnimBehaviour == LOOP)
 			{
+				/*
+				// Fograin92: This is causing game freeze (TOFIX)
 				while (flParticleTime > (1.0f / pSys->iFPS))
 				{
 					iCurrentFrame++;
@@ -403,6 +405,7 @@ void CMappedParticle::Update( float flTimeSinceLastDraw )
 
 				if (iCurrentFrame > (pSys->iEndingFrame - 1))
 					iCurrentFrame = (pSys->iStartingFrame - 1);
+					*/
 			}
 			else if (pSys->iAnimBehaviour == REVERSE_LOOP)
 			{
