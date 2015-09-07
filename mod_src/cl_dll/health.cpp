@@ -278,6 +278,11 @@ void CHudHealth::CalcDamageDirection(vec3_t vecFrom)
 	front = DotProduct (vecFrom, right);
 	side = DotProduct (vecFrom, forward);
 
+
+	// Fograin92: Send damage direction to our new HUD
+	gViewPort->m_pHudNew->DamageIndicator( front, side );
+
+
 	if (flDistToTarget <= 50)
 	{
 		m_fAttackFront = m_fAttackRear = m_fAttackRight = m_fAttackLeft = 1;

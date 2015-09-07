@@ -24,7 +24,11 @@ BitmapTGA* LoadResolutionImage (const char *imgname)
 	{
 		1024,
 		1280,
-		1600
+		1360,
+		1440,
+		1600,
+		1680,
+		1920
 	};
 
 	// Try to load image directly (if %d is not specified)
@@ -35,7 +39,7 @@ BitmapTGA* LoadResolutionImage (const char *imgname)
 	{
 		int resArrayIndex = 0;
 		int i = 0;
-		while ((resArray[i] <= ScreenWidth) && (i < 3))
+		while ((resArray[i] <= ScreenWidth) && (i < 7))
 		{
 			resArrayIndex = i;
 			i++;
@@ -71,6 +75,8 @@ public:
 			setPaintBackgroundEnabled(false);
 			setVisible(true);
 			m_pBitmap->setPos(0, 0);
+			m_pBitmap->getSize(sizeX, sizeY);	// Fograin92: Get X,Y size from bitmap
+			setSize(sizeX, sizeY);	// Fograin92: Now panel have the size of the bitmap
 		}
 		
 	}
@@ -84,6 +90,8 @@ protected:
 		if (m_pBitmap)
 				m_pBitmap->doPaint(this);
 	}
+
+	int sizeX, sizeY;	// Fograin92: Used for panel size
 
 	BitmapTGA *m_pBitmap;
 };
@@ -399,7 +407,7 @@ void CHudNew::SetArmorVar(int iPlayerArmor)
 	UpdateHUD();
 }
 
-// Called when we picked up item
+// Mutator <- Called when we picked up item
 void CHudNew::PickedUpItem( const char *szName )
 {
 	gEngfuncs.Con_Printf( "^3SM -> CHudNew -> Picked up: %s\n", szName );
@@ -412,6 +420,57 @@ void CHudNew::PickedUpItem( const char *szName )
 	}
 
 	UpdateHUD();
+}
+
+// Mutator <- We send damage direction to this function
+void CHudNew::DamageIndicator( float fFront, float fSide )
+{
+	//gEngfuncs.Con_Printf( "^2SM -> Front -> %f\n", fFront ); // center = 0
+	//gEngfuncs.Con_Printf( "^2SM -> Side -> %f\n", fSide ); // center = 1
+
+	if( fSide > 0)
+	{
+		if (fSide > 0.3)
+		{
+			// Front damage
+			pPainTopDirIcon->setVisible(true);
+			if( fTimer_TopDmg < 100.0)
+				fTimer_TopDmg = 255;
+		}
+	}
+	else
+	{
+		float f = fabs(fSide);
+		if (f > 0.3)
+		{
+			// Rear damage
+			pPainBottomDirIcon->setVisible(true);
+			if( fTimer_BottomDmg < 100.0)
+				fTimer_BottomDmg = 255;
+		}
+	}
+
+	if (fFront > 0)
+	{
+		if (fFront > 0.3)
+		{
+			// Right damge
+			pPainRightDirIcon->setVisible(true);
+			if( fTimer_RightDmg < 100.0)
+				fTimer_RightDmg = 255;
+		}
+	}
+	else
+	{
+		float f = fabs(fFront);
+		if (f > 0.3)
+		{
+			// Left damage
+			pPainLeftDirIcon->setVisible(true);
+			if( fTimer_LeftDmg < 100.0)
+				fTimer_LeftDmg = 255;
+		}
+	}
 }
 
 
@@ -443,6 +502,10 @@ CHudNew::CHudNew() : Panel(0, 0, XRES(640), YRES(480))
 	iPrimaryClip = 0;
 	iSecondaryAmmo = 0;
 	iSecondaryClip = 0;
+	fTimer_TopDmg = 0;
+	fTimer_BottomDmg = 0;
+	fTimer_LeftDmg = 0;
+	fTimer_RightDmg = 0;
 
 
 // Initialize Health + ARMOR panel START
@@ -478,7 +541,6 @@ CHudNew::CHudNew() : Panel(0, 0, XRES(640), YRES(480))
 	pArmorLab->setPos( AdjustPosition(ID_ARMOR_LAB, false), AdjustPosition(ID_ARMOR_LAB, true) );
 
 // Health + ARMOR panel  END
-
 
 // Ammo panels START
 
@@ -573,8 +635,26 @@ CHudNew::CHudNew() : Panel(0, 0, XRES(640), YRES(480))
 	pIconAmmoAR->setSize(iAmmoSizeY, iAmmoSizeY);
 	pIconAmmoAR->setPos( AdjustPosition(ID_AMMO_PRIMARY_ICON, false), AdjustPosition(ID_AMMO_PRIMARY_ICON, true) );
 
-
 // Ammo panels END
+
+
+// Pain direction indicators START
+	pPainTopDirIcon = new ImageHolder("gfx/vgui/vgui_%d_painT.tga", this);
+	pPainTopDirIcon->setPos( 0, 0 );
+	pPainTopDirIcon->setVisible(false);
+
+	pPainRightDirIcon = new ImageHolder("gfx/vgui/vgui_%d_painR.tga", this);
+	pPainRightDirIcon->setPos( 0, 0 );
+	pPainRightDirIcon->setVisible(false);
+
+	pPainBottomDirIcon = new ImageHolder("gfx/vgui/vgui_%d_painB.tga", this);
+	pPainBottomDirIcon->setPos( 0, 0 );
+	pPainBottomDirIcon->setVisible(false);
+
+	pPainLeftDirIcon = new ImageHolder("gfx/vgui/vgui_%d_painL.tga", this);
+	pPainLeftDirIcon->setPos( 0, 0 );
+	pPainLeftDirIcon->setVisible(false);
+// Pain direction indicators END
 
 	// This is called everytime new level is loaded, so we don't need to execute it here.
 	UpdateHUD();	// Fuck it, let's call it, to be 100% sure that initalization part is finished.
@@ -595,6 +675,11 @@ CHudNew::~CHudNew()
 	bResError = false;
 
 	// Delete objects
+	if(pPainRightDirIcon)	delete pPainRightDirIcon;
+	if(pPainLeftDirIcon)	delete pPainLeftDirIcon;
+	if(pPainBottomDirIcon)	delete pPainBottomDirIcon;
+	if(pPainTopDirIcon)		delete pPainTopDirIcon;
+
 	if(pIconAmmo9mm)		delete pIconAmmo9mm;
 	if(pIconAmmoGlock)		delete pIconAmmoGlock;
 	if(pIconAmmo357)		delete pIconAmmo357;
@@ -680,7 +765,8 @@ void CHudNew::paint()
 {
 	//gEngfuncs.Con_Printf( "^2SM -> CHudNew -> paint()\n" );
 
-	// Update primary CLIP/AMMO value
+// Update primary CLIP/AMMO value START
+
 	// Probably not the best way to check this every re-draw frame, but it's 100% synced that way
 	if( pPrimaryAmmoLab )
 	{
@@ -887,6 +973,78 @@ void CHudNew::paint()
 				pIconAmmoSnark->setVisible(false);
 		}
 	}
+
+// Update primary CLIP/AMMO value END
+
+
+// Animate pain indicators START
+
+	// Pain indicator (TOP)
+	//gEngfuncs.Con_Printf( "^2SM -> fTimer_TopDmg -> %f\n", fTimer_TopDmg ); // center = 1
+	if (fTimer_TopDmg > 4.0)
+	{
+		fTimer_TopDmg -= (gHUD.m_flTimeDelta * 200);
+		if (fTimer_TopDmg <= 0)
+			fTimer_TopDmg = 1;
+
+		pPainTopDirIcon->GetBitmap()->setColor( Color( 255, 0, 0, 257-fTimer_TopDmg ));
+	}
+	else
+	{
+		fTimer_TopDmg = 0;
+		pPainTopDirIcon->setVisible(false);
+	}
+
+	// Pain indicator (BOTTOM)
+	//gEngfuncs.Con_Printf( "^2SM -> fTimer_BottomDmg -> %f\n", fTimer_BottomDmg );
+	if (fTimer_BottomDmg > 4.0)
+	{
+		fTimer_BottomDmg -= (gHUD.m_flTimeDelta * 200);
+		if (fTimer_BottomDmg <= 0)
+			fTimer_BottomDmg = 1;
+
+		pPainBottomDirIcon->GetBitmap()->setColor( Color( 255, 0, 0, 257-fTimer_BottomDmg ));
+	}
+	else
+	{
+		fTimer_BottomDmg = 0;
+		pPainBottomDirIcon->setVisible(false);
+	}
+
+	// Pain indicator (LEFT)
+	//gEngfuncs.Con_Printf( "^2SM -> fTimer_LeftDmg -> %f\n", fTimer_LeftDmg );
+	if (fTimer_LeftDmg > 4.0)
+	{
+		fTimer_LeftDmg -= (gHUD.m_flTimeDelta * 200);
+		if (fTimer_LeftDmg <= 0)
+			fTimer_LeftDmg = 1;
+
+		pPainLeftDirIcon->GetBitmap()->setColor( Color( 255, 0, 0, 257-fTimer_LeftDmg ));
+	}
+	else
+	{
+		fTimer_LeftDmg = 0;
+		pPainLeftDirIcon->setVisible(false);
+	}
+
+	// Pain indicator (RIGHT)
+	//gEngfuncs.Con_Printf( "^2SM -> fTimer_RightDmg -> %f\n", fTimer_RightDmg );
+	if (fTimer_RightDmg > 4.0)
+	{
+		fTimer_RightDmg -= (gHUD.m_flTimeDelta * 200);
+		if (fTimer_RightDmg <= 0)
+			fTimer_RightDmg = 1;
+
+		pPainRightDirIcon->GetBitmap()->setColor( Color( 255, 0, 0, 257-fTimer_RightDmg ));
+	}
+	else
+	{
+		fTimer_RightDmg = 0;
+		pPainRightDirIcon->setVisible(false);
+	}
+
+// Animate pain indicators END
+
 
 	Panel::paint();		// Proceed with rendering
 }

@@ -29,11 +29,12 @@ public:
 	~CHudNew();
 
 	// Shared functions
-	void UpdateHUD();							// Update HUD variables
-	void SetHealthVar(int iPlayerHealth);		// Mutator <- Send new health value
-	void SetArmorVar(int iPlayerArmor);			// Mutator <- Send new armor value
-	void PickedUpItem( const char *szName );	// Called when player picked up item
-	int ShouldDrawHUD();						// Should we draw HEV? (Called every HUD::Redraw, required for hud_draw cvar)
+	void UpdateHUD();								// Update HUD variables
+	void SetHealthVar(int iPlayerHealth);			// Mutator <- Send new health value
+	void SetArmorVar(int iPlayerArmor);				// Mutator <- Send new armor value
+	void PickedUpItem( const char *szName );		// Mutator <- Called when player picked up item
+	void DamageIndicator( float fFront, float fSide );	// Mutator <- We send damage direction to this function
+	int ShouldDrawHUD();							// Should we draw HEV? (Called every HUD::Redraw, required for hud_draw cvar)
 
 	// Shared vars
 	bool bHaveHEV;		// Do we have HEV/PCV equiped?
@@ -90,6 +91,14 @@ protected:
 	ImageHolder		*pIconAmmoSatchel;
 	ImageHolder		*pIconAmmoTripmine;
 	ImageHolder		*pIconAmmoSnark;
+
+	// Pain direction indicators
+	float fTimer_TopDmg, fTimer_BottomDmg, fTimer_LeftDmg, fTimer_RightDmg;	// Used for alpha animations
+	ImageHolder		*pPainTopDirIcon;		// Top direction indicator
+	ImageHolder		*pPainBottomDirIcon;	// Bottom direction indicator
+	ImageHolder		*pPainLeftDirIcon;		// Left direction indicator
+	ImageHolder		*pPainRightDirIcon;		// Right direction indicator
+
 
 };
 
