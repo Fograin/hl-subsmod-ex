@@ -1482,10 +1482,6 @@ VGUI_MsgsBasePanel::VGUI_TextMsgsPanel::VGUI_TextMsgRecord::VGUI_TextMsgRecord(
     {
 		const client_textmessage_t * text_msg = &msg_bundle->TextMessage;
 
-
-
-
-
         char * msg_name = new char[strlen(text_msg->pName) + 1];
         strcpy(msg_name, text_msg->pName);
         SetMessageName(msg_name);
@@ -1572,10 +1568,6 @@ VGUI_MsgsBasePanel::VGUI_TextMsgsPanel::VGUI_TextMsgRecord::VGUI_TextMsgRecord(
         }
 
         SetAbsDeathTime(GetAbsBirthTime() + GetRelFadeInTime() + GetRelHoldTime() + GetRelFadeOutTime());
-
-
-
-
 
         const char * font_name = msg_bundle->pSchemeName;
         
@@ -2095,32 +2087,6 @@ void VGUI_MsgsBasePanel::VGUI_TextMsgsPanel::VGUI_TextMsgRecord::paint()
         m_pMsgTextImages[cur_index]->doPaint(this);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 const client_textmessage_sndprops_t & VGUI_MsgsBasePanel::VGUI_SubtMsgsPanel::VGUI_SubtMsgRecord::GetSubSoundProps() const
 {

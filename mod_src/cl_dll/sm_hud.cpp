@@ -11,6 +11,9 @@
 #include "ammohistory.h"
 #include <windows.h>	// MessageBox functionality
 
+#define HEV_PULSE_SPD	6	// HEV TEXT "_" char - pulse speed
+#define HEV_READ_SPD	40	// HEV TEXT write-in speed
+
 
 //======= USEFUL CLASSES/TEMPLATES =======//
 
@@ -92,7 +95,6 @@ protected:
 	}
 
 	int sizeX, sizeY;	// Fograin92: Used for panel size
-
 	BitmapTGA *m_pBitmap;
 };
 
@@ -100,7 +102,7 @@ protected:
 
 //======= UTILITY FUNCTIONS =======//
 
-// IDs for all HUB objects
+// IDs for all HUD objects that require adjustments
 enum hudobjects_e
 {
 	ID_HUD = 0,		// New HUD ID
@@ -236,7 +238,6 @@ const int iAdjustmentArray[][5] =
 	{ ID_AMMO_SECONDARY_LAB,	1600,	900,	90,		0},
 	{ ID_AMMO_SECONDARY_LAB,	1680,	1050,	90,		0},
 	{ ID_AMMO_SECONDARY_LAB,	1920,	1080,	90,		0}
-
 };
 
 
@@ -353,6 +354,8 @@ void CHudNew::GetGame()
 // Called every CHud:Redraw tick
 int CHudNew::ShouldDrawHUD()
 {
+	//gEngfuncs.Con_Printf( "^3 ShouldDrawHUD\n" );
+
 	// hud_draw == 0, hide hud
 	if (!gHUD.m_pCvarDraw->value)
 	{
@@ -363,7 +366,7 @@ int CHudNew::ShouldDrawHUD()
 
 	// Check if we have HEV (also counts for BS) or PCV
 	//if (!(gHUD.m_iWeaponBits & (1<<(WEAPON_SUIT)) ))
-	// For some retarted reason we can't check m_iWeaponBits for WEAPON_SUIT, so let's do this retarted way
+	// For some retarted reason we can't check m_iWeaponBits for WEAPON_SUIT, so let's do this retarded way
 	if (!bHaveHEV)
 	{
 		// We don't have HEV/PCV, hide hud
@@ -374,9 +377,47 @@ int CHudNew::ShouldDrawHUD()
 
 	// In any other cases -> show hud
 	this->setVisible(true);
+	this->paint();
 	return 1;
 }
 
+
+// Reset HUD Variables 
+void CHudNew::ResetVars(bool bInitOnly)
+{
+	// Called by constructor and destructor
+	if( bInitOnly )
+	{
+		bHaveHEV = false;
+		bResError = false;
+		bShortLogon = false;
+
+		iHealthSizeX = XRES(125);
+		iHealthSizeY = YRES(25);
+		iAmmoSizeX = XRES(75);
+		iAmmoSizeY = YRES(25);
+
+		iHealth = 0;
+		iArmor = 0;
+		iPrimaryAmmo = 0;
+		iPrimaryClip = 0;
+		iSecondaryAmmo = 0;
+		iSecondaryClip = 0;
+	}
+
+	bSoundPlaying = false;
+
+	iScanNum = 0;
+	iTimerSpeed = 1;
+	iAlpha = 254;
+
+	fTimer_TopDmg = 0;
+	fTimer_BottomDmg = 0;
+	fTimer_LeftDmg = 0;
+	fTimer_RightDmg = 0;
+	fTimer_Logon = 0;
+	fTimer_LogonOLD = 0;
+}
 
 
 //======= SHARED/MUTATOR FUNCTIONS =======//
@@ -392,7 +433,7 @@ void CHudNew::SetHealthVar(int iPlayerHealth)
 
 	// Update health value
 	iHealth = iPlayerHealth;
-	UpdateHUD();
+	//UpdateHUD();
 }
 
 // Mutator <- Send new armor value
@@ -404,19 +445,19 @@ void CHudNew::SetArmorVar(int iPlayerArmor)
 
 	// Update health value
 	iArmor = iPlayerArmor;
-	UpdateHUD();
+	//UpdateHUD();
 }
 
 // Mutator <- Called when we picked up item
 void CHudNew::PickedUpItem( const char *szName )
 {
-	gEngfuncs.Con_Printf( "^3SM -> CHudNew -> Picked up: %s\n", szName );
+	//gEngfuncs.Con_Printf( "^3SM -> CHudNew -> Picked up: %s\n", szName );
 
 	// If we picked up HEV/PCV
 	if( !strcmp( szName, "item_suit" ) )
 	{
-		// TODO: Play HEV animation?
 		bHaveHEV = true;
+		fTimer_Logon = 1;	// Start the HEV LOGON sequence
 	}
 
 	UpdateHUD();
@@ -425,9 +466,6 @@ void CHudNew::PickedUpItem( const char *szName )
 // Mutator <- We send damage direction to this function
 void CHudNew::DamageIndicator( float fFront, float fSide )
 {
-	//gEngfuncs.Con_Printf( "^2SM -> Front -> %f\n", fFront ); // center = 0
-	//gEngfuncs.Con_Printf( "^2SM -> Side -> %f\n", fSide ); // center = 1
-
 	if( fSide > 0)
 	{
 		if (fSide > 0.3)
@@ -487,26 +525,11 @@ CHudNew::CHudNew() : Panel(0, 0, XRES(640), YRES(480))
 
 	// Initial settings
 	pSchemes	= gViewPort->GetSchemeManager();	// Get data from scheme manager
-	pFont		= pSchemes->getFont( pSchemes->getSchemeHandle( "Subtitles", true, true) );	// Get font
+	pFont		= pSchemes->getFont( pSchemes->getSchemeHandle( "Default", true, true) );			// Get font for displays
+	pFontText	= pSchemes->getFont( pSchemes->getSchemeHandle( "Subtitles Text", true, true) );	// Get font for VGUI Text
 	
 	// Initial values
-	bHaveHEV = false;
-	bResError = false;
-	iHealthSizeX = XRES(125);
-	iHealthSizeY = YRES(25);
-	iAmmoSizeX = XRES(75);
-	iAmmoSizeY = YRES(25);
-	iHealth = 0;
-	iArmor = 0;
-	iPrimaryAmmo = 0;
-	iPrimaryClip = 0;
-	iSecondaryAmmo = 0;
-	iSecondaryClip = 0;
-	fTimer_TopDmg = 0;
-	fTimer_BottomDmg = 0;
-	fTimer_LeftDmg = 0;
-	fTimer_RightDmg = 0;
-
+	ResetVars(true);	// Reset HUD variables
 
 // Initialize Health + ARMOR panel START
 
@@ -656,6 +679,25 @@ CHudNew::CHudNew() : Panel(0, 0, XRES(640), YRES(480))
 	pPainLeftDirIcon->setVisible(false);
 // Pain direction indicators END
 
+
+
+
+// LOGON/INTRO sequence START
+	
+	// Top-left console text
+	pLogonText = new Label("0");
+	pLogonText->setFont( pFontText );
+	pLogonText->setParent( this );
+	pLogonText->setPaintBackgroundEnabled(false);
+	pLogonText->setPos( 0, 0 );
+
+	// Logon IMG 01
+	pImgLogon01 = new ImageHolder("gfx/vgui/vgui_%d_logon01.tga", this);
+	pImgLogon01->setPos( 0, 0 );
+	pImgLogon01->setVisible(false);
+
+// LOGON/INTRO sequence END
+
 	// This is called everytime new level is loaded, so we don't need to execute it here.
 	UpdateHUD();	// Fuck it, let's call it, to be 100% sure that initalization part is finished.
 }
@@ -665,16 +707,12 @@ CHudNew::CHudNew() : Panel(0, 0, XRES(640), YRES(480))
 CHudNew::~CHudNew()
 {
 	// Clean vars (YES! I'm a safety freak!)
-	iHealth = 0;
-	iArmor = 0;
-	iPrimaryClip = 0;
-	iPrimaryAmmo = 0;
-	iSecondaryClip = 0;
-	iSecondaryAmmo = 0;
-	bHaveHEV = false;
-	bResError = false;
+	ResetVars(true);
 
 	// Delete objects
+	if(pLogonText)			delete pLogonText;
+	if(pLogonConsolePanel)	delete pLogonConsolePanel;
+
 	if(pPainRightDirIcon)	delete pPainRightDirIcon;
 	if(pPainLeftDirIcon)	delete pPainLeftDirIcon;
 	if(pPainBottomDirIcon)	delete pPainBottomDirIcon;
@@ -713,9 +751,19 @@ CHudNew::~CHudNew()
 // Called when; New level has been loaded, when savedgame has been loaded and when item has been picked up.
 void CHudNew::UpdateHUD()
 {
-	gEngfuncs.Con_Printf( "^2SM -> CHudNew -> UpdateHUD()\n" );
-	char cString[32];	// Helper string
+	// If we are not playing LOGON animation
+	if( fTimer_Logon < 1 )
+		ResetVars(false);	// Reset timers and other crap
+
 	GetGame();	// Set proper VARS
+	ShouldDrawHUD();
+}
+
+// Called every frame when HUD is visable
+void CHudNew::paint()
+{
+	//gEngfuncs.Con_Printf( "^2SM -> CHudNew -> paint()\n" );
+	char cString[32];	// Helper string
 
 	// Update Health icon
 	if (pHealthIcon)
@@ -758,219 +806,201 @@ void CHudNew::UpdateHUD()
 		sprintf(cString, "%d\%%%%", iArmor);
 		pArmorLab->setText( cString );
 	}
-}
 
-// Called every frame when HUD is visable
-void CHudNew::paint()
-{
-	//gEngfuncs.Con_Printf( "^2SM -> CHudNew -> paint()\n" );
 
 // Update primary CLIP/AMMO value START
 
 	// Probably not the best way to check this every re-draw frame, but it's 100% synced that way
 	if( pPrimaryAmmoLab )
 	{
-		char cString[32];	// Helper string
-
-		// Player pointer
-		cl_entity_t *player = gEngfuncs.GetLocalPlayer();	
-		if ( !player )
-			return;
-
 		// Weapon pointer
 		WEAPON *pxWeapon = gHUD.m_Ammo.m_pWeapon; // Weapon pointer
-		if( !pxWeapon)
-			return;
-
-		// Weapons with no max ammo == Melee weapons
-		if( pxWeapon->iMax1 == -1 )
+		if( pxWeapon)
 		{
-			// Hide ammo panel
-			pAmmoPanel->setVisible(false);
-		}
-		// We have normal weapon
-		else
-		{
-			// Show ammo panel
-			pAmmoPanel->setVisible(true);
-		}
+			// Weapons with no max ammo == Melee weapons
+			if( pxWeapon->iMax1 == -1 )
+				pAmmoPanel->setVisible(false);	// Hide ammo panel
 
-		// If we're using any type of ammo
-		if (pxWeapon->iAmmoType > 0)
-		{
-			iPrimaryClip = pxWeapon->iClip;
-			iPrimaryAmmo = gWR.CountAmmo(pxWeapon->iAmmoType);
-			if( pxWeapon->iAmmo2Type > 0 )
-				iSecondaryAmmo = gWR.CountAmmo(pxWeapon->iAmmo2Type);
-			
+			// We have normal weapon
+			else
+				pAmmoPanel->setVisible(true);	// Show ammo panel
 
-			// Primary ammo: Don't draw clip size if it's -1
-			if( iPrimaryClip < 0 )
+			// If we're using any type of ammo
+			if (pxWeapon->iAmmoType > 0)
 			{
-				if( (iPrimaryAmmo < 100) && (iPrimaryAmmo > 9) )
-					sprintf(cString, "--- / 0%d", iPrimaryAmmo);
-				else if( iPrimaryAmmo < 10 )
-					sprintf(cString, "--- / 00%d", iPrimaryAmmo);
+				iPrimaryClip = pxWeapon->iClip;
+				iPrimaryAmmo = gWR.CountAmmo(pxWeapon->iAmmoType);
+				if( pxWeapon->iAmmo2Type > 0 )
+					iSecondaryAmmo = gWR.CountAmmo(pxWeapon->iAmmo2Type);
+				
+				// Primary ammo: Don't draw clip size if it's -1
+				if( iPrimaryClip < 0 )
+				{
+					if( (iPrimaryAmmo < 100) && (iPrimaryAmmo > 9) )
+						sprintf(cString, "--- / 0%d", iPrimaryAmmo);
+					else if( iPrimaryAmmo < 10 )
+						sprintf(cString, "--- / 00%d", iPrimaryAmmo);
+					else
+						sprintf(cString, "--- / %d", iPrimaryAmmo);
+				}
 				else
-					sprintf(cString, "--- / %d", iPrimaryAmmo);
-			}
-			else
-			{
-				// Draw additional zeroes if clip is smaller than 10 and if ammo count is smaller than 100
-				if( (iPrimaryClip < 10) && (iPrimaryAmmo < 100) && (iPrimaryAmmo > 9) )
-					sprintf(cString, "0%d / 0%d", iPrimaryClip, iPrimaryAmmo);
-				else if( (iPrimaryClip < 10) && (iPrimaryAmmo < 10) )
-					sprintf(cString, "0%d / 00%d", iPrimaryClip, iPrimaryAmmo);
-				else if( (iPrimaryClip < 10) && (iPrimaryAmmo > 99) )
-					sprintf(cString, "0%d / %d", iPrimaryClip, iPrimaryAmmo);
-				else if( (iPrimaryClip > 9) && (iPrimaryAmmo < 100) && (iPrimaryAmmo > 9) )
-					sprintf(cString, "%d / 0%d", iPrimaryClip, iPrimaryAmmo);
-				else if( (iPrimaryClip > 9) && (iPrimaryAmmo < 10) )
-					sprintf(cString, "%d / 00%d", iPrimaryClip, iPrimaryAmmo);
+				{
+					// Draw additional zeroes if clip is smaller than 10 and if ammo count is smaller than 100
+					if( (iPrimaryClip < 10) && (iPrimaryAmmo < 100) && (iPrimaryAmmo > 9) )
+						sprintf(cString, "0%d / 0%d", iPrimaryClip, iPrimaryAmmo);
+					else if( (iPrimaryClip < 10) && (iPrimaryAmmo < 10) )
+						sprintf(cString, "0%d / 00%d", iPrimaryClip, iPrimaryAmmo);
+					else if( (iPrimaryClip < 10) && (iPrimaryAmmo > 99) )
+						sprintf(cString, "0%d / %d", iPrimaryClip, iPrimaryAmmo);
+					else if( (iPrimaryClip > 9) && (iPrimaryAmmo < 100) && (iPrimaryAmmo > 9) )
+						sprintf(cString, "%d / 0%d", iPrimaryClip, iPrimaryAmmo);
+					else if( (iPrimaryClip > 9) && (iPrimaryAmmo < 10) )
+						sprintf(cString, "%d / 00%d", iPrimaryClip, iPrimaryAmmo);
+					else
+						sprintf(cString, "%d / %d", iPrimaryClip, iPrimaryAmmo);
+				}
+				pPrimaryAmmoLab->setText( cString );
+
+
+				// Secondary ammo: Don't draw clip size if it's -1
+				if( iSecondaryAmmo > -1 )
+				{
+					if( iSecondaryAmmo < 10 )
+						sprintf(cString, "0%d", iSecondaryAmmo);
+					else
+						sprintf(cString, "%d", iSecondaryAmmo);
+				}
+				pSecondaryAmmoLab->setText( cString );
+
+				// Change color
+				if( (iPrimaryClip < 1) && (iPrimaryAmmo < 1) )	// Ammunition depleted
+				{
+					pPrimaryAmmoLab->setFgColor( 255, 0, 0, 0 );
+					pIconAmmo9mm->GetBitmap()->setColor( Color(255, 0, 0, 1));
+					pIconAmmoGlock->GetBitmap()->setColor( Color(255, 0, 0, 1));
+					pIconAmmo357->GetBitmap()->setColor( Color(255, 0, 0, 1));
+					pIconAmmoBuckshot->GetBitmap()->setColor( Color(255, 0, 0, 1));
+					pIconAmmoArrow->GetBitmap()->setColor( Color(255, 0, 0, 1));
+					pIconAmmoRocket->GetBitmap()->setColor( Color(255, 0, 0, 1));
+					pIconAmmoUranium->GetBitmap()->setColor( Color(255, 0, 0, 1));
+					pIconAmmoBee->GetBitmap()->setColor( Color(255, 0, 0, 1));
+					pIconAmmoGrenade->GetBitmap()->setColor( Color(255, 0, 0, 1));
+					pIconAmmoSatchel->GetBitmap()->setColor( Color(255, 0, 0, 1));
+					pIconAmmoTripmine->GetBitmap()->setColor( Color(255, 0, 0, 1));
+					pIconAmmoSnark->GetBitmap()->setColor( Color(255, 0, 0, 1));
+				}
 				else
-					sprintf(cString, "%d / %d", iPrimaryClip, iPrimaryAmmo);
-			}
-			pPrimaryAmmoLab->setText( cString );
+				{
+					pPrimaryAmmoLab->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 0 );
+					pIconAmmo9mm->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+					pIconAmmoGlock->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+					pIconAmmo357->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+					pIconAmmoBuckshot->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+					pIconAmmoArrow->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+					pIconAmmoRocket->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+					pIconAmmoUranium->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+					pIconAmmoBee->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+					pIconAmmoGrenade->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+					pIconAmmoSatchel->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+					pIconAmmoTripmine->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+					pIconAmmoSnark->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+				}
 
-
-			// Secondary ammo: Don't draw clip size if it's -1
-			if( iSecondaryAmmo > -1 )
-			{
-				if( iSecondaryAmmo < 10 )
-					sprintf(cString, "0%d", iSecondaryAmmo);
+				// Secondary ammo color
+				if( iSecondaryAmmo < 1 )
+				{
+					pSecondaryAmmoLab->setFgColor( 255, 0, 0, 0 );
+					pIconAmmoAR->GetBitmap()->setColor( Color(255, 0, 0, 1));
+				}
 				else
-					sprintf(cString, "%d", iSecondaryAmmo);
+				{
+					pSecondaryAmmoLab->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 0 );
+					pIconAmmoAR->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+				}
+
+				//sprintf(cString, "%s", pxWeapon->szName);
+				//gEngfuncs.Con_Printf( "^3SM -> CHudNew -> %s\n", pxWeapon->szName );
+
+				// Show / Hide -> 9mm (glock) ammo
+				if( !strcmp(pxWeapon->szName, "weapon_glock") || !strcmp(pxWeapon->szName, "weapon_9mmhandgun"))
+					pIconAmmoGlock->setVisible(true);
+				else
+					pIconAmmoGlock->setVisible(false);
+
+				// Show / Hide -> 9mm (mp5) ammo
+				if( !strcmp(pxWeapon->szName, "weapon_9mmAR") || !strcmp(pxWeapon->szName, "weapon_mp5"))
+				{
+					pIconAmmo9mm->setVisible(true);
+					pSecondaryAmmoPanel->setVisible(true);
+				}
+				else
+				{
+					pIconAmmo9mm->setVisible(false);
+					pSecondaryAmmoPanel->setVisible(false);
+				}
+
+				// Show / Hide -> 357 ammo
+				if( !strcmp(pxWeapon->szName, "weapon_357") )
+					pIconAmmo357->setVisible(true);
+				else
+					pIconAmmo357->setVisible(false);
+
+				// Show / Hide -> Buckshot ammo
+				if( !strcmp(pxWeapon->szName, "weapon_shotgun") )
+					pIconAmmoBuckshot->setVisible(true);
+				else
+					pIconAmmoBuckshot->setVisible(false);
+
+				// Show / Hide -> Crossbow ammo
+				if( !strcmp(pxWeapon->szName, "weapon_crossbow") )
+					pIconAmmoArrow->setVisible(true);
+				else
+					pIconAmmoArrow->setVisible(false);
+
+				// Show / Hide -> Rocket ammo
+				if( !strcmp(pxWeapon->szName, "weapon_rpg") )
+					pIconAmmoRocket->setVisible(true);
+				else
+					pIconAmmoRocket->setVisible(false);
+
+				// Show / Hide -> Uranium ammo
+				if( !strcmp(pxWeapon->szName, "weapon_egon")
+					|| !strcmp(pxWeapon->szName, "weapon_gauss")
+					)
+					pIconAmmoUranium->setVisible(true);
+				else
+					pIconAmmoUranium->setVisible(false);
+
+				// Show / Hide -> Bee ammo
+				if( !strcmp(pxWeapon->szName, "weapon_hornetgun") )
+					pIconAmmoBee->setVisible(true);
+				else
+					pIconAmmoBee->setVisible(false);
+
+				// Show / Hide -> Handgrenade ammo
+				if( !strcmp(pxWeapon->szName, "weapon_handgrenade") )
+					pIconAmmoGrenade->setVisible(true);
+				else
+					pIconAmmoGrenade->setVisible(false);
+
+				// Show / Hide -> Satchel ammo
+				if( !strcmp(pxWeapon->szName, "weapon_satchel") )
+					pIconAmmoSatchel->setVisible(true);
+				else
+					pIconAmmoSatchel->setVisible(false);
+
+				// Show / Hide -> Tripmine ammo
+				if( !strcmp(pxWeapon->szName, "weapon_tripmine") )
+					pIconAmmoTripmine->setVisible(true);
+				else
+					pIconAmmoTripmine->setVisible(false);
+
+				// Show / Hide -> Snark ammo
+				if( !strcmp(pxWeapon->szName, "weapon_snark") )
+					pIconAmmoSnark->setVisible(true);
+				else
+					pIconAmmoSnark->setVisible(false);
 			}
-			pSecondaryAmmoLab->setText( cString );
-
-			// Change color
-			if( (iPrimaryClip < 1) && (iPrimaryAmmo < 1) )	// Ammunition depleted
-			{
-				pPrimaryAmmoLab->setFgColor( 255, 0, 0, 0 );
-				pIconAmmo9mm->GetBitmap()->setColor( Color(255, 0, 0, 1));
-				pIconAmmoGlock->GetBitmap()->setColor( Color(255, 0, 0, 1));
-				pIconAmmo357->GetBitmap()->setColor( Color(255, 0, 0, 1));
-				pIconAmmoBuckshot->GetBitmap()->setColor( Color(255, 0, 0, 1));
-				pIconAmmoArrow->GetBitmap()->setColor( Color(255, 0, 0, 1));
-				pIconAmmoRocket->GetBitmap()->setColor( Color(255, 0, 0, 1));
-				pIconAmmoUranium->GetBitmap()->setColor( Color(255, 0, 0, 1));
-				pIconAmmoBee->GetBitmap()->setColor( Color(255, 0, 0, 1));
-				pIconAmmoGrenade->GetBitmap()->setColor( Color(255, 0, 0, 1));
-				pIconAmmoSatchel->GetBitmap()->setColor( Color(255, 0, 0, 1));
-				pIconAmmoTripmine->GetBitmap()->setColor( Color(255, 0, 0, 1));
-				pIconAmmoSnark->GetBitmap()->setColor( Color(255, 0, 0, 1));
-			}
-			else
-			{
-				pPrimaryAmmoLab->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 0 );
-				pIconAmmo9mm->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-				pIconAmmoGlock->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-				pIconAmmo357->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-				pIconAmmoBuckshot->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-				pIconAmmoArrow->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-				pIconAmmoRocket->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-				pIconAmmoUranium->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-				pIconAmmoBee->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-				pIconAmmoGrenade->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-				pIconAmmoSatchel->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-				pIconAmmoTripmine->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-				pIconAmmoSnark->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-			}
-
-			// Secondary ammo color
-			if( iSecondaryAmmo < 1 )
-			{
-				pSecondaryAmmoLab->setFgColor( 255, 0, 0, 0 );
-				pIconAmmoAR->GetBitmap()->setColor( Color(255, 0, 0, 1));
-			}
-			else
-			{
-				pSecondaryAmmoLab->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 0 );
-				pIconAmmoAR->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-			}
-
-			//sprintf(cString, "%s", pxWeapon->szName);
-			//gEngfuncs.Con_Printf( "^3SM -> CHudNew -> %s\n", pxWeapon->szName );
-
-			// Show / Hide -> 9mm (glock) ammo
-			if( !strcmp(pxWeapon->szName, "weapon_glock") || !strcmp(pxWeapon->szName, "weapon_9mmhandgun"))
-				pIconAmmoGlock->setVisible(true);
-			else
-				pIconAmmoGlock->setVisible(false);
-
-			// Show / Hide -> 9mm (mp5) ammo
-			if( !strcmp(pxWeapon->szName, "weapon_9mmAR") || !strcmp(pxWeapon->szName, "weapon_mp5"))
-			{
-				pIconAmmo9mm->setVisible(true);
-				pSecondaryAmmoPanel->setVisible(true);
-			}
-			else
-			{
-				pIconAmmo9mm->setVisible(false);
-				pSecondaryAmmoPanel->setVisible(false);
-			}
-
-			// Show / Hide -> 357 ammo
-			if( !strcmp(pxWeapon->szName, "weapon_357") )
-				pIconAmmo357->setVisible(true);
-			else
-				pIconAmmo357->setVisible(false);
-
-			// Show / Hide -> Buckshot ammo
-			if( !strcmp(pxWeapon->szName, "weapon_shotgun") )
-				pIconAmmoBuckshot->setVisible(true);
-			else
-				pIconAmmoBuckshot->setVisible(false);
-
-			// Show / Hide -> Crossbow ammo
-			if( !strcmp(pxWeapon->szName, "weapon_crossbow") )
-				pIconAmmoArrow->setVisible(true);
-			else
-				pIconAmmoArrow->setVisible(false);
-
-			// Show / Hide -> Rocket ammo
-			if( !strcmp(pxWeapon->szName, "weapon_rpg") )
-				pIconAmmoRocket->setVisible(true);
-			else
-				pIconAmmoRocket->setVisible(false);
-
-			// Show / Hide -> Uranium ammo
-			if( !strcmp(pxWeapon->szName, "weapon_egon")
-				|| !strcmp(pxWeapon->szName, "weapon_gauss")
-				)
-				pIconAmmoUranium->setVisible(true);
-			else
-				pIconAmmoUranium->setVisible(false);
-
-			// Show / Hide -> Bee ammo
-			if( !strcmp(pxWeapon->szName, "weapon_hornetgun") )
-				pIconAmmoBee->setVisible(true);
-			else
-				pIconAmmoBee->setVisible(false);
-
-			// Show / Hide -> Handgrenade ammo
-			if( !strcmp(pxWeapon->szName, "weapon_handgrenade") )
-				pIconAmmoGrenade->setVisible(true);
-			else
-				pIconAmmoGrenade->setVisible(false);
-
-			// Show / Hide -> Satchel ammo
-			if( !strcmp(pxWeapon->szName, "weapon_satchel") )
-				pIconAmmoSatchel->setVisible(true);
-			else
-				pIconAmmoSatchel->setVisible(false);
-
-			// Show / Hide -> Tripmine ammo
-			if( !strcmp(pxWeapon->szName, "weapon_tripmine") )
-				pIconAmmoTripmine->setVisible(true);
-			else
-				pIconAmmoTripmine->setVisible(false);
-
-			// Show / Hide -> Snark ammo
-			if( !strcmp(pxWeapon->szName, "weapon_snark") )
-				pIconAmmoSnark->setVisible(true);
-			else
-				pIconAmmoSnark->setVisible(false);
 		}
 	}
 
@@ -1045,6 +1075,378 @@ void CHudNew::paint()
 
 // Animate pain indicators END
 
+
+// Animate LOGON/INTRO sequence - START
+
+	//gEngfuncs.Con_Printf( "^2SM -> fTimer_Logon -> %.0f\n", fTimer_Logon );
+
+	if (fTimer_Logon > 0)
+	{
+		char cStringA[1024] = "";
+		char cStringB[1024] = "";
+
+//////////// DEV
+
+		bool bSkipIntro = false;
+		
+		if( (fTimer_Logon <= 610) && bSkipIntro)
+		{
+			// Hide HUD elements (leave panels, but hide contents)
+			pHealthPanel->setVisible(true);
+			pHealthIcon->setVisible(false);
+			pHealthLab->setVisible(false);
+			pArmorIcon->setVisible(false);
+			pArmorLab->setVisible(false);
+
+			pAmmoPanel->setVisible(true);
+			pPrimaryAmmoLab->setVisible(false);
+			pSecondaryAmmoPanel->setVisible(true);
+			pSecondaryAmmoLab->setVisible(false);
+
+			pIconAmmo9mm->setVisible(false);
+			pIconAmmoGlock->setVisible(false);
+			pIconAmmo357->setVisible(false);			
+			pIconAmmoAR->setVisible(false);			
+			pIconAmmoBuckshot->setVisible(false);		
+			pIconAmmoArrow->setVisible(false);	
+			pIconAmmoRocket->setVisible(false);		
+			pIconAmmoUranium->setVisible(false);		
+			pIconAmmoBee->setVisible(false);			
+			pIconAmmoGrenade->setVisible(false);
+			pIconAmmoSatchel->setVisible(false);
+			pIconAmmoTripmine->setVisible(false);
+			pIconAmmoSnark->setVisible(false);
+
+			pPainTopDirIcon->setVisible(false);
+			pPainBottomDirIcon->setVisible(false);
+			pPainLeftDirIcon->setVisible(false);
+			pPainRightDirIcon->setVisible(false);
+
+			iTimerSpeed = HEV_PULSE_SPD;
+			fTimer_Logon = 611;
+			pLogonText->setFgColor( 255, 255, 255, 0 );
+			pLogonText->setBgColor( 0, 0, 0, 0 );
+		}
+////////////DEV END
+		
+
+//========= HEV LOGON PHASE 1 START =========//
+		if( fTimer_Logon <= 610 )
+		{
+			pLogonText->setVisible(true);
+
+			// Pulse "_" sign for first 15 ticks
+			if( fTimer_Logon < 15 )
+			{
+				// Play HEV INIT/BELL SOUND
+				if( !bSoundPlaying )
+				{
+					gEngfuncs.pfnPlaySoundByName( "fvox/bell.wav", 1 );
+					bSoundPlaying = true;
+				}
+
+				// Hide HUD elements (leave panels, but hide contents)
+				pHealthPanel->setVisible(true);
+				pHealthIcon->setVisible(false);
+				pHealthLab->setVisible(false);
+				pArmorIcon->setVisible(false);
+				pArmorLab->setVisible(false);
+
+				pAmmoPanel->setVisible(true);
+				pPrimaryAmmoLab->setVisible(false);
+				pSecondaryAmmoPanel->setVisible(true);
+				pSecondaryAmmoLab->setVisible(false);
+
+				pIconAmmo9mm->setVisible(false);
+				pIconAmmoGlock->setVisible(false);
+				pIconAmmo357->setVisible(false);			
+				pIconAmmoAR->setVisible(false);			
+				pIconAmmoBuckshot->setVisible(false);		
+				pIconAmmoArrow->setVisible(false);	
+				pIconAmmoRocket->setVisible(false);		
+				pIconAmmoUranium->setVisible(false);		
+				pIconAmmoBee->setVisible(false);			
+				pIconAmmoGrenade->setVisible(false);
+				pIconAmmoSatchel->setVisible(false);
+				pIconAmmoTripmine->setVisible(false);
+				pIconAmmoSnark->setVisible(false);
+
+				pPainTopDirIcon->setVisible(false);
+				pPainBottomDirIcon->setVisible(false);
+				pPainLeftDirIcon->setVisible(false);
+				pPainRightDirIcon->setVisible(false);
+
+				// Set new timer speed
+				iTimerSpeed = HEV_PULSE_SPD;
+
+				// Let's assume HEV VGA driver is not yet set, let's use white color
+				pLogonText->setFgColor( 255, 255, 255, 0 );
+				pLogonText->setBgColor( 0, 0, 0, 0 );
+			}
+
+			// Load Copyright text
+			else if( (fTimer_Logon >= 15) && (fTimer_Logon <= 162) )
+			{
+				bSoundPlaying = false;	// Reset sound
+				iTimerSpeed = HEV_READ_SPD;	// Speed up timer
+			}
+
+			// Load the rest of the HEV_LOGON_01 text
+			else if( (fTimer_Logon > 162) && (fTimer_Logon <= 167) )	iTimerSpeed = HEV_PULSE_SPD;	// Wait
+			else if( (fTimer_Logon > 167) && (fTimer_Logon <= 187) )	iTimerSpeed = HEV_READ_SPD;		// Read
+			else if( (fTimer_Logon > 187) && (fTimer_Logon <= 191) )	iTimerSpeed = HEV_PULSE_SPD;	// Wait
+			else if( (fTimer_Logon > 191) && (fTimer_Logon <= 209) )	iTimerSpeed = HEV_READ_SPD;		// Read
+			else if( (fTimer_Logon > 209) && (fTimer_Logon <= 215) )	iTimerSpeed = HEV_PULSE_SPD;	// Wait
+			else if( (fTimer_Logon > 215) && (fTimer_Logon <= 246) )	iTimerSpeed = HEV_READ_SPD;		// Read
+			else if( (fTimer_Logon > 246) && (fTimer_Logon <= 251) )	iTimerSpeed = HEV_PULSE_SPD;	// Wait
+			else if( (fTimer_Logon > 251) && (fTimer_Logon <= 281) )	iTimerSpeed = HEV_READ_SPD;		// Read
+			else if( (fTimer_Logon > 281) && (fTimer_Logon <= 286) )	iTimerSpeed = HEV_PULSE_SPD;	// Wait
+			else if( (fTimer_Logon > 286) && (fTimer_Logon <= 304) )	iTimerSpeed = HEV_READ_SPD;		// Read
+			else if( (fTimer_Logon > 304) && (fTimer_Logon <= 306) )	iTimerSpeed = HEV_PULSE_SPD;	// Wait
+			else if( (fTimer_Logon > 306) && (fTimer_Logon <= 340) )	iTimerSpeed = HEV_READ_SPD;		// Read
+			else if( (fTimer_Logon > 340) && (fTimer_Logon <= 350) )	iTimerSpeed = HEV_PULSE_SPD;	// Wait
+			else if( (fTimer_Logon > 350) && (fTimer_Logon <= 389) )	iTimerSpeed = HEV_READ_SPD;		// Read
+			else if( (fTimer_Logon > 389) && (fTimer_Logon <= 400) )	iTimerSpeed = HEV_PULSE_SPD;	// Wait
+			else if( (fTimer_Logon > 400) && (fTimer_Logon <= 402) )
+			{
+				pLogonText->setVisible(false);
+				iTimerSpeed = HEV_PULSE_SPD;	// Wait
+			}
+			else if( (fTimer_Logon > 402) && (fTimer_Logon <= 471) )
+			{
+				pLogonText->setVisible(true);
+				pLogonText->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 0 );
+				iTimerSpeed = HEV_READ_SPD;		// Read
+			}
+			else if( (fTimer_Logon > 471) && (fTimer_Logon <= 480) )	iTimerSpeed = HEV_PULSE_SPD;	// Wait
+			else if( (fTimer_Logon > 480) && (fTimer_Logon <= 511) )	iTimerSpeed = HEV_READ_SPD;		// Read
+			else if( (fTimer_Logon > 511) && (fTimer_Logon <= 520) )	iTimerSpeed = HEV_PULSE_SPD;	// Wait
+			else if( (fTimer_Logon > 520) && (fTimer_Logon <= 580) )	iTimerSpeed = HEV_READ_SPD;		// Read
+			else
+			{
+				// Set new timer speed
+				iTimerSpeed = HEV_PULSE_SPD;
+			}
+
+			// Check if we need to display new chars
+			if( iTimerSpeed == HEV_READ_SPD)
+			{
+				// If current timer value is different than old timer value
+				if( (int)fTimer_Logon != (int)fTimer_LogonOLD )
+				{
+					iScanNum++; // Increment scan number
+					fTimer_LogonOLD = fTimer_Logon; // Set new timer value
+				}
+			}
+
+			// Load text from HEV_LOGON_01 (PHASE 1)
+			sprintf( cStringB, "%s", SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#HEV_LOGON_01" ) ) );
+			strncpy( cStringA, cStringB, iScanNum );
+
+			// Let's use simple modulo here to create pulsing "_" sign
+			if( (int)fTimer_Logon % 2 == 0 )
+				pLogonText->setText( "%s_\n", cStringA);
+			else
+				pLogonText->setText( "%s\n", cStringA);
+		}
+//========= HEV LOGON PHASE 1 END =========//
+
+
+
+//========= HEV LOGON PHASE 2 START =========//
+		else if( (fTimer_Logon > 610) && (fTimer_Logon <= 4000) )
+		{
+			// Clear text and play HEV LOGON sound
+			if( fTimer_Logon <= 612 )
+			{
+				iScanNum = 0;
+				pLogonText->setText("");
+				pLogonText->setVisible(false);
+
+				// Play LOGON SOUND
+				if( !bSoundPlaying )
+				{
+					gEngfuncs.pfnPlaySoundByName( "fvox/hev_logon.wav", 1 );
+					bSoundPlaying = true;
+				}
+
+			}
+			// hev_logon.wav - part
+			else if( (fTimer_Logon > 612) && (fTimer_Logon <= 735) )
+			{
+				bSoundPlaying = false;
+				
+				// HEV LOGON img01 - fade in
+				if( fTimer_Logon <= 632 )
+					iAlpha = iAlpha - 1;
+				
+				// HEV LOGON img01 - fade out
+				if( fTimer_Logon >= 715 )
+					iAlpha = iAlpha + 1;
+
+				// Limit alpha range
+				if( iAlpha < 4 )
+					iAlpha = 4;
+
+				if( iAlpha > 255 )
+					iAlpha = 255;
+
+				pLogonText->setVisible(true);
+				pLogonText->setText( "hev_logon -> %d ; %d\n", iAlpha, (int)fTimer_Logon);	// DEBUG
+				pImgLogon01->setVisible(true);
+				pImgLogon01->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], iAlpha) );
+
+				//TODO: ADD HEV TGA IMAGE
+			}
+			// powerarmor_on.wav - part
+			else if( (fTimer_Logon > 735) && (fTimer_Logon <= 790) )
+			{
+				pArmorIcon->setVisible(true);
+				pArmorLab->setVisible(true);
+
+				if( fTimer_Logon < 740 )
+				{
+					iArmor = 0;
+				}
+				else
+				{
+					iArmor = ((int)fTimer_Logon-740)+2;
+
+					if( iArmor > 50 )
+						iArmor = 50; // Cap the value at 100 max
+				}
+			}
+			// atmospherics_on.wav - part
+			else if( (fTimer_Logon > 790) && (fTimer_Logon <= 850) )
+			{
+				//pLogonText->setText( "atmospherics_on -> %d\n", (int)fTimer_Logon);	// DEBUG
+			}
+			// vitalsigns_on.wav + automedic_on.wav - part
+			else if( (fTimer_Logon > 850) && (fTimer_Logon <= 935) )
+			{
+				pHealthIcon->setVisible(true);
+				pHealthLab->setVisible(true);
+
+				if( fTimer_Logon < 885 )
+				{
+					// Set dafault health value to 0
+					iHealth = 0;
+
+					// Animate pain counters
+					if( (fTimer_Logon >= 860) && (fTimer_Logon < 865) )
+					{
+						pPainTopDirIcon->setVisible(true);
+						pPainRightDirIcon->setVisible(false);
+						pPainBottomDirIcon->setVisible(false);
+						pPainLeftDirIcon->setVisible(false);
+					}
+					else if( (fTimer_Logon >= 865) && (fTimer_Logon < 870) )
+					{
+						pPainTopDirIcon->setVisible(false);
+						pPainRightDirIcon->setVisible(true);
+						pPainBottomDirIcon->setVisible(false);
+						pPainLeftDirIcon->setVisible(false);
+					}
+					else if( (fTimer_Logon >= 870) && (fTimer_Logon < 875) )
+					{
+						pPainTopDirIcon->setVisible(false);
+						pPainRightDirIcon->setVisible(false);
+						pPainBottomDirIcon->setVisible(true);
+						pPainLeftDirIcon->setVisible(false);
+					}
+					else if( (fTimer_Logon >= 875) && (fTimer_Logon < 880) )
+					{
+						pPainTopDirIcon->setVisible(false);
+						pPainRightDirIcon->setVisible(false);
+						pPainBottomDirIcon->setVisible(false);
+						pPainLeftDirIcon->setVisible(true);
+					}
+				}
+				else
+				{
+					// Clear pain indicators
+					pPainTopDirIcon->setVisible(false);
+					pPainRightDirIcon->setVisible(false);
+					pPainBottomDirIcon->setVisible(false);
+					pPainLeftDirIcon->setVisible(false);
+					
+					iHealth = (((int)fTimer_Logon-885)*2)+2;
+
+					if( iHealth > 100 )
+						iHealth = 100; // Cap the value at 100 max
+				}
+			}
+			// weaponselect_on.wav - part
+			else if( (fTimer_Logon > 935) && (fTimer_Logon <= 980) )
+			{
+				//pLogonText->setText( "weaponselect_on -> %d\n", (int)fTimer_Logon);	// DEBUG
+			}
+			// munitionview_on.wav - part
+			else if( (fTimer_Logon > 980) && (fTimer_Logon <= 1027) )
+			{
+				//pLogonText->setText( "munitionview_on -> %d\n", (int)fTimer_Logon);	// DEBUG
+			}
+			// communications_on.wav - part
+			else if( (fTimer_Logon > 1027) && (fTimer_Logon <= 1070) )
+			{
+				//pLogonText->setText( "communications_on -> %d\n", (int)fTimer_Logon);	// DEBUG
+			}
+			// safe_day.wav - part
+			else if( (fTimer_Logon > 1070) && (fTimer_Logon <= 1130) )
+			{
+				//pLogonText->setText( "safe_day -> %d\n", (int)fTimer_Logon);	// DEBUG
+			}
+
+			/*
+			pHealthIcon->setVisible(false);
+			pHealthLab->setVisible(false);
+			
+
+				pAmmoPanel->setVisible(true);
+				pPrimaryAmmoLab->setVisible(false);
+				pSecondaryAmmoPanel->setVisible(true);
+				pSecondaryAmmoLab->setVisible(false);
+
+				pIconAmmo9mm->setVisible(false);
+				pIconAmmoGlock->setVisible(false);
+				pIconAmmo357->setVisible(false);			
+				pIconAmmoAR->setVisible(false);			
+				pIconAmmoBuckshot->setVisible(false);		
+				pIconAmmoArrow->setVisible(false);	
+				pIconAmmoRocket->setVisible(false);		
+				pIconAmmoUranium->setVisible(false);		
+				pIconAmmoBee->setVisible(false);			
+				pIconAmmoGrenade->setVisible(false);
+				pIconAmmoSatchel->setVisible(false);
+				pIconAmmoTripmine->setVisible(false);
+				pIconAmmoSnark->setVisible(false);
+
+				pPainTopDirIcon->setVisible(false);
+				pPainBottomDirIcon->setVisible(false);
+				pPainLeftDirIcon->setVisible(false);
+				pPainRightDirIcon->setVisible(false);
+				*/
+
+
+
+		}
+//========= HEV LOGON PHASE 2 END =========//
+
+
+
+		// Icrement timer and let the magic of animation happen
+		fTimer_Logon += (gHUD.m_flTimeDelta * iTimerSpeed);
+
+	}
+	// ELSE -> fTimer_Logon == 0 or less, disable animation
+	else
+	{
+		fTimer_Logon = 0;
+	}
+
+// Animate LOGON/INTRO sequence - END
+
+	
 
 	Panel::paint();		// Proceed with rendering
 }

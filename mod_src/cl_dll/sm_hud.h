@@ -45,6 +45,7 @@ protected:
 	// Utility functions
 	int AdjustPosition(int iHudObjectID, bool bReturnY);		// Return adjusted X position of HUD object, based on current screen resolution
 	void GetGame();	// Set proper HUD variables depending on "sm_hud" value
+	void ResetVars(bool bInitOnly);	// Reset HUD Variables (called by constructor and destructor)
 	
 	// Main functions
 	virtual void paint();		// Called every frame when HUD is visable
@@ -52,9 +53,11 @@ protected:
 	
 	// Base vars
 	bool bResError;				// Resolution is not supported
+	bool bSoundPlaying;			// Used to check if we're playing HUD sound
 	int iHudColor[3];			// HUD Color
 	CSchemeManager *pSchemes;	// Scheme manager data
 	Font *pFont;				// Base FONT
+	Font *pFontText;			// Text Font
 
 	// Health + Armor panels
 	int				iHealthSizeX, iHealthSizeY;
@@ -100,6 +103,17 @@ protected:
 	ImageHolder		*pPainRightDirIcon;		// Right direction indicator
 
 
+	// HEV Logon/Intro sequence
+	bool	bShortLogon;		// Should we use short-intro version from Hazard Course?
+	float	fTimer_Logon;		// Logon/Intro sequence timer, when set the sequence starts, when it's over the whole sequence is over.
+	float	fTimer_LogonOLD;	// Previous value of the timer, used to check if timer was changed between paint() execs.
+	int		iScanNum;			// Length of characters to display. Used for write-in effect.
+	int		iTimerSpeed;		// Used to controll the speed of the timer
+	int		iAlpha;				// Used as a helper for ALPHA color animations
+
+	Panel			*pLogonConsolePanel;	// Top-left console panel (console text container)
+	Label			*pLogonText;			// Top-left console text
+	ImageHolder		*pImgLogon01;
 };
 
 

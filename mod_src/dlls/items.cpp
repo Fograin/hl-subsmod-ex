@@ -327,10 +327,13 @@ class CItemSuit : public CItem
 			// Only if it's not impulse 101 (aka. STFU logon spam when testing)
 			if (!gEvilImpulse101)
 			{
+				/*
+				// Fograin92: Replaced by new HUD
 				if ( pev->spawnflags & SF_SUIT_SHORTLOGON )
 					EMIT_SOUND_SUIT(pPlayer->edict(), "!HEV_A0");		// short version of suit logon,
 				else
 					EMIT_SOUND_SUIT(pPlayer->edict(), "!HEV_AAx");	// long version of suit logon
+				*/
 			}
 		}
 

@@ -260,8 +260,8 @@ public:
 	void SelectNextItem( int iItem );
 	void SelectLastItem(void);
 
-	void SelectItemX(void);		// Fograin92: Second part of SelectItem function, the deploy code
-	CBasePlayerItem *pGItem;	// Fograin92: Holds currently active/deployed item
+	// Fograin92: Subtitles MOD stuff
+	float m_fWeaponDeployDelay;	// Fograin92: Holds the time until the next weapon is deployed.
 
 	void SelectItem(const char *pstr);
 	void ItemPreFrame( void );
