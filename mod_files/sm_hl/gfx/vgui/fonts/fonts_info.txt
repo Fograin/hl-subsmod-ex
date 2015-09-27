@@ -1,0 +1,12 @@
+// Supported languages:
+- Albanian
+- Czech
+- Croatian
+- English
+- Hungarian
+- Polish
+- Portuguese
+- Romanian
+- Serbian
+- Slovak
+- Slovene
