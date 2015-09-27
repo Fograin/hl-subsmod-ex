@@ -4,8 +4,7 @@
 //==============================================//
 
 Usage info:
-Everything that's located here is published under GNU GPL v3 licence.
-To get more info, read licenses.txt
+Please read sm_license.txt, everything you need to know it's written there.
 
 Credits:
 You can always find up-to-date version of credits file here:
@@ -20,4 +19,6 @@ Contents:
 
 [mod_src]
 - FULL, Most recent up-to-date source code, in WORK IN PROGRESS phase.
+
+
 

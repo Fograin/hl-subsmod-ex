@@ -1,0 +1,2 @@
+Xash 3D Engine is licensed under GPLv3 license.
+Read gnu.txt for more info.

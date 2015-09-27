@@ -1,0 +1,18 @@
+//=========================================//
+// Half-Life Subtitles MOD - License File
+//=========================================//
+
+First of all, read hl_license.txt file.
+This mod is based on HL SDK and most of the files (including client/server source code) are licensed under the same license.
+
+In order to play this mod; you need to own (and have installed) a legal copy of Half-Life 1, Half-Life: Blue-Shift and Half-Life: Opposing Force.
+
+You are allowed to use any part of this MOD (mod_files and client/server source code) in your own HL1 mods (running under GoldSRC engine or Xash3D), but remember;
+These mods must be released FOR FREE, you CAN'T sale them for profit, and they MUST require installed Half-Life 1 to run.
+
+You are NOT permitted to use any part of this mod in standalone mods or any other projects that can run without installed Half-Life 1.
+
+If you use any part of Subtitles MOD, remember to include Subtitles MOD Credits (.txt file or link) inside yours mod credits.
+
+Video policy:
+http://www.valvesoftware.com/videopolicy.html
