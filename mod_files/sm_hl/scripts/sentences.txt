@@ -916,39 +916,6 @@ BA_UPL3 barney/c3a1_ba_5sat
 BA_CANAL_W2 barney/ba_canal_wound1
 BA_AFRAID barney/die
 BA_AFRAID2 barney/killme
-BA_MONSTEREAT barney/ba_becareful1
-BA_BTN1 barney/ba_button1
-BA_BTN2 barney/ba_button2
-BA_WCRAZY barney/ba_crazywoman
-BA_DOOROPN1 barney/ba_door1
-BA_DOOROPN2 barney/ba_door2
-BA_GEN0 barney/ba_generic0
-BA_GEN1 barney/ba_generic1
-BA_GEN2 barney/ba_generic2
-BA_HEV barney/ba_gethev
-BA_HELPOX barney/ba_helpox
-BA_INTERNET barney/ba_internet
-BA_SKNOW barney/ba_know
-BA_MAIN_SEC1 barney/ba_main_sec1
-BA_MAIN_SEC2 barney/ba_main_sec2
-BA_MAIN_SEC3 barney/ba_main_sec3
-BA_MAIN_SEC4 barney/ba_main_sec4
-BA_MAIN_SEC5 barney/ba_main_sec5
-BA_MAIN_SEC6 barney/ba_main_sec6
-BA_MAIN_SEC7 barney/ba_main_sec7
-BA_MAIN_SEC8 barney/ba_main_sec8
-BA_MAIN_SEC9 barney/ba_main_sec9
-BA_MAIN_SEC10 barney/ba_main_sec10
-BA_MAIN_SEC11 barney/ba_main_sec11
-BA_PIZZA barney/ba_pizza
-BA_REKT barney/ba_rekt
-BA_SEAL0 barney/ba_sec_seal0
-BA_SEAL1 barney/ba_sec_seal1
-BA_SEAL2 barney/ba_sec_seal2
-BA_SEAL3 barney/ba_sec_seal3
-BA_SEAL4 barney/ba_sec_seal4
-BA_SOLDIERS1 barney/ba_soldiers1
-BA_SOLDIERS2 barney/ba_soldiers2
 
 
 // monster_scientist -> OK
@@ -1403,22 +1370,6 @@ SC_UPL4 scientist/uplnk_fix
 SC_UPL5 scientist/uplnk_fix2
 SC_PROTECT scientist/protectme
 SC_WHU scientist/whoareyou
-SC_CHIMP scientist/chimp
-SC_CROWBAR scientist/crowbar
-SC_EEGG1 scientist/egg_crash1
-SC_EEGG2 scientist/egg_crash2
-SC_EEGG3 scientist/egg_crash3
-SC_HELPU scientist/icanhelp
-SC_ETRACK1 scientist/scie_track1
-SC_ETRACK2 scientist/scie_track2
-SC_ETRACK3 scientist/scie_track3
-SC_OSPR1 scientist/scie_ded1
-SC_OSPR2 scientist/scie_ded2
-SC_GMAN1 scientist/scie_gman1
-SC_GMAN2 scientist/scie_gman2
-SC_GMAN3 scientist/scie_gman3
-SC_TIES scientist/ties
-SC_YAWN scientist/yawn
 
 
 // monster_rosenberg -> Ok
