@@ -17,7 +17,86 @@
 using namespace vgui;
 
 
-class ImageHolder;
+// Load best possible result for our resolution
+// Written by: BUzer | Edited by: Fograin92
+inline BitmapTGA* LoadResolutionImage (const char *imgname)
+{
+	BitmapTGA *pBitmap;
+	static int resArray[] =
+	{
+		1024,
+		1280,
+		1360,
+		1440,
+		1600,
+		1680,
+		1920
+	};
+
+	// Try to load image directly (if %d is not specified)
+	pBitmap = vgui_LoadTGA(imgname);
+
+	// We can't load image directly
+	if (!pBitmap)
+	{
+		int resArrayIndex = 0;
+		int i = 0;
+		while ((resArray[i] <= ScreenWidth) && (i < 7))
+		{
+			resArrayIndex = i;
+			i++;
+		}
+
+		// Try to load resolution based image
+		while(pBitmap == NULL && resArrayIndex >= 0)
+		{
+			char imgName[64];
+			sprintf(imgName, imgname, resArray[resArrayIndex]);
+			gEngfuncs.Con_Printf( "^3-> %s\n", imgName );
+			pBitmap = vgui_LoadTGA(imgName);
+			resArrayIndex--;
+		}
+	}
+
+	return pBitmap;
+}
+
+
+// Simple class that owns pointer to a bitmap and draws it
+// Written by: BUzer
+class ImageHolder : public Panel
+{
+public:
+	ImageHolder(const char *imgname, Panel *parent) : Panel(0, 0, 10, 10)
+	{
+		
+		m_pBitmap = LoadResolutionImage(imgname);
+		if (m_pBitmap)
+		{
+			setParent(parent);
+			setPaintBackgroundEnabled(false);
+			setVisible(true);
+			m_pBitmap->setPos(0, 0);
+			m_pBitmap->getSize(sizeX, sizeY);	// Fograin92: Get X,Y size from bitmap
+			setSize(sizeX, sizeY);	// Fograin92: Now panel have the size of the bitmap
+		}
+		
+	}
+
+	~ImageHolder() {delete m_pBitmap;}
+	BitmapTGA *GetBitmap() {return m_pBitmap;}
+
+protected:
+	virtual void paint()
+	{
+		if (m_pBitmap)
+				m_pBitmap->doPaint(this);
+	}
+
+	int sizeX, sizeY;	// Fograin92: Used for panel size
+	BitmapTGA *m_pBitmap;
+};
+
 
 
 // Define our main HUD container
@@ -29,17 +108,17 @@ public:
 	~CHudNew();
 
 	// Shared functions
-	void UpdateHUD();								// Update HUD variables
-	void SetHealthVar(int iPlayerHealth);			// Mutator <- Send new health value
-	void SetArmorVar(int iPlayerArmor);				// Mutator <- Send new armor value
-	void PickedUpItem( const char *szName );		// Mutator <- Called when player picked up item
+	void UpdateHUD();									// Update HUD variables
+	void SetHealthVar(int iPlayerHealth);				// Mutator <- Send new health value
+	void SetArmorVar(int iPlayerArmor);					// Mutator <- Send new armor value
+	void PickedUpItem( const char *szName );			// Mutator <- Called when player picked up item
 	void DamageIndicator( float fFront, float fSide );	// Mutator <- We send damage direction to this function
-	int ShouldDrawHUD();							// Should we draw HEV? (Called every HUD::Redraw, required for hud_draw cvar)
+	void DamageSensor( int iDmgType, bool bEnabled );	// Mutator <- We send damage data to atmospheric contaminant sensors
+	int ShouldDrawHUD();								// Should we draw HEV? (Called every HUD::Redraw, required for hud_draw cvar)
 
 	// Shared vars
 	bool bHaveHEV;		// Do we have HEV/PCV equiped?
 
-	
 protected:
 
 	// Utility functions
@@ -102,6 +181,18 @@ protected:
 	ImageHolder		*pPainLeftDirIcon;		// Left direction indicator
 	ImageHolder		*pPainRightDirIcon;		// Right direction indicator
 
+	// Atmospheric contaminant sensors
+	Panel			*pDmgPanel;
+	int				iDmgActiveIcons;		// Number of displayed icons
+	ImageHolder		*pDmgAir;
+	ImageHolder		*pDmgBio;
+	ImageHolder		*pDmgChem;
+	ImageHolder		*pDmgFire;
+	ImageHolder		*pDmgFrost;
+	ImageHolder		*pDmgGas;
+	ImageHolder		*pDmgRad;
+	ImageHolder		*pDmgShock;
+
 
 	// HEV Logon/Intro sequence
 	bool	bShortLogon;		// Should we use short-intro version from Hazard Course?
@@ -114,6 +205,13 @@ protected:
 	Panel			*pLogonConsolePanel;	// Top-left console panel (console text container)
 	Label			*pLogonText;			// Top-left console text
 	ImageHolder		*pImgLogon01;
+	ImageHolder		*pImgLogon02;
+	ImageHolder		*pImgLogon03;
+	ImageHolder		*pImgLogon04;
+	ImageHolder		*pImgLogon05;
+	ImageHolder		*pImgLogon06;
+	ImageHolder		*pImgLogon07;
+	ImageHolder		*pImgLogon08;
 };
 
 

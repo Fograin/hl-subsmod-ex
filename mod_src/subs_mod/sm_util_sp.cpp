@@ -46,6 +46,7 @@ const char * const SM_READ_SUBTITLE(const char * const start_ptr, const void * &
     {
         result += sent_offs;
         res_props = &g_pSubSoundProps;
+		/*
         gEngfuncs.Con_DPrintf("CLIENT got sound \"%s\":\n" \
                               "    entity ID = %i,  has origin = %i,  position = (%.2f, %.2f, %.2f),\n" \
                               "    channel = %i,  flags = %i,  volume = %.2f,  atten = %.2f,  pitch = %i\n" \
@@ -62,6 +63,7 @@ const char * const SM_READ_SUBTITLE(const char * const start_ptr, const void * &
                               g_pSubSoundProps.sndAtten,
                               g_pSubSoundProps.sndPitch
                              );
+							 */
     } else {
         res_props = NULL;
         gEngfuncs.Con_DPrintf("ERROR: CLIENT got broken sound \"%s\" (read: %i)\n", result, read_num);

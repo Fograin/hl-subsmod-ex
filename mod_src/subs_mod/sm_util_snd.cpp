@@ -113,7 +113,7 @@ static float SM_PlaySound_Hook_SENDFUNC__FIXME_(
                         {
                             gViewPort->AddSMTextMessage(MSG_TYPE_SUBTITLE, msg_bundle, &snd_props, gHUD.m_flTime);
                         } else {
-                            Con_DevMessage("CLIENT: sentence '%s' is inaudible to the local player: volume = %.2f, attenuation = %.2f, pitch = %i, distance = %.2f\n", sentence, sndVolume, sndAttenuation, sndPitch, distance );
+                            //Con_DevMessage("CLIENT: sentence '%s' is inaudible to the local player: volume = %.2f, attenuation = %.2f, pitch = %i, distance = %.2f\n", sentence, sndVolume, sndAttenuation, sndPitch, distance );
                         }
                     }
                 }
@@ -138,7 +138,7 @@ static float SM_PlaySound_Hook_SENDFUNC__FIXME_(
                     {
                         UTIL_ShowMessage( sub_message, pPlayer );
                     } else {
-                        Con_DevMessage("SERVER: Sentence '%s' is inaudible to the player [id %i]: volume = %.2f, attenuation = %.2f, pitch = %i, distance = %.2f\n", sentence, i, sndVolume, sndAttenuation, sndPitch, distance );
+                        //Con_DevMessage("SERVER: Sentence '%s' is inaudible to the player [id %i]: volume = %.2f, attenuation = %.2f, pitch = %i, distance = %.2f\n", sentence, i, sndVolume, sndAttenuation, sndPitch, distance );
                     }
                 }
             }

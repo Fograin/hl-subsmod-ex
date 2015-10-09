@@ -59,9 +59,12 @@ void CEngineApp :: getCursorPos( int &x,int &y )
 
 void VGui_RunFrame( void )
 {
+	/*
 	if( GetModuleHandle( "fraps32.dll" ) || GetModuleHandle( "fraps64.dll" ))
 		host.force_draw_version = true;
 	else host.force_draw_version = false;
+	*/
+	host.force_draw_version = false;
 }
 
 void VGui_Startup( void )

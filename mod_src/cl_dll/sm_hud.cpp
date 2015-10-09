@@ -15,91 +15,6 @@
 #define HEV_READ_SPD	40	// HEV TEXT write-in speed
 
 
-//======= USEFUL CLASSES/TEMPLATES =======//
-
-
-// Load best possible result for our resolution
-// Written by: BUzer | Edited by: Fograin92
-BitmapTGA* LoadResolutionImage (const char *imgname)
-{
-	BitmapTGA *pBitmap;
-	static int resArray[] =
-	{
-		1024,
-		1280,
-		1360,
-		1440,
-		1600,
-		1680,
-		1920
-	};
-
-	// Try to load image directly (if %d is not specified)
-	pBitmap = vgui_LoadTGA(imgname);
-
-	// We can't load image directly
-	if (!pBitmap)
-	{
-		int resArrayIndex = 0;
-		int i = 0;
-		while ((resArray[i] <= ScreenWidth) && (i < 7))
-		{
-			resArrayIndex = i;
-			i++;
-		}
-
-		// Try to load resolution based image
-		while(pBitmap == NULL && resArrayIndex >= 0)
-		{
-			char imgName[64];
-			sprintf(imgName, imgname, resArray[resArrayIndex]);
-			gEngfuncs.Con_Printf( "^3-> %s\n", imgName );
-			pBitmap = vgui_LoadTGA(imgName);
-			resArrayIndex--;
-		}
-	}
-
-	return pBitmap;
-}
-
-
-// Simple class that owns pointer to a bitmap and draws it
-// Written by: BUzer
-class ImageHolder : public Panel
-{
-public:
-	ImageHolder(const char *imgname, Panel *parent) : Panel(0, 0, 10, 10)
-	{
-		
-		m_pBitmap = LoadResolutionImage(imgname);
-		if (m_pBitmap)
-		{
-			setParent(parent);
-			setPaintBackgroundEnabled(false);
-			setVisible(true);
-			m_pBitmap->setPos(0, 0);
-			m_pBitmap->getSize(sizeX, sizeY);	// Fograin92: Get X,Y size from bitmap
-			setSize(sizeX, sizeY);	// Fograin92: Now panel have the size of the bitmap
-		}
-		
-	}
-
-	~ImageHolder() {delete m_pBitmap;}
-	BitmapTGA *GetBitmap() {return m_pBitmap;}
-
-protected:
-	virtual void paint()
-	{
-		if (m_pBitmap)
-				m_pBitmap->doPaint(this);
-	}
-
-	int sizeX, sizeY;	// Fograin92: Used for panel size
-	BitmapTGA *m_pBitmap;
-};
-
-
-
 //======= UTILITY FUNCTIONS =======//
 
 // IDs for all HUD objects that require adjustments
@@ -119,6 +34,8 @@ enum hudobjects_e
 	ID_AMMO_PRIMARY_ICON,	// Primary ammo icon
 	ID_AMMO_SECONDARY_LAB,	// Secondary ammo label
 	ID_AMMO_SECONDARY_ICON,	// Secondary ammo icon
+
+	ID_DMG_PANEL,	// Atmospheric contaminant sensors panel
 
 	AMOUNT			// Length of this enum
 };
@@ -237,7 +154,18 @@ const int iAdjustmentArray[][5] =
 	{ ID_AMMO_SECONDARY_LAB,	1440,	900,	70,		0},
 	{ ID_AMMO_SECONDARY_LAB,	1600,	900,	90,		0},
 	{ ID_AMMO_SECONDARY_LAB,	1680,	1050,	90,		0},
-	{ ID_AMMO_SECONDARY_LAB,	1920,	1080,	90,		0}
+	{ ID_AMMO_SECONDARY_LAB,	1920,	1080,	90,		0},
+
+	// Atmospheric contaminant sensors panel
+	{ ID_DMG_PANEL,		1024,	576,	0,		475},
+	{ ID_DMG_PANEL,		1024,	600,	0,		500},
+	{ ID_DMG_PANEL,		1280,	720,	0,		620},
+	{ ID_DMG_PANEL,		1360,	768,	0,		670},
+	{ ID_DMG_PANEL,		1366,	768,	0,		670},
+	{ ID_DMG_PANEL,		1440,	900,	0,		800},
+	{ ID_DMG_PANEL,		1600,	900,	0,		800},
+	{ ID_DMG_PANEL,		1680,	1050,	0,		950},
+	{ ID_DMG_PANEL,		1920,	1080,	0,		980}
 };
 
 
@@ -410,6 +338,7 @@ void CHudNew::ResetVars(bool bInitOnly)
 	iScanNum = 0;
 	iTimerSpeed = 1;
 	iAlpha = 254;
+	iDmgActiveIcons = 0;	// TEST
 
 	fTimer_TopDmg = 0;
 	fTimer_BottomDmg = 0;
@@ -512,6 +441,228 @@ void CHudNew::DamageIndicator( float fFront, float fSide )
 }
 
 
+// Mutator <- We send damage data to atmospheric contaminant sensors
+void CHudNew::DamageSensor( int iDmgType, bool bEnabled )
+{
+	// Reset position
+	if( iDmgActiveIcons < 1 )
+	{
+		pDmgAir->setPos(0, 0);
+		pDmgBio->setPos(0, 0);
+		pDmgChem->setPos(0, 0);
+		pDmgFire->setPos(0, 0);
+		pDmgFrost->setPos(0, 0);
+		pDmgGas->setPos(0, 0);
+		pDmgRad->setPos(0, 0);
+		pDmgShock->setPos(0, 0);
+	}
+
+	// Check damage type
+	switch( iDmgType )
+	{
+		// NO AIR
+		case 1:
+			if( bEnabled )
+			{
+				if( !(pDmgAir->isVisible()) )
+				{
+					pDmgAir->setVisible(true);
+					iDmgActiveIcons++;
+
+					if( iDmgActiveIcons < 1 )
+						pDmgAir->setPos(0, 0);
+					else
+						pDmgAir->setPos(64*(iDmgActiveIcons-1), 0);
+				}
+			}
+			else
+			{
+				if( pDmgAir->isVisible() )
+				{
+					pDmgAir->setVisible(false);
+					iDmgActiveIcons--;
+				}
+			}
+		break;
+
+		// BIO
+		case 2:
+			if( bEnabled )
+			{
+				if( !(pDmgBio->isVisible()) )
+				{
+					pDmgBio->setVisible(true);
+					iDmgActiveIcons++;
+
+					if( iDmgActiveIcons < 1 )
+						pDmgBio->setPos(0, 0);
+					else
+						pDmgBio->setPos(64*(iDmgActiveIcons-1), 0);
+				}
+			}
+			else
+			{
+				if( pDmgBio->isVisible() )
+				{
+					pDmgBio->setVisible(false);
+					iDmgActiveIcons--;
+				}
+			}
+		break;
+
+		// CHEM
+		case 3:
+			if( bEnabled )
+			{
+				if( !(pDmgChem->isVisible()) )
+				{
+					pDmgChem->setVisible(true);
+					iDmgActiveIcons++;
+
+					if( iDmgActiveIcons < 1 )
+						pDmgChem->setPos(0, 0);
+					else
+						pDmgChem->setPos(64*(iDmgActiveIcons-1), 0);
+				}
+			}
+			else
+			{
+				if( pDmgChem->isVisible() )
+				{
+					pDmgChem->setVisible(false);
+					iDmgActiveIcons--;
+				}
+			}
+		break;
+
+		// FIRE
+		case 4:
+			if( bEnabled )
+			{
+				if( !(pDmgFire->isVisible()) )
+				{
+					pDmgFire->setVisible(true);
+					iDmgActiveIcons++;
+
+					if( iDmgActiveIcons < 1 )
+						pDmgFire->setPos(0, 0);
+					else
+						pDmgFire->setPos(64*(iDmgActiveIcons-1), 0);
+				}
+			}
+			else
+			{
+				if( pDmgFire->isVisible() )
+				{
+					pDmgFire->setVisible(false);
+					iDmgActiveIcons--;
+				}
+			}
+		break;
+
+		// FROST
+		case 5:
+			if( bEnabled )
+			{
+				if( !(pDmgFrost->isVisible()) )
+				{
+					pDmgFrost->setVisible(true);
+					iDmgActiveIcons++;
+
+					if( iDmgActiveIcons < 1 )
+						pDmgFrost->setPos(0, 0);
+					else
+						pDmgFrost->setPos(64*(iDmgActiveIcons-1), 0);
+				}
+			}
+			else
+			{
+				if( pDmgFrost->isVisible() )
+				{
+					pDmgFrost->setVisible(false);
+					iDmgActiveIcons--;
+				}
+			}
+		break;
+
+		// GAS
+		case 6:
+			if( bEnabled )
+			{
+				if( !(pDmgGas->isVisible()) )
+				{
+					pDmgGas->setVisible(true);
+					iDmgActiveIcons++;
+
+					if( iDmgActiveIcons < 1 )
+						pDmgGas->setPos(0, 0);
+					else
+						pDmgGas->setPos(64*(iDmgActiveIcons-1), 0);
+				}
+			}
+			else
+			{
+				if( pDmgGas->isVisible() )
+				{
+					pDmgGas->setVisible(false);
+					iDmgActiveIcons--;
+				}
+			}
+		break;
+
+		// RAD
+		case 7:
+			if( bEnabled )
+			{
+				if( !(pDmgRad->isVisible()) )
+				{
+					pDmgRad->setVisible(true);
+					iDmgActiveIcons++;
+
+					if( iDmgActiveIcons < 1 )
+						pDmgRad->setPos(0, 0);
+					else
+						pDmgRad->setPos(64*(iDmgActiveIcons-1), 0);
+				}
+			}
+			else
+			{
+				if( pDmgRad->isVisible() )
+				{
+					pDmgRad->setVisible(false);
+					iDmgActiveIcons--;
+				}
+			}
+		break;
+
+		// SHOCK
+		case 8:
+			if( bEnabled )
+			{
+				if( !(pDmgShock->isVisible()) )
+				{
+					pDmgShock->setVisible(true);
+					iDmgActiveIcons++;
+
+					if( iDmgActiveIcons < 1 )
+						pDmgShock->setPos(0, 0);
+					else
+						pDmgShock->setPos(64*(iDmgActiveIcons-1), 0);
+				}
+			}
+			else
+			{
+				if( pDmgShock->isVisible() )
+				{
+					pDmgShock->setVisible(false);
+					iDmgActiveIcons--;
+				}
+			}
+		break;
+	}
+
+}
+
 
 //======= NEW HUD =======//
 
@@ -540,7 +691,7 @@ CHudNew::CHudNew() : Panel(0, 0, XRES(640), YRES(480))
 	pHealthPanel->setPaintBackgroundEnabled(false);
 
 	// Health icon
-	pHealthIcon = new ImageHolder("gfx/vgui/vgui_health.tga", pHealthPanel);
+	pHealthIcon = new ImageHolder("gfx/vgui/hev_health.tga", pHealthPanel);
 	pHealthIcon->setSize(iHealthSizeY, iHealthSizeY);
 	pHealthIcon->setPos( AdjustPosition(ID_HEALTH_ICON, false), AdjustPosition(ID_HEALTH_ICON, true) );
 	
@@ -552,7 +703,7 @@ CHudNew::CHudNew() : Panel(0, 0, XRES(640), YRES(480))
 	pHealthLab->setPos( AdjustPosition(ID_HEALTH_LAB, false), AdjustPosition(ID_HEALTH_LAB, true) );
 
 	// Armor icon
-	pArmorIcon = new ImageHolder("gfx/vgui/vgui_armor.tga", pHealthPanel);
+	pArmorIcon = new ImageHolder("gfx/vgui/hev_armor.tga", pHealthPanel);
 	pArmorIcon->setSize(iHealthSizeY, iHealthSizeY);
 	pArmorIcon->setPos( AdjustPosition(ID_ARMOR_ICON, false), AdjustPosition(ID_ARMOR_ICON, true) );
 	
@@ -581,62 +732,62 @@ CHudNew::CHudNew() : Panel(0, 0, XRES(640), YRES(480))
 	pPrimaryAmmoLab->setPos( AdjustPosition(ID_AMMO_PRIMARY_LAB, false), AdjustPosition(ID_AMMO_PRIMARY_LAB, true) );
 
 	// 9mm ammo icon
-	pIconAmmo9mm = new ImageHolder("gfx/vgui/vgui_ammo_9mm.tga", pAmmoPanel);
+	pIconAmmo9mm = new ImageHolder("gfx/vgui/hev_ammo_9mm.tga", pAmmoPanel);
 	pIconAmmo9mm->setSize(iAmmoSizeY, iAmmoSizeY);
 	pIconAmmo9mm->setPos( AdjustPosition(ID_AMMO_PRIMARY_ICON, false), AdjustPosition(ID_AMMO_PRIMARY_ICON, true) );
 
 	// 9mm (glock) ammo icon
-	pIconAmmoGlock = new ImageHolder("gfx/vgui/vgui_ammo_9mm.tga", pAmmoPanel);
+	pIconAmmoGlock = new ImageHolder("gfx/vgui/hev_ammo_9mm.tga", pAmmoPanel);
 	pIconAmmoGlock->setSize(iAmmoSizeY, iAmmoSizeY);
 	pIconAmmoGlock->setPos( AdjustPosition(ID_AMMO_PRIMARY_ICON, false), AdjustPosition(ID_AMMO_PRIMARY_ICON, true) );
 
 	// 357 ammo icon
-	pIconAmmo357 = new ImageHolder("gfx/vgui/vgui_ammo_357.tga", pAmmoPanel);
+	pIconAmmo357 = new ImageHolder("gfx/vgui/hev_ammo_357.tga", pAmmoPanel);
 	pIconAmmo357->setSize(iAmmoSizeY, iAmmoSizeY);
 	pIconAmmo357->setPos( AdjustPosition(ID_AMMO_PRIMARY_ICON, false), AdjustPosition(ID_AMMO_PRIMARY_ICON, true) );
 
 	// Buckshot ammo icon
-	pIconAmmoBuckshot = new ImageHolder("gfx/vgui/vgui_ammo_buck.tga", pAmmoPanel);
+	pIconAmmoBuckshot = new ImageHolder("gfx/vgui/hev_ammo_buck.tga", pAmmoPanel);
 	pIconAmmoBuckshot->setSize(iAmmoSizeY, iAmmoSizeY);
 	pIconAmmoBuckshot->setPos( AdjustPosition(ID_AMMO_PRIMARY_ICON, false), AdjustPosition(ID_AMMO_PRIMARY_ICON, true) );
 
 	// Arrow ammo icon
-	pIconAmmoArrow = new ImageHolder("gfx/vgui/vgui_ammo_arrows.tga", pAmmoPanel);
+	pIconAmmoArrow = new ImageHolder("gfx/vgui/hev_ammo_arrows.tga", pAmmoPanel);
 	pIconAmmoArrow->setSize(iAmmoSizeY, iAmmoSizeY);
 	pIconAmmoArrow->setPos( AdjustPosition(ID_AMMO_PRIMARY_ICON, false), AdjustPosition(ID_AMMO_PRIMARY_ICON, true) );
 
 	// Rocket ammo icon
-	pIconAmmoRocket = new ImageHolder("gfx/vgui/vgui_ammo_rpg.tga", pAmmoPanel);
+	pIconAmmoRocket = new ImageHolder("gfx/vgui/hev_ammo_rpg.tga", pAmmoPanel);
 	pIconAmmoRocket->setSize(iAmmoSizeY, iAmmoSizeY);
 	pIconAmmoRocket->setPos( AdjustPosition(ID_AMMO_PRIMARY_ICON, false), AdjustPosition(ID_AMMO_PRIMARY_ICON, true) );
 
 	// Uranium ammo icon
-	pIconAmmoUranium = new ImageHolder("gfx/vgui/vgui_ammo_uran.tga", pAmmoPanel);
+	pIconAmmoUranium = new ImageHolder("gfx/vgui/hev_ammo_uran.tga", pAmmoPanel);
 	pIconAmmoUranium->setSize(iAmmoSizeY, iAmmoSizeY);
 	pIconAmmoUranium->setPos( AdjustPosition(ID_AMMO_PRIMARY_ICON, false), AdjustPosition(ID_AMMO_PRIMARY_ICON, true) );
 
 	// Bee ammo icon
-	pIconAmmoBee = new ImageHolder("gfx/vgui/vgui_ammo_bee.tga", pAmmoPanel);
+	pIconAmmoBee = new ImageHolder("gfx/vgui/hev_ammo_bee.tga", pAmmoPanel);
 	pIconAmmoBee->setSize(iAmmoSizeY, iAmmoSizeY);
 	pIconAmmoBee->setPos( AdjustPosition(ID_AMMO_PRIMARY_ICON, false), AdjustPosition(ID_AMMO_PRIMARY_ICON, true) );
 
 	// Grenade ammo icon
-	pIconAmmoGrenade = new ImageHolder("gfx/vgui/vgui_ammo_grenade.tga", pAmmoPanel);
+	pIconAmmoGrenade = new ImageHolder("gfx/vgui/hev_ammo_grenade.tga", pAmmoPanel);
 	pIconAmmoGrenade->setSize(iAmmoSizeY, iAmmoSizeY);
 	pIconAmmoGrenade->setPos( AdjustPosition(ID_AMMO_PRIMARY_ICON, false), AdjustPosition(ID_AMMO_PRIMARY_ICON, true) );
 
 	// Satchel ammo icon
-	pIconAmmoSatchel = new ImageHolder("gfx/vgui/vgui_ammo_satchel.tga", pAmmoPanel);
+	pIconAmmoSatchel = new ImageHolder("gfx/vgui/hev_ammo_satchel.tga", pAmmoPanel);
 	pIconAmmoSatchel->setSize(iAmmoSizeY, iAmmoSizeY);
 	pIconAmmoSatchel->setPos( AdjustPosition(ID_AMMO_PRIMARY_ICON, false), AdjustPosition(ID_AMMO_PRIMARY_ICON, true) );
 
 	// Tripmine ammo icon
-	pIconAmmoTripmine = new ImageHolder("gfx/vgui/vgui_ammo_mine.tga", pAmmoPanel);
+	pIconAmmoTripmine = new ImageHolder("gfx/vgui/hev_ammo_mine.tga", pAmmoPanel);
 	pIconAmmoTripmine->setSize(iAmmoSizeY, iAmmoSizeY);
 	pIconAmmoTripmine->setPos( AdjustPosition(ID_AMMO_PRIMARY_ICON, false), AdjustPosition(ID_AMMO_PRIMARY_ICON, true) );
 
 	// Snark ammo icon
-	pIconAmmoSnark = new ImageHolder("gfx/vgui/vgui_ammo_snark.tga", pAmmoPanel);
+	pIconAmmoSnark = new ImageHolder("gfx/vgui/hev_ammo_snark.tga", pAmmoPanel);
 	pIconAmmoSnark->setSize(iAmmoSizeY, iAmmoSizeY);
 	pIconAmmoSnark->setPos( AdjustPosition(ID_AMMO_PRIMARY_ICON, false), AdjustPosition(ID_AMMO_PRIMARY_ICON, true) );
 
@@ -654,7 +805,7 @@ CHudNew::CHudNew() : Panel(0, 0, XRES(640), YRES(480))
 	pSecondaryAmmoLab->setPos( AdjustPosition(ID_AMMO_SECONDARY_LAB, false), AdjustPosition(ID_AMMO_SECONDARY_LAB, true) );
 
 	// AR ammo icon
-	pIconAmmoAR = new ImageHolder("gfx/vgui/vgui_ammo_ar.tga", pSecondaryAmmoPanel);
+	pIconAmmoAR = new ImageHolder("gfx/vgui/hev_ammo_ar.tga", pSecondaryAmmoPanel);
 	pIconAmmoAR->setSize(iAmmoSizeY, iAmmoSizeY);
 	pIconAmmoAR->setPos( AdjustPosition(ID_AMMO_PRIMARY_ICON, false), AdjustPosition(ID_AMMO_PRIMARY_ICON, true) );
 
@@ -662,23 +813,50 @@ CHudNew::CHudNew() : Panel(0, 0, XRES(640), YRES(480))
 
 
 // Pain direction indicators START
-	pPainTopDirIcon = new ImageHolder("gfx/vgui/vgui_%d_painT.tga", this);
+	pPainTopDirIcon = new ImageHolder("gfx/vgui/hev_painT_%d.tga", this);
 	pPainTopDirIcon->setPos( 0, 0 );
 	pPainTopDirIcon->setVisible(false);
 
-	pPainRightDirIcon = new ImageHolder("gfx/vgui/vgui_%d_painR.tga", this);
+	pPainRightDirIcon = new ImageHolder("gfx/vgui/hev_painR_%d.tga", this);
 	pPainRightDirIcon->setPos( 0, 0 );
 	pPainRightDirIcon->setVisible(false);
 
-	pPainBottomDirIcon = new ImageHolder("gfx/vgui/vgui_%d_painB.tga", this);
+	pPainBottomDirIcon = new ImageHolder("gfx/vgui/hev_painB_%d.tga", this);
 	pPainBottomDirIcon->setPos( 0, 0 );
 	pPainBottomDirIcon->setVisible(false);
 
-	pPainLeftDirIcon = new ImageHolder("gfx/vgui/vgui_%d_painL.tga", this);
+	pPainLeftDirIcon = new ImageHolder("gfx/vgui/hev_painL_%d.tga", this);
 	pPainLeftDirIcon->setPos( 0, 0 );
 	pPainLeftDirIcon->setVisible(false);
 // Pain direction indicators END
 
+
+// Atmospheric contaminant sensors START
+	pDmgPanel = new Panel( AdjustPosition(ID_DMG_PANEL, false), AdjustPosition(ID_DMG_PANEL, true), 512, 64);
+	pDmgPanel->setParent(this);
+	//pDmgPanel->setBgColor(0, 0, 0, 100);
+	pDmgPanel->setPaintBackgroundEnabled(false);
+
+	// Load IMGs
+	pDmgAir		= new ImageHolder("gfx/vgui/hev_dmg_air.tga",	pDmgPanel);
+	pDmgBio		= new ImageHolder("gfx/vgui/hev_dmg_bio.tga",	pDmgPanel);
+	pDmgChem	= new ImageHolder("gfx/vgui/hev_dmg_chem.tga",	pDmgPanel);
+	pDmgFire	= new ImageHolder("gfx/vgui/hev_dmg_fire.tga",	pDmgPanel);
+	pDmgFrost	= new ImageHolder("gfx/vgui/hev_dmg_frost.tga",	pDmgPanel);
+	pDmgGas		= new ImageHolder("gfx/vgui/hev_dmg_gas.tga",	pDmgPanel);
+	pDmgRad		= new ImageHolder("gfx/vgui/hev_dmg_rad.tga",	pDmgPanel);
+	pDmgShock	= new ImageHolder("gfx/vgui/hev_dmg_shock.tga",	pDmgPanel);
+
+	pDmgAir->setVisible(false);
+	pDmgBio->setVisible(false);
+	pDmgChem->setVisible(false);
+	pDmgFire->setVisible(false);
+	pDmgFrost->setVisible(false);
+	pDmgGas->setVisible(false);
+	pDmgRad->setVisible(false);
+	pDmgShock->setVisible(false);
+
+// Atmospheric contaminant sensors END
 
 
 
@@ -691,10 +869,38 @@ CHudNew::CHudNew() : Panel(0, 0, XRES(640), YRES(480))
 	pLogonText->setPaintBackgroundEnabled(false);
 	pLogonText->setPos( 0, 0 );
 
-	// Logon IMG 01
-	pImgLogon01 = new ImageHolder("gfx/vgui/vgui_%d_logon01.tga", this);
+	// Logon images
+	pImgLogon01 = new ImageHolder("gfx/vgui/hev_logon01_%d.tga", this);
 	pImgLogon01->setPos( 0, 0 );
 	pImgLogon01->setVisible(false);
+
+	pImgLogon02 = new ImageHolder("gfx/vgui/hev_logon02_%d.tga", this);
+	pImgLogon02->setPos( 0, 0 );
+	pImgLogon02->setVisible(false);
+
+	pImgLogon03 = new ImageHolder("gfx/vgui/hev_logon03_%d.tga", this);
+	pImgLogon03->setPos( 0, 0 );
+	pImgLogon03->setVisible(false);
+
+	pImgLogon04 = new ImageHolder("gfx/vgui/hev_logon04_%d.tga", this);
+	pImgLogon04->setPos( 0, 0 );
+	pImgLogon04->setVisible(false);
+
+	pImgLogon05 = new ImageHolder("gfx/vgui/hev_logon05_%d.tga", this);
+	pImgLogon05->setPos( 0, 0 );
+	pImgLogon05->setVisible(false);
+
+	pImgLogon06 = new ImageHolder("gfx/vgui/hev_logon06_%d.tga", this);
+	pImgLogon06->setPos( 0, 0 );
+	pImgLogon06->setVisible(false);
+
+	pImgLogon07 = new ImageHolder("gfx/vgui/hev_logon07_%d.tga", this);
+	pImgLogon07->setPos( 0, 0 );
+	pImgLogon07->setVisible(false);
+
+	pImgLogon08 = new ImageHolder("gfx/vgui/hev_logon08_%d.tga", this);
+	pImgLogon08->setPos( 0, 0 );
+	pImgLogon08->setVisible(false);
 
 // LOGON/INTRO sequence END
 
@@ -710,8 +916,26 @@ CHudNew::~CHudNew()
 	ResetVars(true);
 
 	// Delete objects
+	if(pImgLogon01)			delete pImgLogon01;
+	if(pImgLogon02)			delete pImgLogon02;
+	if(pImgLogon03)			delete pImgLogon03;
+	if(pImgLogon04)			delete pImgLogon04;
+	if(pImgLogon05)			delete pImgLogon05;
+	if(pImgLogon06)			delete pImgLogon06;
+	if(pImgLogon07)			delete pImgLogon07;
+	if(pImgLogon08)			delete pImgLogon08;
 	if(pLogonText)			delete pLogonText;
 	if(pLogonConsolePanel)	delete pLogonConsolePanel;
+
+	if(pDmgAir)				delete pDmgAir;
+	if(pDmgBio)				delete pDmgBio;
+	if(pDmgChem)			delete pDmgChem;
+	if(pDmgFire)			delete pDmgFire;
+	if(pDmgFrost)			delete pDmgFrost;
+	if(pDmgGas)				delete pDmgGas;
+	if(pDmgRad)				delete pDmgRad;
+	if(pDmgShock)			delete pDmgShock;
+	if(pDmgPanel)			delete pDmgPanel;
 
 	if(pPainRightDirIcon)	delete pPainRightDirIcon;
 	if(pPainLeftDirIcon)	delete pPainLeftDirIcon;
@@ -819,7 +1043,10 @@ void CHudNew::paint()
 		{
 			// Weapons with no max ammo == Melee weapons
 			if( pxWeapon->iMax1 == -1 )
+			{
 				pAmmoPanel->setVisible(false);	// Hide ammo panel
+				pSecondaryAmmoPanel->setVisible(false);
+			}
 
 			// We have normal weapon
 			else
@@ -1076,6 +1303,59 @@ void CHudNew::paint()
 // Animate pain indicators END
 
 
+// Atmospheric contaminant sensors START
+
+	// Limit icons
+	if (iDmgActiveIcons < 0)
+		iDmgActiveIcons = 0;
+	else if (iDmgActiveIcons > 8)
+		iDmgActiveIcons = 8;
+
+	if (pDmgAir)
+	{
+		pDmgAir->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+	}
+
+	if (pDmgBio)
+	{
+		pDmgBio->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+	}
+
+	if (pDmgChem)
+	{
+		pDmgChem->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+	}
+
+	if (pDmgFire)
+	{
+		pDmgFire->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+	}
+
+	if (pDmgFrost)
+	{
+		pDmgFrost->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+	}
+
+	if (pDmgGas)
+	{
+		pDmgGas->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+	}
+
+	if (pDmgRad)
+	{
+		pDmgRad->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+	}
+
+	if (pDmgShock)
+	{
+		pDmgShock->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+	}
+
+// Atmospheric contaminant sensors END
+
+
+
+
 // Animate LOGON/INTRO sequence - START
 
 	//gEngfuncs.Con_Printf( "^2SM -> fTimer_Logon -> %.0f\n", fTimer_Logon );
@@ -1291,7 +1571,7 @@ void CHudNew::paint()
 				if( iAlpha > 255 )
 					iAlpha = 255;
 
-				pLogonText->setVisible(true);
+				pLogonText->setVisible(false);	// true
 				pLogonText->setText( "hev_logon -> %d ; %d\n", iAlpha, (int)fTimer_Logon);	// DEBUG
 				pImgLogon01->setVisible(true);
 				pImgLogon01->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], iAlpha) );
@@ -1301,6 +1581,8 @@ void CHudNew::paint()
 			// powerarmor_on.wav - part
 			else if( (fTimer_Logon > 735) && (fTimer_Logon <= 790) )
 			{
+				pImgLogon01->setVisible(false);
+				pImgLogon02->setVisible(true);
 				pArmorIcon->setVisible(true);
 				pArmorLab->setVisible(true);
 
@@ -1315,15 +1597,293 @@ void CHudNew::paint()
 					if( iArmor > 50 )
 						iArmor = 50; // Cap the value at 100 max
 				}
+
+				iAlpha = 255; // Reset alpha
 			}
 			// atmospherics_on.wav - part
 			else if( (fTimer_Logon > 790) && (fTimer_Logon <= 850) )
 			{
-				//pLogonText->setText( "atmospherics_on -> %d\n", (int)fTimer_Logon);	// DEBUG
+				pLogonText->setText( "atmospherics_on -> %d\n", (int)fTimer_Logon);	// DEBUG
+				pImgLogon02->setVisible(false);
+				pImgLogon03->setVisible(true);
+
+				
+				// Show damage icons
+				if( (fTimer_Logon >= 791) && (fTimer_Logon <= 795) )
+				{
+					DamageSensor( 1, true );
+					DamageSensor( 2, false );
+					DamageSensor( 3, false );
+					DamageSensor( 4, false );
+					DamageSensor( 5, false );
+					DamageSensor( 6, false );
+					DamageSensor( 7, false );
+					DamageSensor( 8, false );
+
+					pDmgAir->GetBitmap()->setColor( Color(255, 0, 0, 1) );
+				}
+
+				if( (fTimer_Logon > 795) && (fTimer_Logon <= 800) )
+				{
+					DamageSensor( 1, true );
+					DamageSensor( 2, true );
+					DamageSensor( 3, false );
+					DamageSensor( 4, false );
+					DamageSensor( 5, false );
+					DamageSensor( 6, false );
+					DamageSensor( 7, false );
+					DamageSensor( 8, false );
+
+					pDmgAir->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1) );
+					pDmgBio->GetBitmap()->setColor( Color(255, 0, 0, 1) );
+				}
+
+				if( (fTimer_Logon > 800) && (fTimer_Logon <= 805) )
+				{
+					DamageSensor( 1, true );
+					DamageSensor( 2, true );
+					DamageSensor( 3, true );
+					DamageSensor( 4, false );
+					DamageSensor( 5, false );
+					DamageSensor( 6, false );
+					DamageSensor( 7, false );
+					DamageSensor( 8, false );
+
+
+					pDmgBio->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1) );
+					pDmgChem->GetBitmap()->setColor( Color(255, 0, 0, 1) );
+				}
+
+				if( (fTimer_Logon > 805) && (fTimer_Logon <= 810) )
+				{
+					DamageSensor( 1, true );
+					DamageSensor( 2, true );
+					DamageSensor( 3, true );
+					DamageSensor( 4, true );
+					DamageSensor( 5, false );
+					DamageSensor( 6, false );
+					DamageSensor( 7, false );
+					DamageSensor( 8, false );
+
+					pDmgChem->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1) );
+					pDmgFire->GetBitmap()->setColor( Color(255, 0, 0, 1) );
+				}
+
+				if( (fTimer_Logon > 810) && (fTimer_Logon <= 815) )
+				{
+					DamageSensor( 1, true );
+					DamageSensor( 2, true );
+					DamageSensor( 3, true );
+					DamageSensor( 4, true );
+					DamageSensor( 5, true );
+					DamageSensor( 6, false );
+					DamageSensor( 7, false );
+					DamageSensor( 8, false );
+
+					pDmgFire->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1) );
+					pDmgFrost->GetBitmap()->setColor( Color(255, 0, 0, 1) );
+				}
+
+				if( (fTimer_Logon > 815) && (fTimer_Logon <= 820) )
+				{
+					DamageSensor( 1, true );
+					DamageSensor( 2, true );
+					DamageSensor( 3, true );
+					DamageSensor( 4, true );
+					DamageSensor( 5, true );
+					DamageSensor( 6, true );
+					DamageSensor( 7, false );
+					DamageSensor( 8, false );
+
+					pDmgFrost->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1) );
+					pDmgGas->GetBitmap()->setColor( Color(255, 0, 0, 1) );
+				}
+
+				if( (fTimer_Logon > 820) && (fTimer_Logon <= 825) )
+				{
+					DamageSensor( 1, true );
+					DamageSensor( 2, true );
+					DamageSensor( 3, true );
+					DamageSensor( 4, true );
+					DamageSensor( 5, true );
+					DamageSensor( 6, true );
+					DamageSensor( 7, true );
+					DamageSensor( 8, false );
+
+					pDmgGas->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1) );
+					pDmgRad->GetBitmap()->setColor( Color(255, 0, 0, 1) );
+				}
+
+				if( (fTimer_Logon > 825) && (fTimer_Logon <= 830) )
+				{
+					DamageSensor( 1, true );
+					DamageSensor( 2, true );
+					DamageSensor( 3, true );
+					DamageSensor( 4, true );
+					DamageSensor( 5, true );
+					DamageSensor( 6, true );
+					DamageSensor( 7, true );
+					DamageSensor( 8, true );
+
+					pDmgRad->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1) );
+					pDmgShock->GetBitmap()->setColor( Color(255, 0, 0, 1) );
+				}
+
+				if( (fTimer_Logon > 830) && (fTimer_Logon <= 834) )
+				{
+					DamageSensor( 1, true );
+					DamageSensor( 2, true );
+					DamageSensor( 3, true );
+					DamageSensor( 4, true );
+					DamageSensor( 5, true );
+					DamageSensor( 6, true );
+					DamageSensor( 7, true );
+					DamageSensor( 8, true );
+
+					pDmgShock->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1) );
+				}
+
+				// Hide damage icons
+				if( (fTimer_Logon > 834) && (fTimer_Logon <= 836) )
+				{
+					DamageSensor( 1, false );
+					DamageSensor( 2, true );
+					DamageSensor( 3, true );
+					DamageSensor( 4, true );
+					DamageSensor( 5, true );
+					DamageSensor( 6, true );
+					DamageSensor( 7, true );
+					DamageSensor( 8, true );
+
+					pDmgBio->setPos		(0,		0);
+					pDmgChem->setPos	(64*1,	0);
+					pDmgFire->setPos	(64*2,	0);
+					pDmgFrost->setPos	(64*3,	0);
+					pDmgGas->setPos		(64*4,	0);
+					pDmgRad->setPos		(64*5,	0);
+					pDmgShock->setPos	(64*6,	0);
+
+					pDmgShock->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1) );
+				}
+
+				if( (fTimer_Logon > 836) && (fTimer_Logon <= 838) )
+				{
+					DamageSensor( 1, false );
+					DamageSensor( 2, false );
+					DamageSensor( 3, true );
+					DamageSensor( 4, true );
+					DamageSensor( 5, true );
+					DamageSensor( 6, true );
+					DamageSensor( 7, true );
+					DamageSensor( 8, true );
+
+					pDmgChem->setPos	(0,	0);
+					pDmgFire->setPos	(64*1,	0);
+					pDmgFrost->setPos	(64*2,	0);
+					pDmgGas->setPos		(64*3,	0);
+					pDmgRad->setPos		(64*4,	0);
+					pDmgShock->setPos	(64*5,	0);
+				}
+
+				if( (fTimer_Logon > 838) && (fTimer_Logon <= 840) )
+				{
+					DamageSensor( 1, false );
+					DamageSensor( 2, false );
+					DamageSensor( 3, false );
+					DamageSensor( 4, true );
+					DamageSensor( 5, true );
+					DamageSensor( 6, true );
+					DamageSensor( 7, true );
+					DamageSensor( 8, true );
+
+					pDmgFire->setPos	(0,	0);
+					pDmgFrost->setPos	(64*1,	0);
+					pDmgGas->setPos		(64*2,	0);
+					pDmgRad->setPos		(64*3,	0);
+					pDmgShock->setPos	(64*4,	0);
+				}
+
+				if( (fTimer_Logon > 840) && (fTimer_Logon <= 842) )
+				{
+					DamageSensor( 1, false );
+					DamageSensor( 2, false );
+					DamageSensor( 3, false );
+					DamageSensor( 4, false );
+					DamageSensor( 5, true );
+					DamageSensor( 6, true );
+					DamageSensor( 7, true );
+					DamageSensor( 8, true );
+
+					pDmgFrost->setPos	(0,	0);
+					pDmgGas->setPos		(64*1,	0);
+					pDmgRad->setPos		(64*2,	0);
+					pDmgShock->setPos	(64*3,	0);
+				}
+
+				if( (fTimer_Logon > 842) && (fTimer_Logon <= 844) )
+				{
+					DamageSensor( 1, false );
+					DamageSensor( 2, false );
+					DamageSensor( 3, false );
+					DamageSensor( 4, false );
+					DamageSensor( 5, false );
+					DamageSensor( 6, true );
+					DamageSensor( 7, true );
+					DamageSensor( 8, true );
+
+					pDmgGas->setPos		(0,	0);
+					pDmgRad->setPos		(64*1,	0);
+					pDmgShock->setPos	(64*2,	0);
+				}
+
+				if( (fTimer_Logon > 844) && (fTimer_Logon <= 846) )
+				{
+					DamageSensor( 1, false );
+					DamageSensor( 2, false );
+					DamageSensor( 3, false );
+					DamageSensor( 4, false );
+					DamageSensor( 5, false );
+					DamageSensor( 6, false );
+					DamageSensor( 7, true );
+					DamageSensor( 8, true );
+
+					pDmgRad->setPos(0, 0);
+					pDmgShock->setPos(64, 0);
+				}
+
+				if( (fTimer_Logon > 846) && (fTimer_Logon <= 848) )
+				{
+					DamageSensor( 1, false );
+					DamageSensor( 2, false );
+					DamageSensor( 3, false );
+					DamageSensor( 4, false );
+					DamageSensor( 5, false );
+					DamageSensor( 6, false );
+					DamageSensor( 7, false );
+					DamageSensor( 8, true );
+
+					pDmgShock->setPos(0,0);
+				}
+
+				if( (fTimer_Logon > 848) && (fTimer_Logon <= 850) )
+				{
+					DamageSensor( 1, false );
+					DamageSensor( 2, false );
+					DamageSensor( 3, false );
+					DamageSensor( 4, false );
+					DamageSensor( 5, false );
+					DamageSensor( 6, false );
+					DamageSensor( 7, false );
+					DamageSensor( 8, false );	
+				}
+
 			}
 			// vitalsigns_on.wav + automedic_on.wav - part
 			else if( (fTimer_Logon > 850) && (fTimer_Logon <= 935) )
 			{
+				pImgLogon03->setVisible(false);
+				pImgLogon04->setVisible(true);
+
 				pHealthIcon->setVisible(true);
 				pHealthLab->setVisible(true);
 
@@ -1364,6 +1924,9 @@ void CHudNew::paint()
 				}
 				else
 				{
+					pImgLogon04->setVisible(false);
+					pImgLogon05->setVisible(true);
+
 					// Clear pain indicators
 					pPainTopDirIcon->setVisible(false);
 					pPainRightDirIcon->setVisible(false);
@@ -1379,56 +1942,108 @@ void CHudNew::paint()
 			// weaponselect_on.wav - part
 			else if( (fTimer_Logon > 935) && (fTimer_Logon <= 980) )
 			{
+				pImgLogon05->setVisible(false);
+				pImgLogon06->setVisible(true);
 				//pLogonText->setText( "weaponselect_on -> %d\n", (int)fTimer_Logon);	// DEBUG
 			}
 			// munitionview_on.wav - part
 			else if( (fTimer_Logon > 980) && (fTimer_Logon <= 1027) )
 			{
-				//pLogonText->setText( "munitionview_on -> %d\n", (int)fTimer_Logon);	// DEBUG
+				pLogonText->setText( "munitionview_on -> %d\n", (int)fTimer_Logon);	// DEBUG
+				pImgLogon06->setVisible(false);
+				pImgLogon07->setVisible(true);
+
+				// Make 100% sure that panels are rendered
+				pAmmoPanel->setVisible(true);
+				pPrimaryAmmoLab->setVisible(true);
+				pSecondaryAmmoPanel->setVisible(true);
+				pSecondaryAmmoLab->setVisible(true);
+
+				if( (fTimer_Logon > 980) && (fTimer_Logon <= 990) )
+				{
+					pPrimaryAmmoLab->setText("-- / ---");
+					pPrimaryAmmoLab->setFgColor( 255, 0, 0, 0 );
+
+					pSecondaryAmmoLab->setText("--");
+					pSecondaryAmmoLab->setFgColor( 255, 0, 0, 0 );
+
+					pIconAmmo9mm->setVisible(true);
+					pIconAmmo9mm->GetBitmap()->setColor( Color(255, 0, 0, 1));
+
+					pIconAmmoAR->setVisible(true);
+					pIconAmmoAR->GetBitmap()->setColor( Color(255, 0, 0, 1));
+				}
+
+				if( (fTimer_Logon > 990) && (fTimer_Logon <= 992) )
+				{
+					pPrimaryAmmoLab->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 0 );
+					pIconAmmo9mm->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+					pPrimaryAmmoLab->setText("0- / ---");
+				}
+				if( (fTimer_Logon > 992) && (fTimer_Logon <= 994) )		pPrimaryAmmoLab->setText("-0 / ---");
+				if( (fTimer_Logon > 994) && (fTimer_Logon <= 996) )		pPrimaryAmmoLab->setText("-- / 0--");
+				if( (fTimer_Logon > 996) && (fTimer_Logon <= 998) )		pPrimaryAmmoLab->setText("-- / -0-");
+				if( (fTimer_Logon > 998) && (fTimer_Logon <= 1000) )	pPrimaryAmmoLab->setText("-- / --0");
+				if( (fTimer_Logon > 1000) && (fTimer_Logon <= 1002) )	pPrimaryAmmoLab->setText("-- / -00");
+				if( (fTimer_Logon > 1002) && (fTimer_Logon <= 1004) )	pPrimaryAmmoLab->setText("-- / 000");
+				if( (fTimer_Logon > 1004) && (fTimer_Logon <= 1006) )	pPrimaryAmmoLab->setText("-0 / 000");
+				if( (fTimer_Logon > 1006) && (fTimer_Logon <= 1008) )	pPrimaryAmmoLab->setText("00 / 000");
+
+				if( (fTimer_Logon > 1010) && (fTimer_Logon <= 1012) )
+				{
+					pSecondaryAmmoLab->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 0 );
+					pIconAmmoAR->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+					pSecondaryAmmoLab->setText("0-");
+				}
+
+				if( (fTimer_Logon > 1012) && (fTimer_Logon <= 1014) )	pSecondaryAmmoLab->setText("-0");
+				if( (fTimer_Logon > 1014) && (fTimer_Logon <= 1016) )	pSecondaryAmmoLab->setText("00");
+
+				if( (fTimer_Logon > 1020) && (fTimer_Logon <= 1022) )
+				{
+					pPrimaryAmmoLab->setFgColor( 255, 0, 0, 0 );
+					pSecondaryAmmoLab->setFgColor( 255, 0, 0, 0 );
+					pIconAmmo9mm->GetBitmap()->setColor( Color(255, 0, 0, 1));
+					pIconAmmoAR->GetBitmap()->setColor( Color(255, 0, 0, 1));
+				}
+
+				if( (fTimer_Logon > 1022) && (fTimer_Logon <= 1024) )
+				{
+					pPrimaryAmmoLab->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 0 );
+					pSecondaryAmmoLab->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 0 );
+					pIconAmmo9mm->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+					pIconAmmoAR->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+				}
+
+				if( (fTimer_Logon > 1024) && (fTimer_Logon <= 1026) )
+				{
+					pPrimaryAmmoLab->setFgColor( 255, 0, 0, 0 );
+					pSecondaryAmmoLab->setFgColor( 255, 0, 0, 0 );
+					pIconAmmo9mm->GetBitmap()->setColor( Color(255, 0, 0, 1));
+					pIconAmmoAR->GetBitmap()->setColor( Color(255, 0, 0, 1));
+				}
+
+				
+				if( fTimer_Logon > 1026)
+				{
+					pSecondaryAmmoPanel->setVisible(false);
+					pAmmoPanel->setVisible(false);
+				}
+
 			}
 			// communications_on.wav - part
 			else if( (fTimer_Logon > 1027) && (fTimer_Logon <= 1070) )
 			{
+				pImgLogon07->setVisible(false);
+				pImgLogon08->setVisible(true);
 				//pLogonText->setText( "communications_on -> %d\n", (int)fTimer_Logon);	// DEBUG
 			}
 			// safe_day.wav - part
 			else if( (fTimer_Logon > 1070) && (fTimer_Logon <= 1130) )
 			{
+				pImgLogon08->setVisible(false);
 				//pLogonText->setText( "safe_day -> %d\n", (int)fTimer_Logon);	// DEBUG
 			}
-
-			/*
-			pHealthIcon->setVisible(false);
-			pHealthLab->setVisible(false);
-			
-
-				pAmmoPanel->setVisible(true);
-				pPrimaryAmmoLab->setVisible(false);
-				pSecondaryAmmoPanel->setVisible(true);
-				pSecondaryAmmoLab->setVisible(false);
-
-				pIconAmmo9mm->setVisible(false);
-				pIconAmmoGlock->setVisible(false);
-				pIconAmmo357->setVisible(false);			
-				pIconAmmoAR->setVisible(false);			
-				pIconAmmoBuckshot->setVisible(false);		
-				pIconAmmoArrow->setVisible(false);	
-				pIconAmmoRocket->setVisible(false);		
-				pIconAmmoUranium->setVisible(false);		
-				pIconAmmoBee->setVisible(false);			
-				pIconAmmoGrenade->setVisible(false);
-				pIconAmmoSatchel->setVisible(false);
-				pIconAmmoTripmine->setVisible(false);
-				pIconAmmoSnark->setVisible(false);
-
-				pPainTopDirIcon->setVisible(false);
-				pPainBottomDirIcon->setVisible(false);
-				pPainLeftDirIcon->setVisible(false);
-				pPainRightDirIcon->setVisible(false);
-				*/
-
-
-
 		}
 //========= HEV LOGON PHASE 2 END =========//
 

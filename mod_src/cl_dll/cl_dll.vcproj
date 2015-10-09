@@ -2074,7 +2074,7 @@
 				</File>
 			</Filter>
 			<Filter
-				Name="hud_new"
+				Name="VGUI_new"
 				>
 				<File
 					RelativePath=".\sm_hud.cpp"
