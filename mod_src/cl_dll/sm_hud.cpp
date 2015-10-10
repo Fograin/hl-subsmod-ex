@@ -63,8 +63,8 @@ const int iAdjustmentArray[][5] =
 	{ ID_HEALTH_ICON,	1280,	720,	0,		5},
 	{ ID_HEALTH_ICON,	1360,	768,	0,		5},
 	{ ID_HEALTH_ICON,	1366,	768,	0,		5},
-	{ ID_HEALTH_ICON,	1440,	900,	0,		5},
-	{ ID_HEALTH_ICON,	1600,	900,	0,		5},
+	{ ID_HEALTH_ICON,	1440,	900,	0,		10},
+	{ ID_HEALTH_ICON,	1600,	900,	0,		10},
 	{ ID_HEALTH_ICON,	1680,	1050,	0,		10},
 	{ ID_HEALTH_ICON,	1920,	1080,	0,		10},
 
@@ -80,26 +80,26 @@ const int iAdjustmentArray[][5] =
 	{ ID_HEALTH_LAB,	1920,	1080,	30,		0 },
 
 	// Armor icon adjustments
-	{ ID_ARMOR_ICON,	1024,	576,	100,	0 },
-	{ ID_ARMOR_ICON,	1024,	600,	100,	0 },
-	{ ID_ARMOR_ICON,	1280,	720,	120,	5 },
-	{ ID_ARMOR_ICON,	1360,	768,	120,	5 },
-	{ ID_ARMOR_ICON,	1366,	768,	120,	5 },
-	{ ID_ARMOR_ICON,	1440,	900,	120,	5 },
-	{ ID_ARMOR_ICON,	1600,	900,	140,	5 },
-	{ ID_ARMOR_ICON,	1680,	1050,	140,	10 },
-	{ ID_ARMOR_ICON,	1920,	1080,	145,	10 },
+	{ ID_ARMOR_ICON,	1024,	576,	90,		0 },
+	{ ID_ARMOR_ICON,	1024,	600,	90,		0 },
+	{ ID_ARMOR_ICON,	1280,	720,	100,	5 },
+	{ ID_ARMOR_ICON,	1360,	768,	100,	5 },
+	{ ID_ARMOR_ICON,	1366,	768,	100,	5 },
+	{ ID_ARMOR_ICON,	1440,	900,	100,	10 },
+	{ ID_ARMOR_ICON,	1600,	900,	100,	10 },
+	{ ID_ARMOR_ICON,	1680,	1050,	100,	10 },
+	{ ID_ARMOR_ICON,	1920,	1080,	100,	10 },
 
 	// Armor Label adjustments
-	{ ID_ARMOR_LAB,		1024,	576,	130,	0 },
-	{ ID_ARMOR_LAB,		1024,	600,	130,	0 },
-	{ ID_ARMOR_LAB,		1280,	720,	150,	0 },
-	{ ID_ARMOR_LAB,		1360,	768,	150,	0 },
-	{ ID_ARMOR_LAB,		1366,	768,	150,	0 },
-	{ ID_ARMOR_LAB,		1440,	900,	150,	0 },
-	{ ID_ARMOR_LAB,		1600,	900,	170,	0 },
-	{ ID_ARMOR_LAB,		1680,	1050,	170,	0 },
-	{ ID_ARMOR_LAB,		1920,	1080,	175,	0 },
+	{ ID_ARMOR_LAB,		1024,	576,	120,	0 },
+	{ ID_ARMOR_LAB,		1024,	600,	120,	0 },
+	{ ID_ARMOR_LAB,		1280,	720,	130,	0 },
+	{ ID_ARMOR_LAB,		1360,	768,	130,	0 },
+	{ ID_ARMOR_LAB,		1366,	768,	130,	0 },
+	{ ID_ARMOR_LAB,		1440,	900,	130,	0 },
+	{ ID_ARMOR_LAB,		1600,	900,	130,	0 },
+	{ ID_ARMOR_LAB,		1680,	1050,	130,	0 },
+	{ ID_ARMOR_LAB,		1920,	1080,	130,	0 },
 
 	// Ammo panel adjustments
 	{ ID_AMMO_PANEL,	1024,	576,	900,	540	},
@@ -157,15 +157,15 @@ const int iAdjustmentArray[][5] =
 	{ ID_AMMO_SECONDARY_LAB,	1920,	1080,	90,		0},
 
 	// Atmospheric contaminant sensors panel
-	{ ID_DMG_PANEL,		1024,	576,	0,		475},
-	{ ID_DMG_PANEL,		1024,	600,	0,		500},
-	{ ID_DMG_PANEL,		1280,	720,	0,		620},
-	{ ID_DMG_PANEL,		1360,	768,	0,		670},
-	{ ID_DMG_PANEL,		1366,	768,	0,		670},
-	{ ID_DMG_PANEL,		1440,	900,	0,		800},
-	{ ID_DMG_PANEL,		1600,	900,	0,		800},
-	{ ID_DMG_PANEL,		1680,	1050,	0,		950},
-	{ ID_DMG_PANEL,		1920,	1080,	0,		980}
+	{ ID_DMG_PANEL,		1024,	576,	0,		495},
+	{ ID_DMG_PANEL,		1024,	600,	0,		520},
+	{ ID_DMG_PANEL,		1280,	720,	0,		640},
+	{ ID_DMG_PANEL,		1360,	768,	0,		690},
+	{ ID_DMG_PANEL,		1366,	768,	0,		690},
+	{ ID_DMG_PANEL,		1440,	900,	0,		820},
+	{ ID_DMG_PANEL,		1600,	900,	0,		820},
+	{ ID_DMG_PANEL,		1680,	1050,	0,		960},
+	{ ID_DMG_PANEL,		1920,	1080,	0,		995}
 };
 
 
@@ -472,7 +472,7 @@ void CHudNew::DamageSensor( int iDmgType, bool bEnabled )
 					if( iDmgActiveIcons < 1 )
 						pDmgAir->setPos(0, 0);
 					else
-						pDmgAir->setPos(64*(iDmgActiveIcons-1), 0);
+						pDmgAir->setPos(48*(iDmgActiveIcons-1), 0);
 				}
 			}
 			else
@@ -497,7 +497,7 @@ void CHudNew::DamageSensor( int iDmgType, bool bEnabled )
 					if( iDmgActiveIcons < 1 )
 						pDmgBio->setPos(0, 0);
 					else
-						pDmgBio->setPos(64*(iDmgActiveIcons-1), 0);
+						pDmgBio->setPos(48*(iDmgActiveIcons-1), 0);
 				}
 			}
 			else
@@ -522,7 +522,7 @@ void CHudNew::DamageSensor( int iDmgType, bool bEnabled )
 					if( iDmgActiveIcons < 1 )
 						pDmgChem->setPos(0, 0);
 					else
-						pDmgChem->setPos(64*(iDmgActiveIcons-1), 0);
+						pDmgChem->setPos(48*(iDmgActiveIcons-1), 0);
 				}
 			}
 			else
@@ -547,7 +547,7 @@ void CHudNew::DamageSensor( int iDmgType, bool bEnabled )
 					if( iDmgActiveIcons < 1 )
 						pDmgFire->setPos(0, 0);
 					else
-						pDmgFire->setPos(64*(iDmgActiveIcons-1), 0);
+						pDmgFire->setPos(48*(iDmgActiveIcons-1), 0);
 				}
 			}
 			else
@@ -572,7 +572,7 @@ void CHudNew::DamageSensor( int iDmgType, bool bEnabled )
 					if( iDmgActiveIcons < 1 )
 						pDmgFrost->setPos(0, 0);
 					else
-						pDmgFrost->setPos(64*(iDmgActiveIcons-1), 0);
+						pDmgFrost->setPos(48*(iDmgActiveIcons-1), 0);
 				}
 			}
 			else
@@ -597,7 +597,7 @@ void CHudNew::DamageSensor( int iDmgType, bool bEnabled )
 					if( iDmgActiveIcons < 1 )
 						pDmgGas->setPos(0, 0);
 					else
-						pDmgGas->setPos(64*(iDmgActiveIcons-1), 0);
+						pDmgGas->setPos(48*(iDmgActiveIcons-1), 0);
 				}
 			}
 			else
@@ -622,7 +622,7 @@ void CHudNew::DamageSensor( int iDmgType, bool bEnabled )
 					if( iDmgActiveIcons < 1 )
 						pDmgRad->setPos(0, 0);
 					else
-						pDmgRad->setPos(64*(iDmgActiveIcons-1), 0);
+						pDmgRad->setPos(48*(iDmgActiveIcons-1), 0);
 				}
 			}
 			else
@@ -647,7 +647,7 @@ void CHudNew::DamageSensor( int iDmgType, bool bEnabled )
 					if( iDmgActiveIcons < 1 )
 						pDmgShock->setPos(0, 0);
 					else
-						pDmgShock->setPos(64*(iDmgActiveIcons-1), 0);
+						pDmgShock->setPos(48*(iDmgActiveIcons-1), 0);
 				}
 			}
 			else
@@ -676,8 +676,8 @@ CHudNew::CHudNew() : Panel(0, 0, XRES(640), YRES(480))
 
 	// Initial settings
 	pSchemes	= gViewPort->GetSchemeManager();	// Get data from scheme manager
-	pFont		= pSchemes->getFont( pSchemes->getSchemeHandle( "Default", true, true) );			// Get font for displays
-	pFontText	= pSchemes->getFont( pSchemes->getSchemeHandle( "Subtitles Text", true, true) );	// Get font for VGUI Text
+	pFont		= pSchemes->getFont( pSchemes->getSchemeHandle( "HUD_Display", true, true) );			// Get font for displays
+	pFontText	= pSchemes->getFont( pSchemes->getSchemeHandle( "HUD_Text", true, true) );	// Get font for VGUI Text
 	
 	// Initial values
 	ResetVars(true);	// Reset HUD variables
@@ -692,7 +692,7 @@ CHudNew::CHudNew() : Panel(0, 0, XRES(640), YRES(480))
 
 	// Health icon
 	pHealthIcon = new ImageHolder("gfx/vgui/hev_health.tga", pHealthPanel);
-	pHealthIcon->setSize(iHealthSizeY, iHealthSizeY);
+	pHealthIcon->setSize(32, 32);
 	pHealthIcon->setPos( AdjustPosition(ID_HEALTH_ICON, false), AdjustPosition(ID_HEALTH_ICON, true) );
 	
 	// Health value
@@ -701,11 +701,16 @@ CHudNew::CHudNew() : Panel(0, 0, XRES(640), YRES(480))
 	pHealthLab->setParent( pHealthPanel );
 	pHealthLab->setPaintBackgroundEnabled(false);
 	pHealthLab->setPos( AdjustPosition(ID_HEALTH_LAB, false), AdjustPosition(ID_HEALTH_LAB, true) );
+	//pHealthLab->setContentAlignment( vgui::Label::a_east );
 
-	// Armor icon
-	pArmorIcon = new ImageHolder("gfx/vgui/hev_armor.tga", pHealthPanel);
-	pArmorIcon->setSize(iHealthSizeY, iHealthSizeY);
-	pArmorIcon->setPos( AdjustPosition(ID_ARMOR_ICON, false), AdjustPosition(ID_ARMOR_ICON, true) );
+	// HL Armor icon
+	pArmorIconHL = new ImageHolder("gfx/vgui/hev_armor_hl.tga", pHealthPanel);
+	pArmorIconHL->setSize(32, 32);
+	pArmorIconHL->setPos( AdjustPosition(ID_ARMOR_ICON, false), AdjustPosition(ID_ARMOR_ICON, true) );
+
+	pArmorIconHLc = new ImageHolder("gfx/vgui/hev_armor_hlc.tga", pHealthPanel);
+	pArmorIconHLc->setSize(32, 0);
+	pArmorIconHLc->setPos( AdjustPosition(ID_ARMOR_ICON, false), AdjustPosition(ID_ARMOR_ICON, true) );
 	
 	// Health value
 	pArmorLab = new Label("0");
@@ -832,9 +837,9 @@ CHudNew::CHudNew() : Panel(0, 0, XRES(640), YRES(480))
 
 
 // Atmospheric contaminant sensors START
-	pDmgPanel = new Panel( AdjustPosition(ID_DMG_PANEL, false), AdjustPosition(ID_DMG_PANEL, true), 512, 64);
+	pDmgPanel = new Panel( AdjustPosition(ID_DMG_PANEL, false), AdjustPosition(ID_DMG_PANEL, true), 384, 48);
 	pDmgPanel->setParent(this);
-	//pDmgPanel->setBgColor(0, 0, 0, 100);
+	pDmgPanel->setBgColor(0, 0, 0, 100);
 	pDmgPanel->setPaintBackgroundEnabled(false);
 
 	// Load IMGs
@@ -962,7 +967,8 @@ CHudNew::~CHudNew()
 	if(pPrimaryAmmoLab)		delete pPrimaryAmmoLab;
 	if(pAmmoPanel)			delete pAmmoPanel;
 
-	if(pArmorIcon)			delete pArmorIcon;
+	if(pArmorIconHLc)		delete pArmorIconHLc;
+	if(pArmorIconHL)		delete pArmorIconHL;
 	if(pArmorLab)			delete pArmorLab;
 
 	if(pHealthIcon)			delete pHealthIcon;
@@ -979,7 +985,7 @@ void CHudNew::UpdateHUD()
 	if( fTimer_Logon < 1 )
 		ResetVars(false);	// Reset timers and other crap
 
-	GetGame();	// Set proper VARS
+	GetGame();	// Set proper color vars
 	ShouldDrawHUD();
 }
 
@@ -989,52 +995,77 @@ void CHudNew::paint()
 	//gEngfuncs.Con_Printf( "^2SM -> CHudNew -> paint()\n" );
 	char cString[32];	// Helper string
 
-	// Update Health icon
-	if (pHealthIcon)
+
+//========== HEALTH + ARMOR PANEL START =======//
+
+	// Health icon and health text value
+	if (pHealthIcon && pHealthLab)
 	{
-		if (iHealth < 26)
+		// Change icon and text color to red if health is below 25%
+		if (iHealth < 25)
+		{
 			pHealthIcon->GetBitmap()->setColor( Color(255, 0, 0, 1) );
-		else
-			pHealthIcon->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-	}
-
-	// Update Health text value
-	if( pHealthLab )
-	{
-		if (iHealth < 26)
 			pHealthLab->setFgColor( 255, 0, 0, 0 );
+		}
 		else
+		{
+			pHealthIcon->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
 			pHealthLab->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 0 );
+		}
 
-		sprintf(cString, "%d\%%%%", iHealth);
+		// Display counter as 3 digit [000]
+		if( (iHealth < 100) && (iHealth > 9) )
+			sprintf(cString, "0%d", iHealth);
+		else if( iHealth < 10 )
+			sprintf(cString, "00%d", iHealth);
+		else
+			sprintf(cString, "%d", iHealth);
+
 		pHealthLab->setText( cString );
 	}
 
-	// Update Armor icon
-	if (pArmorIcon)
+	// Armor icon and armor text value
+	if (pArmorIconHL && pArmorIconHLc && pArmorLab)
 	{
-		if (iArmor < 15)
-			pArmorIcon->GetBitmap()->setColor( Color(255, 0, 0, 1) );
-		else
-			pArmorIcon->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-	}
-
-	// Update Armor text value
-	if( pArmorLab )
-	{
-		if (iArmor < 15)
+		// TODO: Change icon based on game loaded
+		// Change icon and text color to red if armor is below 25%
+		if (iArmor < 25)
+		{
+			pArmorIconHL->GetBitmap()->setColor( Color(255, 0, 0, 1) );
+			pArmorIconHLc->GetBitmap()->setColor( Color(255, 0, 0, 1) );
 			pArmorLab->setFgColor( 255, 0, 0, 0 );
+		}
 		else
+		{
+			pArmorIconHL->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+			pArmorIconHLc->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
 			pArmorLab->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 0 );
+		}
 
-		sprintf(cString, "%d\%%%%", iArmor);
+		// Update charge level
+		if( iArmor <= 90 )
+			pArmorIconHLc->setSize(32, (int)(iArmor/3));
+		else if( (iArmor > 90) && (iArmor < 95 ) )
+			pArmorIconHLc->setSize(32, 31);
+		else
+			pArmorIconHLc->setSize(32, 32);
+
+		// Display counter as 3 digit [000]
+		if( (iArmor < 100) && (iArmor > 9) )
+			sprintf(cString, "0%d", iArmor);
+		else if( iArmor < 10 )
+			sprintf(cString, "00%d", iArmor);
+		else
+			sprintf(cString, "%d", iArmor);
+
 		pArmorLab->setText( cString );
 	}
 
+//========== HEALTH + ARMOR PANEL END =======//
 
-// Update primary CLIP/AMMO value START
 
-	// Probably not the best way to check this every re-draw frame, but it's 100% synced that way
+
+//========== PRIMARY / SECONDARY AMMO PANEL START =======//
 	if( pPrimaryAmmoLab )
 	{
 		// Weapon pointer
@@ -1044,7 +1075,8 @@ void CHudNew::paint()
 			// Weapons with no max ammo == Melee weapons
 			if( pxWeapon->iMax1 == -1 )
 			{
-				pAmmoPanel->setVisible(false);	// Hide ammo panel
+				// Hide ammo panels
+				pAmmoPanel->setVisible(false);
 				pSecondaryAmmoPanel->setVisible(false);
 			}
 
@@ -1064,27 +1096,27 @@ void CHudNew::paint()
 				if( iPrimaryClip < 0 )
 				{
 					if( (iPrimaryAmmo < 100) && (iPrimaryAmmo > 9) )
-						sprintf(cString, "--- / 0%d", iPrimaryAmmo);
+						sprintf(cString, "--- | 0%d", iPrimaryAmmo);
 					else if( iPrimaryAmmo < 10 )
-						sprintf(cString, "--- / 00%d", iPrimaryAmmo);
+						sprintf(cString, "--- | 00%d", iPrimaryAmmo);
 					else
-						sprintf(cString, "--- / %d", iPrimaryAmmo);
+						sprintf(cString, "--- | %d", iPrimaryAmmo);
 				}
 				else
 				{
 					// Draw additional zeroes if clip is smaller than 10 and if ammo count is smaller than 100
 					if( (iPrimaryClip < 10) && (iPrimaryAmmo < 100) && (iPrimaryAmmo > 9) )
-						sprintf(cString, "0%d / 0%d", iPrimaryClip, iPrimaryAmmo);
+						sprintf(cString, "0%d | 0%d", iPrimaryClip, iPrimaryAmmo);
 					else if( (iPrimaryClip < 10) && (iPrimaryAmmo < 10) )
-						sprintf(cString, "0%d / 00%d", iPrimaryClip, iPrimaryAmmo);
+						sprintf(cString, "0%d | 00%d", iPrimaryClip, iPrimaryAmmo);
 					else if( (iPrimaryClip < 10) && (iPrimaryAmmo > 99) )
-						sprintf(cString, "0%d / %d", iPrimaryClip, iPrimaryAmmo);
+						sprintf(cString, "0%d | %d", iPrimaryClip, iPrimaryAmmo);
 					else if( (iPrimaryClip > 9) && (iPrimaryAmmo < 100) && (iPrimaryAmmo > 9) )
-						sprintf(cString, "%d / 0%d", iPrimaryClip, iPrimaryAmmo);
+						sprintf(cString, "%d | 0%d", iPrimaryClip, iPrimaryAmmo);
 					else if( (iPrimaryClip > 9) && (iPrimaryAmmo < 10) )
-						sprintf(cString, "%d / 00%d", iPrimaryClip, iPrimaryAmmo);
+						sprintf(cString, "%d | 00%d", iPrimaryClip, iPrimaryAmmo);
 					else
-						sprintf(cString, "%d / %d", iPrimaryClip, iPrimaryAmmo);
+						sprintf(cString, "%d | %d", iPrimaryClip, iPrimaryAmmo);
 				}
 				pPrimaryAmmoLab->setText( cString );
 
@@ -1231,13 +1263,13 @@ void CHudNew::paint()
 		}
 	}
 
-// Update primary CLIP/AMMO value END
+//========== PRIMARY / SECONDARY AMMO PANEL END =======//
 
 
-// Animate pain indicators START
 
-	// Pain indicator (TOP)
-	//gEngfuncs.Con_Printf( "^2SM -> fTimer_TopDmg -> %f\n", fTimer_TopDmg ); // center = 1
+//========== PAIN DIRECTION INDICATORS START =======//
+
+	// TOP
 	if (fTimer_TopDmg > 4.0)
 	{
 		fTimer_TopDmg -= (gHUD.m_flTimeDelta * 200);
@@ -1252,8 +1284,7 @@ void CHudNew::paint()
 		pPainTopDirIcon->setVisible(false);
 	}
 
-	// Pain indicator (BOTTOM)
-	//gEngfuncs.Con_Printf( "^2SM -> fTimer_BottomDmg -> %f\n", fTimer_BottomDmg );
+	// BOTTOM
 	if (fTimer_BottomDmg > 4.0)
 	{
 		fTimer_BottomDmg -= (gHUD.m_flTimeDelta * 200);
@@ -1268,8 +1299,7 @@ void CHudNew::paint()
 		pPainBottomDirIcon->setVisible(false);
 	}
 
-	// Pain indicator (LEFT)
-	//gEngfuncs.Con_Printf( "^2SM -> fTimer_LeftDmg -> %f\n", fTimer_LeftDmg );
+	// LEFT
 	if (fTimer_LeftDmg > 4.0)
 	{
 		fTimer_LeftDmg -= (gHUD.m_flTimeDelta * 200);
@@ -1284,8 +1314,7 @@ void CHudNew::paint()
 		pPainLeftDirIcon->setVisible(false);
 	}
 
-	// Pain indicator (RIGHT)
-	//gEngfuncs.Con_Printf( "^2SM -> fTimer_RightDmg -> %f\n", fTimer_RightDmg );
+	// RIGHT
 	if (fTimer_RightDmg > 4.0)
 	{
 		fTimer_RightDmg -= (gHUD.m_flTimeDelta * 200);
@@ -1300,10 +1329,11 @@ void CHudNew::paint()
 		pPainRightDirIcon->setVisible(false);
 	}
 
-// Animate pain indicators END
+//========== PAIN DIRECTION INDICATORS END =======//
 
 
-// Atmospheric contaminant sensors START
+
+//========== ATMOSPHERIC CONTAMINANT SENSORS START =======//
 
 	// Limit icons
 	if (iDmgActiveIcons < 0)
@@ -1351,14 +1381,12 @@ void CHudNew::paint()
 		pDmgShock->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
 	}
 
-// Atmospheric contaminant sensors END
+//========== ATMOSPHERIC CONTAMINANT SENSORS END =======//
 
 
 
-
-// Animate LOGON/INTRO sequence - START
-
-	//gEngfuncs.Con_Printf( "^2SM -> fTimer_Logon -> %.0f\n", fTimer_Logon );
+//========== H.E.V. LOGON/INTRO SEQUENCE START =======//
+	gEngfuncs.Con_Printf( "^2SM -> fTimer_Logon -> %.0f\n", fTimer_Logon );
 
 	if (fTimer_Logon > 0)
 	{
@@ -1367,15 +1395,16 @@ void CHudNew::paint()
 
 //////////// DEV
 
-		bool bSkipIntro = false;
+		bool bSkipIntro = true;
 		
-		if( (fTimer_Logon <= 610) && bSkipIntro)
+		if( (fTimer_Logon <= 565) && bSkipIntro)
 		{
 			// Hide HUD elements (leave panels, but hide contents)
 			pHealthPanel->setVisible(true);
 			pHealthIcon->setVisible(false);
 			pHealthLab->setVisible(false);
-			pArmorIcon->setVisible(false);
+			pArmorIconHLc->setVisible(false);
+			pArmorIconHL->setVisible(false);
 			pArmorLab->setVisible(false);
 
 			pAmmoPanel->setVisible(true);
@@ -1403,18 +1432,19 @@ void CHudNew::paint()
 			pPainRightDirIcon->setVisible(false);
 
 			iTimerSpeed = HEV_PULSE_SPD;
-			fTimer_Logon = 611;
-			pLogonText->setFgColor( 255, 255, 255, 0 );
+			fTimer_Logon = 566;
+			pLogonText->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 0 );
 			pLogonText->setBgColor( 0, 0, 0, 0 );
 		}
 ////////////DEV END
 		
 
 //========= HEV LOGON PHASE 1 START =========//
-		if( fTimer_Logon <= 610 )
+		if( fTimer_Logon <= 565 )
 		{
 			pLogonText->setVisible(true);
-
+			pLogonText->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 0 );
+			
 			// Pulse "_" sign for first 15 ticks
 			if( fTimer_Logon < 15 )
 			{
@@ -1429,7 +1459,8 @@ void CHudNew::paint()
 				pHealthPanel->setVisible(true);
 				pHealthIcon->setVisible(false);
 				pHealthLab->setVisible(false);
-				pArmorIcon->setVisible(false);
+				pArmorIconHL->setVisible(false);
+				pArmorIconHLc->setVisible(false);
 				pArmorLab->setVisible(false);
 
 				pAmmoPanel->setVisible(true);
@@ -1458,50 +1489,34 @@ void CHudNew::paint()
 
 				// Set new timer speed
 				iTimerSpeed = HEV_PULSE_SPD;
-
-				// Let's assume HEV VGA driver is not yet set, let's use white color
-				pLogonText->setFgColor( 255, 255, 255, 0 );
-				pLogonText->setBgColor( 0, 0, 0, 0 );
 			}
 
 			// Load Copyright text
-			else if( (fTimer_Logon >= 15) && (fTimer_Logon <= 162) )
+			else if( (fTimer_Logon >= 15) && (fTimer_Logon <= 163) )
 			{
 				bSoundPlaying = false;	// Reset sound
 				iTimerSpeed = HEV_READ_SPD;	// Speed up timer
 			}
 
 			// Load the rest of the HEV_LOGON_01 text
-			else if( (fTimer_Logon > 162) && (fTimer_Logon <= 167) )	iTimerSpeed = HEV_PULSE_SPD;	// Wait
-			else if( (fTimer_Logon > 167) && (fTimer_Logon <= 187) )	iTimerSpeed = HEV_READ_SPD;		// Read
-			else if( (fTimer_Logon > 187) && (fTimer_Logon <= 191) )	iTimerSpeed = HEV_PULSE_SPD;	// Wait
-			else if( (fTimer_Logon > 191) && (fTimer_Logon <= 209) )	iTimerSpeed = HEV_READ_SPD;		// Read
-			else if( (fTimer_Logon > 209) && (fTimer_Logon <= 215) )	iTimerSpeed = HEV_PULSE_SPD;	// Wait
-			else if( (fTimer_Logon > 215) && (fTimer_Logon <= 246) )	iTimerSpeed = HEV_READ_SPD;		// Read
-			else if( (fTimer_Logon > 246) && (fTimer_Logon <= 251) )	iTimerSpeed = HEV_PULSE_SPD;	// Wait
-			else if( (fTimer_Logon > 251) && (fTimer_Logon <= 281) )	iTimerSpeed = HEV_READ_SPD;		// Read
-			else if( (fTimer_Logon > 281) && (fTimer_Logon <= 286) )	iTimerSpeed = HEV_PULSE_SPD;	// Wait
-			else if( (fTimer_Logon > 286) && (fTimer_Logon <= 304) )	iTimerSpeed = HEV_READ_SPD;		// Read
-			else if( (fTimer_Logon > 304) && (fTimer_Logon <= 306) )	iTimerSpeed = HEV_PULSE_SPD;	// Wait
-			else if( (fTimer_Logon > 306) && (fTimer_Logon <= 340) )	iTimerSpeed = HEV_READ_SPD;		// Read
-			else if( (fTimer_Logon > 340) && (fTimer_Logon <= 350) )	iTimerSpeed = HEV_PULSE_SPD;	// Wait
-			else if( (fTimer_Logon > 350) && (fTimer_Logon <= 389) )	iTimerSpeed = HEV_READ_SPD;		// Read
-			else if( (fTimer_Logon > 389) && (fTimer_Logon <= 400) )	iTimerSpeed = HEV_PULSE_SPD;	// Wait
-			else if( (fTimer_Logon > 400) && (fTimer_Logon <= 402) )
-			{
-				pLogonText->setVisible(false);
-				iTimerSpeed = HEV_PULSE_SPD;	// Wait
-			}
-			else if( (fTimer_Logon > 402) && (fTimer_Logon <= 471) )
-			{
-				pLogonText->setVisible(true);
-				pLogonText->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 0 );
-				iTimerSpeed = HEV_READ_SPD;		// Read
-			}
-			else if( (fTimer_Logon > 471) && (fTimer_Logon <= 480) )	iTimerSpeed = HEV_PULSE_SPD;	// Wait
-			else if( (fTimer_Logon > 480) && (fTimer_Logon <= 511) )	iTimerSpeed = HEV_READ_SPD;		// Read
-			else if( (fTimer_Logon > 511) && (fTimer_Logon <= 520) )	iTimerSpeed = HEV_PULSE_SPD;	// Wait
-			else if( (fTimer_Logon > 520) && (fTimer_Logon <= 580) )	iTimerSpeed = HEV_READ_SPD;		// Read
+			else if( (fTimer_Logon > 163) && (fTimer_Logon <= 168) )	iTimerSpeed = HEV_PULSE_SPD;	// Wait
+			else if( (fTimer_Logon > 168) && (fTimer_Logon <= 219) )	iTimerSpeed = HEV_READ_SPD;		// Read
+			else if( (fTimer_Logon > 219) && (fTimer_Logon <= 224) )	iTimerSpeed = HEV_PULSE_SPD;	// Wait
+			else if( (fTimer_Logon > 224) && (fTimer_Logon <= 243) )	iTimerSpeed = HEV_READ_SPD;		// Read
+			else if( (fTimer_Logon > 243) && (fTimer_Logon <= 252) )	iTimerSpeed = HEV_PULSE_SPD;	// Wait
+			else if( (fTimer_Logon > 252) && (fTimer_Logon <= 272) )	iTimerSpeed = HEV_READ_SPD;		// Read
+			else if( (fTimer_Logon > 272) && (fTimer_Logon <= 275) )	iTimerSpeed = HEV_PULSE_SPD;	// Wait
+			else if( (fTimer_Logon > 275) && (fTimer_Logon <= 294) )	iTimerSpeed = HEV_READ_SPD;		// Read
+			else if( (fTimer_Logon > 294) && (fTimer_Logon <= 298) )	iTimerSpeed = HEV_PULSE_SPD;	// Wait
+			else if( (fTimer_Logon > 298) && (fTimer_Logon <= 353) )	iTimerSpeed = HEV_READ_SPD;		// Read
+			else if( (fTimer_Logon > 353) && (fTimer_Logon <= 356) )	iTimerSpeed = HEV_PULSE_SPD;	// Wait
+			else if( (fTimer_Logon > 356) && (fTimer_Logon <= 390) )	iTimerSpeed = HEV_READ_SPD;		// Read
+			else if( (fTimer_Logon > 390) && (fTimer_Logon <= 396) )	iTimerSpeed = HEV_PULSE_SPD;	// Wait
+			else if( (fTimer_Logon > 396) && (fTimer_Logon <= 425) )	iTimerSpeed = HEV_READ_SPD;		// Read
+			else if( (fTimer_Logon > 425) && (fTimer_Logon <= 429) )	iTimerSpeed = HEV_PULSE_SPD;	// Wait
+			else if( (fTimer_Logon > 429) && (fTimer_Logon <= 460) )	iTimerSpeed = HEV_READ_SPD;		// Read
+			else if( (fTimer_Logon > 460) && (fTimer_Logon <= 466) )	iTimerSpeed = HEV_READ_SPD;		// Wait
+			else if( (fTimer_Logon > 466) && (fTimer_Logon <= 530) )	iTimerSpeed = HEV_READ_SPD;		// Read
 			else
 			{
 				// Set new timer speed
@@ -1534,10 +1549,10 @@ void CHudNew::paint()
 
 
 //========= HEV LOGON PHASE 2 START =========//
-		else if( (fTimer_Logon > 610) && (fTimer_Logon <= 4000) )
+		else if( (fTimer_Logon > 565) && (fTimer_Logon <= 4000) )
 		{
 			// Clear text and play HEV LOGON sound
-			if( fTimer_Logon <= 612 )
+			if( fTimer_Logon <= 567 )
 			{
 				iScanNum = 0;
 				pLogonText->setText("");
@@ -1549,8 +1564,9 @@ void CHudNew::paint()
 					gEngfuncs.pfnPlaySoundByName( "fvox/hev_logon.wav", 1 );
 					bSoundPlaying = true;
 				}
-
+				fTimer_Logon = 611;
 			}
+			
 			// hev_logon.wav - part
 			else if( (fTimer_Logon > 612) && (fTimer_Logon <= 735) )
 			{
@@ -1574,36 +1590,50 @@ void CHudNew::paint()
 				pLogonText->setVisible(false);	// true
 				pLogonText->setText( "hev_logon -> %d ; %d\n", iAlpha, (int)fTimer_Logon);	// DEBUG
 				pImgLogon01->setVisible(true);
-				pImgLogon01->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], iAlpha) );
+				//pImgLogon01->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], iAlpha) );
 
 				//TODO: ADD HEV TGA IMAGE
 			}
+			
 			// powerarmor_on.wav - part
 			else if( (fTimer_Logon > 735) && (fTimer_Logon <= 790) )
 			{
 				pImgLogon01->setVisible(false);
 				pImgLogon02->setVisible(true);
-				pArmorIcon->setVisible(true);
+				pArmorIconHL->setVisible(true);
+				pArmorIconHLc->setVisible(true);
 				pArmorLab->setVisible(true);
 
-				if( fTimer_Logon < 740 )
+				iArmor = 0;
+
+				if( fTimer_Logon <= 750 )
 				{
-					iArmor = 0;
+					pArmorLab->setText( "0" );
+				}
+				else if( (fTimer_Logon > 750) && (fTimer_Logon <= 755) )
+				{
+					pArmorLab->setText( "00" );
+				}
+				else if( (fTimer_Logon > 755) && (fTimer_Logon < 760) )
+				{
+					pArmorLab->setText( "000" );
 				}
 				else
 				{
-					iArmor = ((int)fTimer_Logon-740)+2;
+					iArmor = ((int)fTimer_Logon-760)+1;
 
-					if( iArmor > 50 )
-						iArmor = 50; // Cap the value at 100 max
+					if( iArmor > 25 )
+						iArmor = 25; // Cap the value at 25 max
 				}
 
 				iAlpha = 255; // Reset alpha
 			}
+
+			
 			// atmospherics_on.wav - part
 			else if( (fTimer_Logon > 790) && (fTimer_Logon <= 850) )
 			{
-				pLogonText->setText( "atmospherics_on -> %d\n", (int)fTimer_Logon);	// DEBUG
+				//pLogonText->setText( "atmospherics_on -> %d\n", (int)fTimer_Logon);	// DEBUG
 				pImgLogon02->setVisible(false);
 				pImgLogon03->setVisible(true);
 
@@ -1756,12 +1786,12 @@ void CHudNew::paint()
 					DamageSensor( 8, true );
 
 					pDmgBio->setPos		(0,		0);
-					pDmgChem->setPos	(64*1,	0);
-					pDmgFire->setPos	(64*2,	0);
-					pDmgFrost->setPos	(64*3,	0);
-					pDmgGas->setPos		(64*4,	0);
-					pDmgRad->setPos		(64*5,	0);
-					pDmgShock->setPos	(64*6,	0);
+					pDmgChem->setPos	(48*1,	0);
+					pDmgFire->setPos	(48*2,	0);
+					pDmgFrost->setPos	(48*3,	0);
+					pDmgGas->setPos		(48*4,	0);
+					pDmgRad->setPos		(48*5,	0);
+					pDmgShock->setPos	(48*6,	0);
 
 					pDmgShock->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1) );
 				}
@@ -1778,11 +1808,11 @@ void CHudNew::paint()
 					DamageSensor( 8, true );
 
 					pDmgChem->setPos	(0,	0);
-					pDmgFire->setPos	(64*1,	0);
-					pDmgFrost->setPos	(64*2,	0);
-					pDmgGas->setPos		(64*3,	0);
-					pDmgRad->setPos		(64*4,	0);
-					pDmgShock->setPos	(64*5,	0);
+					pDmgFire->setPos	(48*1,	0);
+					pDmgFrost->setPos	(48*2,	0);
+					pDmgGas->setPos		(48*3,	0);
+					pDmgRad->setPos		(48*4,	0);
+					pDmgShock->setPos	(48*5,	0);
 				}
 
 				if( (fTimer_Logon > 838) && (fTimer_Logon <= 840) )
@@ -1797,10 +1827,10 @@ void CHudNew::paint()
 					DamageSensor( 8, true );
 
 					pDmgFire->setPos	(0,	0);
-					pDmgFrost->setPos	(64*1,	0);
-					pDmgGas->setPos		(64*2,	0);
-					pDmgRad->setPos		(64*3,	0);
-					pDmgShock->setPos	(64*4,	0);
+					pDmgFrost->setPos	(48*1,	0);
+					pDmgGas->setPos		(48*2,	0);
+					pDmgRad->setPos		(48*3,	0);
+					pDmgShock->setPos	(48*4,	0);
 				}
 
 				if( (fTimer_Logon > 840) && (fTimer_Logon <= 842) )
@@ -1815,9 +1845,9 @@ void CHudNew::paint()
 					DamageSensor( 8, true );
 
 					pDmgFrost->setPos	(0,	0);
-					pDmgGas->setPos		(64*1,	0);
-					pDmgRad->setPos		(64*2,	0);
-					pDmgShock->setPos	(64*3,	0);
+					pDmgGas->setPos		(48*1,	0);
+					pDmgRad->setPos		(48*2,	0);
+					pDmgShock->setPos	(48*3,	0);
 				}
 
 				if( (fTimer_Logon > 842) && (fTimer_Logon <= 844) )
@@ -1832,8 +1862,8 @@ void CHudNew::paint()
 					DamageSensor( 8, true );
 
 					pDmgGas->setPos		(0,	0);
-					pDmgRad->setPos		(64*1,	0);
-					pDmgShock->setPos	(64*2,	0);
+					pDmgRad->setPos		(48*1,	0);
+					pDmgShock->setPos	(48*2,	0);
 				}
 
 				if( (fTimer_Logon > 844) && (fTimer_Logon <= 846) )
@@ -1848,7 +1878,7 @@ void CHudNew::paint()
 					DamageSensor( 8, true );
 
 					pDmgRad->setPos(0, 0);
-					pDmgShock->setPos(64, 0);
+					pDmgShock->setPos(48, 0);
 				}
 
 				if( (fTimer_Logon > 846) && (fTimer_Logon <= 848) )
@@ -1878,6 +1908,7 @@ void CHudNew::paint()
 				}
 
 			}
+			
 			// vitalsigns_on.wav + automedic_on.wav - part
 			else if( (fTimer_Logon > 850) && (fTimer_Logon <= 935) )
 			{
@@ -1889,12 +1920,18 @@ void CHudNew::paint()
 
 				if( fTimer_Logon < 885 )
 				{
-					// Set dafault health value to 0
-					iHealth = 0;
+					// Set one digit for now
+					if( (fTimer_Logon >= 850) && (fTimer_Logon < 860) )
+					{
+						// Set dafault health value to 0
+						iHealth = 0;
+						pHealthLab->setText( "0" );
+					}
 
 					// Animate pain counters
 					if( (fTimer_Logon >= 860) && (fTimer_Logon < 865) )
 					{
+						pHealthLab->setText( "00" );
 						pPainTopDirIcon->setVisible(true);
 						pPainRightDirIcon->setVisible(false);
 						pPainBottomDirIcon->setVisible(false);
@@ -1932,13 +1969,14 @@ void CHudNew::paint()
 					pPainRightDirIcon->setVisible(false);
 					pPainBottomDirIcon->setVisible(false);
 					pPainLeftDirIcon->setVisible(false);
-					
+
 					iHealth = (((int)fTimer_Logon-885)*2)+2;
 
 					if( iHealth > 100 )
 						iHealth = 100; // Cap the value at 100 max
 				}
 			}
+			
 			// weaponselect_on.wav - part
 			else if( (fTimer_Logon > 935) && (fTimer_Logon <= 980) )
 			{
@@ -1946,6 +1984,7 @@ void CHudNew::paint()
 				pImgLogon06->setVisible(true);
 				//pLogonText->setText( "weaponselect_on -> %d\n", (int)fTimer_Logon);	// DEBUG
 			}
+
 			// munitionview_on.wav - part
 			else if( (fTimer_Logon > 980) && (fTimer_Logon <= 1027) )
 			{
@@ -1961,7 +2000,7 @@ void CHudNew::paint()
 
 				if( (fTimer_Logon > 980) && (fTimer_Logon <= 990) )
 				{
-					pPrimaryAmmoLab->setText("-- / ---");
+					pPrimaryAmmoLab->setText("-- | ---");
 					pPrimaryAmmoLab->setFgColor( 255, 0, 0, 0 );
 
 					pSecondaryAmmoLab->setText("--");
@@ -1978,16 +2017,16 @@ void CHudNew::paint()
 				{
 					pPrimaryAmmoLab->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 0 );
 					pIconAmmo9mm->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-					pPrimaryAmmoLab->setText("0- / ---");
+					pPrimaryAmmoLab->setText("0- | ---");
 				}
-				if( (fTimer_Logon > 992) && (fTimer_Logon <= 994) )		pPrimaryAmmoLab->setText("-0 / ---");
-				if( (fTimer_Logon > 994) && (fTimer_Logon <= 996) )		pPrimaryAmmoLab->setText("-- / 0--");
-				if( (fTimer_Logon > 996) && (fTimer_Logon <= 998) )		pPrimaryAmmoLab->setText("-- / -0-");
-				if( (fTimer_Logon > 998) && (fTimer_Logon <= 1000) )	pPrimaryAmmoLab->setText("-- / --0");
-				if( (fTimer_Logon > 1000) && (fTimer_Logon <= 1002) )	pPrimaryAmmoLab->setText("-- / -00");
-				if( (fTimer_Logon > 1002) && (fTimer_Logon <= 1004) )	pPrimaryAmmoLab->setText("-- / 000");
-				if( (fTimer_Logon > 1004) && (fTimer_Logon <= 1006) )	pPrimaryAmmoLab->setText("-0 / 000");
-				if( (fTimer_Logon > 1006) && (fTimer_Logon <= 1008) )	pPrimaryAmmoLab->setText("00 / 000");
+				if( (fTimer_Logon > 992) && (fTimer_Logon <= 994) )		pPrimaryAmmoLab->setText("-0 | ---");
+				if( (fTimer_Logon > 994) && (fTimer_Logon <= 996) )		pPrimaryAmmoLab->setText("-- | 0--");
+				if( (fTimer_Logon > 996) && (fTimer_Logon <= 998) )		pPrimaryAmmoLab->setText("-- | -0-");
+				if( (fTimer_Logon > 998) && (fTimer_Logon <= 1000) )	pPrimaryAmmoLab->setText("-- | --0");
+				if( (fTimer_Logon > 1000) && (fTimer_Logon <= 1002) )	pPrimaryAmmoLab->setText("-- | -00");
+				if( (fTimer_Logon > 1002) && (fTimer_Logon <= 1004) )	pPrimaryAmmoLab->setText("-- | 000");
+				if( (fTimer_Logon > 1004) && (fTimer_Logon <= 1006) )	pPrimaryAmmoLab->setText("-0 | 000");
+				if( (fTimer_Logon > 1006) && (fTimer_Logon <= 1008) )	pPrimaryAmmoLab->setText("00 | 000");
 
 				if( (fTimer_Logon > 1010) && (fTimer_Logon <= 1012) )
 				{

@@ -144,7 +144,8 @@ protected:
 	ImageHolder		*pHealthIcon;		// Health icon
 	int				iHealth;			// Health value
 	Label			*pHealthLab;		// Health value text
-	ImageHolder		*pArmorIcon;		// Armor icon HL
+	ImageHolder		*pArmorIconHL;		// Armor icon HL
+	ImageHolder		*pArmorIconHLc;		// Armor icon HL charged
 	int				iArmor;				// Armor value
 	Label			*pArmorLab;			// Armor value text
 
