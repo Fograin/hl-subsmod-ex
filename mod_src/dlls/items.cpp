@@ -324,6 +324,9 @@ class CItemSuit : public CItem
 		// Fograin92: Only if this is HL1 game
 		if (CVAR_GET_FLOAT("sm_hud") == 0.0)
 		{
+			// Fograin92: Set startup powerlevel to 25%
+			pPlayer->pev->armorvalue = 25;
+
 			// Only if it's not impulse 101 (aka. STFU logon spam when testing)
 			if (!gEvilImpulse101)
 			{

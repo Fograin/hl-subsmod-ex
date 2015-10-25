@@ -60,7 +60,7 @@ void CGrappleHook :: Spawn( void )
 { 
 	Precache( ); 
 
-	SET_MODEL( ENT(pev), "models/SD/v_bgrap_tonguetip.mdl" );
+	SET_MODEL( ENT(pev), "models/v_bgrap_tonguetip.mdl" );
 	pev->movetype	= MOVETYPE_FLY; 
 	pev->solid		= SOLID_BBOX; 
 	pev->rendermode = kRenderNormal;
@@ -88,7 +88,7 @@ void CGrappleHook :: Spawn( void )
 void CGrappleHook :: Precache( void ) 
 { 
 	PRECACHE_MODEL( "sprites/_tongue.spr" );
-	PRECACHE_MODEL( "models/SD/v_bgrap_tonguetip.mdl" ); 
+	PRECACHE_MODEL( "models/v_bgrap_tonguetip.mdl" ); 
 	PRECACHE_SOUND("weapons/bgrapple_impact.wav");
 }
 
@@ -337,7 +337,7 @@ void CGrapple::Spawn( void )
 { 
 	pev->classname = MAKE_STRING( "weapon_grapple" ); 
 	Precache( ); 
-	SET_MODEL(ENT(pev), "models/SD/w_bgrap.mdl");
+	SET_MODEL(ENT(pev), "models/w_bgrap.mdl");
 	m_iId = WEAPON_GRAPPLE; 
 	m_iDefaultAmmo = 1; 
 	FallInit( ); 
@@ -346,9 +346,9 @@ void CGrapple::Spawn( void )
 
 void CGrapple::Precache( void ) 
 { 
-	PRECACHE_MODEL("models/SD/v_bgrap.mdl");
-	PRECACHE_MODEL("models/SD/p_bgrap.mdl");
-	PRECACHE_MODEL("models/SD/w_bgrap.mdl");
+	PRECACHE_MODEL("models/v_bgrap.mdl");
+	PRECACHE_MODEL("models/p_bgrap.mdl");
+	PRECACHE_MODEL("models/w_bgrap.mdl");
 
 	PRECACHE_SOUND("weapons/bgrapple_pull.wav");
 	PRECACHE_SOUND("weapons/bgrapple_fire.wav");
@@ -394,7 +394,7 @@ BOOL CGrapple::Deploy( void )
 {
 	pev->nextthink = gpGlobals->time + 1.0;
 	SetThink (&CGrapple::WeaponIdle); // Fograin92: Force IDLE think
-	return DefaultDeploy( "models/SD/v_bgrap.mdl", "models/SD/p_bgrap.mdl", GRAPPLE_UP, "hive", 0 );
+	return DefaultDeploy( "models/v_bgrap.mdl", "models/p_bgrap.mdl", GRAPPLE_UP, "hive", 0 );
 }
 
 
@@ -540,7 +540,7 @@ void CGrapple::PukeGibs(void)
 	GunPosition = GunPosition + gpGlobals->v_up * -4 + gpGlobals->v_right * 3 + gpGlobals->v_forward * 16;
 
 	CGib *pGib = GetClassPtr( (CGib *)NULL );
-	pGib->Spawn( "models/SD/gibs_human_misc.mdl" );
+	pGib->Spawn( "models/hgibs.mdl" );
 	pGib->m_bloodColor = BLOOD_COLOR_RED;
 	pGib->pev->body = RANDOM_LONG( 0, 10 );
 	pGib->pev->origin = GunPosition + gpGlobals->v_forward * 10;

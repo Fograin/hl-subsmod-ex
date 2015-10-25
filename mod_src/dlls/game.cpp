@@ -448,7 +448,6 @@ cvar_t	sk_player_leg3	= { "sk_player_leg3","1" };
 cvar_t	sm_hud				= { "sm_hud",				"0"};	// Used for HUD color, also it holds value of current loaded game (HL, OF, BS)
 cvar_t	sm_hev_pick			= { "sm_hev_pick",			"1", FCVAR_SERVER|FCVAR_ARCHIVE };	// Should HEV emit weapon pickup sentences?
 cvar_t	sm_weapon_holster	= { "sm_weapon_holster",	"2", FCVAR_SERVER|FCVAR_ARCHIVE };	// 0 - Don't play holster animations, 1 - Holster anims only when using turrets and tracktrain, 2 - Just like 1, but also holster anims when switching weapons
-cvar_t	sm_HD_models		= { "sm_HD_models",			"1", FCVAR_SERVER|FCVAR_ARCHIVE };	// 0 - Use LD models, 1 - Use HD models
 cvar_t	sm_particles		= { "sm_particles",			"2", FCVAR_SERVER|FCVAR_ARCHIVE };	// 0 - Don't use particle system (low setting), 1 - Limited particles (medium setting), 2 - Full particles (high setting)
 
 // Fograin92: Half-Life Subtitles MOD Skill CVARs
@@ -902,7 +901,6 @@ void GameDLLInit( void )
 	CVAR_REGISTER (&sm_hud);
 	CVAR_REGISTER (&sm_hev_pick);
 	CVAR_REGISTER (&sm_weapon_holster);
-	CVAR_REGISTER (&sm_HD_models);
 	CVAR_REGISTER (&sm_particles);
 
 	// Fograin92: Mod skill data

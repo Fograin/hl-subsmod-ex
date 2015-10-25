@@ -2146,7 +2146,7 @@ void CStudioModelRenderer::DrawShadowVolume( SubModelData &data, mstudiomodel_t 
 		facecount += 2;
 	}
 
-//	assert((facecount * 3) <= (MaxShadowFaceCount * 5));
+	//assert((facecount * 3) <= (MaxShadowFaceCount * 5));	// Fograin92: Crash warning
 
 	// use this block for z-pass method
 

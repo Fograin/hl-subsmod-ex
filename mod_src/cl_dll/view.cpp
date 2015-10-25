@@ -1704,7 +1704,7 @@ void V_Init (void)
 	cl_chasedist		= gEngfuncs.pfnRegisterVariable( "cl_chasedist","112", 0 );
 
 	// BUzer
-	g_cvShadows = gEngfuncs.pfnRegisterVariable ( "gl_shadows", "1", FCVAR_ARCHIVE );
+	g_cvShadows = gEngfuncs.pfnRegisterVariable ( "gl_shadows", "0", FCVAR_ARCHIVE );	// Fograin92: Disabled by default
 }
 
 

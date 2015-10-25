@@ -31,7 +31,7 @@ typedef vec_t myvec3_t[3];
 #include <map>
 #include <string>
 
-const int MaxShadowFaceCount = 2000;
+const int MaxShadowFaceCount = 4000;	// Fograin92
 
 #define CONPRINT gEngfuncs.Con_Printf
 

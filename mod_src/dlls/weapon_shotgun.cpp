@@ -405,12 +405,12 @@ class CShotgunAmmo : public CBasePlayerAmmo
 	void Spawn( void )
 	{ 
 		Precache( );
-		SET_MODEL(ENT(pev), "models/ammo_shotgun.mdl");
+		SET_MODEL(ENT(pev), "models/w_shotbox.mdl");
 		CBasePlayerAmmo::Spawn( );
 	}
 	void Precache( void )
 	{
-		PRECACHE_MODEL ("models/ammo_shotgun.mdl");
+		PRECACHE_MODEL ("models/w_shotbox.mdl");
 		PRECACHE_SOUND("items/9mmclip1.wav");
 	}
 	BOOL AddAmmo( CBaseEntity *pOther ) 

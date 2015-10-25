@@ -376,7 +376,7 @@ void CBarney :: HandleAnimEvent( MonsterEvent_t *pEvent )
 
 	case BARNEY_AE_DRAW:
 		// barney's bodygroup switches here so he can pull gun from holster
-		pev->body = BARNEY_BODY_GUNDRAWN;
+		pev->body = BARNEY_BODY_GUNDRAWN;		
 		m_fGunDrawn = TRUE;
 		break;
 
