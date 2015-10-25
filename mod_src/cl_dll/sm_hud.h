@@ -193,7 +193,15 @@ protected:
 	ImageHolder		*pDmgGas;
 	ImageHolder		*pDmgRad;
 	ImageHolder		*pDmgShock;
-
+	float			fTimer_iDmgAir;			// Icon timers
+	float			fTimer_iDmgBio;
+	float			fTimer_iDmgChem;
+	float			fTimer_iDmgFire;
+	float			fTimer_iDmgFrost;
+	float			fTimer_iDmgGas;
+	float			fTimer_iDmgRad;
+	float			fTimer_iDmgShock;
+	
 
 	// HEV Logon/Intro sequence
 	bool	bShortLogon;		// Should we use short-intro version from Hazard Course?

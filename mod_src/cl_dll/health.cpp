@@ -179,76 +179,13 @@ int CHudHealth::Draw(float flTime)
 	else
 		gViewPort->m_pHudNew->bHaveHEV = false;
 
+	// Fograin92: Used to check hazard
+	DrawDamage(flTime);
+
 	// Fograin92: We handle drawing part in our new HUD
 	return 1;	
 
-
-
-	int r, g, b;
-	int a = 0, x, y;
-	int HealthWidth;
-
-	if ( (gHUD.m_iHideHUDDisplay & HIDEHUD_HEALTH) || gEngfuncs.IsSpectateOnly() )
-		return 1;
-
-	if ( !m_HL_HSPRITE )
-		m_HL_HSPRITE = LoadSprite(PAIN_NAME);
-	
-	// Has health changed? Flash the health #
-	if (m_fFade)
-	{
-		m_fFade -= (gHUD.m_flTimeDelta * 20);
-		if (m_fFade <= 0)
-		{
-			a = MIN_ALPHA;
-			m_fFade = 0;
-		}
-
-		// Fade the health number back to dim
-
-		a = MIN_ALPHA +  (m_fFade/FADE_TIME) * 128;
-
-	}
-	else
-		a = MIN_ALPHA;
-
-	// If health is getting low, make it bright red
-	if (m_iHealth <= 15)
-		a = 255;
-		
-	GetPainColor( r, g, b );
-	ScaleColors(r, g, b, a );
-
-	// Only draw health if we have the suit.
-	if (gHUD.m_iWeaponBits & (1<<(WEAPON_SUIT)))
-	{
-		HealthWidth = gHUD.GetSpriteRect(gHUD.m_HUD_number_0).right - gHUD.GetSpriteRect(gHUD.m_HUD_number_0).left;
-		int CrossWidth = gHUD.GetSpriteRect(m_HUD_cross).right - gHUD.GetSpriteRect(m_HUD_cross).left;
-
-		y = ScreenHeight - gHUD.m_iFontHeight - gHUD.m_iFontHeight / 2;
-		x = CrossWidth /2;
-
-		SPR_Set(gHUD.GetSprite(m_HUD_cross), r, g, b);
-		SPR_DrawAdditive(0, x, y, &gHUD.GetSpriteRect(m_HUD_cross));
-
-		x = CrossWidth + HealthWidth / 2;
-
-		x = gHUD.DrawHudNumber(x, y, DHN_3DIGITS | DHN_DRAWZERO, m_iHealth, r, g, b);
-
-		x += HealthWidth/2;
-
-		int iHeight = gHUD.m_iFontHeight;
-		int iWidth = HealthWidth/10;
-		// Fograin92: A little changes
-		//UnpackRGB(r,g,b, RGB_YELLOWISH);
-		r = SM_HUDcolor(1);
-		g = SM_HUDcolor(2);
-		b = SM_HUDcolor(3);
-		FillRGBA(x, y, iWidth, iHeight, r, g, b, a);
-	}
-
-	DrawDamage(flTime);
-	return DrawPain(flTime);
+	//return DrawPain(flTime);
 }
 
 void CHudHealth::CalcDamageDirection(vec3_t vecFrom)
@@ -389,39 +326,51 @@ int CHudHealth::DrawPain(float flTime)
 	return 1;
 }
 
+// Fograin92: Changed function to only send DMG type
 int CHudHealth::DrawDamage(float flTime)
 {
-	int r, g, b, a;
-	DAMAGE_IMAGE *pdmg;
-
 	if (!m_bitsDamage)
 		return 1;
 
-	// Fograin92: A little changes
-	//UnpackRGB(r,g,b, RGB_YELLOWISH);
-	r = SM_HUDcolor(1);
-	g = SM_HUDcolor(2);
-	b = SM_HUDcolor(3);
-	
-	a = (int)( fabs(sin(flTime*2)) * 256.0);
-
-	ScaleColors(r, g, b, a);
-
 	// Draw all the items
-	int i;
-	for (i = 0; i < NUM_DMG_TYPES; i++)
+	for (int i = 0; i < NUM_DMG_TYPES; i++)
 	{
 		if (m_bitsDamage & giDmgFlags[i])
 		{
-			pdmg = &m_dmg[i];
-			SPR_Set(gHUD.GetSprite(m_HUD_dmg_bio + i), r, g, b );
-			SPR_DrawAdditive(0, pdmg->x, pdmg->y, &gHUD.GetSpriteRect(m_HUD_dmg_bio + i));
+			gEngfuncs.Con_Printf( "^3SM-> DMG TYPE: %d \n", i);
+
+			switch(i)
+			{
+				// DMG_ACID
+				case 1:		gViewPort->m_pHudNew->DamageSensor(3, true);	break;
+
+				// DMG_FREEZE|DMG_SLOWFREEZE
+				case 2:		gViewPort->m_pHudNew->DamageSensor(5, true);	break;
+
+				// DMG_DROWN
+				case 3:		gViewPort->m_pHudNew->DamageSensor(1, true);	break;
+
+				// DMG_BURN|DMG_SLOWBURN
+				case 4:		gViewPort->m_pHudNew->DamageSensor(4, true);	break;
+
+				// DMG_NERVEGAS
+				case 5:		gViewPort->m_pHudNew->DamageSensor(6, true);	break;
+
+				// DMG_RADIATION
+				case 6:		gViewPort->m_pHudNew->DamageSensor(7, true);	break;
+
+				// DMG_SHOCK
+				case 7:		gViewPort->m_pHudNew->DamageSensor(8, true);	break;
+
+				// DMG_POISON (0)
+				default:	gViewPort->m_pHudNew->DamageSensor(2, true);	break;
+			}
 		}
 	}
 
 
 	// check for bits that should be expired
-	for ( i = 0; i < NUM_DMG_TYPES; i++ )
+	for ( int i = 0; i < NUM_DMG_TYPES; i++ )
 	{
 		DAMAGE_IMAGE *pdmg = &m_dmg[i];
 
@@ -429,8 +378,7 @@ int CHudHealth::DrawDamage(float flTime)
 		{
 			pdmg->fExpire = min( flTime + DMG_IMAGE_LIFE, pdmg->fExpire );
 
-			if ( pdmg->fExpire <= flTime		// when the time has expired
-				&& a < 40 )						// and the flash is at the low point of the cycle
+			if ( pdmg->fExpire <= flTime )		// when the time has expired 
 			{
 				pdmg->fExpire = 0;
 

@@ -108,9 +108,9 @@ const int iAdjustmentArray[][5] =
 	{ ID_AMMO_PANEL,	1360,	768,	1200,	730	},
 	{ ID_AMMO_PANEL,	1366,	768,	1200,	730	},
 	{ ID_AMMO_PANEL,	1440,	900,	1280,	860	},
-	{ ID_AMMO_PANEL,	1600,	900,	1420,	860	},
-	{ ID_AMMO_PANEL,	1680,	1050,	1500,	1005},
-	{ ID_AMMO_PANEL,	1920,	1080,	1740,	1035},
+	{ ID_AMMO_PANEL,	1600,	900,	1440,	860	},
+	{ ID_AMMO_PANEL,	1680,	1050,	1520,	1005},
+	{ ID_AMMO_PANEL,	1920,	1080,	1750,	1035},
 
 	// Primary ammo label
 	{ ID_AMMO_PRIMARY_LAB,	1024,	576,	0,		0 },
@@ -130,9 +130,9 @@ const int iAdjustmentArray[][5] =
 	{ ID_AMMO_PRIMARY_ICON,	1360,	768,	115,	5},
 	{ ID_AMMO_PRIMARY_ICON,	1366,	768,	115,	5},
 	{ ID_AMMO_PRIMARY_ICON,	1440,	900,	115,	5},
-	{ ID_AMMO_PRIMARY_ICON,	1600,	900,	140,	5},
-	{ ID_AMMO_PRIMARY_ICON,	1680,	1050,	140,	10},
-	{ ID_AMMO_PRIMARY_ICON,	1920,	1080,	140,	10},
+	{ ID_AMMO_PRIMARY_ICON,	1600,	900,	120,	5},
+	{ ID_AMMO_PRIMARY_ICON,	1680,	1050,	120,	10},
+	{ ID_AMMO_PRIMARY_ICON,	1920,	1080,	120,	10},
 
 	// Secondary ammo panel adjustments
 	{ ID_AMMO_PANEL2,	1024,	576,	900,	515},
@@ -141,31 +141,31 @@ const int iAdjustmentArray[][5] =
 	{ ID_AMMO_PANEL2,	1360,	768,	1200,	700},
 	{ ID_AMMO_PANEL2,	1366,	768,	1200,	700},
 	{ ID_AMMO_PANEL2,	1440,	900,	1280,	830},
-	{ ID_AMMO_PANEL2,	1600,	900,	1420,	825},
-	{ ID_AMMO_PANEL2,	1680,	1050,	1500,	970},
-	{ ID_AMMO_PANEL2,	1920,	1080,	1740,	1000},
+	{ ID_AMMO_PANEL2,	1600,	900,	1440,	825},
+	{ ID_AMMO_PANEL2,	1680,	1050,	1520,	970},
+	{ ID_AMMO_PANEL2,	1920,	1080,	1750,	1000},
 
-	// Primary ammo label
+	// Secondary ammo label
 	{ ID_AMMO_SECONDARY_LAB,	1024,	576,	55,		0},
 	{ ID_AMMO_SECONDARY_LAB,	1024,	600,	55,		0},
 	{ ID_AMMO_SECONDARY_LAB,	1280,	720,	70,		0},
 	{ ID_AMMO_SECONDARY_LAB,	1360,	768,	70,		0},
 	{ ID_AMMO_SECONDARY_LAB,	1366,	768,	70,		0},
 	{ ID_AMMO_SECONDARY_LAB,	1440,	900,	70,		0},
-	{ ID_AMMO_SECONDARY_LAB,	1600,	900,	90,		0},
-	{ ID_AMMO_SECONDARY_LAB,	1680,	1050,	90,		0},
-	{ ID_AMMO_SECONDARY_LAB,	1920,	1080,	90,		0},
+	{ ID_AMMO_SECONDARY_LAB,	1600,	900,	80,		0},
+	{ ID_AMMO_SECONDARY_LAB,	1680,	1050,	80,		0},
+	{ ID_AMMO_SECONDARY_LAB,	1920,	1080,	80,		0},
 
 	// Atmospheric contaminant sensors panel
-	{ ID_DMG_PANEL,		1024,	576,	0,		495},
-	{ ID_DMG_PANEL,		1024,	600,	0,		520},
-	{ ID_DMG_PANEL,		1280,	720,	0,		640},
-	{ ID_DMG_PANEL,		1360,	768,	0,		690},
-	{ ID_DMG_PANEL,		1366,	768,	0,		690},
-	{ ID_DMG_PANEL,		1440,	900,	0,		820},
-	{ ID_DMG_PANEL,		1600,	900,	0,		820},
-	{ ID_DMG_PANEL,		1680,	1050,	0,		960},
-	{ ID_DMG_PANEL,		1920,	1080,	0,		995}
+	{ ID_DMG_PANEL,		1024,	576,	0,		475},
+	{ ID_DMG_PANEL,		1024,	600,	0,		500},
+	{ ID_DMG_PANEL,		1280,	720,	0,		620},
+	{ ID_DMG_PANEL,		1360,	768,	0,		670},
+	{ ID_DMG_PANEL,		1366,	768,	0,		670},
+	{ ID_DMG_PANEL,		1440,	900,	0,		800},
+	{ ID_DMG_PANEL,		1600,	900,	0,		800},
+	{ ID_DMG_PANEL,		1680,	1050,	0,		950},
+	{ ID_DMG_PANEL,		1920,	1080,	0,		980}
 };
 
 
@@ -297,7 +297,7 @@ int CHudNew::ShouldDrawHUD()
 	// For some retarted reason we can't check m_iWeaponBits for WEAPON_SUIT, so let's do this retarded way
 	if (!bHaveHEV)
 	{
-		// We don't have HEV/PCV, hide hud
+		// We don't have HEV/PCV/VEST, hide hud
 		//gEngfuncs.Con_Printf( "^3 We don't have HEV\n" );
 		this->setVisible(false);
 		return 0;
@@ -346,6 +346,16 @@ void CHudNew::ResetVars(bool bInitOnly)
 	fTimer_RightDmg = 0;
 	fTimer_Logon = 0;
 	fTimer_LogonOLD = 0;
+
+	// Reset atmospheric contaminant icons
+	fTimer_iDmgAir = 0;
+	fTimer_iDmgBio = 0;
+	fTimer_iDmgChem = 0;
+	fTimer_iDmgFire = 0;
+	fTimer_iDmgFrost = 0;
+	fTimer_iDmgGas = 0;
+	fTimer_iDmgRad = 0;
+	fTimer_iDmgShock = 0;
 }
 
 
@@ -386,7 +396,7 @@ void CHudNew::PickedUpItem( const char *szName )
 	if( !strcmp( szName, "item_suit" ) )
 	{
 		bHaveHEV = true;
-		fTimer_Logon = 1;	// Start the HEV LOGON sequence
+		//fTimer_Logon = 1;	// Start the HEV LOGON sequence
 	}
 
 	UpdateHUD();
@@ -467,12 +477,13 @@ void CHudNew::DamageSensor( int iDmgType, bool bEnabled )
 				if( !(pDmgAir->isVisible()) )
 				{
 					pDmgAir->setVisible(true);
+					fTimer_iDmgAir = 255;
 					iDmgActiveIcons++;
 
 					if( iDmgActiveIcons < 1 )
 						pDmgAir->setPos(0, 0);
 					else
-						pDmgAir->setPos(48*(iDmgActiveIcons-1), 0);
+						pDmgAir->setPos(64*(iDmgActiveIcons-1), 0);
 				}
 			}
 			else
@@ -492,12 +503,13 @@ void CHudNew::DamageSensor( int iDmgType, bool bEnabled )
 				if( !(pDmgBio->isVisible()) )
 				{
 					pDmgBio->setVisible(true);
+					fTimer_iDmgBio = 255;
 					iDmgActiveIcons++;
 
 					if( iDmgActiveIcons < 1 )
 						pDmgBio->setPos(0, 0);
 					else
-						pDmgBio->setPos(48*(iDmgActiveIcons-1), 0);
+						pDmgBio->setPos(64*(iDmgActiveIcons-1), 0);
 				}
 			}
 			else
@@ -517,12 +529,13 @@ void CHudNew::DamageSensor( int iDmgType, bool bEnabled )
 				if( !(pDmgChem->isVisible()) )
 				{
 					pDmgChem->setVisible(true);
+					fTimer_iDmgChem = 255;
 					iDmgActiveIcons++;
 
 					if( iDmgActiveIcons < 1 )
 						pDmgChem->setPos(0, 0);
 					else
-						pDmgChem->setPos(48*(iDmgActiveIcons-1), 0);
+						pDmgChem->setPos(64*(iDmgActiveIcons-1), 0);
 				}
 			}
 			else
@@ -542,12 +555,13 @@ void CHudNew::DamageSensor( int iDmgType, bool bEnabled )
 				if( !(pDmgFire->isVisible()) )
 				{
 					pDmgFire->setVisible(true);
+					fTimer_iDmgFire = 255;
 					iDmgActiveIcons++;
 
 					if( iDmgActiveIcons < 1 )
 						pDmgFire->setPos(0, 0);
 					else
-						pDmgFire->setPos(48*(iDmgActiveIcons-1), 0);
+						pDmgFire->setPos(64*(iDmgActiveIcons-1), 0);
 				}
 			}
 			else
@@ -567,12 +581,13 @@ void CHudNew::DamageSensor( int iDmgType, bool bEnabled )
 				if( !(pDmgFrost->isVisible()) )
 				{
 					pDmgFrost->setVisible(true);
+					fTimer_iDmgFrost = 255;
 					iDmgActiveIcons++;
 
 					if( iDmgActiveIcons < 1 )
 						pDmgFrost->setPos(0, 0);
 					else
-						pDmgFrost->setPos(48*(iDmgActiveIcons-1), 0);
+						pDmgFrost->setPos(64*(iDmgActiveIcons-1), 0);
 				}
 			}
 			else
@@ -592,12 +607,13 @@ void CHudNew::DamageSensor( int iDmgType, bool bEnabled )
 				if( !(pDmgGas->isVisible()) )
 				{
 					pDmgGas->setVisible(true);
+					fTimer_iDmgGas = 255;
 					iDmgActiveIcons++;
 
 					if( iDmgActiveIcons < 1 )
 						pDmgGas->setPos(0, 0);
 					else
-						pDmgGas->setPos(48*(iDmgActiveIcons-1), 0);
+						pDmgGas->setPos(64*(iDmgActiveIcons-1), 0);
 				}
 			}
 			else
@@ -617,12 +633,13 @@ void CHudNew::DamageSensor( int iDmgType, bool bEnabled )
 				if( !(pDmgRad->isVisible()) )
 				{
 					pDmgRad->setVisible(true);
+					fTimer_iDmgRad = 255;
 					iDmgActiveIcons++;
 
 					if( iDmgActiveIcons < 1 )
 						pDmgRad->setPos(0, 0);
 					else
-						pDmgRad->setPos(48*(iDmgActiveIcons-1), 0);
+						pDmgRad->setPos(64*(iDmgActiveIcons-1), 0);
 				}
 			}
 			else
@@ -642,12 +659,13 @@ void CHudNew::DamageSensor( int iDmgType, bool bEnabled )
 				if( !(pDmgShock->isVisible()) )
 				{
 					pDmgShock->setVisible(true);
+					fTimer_iDmgShock = 255;
 					iDmgActiveIcons++;
 
 					if( iDmgActiveIcons < 1 )
 						pDmgShock->setPos(0, 0);
 					else
-						pDmgShock->setPos(48*(iDmgActiveIcons-1), 0);
+						pDmgShock->setPos(64*(iDmgActiveIcons-1), 0);
 				}
 			}
 			else
@@ -726,8 +744,8 @@ CHudNew::CHudNew() : Panel(0, 0, XRES(640), YRES(480))
 	// Initialize primary ammo panel / container
 	pAmmoPanel = new Panel( AdjustPosition(ID_AMMO_PANEL, false), AdjustPosition(ID_AMMO_PANEL, true), iAmmoSizeX, iAmmoSizeY);
 	pAmmoPanel->setParent(this);
-	//pAmmoPanel->setBgColor(0, 0, 0, 100);
-	pAmmoPanel->setPaintBackgroundEnabled(false);
+	pAmmoPanel->setBgColor(0, 0, 0, 100);
+	//pAmmoPanel->setPaintBackgroundEnabled(false);
 
 	// Primary ammo value ( CLIP / AMMO )
 	pPrimaryAmmoLab = new Label("666");
@@ -799,8 +817,8 @@ CHudNew::CHudNew() : Panel(0, 0, XRES(640), YRES(480))
 	// Initialize secondary ammo panel / container
 	pSecondaryAmmoPanel = new Panel( AdjustPosition(ID_AMMO_PANEL2, false), AdjustPosition(ID_AMMO_PANEL2, true), iAmmoSizeX, iAmmoSizeY);
 	pSecondaryAmmoPanel->setParent(this);
-	//pSecondaryAmmoPanel->setBgColor(0, 0, 0, 100);
-	pSecondaryAmmoPanel->setPaintBackgroundEnabled(false);
+	pSecondaryAmmoPanel->setBgColor(0, 0, 0, 100);
+	//pSecondaryAmmoPanel->setPaintBackgroundEnabled(false);
 
 	// Secondary ammo value ( AMMO2 )
 	pSecondaryAmmoLab = new Label("666");
@@ -837,7 +855,7 @@ CHudNew::CHudNew() : Panel(0, 0, XRES(640), YRES(480))
 
 
 // Atmospheric contaminant sensors START
-	pDmgPanel = new Panel( AdjustPosition(ID_DMG_PANEL, false), AdjustPosition(ID_DMG_PANEL, true), 384, 48);
+	pDmgPanel = new Panel( AdjustPosition(ID_DMG_PANEL, false), AdjustPosition(ID_DMG_PANEL, true), 512, 64);
 	pDmgPanel->setParent(this);
 	pDmgPanel->setBgColor(0, 0, 0, 100);
 	pDmgPanel->setPaintBackgroundEnabled(false);
@@ -1343,42 +1361,138 @@ void CHudNew::paint()
 
 	if (pDmgAir)
 	{
-		pDmgAir->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+		if (fTimer_iDmgAir > 4.0)
+		{
+			fTimer_iDmgAir -= (gHUD.m_flTimeDelta * 200);
+			if (fTimer_iDmgAir <= 0)
+				fTimer_iDmgAir = 1;
+
+			pDmgAir->GetBitmap()->setColor( Color(255, 0, 0, 257-fTimer_iDmgAir));
+		}
+		else
+		{
+			fTimer_iDmgAir = 0;
+			DamageSensor(1, false);
+		}
 	}
 
 	if (pDmgBio)
 	{
-		pDmgBio->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+		if (fTimer_iDmgBio > 4.0)
+		{
+			fTimer_iDmgBio -= (gHUD.m_flTimeDelta * 200);
+			if (fTimer_iDmgBio <= 0)
+				fTimer_iDmgBio = 1;
+
+			pDmgBio->GetBitmap()->setColor( Color(255, 0, 0, 257-fTimer_iDmgBio));
+		}
+		else
+		{
+			fTimer_iDmgBio = 0;
+			DamageSensor(2, false);
+		}
 	}
 
 	if (pDmgChem)
 	{
-		pDmgChem->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+		if (fTimer_iDmgChem > 4.0)
+		{
+			fTimer_iDmgChem -= (gHUD.m_flTimeDelta * 200);
+			if (fTimer_iDmgChem <= 0)
+				fTimer_iDmgChem = 1;
+
+			pDmgChem->GetBitmap()->setColor( Color(255, 0, 0, 257-fTimer_iDmgChem));
+		}
+		else
+		{
+			fTimer_iDmgChem = 0;
+			DamageSensor(3, false);
+		}
 	}
 
 	if (pDmgFire)
 	{
-		pDmgFire->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+		if (fTimer_iDmgFire > 4.0)
+		{
+			fTimer_iDmgFire -= (gHUD.m_flTimeDelta * 200);
+			if (fTimer_iDmgFire <= 0)
+				fTimer_iDmgFire = 1;
+
+			pDmgFire->GetBitmap()->setColor( Color(255, 0, 0, 257-fTimer_iDmgFire));
+		}
+		else
+		{
+			fTimer_iDmgFire = 0;
+			DamageSensor(4, false);
+		}
 	}
 
 	if (pDmgFrost)
 	{
-		pDmgFrost->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+		if (fTimer_iDmgFrost > 4.0)
+		{
+			fTimer_iDmgFrost -= (gHUD.m_flTimeDelta * 200);
+			if (fTimer_iDmgFrost <= 0)
+				fTimer_iDmgFrost = 1;
+
+			pDmgFrost->GetBitmap()->setColor( Color(255, 0, 0, 257-fTimer_iDmgFrost));
+		}
+		else
+		{
+			fTimer_iDmgFrost = 0;
+			DamageSensor(5, false);
+		}
 	}
 
 	if (pDmgGas)
 	{
-		pDmgGas->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+		if (fTimer_iDmgGas > 4.0)
+		{
+			fTimer_iDmgGas -= (gHUD.m_flTimeDelta * 200);
+			if (fTimer_iDmgGas <= 0)
+				fTimer_iDmgGas = 1;
+
+			pDmgGas->GetBitmap()->setColor( Color(255, 0, 0, 257-fTimer_iDmgGas));
+		}
+		else
+		{
+			fTimer_iDmgGas = 0;
+			DamageSensor(6, false);
+		}
 	}
 
 	if (pDmgRad)
 	{
-		pDmgRad->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+		if (fTimer_iDmgRad > 4.0)
+		{
+			fTimer_iDmgRad -= (gHUD.m_flTimeDelta * 200);
+			if (fTimer_iDmgRad <= 0)
+				fTimer_iDmgRad = 1;
+
+			pDmgRad->GetBitmap()->setColor( Color(255, 0, 0, 257-fTimer_iDmgRad));
+		}
+		else
+		{
+			fTimer_iDmgRad = 0;
+			DamageSensor(7, false);
+		}
 	}
 
 	if (pDmgShock)
 	{
-		pDmgShock->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+		if (fTimer_iDmgShock > 4.0)
+		{
+			fTimer_iDmgShock -= (gHUD.m_flTimeDelta * 200);
+			if (fTimer_iDmgShock <= 0)
+				fTimer_iDmgShock = 1;
+
+			pDmgShock->GetBitmap()->setColor( Color(255, 0, 0, 257-fTimer_iDmgShock));
+		}
+		else
+		{
+			fTimer_iDmgShock = 0;
+			DamageSensor(8, false);
+		}
 	}
 
 //========== ATMOSPHERIC CONTAMINANT SENSORS END =======//
@@ -1786,12 +1900,12 @@ void CHudNew::paint()
 					DamageSensor( 8, true );
 
 					pDmgBio->setPos		(0,		0);
-					pDmgChem->setPos	(48*1,	0);
-					pDmgFire->setPos	(48*2,	0);
-					pDmgFrost->setPos	(48*3,	0);
-					pDmgGas->setPos		(48*4,	0);
-					pDmgRad->setPos		(48*5,	0);
-					pDmgShock->setPos	(48*6,	0);
+					pDmgChem->setPos	(64*1,	0);
+					pDmgFire->setPos	(64*2,	0);
+					pDmgFrost->setPos	(64*3,	0);
+					pDmgGas->setPos		(64*4,	0);
+					pDmgRad->setPos		(64*5,	0);
+					pDmgShock->setPos	(64*6,	0);
 
 					pDmgShock->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1) );
 				}
@@ -1808,11 +1922,11 @@ void CHudNew::paint()
 					DamageSensor( 8, true );
 
 					pDmgChem->setPos	(0,	0);
-					pDmgFire->setPos	(48*1,	0);
-					pDmgFrost->setPos	(48*2,	0);
-					pDmgGas->setPos		(48*3,	0);
-					pDmgRad->setPos		(48*4,	0);
-					pDmgShock->setPos	(48*5,	0);
+					pDmgFire->setPos	(64*1,	0);
+					pDmgFrost->setPos	(64*2,	0);
+					pDmgGas->setPos		(64*3,	0);
+					pDmgRad->setPos		(64*4,	0);
+					pDmgShock->setPos	(64*5,	0);
 				}
 
 				if( (fTimer_Logon > 838) && (fTimer_Logon <= 840) )
@@ -1827,10 +1941,10 @@ void CHudNew::paint()
 					DamageSensor( 8, true );
 
 					pDmgFire->setPos	(0,	0);
-					pDmgFrost->setPos	(48*1,	0);
-					pDmgGas->setPos		(48*2,	0);
-					pDmgRad->setPos		(48*3,	0);
-					pDmgShock->setPos	(48*4,	0);
+					pDmgFrost->setPos	(64*1,	0);
+					pDmgGas->setPos		(64*2,	0);
+					pDmgRad->setPos		(64*3,	0);
+					pDmgShock->setPos	(64*4,	0);
 				}
 
 				if( (fTimer_Logon > 840) && (fTimer_Logon <= 842) )
@@ -1845,9 +1959,9 @@ void CHudNew::paint()
 					DamageSensor( 8, true );
 
 					pDmgFrost->setPos	(0,	0);
-					pDmgGas->setPos		(48*1,	0);
-					pDmgRad->setPos		(48*2,	0);
-					pDmgShock->setPos	(48*3,	0);
+					pDmgGas->setPos		(64*1,	0);
+					pDmgRad->setPos		(64*2,	0);
+					pDmgShock->setPos	(64*3,	0);
 				}
 
 				if( (fTimer_Logon > 842) && (fTimer_Logon <= 844) )
@@ -1862,8 +1976,8 @@ void CHudNew::paint()
 					DamageSensor( 8, true );
 
 					pDmgGas->setPos		(0,	0);
-					pDmgRad->setPos		(48*1,	0);
-					pDmgShock->setPos	(48*2,	0);
+					pDmgRad->setPos		(64*1,	0);
+					pDmgShock->setPos	(64*2,	0);
 				}
 
 				if( (fTimer_Logon > 844) && (fTimer_Logon <= 846) )
@@ -1878,7 +1992,7 @@ void CHudNew::paint()
 					DamageSensor( 8, true );
 
 					pDmgRad->setPos(0, 0);
-					pDmgShock->setPos(48, 0);
+					pDmgShock->setPos(64, 0);
 				}
 
 				if( (fTimer_Logon > 846) && (fTimer_Logon <= 848) )
