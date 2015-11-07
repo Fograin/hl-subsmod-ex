@@ -5,7 +5,7 @@ basedir		"gearbox"
 gamedir		"subsmod"
 fallback_dir	"bshift"
 fallback_dirB	"valve"
-title		"Half-Life: Subtitles Mod"
+title		"Half-Life: Update Mod"
 startmap		"c0a0"
 trainmap		"t0a0"
 version		301

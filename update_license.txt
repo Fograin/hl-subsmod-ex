@@ -1,6 +1,6 @@
-//=========================================//
-// Half-Life Subtitles MOD - License File
-//=========================================//
+//======================================//
+// Half-Life Update MOD - License File
+//======================================//
 
 First of all, read hl_license.txt file.
 This mod is based on HL SDK and most of the files (including client/server source code) are licensed under the same license.

@@ -1,10 +1,10 @@
-//==============================================//
-// Half-Life Subtitles MOD - SVN repository
-// Copyright(C) 2014-2015 SubsModTeam@gmail.com
-//==============================================//
+//=========================================//
+// Half-Life Update MOD - SVN repository
+// Copyright(C) 2014-2015, HL1 Update Team
+//=========================================//
 
 Usage info:
-Please read sm_license.txt, everything you need to know it's written there.
+Please read update_license.txt, everything you need to know it's written there.
 
 Credits:
 You can always find up-to-date version of credits file here:
