@@ -1,5 +1,5 @@
 //=============================================================//
-//	Half-Life Subtitles MOD
+//	Half-Life Update MOD
 //	https://github.com/Fograin/hl-subsmod-ex
 //	
 //	This product contains software technology licensed from:
@@ -48,7 +48,7 @@
 #include "vgui_ScorePanel.h"
 #include "vgui_SpectatorPanel.h"
 
-// Fograin92: Subtitles MOD stuff
+// Fograin92: Update MOD stuff
 #include "sm_gamespec.h"		// Vit_amiN
 #include "sm_main.h"			// Vit_amiN
 #include "particle_header.h"	// Fograin92: BG Particle System
@@ -589,7 +589,7 @@ TeamFortressViewport::TeamFortressViewport(int x,int y,int wide,int tall) : Pane
 	m_SpectatorCameraMenu = CreateCommandMenu("spectcammenu.txt", 1, YRES(32), true, XRES( 200 ), BUTTON_SIZE_Y / 2, ScreenWidth - ( XRES ( 200 ) + 15 ) );	// above bottom bar, flat design
 	CreateServerBrowser();
 
-// Fograin92: Subtitles MOD stuff
+// Fograin92: Update MOD stuff
 
 	// Fograin92: New HUD
 	m_pHudNew = new CHudNew();
@@ -624,7 +624,7 @@ void TeamFortressViewport::Initialize( void )
 		m_pSpectatorPanel->ShowMenu( false );			// Vit_amiN: close spectator menu
 	}
 
-// Fograin92: Subtitles MOD stuff START
+// Fograin92: Update MOD stuff START
 
 	// Init subtitles
 	if (m_pMsgsBasePanel)	
@@ -639,7 +639,7 @@ void TeamFortressViewport::Initialize( void )
 
 	pParticleManager->RemoveSystems();	// BG Particle System
 
-// Fograin92: Subtitles MOD stuff END
+// Fograin92: Update MOD stuff END
 
 
 	// Make sure all menus are hidden
@@ -2098,7 +2098,7 @@ void CDragNDropHandler::mouseReleased(MouseCode code,Panel* panel)
 	App::getInstance()->setMouseCapture(null);
 }
 
-// Fograin92: Subtitles MOD stuff
+// Fograin92: Update MOD stuff
 
 // BG Particle System
 // reads a msg to control a particle emitter in server side

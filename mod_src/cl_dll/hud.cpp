@@ -1,5 +1,5 @@
 //=============================================================//
-//	Half-Life Subtitles MOD
+//	Half-Life Update MOD
 //	https://github.com/Fograin/hl-subsmod-ex
 //	
 //	This product contains software technology licensed from:
@@ -21,11 +21,11 @@
 #include "demo_api.h"
 #include "vgui_scorepanel.h"
 
-// Fograin92: Subtitles MOD stuff
+// Fograin92: Update MOD stuff START
 #include "particle_header.h"			// BG Particle System
 extern void SM_RegisterAllConVars();	// Vit_amiN
 #include "sm_hud.h"						// Fograin92
-
+// Fograin92: Update MOD stuff END
 
 class CHLVoiceStatusHelper : public IVoiceStatusHelper
 {
@@ -279,7 +279,7 @@ int __MsgFunc_Grass(const char *pszName, int iSize, void *pbuf)
 // This is called every time the DLL is loaded
 void CHud :: Init( void )
 {
-	// Fograin92: Subtitles MOD stuff
+	// Fograin92: Update MOD stuff
 	SM_RegisterAllConVars();	// Vit_amiN: reg cvars
 	HOOK_MESSAGE( Particles );	// BG Particle system
 	HOOK_MESSAGE( Grass );		// BG Grass
@@ -551,7 +551,7 @@ void CHud :: VidInit( void )
 
 	GetClientVoiceMgr()->VidInit();
 
-	// Fograin92: Subtitles MOD stuff
+	// Fograin92: Update MOD stuff
 
 // BG Particle System START
 	if(!pParticleManager)

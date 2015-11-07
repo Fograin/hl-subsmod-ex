@@ -1,5 +1,5 @@
 //=============================================================//
-//	Half-Life Subtitles MOD
+//	Half-Life Update MOD
 //	https://github.com/Fograin/hl-subsmod-ex
 //	
 //	This product contains software technology licensed from:
@@ -19,7 +19,7 @@
 #include "weapons.h"
 #include "gamerules.h"
 
-// Fograin92: Subtitles MOD stuff
+// Fograin92: Update MOD stuff
 #include "sm_hook_snd.h"	// Vit_amiN
 #include "particle_defs.h"	// BG Particle system
 extern int gmsgParticles;	// BG Particle system

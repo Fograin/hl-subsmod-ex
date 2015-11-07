@@ -1,5 +1,5 @@
 //=============================================================//
-//	Half-Life Subtitles MOD
+//	Half-Life Update MOD
 //	https://github.com/Fograin/hl-subsmod-ex
 //	
 //	This product contains software technology licensed from:
@@ -167,7 +167,7 @@ public:
 	CBasePlayerItem *m_pClientActiveItem;  // client version of the active item
 	CBasePlayerItem *m_pLastItem;
 
-	// Fograin92: Subtitles MOD stuff
+	// Fograin92: Update MOD stuff
 	int m_iGrappleExists;		// Rara: Grappling hook
 	CBaseEntity *m_MyGrapple;	// Rara: Grappling hook
 
@@ -260,7 +260,7 @@ public:
 	void SelectNextItem( int iItem );
 	void SelectLastItem(void);
 
-	// Fograin92: Subtitles MOD stuff
+	// Fograin92: Update MOD stuff
 	float m_fWeaponDeployDelay;	// Fograin92: Holds the time until the next weapon is deployed.
 
 	void SelectItem(const char *pstr);

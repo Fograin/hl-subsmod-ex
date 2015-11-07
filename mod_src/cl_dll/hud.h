@@ -1,5 +1,5 @@
 //=============================================================//
-//	Half-Life Subtitles MOD
+//	Half-Life Update MOD
 //	https://github.com/Fograin/hl-subsmod-ex
 //	
 //	This product contains software technology licensed from:
@@ -654,7 +654,7 @@ extern int g_iUser1;
 extern int g_iUser2;
 extern int g_iUser3;
 
-// Half-Life: Subtitles MOD functions
+// Half-Life: Update MOD functions
 int SM_HUDcolor(int iColor);
 
 #endif

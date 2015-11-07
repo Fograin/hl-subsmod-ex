@@ -1,5 +1,5 @@
 //=============================================================//
-//	Half-Life Subtitles MOD - Barnacle monster
+//	Half-Life Update MOD - Barnacle monster
 //	https://github.com/Fograin/hl-subsmod-ex
 //	
 //	This product contains software technology licensed from:

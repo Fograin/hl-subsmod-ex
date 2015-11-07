@@ -1,5 +1,5 @@
 //=============================================================//
-//	Half-Life Subtitles MOD
+//	Half-Life Update MOD
 //	https://github.com/Fograin/hl-subsmod-ex
 //	
 //	This product contains software technology licensed from:
@@ -1539,9 +1539,9 @@ TYPEDESCRIPTION	CSatchel::m_SaveData[] =
 IMPLEMENT_SAVERESTORE( CSatchel, CBasePlayerWeapon );
 
 
-//================================//
-// Fograin92: Subtitles MOD stuff
-//================================//
+//==============================//
+// Fograin92: Update MOD stuff
+//==============================//
 
 // Fograin92: Pulled from weapon_crowbar, now it's shared between melee weapons
 void CBasePlayerWeapon::FindHullIntersection( const Vector &vecSrc, TraceResult &tr, float *mins, float *maxs, edict_t *pEntity )

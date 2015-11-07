@@ -1,5 +1,5 @@
 //=============================================================//
-//	Half-Life Subtitles MOD
+//	Half-Life Update MOD
 //	https://github.com/Fograin/hl-subsmod-ex
 //	
 //	This product contains software technology licensed from:
@@ -352,7 +352,7 @@ public:
 
 	int		m_iDefaultAmmo; // how much ammo you get when you pick up this weapon as placed by a level designer.
 
-	// Fograin92: Subtitles MOD stuff
+	// Fograin92: Update MOD stuff
 	void FindHullIntersection( const Vector &vecSrc, TraceResult &tr, float *mins, float *maxs, edict_t *pEntity );	// Fograin92: Pulled from weapon_crowbar
 
 };

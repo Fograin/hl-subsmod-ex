@@ -77,6 +77,6 @@ void Game_HookEvents( void )
 	gEngfuncs.pfnHookEvent( "events/tripfire.sc",				EV_TripmineFire );
 	gEngfuncs.pfnHookEvent( "events/snarkfire.sc",				EV_SnarkFire );
 
-	// Fograin92: Subtitles MOD stuff
+	// Fograin92: Update MOD stuff
 	//gEngfuncs.pfnHookEvent( "events/weapon_grapple.sc", 		EV_FireGRAPPLE ); // Rara
 }

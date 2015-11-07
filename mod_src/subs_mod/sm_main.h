@@ -1,5 +1,5 @@
 // ======================================
-//  Half-Life Subtitles Mod: Main Header
+//  Half-Life Update Mod: Main Header
 //    written by Fograin92 & Vit_amiN
 // ======================================
 //  Inspired by: Half-Life: Paranoia mod

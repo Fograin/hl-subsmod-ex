@@ -357,14 +357,14 @@ public:
 	enum EGON_FIRESTATE { FIRE_OFF, FIRE_CHARGE };
 	int m_fireState;
 
-// Fograin92: Subtitles MOD Stuff START
+// Fograin92: Update MOD Stuff START
 public:
 
 	// BG Particle System
 	void	CBaseEntity::DontThink( void );
 	float	m_fNextThink; 
 	float	m_fPevNextThink;
-// Fograin92: Subtitles MOD Stuff END
+// Fograin92: Update MOD Stuff END
 };
 
 

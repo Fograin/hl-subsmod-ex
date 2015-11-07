@@ -1,5 +1,5 @@
 //=============================================================//
-//	Half-Life Subtitles MOD
+//	Half-Life Update MOD
 //	https://github.com/Fograin/hl-subsmod-ex
 //	
 //	This product contains software technology licensed from:
@@ -34,7 +34,7 @@
 // custom scheme handling
 #include "vgui_SchemeManager.h"
 
-// Fograin92: Subtitles MOD stuff START
+// Fograin92: Update MOD stuff START
 
 #include "sm_hook_txt.h"	// Vit_amiN
 #include "sm_structs.h"		// Vit_amiN
@@ -43,7 +43,7 @@ class VGUI_MsgsBasePanel;	// Vit_amiN
 #include "sm_hud.h"		// Fograin92
 class CHudNew;
 
-// Fograin92: Subtitles MOD stuff END
+// Fograin92: Update MOD stuff END
 
 #define TF_DEFS_ONLY
 #include "tf_defs.h"
@@ -554,7 +554,7 @@ public:
 	// Input
 	bool SlotInput( int iSlot );
 
-// Fograin92: Subtitles MOD stuff START
+// Fograin92: Update MOD stuff START
 
 	// Vit_amiN: Message panel interactions
 	void AddSMTextMessage( const int &, const client_textmessage_t        * const, const void * const, const float & );
@@ -567,7 +567,7 @@ public:
 	int MsgFunc_Grass( const char *pszName, int iSize, void *pbuf );
 
 
-// Fograin92: Subtitles MOD stuff END
+// Fograin92: Update MOD stuff END
 
 	virtual void paintBackground();
 
@@ -587,11 +587,11 @@ public:
 	ScorePanel		*m_pScoreBoard;
 	SpectatorPanel *		m_pSpectatorPanel;
 
-// Fograin92: Subtitles MOD stuff START
+// Fograin92: Update MOD stuff START
 	VGUI_MsgsBasePanel		*m_pMsgsBasePanel;	// Fograin92, Vit_amiN
 	CHudNew					*m_pHudNew;			// Fograin92
 
-// Fograin92: Subtitles MOD stuff END
+// Fograin92: Update MOD stuff END
 
 
 	char			m_szServerName[ MAX_SERVERNAME_LENGTH ];

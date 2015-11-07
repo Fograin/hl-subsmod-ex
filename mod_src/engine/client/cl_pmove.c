@@ -661,7 +661,7 @@ void CL_InitClientMove( void )
 	clgame.pmove->memfgets = COM_MemFgets;
 
 	//clgame.pmove->PM_PlaySound = pfnPlaySound;
-	clgame.pmove->PM_PlaySound_Hooked = pfnPlaySound;	// Fograin92: Subtitles MOD hooked
+	clgame.pmove->PM_PlaySound_Hooked = pfnPlaySound;	// Fograin92: Hook subtitles
 	
 	clgame.pmove->PM_TraceTexture = pfnTraceTexture;
 	clgame.pmove->PM_PlaybackEventFull = pfnPlaybackEventFull;

@@ -1,5 +1,5 @@
 //=============================================================//
-//	Half-Life Subtitles MOD
+//	Half-Life Update MOD
 //	https://github.com/Fograin/hl-subsmod-ex
 //	
 //	This product contains software technology licensed from:
@@ -444,13 +444,13 @@ cvar_t	sk_player_leg3	= { "sk_player_leg3","1" };
 // END Cvars for Skill Level settings
 
 
-// Fograin92: Half-Life Subtitles MOD CVARs
+// Fograin92: Half-Life Update MOD CVARs
 cvar_t	sm_hud				= { "sm_hud",				"0"};	// Used for HUD color, also it holds value of current loaded game (HL, OF, BS)
 cvar_t	sm_hev_pick			= { "sm_hev_pick",			"1", FCVAR_SERVER|FCVAR_ARCHIVE };	// Should HEV emit weapon pickup sentences?
 cvar_t	sm_weapon_holster	= { "sm_weapon_holster",	"2", FCVAR_SERVER|FCVAR_ARCHIVE };	// 0 - Don't play holster animations, 1 - Holster anims only when using turrets and tracktrain, 2 - Just like 1, but also holster anims when switching weapons
 cvar_t	sm_particles		= { "sm_particles",			"2", FCVAR_SERVER|FCVAR_ARCHIVE };	// 0 - Don't use particle system (low setting), 1 - Limited particles (medium setting), 2 - Full particles (high setting)
 
-// Fograin92: Half-Life Subtitles MOD Skill CVARs
+// Fograin92: Half-Life Update MOD Skill CVARs
 cvar_t	sk_bs_helmet1	= { "sk_bs_helmet1",	"1" };
 cvar_t	sk_bs_helmet2	= { "sk_bs_helmet2",	"1" };
 cvar_t	sk_bs_helmet3	= { "sk_bs_helmet3",	"1" };
@@ -895,7 +895,7 @@ void GameDLLInit( void )
 // END REGISTER CVARS FOR SKILL LEVEL STUFF
 
 
-// Fograin92: Half-Life Subtitles MOD CVARs START
+// Fograin92: Half-Life Update MOD CVARs START
 
 	// Fograin92: Mod settings CVARs
 	CVAR_REGISTER (&sm_hud);
@@ -912,7 +912,7 @@ void GameDLLInit( void )
 	CVAR_REGISTER (&sk_bs_vest2);
 	CVAR_REGISTER (&sk_bs_vest3);
 
-// Fograin92: Half-Life Subtitles MOD CVARs END
+// Fograin92: Half-Life Update MOD CVARs END
 
 	SERVER_COMMAND( "exec skill.cfg\n" );
 }
