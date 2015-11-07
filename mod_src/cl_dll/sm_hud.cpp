@@ -396,7 +396,8 @@ void CHudNew::PickedUpItem( const char *szName )
 	if( !strcmp( szName, "item_suit" ) )
 	{
 		bHaveHEV = true;
-		//fTimer_Logon = 1;	// Start the HEV LOGON sequence
+		// TODO: Check if this is Hazard Course OR Impulse 101
+		fTimer_Logon = 1;	// Start the HEV LOGON sequence
 	}
 
 	UpdateHUD();
@@ -1353,157 +1354,162 @@ void CHudNew::paint()
 
 //========== ATMOSPHERIC CONTAMINANT SENSORS START =======//
 
-	// Limit icons
-	if (iDmgActiveIcons < 0)
-		iDmgActiveIcons = 0;
-	else if (iDmgActiveIcons > 8)
-		iDmgActiveIcons = 8;
-
-	if (pDmgAir)
+	// ONLY if it's not LOGON animation
+	if (fTimer_Logon < 1)
 	{
-		if (fTimer_iDmgAir > 4.0)
-		{
-			fTimer_iDmgAir -= (gHUD.m_flTimeDelta * 200);
-			if (fTimer_iDmgAir <= 0)
-				fTimer_iDmgAir = 1;
+		// Limit icons
+		if (iDmgActiveIcons < 0)
+			iDmgActiveIcons = 0;
+		else if (iDmgActiveIcons > 8)
+			iDmgActiveIcons = 8;
 
-			pDmgAir->GetBitmap()->setColor( Color(255, 0, 0, 257-fTimer_iDmgAir));
-		}
-		else
+		if (pDmgAir)
 		{
-			fTimer_iDmgAir = 0;
-			DamageSensor(1, false);
-		}
-	}
+			if (fTimer_iDmgAir > 4.0)
+			{
+				fTimer_iDmgAir -= (gHUD.m_flTimeDelta * 200);
+				if (fTimer_iDmgAir <= 0)
+					fTimer_iDmgAir = 1;
 
-	if (pDmgBio)
-	{
-		if (fTimer_iDmgBio > 4.0)
-		{
-			fTimer_iDmgBio -= (gHUD.m_flTimeDelta * 200);
-			if (fTimer_iDmgBio <= 0)
-				fTimer_iDmgBio = 1;
+				pDmgAir->GetBitmap()->setColor( Color(255, 0, 0, 257-fTimer_iDmgAir));
+			}
+			else
+			{
+				fTimer_iDmgAir = 0;
+				DamageSensor(1, false);
+			}
+		}
 
-			pDmgBio->GetBitmap()->setColor( Color(255, 0, 0, 257-fTimer_iDmgBio));
-		}
-		else
+		if (pDmgBio)
 		{
-			fTimer_iDmgBio = 0;
-			DamageSensor(2, false);
-		}
-	}
+			if (fTimer_iDmgBio > 4.0)
+			{
+				fTimer_iDmgBio -= (gHUD.m_flTimeDelta * 200);
+				if (fTimer_iDmgBio <= 0)
+					fTimer_iDmgBio = 1;
 
-	if (pDmgChem)
-	{
-		if (fTimer_iDmgChem > 4.0)
-		{
-			fTimer_iDmgChem -= (gHUD.m_flTimeDelta * 200);
-			if (fTimer_iDmgChem <= 0)
-				fTimer_iDmgChem = 1;
+				pDmgBio->GetBitmap()->setColor( Color(255, 0, 0, 257-fTimer_iDmgBio));
+			}
+			else
+			{
+				fTimer_iDmgBio = 0;
+				DamageSensor(2, false);
+			}
+		}
 
-			pDmgChem->GetBitmap()->setColor( Color(255, 0, 0, 257-fTimer_iDmgChem));
-		}
-		else
+		if (pDmgChem)
 		{
-			fTimer_iDmgChem = 0;
-			DamageSensor(3, false);
-		}
-	}
+			if (fTimer_iDmgChem > 4.0)
+			{
+				fTimer_iDmgChem -= (gHUD.m_flTimeDelta * 200);
+				if (fTimer_iDmgChem <= 0)
+					fTimer_iDmgChem = 1;
 
-	if (pDmgFire)
-	{
-		if (fTimer_iDmgFire > 4.0)
-		{
-			fTimer_iDmgFire -= (gHUD.m_flTimeDelta * 200);
-			if (fTimer_iDmgFire <= 0)
-				fTimer_iDmgFire = 1;
+				pDmgChem->GetBitmap()->setColor( Color(255, 0, 0, 257-fTimer_iDmgChem));
+			}
+			else
+			{
+				fTimer_iDmgChem = 0;
+				DamageSensor(3, false);
+			}
+		}
 
-			pDmgFire->GetBitmap()->setColor( Color(255, 0, 0, 257-fTimer_iDmgFire));
-		}
-		else
+		if (pDmgFire)
 		{
-			fTimer_iDmgFire = 0;
-			DamageSensor(4, false);
-		}
-	}
+			if (fTimer_iDmgFire > 4.0)
+			{
+				fTimer_iDmgFire -= (gHUD.m_flTimeDelta * 200);
+				if (fTimer_iDmgFire <= 0)
+					fTimer_iDmgFire = 1;
 
-	if (pDmgFrost)
-	{
-		if (fTimer_iDmgFrost > 4.0)
-		{
-			fTimer_iDmgFrost -= (gHUD.m_flTimeDelta * 200);
-			if (fTimer_iDmgFrost <= 0)
-				fTimer_iDmgFrost = 1;
+				pDmgFire->GetBitmap()->setColor( Color(255, 0, 0, 257-fTimer_iDmgFire));
+			}
+			else
+			{
+				fTimer_iDmgFire = 0;
+				DamageSensor(4, false);
+			}
+		}
 
-			pDmgFrost->GetBitmap()->setColor( Color(255, 0, 0, 257-fTimer_iDmgFrost));
-		}
-		else
+		if (pDmgFrost)
 		{
-			fTimer_iDmgFrost = 0;
-			DamageSensor(5, false);
-		}
-	}
+			if (fTimer_iDmgFrost > 4.0)
+			{
+				fTimer_iDmgFrost -= (gHUD.m_flTimeDelta * 200);
+				if (fTimer_iDmgFrost <= 0)
+					fTimer_iDmgFrost = 1;
 
-	if (pDmgGas)
-	{
-		if (fTimer_iDmgGas > 4.0)
-		{
-			fTimer_iDmgGas -= (gHUD.m_flTimeDelta * 200);
-			if (fTimer_iDmgGas <= 0)
-				fTimer_iDmgGas = 1;
+				pDmgFrost->GetBitmap()->setColor( Color(255, 0, 0, 257-fTimer_iDmgFrost));
+			}
+			else
+			{
+				fTimer_iDmgFrost = 0;
+				DamageSensor(5, false);
+			}
+		}
 
-			pDmgGas->GetBitmap()->setColor( Color(255, 0, 0, 257-fTimer_iDmgGas));
-		}
-		else
+		if (pDmgGas)
 		{
-			fTimer_iDmgGas = 0;
-			DamageSensor(6, false);
-		}
-	}
+			if (fTimer_iDmgGas > 4.0)
+			{
+				fTimer_iDmgGas -= (gHUD.m_flTimeDelta * 200);
+				if (fTimer_iDmgGas <= 0)
+					fTimer_iDmgGas = 1;
 
-	if (pDmgRad)
-	{
-		if (fTimer_iDmgRad > 4.0)
-		{
-			fTimer_iDmgRad -= (gHUD.m_flTimeDelta * 200);
-			if (fTimer_iDmgRad <= 0)
-				fTimer_iDmgRad = 1;
+				pDmgGas->GetBitmap()->setColor( Color(255, 0, 0, 257-fTimer_iDmgGas));
+			}
+			else
+			{
+				fTimer_iDmgGas = 0;
+				DamageSensor(6, false);
+			}
+		}
 
-			pDmgRad->GetBitmap()->setColor( Color(255, 0, 0, 257-fTimer_iDmgRad));
-		}
-		else
+		if (pDmgRad)
 		{
-			fTimer_iDmgRad = 0;
-			DamageSensor(7, false);
-		}
-	}
+			if (fTimer_iDmgRad > 4.0)
+			{
+				fTimer_iDmgRad -= (gHUD.m_flTimeDelta * 200);
+				if (fTimer_iDmgRad <= 0)
+					fTimer_iDmgRad = 1;
 
-	if (pDmgShock)
-	{
-		if (fTimer_iDmgShock > 4.0)
-		{
-			fTimer_iDmgShock -= (gHUD.m_flTimeDelta * 200);
-			if (fTimer_iDmgShock <= 0)
-				fTimer_iDmgShock = 1;
+				pDmgRad->GetBitmap()->setColor( Color(255, 0, 0, 257-fTimer_iDmgRad));
+			}
+			else
+			{
+				fTimer_iDmgRad = 0;
+				DamageSensor(7, false);
+			}
+		}
 
-			pDmgShock->GetBitmap()->setColor( Color(255, 0, 0, 257-fTimer_iDmgShock));
-		}
-		else
+		if (pDmgShock)
 		{
-			fTimer_iDmgShock = 0;
-			DamageSensor(8, false);
+			if (fTimer_iDmgShock > 4.0)
+			{
+				fTimer_iDmgShock -= (gHUD.m_flTimeDelta * 200);
+				if (fTimer_iDmgShock <= 0)
+					fTimer_iDmgShock = 1;
+
+				pDmgShock->GetBitmap()->setColor( Color(255, 0, 0, 257-fTimer_iDmgShock));
+			}
+			else
+			{
+				fTimer_iDmgShock = 0;
+				DamageSensor(8, false);
+			}
 		}
-	}
+
+	}	// END fTimer_Logon < 1
 
 //========== ATMOSPHERIC CONTAMINANT SENSORS END =======//
 
 
 
 //========== H.E.V. LOGON/INTRO SEQUENCE START =======//
-	gEngfuncs.Con_Printf( "^2SM -> fTimer_Logon -> %.0f\n", fTimer_Logon );
-
+	
 	if (fTimer_Logon > 0)
 	{
+		gEngfuncs.Con_Printf( "^2SM -> fTimer_Logon -> %.0f\n", fTimer_Logon );
 		char cStringA[1024] = "";
 		char cStringB[1024] = "";
 

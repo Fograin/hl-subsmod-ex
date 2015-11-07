@@ -150,6 +150,20 @@ void CCrossbowBolt::BoltTouch( CBaseEntity *pOther )
 			pev->angles.z = RANDOM_LONG(0,360);
 			pev->nextthink = gpGlobals->time + 10.0;
 		}
+		// Fograin92: Stick it with prop_default
+		else if ( FClassnameIs( pOther->pev, "prop_default" ) )
+		{
+			// if what we hit is static architecture, can stay around for a while.
+			Vector vecDir = pev->velocity.Normalize( );
+			UTIL_SetOrigin( pev, pev->origin - vecDir * 12 );
+			pev->angles = UTIL_VecToAngles( vecDir );
+			pev->solid = SOLID_NOT;
+			pev->movetype = MOVETYPE_FLY;
+			pev->velocity = Vector( 0, 0, 0 );
+			pev->avelocity.z = 0;
+			pev->angles.z = RANDOM_LONG(0,360);
+			pev->nextthink = gpGlobals->time + 10.0;
+		}
 		else if ( pOther->pev->movetype == MOVETYPE_PUSH || pOther->pev->movetype == MOVETYPE_PUSHSTEP )
 		{
 			Vector vecDir = pev->velocity.Normalize( );

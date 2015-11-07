@@ -3713,6 +3713,18 @@
 					>
 				</File>
 			</Filter>
+			<Filter
+				Name="Props"
+				>
+				<File
+					RelativePath=".\props.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\props.h"
+					>
+				</File>
+			</Filter>
 		</Filter>
 	</Files>
 	<Globals>

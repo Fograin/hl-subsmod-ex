@@ -542,8 +542,23 @@ void DLLEXPORT HUD_CreateEntities( void )
 
 	// Add in any game specific objects
 	Game_AddObjects();
-
 	GetClientVoiceMgr()->CreateEntities();
+}
+
+
+// Fograin92: Dynamic muzzle flash light
+void MuzzleFlashLight(float *origin)
+{
+	dlight_t *muzzleFlash;
+	muzzleFlash = gEngfuncs.pEfxAPI->CL_AllocDlight (0);
+	muzzleFlash->origin.x = origin[0];
+	muzzleFlash->origin.y = origin[1];
+	muzzleFlash->origin.z = origin[2];
+	muzzleFlash->radius = 128;
+	muzzleFlash->color.r = 180;
+	muzzleFlash->color.g = 160;
+	muzzleFlash->color.b = 120;
+	muzzleFlash->die = gEngfuncs.GetClientTime() + 0.1;
 }
 
 /*
@@ -558,27 +573,37 @@ void DLLEXPORT HUD_StudioEvent( const struct mstudioevent_s *event, const struct
 {
 	switch( event->event )
 	{
-	case 5001:
-		gEngfuncs.pEfxAPI->R_MuzzleFlash( (float *)&entity->attachment[0], atoi( event->options) );
+		case 5001:
+			gEngfuncs.pEfxAPI->R_MuzzleFlash( (float *)&entity->attachment[0], atoi( event->options) );
+			MuzzleFlashLight((float *)&entity->attachment[0]); 
 		break;
-	case 5011:
-		gEngfuncs.pEfxAPI->R_MuzzleFlash( (float *)&entity->attachment[1], atoi( event->options) );
+
+		case 5011:
+			gEngfuncs.pEfxAPI->R_MuzzleFlash( (float *)&entity->attachment[1], atoi( event->options) );
+			MuzzleFlashLight((float *)&entity->attachment[1]); 
 		break;
-	case 5021:
-		gEngfuncs.pEfxAPI->R_MuzzleFlash( (float *)&entity->attachment[2], atoi( event->options) );
+
+		case 5021:
+			gEngfuncs.pEfxAPI->R_MuzzleFlash( (float *)&entity->attachment[2], atoi( event->options) );
+			MuzzleFlashLight((float *)&entity->attachment[2]); 
 		break;
-	case 5031:
-		gEngfuncs.pEfxAPI->R_MuzzleFlash( (float *)&entity->attachment[3], atoi( event->options) );
+		
+		case 5031:
+			gEngfuncs.pEfxAPI->R_MuzzleFlash( (float *)&entity->attachment[3], atoi( event->options) );
+			MuzzleFlashLight((float *)&entity->attachment[3]); 
 		break;
-	case 5002:
-		gEngfuncs.pEfxAPI->R_SparkEffect( (float *)&entity->attachment[0], atoi( event->options), -100, 100 );
+		
+		case 5002:
+			gEngfuncs.pEfxAPI->R_SparkEffect( (float *)&entity->attachment[0], atoi( event->options), -100, 100 );
 		break;
-	// Client side sound
-	case 5004:		
-		gEngfuncs.pfnPlaySoundByNameAtLocation( (char *)event->options, 1.0, (float *)&entity->attachment[0] );
+		
+		// Client side sound
+		case 5004:		
+			gEngfuncs.pfnPlaySoundByNameAtLocation( (char *)event->options, 1.0, (float *)&entity->attachment[0] );
 		break;
-	default:
-		break;
+		
+		default:
+			break;
 	}
 }
 
