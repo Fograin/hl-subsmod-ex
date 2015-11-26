@@ -758,7 +758,7 @@ int SM_HUDcolor(int iColor)
 			return 0;
 		else if (iColor == 2)
 			return 96;
-		else if (iColor == 3)
+		else
 			return 180;
 	}
 
@@ -770,7 +770,7 @@ int SM_HUDcolor(int iColor)
 			return 0;
 		else if (iColor == 2)
 			return 160;
-		else if (iColor == 3)
+		else
 			return 0;
 	}
 
@@ -782,7 +782,7 @@ int SM_HUDcolor(int iColor)
 			return 255;
 		else if (iColor == 2)
 			return 160;
-		else if (iColor == 3)
+		else
 			return 0;
 	}
 }

@@ -415,6 +415,10 @@ void CBarney :: Spawn()
 	m_afCapability		= bits_CAP_HEAR | bits_CAP_TURN_HEAD | bits_CAP_DOORS_GROUP;
 
 	MonsterInit();
+
+	// Fograin92: test
+	//pev->weaponmodel = MAKE_STRING("models/p_357.mdl");
+
 	SetUse( &CTalkMonster::FollowerUse );
 }
 
@@ -424,6 +428,8 @@ void CBarney :: Spawn()
 void CBarney :: Precache()
 {
 	PRECACHE_MODEL("models/barney.mdl");
+
+	//PRECACHE_MODEL("models/p_357.mdl");
 
 	PRECACHE_SOUND("barney/ba_attack1.wav" );
 	PRECACHE_SOUND("barney/ba_attack2.wav" );

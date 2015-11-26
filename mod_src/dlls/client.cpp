@@ -1160,11 +1160,13 @@ int AddToFullPack( struct entity_state_s *state, int e, edict_t *ent, edict_t *h
 		state->friction     = ent->v.friction;
 
 		state->gravity      = ent->v.gravity;
-//		state->team			= ent->v.team;
-//		
+//		state->team			= ent->v.team;	
 		state->usehull      = ( ent->v.flags & FL_DUCKING ) ? 1 : 0;
 		state->health		= ent->v.health;
 	}
+
+	// Fograin92: Send weaponmodel for other entities
+	state->weaponmodel  = MODEL_INDEX( STRING( ent->v.weaponmodel ) );
 
 	return 1;
 }

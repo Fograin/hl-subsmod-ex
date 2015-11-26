@@ -68,7 +68,24 @@ void CPropDefault::Spawn( void )
 // Precache
 void CPropDefault::Precache( void )
 {
+	// Precache models
 	PRECACHE_MODEL( (char *)STRING(pev->model) );
+
+	// Precache sounds
+	for (int i = 0; i<ARRAYSIZE( pSoundHitWood ); i++ )
+		PRECACHE_SOUND((char *)pSoundHitWood[i]);
+
+	for (int i = 0; i<ARRAYSIZE( pSoundsFlesh ); i++ )
+		PRECACHE_SOUND((char *)pSoundsFlesh[i]);
+
+	for (int i = 0; i<ARRAYSIZE( pSoundsMetal ); i++ )
+		PRECACHE_SOUND((char *)pSoundsMetal[i]);
+
+	for (int i = 0; i<ARRAYSIZE( pSoundsConcrete ); i++ )
+		PRECACHE_SOUND((char *)pSoundsConcrete[i]);
+
+	for (int i = 0; i<ARRAYSIZE( pSoundsGlass ); i++ )
+		PRECACHE_SOUND((char *)pSoundsGlass[i]);
 }
 
 
@@ -93,6 +110,17 @@ void CPropDefault::KeyValue( KeyValueData *pkvd )
 	else if (FStrEq(pkvd->szKeyName, "m_iAction_Off"))
 	{
 		m_iAction_Off = atoi( pkvd->szValue );
+		pkvd->fHandled = TRUE;
+	}
+	else if (FStrEq(pkvd->szKeyName, "m_PropMaterial"))
+	{
+		int i = atoi(pkvd->szValue);
+
+		if ((i < 0) || (i >= matCount))
+			m_PropMaterial = matWood;
+		else
+			m_PropMaterial = (ePropMaterial)i;
+
 		pkvd->fHandled = TRUE;
 	}
 	else
@@ -193,10 +221,55 @@ void CPropDefault::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE 
 	}
 }
 
+// Handle any hit/damage done to the prop
 void CPropDefault::TraceAttack( entvars_t *pevAttacker, float flDamage, Vector vecDir, TraceResult *ptr, int bitsDamageType)
 {
-	UTIL_Ricochet( ptr->vecEndPos, 1.0 );
-		
+	// A little bit of variation :)
+	int pitch = 95 + RANDOM_LONG(0,9);
+
+	switch( m_PropMaterial )
+	{
+		case matGlass:
+			EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, pSoundsGlass[ RANDOM_LONG(0, ARRAYSIZE(pSoundsGlass)-1) ], 1.0, ATTN_NORM, 0, pitch );
+		break;
+
+		case matWood:
+			EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, pSoundHitWood[ RANDOM_LONG(0, ARRAYSIZE(pSoundHitWood)-1) ], 1.0, ATTN_NORM, 0, pitch );
+		break;
+
+		case matMetal:
+			EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, pSoundsMetal[ RANDOM_LONG(0, ARRAYSIZE(pSoundsMetal)-1) ], 1.0, ATTN_NORM, 0, pitch );
+			UTIL_Ricochet( ptr->vecEndPos, 1.0 );
+		break;
+
+		case matCinderBlock:
+			EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, pSoundsConcrete[ RANDOM_LONG(0, ARRAYSIZE(pSoundsConcrete)-1) ], 1.0, ATTN_NORM, 0, pitch );
+		break;
+
+		case matCeilingTile:
+			EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, pSoundsConcrete[ RANDOM_LONG(0, ARRAYSIZE(pSoundsConcrete)-1) ], 1.0, ATTN_NORM, 0, pitch );
+		break;
+
+		case matComputer:
+			EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, pSoundsGlass[ RANDOM_LONG(0, ARRAYSIZE(pSoundsGlass)-1) ], 1.0, ATTN_NORM, 0, pitch );
+			UTIL_Ricochet( ptr->vecEndPos, 1.0 );
+		break;
+
+		case matUnbreakableGlass:
+			EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, pSoundsGlass[ RANDOM_LONG(0, ARRAYSIZE(pSoundsGlass)-1) ], 1.0, ATTN_NORM, 0, pitch );
+			UTIL_Ricochet( ptr->vecEndPos, 1.0 );
+		break;
+
+		case matRocks:
+
+		break;
+
+
+
+		default:
+			break;
+	}
+
 	CBaseAnimating::TraceAttack( pevAttacker, flDamage, vecDir, ptr, bitsDamageType );
 }
 

@@ -1259,6 +1259,33 @@ int CStudioModelRenderer::StudioDrawModel( int flags )
 		IEngineStudio.StudioSetRemapColors( m_nTopColor, m_nBottomColor );
 
 		StudioRenderModel( );
+
+		// Fograin92: Attach weapon to the NPC
+		if( m_pCurrentEntity->curstate.weaponmodel )
+		{
+			//gEngfuncs.Con_DPrintf( "%s\n", m_pCurrentEntity->model->name );
+			model_t *pweaponmodel = IEngineStudio.GetModelByIndex( m_pCurrentEntity->curstate.weaponmodel );
+
+			if( pweaponmodel )
+			{
+				cl_entity_t saveent = *m_pCurrentEntity;
+				model_t *savedmdl = m_pRenderModel; // Thanks to: BUzer
+				m_pRenderModel = pweaponmodel; // Thanks to: BUzer
+
+				m_pStudioHeader = (studiohdr_t *)IEngineStudio.Mod_Extradata( pweaponmodel );
+				IEngineStudio.StudioSetHeader( m_pStudioHeader );
+
+				StudioMergeBones( pweaponmodel );
+          		IEngineStudio.StudioSetupLighting (&lighting);
+
+				StudioRenderModel( );
+				StudioCalcAttachments( );
+
+				*m_pCurrentEntity = saveent;
+				m_pRenderModel = savedmdl; // Thanks to: BUzer
+			}
+		}
+
 	}
 
 	return 1;
@@ -1724,7 +1751,12 @@ void CStudioModelRenderer::StudioRenderFinal_Hardware( void )
 
 	// BUzer: draw shadows for solid entities.
 	// draw before entity itself, so it would not get any self-shadowing
-	if (g_bShadows && (rendermode == kRenderNormal) && (m_pCurrentEntity != gEngfuncs.GetViewModel()))
+	if
+	(
+		( g_bShadows && (rendermode == kRenderNormal) )
+		&& ( m_pCurrentEntity != gEngfuncs.GetViewModel() )
+		/*&& ( m_pCurrentEntity->curstate.weaponmodel == 0 )*/
+	)
 	{
 		DrawShadowsForEnt();
 	}

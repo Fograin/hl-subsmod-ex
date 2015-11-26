@@ -3,6 +3,7 @@
 //	https://github.com/Fograin/hl-subsmod-ex
 //	
 //	Written by: Fograin92
+//  Inspired by: Half-Life: Paranoia mod VGUI HUD
 //	This code might contain parts written by: BUzer
 //
 //	Before using any parts of this code, read licence.txt file 

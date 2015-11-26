@@ -1030,6 +1030,8 @@ void CHGrunt :: Spawn()
 
 	CTalkMonster::g_talkWaitTime = 0;
 
+	//pev->weaponmodel = MAKE_STRING("models/p_9mmAR.mdl");
+
 	MonsterInit();
 }
 
@@ -1039,6 +1041,8 @@ void CHGrunt :: Spawn()
 void CHGrunt :: Precache()
 {
 	PRECACHE_MODEL("models/hgrunt.mdl");
+
+	//PRECACHE_MODEL("models/p_9mmAR.mdl");
 
 	PRECACHE_SOUND( "hgrunt/gr_mgun1.wav" );
 	PRECACHE_SOUND( "hgrunt/gr_mgun2.wav" );
