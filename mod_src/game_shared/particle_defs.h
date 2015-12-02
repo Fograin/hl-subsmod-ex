@@ -281,15 +281,17 @@ struct particle_texture_cache
 
 #endif	// CLIENT_DLL
 
+
 // Fograin92: Particle IDs
 enum ParticleIDs
 {
 	iImpactBloodRed = 1,	// Fograin92: Hit impact / Red blood particles
 	iImpactBloodRedLOW,		// Fograin92: Hit impact / Red blood particles (LOW FX)
 	iImpactBloodYellow,		// Fograin92: Hit impact / Yellow blood particles
-	iImpactBloodYellowLOW	// Fograin92: Hit impact / Yellow blood particles (LOW FX)
+	iImpactBloodYellowLOW,	// Fograin92: Hit impact / Yellow blood particles (LOW FX)
+	iImpactWater,			// Fograin92: Water hit impact / splash
+	iImpactWaterLOW			// Fograin92: Water hit impact / splash (LOW FX)
 };
-
 
 
 //========== PARTICLE DEFS ===========//
@@ -305,11 +307,14 @@ const char blood_red_impact[MAX_PARTICLE_PATH]		= "materials/fx/blood_red_impact
 const char blood_red_drips[MAX_PARTICLE_PATH]		= "materials/fx/blood_red_drips.tga";
 
 // Fograin92: Alien blood particles
-const char blood_yellow_animated[MAX_PARTICLE_PATH]	= "materials/fx/blood_yellow_animated.tga";
+const char blood_yellow_animated[MAX_PARTICLE_PATH]		= "materials/fx/blood_yellow_animated.tga";
 const char blood_yellow_impact[MAX_PARTICLE_PATH]		= "materials/fx/blood_yellow_impact.tga";
 const char blood_yellow_drips[MAX_PARTICLE_PATH]		= "materials/fx/blood_yellow_drips.tga";
 
-
+// Fograin92: Water hit impact / splash particles
+const char water_impact_core[MAX_PARTICLE_PATH]		= "materials/fx/water_splash.tga";
+const char water_impact_drops[MAX_PARTICLE_PATH]	= "materials/fx/water_drop.tga";
+const char water_impact_wave[MAX_PARTICLE_PATH]		= "materials/fx/water_ripples01.tga";
 
 
 

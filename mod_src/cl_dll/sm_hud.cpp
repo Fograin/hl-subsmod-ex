@@ -745,8 +745,8 @@ CHudNew::CHudNew() : Panel(0, 0, XRES(640), YRES(480))
 	// Initialize primary ammo panel / container
 	pAmmoPanel = new Panel( AdjustPosition(ID_AMMO_PANEL, false), AdjustPosition(ID_AMMO_PANEL, true), iAmmoSizeX, iAmmoSizeY);
 	pAmmoPanel->setParent(this);
-	pAmmoPanel->setBgColor(0, 0, 0, 100);
-	//pAmmoPanel->setPaintBackgroundEnabled(false);
+	//pAmmoPanel->setBgColor(0, 0, 0, 100);
+	pAmmoPanel->setPaintBackgroundEnabled(false);
 
 	// Primary ammo value ( CLIP / AMMO )
 	pPrimaryAmmoLab = new Label("666");
@@ -818,8 +818,8 @@ CHudNew::CHudNew() : Panel(0, 0, XRES(640), YRES(480))
 	// Initialize secondary ammo panel / container
 	pSecondaryAmmoPanel = new Panel( AdjustPosition(ID_AMMO_PANEL2, false), AdjustPosition(ID_AMMO_PANEL2, true), iAmmoSizeX, iAmmoSizeY);
 	pSecondaryAmmoPanel->setParent(this);
-	pSecondaryAmmoPanel->setBgColor(0, 0, 0, 100);
-	//pSecondaryAmmoPanel->setPaintBackgroundEnabled(false);
+	//pSecondaryAmmoPanel->setBgColor(0, 0, 0, 100);
+	pSecondaryAmmoPanel->setPaintBackgroundEnabled(false);
 
 	// Secondary ammo value ( AMMO2 )
 	pSecondaryAmmoLab = new Label("666");
@@ -1509,13 +1509,13 @@ void CHudNew::paint()
 	
 	if (fTimer_Logon > 0)
 	{
-		gEngfuncs.Con_Printf( "^2SM -> fTimer_Logon -> %.0f\n", fTimer_Logon );
+		//gEngfuncs.Con_Printf( "^2SM -> fTimer_Logon -> %.0f\n", fTimer_Logon );
 		char cStringA[1024] = "";
 		char cStringB[1024] = "";
 
 //////////// DEV
 
-		bool bSkipIntro = true;
+		bool bSkipIntro = false;
 		
 		if( (fTimer_Logon <= 565) && bSkipIntro)
 		{

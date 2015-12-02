@@ -1237,6 +1237,24 @@ Vector UTIL_RandomBloodVector( void )
 }
 
 
+// Fograin92: Water splash/impact hit FX
+// Thanks to: DJShark23Prog.
+void UTIL_Splash( const Vector &position, const Vector &direction, short count, short speed, short randspeed )
+{
+	MESSAGE_BEGIN(MSG_ALL, gmsgParticles);
+		WRITE_SHORT(0);
+		WRITE_BYTE(0);
+		WRITE_COORD( position.x );
+	        WRITE_COORD( position.y );
+		WRITE_COORD( position.z );
+		WRITE_COORD( direction.x );
+		WRITE_COORD( direction.y );
+		WRITE_COORD( direction.z );
+		WRITE_SHORT(iImpactWater);
+    MESSAGE_END();
+}
+
+
 void UTIL_BloodDecalTrace( TraceResult *pTrace, int bloodColor )
 {
 	if ( UTIL_ShouldShowBlood( bloodColor ) )

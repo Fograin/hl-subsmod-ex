@@ -1,0 +1,33 @@
+// Base particle definitions
+texture materials/fx/water_drop.tga
+starting_particles 7
+new_particles_per_second 0
+scale 0.03
+growth 0
+lifetime 0.9
+lifetime_var 0.1
+rotation_speed 333
+gravity 10
+damping 2
+transparency 155
+system_life 1
+display_mode 32
+falloff none
+fade_in 0
+fade_out 1
+collision bounce
+light_check never
+wind 1
+
+
+// Animation
+starting_velocity_x 0.0
+starting_velocity_y 0.0
+starting_velocity_z 0.0
+velocity_var_x 2.0
+velocity_var_y 2.0
+velocity_var_z 10.0
+starting_frame 1
+ending_frame 1
+frames_in_image 1
+

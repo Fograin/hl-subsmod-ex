@@ -148,7 +148,13 @@ public:
 	void EXPORT BounceGibTouch ( CBaseEntity *pOther );
 	void EXPORT StickyGibTouch ( CBaseEntity *pOther );
 	void EXPORT WaitTillLand( void );
-	void		LimitVelocity( void );
+	void LimitVelocity( void );
+
+	int	Classify ( void ) { return	CLASS_GIBS; } // Fograin92: Classify as a GIB
+	void TraceAttack( entvars_t *pevAttacker, float flDamage, Vector vecDir, TraceResult *ptr, int bitsDamageType); // Fograin92: Allow shooting at gibs
+	int TakeDamage( entvars_t* pevInflictor, entvars_t* pevAttacker, float flDamage, int bitsDamageType); // Fograin92: Let the gib take the damage
+	void Killed( entvars_t *pevAttacker, int iGib );	// Fograin92: Override kill function
+
 
 	virtual int	ObjectCaps( void ) { return (CBaseEntity :: ObjectCaps() & ~FCAP_ACROSS_TRANSITION) | FCAP_DONT_SAVE; }
 	static	void SpawnHeadGib( entvars_t *pevVictim );

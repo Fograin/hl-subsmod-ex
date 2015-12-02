@@ -148,43 +148,46 @@ void CParticleSystemManager::UpdateSystems( void )
 // Handles all the present particle systems
 void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_system_management *pSystem)
 {
-	// Fograin92: Hit impact / Red blood particles (FULL FX)
-	if(iPreset == iImpactBloodRed)
+	// Fograin92: Choose particle FX
+	switch(iPreset)
 	{
-		CreateMappedPS("particles/gore/blood_red_animated.txt", pSystem);	// Blood impact animated
-		CreateMappedPS("particles/gore/blood_red_impact.txt", pSystem);		// Blood impact-mist
-		CreateMappedPS("particles/gore/blood_red_drips.txt", pSystem);		// Blood drips
+		// Fograin92: Hit impact / Red blood particles (FULL FX)
+		case iImpactBloodRed:
+			CreateMappedPS("particles/gore/blood_red_animated.txt", pSystem);	// Blood impact animated
+			CreateMappedPS("particles/gore/blood_red_impact.txt", pSystem);		// Blood impact-mist
+			CreateMappedPS("particles/gore/blood_red_drips.txt", pSystem);		// Blood drips
+		break;
 
-		if(pSystem == NULL) return;
+		// Fograin92: Hit impact / Red blood particles (LOW FX)
+		case iImpactBloodRedLOW:
+			CreateMappedPS("particles/gore/blood_red_animated.txt", pSystem);	// Blood impact animated
+			CreateMappedPS("particles/gore/blood_red_impact.txt", pSystem);		// Blood impact-mist
+		break;
+
+		// Fograin92: Hit impact / Alien blood particles (FULL FX)
+		case iImpactBloodYellow:
+			CreateMappedPS("particles/gore/blood_yellow_animated.txt", pSystem);	// Blood impact animated
+			CreateMappedPS("particles/gore/blood_yellow_impact.txt", pSystem);		// Blood impact-mist
+			CreateMappedPS("particles/gore/blood_yellow_drips.txt", pSystem);		// Blood drips
+		break;
+
+		// Fograin92: Hit impact / Alien blood particles (LOW FX)
+		case iImpactBloodYellowLOW:
+			CreateMappedPS("particles/gore/blood_yellow_animated.txt", pSystem);	// Blood impact animated
+			CreateMappedPS("particles/gore/blood_yellow_impact.txt", pSystem);		// Blood impact-mist
+		break;
+
+		// Fograin92: Water hit impact / splash (FULL FX)
+		case iImpactWater:
+			CreateMappedPS("particles/water/water_impact_core.txt", pSystem);
+			CreateMappedPS("particles/water/water_impact_drops.txt", pSystem);
+			CreateMappedPS("particles/water/water_impact_wave.txt", pSystem);
+		break;
 	}
 
-	// Fograin92: Hit impact / Red blood particles (LOW FX)
-	if(iPreset == iImpactBloodRedLOW)
-	{
-		CreateMappedPS("particles/gore/blood_red_animated.txt", pSystem);	// Blood impact animated
-		CreateMappedPS("particles/gore/blood_red_impact.txt", pSystem);		// Blood impact-mist
+	if(pSystem == NULL)
+		return;
 
-		if(pSystem == NULL) return;
-	}
-
-	// Fograin92: Hit impact / Alien blood particles (FULL FX)
-	if(iPreset == iImpactBloodYellow)
-	{
-		CreateMappedPS("particles/gore/blood_yellow_animated.txt", pSystem);	// Blood impact animated
-		CreateMappedPS("particles/gore/blood_yellow_impact.txt", pSystem);		// Blood impact-mist
-		CreateMappedPS("particles/gore/blood_yellow_drips.txt", pSystem);		// Blood drips
-
-		if(pSystem == NULL) return;
-	}
-
-	// Fograin92: Hit impact / Alien blood particles (LOW FX)
-	if(iPreset == iImpactBloodYellowLOW)
-	{
-		CreateMappedPS("particles/gore/blood_yellow_animated.txt", pSystem);	// Blood impact animated
-		CreateMappedPS("particles/gore/blood_yellow_impact.txt", pSystem);		// Blood impact-mist
-
-		if(pSystem == NULL) return;
-	}
 
 
 /*
@@ -232,11 +235,6 @@ void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_syste
 				gEngfuncs.Con_Printf("iPreset == iDefaultRedSmoke\n");
 
 		CreateMappedPS("particles/capture_red.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
 	}
 
 	// Capture Smoke Americans
@@ -264,19 +262,6 @@ void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_syste
 		}
 	}
 	
-	// Blood
-	if(iPreset == iDefaultBlood) 
-	{
-//		gEngfuncs.Con_Printf("iPreset == iDefaultBlood\n");
-
-		CreateMappedPS("particles/engine/e_blood.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
-
 	if(iPreset == iDefaultFire) 
 	{
 //		gEngfuncs.Con_Printf("iPreset == iDefaultFire\n");
@@ -344,19 +329,7 @@ void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_syste
 		}
 	}
 
-	if(iPreset == iDefaultWaterSplash) 
-	{
-//		gEngfuncs.Con_Printf("iPreset == iDefaultWaterSplash\n");
-
-		CreateMappedPS("particles/engine/e_impacts_water_drops.txt", pSystem);
-		CreateMappedPS("particles/engine/e_impacts_water_core.txt", pSystem);
-		CreateMappedPS("particles/engine/e_impacts_water_wave.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
+	
 
 	if(iPreset == iDefaultSmoke) 
 	{
@@ -1009,6 +982,11 @@ void CParticleSystemManager::PrecacheTextures( void )
 	LoadTGA(NULL, const_cast<char*>(blood_yellow_impact));
 	LoadTGA(NULL, const_cast<char*>(blood_yellow_drips));
 
+	// Fograin92: Water hit impact / splash particles
+	LoadTGA(NULL, const_cast<char*>(water_impact_core));
+	LoadTGA(NULL, const_cast<char*>(water_impact_drops));
+	LoadTGA(NULL, const_cast<char*>(water_impact_wave));
+
 
 /*
 //used by crete shot
@@ -1018,10 +996,6 @@ void CParticleSystemManager::PrecacheTextures( void )
 
 	LoadTGA(NULL, const_cast<char*>(fleck_wood1));
 	LoadTGA(NULL, const_cast<char*>(particle_brown));
-
-	LoadTGA(NULL, const_cast<char*>(water_drop));
-	LoadTGA(NULL, const_cast<char*>(water_ripples01));
-	LoadTGA(NULL, const_cast<char*>(water_splash));
 
 	LoadTGA(NULL, const_cast<char*>(sparks01));
 	LoadTGA(NULL, const_cast<char*>(particle_blood_splat01));
@@ -1049,17 +1023,19 @@ void CParticleSystemManager::PrecacheTextures( void )
 	gEngfuncs.Con_Printf("Finished caching frequently used particles, game loading will now continue\n");
 }
 // adds a particle into the global particle tracker
-void CParticleSystemManager::AddParticle(CParticle* pParticle) {
-	if(pParticle->sParticle.bIgnoreSort == true) {
+void CParticleSystemManager::AddParticle(CParticle* pParticle)
+{
+	if(pParticle->sParticle.bIgnoreSort == true)
 		m_pUnsortedParticles.push_back(pParticle);
-	} else {
+	else
 		m_pParticles.push_back(pParticle);
-	}
+
 	pParticle = NULL;
 }
 
 // removes a particle from the global tracker and from the system
-void CParticleSystemManager::RemoveParticle(CParticle* pParticle) {
+void CParticleSystemManager::RemoveParticle(CParticle* pParticle)
+{
 	unsigned int i = 0;
 	unsigned int iParticles = m_pParticles.size();
 
@@ -1090,7 +1066,8 @@ void CParticleSystemManager::RemoveParticle(CParticle* pParticle) {
 }
 
 // remove all trackers in the system
-void CParticleSystemManager::RemoveParticles()  {
+void CParticleSystemManager::RemoveParticles()
+{
 	unsigned int i = 0;
 	unsigned int iParticles = m_pParticles.size();
 

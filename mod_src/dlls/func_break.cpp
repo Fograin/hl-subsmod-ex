@@ -1,64 +1,16 @@
-/***
-*
-*	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
-*	All Rights Reserved.
-*
-*   Use, distribution, and modification of this source code and/or resulting
-*   object code is restricted to non-commercial enhancements to products from
-*   Valve LLC.  All other use, distribution, or modification is prohibited
-*   without written permission from Valve LLC.
-*
-****/
-/*
-
-===== bmodels.cpp ========================================================
-
-  spawn, think, and use functions for entities that use brush models
-
-*/
-#include "extdll.h"
-#include "util.h"
-#include "cbase.h"
-#include "saverestore.h"
+//=============================================================//
+//	Half-Life Update MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	This product contains software technology licensed from:
+//	Valve LLC.
+//	Id Software, Inc. ("Id Technology")
+//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
 #include "func_break.h"
-#include "decals.h"
-#include "explode.h"
-
 extern DLL_GLOBAL Vector		g_vecAttackDir;
 
-// =================== FUNC_Breakable ==============================================
-
-// Just add more items to the bottom of this array and they will automagically be supported
-// This is done instead of just a classname in the FGD so we can control which entities can
-// be spawned, and still remain fairly flexible
-const char *CBreakable::pSpawnObjects[] =
-{
-	NULL,				// 0
-	"item_battery",		// 1
-	"item_healthkit",	// 2
-	"weapon_9mmhandgun",// 3
-	"ammo_9mmclip",		// 4
-	"weapon_9mmAR",		// 5
-	"ammo_9mmAR",		// 6
-	"ammo_ARgrenades",	// 7
-	"weapon_shotgun",	// 8
-	"ammo_buckshot",	// 9
-	"weapon_crossbow",	// 10
-	"ammo_crossbow",	// 11
-	"weapon_357",		// 12
-	"ammo_357",			// 13
-	"weapon_rpg",		// 14
-	"ammo_rpgclip",		// 15
-	"ammo_gaussclip",	// 16
-	"weapon_handgrenade",// 17
-	"weapon_tripmine",	// 18
-	"weapon_satchel",	// 19
-	"weapon_snark",		// 20
-	"weapon_hornetgun",	// 21
-};
 
 void CBreakable::KeyValue( KeyValueData* pkvd )
 {
@@ -76,14 +28,12 @@ void CBreakable::KeyValue( KeyValueData* pkvd )
 	}
 	else if (FStrEq(pkvd->szKeyName, "material"))
 	{
-		int i = atoi( pkvd->szValue);
+		int i = atoi(pkvd->szValue);
 
-		// 0:glass, 1:metal, 2:flesh, 3:wood
-
-		if ((i < 0) || (i >= matLastMaterial))
+		if ((i < 0) || (i >= matCount))
 			m_Material = matWood;
 		else
-			m_Material = (Materials)i;
+			m_Material = (ePropMaterial)i;
 
 		pkvd->fHandled = TRUE;
 	}
@@ -138,8 +88,8 @@ TYPEDESCRIPTION CBreakable::m_SaveData[] =
 
 	// Explosion magnitude is stored in pev->impulse
 };
-
 IMPLEMENT_SAVERESTORE( CBreakable, CBaseEntity );
+
 
 void CBreakable::Spawn( void )
 {
@@ -174,172 +124,47 @@ void CBreakable::Spawn( void )
 }
 
 
-const char *CBreakable::pSoundsWood[] = 
-{
-	"debris/wood1.wav",
-	"debris/wood2.wav",
-	"debris/wood3.wav",
-};
-
-const char *CBreakable::pSoundsFlesh[] = 
-{
-	"debris/flesh1.wav",
-	"debris/flesh2.wav",
-	"debris/flesh3.wav",
-	"debris/flesh5.wav",
-	"debris/flesh6.wav",
-	"debris/flesh7.wav",
-};
-
-const char *CBreakable::pSoundsMetal[] = 
-{
-	"debris/metal1.wav",
-	"debris/metal2.wav",
-	"debris/metal3.wav",
-};
-
-const char *CBreakable::pSoundsConcrete[] = 
-{
-	"debris/concrete1.wav",
-	"debris/concrete2.wav",
-	"debris/concrete3.wav",
-};
-
-
-const char *CBreakable::pSoundsGlass[] = 
-{
-	"debris/glass1.wav",
-	"debris/glass2.wav",
-	"debris/glass3.wav",
-};
-
-const char **CBreakable::MaterialSoundList( Materials precacheMaterial, int &soundCount )
-{
-	const char	**pSoundList = NULL;
-
-    switch ( precacheMaterial ) 
-	{
-	case matWood:
-		pSoundList = pSoundsWood;
-		soundCount = ARRAYSIZE(pSoundsWood);
-		break;
-	case matFlesh:
-		pSoundList = pSoundsFlesh;
-		soundCount = ARRAYSIZE(pSoundsFlesh);
-		break;
-	case matComputer:
-	case matUnbreakableGlass:
-	case matGlass:
-		pSoundList = pSoundsGlass;
-		soundCount = ARRAYSIZE(pSoundsGlass);
-		break;
-
-	case matMetal:
-		pSoundList = pSoundsMetal;
-		soundCount = ARRAYSIZE(pSoundsMetal);
-		break;
-
-	case matCinderBlock:
-	case matRocks:
-		pSoundList = pSoundsConcrete;
-		soundCount = ARRAYSIZE(pSoundsConcrete);
-		break;
-	
-	
-	case matCeilingTile:
-	case matNone:
-	default:
-		soundCount = 0;
-		break;
-	}
-
-	return pSoundList;
-}
-
-void CBreakable::MaterialSoundPrecache( Materials precacheMaterial )
-{
-	const char	**pSoundList;
-	int			i, soundCount = 0;
-
-	pSoundList = MaterialSoundList( precacheMaterial, soundCount );
-
-	for ( i = 0; i < soundCount; i++ )
-	{
-		PRECACHE_SOUND( (char *)pSoundList[i] );
-	}
-}
-
-void CBreakable::MaterialSoundRandom( edict_t *pEdict, Materials soundMaterial, float volume )
-{
-	const char	**pSoundList;
-	int			soundCount = 0;
-
-	pSoundList = MaterialSoundList( soundMaterial, soundCount );
-
-	if ( soundCount )
-		EMIT_SOUND( pEdict, CHAN_BODY, pSoundList[ RANDOM_LONG(0,soundCount-1) ], volume, 1.0 );
-}
-
-
 void CBreakable::Precache( void )
 {
+	// Fograin92: TODO -> Move this to props.cpp/h
 	const char *pGibName;
 
     switch (m_Material) 
 	{
-	case matWood:
-		pGibName = "models/woodgibs.mdl";
-		
-		PRECACHE_SOUND("debris/bustcrate1.wav");
-		PRECACHE_SOUND("debris/bustcrate2.wav");
-		break;
-	case matFlesh:
-		pGibName = "models/fleshgibs.mdl";
-		
-		PRECACHE_SOUND("debris/bustflesh1.wav");
-		PRECACHE_SOUND("debris/bustflesh2.wav");
-		break;
-	case matComputer:
-		PRECACHE_SOUND("buttons/spark5.wav");
-		PRECACHE_SOUND("buttons/spark6.wav");
-		pGibName = "models/computergibs.mdl";
-		
-		PRECACHE_SOUND("debris/bustmetal1.wav");
-		PRECACHE_SOUND("debris/bustmetal2.wav");
+		case matWood:
+			pGibName = "models/woodgibs.mdl";
 		break;
 
-	case matUnbreakableGlass:
-	case matGlass:
-		pGibName = "models/glassgibs.mdl";
-		
-		PRECACHE_SOUND("debris/bustglass1.wav");
-		PRECACHE_SOUND("debris/bustglass2.wav");
+		case matFlesh:
+			pGibName = "models/fleshgibs.mdl";
 		break;
-	case matMetal:
-		pGibName = "models/metalplategibs.mdl";
-		
-		PRECACHE_SOUND("debris/bustmetal1.wav");
-		PRECACHE_SOUND("debris/bustmetal2.wav");
+
+		case matComputer:
+			pGibName = "models/computergibs.mdl";
 		break;
-	case matCinderBlock:
-		pGibName = "models/cindergibs.mdl";
-		
-		PRECACHE_SOUND("debris/bustconcrete1.wav");
-		PRECACHE_SOUND("debris/bustconcrete2.wav");
+
+		case matUnbreakableGlass:
+		case matGlass:
+			pGibName = "models/glassgibs.mdl";
 		break;
-	case matRocks:
-		pGibName = "models/rockgibs.mdl";
-		
-		PRECACHE_SOUND("debris/bustconcrete1.wav");
-		PRECACHE_SOUND("debris/bustconcrete2.wav");
+	
+		case matMetal:
+			pGibName = "models/metalplategibs.mdl";
 		break;
-	case matCeilingTile:
-		pGibName = "models/ceilinggibs.mdl";
-		
-		PRECACHE_SOUND ("debris/bustceiling.wav");  
+
+		case matCinderBlock:
+			pGibName = "models/cindergibs.mdl";
+		break;
+
+		case matRocks:
+			pGibName = "models/rockgibs.mdl";
+		break;
+
+		case matCeilingTile:
+			pGibName = "models/ceilinggibs.mdl";
 		break;
 	}
-	MaterialSoundPrecache( m_Material );
+
 	if ( m_iszGibModel )
 		pGibName = STRING(m_iszGibModel);
 
@@ -348,84 +173,6 @@ void CBreakable::Precache( void )
 	// Precache the spawn item's data
 	if ( m_iszSpawnObject )
 		UTIL_PrecacheOther( (char *)STRING( m_iszSpawnObject ) );
-}
-
-// play shard sound when func_breakable takes damage.
-// the more damage, the louder the shard sound.
-
-
-void CBreakable::DamageSound( void )
-{
-	int pitch;
-	float fvol;
-	char *rgpsz[6];
-	int i;
-	int material = m_Material;
-
-//	if (RANDOM_LONG(0,1))
-//		return;
-
-	if (RANDOM_LONG(0,2))
-		pitch = PITCH_NORM;
-	else
-		pitch = 95 + RANDOM_LONG(0,34);
-
-	fvol = RANDOM_FLOAT(0.75, 1.0);
-
-	if (material == matComputer && RANDOM_LONG(0,1))
-		material = matMetal;
-
-	switch (material)
-	{
-	case matComputer:
-	case matGlass:
-	case matUnbreakableGlass:
-		rgpsz[0] = "debris/glass1.wav";
-		rgpsz[1] = "debris/glass2.wav";
-		rgpsz[2] = "debris/glass3.wav";
-		i = 3;
-		break;
-
-	case matWood:
-		rgpsz[0] = "debris/wood1.wav";
-		rgpsz[1] = "debris/wood2.wav";
-		rgpsz[2] = "debris/wood3.wav";
-		i = 3;
-		break;
-
-	case matMetal:
-		rgpsz[0] = "debris/metal1.wav";
-		rgpsz[1] = "debris/metal3.wav";
-		rgpsz[2] = "debris/metal2.wav";
-		i = 2;
-		break;
-
-	case matFlesh:
-		rgpsz[0] = "debris/flesh1.wav";
-		rgpsz[1] = "debris/flesh2.wav";
-		rgpsz[2] = "debris/flesh3.wav";
-		rgpsz[3] = "debris/flesh5.wav";
-		rgpsz[4] = "debris/flesh6.wav";
-		rgpsz[5] = "debris/flesh7.wav";
-		i = 6;
-		break;
-
-	case matRocks:
-	case matCinderBlock:
-		rgpsz[0] = "debris/concrete1.wav";
-		rgpsz[1] = "debris/concrete2.wav";
-		rgpsz[2] = "debris/concrete3.wav";
-		i = 3;
-		break;
-
-	case matCeilingTile:
-		// UNDONE: no ceiling tile shard sound yet
-		i = 0;
-		break;
-	}
-
-	if (i)
-		EMIT_SOUND_DYN(ENT(pev), CHAN_VOICE, rgpsz[RANDOM_LONG(0,i-1)], fvol, ATTN_NORM, 0, pitch);
 }
 
 void CBreakable::BreakTouch( CBaseEntity *pOther )
@@ -457,7 +204,7 @@ void CBreakable::BreakTouch( CBaseEntity *pOther )
 	{// can be broken when stood upon
 		
 		// play creaking sound here.
-		DamageSound();
+		//DamageSound();
 
 		SetThink ( &CBreakable::Die );
 		SetTouch( NULL );
@@ -494,6 +241,8 @@ void CBreakable::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE us
 
 void CBreakable::TraceAttack( entvars_t *pevAttacker, float flDamage, Vector vecDir, TraceResult *ptr, int bitsDamageType )
 {
+	// Fograin92: Fuck this shit and call CPropDefault
+	/*
 	// random spark if this is a 'computer' object
 	if (RANDOM_LONG(0,1) )
 	{
@@ -518,6 +267,13 @@ void CBreakable::TraceAttack( entvars_t *pevAttacker, float flDamage, Vector vec
 		}
 	}
 
+	CBaseDelay::TraceAttack( pevAttacker, flDamage, vecDir, ptr, bitsDamageType );
+	*/
+
+	// Call shared function
+	PropSharedTraceAttack( pevAttacker, flDamage, vecDir, ptr, bitsDamageType, m_Material, pev);
+
+	// Continue
 	CBaseDelay::TraceAttack( pevAttacker, flDamage, vecDir, ptr, bitsDamageType );
 }
 
@@ -573,7 +329,7 @@ int CBreakable :: TakeDamage( entvars_t* pevInflictor, entvars_t* pevAttacker, f
 	// Make a shard noise each time func breakable is hit.
 	// Don't play shard noise if cbreakable actually died.
 
-	DamageSound();
+	//DamageSound();
 
 	return 1;
 }
@@ -1003,4 +759,3 @@ int CPushable::TakeDamage( entvars_t* pevInflictor, entvars_t* pevAttacker, floa
 
 	return 1;
 }
-

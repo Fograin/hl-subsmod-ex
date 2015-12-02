@@ -29,6 +29,11 @@
 #include "gamerules.h"
 #include "vector.h"
 
+#ifndef CLIENT_DLL
+	#include "particle_defs.h"
+	extern int gmsgParticles;
+#endif
+
 
 //=================//
 // Barnacle Tongue
@@ -162,7 +167,20 @@ void CGrappleHook :: Hit( CBaseEntity* Target )
 		vecSrc.CopyToArray(rgfl1);
 		vecEnd.CopyToArray(rgfl2);
 		if (pEntity)
+		{
+			// Fograin92: Did we hit a gib?
+			if (pEntity->Classify() == CLASS_GIBS)
+			{
+				// Fograin92: Let's pull this gib
+				myHitMonster = pEntity;
+				m_iHitMonster = 2;
+				SetTouch(NULL);
+				return;
+			}
+
+			// Fograin92: If we are still here, try to trace texture
 			pTextureName = TRACE_TEXTURE( ENT(pEntity->pev), rgfl1, rgfl2 );
+		}
 		else
 			pTextureName = TRACE_TEXTURE( ENT(0), rgfl1, rgfl2 );
 
@@ -277,7 +295,13 @@ void CGrappleHook::Move( void )
 			if (fDistance < 40)
 			{
 				ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> OWNED -> ^3%s\n", STRING(myHitMonster->pev->classname) );
-				myHitMonster->TakeDamage(myHitMonster->pev, myowner->pev, 5000, DMG_GENERIC);
+
+				// Fograin92: Did we pull the gib?
+				if( myHitMonster->Classify() == CLASS_GIBS )
+					myHitMonster->SUB_Remove();
+				else 
+					myHitMonster->TakeDamage(myHitMonster->pev, myowner->pev, 10000, DMG_GENERIC);
+
 				Killed(pev, 0);	// Fograin92: Target died, kill tongue
 			}
 
@@ -408,7 +432,7 @@ void CGrapple::Holster( int skiplocal )
 }
 
 
-void CGrapple::PrimaryAttack( ) 
+void CGrapple::PrimaryAttack() 
 {
 	// Fograin92: If player already have a tongue
 	if( m_pPlayer->m_iGrappleExists ) //if player already has a grapple
@@ -543,7 +567,7 @@ void CGrapple::PukeGibs(void)
 	pGib->Spawn( "models/hgibs.mdl" );
 	pGib->m_bloodColor = BLOOD_COLOR_RED;
 	pGib->pev->body = RANDOM_LONG( 0, 10 );
-	pGib->pev->origin = GunPosition + gpGlobals->v_forward * 10;
+	pGib->pev->origin = GunPosition + gpGlobals->v_forward * 40;
 	pGib->pev->velocity = gpGlobals->v_forward * 100;
 
 	// Fograin92: Some spin variations
@@ -553,6 +577,19 @@ void CGrapple::PukeGibs(void)
 
 	pGib->pev->nextthink = gpGlobals->time + 10.0;
 	pGib->SetThink( &CBaseEntity::SUB_FadeOut );
+
+	// Fograin92: Cough some blood
+	MESSAGE_BEGIN(MSG_ALL, gmsgParticles);
+		WRITE_SHORT(0);
+		WRITE_BYTE(0);
+		WRITE_COORD( pGib->pev->origin.x );
+	    WRITE_COORD( pGib->pev->origin.y );
+		WRITE_COORD( pGib->pev->origin.z );
+		WRITE_COORD( pGib->pev->avelocity.x );
+		WRITE_COORD( pGib->pev->avelocity.y );
+		WRITE_COORD( pGib->pev->avelocity.z );
+		WRITE_SHORT(iImpactBloodRed);
+    MESSAGE_END();
 
 #endif
 }

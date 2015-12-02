@@ -76,6 +76,9 @@ extern client_sprite_t *GetSpriteList(client_sprite_t *pList, const char *psz, i
 
 extern cvar_t *sensitivity;
 cvar_t *cl_lw = NULL;
+// Fograin92: cl_rollangle/cl_rollspeed feature restoration. (Thanks to: L453rh4wk)
+cvar_t *cl_rollangle;
+cvar_t *cl_rollspeed;
 
 void ShutdownInput (void);
 
@@ -283,6 +286,10 @@ void CHud :: Init( void )
 	SM_RegisterAllConVars();	// Vit_amiN: reg cvars
 	HOOK_MESSAGE( Particles );	// BG Particle system
 	HOOK_MESSAGE( Grass );		// BG Grass
+
+	// Fograin92: cl_rollangle/cl_rollspeed feature restoration. (Thanks to: L453rh4wk)
+	cl_rollangle = CVAR_CREATE ( "cl_rollangle", "0.65", FCVAR_CLIENTDLL | FCVAR_ARCHIVE );
+	cl_rollspeed = CVAR_CREATE ( "cl_rollspeed", "300", FCVAR_CLIENTDLL | FCVAR_ARCHIVE );
 
 
 	HOOK_MESSAGE( Logo );
@@ -554,15 +561,26 @@ void CHud :: VidInit( void )
 	// Fograin92: Update MOD stuff
 
 // BG Particle System START
+
 	if(!pParticleManager)
 	{
 		pParticleManager = new CParticleSystemManager;
 		pParticleManager->PrecacheTextures();
 	}
 
-	if(pParticleManager)
-		delete pParticleManager;
-	pParticleManager = new CParticleSystemManager;
+	pParticleManager->RemoveParticles();
+	pParticleManager->RemoveSystems();
+
+/*
+	if(!pParticleManager)
+	{
+		pParticleManager = new CParticleSystemManager;
+		pParticleManager->PrecacheTextures();
+	}*/
+
+	//if(pParticleManager)
+	//	delete pParticleManager;
+	//pParticleManager = new CParticleSystemManager;
 // BG Particle System END
 
 }

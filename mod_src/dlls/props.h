@@ -14,10 +14,12 @@
 #include "extdll.h"
 #include "util.h"
 #include "cbase.h"
+#include "saverestore.h"
 #include "studio.h"
-//#include "animation.h"
-//#include "saverestore.h"
+#include "decals.h"
+#include "explode.h"
 
+//#include "animation.h"
 //#include "monsters.h"
 //#include "weapons.h"
 //#include "nodes.h"
@@ -55,6 +57,9 @@ typedef enum
 } ePropMaterial;
 
 
+//========================//
+// Material Impact Sounds
+//========================//
 static const char * const pSoundHitWood[] = 
 {
 	"debris/wood1.wav",
@@ -62,7 +67,7 @@ static const char * const pSoundHitWood[] =
 	"debris/wood3.wav",
 };
 
-static const char * const pSoundsFlesh[] = 
+static const char * const pSoundsHitFlesh[] = 
 {
 	"debris/flesh1.wav",
 	"debris/flesh2.wav",
@@ -72,26 +77,163 @@ static const char * const pSoundsFlesh[] =
 	"debris/flesh7.wav",
 };
 
-static const char * const pSoundsMetal[] = 
+static const char * const pSoundsHitMetal[] = 
 {
 	"debris/metal1.wav",
-	"debris/metal2.wav",
 	"debris/metal3.wav",
+	"debris/metal4.wav",
 };
 
-static const char * const pSoundsConcrete[] = 
+static const char * const pSoundsHitConcrete[] = 
 {
 	"debris/concrete1.wav",
 	"debris/concrete2.wav",
 	"debris/concrete3.wav",
 };
 
-static const char * const pSoundsGlass[] = 
+static const char * const pSoundsHitGlass[] = 
 {
 	"debris/glass1.wav",
 	"debris/glass2.wav",
 	"debris/glass3.wav",
 };
+
+
+//==============//
+// Break sounds
+//==============//
+
+static const char * const pSoundsBustCeiling[] = 
+{
+	"debris/bustceiling.wav",
+	// TODO: MOAR?
+};
+
+static const char * const pSoundsBustConcrete[] = 
+{
+	"debris/bustconcrete1.wav",
+	"debris/bustconcrete2.wav",
+};
+	
+static const char * const pSoundsBustCrate[] = 
+{
+	"debris/bustcrate1.wav",
+	"debris/bustcrate2.wav",
+	"debris/bustcrate3.wav",
+};
+	
+static const char * const pSoundsBustFlesh[] = 
+{
+	"debris/bustflesh1.wav",
+	"debris/bustflesh2.wav",
+};
+	
+static const char * const pSoundsBustGlass[] = 
+{
+	"debris/bustglass1.wav",
+	"debris/bustglass2.wav",
+	"debris/bustglass3.wav",
+};
+	
+static const char * const pSoundsBustMetal[] = 
+{
+	"debris/bustmetal1.wav",
+	"debris/bustmetal2.wav",
+};
+
+
+
+// Spawn items when broke
+static const char * const pSpawnObjects[] = 
+{
+	NULL,					// 0
+	"item_battery",			// 1
+	"item_healthkit",		// 2
+	"weapon_9mmhandgun",	// 3
+	"ammo_9mmclip",			// 4
+	"weapon_9mmAR",			// 5
+	"ammo_9mmAR",			// 6
+	"ammo_ARgrenades",		// 7
+	"weapon_shotgun",		// 8
+	"ammo_buckshot",		// 9
+	"weapon_crossbow",		// 10
+	"ammo_crossbow",		// 11
+	"weapon_357",			// 12
+	"ammo_357",				// 13
+	"weapon_rpg",			// 14
+	"ammo_rpgclip",			// 15
+	"ammo_gaussclip",		// 16
+	"weapon_handgrenade",	// 17
+	"weapon_tripmine",		// 18
+	"weapon_satchel",		// 19
+	"weapon_snark",			// 20
+	"weapon_hornetgun",		// 21
+};
+
+
+//==================//
+// SHARED FUNCTIONS
+//==================//
+
+// Trace attack of model based prop OR brush entity
+inline void PropSharedTraceAttack( entvars_t *pevAttacker, 
+								   float flDamage, 
+								   Vector vecDir, 
+								   TraceResult *ptr, 
+								   int bitsDamageType, 
+								   ePropMaterial m_PropMaterial,
+								   entvars_t *pevE
+								   )
+{
+	// A little bit of variation :)
+	int pitch = 95 + RANDOM_LONG(0,9);
+
+	switch( m_PropMaterial )
+	{
+		case matGlass:
+			EMIT_SOUND_DYN( ENT(pevE), CHAN_VOICE, pSoundsHitGlass[ RANDOM_LONG(0, ARRAYSIZE(pSoundsHitGlass)-1) ], 1.0, ATTN_NORM, 0, pitch );
+		break;
+
+		case matWood:
+			EMIT_SOUND_DYN( ENT(pevE), CHAN_VOICE, pSoundHitWood[ RANDOM_LONG(0, ARRAYSIZE(pSoundHitWood)-1) ], 1.0, ATTN_NORM, 0, pitch );
+		break;
+
+		case matMetal:
+			EMIT_SOUND_DYN( ENT(pevE), CHAN_VOICE, pSoundsHitMetal[ RANDOM_LONG(0, ARRAYSIZE(pSoundsHitMetal)-1) ], 1.0, ATTN_NORM, 0, pitch );
+			UTIL_Ricochet( ptr->vecEndPos, 1.0 );
+		break;
+
+		case matFlesh:
+			EMIT_SOUND_DYN( ENT(pevE), CHAN_VOICE, pSoundsHitFlesh[ RANDOM_LONG(0, ARRAYSIZE(pSoundsHitFlesh)-1) ], 1.0, ATTN_NORM, 0, pitch );
+		break;
+
+		case matCinderBlock:
+			EMIT_SOUND_DYN( ENT(pevE), CHAN_VOICE, pSoundsHitConcrete[ RANDOM_LONG(0, ARRAYSIZE(pSoundsHitConcrete)-1) ], 1.0, ATTN_NORM, 0, pitch );
+		break;
+
+		case matCeilingTile:
+			EMIT_SOUND_DYN( ENT(pevE), CHAN_VOICE, pSoundsHitConcrete[ RANDOM_LONG(0, ARRAYSIZE(pSoundsHitConcrete)-1) ], 1.0, ATTN_NORM, 0, pitch );
+		break;
+
+		case matComputer:
+			EMIT_SOUND_DYN( ENT(pevE), CHAN_VOICE, pSoundsHitGlass[ RANDOM_LONG(0, ARRAYSIZE(pSoundsHitGlass)-1) ], 1.0, ATTN_NORM, 0, pitch );
+			UTIL_Ricochet( ptr->vecEndPos, 1.0 );
+		break;
+
+		case matUnbreakableGlass:
+			EMIT_SOUND_DYN( ENT(pevE), CHAN_VOICE, pSoundsHitGlass[ RANDOM_LONG(0, ARRAYSIZE(pSoundsHitGlass)-1) ], 1.0, ATTN_NORM, 0, pitch );
+			UTIL_Ricochet( ptr->vecEndPos, 1.0 );
+		break;
+
+		case matRocks:
+
+		break;
+
+		default:
+			break;
+	}
+}
+
 
 
 //==============================================//

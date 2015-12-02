@@ -23,6 +23,7 @@
 #include "animation.h"
 #include "weapons.h"
 #include "func_break.h"
+#include "props.h"	// Fograin92
 
 extern DLL_GLOBAL Vector		g_vecAttackDir;
 extern DLL_GLOBAL int			g_iSkillLevel;
@@ -177,8 +178,8 @@ void CGib :: SpawnRandomGibs( entvars_t *pevVictim, int cGibs, int human )
 		if ( human )
 		{
 			// human pieces
-			pGib->Spawn( "models/hgibs" );
-			pGib->pev->body = RANDOM_LONG(1,HUMAN_GIB_COUNT-1);// start at one to avoid throwing random amounts of skulls (0th gib)
+			pGib->Spawn( "models/hgibs.mdl" );
+			pGib->pev->body = RANDOM_LONG(1, HUMAN_GIB_COUNT-1);// start at one to avoid throwing random amounts of skulls (0th gib)
 		}
 		else
 		{
@@ -289,11 +290,11 @@ void CBaseMonster :: GibMonster( void )
 	// only humans throw skulls !!!UNDONE - eventually monsters will have their own sets of gibs
 	if ( HasHumanGibs() )
 	{
-		if ( CVAR_GET_FLOAT("violence_hgibs") != 0 )	// Only the player will ever get here
-		{
+		//if ( CVAR_GET_FLOAT("violence_hgibs") != 0 )	// Only the player will ever get here
+		//{
 			CGib::SpawnHeadGib( pev );
 			CGib::SpawnRandomGibs( pev, 4, 1 );	// throw some human gibs.
-		}
+		//}
 		gibbed = TRUE;
 	}
 	else if ( HasAlienGibs() )
@@ -526,13 +527,13 @@ void CBaseMonster::CallGibMonster( void )
 
 	if ( HasHumanGibs() )
 	{
-		if ( CVAR_GET_FLOAT("violence_hgibs") == 0 )
-			fade = TRUE;
+		//if ( CVAR_GET_FLOAT("violence_hgibs") == 0 )
+		//	fade = TRUE;
 	}
 	else if ( HasAlienGibs() )
 	{
-		if ( CVAR_GET_FLOAT("violence_agibs") == 0 )
-			fade = TRUE;
+		//if ( CVAR_GET_FLOAT("violence_agibs") == 0 )
+			//fade = TRUE;
 	}
 
 	pev->takedamage = DAMAGE_NO;
@@ -722,7 +723,7 @@ void CGib :: BounceGibTouch ( CBaseEntity *pOther )
 		
 			volume = 0.8 * min(1.0, ((float)zvel) / 450.0);
 
-			CBreakable::MaterialSoundRandom( edict(), (Materials)m_material, volume );
+			//CBreakable::MaterialSoundRandom( edict(), (ePropMaterial)m_material, volume );
 		}
 	}
 }
@@ -758,7 +759,7 @@ void CGib :: StickyGibTouch ( CBaseEntity *pOther )
 //
 // Throw a chunk
 //
-void CGib :: Spawn( const char *szGibModel )
+void CGib::Spawn( const char *szGibModel )
 {
 	pev->movetype = MOVETYPE_BOUNCE;
 	pev->friction = 0.55; // deading the bounce a bit
@@ -772,7 +773,29 @@ void CGib :: Spawn( const char *szGibModel )
 	pev->classname = MAKE_STRING("gib");
 
 	SET_MODEL(ENT(pev), szGibModel);
-	UTIL_SetSize(pev, Vector( 0, 0, 0), Vector(0, 0, 0));
+
+	m_bloodColor		= BLOOD_COLOR_RED;	// Fograin92: Set blood color (TODO: Check for model)
+	pev->health			= 200;	// Fograin92: Fix insta-blowing up gibs
+	pev->takedamage		= DAMAGE_YES;
+
+	// Fograin92: Automatically set collision box
+
+	studiohdr_t *pstudiohdr;
+	pstudiohdr = (studiohdr_t *)GET_MODEL_PTR( edict() );
+
+	// Fograin92: We can't get model pointer, disable collision
+	if( pstudiohdr == NULL )
+	{
+		UTIL_SetSize(pev, Vector( 0, 0, 0), Vector(0, 0, 0));
+	//	ALERT( at_console, "^2Random_gib: Unable to get model pointer!\n" );
+	//	//return;
+	}
+	else
+	{
+		mstudioseqdesc_t *pseqdesc = (mstudioseqdesc_t *)((byte *)pstudiohdr + pstudiohdr->seqindex);
+		UTIL_SetSize( pev, pseqdesc[pev->sequence].bbmin, pseqdesc[pev->sequence].bbmax );
+	}
+
 
 	pev->nextthink = gpGlobals->time + 4;
 	m_lifeTime = 25;
@@ -782,6 +805,54 @@ void CGib :: Spawn( const char *szGibModel )
 	m_material = matNone;
 	m_cBloodDecals = 5;// how many blood decals this gib can place (1 per bounce until none remain). 
 }
+
+// Fograin92: Exec when gib is shoot at
+void CGib::TraceAttack( entvars_t *pevAttacker, float flDamage, Vector vecDir, TraceResult *ptr, int bitsDamageType)
+{
+	Vector	vecSpot;
+	TraceResult	tr;
+
+	ALERT( at_console, "^2HLU -> ^3Random_Gib ^2-> Trace attack.\n");
+
+	// Fograin92: Blood particles
+	UTIL_BloodDrips( pev->origin, pev->velocity, m_bloodColor, 255 );
+
+	// Fograin92: Calculate blood decal position
+	vecSpot = pev->origin + Vector ( 0 , 0 , 8 ); // Move up a bit, and trace down.
+	UTIL_TraceLine ( vecSpot, vecSpot + Vector ( 0, 0, -24 ),  ignore_monsters, ENT(pev), &tr);
+	UTIL_BloodDecalTrace( &tr, m_bloodColor );	// Paint blood decal
+
+	// Fograin92: Move the gib
+	pev->velocity = vecDir * 500;
+
+	// Fograin92: Spin dat shit
+	pev->avelocity.x = RANDOM_LONG( 200, 600 );
+	pev->avelocity.y = RANDOM_LONG( 200, 600 );
+	pev->avelocity.z = RANDOM_LONG( 100, 200 );
+
+	// Fograin92: Play flesh impact sound
+	int pitch = 95 + RANDOM_LONG(0,9);
+	EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, pSoundsHitFlesh[ RANDOM_LONG(0, ARRAYSIZE(pSoundsHitFlesh)-1) ], 1.0, ATTN_NORM, 0, pitch );
+
+	CBaseEntity::TraceAttack( pevAttacker, flDamage, vecDir, ptr, bitsDamageType);
+}
+
+// Fograin92: Let the gib take the damage
+int CGib::TakeDamage( entvars_t* pevInflictor, entvars_t* pevAttacker, float flDamage, int bitsDamageType)
+{
+	// TODO: Blood overlays, friendly NPCs reacting.
+	return CBaseEntity::TakeDamage(  pevInflictor, pevAttacker, flDamage, bitsDamageType );
+}
+
+void CGib::Killed( entvars_t *pevAttacker, int iGib )
+{
+	int pitch = 95 + RANDOM_LONG(0,9);
+	EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, pSoundsBustFlesh[ RANDOM_LONG(0, ARRAYSIZE(pSoundsBustFlesh)-1) ], 1.0, ATTN_NORM, 0, pitch );
+
+	SetUse( NULL );	
+	CBaseEntity::Killed( pevAttacker, iGib );
+}
+
 
 // take health
 int CBaseMonster :: TakeHealth (float flHealth, int bitsDamageType)
@@ -1556,12 +1627,44 @@ Vector CBaseEntity::FireBulletsPlayer ( ULONG cShots, Vector vecSrc, Vector vecD
 				break;
 			}
 		}
+
 		// make bullet trails
 		UTIL_BubbleTrail( vecSrc, tr.vecEndPos, (flDistance * tr.flFraction) / 64.0 );
+
+		// Fograin92: Make water splash
+		BulletWaterImpact(vecSrc, tr.vecEndPos);
+
 	}
 	ApplyMultiDamage(pev, pevAttacker);
 
 	return Vector( x * vecSpread.x, y * vecSpread.y, 0.0 );
+}
+
+// Fograin92: Exec when bullet hit water surface.
+// Thanks to: DJShark23Prog.
+void CBaseEntity::BulletWaterImpact( Vector vecSrc, Vector vecEnd )
+{
+    if( ( POINT_CONTENTS( vecEnd ) == CONTENTS_WATER && POINT_CONTENTS( vecSrc ) == CONTENTS_WATER )
+        || ( POINT_CONTENTS( vecEnd ) != CONTENTS_WATER && POINT_CONTENTS( vecSrc ) != CONTENTS_WATER ) )
+    return;
+	    
+    float x = vecEnd.x - vecSrc.x;
+    float y = vecEnd.y - vecSrc.y;
+    float z = vecEnd.z - vecSrc.z;
+    float len = sqrt( x * x + y * y + z * z );
+    
+    Vector vecTemp = Vector( ( vecEnd.x + vecSrc.x ) / 2, ( vecEnd.y + vecSrc.y ) / 2, ( vecEnd.z + vecSrc.z ) / 2 );
+    
+	// We hit the water surface
+    if( len <= 1 ) 
+		UTIL_Splash( vecSrc, vecEnd, 0, 0, 0 );
+    else
+    {
+        if( POINT_CONTENTS( vecTemp ) != POINT_CONTENTS( vecSrc ) )
+            BulletWaterImpact( vecSrc, vecTemp );
+        else
+            BulletWaterImpact( vecTemp, vecEnd );
+    }
 }
 
 void CBaseEntity :: TraceBleed( float flDamage, Vector vecDir, TraceResult *ptr, int bitsDamageType )

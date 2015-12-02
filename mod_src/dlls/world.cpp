@@ -31,6 +31,8 @@
 #include "teamplay_gamerules.h"
 #include "physcallback.h"
 #include "sm_gamespec.h"	// Fograin92
+#include "props.h"			// Fograin92: Breakable impact sounds
+
 
 extern CGraph WorldGraph;
 extern CSoundEnt *pSoundEnt;
@@ -579,6 +581,43 @@ void CWorld :: Precache( void )
 	PRECACHE_SOUND ("weapons/ric3.wav");
 	PRECACHE_SOUND ("weapons/ric4.wav");
 	PRECACHE_SOUND ("weapons/ric5.wav");
+
+
+	// Fograin92: Precache Breakable BSP/MODEL object impact and break sounds
+	for (int i = 0; i<ARRAYSIZE( pSoundHitWood ); i++ )
+		PRECACHE_SOUND((char *)pSoundHitWood[i]);
+
+	for (int i = 0; i<ARRAYSIZE( pSoundsHitFlesh ); i++ )
+		PRECACHE_SOUND((char *)pSoundsHitFlesh[i]);
+
+	for (int i = 0; i<ARRAYSIZE( pSoundsHitMetal ); i++ )
+		PRECACHE_SOUND((char *)pSoundsHitMetal[i]);
+
+	for (int i = 0; i<ARRAYSIZE( pSoundsHitConcrete ); i++ )
+		PRECACHE_SOUND((char *)pSoundsHitConcrete[i]);
+
+	for (int i = 0; i<ARRAYSIZE( pSoundsHitGlass ); i++ )
+		PRECACHE_SOUND((char *)pSoundsHitGlass[i]);
+
+	for (int i = 0; i<ARRAYSIZE( pSoundsBustCeiling ); i++ )
+		PRECACHE_SOUND((char *)pSoundsBustCeiling[i]);
+
+	for (int i = 0; i<ARRAYSIZE( pSoundsBustConcrete ); i++ )
+		PRECACHE_SOUND((char *)pSoundsBustConcrete[i]);
+
+	for (int i = 0; i<ARRAYSIZE( pSoundsBustCrate ); i++ )
+		PRECACHE_SOUND((char *)pSoundsBustCrate[i]);
+
+	for (int i = 0; i<ARRAYSIZE( pSoundsBustFlesh ); i++ )
+		PRECACHE_SOUND((char *)pSoundsBustFlesh[i]);
+
+	for (int i = 0; i<ARRAYSIZE( pSoundsBustGlass ); i++ )
+		PRECACHE_SOUND((char *)pSoundsBustGlass[i]);
+
+	for (int i = 0; i<ARRAYSIZE( pSoundsBustMetal ); i++ )
+		PRECACHE_SOUND((char *)pSoundsBustMetal[i]);
+
+
 //
 // Setup light animation tables. 'a' is total darkness, 'z' is maxbright.
 //

@@ -15,6 +15,10 @@
 //
 // Misc utility code
 //
+#ifndef	UTIL_H
+#define	UTIL_H
+
+
 #ifndef ACTIVITY_H
 #include "activity.h"
 #endif
@@ -540,3 +544,10 @@ int UTIL_SharedRandomLong( unsigned int seed, int low, int high );
 float UTIL_SharedRandomFloat( unsigned int seed, float low, float high );
 
 float UTIL_WeaponTimeBase( void );
+
+
+// Fograin92: Update mod stuff
+void UTIL_Splash( const Vector &position, const Vector &direction, short count, short speed, short randspeed );	// Thx to: DJShark23Prog
+
+
+#endif

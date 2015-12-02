@@ -47,7 +47,7 @@ struct tga
 	unsigned int	iHeight;
 	unsigned int	iBpp;
 	unsigned int	iBytespp;
-} ;
+};
 
 extern bool LoadUncompressedTGA(particle_texture_s *, FILE *);
 extern bool LoadCompressedTGA(particle_texture_s *, FILE *);

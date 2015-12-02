@@ -3074,6 +3074,7 @@ void CBasePlayer::SelectItem(const char *pstr)
 		else if (FClassnameIs(m_pActiveItem->pev, "weapon_satchel"))		m_fWeaponDeployDelay = UTIL_WeaponTimeBase() + 0.5;
 		else if (FClassnameIs(m_pActiveItem->pev, "weapon_tripmine"))		m_fWeaponDeployDelay = UTIL_WeaponTimeBase() + 0.5;
 		else if (FClassnameIs(m_pActiveItem->pev, "weapon_snark"))			m_fWeaponDeployDelay = UTIL_WeaponTimeBase() + 1.0;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_grapple"))		m_fWeaponDeployDelay = UTIL_WeaponTimeBase() + 0.5;
 
 		m_pActiveItem->Holster();	// Fograin92: Execute Holster function
 	}
@@ -3119,6 +3120,7 @@ void CBasePlayer::SelectLastItem(void)
 		else if (FClassnameIs(m_pActiveItem->pev, "weapon_satchel"))		m_fWeaponDeployDelay = UTIL_WeaponTimeBase() + 0.5;
 		else if (FClassnameIs(m_pActiveItem->pev, "weapon_tripmine"))		m_fWeaponDeployDelay = UTIL_WeaponTimeBase() + 0.5;
 		else if (FClassnameIs(m_pActiveItem->pev, "weapon_snark"))			m_fWeaponDeployDelay = UTIL_WeaponTimeBase() + 1.0;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_grapple"))		m_fWeaponDeployDelay = UTIL_WeaponTimeBase() + 0.5;
 
 		m_pActiveItem->Holster();	// Fograin92: Execute Holster function
 	}
@@ -3525,34 +3527,42 @@ void CBasePlayer::CheatImpulseCommands( int iImpulse )
 			break;
 		}
 
-	case 101:
-		gEvilImpulse101 = TRUE;
-		GiveNamedItem( "item_suit" );
+
+		// Fograin92: Good old "impulse 101" command.
+		case 101:
+			gEvilImpulse101 = TRUE;
+
+			// Base items
+			GiveNamedItem( "item_suit" );
 	
-		GiveNamedItem( "weapon_crowbar" );
-		GiveNamedItem( "weapon_9mmhandgun" );
-		GiveNamedItem( "ammo_9mmclip" );
-		GiveNamedItem( "weapon_357" );
-		GiveNamedItem( "ammo_357" );
-		GiveNamedItem( "weapon_9mmAR" );
-		GiveNamedItem( "ammo_9mmAR" );
-		GiveNamedItem( "ammo_ARgrenades" );
-		GiveNamedItem( "weapon_shotgun" );
-		GiveNamedItem( "ammo_buckshot" );
-		GiveNamedItem( "weapon_crossbow" );
-		GiveNamedItem( "ammo_crossbow" );
-		GiveNamedItem( "weapon_rpg" );
-		GiveNamedItem( "ammo_rpgclip" );
-		GiveNamedItem( "weapon_gauss" );
-		GiveNamedItem( "ammo_gaussclip" );
-		GiveNamedItem( "weapon_egon" );
-		GiveNamedItem( "weapon_hornetgun" );
-		GiveNamedItem( "weapon_handgrenade" );
-		GiveNamedItem( "weapon_satchel" );
-		GiveNamedItem( "weapon_tripmine" );
-		GiveNamedItem( "weapon_snark" );
+			// Base weapons and ammo
+			GiveNamedItem( "weapon_crowbar" );
+			GiveNamedItem( "weapon_9mmhandgun" );
+			GiveNamedItem( "ammo_9mmclip" );
+			GiveNamedItem( "weapon_357" );
+			GiveNamedItem( "ammo_357" );
+			GiveNamedItem( "weapon_9mmAR" );
+			GiveNamedItem( "ammo_9mmAR" );
+			GiveNamedItem( "ammo_ARgrenades" );
+			GiveNamedItem( "weapon_shotgun" );
+			GiveNamedItem( "ammo_buckshot" );
+			GiveNamedItem( "weapon_crossbow" );
+			GiveNamedItem( "ammo_crossbow" );
+			GiveNamedItem( "weapon_rpg" );
+			GiveNamedItem( "ammo_rpgclip" );
+			GiveNamedItem( "weapon_gauss" );
+			GiveNamedItem( "ammo_gaussclip" );
+			GiveNamedItem( "weapon_egon" );
+			GiveNamedItem( "weapon_hornetgun" );
+			GiveNamedItem( "weapon_handgrenade" );
+			GiveNamedItem( "weapon_satchel" );
+			GiveNamedItem( "weapon_tripmine" );
+			GiveNamedItem( "weapon_snark" );
+
+			// Opposing Force weapons and ammo
+			GiveNamedItem( "weapon_grapple" );
 		
-		gEvilImpulse101 = FALSE;
+			gEvilImpulse101 = FALSE;
 		break;
 
 	case 102:

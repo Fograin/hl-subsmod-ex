@@ -862,7 +862,7 @@ int EXPORT Host_Main( const char *progname, int bChangeGame, pfnChangeGame func 
 	ver = Cvar_Get( "ver", va( "Half-Life: Update MOD (rev: %i) ALPHA VERSION", Q_buildnum()), CVAR_INIT, "shows an mod version" );	// Fograin92
 
 	// content control
-	Cvar_Get( "violence_hgibs", "1", CVAR_ARCHIVE, "show human gib entities" );
+	//Cvar_Get( "violence_hgibs", "1", CVAR_ARCHIVE, "show human gib entities" );
 	Cvar_Get( "violence_agibs", "1", CVAR_ARCHIVE, "show alien gib entities" );
 	Cvar_Get( "violence_hblood", "1", CVAR_ARCHIVE, "draw human blood" );
 	Cvar_Get( "violence_ablood", "1", CVAR_ARCHIVE, "draw alien blood" );

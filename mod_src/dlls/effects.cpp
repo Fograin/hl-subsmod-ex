@@ -1443,8 +1443,8 @@ void CGibShooter::Spawn( void )
 CGib *CGibShooter :: CreateGib ( void )
 {
 	// Fograin92: We could use this cvar
-	if ( CVAR_GET_FLOAT("violence_hgibs") == 0 )
-		return NULL;
+	//if ( CVAR_GET_FLOAT("violence_hgibs") == 0 )
+	//	return NULL;
 
 	CGib *pGib = GetClassPtr( (CGib *)NULL );
 	pGib->Spawn( "models/hgibs.mdl" );
@@ -1566,8 +1566,6 @@ void CEnvShooter :: KeyValue( KeyValueData *pkvd )
 
 void CEnvShooter :: Precache ( void )
 {
-	m_iGibModelIndex = PRECACHE_MODEL( (char *)STRING(pev->model) );
-	CBreakable::MaterialSoundPrecache( (Materials)m_iGibMaterial );
 }
 
 

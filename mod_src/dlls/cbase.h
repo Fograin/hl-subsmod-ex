@@ -26,6 +26,9 @@ CBaseEntity
 				CBaseGroup
 */
 
+#ifndef	CBASE_H
+#define	CBASE_H
+
 #define		MAX_PATH_SIZE	10 // max number of nodes available for a path.
 
 // These are caps bits to indicate what an object's capabilities (currently used for save/restore and level transitions)
@@ -99,6 +102,8 @@ typedef void (CBaseEntity::*USEPTR)( CBaseEntity *pActivator, CBaseEntity *pCall
 #define CLASS_PLAYER_ALLY		11
 #define CLASS_PLAYER_BIOWEAPON	12 // hornets and snarks.launched by players
 #define CLASS_ALIEN_BIOWEAPON	13 // hornets and snarks.launched by the alien menace
+#define CLASS_GIBS				14 // Fograin92: Used for gib models
+
 #define	CLASS_BARNACLE			99 // special because no one pays attention to it, and it eats a wide cross-section of creatures.
 
 class CBaseEntity;
@@ -242,6 +247,9 @@ public:
 	int			ShouldToggle( USE_TYPE useType, BOOL currentState );
 	void		FireBullets( ULONG	cShots, Vector  vecSrc, Vector	vecDirShooting,	Vector	vecSpread, float flDistance, int iBulletType, int iTracerFreq = 4, int iDamage = 0, entvars_t *pevAttacker = NULL  );
 	Vector		FireBulletsPlayer( ULONG	cShots, Vector  vecSrc, Vector	vecDirShooting,	Vector	vecSpread, float flDistance, int iBulletType, int iTracerFreq = 4, int iDamage = 0, entvars_t *pevAttacker = NULL, int shared_rand = 0 );
+
+	// Fograin92: Exec when bullet hit water surface.
+	void BulletWaterImpact( Vector vecSrc, Vector vecEnd );
 
 	virtual CBaseEntity *Respawn( void ) { return NULL; }
 
@@ -805,3 +813,5 @@ public:
 	void Precache( void );
 	void KeyValue( KeyValueData *pkvd );
 };
+
+#endif

@@ -15,8 +15,10 @@
 #ifndef FUNC_BREAK_H
 #define FUNC_BREAK_H
 
+#include "props.h"
+
 typedef enum { expRandom, expDirected} Explosions;
-typedef enum { matGlass = 0, matWood, matMetal, matFlesh, matCinderBlock, matCeilingTile, matComputer, matUnbreakableGlass, matRocks, matNone, matLastMaterial } Materials;
+//typedef enum { matGlass = 0, matWood, matMetal, matFlesh, matCinderBlock, matCeilingTile, matComputer, matUnbreakableGlass, matRocks, matNone, matLastMaterial } Materials;
 
 #define	NUM_SHARDS 6 // this many shards spawned when breakable objects break;
 
@@ -29,7 +31,6 @@ public:
 	void KeyValue( KeyValueData* pkvd);
 	void EXPORT BreakTouch( CBaseEntity *pOther );
 	void Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value );
-	void DamageSound( void );
 
 	// breakables use an overridden takedamage
 	virtual int TakeDamage( entvars_t* pevInflictor, entvars_t* pevAttacker, float flDamage, int bitsDamageType );
@@ -50,20 +51,9 @@ public:
 	inline int		ExplosionMagnitude( void ) { return pev->impulse; }
 	inline void		ExplosionSetMagnitude( int magnitude ) { pev->impulse = magnitude; }
 
-	static void MaterialSoundPrecache( Materials precacheMaterial );
-	static void MaterialSoundRandom( edict_t *pEdict, Materials soundMaterial, float volume );
-	static const char **MaterialSoundList( Materials precacheMaterial, int &soundCount );
-
-	static const char *pSoundsWood[];
-	static const char *pSoundsFlesh[];
-	static const char *pSoundsGlass[];
-	static const char *pSoundsMetal[];
-	static const char *pSoundsConcrete[];
-	static const char *pSpawnObjects[];
-
 	static	TYPEDESCRIPTION m_SaveData[];
 
-	Materials	m_Material;
+	ePropMaterial	m_Material;
 	Explosions	m_Explosion;
 	int			m_idShard;
 	float		m_angle;
