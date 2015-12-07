@@ -564,9 +564,32 @@ void CGrapple::PukeGibs(void)
 	GunPosition = GunPosition + gpGlobals->v_up * -4 + gpGlobals->v_right * 3 + gpGlobals->v_forward * 16;
 
 	CGib *pGib = GetClassPtr( (CGib *)NULL );
-	pGib->Spawn( "models/hgibs.mdl" );
+
+	// Fograin92: Changed model dir and names
+			int iRandom = RANDOM_LONG(2, 11);
+
+			switch( iRandom)
+			{
+				case 2:		pGib->Spawn( "models/gibs/human_gib2.mdl" );	break;
+				case 3:		pGib->Spawn( "models/gibs/human_gib3.mdl" );	break;
+				case 4:		pGib->Spawn( "models/gibs/human_gib4.mdl" );	break;
+				case 5:		pGib->Spawn( "models/gibs/human_gib5.mdl" );	break;
+				case 6:		pGib->Spawn( "models/gibs/human_gib6.mdl" );	break;
+				case 7:		pGib->Spawn( "models/gibs/human_gib7.mdl" );	break;
+				case 8:		pGib->Spawn( "models/gibs/human_gib8.mdl" );	break;
+				case 9:		pGib->Spawn( "models/gibs/human_gib9.mdl" );	break;
+				case 10:	pGib->Spawn( "models/gibs/human_gib10.mdl" );	break;
+				case 11:	pGib->Spawn( "models/gibs/human_gib11.mdl" );	break;
+
+				default:	pGib->Spawn( "models/gibs/human_gib3.mdl" );	break;
+			}
+
+			pGib->pev->body = 0;
+
+
+	//pGib->Spawn( "models/hgibs.mdl" );
 	pGib->m_bloodColor = BLOOD_COLOR_RED;
-	pGib->pev->body = RANDOM_LONG( 0, 10 );
+	pGib->pev->body = 0;
 	pGib->pev->origin = GunPosition + gpGlobals->v_forward * 40;
 	pGib->pev->velocity = gpGlobals->v_forward * 100;
 

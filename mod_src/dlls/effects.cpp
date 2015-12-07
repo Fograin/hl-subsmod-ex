@@ -1380,6 +1380,7 @@ LINK_ENTITY_TO_CLASS( gibshooter, CGibShooter );
 
 void CGibShooter :: Precache ( void )
 {
+	// Fograin92: TODO, change this
 	m_iGibModelIndex = PRECACHE_MODEL ("models/hgibs.mdl");
 }
 

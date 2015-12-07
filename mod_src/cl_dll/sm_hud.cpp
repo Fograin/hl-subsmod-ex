@@ -259,6 +259,12 @@ void CHudNew::GetGame()
 		iHudColor[0] = 0;	// R
 		iHudColor[1] = 96;	// G
 		iHudColor[2] = 180;	// B
+
+		pHealthLab->setFont( pFont );
+		pArmorLab->setFont( pFont );
+		pPrimaryAmmoLab->setFont( pFont );
+		pSecondaryAmmoLab->setFont( pFont );
+		pLogonText->setFont( pFontText );
 	}
 
 	// Opposing Force HUD
@@ -267,6 +273,12 @@ void CHudNew::GetGame()
 		iHudColor[0] = 0;	// R
 		iHudColor[1] = 160;	// G
 		iHudColor[2] = 0;	// B
+
+		pHealthLab->setFont( pFontOF );
+		pArmorLab->setFont( pFontOF );
+		pPrimaryAmmoLab->setFont( pFontOF );
+		pSecondaryAmmoLab->setFont( pFontOF );
+		pLogonText->setFont( pFontTextOF );
 	}
 
 	// Default / Half-Life 1 HUD
@@ -275,7 +287,16 @@ void CHudNew::GetGame()
 		iHudColor[0] = 255;	// R
 		iHudColor[1] = 160;	// G
 		iHudColor[2] = 0;	// B
+
+		pHealthLab->setFont( pFont );
+		pArmorLab->setFont( pFont );
+		pPrimaryAmmoLab->setFont( pFont );
+		pSecondaryAmmoLab->setFont( pFont );
+		pLogonText->setFont( pFontText );
 	}
+
+
+	
 }
 
 // Check if we should draw HUD
@@ -696,7 +717,9 @@ CHudNew::CHudNew() : Panel(0, 0, XRES(640), YRES(480))
 	// Initial settings
 	pSchemes	= gViewPort->GetSchemeManager();	// Get data from scheme manager
 	pFont		= pSchemes->getFont( pSchemes->getSchemeHandle( "HUD_Display", true, true) );			// Get font for displays
-	pFontText	= pSchemes->getFont( pSchemes->getSchemeHandle( "HUD_Text", true, true) );	// Get font for VGUI Text
+	pFontText	= pSchemes->getFont( pSchemes->getSchemeHandle( "HUD_Text", true, true) );				// Get font for VGUI Text
+	pFontOF		= pSchemes->getFont( pSchemes->getSchemeHandle( "HUD_DisplayS", true, true) );			// Get font for displays (Scanline)
+	pFontTextOF	= pSchemes->getFont( pSchemes->getSchemeHandle( "HUD_TextS", true, true) );				// Get font for VGUI Text (Scanline)
 	
 	// Initial values
 	ResetVars(true);	// Reset HUD variables

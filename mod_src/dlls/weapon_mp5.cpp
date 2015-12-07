@@ -29,6 +29,7 @@ enum mp5_e
 	MP5_FIRE1,
 	MP5_FIRE2,
 	MP5_FIRE3,
+	MP5_HOLSTER
 };
 
 LINK_ENTITY_TO_CLASS( weapon_mp5, CMP5 );
@@ -134,7 +135,7 @@ BOOL CMP5::Deploy( )
 void CMP5::Holster( int skiplocal /* = 0 */ )
 {
 	m_pPlayer->m_flNextAttack = UTIL_WeaponTimeBase() + 0.5;
-	SendWeaponAnim( MP5_IDLE1 );	// TOFIX: We need holster anim
+	SendWeaponAnim( MP5_HOLSTER );	// TOFIX: We need holster anim
 }
 
 

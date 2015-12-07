@@ -120,8 +120,11 @@ void CGib :: SpawnStickyGibs( entvars_t *pevVictim, Vector vecOrigin, int cGibs 
 void CGib :: SpawnHeadGib( entvars_t *pevVictim )
 {
 	CGib *pGib = GetClassPtr( (CGib *)NULL );
-	pGib->Spawn( "models/hgibs.mdl" );// throw one head
+	//pGib->Spawn( "models/hgibs.mdl" );// throw one head
+	// Fograin92: Changed model dir
+	pGib->Spawn( "models/gibs/human_gib1.mdl" );// throw one head
 	pGib->pev->body = 0;
+
 
 	if ( pevVictim )
 	{
@@ -177,9 +180,27 @@ void CGib :: SpawnRandomGibs( entvars_t *pevVictim, int cGibs, int human )
 		
 		if ( human )
 		{
-			// human pieces
-			pGib->Spawn( "models/hgibs.mdl" );
-			pGib->pev->body = RANDOM_LONG(1, HUMAN_GIB_COUNT-1);// start at one to avoid throwing random amounts of skulls (0th gib)
+			// Human pieces
+			// Fograin92: Changed model dir and names
+			int iRandom = RANDOM_LONG(2, 11);
+
+			switch( iRandom)
+			{
+				case 2:		pGib->Spawn( "models/gibs/human_gib2.mdl" );	break;
+				case 3:		pGib->Spawn( "models/gibs/human_gib3.mdl" );	break;
+				case 4:		pGib->Spawn( "models/gibs/human_gib4.mdl" );	break;
+				case 5:		pGib->Spawn( "models/gibs/human_gib5.mdl" );	break;
+				case 6:		pGib->Spawn( "models/gibs/human_gib6.mdl" );	break;
+				case 7:		pGib->Spawn( "models/gibs/human_gib7.mdl" );	break;
+				case 8:		pGib->Spawn( "models/gibs/human_gib8.mdl" );	break;
+				case 9:		pGib->Spawn( "models/gibs/human_gib9.mdl" );	break;
+				case 10:	pGib->Spawn( "models/gibs/human_gib10.mdl" );	break;
+				case 11:	pGib->Spawn( "models/gibs/human_gib11.mdl" );	break;
+
+				default:	pGib->Spawn( "models/gibs/human_gib3.mdl" );	break;
+			}
+
+			pGib->pev->body = 0;
 		}
 		else
 		{
@@ -202,7 +223,8 @@ void CGib :: SpawnRandomGibs( entvars_t *pevVictim, int cGibs, int human )
 			// mix in some noise
 			pGib->pev->velocity.x += RANDOM_FLOAT ( -0.25, 0.25 );
 			pGib->pev->velocity.y += RANDOM_FLOAT ( -0.25, 0.25 );
-			pGib->pev->velocity.z += RANDOM_FLOAT ( -0.25, 0.25 );
+			//pGib->pev->velocity.z += RANDOM_FLOAT ( -0.25, 0.25 );
+			pGib->pev->velocity.z += RANDOM_FLOAT ( 0.00, 0.70 );	// Fograin92
 
 			pGib->pev->velocity = pGib->pev->velocity * RANDOM_FLOAT ( 300, 400 );
 
@@ -225,8 +247,24 @@ void CGib :: SpawnRandomGibs( entvars_t *pevVictim, int cGibs, int human )
 				pGib->pev->velocity = pGib->pev->velocity * 4;
 			}
 
-			pGib->pev->solid = SOLID_BBOX;
-			UTIL_SetSize ( pGib->pev, Vector( 0 , 0 , 0 ), Vector ( 0, 0, 0 ) );
+			//pGib->pev->solid = SOLID_BBOX;
+			//UTIL_SetSize ( pGib->pev, Vector( 0 , 0 , 0 ), Vector ( 0, 0, 0 ) );
+			// Fograin92: Changed solid type and collision data
+			pGib->pev->solid = SOLID_SLIDEBOX;
+
+			studiohdr_t *pstudiohdr;
+			pstudiohdr = (studiohdr_t *)GET_MODEL_PTR( pGib->edict() );
+
+			if( pstudiohdr == NULL )
+			{
+				UTIL_SetSize(pGib->pev, Vector( 0, 0, 0), Vector(0, 0, 0));
+			}
+			else
+			{
+				mstudioseqdesc_t *pseqdesc = (mstudioseqdesc_t *)((byte *)pstudiohdr + pstudiohdr->seqindex);
+				UTIL_SetSize( pGib->pev, pseqdesc[pGib->pev->sequence].bbmin, pseqdesc[pGib->pev->sequence].bbmax );
+			}
+
 		}
 		pGib->LimitVelocity();
 	}
@@ -779,7 +817,6 @@ void CGib::Spawn( const char *szGibModel )
 	pev->takedamage		= DAMAGE_YES;
 
 	// Fograin92: Automatically set collision box
-
 	studiohdr_t *pstudiohdr;
 	pstudiohdr = (studiohdr_t *)GET_MODEL_PTR( edict() );
 

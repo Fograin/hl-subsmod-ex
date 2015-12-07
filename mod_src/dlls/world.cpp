@@ -576,6 +576,18 @@ void CWorld :: Precache( void )
 	PRECACHE_MODEL( "models/hgibs.mdl" );
 	PRECACHE_MODEL( "models/agibs.mdl" );
 
+	// Fograin92: Precache new gibs
+	PRECACHE_MODEL( "models/gibs/human_gib2.mdl" );
+	PRECACHE_MODEL( "models/gibs/human_gib3.mdl" );
+	PRECACHE_MODEL( "models/gibs/human_gib4.mdl" );
+	PRECACHE_MODEL( "models/gibs/human_gib5.mdl" );
+	PRECACHE_MODEL( "models/gibs/human_gib6.mdl" );
+	PRECACHE_MODEL( "models/gibs/human_gib7.mdl" );
+	PRECACHE_MODEL( "models/gibs/human_gib8.mdl" );
+	PRECACHE_MODEL( "models/gibs/human_gib9.mdl" );
+	PRECACHE_MODEL( "models/gibs/human_gib10.mdl" );
+	PRECACHE_MODEL( "models/gibs/human_gib11.mdl" );
+
 	PRECACHE_SOUND ("weapons/ric1.wav");
 	PRECACHE_SOUND ("weapons/ric2.wav");
 	PRECACHE_SOUND ("weapons/ric3.wav");

@@ -137,7 +137,9 @@ protected:
 	int iHudColor[3];			// HUD Color
 	CSchemeManager *pSchemes;	// Scheme manager data
 	Font *pFont;				// Base FONT
-	Font *pFontText;			// Text Font
+	Font *pFontText;			// Text FONT
+	Font *pFontOF;				// Scanline FONT
+	Font *pFontTextOF;			// Scanline Text FONT
 
 	// Health + Armor panels
 	int				iHealthSizeX, iHealthSizeY;
