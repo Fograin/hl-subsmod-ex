@@ -411,14 +411,14 @@ void CHudNew::SetArmorVar(int iPlayerArmor)
 // Mutator <- Called when we picked up item
 void CHudNew::PickedUpItem( const char *szName )
 {
-	//gEngfuncs.Con_Printf( "^3SM -> CHudNew -> Picked up: %s\n", szName );
+	//gEngfuncs.Con_Printf( "^3HLU -> CHudNew -> Picked up: %s\n", szName );
 
 	// If we picked up HEV/PCV
 	if( !strcmp( szName, "item_suit" ) )
 	{
 		bHaveHEV = true;
 		// TODO: Check if this is Hazard Course OR Impulse 101
-		fTimer_Logon = 1;	// Start the HEV LOGON sequence
+		//fTimer_Logon = 1;	// Start the HEV LOGON sequence
 	}
 
 	UpdateHUD();
@@ -1034,7 +1034,7 @@ void CHudNew::UpdateHUD()
 // Called every frame when HUD is visable
 void CHudNew::paint()
 {
-	//gEngfuncs.Con_Printf( "^2SM -> CHudNew -> paint()\n" );
+	//gEngfuncs.Con_Printf( "^2HLU -> CHudNew -> paint()\n" );
 	char cString[32];	// Helper string
 
 
@@ -1220,7 +1220,7 @@ void CHudNew::paint()
 				}
 
 				//sprintf(cString, "%s", pxWeapon->szName);
-				//gEngfuncs.Con_Printf( "^3SM -> CHudNew -> %s\n", pxWeapon->szName );
+				//gEngfuncs.Con_Printf( "^3HLU -> CHudNew -> %s\n", pxWeapon->szName );
 
 				// Show / Hide -> 9mm (glock) ammo
 				if( !strcmp(pxWeapon->szName, "weapon_glock") || !strcmp(pxWeapon->szName, "weapon_9mmhandgun"))
@@ -1532,7 +1532,7 @@ void CHudNew::paint()
 	
 	if (fTimer_Logon > 0)
 	{
-		//gEngfuncs.Con_Printf( "^2SM -> fTimer_Logon -> %.0f\n", fTimer_Logon );
+		//gEngfuncs.Con_Printf( "^2HLU -> fTimer_Logon -> %.0f\n", fTimer_Logon );
 		char cStringA[1024] = "";
 		char cStringB[1024] = "";
 

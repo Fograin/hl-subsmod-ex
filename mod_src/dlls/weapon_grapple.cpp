@@ -122,7 +122,7 @@ void CGrappleHook :: Hit( CBaseEntity* Target )
 		// Fograin92: Loop through everything we did hit.
 		for (int i = 0; i < count; i++ )
 		{
-			ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> Hit ^3%s\n", STRING(pList[i]->pev->classname) );
+			ALERT( at_console, "^2HLU -> ^3weapon_grapple ^2-> Hit ^3%s\n", STRING(pList[i]->pev->classname) );
 			myHitMonster = pList[i]; // Fograin92: Hook pointer to our monster.
 
 			// Fograin92: Check what did we hit
@@ -152,7 +152,7 @@ void CGrappleHook :: Hit( CBaseEntity* Target )
 	}
 	else
 	{
-		ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> Tongue hit a brush entity.\n");
+		ALERT( at_console, "^2HLU -> ^3weapon_grapple ^2-> Tongue hit a brush entity.\n");
 		TraceResult tr;
 		float rgfl1[3];
 		float rgfl2[3];
@@ -202,7 +202,7 @@ void CGrappleHook :: Hit( CBaseEntity* Target )
 
 void CGrappleHook::Killed(entvars_t *pev, int gib)
 {
-	ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> Tongue was killed.\n");
+	ALERT( at_console, "^2HLU -> ^3weapon_grapple ^2-> Tongue was killed.\n");
 
 	// Fograin92: Clear player
 	myowner->pev->movetype = MOVETYPE_WALK; //Re-apply gravity
@@ -228,7 +228,7 @@ void CGrappleHook::Killed(entvars_t *pev, int gib)
 
 CGrappleHook* CGrappleHook :: Create( Vector Pos, Vector Aim, CBasePlayer* Owner ) 
 {
-	ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> Tongue spawned.\n");
+	ALERT( at_console, "^2HLU -> ^3weapon_grapple ^2-> Tongue spawned.\n");
 	CGrappleHook* Hook = GetClassPtr( (CGrappleHook*)NULL ); 
 	UTIL_SetOrigin( Hook->pev, Pos ); 
 	Hook->pev->angles = Aim; 
@@ -264,7 +264,7 @@ void CGrappleHook::Move( void )
 
 		pev->velocity = (GunPosition - pev->origin) * 10;	// Pull back the tongue tip
 		float fDistance = (GunPosition - pev->origin).Length2D();	// Calculate distance between tongue tip and player
-		//ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> %f\n", fDistance );
+		//ALERT( at_console, "^2HLU -> ^3weapon_grapple ^2-> %f\n", fDistance );
 
 		if (fDistance < 40)
 		{
@@ -294,7 +294,7 @@ void CGrappleHook::Move( void )
 			// Fograin92: The monster is very close to player, let's OWN IT!
 			if (fDistance < 40)
 			{
-				ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> OWNED -> ^3%s\n", STRING(myHitMonster->pev->classname) );
+				ALERT( at_console, "^2HLU -> ^3weapon_grapple ^2-> OWNED -> ^3%s\n", STRING(myHitMonster->pev->classname) );
 
 				// Fograin92: Did we pull the gib?
 				if( myHitMonster->Classify() == CLASS_GIBS )
@@ -471,7 +471,7 @@ void CGrapple::FlyThink( void )
 	// Fograin92: Grapple is pulling player
 	if( m_pPlayer->m_afPhysicsFlags & PFLAG_ON_GRAPPLE ) //If we are on a grapple
 	{
-		ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> Pulling player.\n");
+		ALERT( at_console, "^2HLU -> ^3weapon_grapple ^2-> Pulling player.\n");
 		SendWeaponAnim( GRAPPLE_FIRETRAVEL, 1 );
 		pev->nextthink = gpGlobals->time + 0.6;
 	}
@@ -479,7 +479,7 @@ void CGrapple::FlyThink( void )
 	// Fograin92: Grapple tongue died
 	else if ( !m_pPlayer->m_iGrappleExists )
 	{
-		ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> Released grapple hook.\n");
+		ALERT( at_console, "^2HLU -> ^3weapon_grapple ^2-> Released grapple hook.\n");
 		EMIT_SOUND( ENT(m_pPlayer->pev), CHAN_WEAPON, "weapons/bgrapple_release.wav", 1, ATTN_NORM);
 
 		SendWeaponAnim( GRAPPLE_FIRERELEASE, 1 );
@@ -492,7 +492,7 @@ void CGrapple::FlyThink( void )
 	}
 	else
 	{
-		ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> Tongue flying\n");
+		ALERT( at_console, "^2HLU -> ^3weapon_grapple ^2-> Tongue flying\n");
 		EMIT_SOUND( ENT(m_pPlayer->pev), CHAN_WEAPON, "weapons/bgrapple_pull.wav", 1, ATTN_NORM);
 		SendWeaponAnim( GRAPPLE_FIREWAITING, 1 );
 		pev->nextthink = gpGlobals->time + 0.56;
@@ -510,19 +510,19 @@ void CGrapple::WeaponIdle( void )
 
 	if(iRand >= 50)	
 	{
-		ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> BREATHE IDLE.\n");
+		ALERT( at_console, "^2HLU -> ^3weapon_grapple ^2-> BREATHE IDLE.\n");
 		iAnim = GRAPPLE_BREATHE;
 		pev->nextthink = gpGlobals->time + 2.6;
 	}
 	else if( (iRand < 50) && (iRand >= 25))
 	{
-		ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> LONG IDLE.\n");
+		ALERT( at_console, "^2HLU -> ^3weapon_grapple ^2-> LONG IDLE.\n");
 		iAnim = GRAPPLE_LONGIDLE;
 		pev->nextthink = gpGlobals->time + 10.0;
 	}
 	else if( (iRand < 25) && (iRand >= 10))
 	{
-		ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> SHORT IDLE.\n");
+		ALERT( at_console, "^2HLU -> ^3weapon_grapple ^2-> SHORT IDLE.\n");
 		iAnim = GRAPPLE_SHORTIDLE;
 		pev->nextthink = gpGlobals->time + 1.36;
 		EMIT_SOUND(ENT(m_pPlayer->pev), CHAN_WEAPON, "weapons/bgrapple_wait.wav", 1, ATTN_NORM);
@@ -530,7 +530,7 @@ void CGrapple::WeaponIdle( void )
 	else if (iRand < 10)
 	{
 		// Fograin92: 'cough' idle is rare animation, that way we won't annoy players with it.
-		ALERT( at_console, "^2SM -> ^3weapon_grapple ^2-> COUGH IDLE.\n");
+		ALERT( at_console, "^2HLU -> ^3weapon_grapple ^2-> COUGH IDLE.\n");
 		EMIT_SOUND(ENT(m_pPlayer->pev), CHAN_WEAPON, "weapons/bgrapple_cough.wav", 1, ATTN_NORM);
 
 		iAnim = GRAPPLE_COUGH;

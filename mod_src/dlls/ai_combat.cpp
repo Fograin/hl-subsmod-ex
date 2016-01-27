@@ -8,12 +8,6 @@
 //
 //	Before using any parts of this code, read licence.txt file 
 //=============================================================//
-/*
-
-===== combat.cpp =======================================================
-  functions dealing with damage infliction & death
-*/
-
 #include "extdll.h"
 #include "util.h"
 #include "cbase.h"
@@ -25,255 +19,26 @@
 #include "func_break.h"
 #include "props.h"	// Fograin92
 
+
 extern DLL_GLOBAL Vector		g_vecAttackDir;
 extern DLL_GLOBAL int			g_iSkillLevel;
-
 extern Vector VecBModelOrigin( entvars_t* pevBModel );
 extern entvars_t *g_pevLastInflictor;
 
-#define GERMAN_GIB_COUNT		4
-#define	HUMAN_GIB_COUNT			6
-#define ALIEN_GIB_COUNT			4
+
+// Fograin92: Gore definitions
+#define GORE_GIBS_HUMAN_COUNT 4
+#define GORE_GIBS_ALIEN_COUNT 4
 
 
-// HACKHACK -- The gib velocity equations don't work
-void CGib :: LimitVelocity( void )
-{
-	float length = pev->velocity.Length();
-
-	// ceiling at 1500.  The gib velocity equation is not bounded properly.  Rather than tune it
-	// in 3 separate places again, I'll just limit it here.
-	if ( length > 1500.0 )
-		pev->velocity = pev->velocity.Normalize() * 1500;		// This should really be sv_maxvelocity * 0.75 or something
-}
-
-
-void CGib :: SpawnStickyGibs( entvars_t *pevVictim, Vector vecOrigin, int cGibs )
-{
-	int i;
-
-	if ( g_Language == LANGUAGE_GERMAN )
-	{
-		// no sticky gibs in germany right now!
-		return; 
-	}
-
-	for ( i = 0 ; i < cGibs ; i++ )
-	{
-		CGib *pGib = GetClassPtr( (CGib *)NULL );
-
-		pGib->Spawn( "models/stickygib.mdl" );
-		pGib->pev->body = RANDOM_LONG(0,2);
-
-		if ( pevVictim )
-		{
-			pGib->pev->origin.x = vecOrigin.x + RANDOM_FLOAT( -3, 3 );
-			pGib->pev->origin.y = vecOrigin.y + RANDOM_FLOAT( -3, 3 );
-			pGib->pev->origin.z = vecOrigin.z + RANDOM_FLOAT( -3, 3 );
-
-			/*
-			pGib->pev->origin.x = pevVictim->absmin.x + pevVictim->size.x * (RANDOM_FLOAT ( 0 , 1 ) );
-			pGib->pev->origin.y = pevVictim->absmin.y + pevVictim->size.y * (RANDOM_FLOAT ( 0 , 1 ) );
-			pGib->pev->origin.z = pevVictim->absmin.z + pevVictim->size.z * (RANDOM_FLOAT ( 0 , 1 ) );
-			*/
-
-			// make the gib fly away from the attack vector
-			pGib->pev->velocity = g_vecAttackDir * -1;
-
-			// mix in some noise
-			pGib->pev->velocity.x += RANDOM_FLOAT ( -0.15, 0.15 );
-			pGib->pev->velocity.y += RANDOM_FLOAT ( -0.15, 0.15 );
-			pGib->pev->velocity.z += RANDOM_FLOAT ( -0.15, 0.15 );
-
-			pGib->pev->velocity = pGib->pev->velocity * 900;
-
-			pGib->pev->avelocity.x = RANDOM_FLOAT ( 250, 400 );
-			pGib->pev->avelocity.y = RANDOM_FLOAT ( 250, 400 );
-
-			// copy owner's blood color
-			pGib->m_bloodColor = (CBaseEntity::Instance(pevVictim))->BloodColor();
-		
-			if ( pevVictim->health > -50)
-			{
-				pGib->pev->velocity = pGib->pev->velocity * 0.7;
-			}
-			else if ( pevVictim->health > -200)
-			{
-				pGib->pev->velocity = pGib->pev->velocity * 2;
-			}
-			else
-			{
-				pGib->pev->velocity = pGib->pev->velocity * 4;
-			}
-
-			
-			pGib->pev->movetype = MOVETYPE_TOSS;
-			pGib->pev->solid = SOLID_BBOX;
-			UTIL_SetSize ( pGib->pev, Vector ( 0, 0 ,0 ), Vector ( 0, 0, 0 ) );
-			pGib->SetTouch ( &CGib::StickyGibTouch );
-			pGib->SetThink (NULL);
-		}
-		pGib->LimitVelocity();
-	}
-}
-
-void CGib :: SpawnHeadGib( entvars_t *pevVictim )
-{
-	CGib *pGib = GetClassPtr( (CGib *)NULL );
-	//pGib->Spawn( "models/hgibs.mdl" );// throw one head
-	// Fograin92: Changed model dir
-	pGib->Spawn( "models/gibs/human_gib1.mdl" );// throw one head
-	pGib->pev->body = 0;
-
-
-	if ( pevVictim )
-	{
-		pGib->pev->origin = pevVictim->origin + pevVictim->view_ofs;
-		
-		edict_t		*pentPlayer = FIND_CLIENT_IN_PVS( pGib->edict() );
-		
-		if ( RANDOM_LONG ( 0, 100 ) <= 5 && pentPlayer )
-		{
-			// 5% chance head will be thrown at player's face.
-			entvars_t	*pevPlayer;
-
-			pevPlayer = VARS( pentPlayer );
-			pGib->pev->velocity = ( ( pevPlayer->origin + pevPlayer->view_ofs ) - pGib->pev->origin ).Normalize() * 300;
-			pGib->pev->velocity.z += 100;
-		}
-		else
-		{
-			pGib->pev->velocity = Vector (RANDOM_FLOAT(-100,100), RANDOM_FLOAT(-100,100), RANDOM_FLOAT(200,300));
-		}
-
-
-		pGib->pev->avelocity.x = RANDOM_FLOAT ( 100, 200 );
-		pGib->pev->avelocity.y = RANDOM_FLOAT ( 100, 300 );
-
-		// copy owner's blood color
-		pGib->m_bloodColor = (CBaseEntity::Instance(pevVictim))->BloodColor();
-	
-		if ( pevVictim->health > -50)
-		{
-			pGib->pev->velocity = pGib->pev->velocity * 0.7;
-		}
-		else if ( pevVictim->health > -200)
-		{
-			pGib->pev->velocity = pGib->pev->velocity * 2;
-		}
-		else
-		{
-			pGib->pev->velocity = pGib->pev->velocity * 4;
-		}
-	}
-	pGib->LimitVelocity();
-}
-
-void CGib :: SpawnRandomGibs( entvars_t *pevVictim, int cGibs, int human )
-{
-	int cSplat;
-
-	for ( cSplat = 0 ; cSplat < cGibs ; cSplat++ )
-	{
-		CGib *pGib = GetClassPtr( (CGib *)NULL );
-
-		
-		if ( human )
-		{
-			// Human pieces
-			// Fograin92: Changed model dir and names
-			int iRandom = RANDOM_LONG(2, 11);
-
-			switch( iRandom)
-			{
-				case 2:		pGib->Spawn( "models/gibs/human_gib2.mdl" );	break;
-				case 3:		pGib->Spawn( "models/gibs/human_gib3.mdl" );	break;
-				case 4:		pGib->Spawn( "models/gibs/human_gib4.mdl" );	break;
-				case 5:		pGib->Spawn( "models/gibs/human_gib5.mdl" );	break;
-				case 6:		pGib->Spawn( "models/gibs/human_gib6.mdl" );	break;
-				case 7:		pGib->Spawn( "models/gibs/human_gib7.mdl" );	break;
-				case 8:		pGib->Spawn( "models/gibs/human_gib8.mdl" );	break;
-				case 9:		pGib->Spawn( "models/gibs/human_gib9.mdl" );	break;
-				case 10:	pGib->Spawn( "models/gibs/human_gib10.mdl" );	break;
-				case 11:	pGib->Spawn( "models/gibs/human_gib11.mdl" );	break;
-
-				default:	pGib->Spawn( "models/gibs/human_gib3.mdl" );	break;
-			}
-
-			pGib->pev->body = 0;
-		}
-		else
-		{
-			// aliens
-			pGib->Spawn( "models/agibs.mdl" );
-			pGib->pev->body = RANDOM_LONG(0,ALIEN_GIB_COUNT-1);
-		}
-		
-
-		if ( pevVictim )
-		{
-			// spawn the gib somewhere in the monster's bounding volume
-			pGib->pev->origin.x = pevVictim->absmin.x + pevVictim->size.x * (RANDOM_FLOAT ( 0 , 1 ) );
-			pGib->pev->origin.y = pevVictim->absmin.y + pevVictim->size.y * (RANDOM_FLOAT ( 0 , 1 ) );
-			pGib->pev->origin.z = pevVictim->absmin.z + pevVictim->size.z * (RANDOM_FLOAT ( 0 , 1 ) ) + 1;	// absmin.z is in the floor because the engine subtracts 1 to enlarge the box
-
-			// make the gib fly away from the attack vector
-			pGib->pev->velocity = g_vecAttackDir * -1;
-
-			// mix in some noise
-			pGib->pev->velocity.x += RANDOM_FLOAT ( -0.25, 0.25 );
-			pGib->pev->velocity.y += RANDOM_FLOAT ( -0.25, 0.25 );
-			//pGib->pev->velocity.z += RANDOM_FLOAT ( -0.25, 0.25 );
-			pGib->pev->velocity.z += RANDOM_FLOAT ( 0.00, 0.70 );	// Fograin92
-
-			pGib->pev->velocity = pGib->pev->velocity * RANDOM_FLOAT ( 300, 400 );
-
-			pGib->pev->avelocity.x = RANDOM_FLOAT ( 100, 200 );
-			pGib->pev->avelocity.y = RANDOM_FLOAT ( 100, 300 );
-
-			// copy owner's blood color
-			pGib->m_bloodColor = (CBaseEntity::Instance(pevVictim))->BloodColor();
-			
-			if ( pevVictim->health > -50)
-			{
-				pGib->pev->velocity = pGib->pev->velocity * 0.7;
-			}
-			else if ( pevVictim->health > -200)
-			{
-				pGib->pev->velocity = pGib->pev->velocity * 2;
-			}
-			else
-			{
-				pGib->pev->velocity = pGib->pev->velocity * 4;
-			}
-
-			//pGib->pev->solid = SOLID_BBOX;
-			//UTIL_SetSize ( pGib->pev, Vector( 0 , 0 , 0 ), Vector ( 0, 0, 0 ) );
-			// Fograin92: Changed solid type and collision data
-			pGib->pev->solid = SOLID_SLIDEBOX;
-
-			studiohdr_t *pstudiohdr;
-			pstudiohdr = (studiohdr_t *)GET_MODEL_PTR( pGib->edict() );
-
-			if( pstudiohdr == NULL )
-			{
-				UTIL_SetSize(pGib->pev, Vector( 0, 0, 0), Vector(0, 0, 0));
-			}
-			else
-			{
-				mstudioseqdesc_t *pseqdesc = (mstudioseqdesc_t *)((byte *)pstudiohdr + pstudiohdr->seqindex);
-				UTIL_SetSize( pGib->pev, pseqdesc[pGib->pev->sequence].bbmin, pseqdesc[pGib->pev->sequence].bbmax );
-			}
-
-		}
-		pGib->LimitVelocity();
-	}
-}
-
-
+//==============//
+// AI FUNCTIONS
+//==============//
 BOOL CBaseMonster :: HasHumanGibs( void )
 {
 	int myClass = Classify();
+
+	// Fograin92: Check if zombie
 
 	if ( myClass == CLASS_HUMAN_MILITARY ||
 		 myClass == CLASS_PLAYER_ALLY	||
@@ -314,55 +79,10 @@ void CBaseMonster::FadeMonster( void )
 	SUB_StartFadeOut();
 }
 
-//=========================================================
-// GibMonster - create some gore and get rid of a monster's
-// model.
-//=========================================================
-void CBaseMonster :: GibMonster( void )
-{
-	TraceResult	tr;
-	BOOL		gibbed = FALSE;
 
-	EMIT_SOUND(ENT(pev), CHAN_WEAPON, "common/bodysplat.wav", 1, ATTN_NORM);		
-
-	// only humans throw skulls !!!UNDONE - eventually monsters will have their own sets of gibs
-	if ( HasHumanGibs() )
-	{
-		//if ( CVAR_GET_FLOAT("violence_hgibs") != 0 )	// Only the player will ever get here
-		//{
-			CGib::SpawnHeadGib( pev );
-			CGib::SpawnRandomGibs( pev, 4, 1 );	// throw some human gibs.
-		//}
-		gibbed = TRUE;
-	}
-	else if ( HasAlienGibs() )
-	{
-		if ( CVAR_GET_FLOAT("violence_agibs") != 0 )	// Should never get here, but someone might call it directly
-		{
-			CGib::SpawnRandomGibs( pev, 4, 0 );	// Throw alien gibs
-		}
-		gibbed = TRUE;
-	}
-
-	if ( !IsPlayer() )
-	{
-		if ( gibbed )
-		{
-			// don't remove players!
-			SetThink ( &CBaseEntity::SUB_Remove );
-			pev->nextthink = gpGlobals->time;
-		}
-		else
-		{
-			FadeMonster();
-		}
-	}
-}
-
-//=========================================================
-// GetDeathActivity - determines the best type of death
-// anim to play.
-//=========================================================
+//====================================================================//
+// GetDeathActivity - determines the best type of death anim to play.
+//====================================================================//
 Activity CBaseMonster :: GetDeathActivity ( void )
 {
 	Activity	deathActivity;
@@ -380,7 +100,7 @@ Activity CBaseMonster :: GetDeathActivity ( void )
 	vecSrc = Center();
 
 	fTriedDirection = FALSE;
-	deathActivity = ACT_DIESIMPLE;// in case we can't find any special deaths to do.
+	deathActivity = ACT_DIESIMPLE;	// in case we can't find any special deaths to do.
 
 	UTIL_MakeVectors ( pev->angles );
 	flDot = DotProduct ( gpGlobals->v_forward, g_vecAttackDir * -1 );
@@ -388,40 +108,40 @@ Activity CBaseMonster :: GetDeathActivity ( void )
 	switch ( m_LastHitGroup )
 	{
 		// try to pick a region-specific death.
-	case HITGROUP_HEAD:
-		deathActivity = ACT_DIE_HEADSHOT;
+		case HITGROUP_HEAD:
+			deathActivity = ACT_DIE_HEADSHOT;
 		break;
 
-	case HITGROUP_STOMACH:
-		deathActivity = ACT_DIE_GUTSHOT;
+		case HITGROUP_STOMACH:
+			deathActivity = ACT_DIE_GUTSHOT;
 		break;
 
-	case HITGROUP_GENERIC:
+		case HITGROUP_GENERIC:
+			// try to pick a death based on attack direction
+			fTriedDirection = TRUE;
+
+			if ( flDot > 0.3 )
+			{
+				deathActivity = ACT_DIEFORWARD;
+			}
+			else if ( flDot <= -0.3 )
+			{
+				deathActivity = ACT_DIEBACKWARD;
+			}
+		break;
+	
+		default:
 		// try to pick a death based on attack direction
-		fTriedDirection = TRUE;
+			fTriedDirection = TRUE;
 
-		if ( flDot > 0.3 )
-		{
-			deathActivity = ACT_DIEFORWARD;
-		}
-		else if ( flDot <= -0.3 )
-		{
-			deathActivity = ACT_DIEBACKWARD;
-		}
-		break;
-
-	default:
-		// try to pick a death based on attack direction
-		fTriedDirection = TRUE;
-
-		if ( flDot > 0.3 )
-		{
-			deathActivity = ACT_DIEFORWARD;
-		}
-		else if ( flDot <= -0.3 )
-		{
-			deathActivity = ACT_DIEBACKWARD;
-		}
+			if ( flDot > 0.3 )
+			{
+				deathActivity = ACT_DIEFORWARD;
+			}
+			else if ( flDot <= -0.3 )
+			{
+				deathActivity = ACT_DIEBACKWARD;
+			}
 		break;
 	}
 
@@ -480,10 +200,10 @@ Activity CBaseMonster :: GetDeathActivity ( void )
 	return deathActivity;
 }
 
-//=========================================================
-// GetSmallFlinchActivity - determines the best type of flinch
-// anim to play.
-//=========================================================
+
+//===========================================================================//
+// GetSmallFlinchActivity - determines the best type of flinch anim to play.
+//===========================================================================//
 Activity CBaseMonster :: GetSmallFlinchActivity ( void )
 {
 	Activity	flinchActivity;
@@ -497,28 +217,34 @@ Activity CBaseMonster :: GetSmallFlinchActivity ( void )
 	switch ( m_LastHitGroup )
 	{
 		// pick a region-specific flinch
-	case HITGROUP_HEAD:
-		flinchActivity = ACT_FLINCH_HEAD;
+		case HITGROUP_HEAD:
+			flinchActivity = ACT_FLINCH_HEAD;
 		break;
-	case HITGROUP_STOMACH:
-		flinchActivity = ACT_FLINCH_STOMACH;
+
+		case HITGROUP_STOMACH:
+			flinchActivity = ACT_FLINCH_STOMACH;
 		break;
-	case HITGROUP_LEFTARM:
-		flinchActivity = ACT_FLINCH_LEFTARM;
+	
+		case HITGROUP_LEFTARM:
+			flinchActivity = ACT_FLINCH_LEFTARM;
 		break;
-	case HITGROUP_RIGHTARM:
-		flinchActivity = ACT_FLINCH_RIGHTARM;
+	
+		case HITGROUP_RIGHTARM:
+			flinchActivity = ACT_FLINCH_RIGHTARM;
 		break;
-	case HITGROUP_LEFTLEG:
-		flinchActivity = ACT_FLINCH_LEFTLEG;
+	
+		case HITGROUP_LEFTLEG:
+			flinchActivity = ACT_FLINCH_LEFTLEG;
 		break;
-	case HITGROUP_RIGHTLEG:
-		flinchActivity = ACT_FLINCH_RIGHTLEG;
+	
+		case HITGROUP_RIGHTLEG:
+			flinchActivity = ACT_FLINCH_RIGHTLEG;
 		break;
-	case HITGROUP_GENERIC:
-	default:
-		// just get a generic flinch.
-		flinchActivity = ACT_SMALL_FLINCH;
+	
+		case HITGROUP_GENERIC:
+		default:
+			// just get a generic flinch.
+			flinchActivity = ACT_SMALL_FLINCH;
 		break;
 	}
 
@@ -535,18 +261,19 @@ Activity CBaseMonster :: GetSmallFlinchActivity ( void )
 
 void CBaseMonster::BecomeDead( void )
 {
-	pev->takedamage = DAMAGE_YES;// don't let autoaim aim at corpses.
+	pev->takedamage = DAMAGE_YES;	// don't let autoaim aim at corpses.
 	
 	// give the corpse half of the monster's original maximum health. 
 	pev->health = pev->max_health / 2;
 	pev->max_health = 5; // max_health now becomes a counter for how many blood decals the corpse can place.
 
 	// make the corpse fly away from the attack vector
+	// Fograin92: Re-enabled
 	pev->movetype = MOVETYPE_TOSS;
-	//pev->flags &= ~FL_ONGROUND;
-	//pev->origin.z += 2;
-	//pev->velocity = g_vecAttackDir * -1;
-	//pev->velocity = pev->velocity * RANDOM_FLOAT( 300, 400 );
+	pev->flags &= ~FL_ONGROUND;
+	pev->origin.z += 2;
+	pev->velocity = g_vecAttackDir * -1;
+	pev->velocity = pev->velocity * RANDOM_FLOAT( 300, 400 );
 }
 
 
@@ -562,17 +289,6 @@ BOOL CBaseMonster::ShouldGibMonster( int iGib )
 void CBaseMonster::CallGibMonster( void )
 {
 	BOOL fade = FALSE;
-
-	if ( HasHumanGibs() )
-	{
-		//if ( CVAR_GET_FLOAT("violence_hgibs") == 0 )
-		//	fade = TRUE;
-	}
-	else if ( HasAlienGibs() )
-	{
-		//if ( CVAR_GET_FLOAT("violence_agibs") == 0 )
-			//fade = TRUE;
-	}
 
 	pev->takedamage = DAMAGE_NO;
 	pev->solid = SOLID_NOT;// do something with the body. while monster blows up
@@ -675,6 +391,7 @@ void CBaseEntity :: SUB_StartFadeOut ( void )
 	SetThink ( &CBaseEntity::SUB_FadeOut );
 }
 
+
 void CBaseEntity :: SUB_FadeOut ( void  )
 {
 	if ( pev->renderamt > 7 )
@@ -690,208 +407,8 @@ void CBaseEntity :: SUB_FadeOut ( void  )
 	}
 }
 
-//=========================================================
-// WaitTillLand - in order to emit their meaty scent from
-// the proper location, gibs should wait until they stop 
-// bouncing to emit their scent. That's what this function
-// does.
-//=========================================================
-void CGib :: WaitTillLand ( void )
-{
-	if (!IsInWorld())
-	{
-		UTIL_Remove( this );
-		return;
-	}
 
-	if ( pev->velocity == g_vecZero )
-	{
-		SetThink (&CBaseEntity::SUB_StartFadeOut);
-		pev->nextthink = gpGlobals->time + m_lifeTime;
-
-		// If you bleed, you stink!
-		if ( m_bloodColor != DONT_BLEED )
-		{
-			// ok, start stinkin!
-			CSoundEnt::InsertSound ( bits_SOUND_MEAT, pev->origin, 384, 25 );
-		}
-	}
-	else
-	{
-		// wait and check again in another half second.
-		pev->nextthink = gpGlobals->time + 0.5;
-	}
-}
-
-//
-// Gib bounces on the ground or wall, sponges some blood down, too!
-//
-void CGib :: BounceGibTouch ( CBaseEntity *pOther )
-{
-	Vector	vecSpot;
-	TraceResult	tr;
-	
-	//if ( RANDOM_LONG(0,1) )
-	//	return;// don't bleed everytime
-
-	if (pev->flags & FL_ONGROUND)
-	{
-		pev->velocity = pev->velocity * 0.9;
-		pev->angles.x = 0;
-		pev->angles.z = 0;
-		pev->avelocity.x = 0;
-		pev->avelocity.z = 0;
-	}
-	else
-	{
-		if ( g_Language != LANGUAGE_GERMAN && m_cBloodDecals > 0 && m_bloodColor != DONT_BLEED )
-		{
-			vecSpot = pev->origin + Vector ( 0 , 0 , 8 );//move up a bit, and trace down.
-			UTIL_TraceLine ( vecSpot, vecSpot + Vector ( 0, 0, -24 ),  ignore_monsters, ENT(pev), & tr);
-
-			UTIL_BloodDecalTrace( &tr, m_bloodColor );
-
-			m_cBloodDecals--; 
-		}
-
-		if ( m_material != matNone && RANDOM_LONG(0,2) == 0 )
-		{
-			float volume;
-			float zvel = fabs(pev->velocity.z);
-		
-			volume = 0.8 * min(1.0, ((float)zvel) / 450.0);
-
-			//CBreakable::MaterialSoundRandom( edict(), (ePropMaterial)m_material, volume );
-		}
-	}
-}
-
-//
-// Sticky gib puts blood on the wall and stays put. 
-//
-void CGib :: StickyGibTouch ( CBaseEntity *pOther )
-{
-	Vector	vecSpot;
-	TraceResult	tr;
-	
-	SetThink ( &CBaseEntity::SUB_Remove );
-	pev->nextthink = gpGlobals->time + 10;
-
-	if ( !FClassnameIs( pOther->pev, "worldspawn" ) )
-	{
-		pev->nextthink = gpGlobals->time;
-		return;
-	}
-
-	UTIL_TraceLine ( pev->origin, pev->origin + pev->velocity * 32,  ignore_monsters, ENT(pev), & tr);
-
-	UTIL_BloodDecalTrace( &tr, m_bloodColor );
-
-	pev->velocity = tr.vecPlaneNormal * -1;
-	pev->angles = UTIL_VecToAngles ( pev->velocity );
-	pev->velocity = g_vecZero; 
-	pev->avelocity = g_vecZero;
-	pev->movetype = MOVETYPE_NONE;
-}
-
-//
-// Throw a chunk
-//
-void CGib::Spawn( const char *szGibModel )
-{
-	pev->movetype = MOVETYPE_BOUNCE;
-	pev->friction = 0.55; // deading the bounce a bit
-	
-	// sometimes an entity inherits the edict from a former piece of glass,
-	// and will spawn using the same render FX or rendermode! bad!
-	pev->renderamt = 255;
-	pev->rendermode = kRenderNormal;
-	pev->renderfx = kRenderFxNone;
-	pev->solid = SOLID_SLIDEBOX;/// hopefully this will fix the VELOCITY TOO LOW crap
-	pev->classname = MAKE_STRING("gib");
-
-	SET_MODEL(ENT(pev), szGibModel);
-
-	m_bloodColor		= BLOOD_COLOR_RED;	// Fograin92: Set blood color (TODO: Check for model)
-	pev->health			= 200;	// Fograin92: Fix insta-blowing up gibs
-	pev->takedamage		= DAMAGE_YES;
-
-	// Fograin92: Automatically set collision box
-	studiohdr_t *pstudiohdr;
-	pstudiohdr = (studiohdr_t *)GET_MODEL_PTR( edict() );
-
-	// Fograin92: We can't get model pointer, disable collision
-	if( pstudiohdr == NULL )
-	{
-		UTIL_SetSize(pev, Vector( 0, 0, 0), Vector(0, 0, 0));
-	//	ALERT( at_console, "^2Random_gib: Unable to get model pointer!\n" );
-	//	//return;
-	}
-	else
-	{
-		mstudioseqdesc_t *pseqdesc = (mstudioseqdesc_t *)((byte *)pstudiohdr + pstudiohdr->seqindex);
-		UTIL_SetSize( pev, pseqdesc[pev->sequence].bbmin, pseqdesc[pev->sequence].bbmax );
-	}
-
-
-	pev->nextthink = gpGlobals->time + 4;
-	m_lifeTime = 25;
-	SetThink ( &CGib::WaitTillLand );
-	SetTouch ( &CGib::BounceGibTouch );
-
-	m_material = matNone;
-	m_cBloodDecals = 5;// how many blood decals this gib can place (1 per bounce until none remain). 
-}
-
-// Fograin92: Exec when gib is shoot at
-void CGib::TraceAttack( entvars_t *pevAttacker, float flDamage, Vector vecDir, TraceResult *ptr, int bitsDamageType)
-{
-	Vector	vecSpot;
-	TraceResult	tr;
-
-	ALERT( at_console, "^2HLU -> ^3Random_Gib ^2-> Trace attack.\n");
-
-	// Fograin92: Blood particles
-	UTIL_BloodDrips( pev->origin, pev->velocity, m_bloodColor, 255 );
-
-	// Fograin92: Calculate blood decal position
-	vecSpot = pev->origin + Vector ( 0 , 0 , 8 ); // Move up a bit, and trace down.
-	UTIL_TraceLine ( vecSpot, vecSpot + Vector ( 0, 0, -24 ),  ignore_monsters, ENT(pev), &tr);
-	UTIL_BloodDecalTrace( &tr, m_bloodColor );	// Paint blood decal
-
-	// Fograin92: Move the gib
-	pev->velocity = vecDir * 500;
-
-	// Fograin92: Spin dat shit
-	pev->avelocity.x = RANDOM_LONG( 200, 600 );
-	pev->avelocity.y = RANDOM_LONG( 200, 600 );
-	pev->avelocity.z = RANDOM_LONG( 100, 200 );
-
-	// Fograin92: Play flesh impact sound
-	int pitch = 95 + RANDOM_LONG(0,9);
-	EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, pSoundsHitFlesh[ RANDOM_LONG(0, ARRAYSIZE(pSoundsHitFlesh)-1) ], 1.0, ATTN_NORM, 0, pitch );
-
-	CBaseEntity::TraceAttack( pevAttacker, flDamage, vecDir, ptr, bitsDamageType);
-}
-
-// Fograin92: Let the gib take the damage
-int CGib::TakeDamage( entvars_t* pevInflictor, entvars_t* pevAttacker, float flDamage, int bitsDamageType)
-{
-	// TODO: Blood overlays, friendly NPCs reacting.
-	return CBaseEntity::TakeDamage(  pevInflictor, pevAttacker, flDamage, bitsDamageType );
-}
-
-void CGib::Killed( entvars_t *pevAttacker, int iGib )
-{
-	int pitch = 95 + RANDOM_LONG(0,9);
-	EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, pSoundsBustFlesh[ RANDOM_LONG(0, ARRAYSIZE(pSoundsBustFlesh)-1) ], 1.0, ATTN_NORM, 0, pitch );
-
-	SetUse( NULL );	
-	CBaseEntity::Killed( pevAttacker, iGib );
-}
-
-
-// take health
+// Monster Take health
 int CBaseMonster :: TakeHealth (float flHealth, int bitsDamageType)
 {
 	if (!pev->takedamage)
@@ -916,8 +433,6 @@ bitsDamageType indicates the type of damage sustained, ie: DMG_SHOCK
 
 Time-based damage: only occurs while the monster is within the trigger_hurt.
 When a monster is poisoned via an arrow etc it takes all the poison damage at once.
-
-
 
 GLOBALS ASSUMED SET:  g_iSkillLevel
 ============
@@ -1054,10 +569,10 @@ int CBaseMonster :: TakeDamage( entvars_t *pevInflictor, entvars_t *pevAttacker,
 	return 1;
 }
 
-//=========================================================
-// DeadTakeDamage - takedamage function called when a monster's
-// corpse is damaged.
-//=========================================================
+
+//=================================================================================//
+// DeadTakeDamage - takedamage function called when a monster's corpse is damaged.
+//=================================================================================//
 int CBaseMonster :: DeadTakeDamage( entvars_t *pevInflictor, entvars_t *pevAttacker, float flDamage, int bitsDamageType )
 {
 	Vector			vecDir;
@@ -1116,12 +631,11 @@ float CBaseMonster :: DamageForce( float damage )
 	return force;
 }
 
-//
-// RadiusDamage - this entity is exploding, or otherwise needs to inflict damage upon entities within a certain range.
-// 
-// only damage ents that can clearly be seen by the explosion!
 
-	
+//=====================================================================================================================//
+// RadiusDamage - this entity is exploding, or otherwise needs to inflict damage upon entities within a certain range.
+// Only damage ents that can clearly be seen by the explosion!
+//=====================================================================================================================//
 void RadiusDamage( Vector vecSrc, entvars_t *pevInflictor, entvars_t *pevAttacker, float flDamage, float flRadius, int iClassIgnore, int bitsDamageType )
 {
 	CBaseEntity *pEntity = NULL;
@@ -1195,7 +709,6 @@ void RadiusDamage( Vector vecSrc, entvars_t *pevInflictor, entvars_t *pevAttacke
 		}
 	}
 }
-
 
 void CBaseMonster :: RadiusDamage(entvars_t* pevInflictor, entvars_t*	pevAttacker, float flDamage, int iClassIgnore, int bitsDamageType )
 {
@@ -1382,31 +895,6 @@ void CBaseEntity::TraceAttack(entvars_t *pevAttacker, float flDamage, Vector vec
 }
 
 
-/*
-//=========================================================
-// TraceAttack
-//=========================================================
-void CBaseMonster::TraceAttack(entvars_t *pevAttacker, float flDamage, Vector vecDir, TraceResult *ptr, int bitsDamageType)
-{
-	Vector vecOrigin = ptr->vecEndPos - vecDir * 4;
-
-	ALERT ( at_console, "%d\n", ptr->iHitgroup );
-
-
-	if ( pev->takedamage )
-	{
-		AddMultiDamage( pevAttacker, this, flDamage, bitsDamageType );
-
-		int blood = BloodColor();
-		
-		if ( blood != DONT_BLEED )
-		{
-			SpawnBlood(vecOrigin, blood, flDamage);// a little surface blood.
-		}
-	}
-}
-*/
-
 //=========================================================
 // TraceAttack
 //=========================================================
@@ -1418,41 +906,46 @@ void CBaseMonster :: TraceAttack( entvars_t *pevAttacker, float flDamage, Vector
 
 		switch ( ptr->iHitgroup )
 		{
-		case HITGROUP_GENERIC:
+			case HITGROUP_GENERIC:
 			break;
-		case HITGROUP_HEAD:
-			flDamage *= gSkillData.monHead;
+
+			case HITGROUP_HEAD:
+				flDamage *= gSkillData.monHead;
 			break;
-		case HITGROUP_CHEST:
-			flDamage *= gSkillData.monChest;
+		
+			case HITGROUP_CHEST:
+				flDamage *= gSkillData.monChest;
 			break;
-		case HITGROUP_STOMACH:
-			flDamage *= gSkillData.monStomach;
+		
+			case HITGROUP_STOMACH:
+				flDamage *= gSkillData.monStomach;
 			break;
-		case HITGROUP_LEFTARM:
-		case HITGROUP_RIGHTARM:
-			flDamage *= gSkillData.monArm;
+		
+			case HITGROUP_LEFTARM:
+			case HITGROUP_RIGHTARM:
+				flDamage *= gSkillData.monArm;
 			break;
-		case HITGROUP_LEFTLEG:
-		case HITGROUP_RIGHTLEG:
-			flDamage *= gSkillData.monLeg;
+		
+			case HITGROUP_LEFTLEG:
+			case HITGROUP_RIGHTLEG:
+				flDamage *= gSkillData.monLeg;
 			break;
-		default:
-			break;
+		
+			default:
+				break;
 		}
 
-		SpawnBlood(ptr->vecEndPos, BloodColor(), flDamage);// a little surface blood.
+		SpawnBlood(ptr->vecEndPos, BloodColor(), flDamage);	// A little surface blood.
 		TraceBleed( flDamage, vecDir, ptr, bitsDamageType );
 		AddMultiDamage( pevAttacker, this, flDamage, bitsDamageType );
 	}
 }
 
+
 /*
 ================
-FireBullets
-
+//FireBullets
 Go to the trouble of combining multiple pellets into a single damage call.
-
 This version is used by Monsters.
 ================
 */
@@ -1583,10 +1076,8 @@ void CBaseEntity::FireBullets(ULONG cShots, Vector vecSrc, Vector vecDirShooting
 
 /*
 ================
-FireBullets
-
+//FireBullets
 Go to the trouble of combining multiple pellets into a single damage call.
-
 This version is used by Players, uses the random seed generator to sync client and server side shots.
 ================
 */
@@ -1676,6 +1167,7 @@ Vector CBaseEntity::FireBulletsPlayer ( ULONG cShots, Vector vecSrc, Vector vecD
 
 	return Vector( x * vecSpread.x, y * vecSpread.y, 0.0 );
 }
+
 
 // Fograin92: Exec when bullet hit water surface.
 // Thanks to: DJShark23Prog.
@@ -1771,8 +1263,7 @@ void CBaseEntity :: TraceBleed( float flDamage, Vector vecDir, TraceResult *ptr,
 	}
 }
 
-//=========================================================
-//=========================================================
+
 void CBaseMonster :: MakeDamageBloodDecal ( int cCount, float flNoise, TraceResult *ptr, const Vector &vecDir )
 {
 	// make blood decal on the wall! 
@@ -1823,3 +1314,483 @@ void CBaseMonster :: MakeDamageBloodDecal ( int cCount, float flNoise, TraceResu
 		}
 	}
 }
+
+
+
+//=================================================================//
+// GibMonster - create some gore and get rid of a monster's model.
+//=================================================================//
+void CBaseMonster :: GibMonster( void )
+{
+	TraceResult	tr;
+	BOOL		gibbed = FALSE;
+
+	EMIT_SOUND(ENT(pev), CHAN_WEAPON, "common/bodysplat.wav", 1, ATTN_NORM);
+
+	// Fograin92: TODO; Add lock here for gore lock.
+
+	// Fograin92: If it's a human
+	if( HasHumanGibs() )
+	{
+		CGib::SpawnHeadGib( pev );			// Fograin92: Spawn one head gib.
+		CGib::SpawnRandomGibs( pev, 4, 1 );	// Fograin92: Throw random human gibs.
+		gibbed = TRUE;
+	}
+	else if( HasAlienGibs() )
+	{
+		//CGib::SpawnHeadGib( pev );			// Fograin92: Spawn one alien head gib.
+		CGib::SpawnRandomGibs( pev, 4, 0 );		// Fograin92: Throw random alien gibs.
+		gibbed = TRUE;
+	}
+
+	// Fograin92: Remove monster model
+	if ( !IsPlayer() )
+	{
+		if ( gibbed )
+		{
+			// don't remove players!
+			SetThink ( &CBaseEntity::SUB_Remove );
+			pev->nextthink = gpGlobals->time;
+		}
+		else
+		{
+			FadeMonster();
+		}
+	}
+}
+
+
+
+
+//===============//
+// GIBS and GORE
+//===============//
+#define ALIEN_GIB_COUNT			4
+
+
+// Fograin92: Spawn gib chunk (BASIC)
+void CGib::Spawn( const char *szGibModel )
+{
+	pev->movetype = MOVETYPE_BOUNCE;
+	pev->friction = 0.55; // deading the bounce a bit
+	
+	// sometimes an entity inherits the edict from a former piece of glass,
+	// and will spawn using the same render FX or rendermode! bad!
+	pev->renderamt = 255;
+	pev->rendermode = kRenderNormal;
+	pev->renderfx = kRenderFxNone;
+	pev->solid = SOLID_SLIDEBOX;/// hopefully this will fix the VELOCITY TOO LOW crap
+	pev->classname = MAKE_STRING("gib");
+
+	SET_MODEL(ENT(pev), szGibModel);
+
+	m_bloodColor		= BLOOD_COLOR_RED;	// Fograin92: Set blood color (TODO: Check for model)
+	pev->health			= 200;	// Fograin92: Fix insta-blowing up gibs
+	pev->takedamage		= DAMAGE_YES;
+
+	// Fograin92: Temporary size
+	UTIL_SetSize(pev, Vector( 0, 0, 0), Vector(0, 0, 0));
+
+	pev->nextthink = gpGlobals->time + 4;
+	m_lifeTime = 25;
+	SetThink ( &CGib::WaitTillLand );
+	SetTouch ( &CGib::BounceGibTouch );
+
+	m_material = matNone;
+	m_cBloodDecals = 5;// how many blood decals this gib can place (1 per bounce until none remain). 
+}
+
+
+// Fograin92: Spawn head gib
+void CGib :: SpawnHeadGib( entvars_t *pevVictim )
+{
+	CGib *pGib = GetClassPtr( (CGib *)NULL );
+
+	// Fograin92: Check if this is human, alien or else
+	pGib->Spawn( "models/gibs/human_gib1.mdl" );	// Throw human head
+	pGib->pev->body = 0;
+
+
+	if ( pevVictim )
+	{
+		pGib->pev->origin = pevVictim->origin + pevVictim->view_ofs;
+		
+		edict_t		*pentPlayer = FIND_CLIENT_IN_PVS( pGib->edict() );
+		
+		if ( RANDOM_LONG ( 0, 100 ) <= 5 && pentPlayer )
+		{
+			// 5% chance head will be thrown at player's face.
+			entvars_t	*pevPlayer;
+
+			pevPlayer = VARS( pentPlayer );
+			pGib->pev->velocity = ( ( pevPlayer->origin + pevPlayer->view_ofs ) - pGib->pev->origin ).Normalize() * 300;
+			pGib->pev->velocity.z += 100;
+		}
+		else
+		{
+			pGib->pev->velocity = Vector (RANDOM_FLOAT(-100,100), RANDOM_FLOAT(-100,100), RANDOM_FLOAT(200,300));
+		}
+
+
+		pGib->pev->avelocity.x = RANDOM_FLOAT ( 100, 200 );
+		pGib->pev->avelocity.y = RANDOM_FLOAT ( 100, 300 );
+
+		// copy owner's blood color
+		pGib->m_bloodColor = (CBaseEntity::Instance(pevVictim))->BloodColor();
+	
+		if ( pevVictim->health > -50)
+		{
+			pGib->pev->velocity = pGib->pev->velocity * 0.7;
+		}
+		else if ( pevVictim->health > -200)
+		{
+			pGib->pev->velocity = pGib->pev->velocity * 2;
+		}
+		else
+		{
+			pGib->pev->velocity = pGib->pev->velocity * 4;
+		}
+	}
+	pGib->LimitVelocity();
+}
+
+
+// Fograin92: Spawn random gibs (NOT HEAD)
+void CGib :: SpawnRandomGibs( entvars_t *pevVictim, int cGibs, int human )
+{
+	int cSplat;
+
+	for ( cSplat = 0 ; cSplat < cGibs ; cSplat++ )
+	{
+		CGib *pGib = GetClassPtr( (CGib *)NULL );
+
+		if ( human )
+		{
+			// Human pieces
+			// Fograin92: Changed model dir and names
+			int iRandom = RANDOM_LONG(2, 11);
+
+			switch( iRandom)
+			{
+				case 2:		pGib->Spawn( "models/gibs/human_gib2.mdl" );	break;
+				case 3:		pGib->Spawn( "models/gibs/human_gib3.mdl" );	break;
+				case 4:		pGib->Spawn( "models/gibs/human_gib4.mdl" );	break;
+				case 5:		pGib->Spawn( "models/gibs/human_gib5.mdl" );	break;
+				case 6:		pGib->Spawn( "models/gibs/human_gib6.mdl" );	break;
+				case 7:		pGib->Spawn( "models/gibs/human_gib7.mdl" );	break;
+				case 8:		pGib->Spawn( "models/gibs/human_gib8.mdl" );	break;
+				case 9:		pGib->Spawn( "models/gibs/human_gib9.mdl" );	break;
+				case 10:	pGib->Spawn( "models/gibs/human_gib10.mdl" );	break;
+				case 11:	pGib->Spawn( "models/gibs/human_gib11.mdl" );	break;
+
+				default:	pGib->Spawn( "models/gibs/human_gib3.mdl" );	break;
+			}
+
+			pGib->pev->body = 0;
+		}
+		else
+		{
+			// aliens
+			pGib->Spawn( "models/agibs.mdl" );
+			pGib->pev->body = RANDOM_LONG(0,ALIEN_GIB_COUNT-1);
+		}
+		
+
+		if ( pevVictim )
+		{
+			// spawn the gib somewhere in the monster's bounding volume
+			pGib->pev->origin.x = pevVictim->absmin.x + pevVictim->size.x * (RANDOM_FLOAT ( 0 , 1 ) );
+			pGib->pev->origin.y = pevVictim->absmin.y + pevVictim->size.y * (RANDOM_FLOAT ( 0 , 1 ) );
+			pGib->pev->origin.z = pevVictim->absmin.z + pevVictim->size.z * (RANDOM_FLOAT ( 0 , 1 ) ) + 1;	// absmin.z is in the floor because the engine subtracts 1 to enlarge the box
+
+			// make the gib fly away from the attack vector
+			pGib->pev->velocity = g_vecAttackDir * -1;
+
+			// mix in some noise
+			pGib->pev->velocity.x += RANDOM_FLOAT ( -0.25, 0.25 );
+			pGib->pev->velocity.y += RANDOM_FLOAT ( -0.25, 0.25 );
+			pGib->pev->velocity.z += RANDOM_FLOAT ( 0.00, 0.70 );	// Fograin92
+
+			pGib->pev->velocity = pGib->pev->velocity * RANDOM_FLOAT ( 300, 400 );
+
+			pGib->pev->avelocity.x = RANDOM_FLOAT ( 100, 200 );
+			pGib->pev->avelocity.y = RANDOM_FLOAT ( 100, 300 );
+
+			// copy owner's blood color
+			pGib->m_bloodColor = (CBaseEntity::Instance(pevVictim))->BloodColor();
+			
+			if ( pevVictim->health > -50)
+			{
+				pGib->pev->velocity = pGib->pev->velocity * 0.7;
+			}
+			else if ( pevVictim->health > -200)
+			{
+				pGib->pev->velocity = pGib->pev->velocity * 2;
+			}
+			else
+			{
+				pGib->pev->velocity = pGib->pev->velocity * 4;
+			}
+
+		}
+		pGib->LimitVelocity();
+	}
+}
+
+
+// Fograin92: Should we use this? :)
+void CGib :: SpawnStickyGibs( entvars_t *pevVictim, Vector vecOrigin, int cGibs )
+{
+	int i;
+
+	for ( i = 0 ; i < cGibs ; i++ )
+	{
+		CGib *pGib = GetClassPtr( (CGib *)NULL );
+
+		pGib->Spawn( "models/stickygib.mdl" );
+		pGib->pev->body = RANDOM_LONG(0,2);
+
+		if ( pevVictim )
+		{
+			pGib->pev->origin.x = vecOrigin.x + RANDOM_FLOAT( -3, 3 );
+			pGib->pev->origin.y = vecOrigin.y + RANDOM_FLOAT( -3, 3 );
+			pGib->pev->origin.z = vecOrigin.z + RANDOM_FLOAT( -3, 3 );
+
+			/*
+			pGib->pev->origin.x = pevVictim->absmin.x + pevVictim->size.x * (RANDOM_FLOAT ( 0 , 1 ) );
+			pGib->pev->origin.y = pevVictim->absmin.y + pevVictim->size.y * (RANDOM_FLOAT ( 0 , 1 ) );
+			pGib->pev->origin.z = pevVictim->absmin.z + pevVictim->size.z * (RANDOM_FLOAT ( 0 , 1 ) );
+			*/
+
+			// make the gib fly away from the attack vector
+			pGib->pev->velocity = g_vecAttackDir * -1;
+
+			// mix in some noise
+			pGib->pev->velocity.x += RANDOM_FLOAT ( -0.15, 0.15 );
+			pGib->pev->velocity.y += RANDOM_FLOAT ( -0.15, 0.15 );
+			pGib->pev->velocity.z += RANDOM_FLOAT ( -0.15, 0.15 );
+
+			pGib->pev->velocity = pGib->pev->velocity * 900;
+
+			pGib->pev->avelocity.x = RANDOM_FLOAT ( 250, 400 );
+			pGib->pev->avelocity.y = RANDOM_FLOAT ( 250, 400 );
+
+			// copy owner's blood color
+			pGib->m_bloodColor = (CBaseEntity::Instance(pevVictim))->BloodColor();
+		
+			if ( pevVictim->health > -50)
+			{
+				pGib->pev->velocity = pGib->pev->velocity * 0.7;
+			}
+			else if ( pevVictim->health > -200)
+			{
+				pGib->pev->velocity = pGib->pev->velocity * 2;
+			}
+			else
+			{
+				pGib->pev->velocity = pGib->pev->velocity * 4;
+			}
+
+			
+			pGib->pev->movetype = MOVETYPE_TOSS;
+			pGib->pev->solid = SOLID_BBOX;
+			UTIL_SetSize ( pGib->pev, Vector ( 0, 0 ,0 ), Vector ( 0, 0, 0 ) );
+			pGib->SetTouch ( &CGib::StickyGibTouch );
+			pGib->SetThink (NULL);
+		}
+		pGib->LimitVelocity();
+	}
+}
+
+
+// Sticky gib puts blood on the wall and stays put. 
+void CGib :: StickyGibTouch ( CBaseEntity *pOther )
+{
+	Vector	vecSpot;
+	TraceResult	tr;
+	
+	SetThink ( &CBaseEntity::SUB_Remove );
+	pev->nextthink = gpGlobals->time + 10;
+
+	if ( !FClassnameIs( pOther->pev, "worldspawn" ) )
+	{
+		pev->nextthink = gpGlobals->time;
+		return;
+	}
+
+	UTIL_TraceLine ( pev->origin, pev->origin + pev->velocity * 32,  ignore_monsters, ENT(pev), & tr);
+
+	UTIL_BloodDecalTrace( &tr, m_bloodColor );
+
+	pev->velocity = tr.vecPlaneNormal * -1;
+	pev->angles = UTIL_VecToAngles ( pev->velocity );
+	pev->velocity = g_vecZero; 
+	pev->avelocity = g_vecZero;
+	pev->movetype = MOVETYPE_NONE;
+}
+
+
+// HACKHACK -- The gib velocity equations don't work
+void CGib :: LimitVelocity( void )
+{
+	float length = pev->velocity.Length();
+
+	// ceiling at 1500.  The gib velocity equation is not bounded properly.  Rather than tune it
+	// in 3 separate places again, I'll just limit it here.
+	if ( length > 1500.0 )
+		pev->velocity = pev->velocity.Normalize() * 1500;		// This should really be sv_maxvelocity * 0.75 or something
+}
+
+
+//=========================================================
+// WaitTillLand - in order to emit their meaty scent from
+// the proper location, gibs should wait until they stop 
+// bouncing to emit their scent. That's what this function
+// does.
+//=========================================================
+void CGib :: WaitTillLand ( void )
+{
+	if (!IsInWorld())
+	{
+		UTIL_Remove( this );
+		return;
+	}
+
+	if ( pev->velocity == g_vecZero )
+	{
+		SetThink (&CBaseEntity::SUB_StartFadeOut);
+		pev->nextthink = gpGlobals->time + m_lifeTime;
+
+		// If you bleed, you stink!
+		if ( m_bloodColor != DONT_BLEED )
+		{
+			// ok, start stinkin!
+			CSoundEnt::InsertSound ( bits_SOUND_MEAT, pev->origin, 384, 25 );
+		}
+
+
+
+		// Fograin92: Gib bounced off a ground or floor, re-enable collision
+		pev->solid = SOLID_SLIDEBOX;
+		//pGib->pev->solid = SOLID_BBOX;
+
+		studiohdr_t *pstudiohdr;
+		pstudiohdr = (studiohdr_t *)GET_MODEL_PTR( edict() );
+
+		if( pstudiohdr == NULL )
+		{
+			UTIL_SetSize(pev, Vector( 0, 0, 0), Vector(0, 0, 0));
+		}
+		else
+		{
+			mstudioseqdesc_t *pseqdesc = (mstudioseqdesc_t *)((byte *)pstudiohdr + pstudiohdr->seqindex);
+			UTIL_SetSize( pev, pseqdesc[pev->sequence].bbmin, pseqdesc[pev->sequence].bbmax );
+		}
+
+	}
+	else
+	{
+		// wait and check again in another half second.
+		pev->nextthink = gpGlobals->time + 0.01;
+	}
+}
+
+//
+// Gib bounces on the ground or wall, sponges some blood down, too!
+//
+void CGib :: BounceGibTouch ( CBaseEntity *pOther )
+{
+	Vector	vecSpot;
+	TraceResult	tr;
+
+	//if ( RANDOM_LONG(0,1) )
+	//	return;// don't bleed everytime
+
+	if (pev->flags & FL_ONGROUND)
+	{
+		pev->velocity = pev->velocity * 0.9;
+		pev->angles.x = 0;
+		pev->angles.z = 0;
+		pev->avelocity.x = 0;
+		pev->avelocity.z = 0;
+	}
+	else
+	{
+		if ( g_Language != LANGUAGE_GERMAN && m_cBloodDecals > 0 && m_bloodColor != DONT_BLEED )
+		{
+			vecSpot = pev->origin + Vector ( 0 , 0 , 8 );//move up a bit, and trace down.
+			UTIL_TraceLine ( vecSpot, vecSpot + Vector ( 0, 0, -24 ),  ignore_monsters, ENT(pev), & tr);
+
+			UTIL_BloodDecalTrace( &tr, m_bloodColor );
+
+			m_cBloodDecals--; 
+		}
+
+		if ( m_material != matNone && RANDOM_LONG(0,2) == 0 )
+		{
+			float volume;
+			float zvel = fabs(pev->velocity.z);
+		
+			volume = 0.8 * min(1.0, ((float)zvel) / 450.0);
+
+			//CBreakable::MaterialSoundRandom( edict(), (ePropMaterial)m_material, volume );
+		}
+	}
+}
+
+
+// Fograin92: Exec when gib is shoot at
+void CGib::TraceAttack( entvars_t *pevAttacker, float flDamage, Vector vecDir, TraceResult *ptr, int bitsDamageType)
+{
+	// Fograin92: Set collision box to 0
+	UTIL_SetSize(pev, Vector( 0, 0, 0), Vector(0, 0, 0));
+	SetThink ( &CGib::WaitTillLand );	// Fograin92: Calculate bounce again
+	pev->nextthink = gpGlobals->time + 0.01;
+
+
+	Vector	vecSpot;
+	TraceResult	tr;
+
+	ALERT( at_console, "^2HLU -> ^3Random_Gib ^2-> Trace attack.\n");
+
+	// Fograin92: Blood particles
+	UTIL_BloodDrips( pev->origin, pev->velocity, m_bloodColor, 255 );
+
+	// Fograin92: Calculate blood decal position
+	vecSpot = pev->origin + Vector ( 0 , 0 , 8 ); // Move up a bit, and trace down.
+	UTIL_TraceLine ( vecSpot, vecSpot + Vector ( 0, 0, -24 ),  ignore_monsters, ENT(pev), &tr);
+	UTIL_BloodDecalTrace( &tr, m_bloodColor );	// Paint blood decal
+
+	// Fograin92: Move the gib
+	pev->velocity = vecDir * 500;
+
+	// Fograin92: Spin dat shit
+	pev->avelocity.x = RANDOM_LONG( 200, 600 );
+	pev->avelocity.y = RANDOM_LONG( 200, 600 );
+	pev->avelocity.z = RANDOM_LONG( 100, 200 );
+
+	// Fograin92: Play flesh impact sound
+	int pitch = 95 + RANDOM_LONG(0,9);
+	EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, pSoundsHitFlesh[ RANDOM_LONG(0, ARRAYSIZE(pSoundsHitFlesh)-1) ], 1.0, ATTN_NORM, 0, pitch );
+
+	CBaseEntity::TraceAttack( pevAttacker, flDamage, vecDir, ptr, bitsDamageType);
+}
+
+
+// Fograin92: Let the gib take the damage
+int CGib::TakeDamage( entvars_t* pevInflictor, entvars_t* pevAttacker, float flDamage, int bitsDamageType)
+{
+	// TODO: Blood overlays, friendly NPCs reacting.
+	return CBaseEntity::TakeDamage(  pevInflictor, pevAttacker, flDamage, bitsDamageType );
+}
+
+
+void CGib::Killed( entvars_t *pevAttacker, int iGib )
+{
+	int pitch = 95 + RANDOM_LONG(0,9);
+	EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, pSoundsBustFlesh[ RANDOM_LONG(0, ARRAYSIZE(pSoundsBustFlesh)-1) ], 1.0, ATTN_NORM, 0, pitch );
+
+	SetUse( NULL );	
+	CBaseEntity::Killed( pevAttacker, iGib );
+}
+
