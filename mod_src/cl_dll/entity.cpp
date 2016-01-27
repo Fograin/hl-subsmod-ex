@@ -554,7 +554,7 @@ void MuzzleFlashLight(float *origin)
 	muzzleFlash->origin.x = origin[0];
 	muzzleFlash->origin.y = origin[1];
 	muzzleFlash->origin.z = origin[2];
-	muzzleFlash->radius = 128;
+	muzzleFlash->radius = 256;
 	muzzleFlash->color.r = 180;
 	muzzleFlash->color.g = 160;
 	muzzleFlash->color.b = 120;

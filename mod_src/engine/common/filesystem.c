@@ -104,6 +104,7 @@ char		fs_rootdir[MAX_SYSPATH];	// engine root directory
 char		fs_basedir[MAX_SYSPATH];	// base directory of game
 char		fs_falldir[MAX_SYSPATH];	// game falling directory
 char		fs_falldirB[MAX_SYSPATH];	// Fograin92: Used for mounting third game
+char		fs_falldirC[MAX_SYSPATH];	// Fograin92
 char		fs_gamedir[MAX_SYSPATH];	// game current directory
 char		gs_basedir[MAX_SYSPATH];	// initial dir before loading gameinfo.txt (used for compilers too)
 qboolean		fs_ext_path = false;	// attempt to read\write from ./ or ../ pathes 
@@ -913,6 +914,8 @@ void FS_Rescan( void )
 	// Fograin92: Scan second falldir (aka mount third game)
 	if( Q_stricmp( GI->basedir, GI->falldirB ) && Q_stricmp( GI->gamedir, GI->falldirB ))
 		FS_AddGameHierarchy( GI->falldirB, 0 );
+	if( Q_stricmp( GI->basedir, GI->falldirC ) && Q_stricmp( GI->gamedir, GI->falldirC ))
+		FS_AddGameHierarchy( GI->falldirC, 0 );
 
 
 	FS_AddGameHierarchy( GI->gamedir, FS_GAMEDIR_PATH );
@@ -997,6 +1000,9 @@ static qboolean FS_WriteGameInfo( const char *filepath, gameinfo_t *GameInfo )
 	// Fograin92: Used for third game mount
 	if( Q_strlen( GameInfo->falldirB ))
 		FS_Printf( f, "fallback_dirB\t\"%s\"\n", GameInfo->falldirB );
+
+	if( Q_strlen( GameInfo->falldirC ))
+		FS_Printf( f, "fallback_dirC\t\"%s\"\n", GameInfo->falldirC );
 
 	if( Q_strlen( GameInfo->title ))
 		FS_Printf( f, "title\t\t\"%s\"\n", GameInfo->title );
@@ -1100,6 +1106,7 @@ void FS_CreateDefaultGameInfo( const char *filename )
 	defGI.version = 1.0;
 	defGI.falldir[0] = '\0';
 	defGI.falldirB[0] = '\0';	// Fograin92
+	defGI.falldirC[0] = '\0';	// Fograin92
 
 	Q_strncpy( defGI.title, "New Game", sizeof( defGI.title ));
 	Q_strncpy( defGI.gamedir, gs_basedir, sizeof( defGI.gamedir ));
@@ -1142,6 +1149,7 @@ static qboolean FS_ParseLiblistGam( const char *filename, const char *gamedir, g
 	GameInfo->version = 1.0f;
 	GameInfo->falldir[0] = '\0';
 	GameInfo->falldirB[0] = '\0';	// Fograin92
+	GameInfo->falldirC[0] = '\0';	// Fograin92
 	
 	Q_strncpy( GameInfo->title, "New Game", sizeof( GameInfo->title ));
 	Q_strncpy( GameInfo->gamedir, gamedir, sizeof( GameInfo->gamedir ));
@@ -1183,6 +1191,11 @@ static qboolean FS_ParseLiblistGam( const char *filename, const char *gamedir, g
 		{
 			pfile = COM_ParseFile( pfile, GameInfo->falldirB );
 		}
+		if( !Q_stricmp( token, "fallback_dirC" ))
+		{
+			pfile = COM_ParseFile( pfile, GameInfo->falldirC );
+		}
+
 		else if( !Q_stricmp( token, "startmap" ))
 		{
 			pfile = COM_ParseFile( pfile, GameInfo->startmap );
@@ -1269,6 +1282,9 @@ static qboolean FS_ParseLiblistGam( const char *filename, const char *gamedir, g
 	if( !FS_SysFolderExists( va( "%s\\%s", host.rootdir, GameInfo->falldirB )))
 		GameInfo->falldirB[0] = '\0';
 
+	if( !FS_SysFolderExists( va( "%s\\%s", host.rootdir, GameInfo->falldirC )))
+		GameInfo->falldirC[0] = '\0';
+
 	Mem_Free( afile );
 
 	return true;
@@ -1329,6 +1345,7 @@ static qboolean FS_ParseGameInfo( const char *gamedir, gameinfo_t *GameInfo )
 	GameInfo->version = 1.0f;
 	GameInfo->falldir[0] = '\0';
 	GameInfo->falldirB[0] = '\0';	// Fograin92
+	GameInfo->falldirC[0] = '\0';	// Fograin92
 	
 	Q_strncpy( GameInfo->title, "New Game", sizeof( GameInfo->title ));
 	Q_strncpy( GameInfo->sp_entity, "info_player_start", sizeof( GameInfo->sp_entity ));
@@ -1369,6 +1386,12 @@ static qboolean FS_ParseGameInfo( const char *gamedir, gameinfo_t *GameInfo )
 			pfile = COM_ParseFile( pfile, fs_path );
 			if( Q_stricmp( fs_path, GameInfo->basedir ) || Q_stricmp( fs_path, GameInfo->falldirB ))
 				Q_strncpy( GameInfo->falldirB, fs_path, sizeof( GameInfo->falldirB ));
+		}
+		else if( !Q_stricmp( token, "fallback_dirC" ))
+		{
+			pfile = COM_ParseFile( pfile, fs_path );
+			if( Q_stricmp( fs_path, GameInfo->basedir ) || Q_stricmp( fs_path, GameInfo->falldirC ))
+				Q_strncpy( GameInfo->falldirC, fs_path, sizeof( GameInfo->falldirC ));
 		}
 		else if( !Q_stricmp( token, "gamedir" ))
 		{
@@ -1519,6 +1542,8 @@ static qboolean FS_ParseGameInfo( const char *gamedir, gameinfo_t *GameInfo )
 	// Fograin92: Second falldir
 	if( !FS_SysFolderExists( va( "%s\\%s", host.rootdir, GameInfo->falldirB )))
 		GameInfo->falldirB[0] = '\0';
+	if( !FS_SysFolderExists( va( "%s\\%s", host.rootdir, GameInfo->falldirC )))
+		GameInfo->falldirC[0] = '\0';
 
 	if( afile != NULL )
 		Mem_Free( afile );

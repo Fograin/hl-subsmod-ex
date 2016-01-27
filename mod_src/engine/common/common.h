@@ -161,6 +161,7 @@ typedef struct gameinfo_s
 	char		gamedir[64];	// game directory (can be match with basedir, used as game dir and as write path)
 	char		falldir[64];	// used as second basedir
 	char		falldirB[64];	// Fograin92: Used as a third basedir
+	char		falldirC[64];	// Fograin92
 	char		startmap[64];	// map to start singleplayer game
 	char		trainmap[64];	// map to start hazard course (if specified)
 	char		title[64];	// Game Main Title

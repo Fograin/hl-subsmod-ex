@@ -285,12 +285,29 @@ struct particle_texture_cache
 // Fograin92: Particle IDs
 enum ParticleIDs
 {
+	// Gore FX
 	iImpactBloodRed = 1,	// Fograin92: Hit impact / Red blood particles
 	iImpactBloodRedLOW,		// Fograin92: Hit impact / Red blood particles (LOW FX)
 	iImpactBloodYellow,		// Fograin92: Hit impact / Yellow blood particles
 	iImpactBloodYellowLOW,	// Fograin92: Hit impact / Yellow blood particles (LOW FX)
 	iImpactWater,			// Fograin92: Water hit impact / splash
-	iImpactWaterLOW			// Fograin92: Water hit impact / splash (LOW FX)
+	iImpactWaterLOW,		// Fograin92: Water hit impact / splash (LOW FX)
+
+	// Explosions FX
+	iExplosionDefault,		// Fograin92: Default explosion (FULL FX)
+
+	// BSP Impact
+	iImpactBSPconcrete,
+	iImpactBSPmetal,
+	iImpactBSPdirt,
+	iImpactBSPvent,
+	iImpactBSPgrate,
+	iImpactBSPtile,
+	iImpactBSPslosh,
+	iImpactBSPwood,
+	iImpactBSPcomputer,
+	iImpactBSPglass,
+	iImpactBSPflesh
 };
 
 
@@ -315,6 +332,27 @@ const char blood_yellow_drips[MAX_PARTICLE_PATH]		= "materials/fx/blood_yellow_d
 const char water_impact_core[MAX_PARTICLE_PATH]		= "materials/fx/water_splash.tga";
 const char water_impact_drops[MAX_PARTICLE_PATH]	= "materials/fx/water_drop.tga";
 const char water_impact_wave[MAX_PARTICLE_PATH]		= "materials/fx/water_ripples01.tga";
+
+// Fograin92: Default explosion
+const char explo01[MAX_PARTICLE_PATH]		= "materials/fx/explo01.tga";
+const char shockwave[MAX_PARTICLE_PATH]		= "materials/fx/shockwave.tga";
+const char smoke1[MAX_PARTICLE_PATH]		= "materials/fx/smoke1.tga";
+const char smoke09[MAX_PARTICLE_PATH]		= "materials/fx/smoke09.tga";
+const char smoke10[MAX_PARTICLE_PATH]		= "materials/fx/smoke10.tga";
+
+// Fograin92: BSP Impact
+const char particle_black[MAX_PARTICLE_PATH]	= "materials/fx/particle_black.tga";
+const char particle_blue[MAX_PARTICLE_PATH]		= "materials/fx/particle_blue.tga";
+const char particle_brown[MAX_PARTICLE_PATH]	= "materials/fx/particle_brown.tga";
+const char particle_drop[MAX_PARTICLE_PATH]		= "materials/fx/particle_drop.tga";
+const char particle_green[MAX_PARTICLE_PATH]	= "materials/fx/particle_green.tga";
+const char particle_grey[MAX_PARTICLE_PATH]		= "materials/fx/particle_grey.tga";
+const char particle_red[MAX_PARTICLE_PATH]		= "materials/fx/particle_red.tga";
+const char particle_white[MAX_PARTICLE_PATH]	= "materials/fx/particle_white.tga";
+const char particle_yellow[MAX_PARTICLE_PATH]	= "materials/fx/particle_yellow.tga";
+
+const char fleck_cement1[MAX_PARTICLE_PATH]		= "materials/fx/fleck_cement1.tga";
+const char particle_wood[MAX_PARTICLE_PATH]		= "materials/fx/particle_wood.tga";
 
 
 

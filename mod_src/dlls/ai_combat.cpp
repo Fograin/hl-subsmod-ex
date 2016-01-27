@@ -18,6 +18,10 @@
 #include "weapons.h"
 #include "func_break.h"
 #include "props.h"	// Fograin92
+#include "player.h" // Fograin92
+
+#include "particle_defs.h"	// BG Particle system
+extern int gmsgParticles;	// BG Particle system
 
 
 extern DLL_GLOBAL Vector		g_vecAttackDir;
@@ -1116,6 +1120,97 @@ Vector CBaseEntity::FireBulletsPlayer ( ULONG cShots, Vector vecSrc, Vector vecD
 		{
 			CBaseEntity *pEntity = CBaseEntity::Instance(tr.pHit);
 
+			// Fograin92: Check if we hit BSP wall (Based on ARRANGEMENT MODE code)
+			if ( pEntity->IsBSPModel() )
+			{
+				char chTextureType;
+				char szbuffer[64];
+				const char *pTextureName;
+				float rgfl1[3];
+				float rgfl2[3];
+				bool b_CanMakeParticles = true;
+				chTextureType = 0;
+
+				// Body hit
+				if (pEntity && pEntity->Classify() != CLASS_NONE && pEntity->Classify() != CLASS_MACHINE)
+					chTextureType = CHAR_TEX_FLESH;
+				else
+				{
+					vecSrc.CopyToArray(rgfl1);
+					vecEnd.CopyToArray(rgfl2);
+
+					if (pEntity)
+						pTextureName = TRACE_TEXTURE( ENT(pEntity->pev), rgfl1, rgfl2 );
+					else
+						pTextureName = TRACE_TEXTURE( ENT(0), rgfl1, rgfl2 );
+					
+					if ( pTextureName )
+					{
+						if (*pTextureName == '-' || *pTextureName == '+')
+							pTextureName += 2;
+
+						if (*pTextureName == '{' || *pTextureName == '!' || *pTextureName == '~' || *pTextureName == ' ')
+							pTextureName++;
+						strcpy(szbuffer, pTextureName);
+						szbuffer[CBTEXTURENAMEMAX - 1] = 0;
+						chTextureType = TEXTURETYPE_Find(szbuffer);	
+					
+						if (*pTextureName == 'null')
+						{
+							b_CanMakeParticles = FALSE;
+						}
+					}
+				}
+
+				Vector vEndpos = tr.vecEndPos;
+
+				// Fograin92: Only when particles are enabled
+				if( (CVAR_GET_FLOAT("sm_particles") > 0) && (b_CanMakeParticles) )
+				{
+					MESSAGE_BEGIN(MSG_ALL, gmsgParticles);
+						WRITE_SHORT(0);
+						WRITE_BYTE(0);
+						WRITE_COORD( tr.vecEndPos.x );
+						WRITE_COORD( tr.vecEndPos.y );
+						WRITE_COORD( tr.vecEndPos.z );
+						WRITE_COORD( 0 );
+						WRITE_COORD( 0 );
+						WRITE_COORD( 0 );
+
+
+						if (chTextureType == CHAR_TEX_CONCRETE)		
+							WRITE_SHORT(iImpactBSPconcrete);
+						else if (chTextureType == CHAR_TEX_METAL)
+							WRITE_SHORT(iImpactBSPmetal);
+						else if (chTextureType == CHAR_TEX_DIRT)
+							WRITE_SHORT(iImpactBSPdirt);
+						else if (chTextureType == CHAR_TEX_VENT)
+							WRITE_SHORT(iImpactBSPvent);
+						else if (chTextureType == CHAR_TEX_GRATE)
+							WRITE_SHORT(iImpactBSPgrate);
+						else if (chTextureType == CHAR_TEX_TILE)
+							WRITE_SHORT(iImpactBSPtile);
+						else if (chTextureType == CHAR_TEX_SLOSH)
+							WRITE_SHORT(iImpactBSPslosh);
+						else if (chTextureType == CHAR_TEX_WOOD)
+							WRITE_SHORT(iImpactBSPwood);
+						else if (chTextureType == CHAR_TEX_COMPUTER)
+							WRITE_SHORT(iImpactBSPcomputer);
+						else if (chTextureType == CHAR_TEX_GLASS)
+							WRITE_SHORT(iImpactBSPglass);
+						else if (chTextureType == CHAR_TEX_FLESH)
+							WRITE_SHORT(iImpactBSPflesh);
+						else
+						{
+							// Default impact FX
+							WRITE_SHORT(iImpactBSPconcrete);
+						}
+
+					MESSAGE_END();
+				}
+			} // END pEntity->IsBSPModel()
+
+
 			if ( iDamage )
 			{
 				pEntity->TraceAttack(pevAttacker, iDamage, vecDir, &tr, DMG_BULLET | ((iDamage > 16) ? DMG_ALWAYSGIB : DMG_NEVERGIB) );
@@ -1668,11 +1763,8 @@ void CGib :: WaitTillLand ( void )
 			CSoundEnt::InsertSound ( bits_SOUND_MEAT, pev->origin, 384, 25 );
 		}
 
-
-
 		// Fograin92: Gib bounced off a ground or floor, re-enable collision
 		pev->solid = SOLID_SLIDEBOX;
-		//pGib->pev->solid = SOLID_BBOX;
 
 		studiohdr_t *pstudiohdr;
 		pstudiohdr = (studiohdr_t *)GET_MODEL_PTR( edict() );

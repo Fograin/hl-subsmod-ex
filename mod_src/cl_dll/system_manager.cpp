@@ -183,6 +183,35 @@ void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_syste
 			CreateMappedPS("particles/water/water_impact_drops.txt", pSystem);
 			CreateMappedPS("particles/water/water_impact_wave.txt", pSystem);
 		break;
+
+		// Fograin92: Default explosion (FULL FX)
+		case iExplosionDefault:
+			{
+			CreateMappedPS("particles/exp/explo1_firedust.txt", pSystem);
+			CreateMappedPS("particles/exp/explo1_fire.txt", pSystem);
+			CreateMappedPS("particles/exp/explo1_shockwave.txt", pSystem);
+
+			// Create dynamic light
+			dlight_t *dl = gEngfuncs.pEfxAPI->CL_AllocDlight (0);
+			VectorCopy (pSystem->vPosition, dl->origin);
+			dl->radius = 350;//500
+			dl->color.r = 245;//254;
+			dl->color.g = 216;//160;
+			dl->color.b = 200;//24;
+			dl->decay = 0.2;
+			dl->die = (gEngfuncs.GetClientTime() + 0.2);
+			}
+		break;
+
+		// Fograin92: BSP Impact, Concrete
+		case iImpactBSPconcrete:
+			CreateMappedPS("particles/impact/e_impacts_chunks.txt", pSystem);
+			CreateMappedPS("particles/impact/e_impacts_smoke.txt", pSystem);
+			//CreateMappedPS("particles/engine/e_impacts_debris.txt", pSystem);
+		break;
+
+
+
 	}
 
 	if(pSystem == NULL)
@@ -192,75 +221,7 @@ void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_syste
 
 /*
 // REFERENCE Purposes
-	// cannons, mortar, barrels exploding, etc
-	if(iPreset == iDefaultExplosion) 
-	{
-		// explositions are made up of 5 ps
-		CreateMappedPS("particles/explo1_darksmoke.txt", pSystem);
-		CreateMappedPS("particles/explo1_grounddust.txt", pSystem);
-		CreateMappedPS("particles/explo1_firedust.txt", pSystem);
-		CreateMappedPS("particles/explo1_fire.txt", pSystem);
-		CreateMappedPS("particles/explo1_shockwave.txt", pSystem);
-		CreateMappedPS("particles/explo1_tong.txt", pSystem);
 
-		CreateMappedPS("particles/explo1_glow.txt", pSystem);
-		CreateMappedPS("particles/explo1_ground_wave.txt", pSystem);
-		CreateMappedPS("particles/explo1_sparks.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-
-		// play a sound as well
-		gEngfuncs.pEventAPI->EV_PlaySound( 0, pSystem->vPosition, 0, "sound\\weapons\\explode_dist.wav", 1.0, ATTN_NONE, 0, PITCH_NORM );
-
-		// create dynamic light
-		
-		dlight_t *dl = gEngfuncs.pEfxAPI->CL_AllocDlight (0);
-		VectorCopy (pSystem->vPosition, dl->origin);
-		dl->radius = 200;//500
-		dl->color.r = 245;//254;
-		dl->color.g = 216;//160;
-		dl->color.b = 200;//24;
-		dl->decay = 0.2;
-		dl->die = (gEngfuncs.GetClientTime() + 0.1);
-		
-		gEngfuncs.Con_Printf("iPreset == iDefaultExplosion\n");
-	}
-	
-	// Capture Smoke Brits
-	if(iPreset == iDefaultRedSmoke) 
-	{
-				gEngfuncs.Con_Printf("iPreset == iDefaultRedSmoke\n");
-
-		CreateMappedPS("particles/capture_red.txt", pSystem);
-	}
-
-	// Capture Smoke Americans
-	if(iPreset == iDefaultBlueSmoke) 
-	{
-		CreateMappedPS("particles/capture_blue.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
-	// Cannon Fire Smoke
-	if(iPreset == iDefaultCannonSmoke) 
-	{
-		CreateBarrelPS(pSystem->vPosition, pSystem->vDirection);
-		CreateMappedPS("particles/explo1_darksmoke.txt", pSystem);
-		CreateMappedPS("particles/explo1_grounddust.txt", pSystem);
-
-		gEngfuncs.pEventAPI->EV_PlaySound( 0, pSystem->vPosition, 0, "sound\\weapons\\cannon\\cannon_fire.wav", 1.0, ATTN_NONE, 0, PITCH_NORM );
-		
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
 	
 	if(iPreset == iDefaultFire) 
 	{
@@ -280,20 +241,6 @@ void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_syste
 //		gEngfuncs.Con_Printf("iPreset == iDefaultDrop\n");
 
 		CreateMappedPS("particles/engine/e_drop.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
-
-	if(iPreset == iDefaultWallSmoke) 
-	{
-//		gEngfuncs.Con_Printf("iPreset == iDefaultWallSmoke\n");
-
-		CreateMappedPS("particles/engine/e_impacts_chunks.txt", pSystem);
-		CreateMappedPS("particles/engine/e_impacts_smoke.txt", pSystem);
-		CreateMappedPS("particles/engine/e_impacts_debris.txt", pSystem);
 
 		if(pSystem == NULL) 
 		{
@@ -986,6 +933,27 @@ void CParticleSystemManager::PrecacheTextures( void )
 	LoadTGA(NULL, const_cast<char*>(water_impact_core));
 	LoadTGA(NULL, const_cast<char*>(water_impact_drops));
 	LoadTGA(NULL, const_cast<char*>(water_impact_wave));
+
+	// Fograin92: Default explosion
+	LoadTGA(NULL, const_cast<char*>(explo01));
+	LoadTGA(NULL, const_cast<char*>(shockwave));
+	LoadTGA(NULL, const_cast<char*>(smoke1));
+	LoadTGA(NULL, const_cast<char*>(smoke09));
+	LoadTGA(NULL, const_cast<char*>(smoke10));
+
+	// Fograin92: BSP Impact
+	LoadTGA(NULL, const_cast<char*>(particle_black));
+	LoadTGA(NULL, const_cast<char*>(particle_blue));
+	LoadTGA(NULL, const_cast<char*>(particle_brown));
+	LoadTGA(NULL, const_cast<char*>(particle_drop));
+	LoadTGA(NULL, const_cast<char*>(particle_green));
+	LoadTGA(NULL, const_cast<char*>(particle_grey));
+	LoadTGA(NULL, const_cast<char*>(particle_red));
+	LoadTGA(NULL, const_cast<char*>(particle_white));
+	LoadTGA(NULL, const_cast<char*>(particle_yellow));
+
+	LoadTGA(NULL, const_cast<char*>(fleck_cement1));
+	LoadTGA(NULL, const_cast<char*>(particle_wood));
 
 
 /*
