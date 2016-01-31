@@ -290,8 +290,12 @@ enum ParticleIDs
 	iImpactBloodRedLOW,		// Fograin92: Hit impact / Red blood particles (LOW FX)
 	iImpactBloodYellow,		// Fograin92: Hit impact / Yellow blood particles
 	iImpactBloodYellowLOW,	// Fograin92: Hit impact / Yellow blood particles (LOW FX)
+	
+	// Water FX
 	iImpactWater,			// Fograin92: Water hit impact / splash
 	iImpactWaterLOW,		// Fograin92: Water hit impact / splash (LOW FX)
+	iDefaultWaves,			// Fograin92: Random water waves
+	iWaterIcky,				// Fograin92: Icky water splash
 
 	// Explosions FX
 	iExplosionDefault,		// Fograin92: Default explosion (FULL FX)
@@ -328,7 +332,7 @@ const char blood_yellow_animated[MAX_PARTICLE_PATH]		= "materials/fx/blood_yello
 const char blood_yellow_impact[MAX_PARTICLE_PATH]		= "materials/fx/blood_yellow_impact.tga";
 const char blood_yellow_drips[MAX_PARTICLE_PATH]		= "materials/fx/blood_yellow_drips.tga";
 
-// Fograin92: Water hit impact / splash particles
+// Fograin92: Water FX
 const char water_impact_core[MAX_PARTICLE_PATH]		= "materials/fx/water_splash.tga";
 const char water_impact_drops[MAX_PARTICLE_PATH]	= "materials/fx/water_drop.tga";
 const char water_impact_wave[MAX_PARTICLE_PATH]		= "materials/fx/water_ripples01.tga";
@@ -353,8 +357,7 @@ const char particle_yellow[MAX_PARTICLE_PATH]	= "materials/fx/particle_yellow.tg
 
 const char fleck_cement1[MAX_PARTICLE_PATH]		= "materials/fx/fleck_cement1.tga";
 const char particle_wood[MAX_PARTICLE_PATH]		= "materials/fx/particle_wood.tga";
-
-
+const char glass_shards[MAX_PARTICLE_PATH]		= "materials/fx/glass_shards.tga";
 
 
 #endif	// PARTICLE_DEFS_H

@@ -186,7 +186,7 @@ void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_syste
 
 		// Fograin92: Default explosion (FULL FX)
 		case iExplosionDefault:
-			{
+		{
 			CreateMappedPS("particles/exp/explo1_firedust.txt", pSystem);
 			CreateMappedPS("particles/exp/explo1_fire.txt", pSystem);
 			CreateMappedPS("particles/exp/explo1_shockwave.txt", pSystem);
@@ -200,18 +200,31 @@ void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_syste
 			dl->color.b = 200;//24;
 			dl->decay = 0.2;
 			dl->die = (gEngfuncs.GetClientTime() + 0.2);
-			}
+		}
 		break;
 
 		// Fograin92: BSP Impact, Concrete
 		case iImpactBSPconcrete:
 			CreateMappedPS("particles/impact/e_impacts_chunks.txt", pSystem);
 			CreateMappedPS("particles/impact/e_impacts_smoke.txt", pSystem);
-			//CreateMappedPS("particles/engine/e_impacts_debris.txt", pSystem);
 		break;
 
+		// Fograin92: Water waves
+		case iDefaultWaves:
+			CreateMappedPS("particles/water/water_waves.txt", pSystem);
+		break;
 
+		// Fograin92: Icky waves
+		case iWaterIcky:
+			CreateMappedPS("particles/water/water_icky_splash.txt", pSystem);
+		break;
 
+		// Fograin92: Glass impact
+		case iImpactBSPglass:
+			CreateMappedPS("particles/impact/e_impacts_glass.txt", pSystem);
+		break;
+
+		
 	}
 
 	if(pSystem == NULL)
@@ -235,48 +248,6 @@ void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_syste
 			return;
 		}
 	}
-
-	if(iPreset == iDefaultDrop) 
-	{
-//		gEngfuncs.Con_Printf("iPreset == iDefaultDrop\n");
-
-		CreateMappedPS("particles/engine/e_drop.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
-
-	if(iPreset == iDefaultWallSmokeLong) 
-	{
-//		gEngfuncs.Con_Printf("iPreset == iDefaultWallSmokeLong\n");
-
-		CreateMappedPS("particles/engine/e_impacts_long_chunks.txt", pSystem);
-		CreateMappedPS("particles/engine/e_impacts_long_smoke.txt", pSystem);
-		CreateMappedPS("particles/engine/e_impacts_debris.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
-
-	if(iPreset == iDefaultHitSlime) 
-	{
-//		gEngfuncs.Con_Printf("iPreset == iDefaultHitSlime\n");
-
-		CreateMappedPS("particles/engine/e_impacts_slime_drops.txt", pSystem);
-		CreateMappedPS("particles/engine/e_impacts_slime_core.txt", pSystem);
-		CreateMappedPS("particles/engine/e_impacts_slime_wave.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
-
-	
 
 	if(iPreset == iDefaultSmoke) 
 	{
@@ -313,19 +284,7 @@ void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_syste
 			return;
 		}
 	}
-		
-	if(iPreset == iDefaultWaves) 
-	{
-//		gEngfuncs.Con_Printf("iPreset == iDefaultWaves\n");
-
-		CreateMappedPS("particles/engine/e_waves.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
-
+	
 	if(iPreset == iDefaultFinalFire) 
 	{
 //		gEngfuncs.Con_Printf("iPreset == iDefaultFinalFire\n");
@@ -349,103 +308,6 @@ void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_syste
 			return;
 		}
 	}
-//new
-	if(iPreset == iDefaultHitBlue) 
-	{
-//		gEngfuncs.Con_Printf("iPreset == iDefaultHitBlue\n");
-
-		CreateMappedPS("particles/engine/e_impact_blue.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
-
-	if(iPreset == iDefaultHitRed) 
-	{
-//		gEngfuncs.Con_Printf("iPreset == iDefaultHitRed\n");
-
-		CreateMappedPS("particles/engine/e_impact_red.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
-
-	if(iPreset == iDefaultHitYellow) 
-	{
-//		gEngfuncs.Con_Printf("iPreset == iDefaultHitYellow\n");
-
-		CreateMappedPS("particles/engine/e_impact_yellow.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
-
-	if(iPreset == iDefaultHitBrown)//wood???
-	{
-//		gEngfuncs.Con_Printf("iPreset == iDefaultHitBrown\n");
-
-		CreateMappedPS("particles/engine/e_impact_brown.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
-
-	if(iPreset == iDefaultHitBlack) 
-	{
-//		gEngfuncs.Con_Printf("iPreset == iDefaultHitBlack\n");
-
-		CreateMappedPS("particles/engine/e_impact_black.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
-		
-	if(iPreset == iDefaultHitGreen) //dirt??
-	{
-//		gEngfuncs.Con_Printf("iPreset == iDefaultHitGreen\n");
-
-		CreateMappedPS("particles/engine/e_impact_green_core.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
-		
-	if(iPreset == iDefaultHitFleshRed) 
-	{
-//		gEngfuncs.Con_Printf("iPreset == iDefaultHitFleshRed\n");
-
-		CreateMappedPS("particles/engine/e_impact_flesh_human.txt", pSystem);
-		CreateMappedPS("particles/engine/e_impact_flesh_human_core.txt", pSystem);
-		CreateMappedPS("particles/engine/e_impact_flesh_human_drips.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
-	
-	if(iPreset == iDefaultGlass) 
-	{
-		CreateMappedPS("particles/engine/e_impact_glass.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
-
 	if(iPreset == iDefaultSmokeRPG) 
 	{
 		CreateMappedPS("particles/engine/e_smoke_rpg.txt", pSystem);
@@ -456,19 +318,7 @@ void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_syste
 		}
 	}	
 	
-	if(iPreset == iDefaultHitFleshYellow) 
-	{
-//		gEngfuncs.Con_Printf("iPreset == iDefaultHitFleshYellow\n");
 
-		CreateMappedPS("particles/engine/e_impact_flesh_alien.txt", pSystem);
-		CreateMappedPS("particles/engine/e_impact_flesh_alien_core.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
-		
 	if(iPreset == iDefaultHitWood1) 
 	{       
 //		gEngfuncs.Con_Printf("iPreset == iDefaultHitWood1\n");
@@ -580,44 +430,6 @@ void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_syste
 		}
 	}
 
-	if(iPreset == iSoulDie) 
-	{    
-//		gEngfuncs.Con_Printf("iPreset == iBloodSplat\n");
-		
-		CreateMappedPS("particles/engine/e_soul_die.txt", pSystem);
-		CreateMappedPS("particles/engine/e_soul_glow.txt", pSystem);
-		CreateMappedPS("particles/engine/e_soul_shockwave.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
-
-	if(iPreset == iSoulFly) 
-	{    
-//		gEngfuncs.Con_Printf("iPreset == iBloodSplat\n");
-//		CreateMappedPS("particles/engine/e_soul_glow.txt", pSystem);
-		CreateMappedPS("particles/engine/e_soul_fly.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
-	
-	if(iPreset == iSoulAttack) 
-	{    
-//		gEngfuncs.Con_Printf("iPreset == iBloodSplat\n");
-		
-		CreateMappedPS("particles/engine/e_soul_attack.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
-
 	if(iPreset == iDefaultTeleportWave) 
 	{    		
 		CreateMappedPS("particles/engine/e_teleport_wave.txt", pSystem);
@@ -645,14 +457,6 @@ void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_syste
 	{    	
 		CreateMappedPS("particles/engine/e_teleport_portal_img.txt", pSystem);
 
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
-
-	if(iPreset == iDefaultTeleportWave3) 
-	{    		
 		if(pSystem == NULL) 
 		{
 			return;
@@ -954,6 +758,8 @@ void CParticleSystemManager::PrecacheTextures( void )
 
 	LoadTGA(NULL, const_cast<char*>(fleck_cement1));
 	LoadTGA(NULL, const_cast<char*>(particle_wood));
+	LoadTGA(NULL, const_cast<char*>(glass_shards));
+	
 
 
 /*

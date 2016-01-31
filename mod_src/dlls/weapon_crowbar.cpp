@@ -110,7 +110,8 @@ void CCrowbar::PrimaryAttack()
 
 void CCrowbar::Smack( )
 {
-	DecalGunshot( &m_trHit, BULLET_PLAYER_CROWBAR );
+	// Fograin92: Handled by FireBulletsPlayer inside Swing function
+	//DecalGunshot( &m_trHit, BULLET_PLAYER_CROWBAR );
 }
 
 
@@ -244,6 +245,11 @@ int CCrowbar::Swing( int fFirst )
 
 		if (fHitWorld)
 		{
+			// Fograin92: We did hit the BSP Brush, let's exec some particles FX
+			// I'm to lazy to code proper function for this, so we just call FireBulletsPlayer function :P
+			m_pPlayer->FireBulletsPlayer( 1, vecSrc, gpGlobals->v_forward, Vector( 0, 0, 0 ), 48, BULLET_PLAYER_CROWBAR, 0, 1, m_pPlayer->pev, m_pPlayer->random_seed );
+
+
 			float fvolbar = TEXTURETYPE_PlaySound(&tr, vecSrc, vecSrc + (vecEnd-vecSrc)*2, BULLET_PLAYER_CROWBAR);
 
 			if ( g_pGameRules->IsMultiplayer() )

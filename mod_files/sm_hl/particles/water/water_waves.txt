@@ -1,0 +1,30 @@
+// Base particle definitions
+texture materials/fx/water_ripples01.tga
+starting_particles 0
+new_particles_per_second 0
+scale 0.3
+lifetime 1
+lifetime_var 0.5
+gravity 0
+growth 1
+damping 0.0
+rotation_speed 0
+display_mode 24
+transparency 255
+system_life 2
+emitter_shape plane
+plane_x_length 0
+plane_y_length 0
+collision off
+fade_out 3
+fade_in 0
+wind 0
+particle_align planar
+
+// Animation
+starting_velocity_x 0.0
+starting_velocity_y 0.0
+starting_velocity_z 0
+velocity_var_x 0.0
+velocity_var_y 0.0
+velocity_var_z 0.0

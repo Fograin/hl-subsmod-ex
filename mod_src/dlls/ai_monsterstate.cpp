@@ -21,6 +21,9 @@
 #include "animation.h"
 #include "saverestore.h"
 #include "soundent.h"
+#include "particle_defs.h"	// Fograin92: BG Particle system
+extern int gmsgParticles;	// Fograin92: BG Particle system
+
 
 //=========================================================
 // SetState
@@ -57,6 +60,72 @@ void CBaseMonster :: SetState ( MONSTERSTATE State )
 //=========================================================
 void CBaseMonster :: RunAI ( void )
 {
+	// Fograin92: Cast water waves when NPC is in the water (Inspired by code from: SysOP)
+	if( CVAR_GET_FLOAT("sm_particles") > 0 )
+	{
+		int iRandomness = 0;
+
+		// Fograin92: If monster is moving in the water
+		if( IsMoving() )
+			iRandomness = 1; // Fograin92: Set one to cast wave every AI tick
+		else
+			iRandomness = RANDOM_FLOAT( 1, 100 ); // Fograin92: Random waves
+
+		// Fograin92: Cast waves ONLY if iRandomness is set below 25. This means everytime monster is moving OR 25% chance to cast when IDLE
+		if( iRandomness < 26 )
+		{
+			MESSAGE_BEGIN(MSG_ALL, gmsgParticles);
+				WRITE_SHORT(0);
+				WRITE_BYTE(0);
+				
+				// Fograin92: Feet in water
+				if (pev->waterlevel == 1)
+				{
+					// Fograin92: Cast waves at NPC origin
+					WRITE_COORD( pev->origin.x );
+					WRITE_COORD( pev->origin.y );
+					WRITE_COORD( pev->origin.z );
+				}
+
+				// Fograin92: Waist in water
+				else if (pev->waterlevel == 2)
+				{
+					// Fograin92: Cast waves at NPC center XYZ
+					Vector		vecBlastSrc;
+					vecBlastSrc = Center();
+
+					WRITE_COORD( vecBlastSrc.x );
+					WRITE_COORD( vecBlastSrc.y );
+					WRITE_COORD( vecBlastSrc.z );
+				}
+
+				// Fograin92: Head in water
+				else if (pev->waterlevel == 3)
+				{
+					// Fograin92: Cast waves at head XYZ
+					Vector vecHeadPos;
+					vecHeadPos = pev->origin + pev->view_ofs;
+
+					WRITE_COORD( vecHeadPos.x );
+					WRITE_COORD( vecHeadPos.y );
+					WRITE_COORD( vecHeadPos.z );
+				}
+				
+				WRITE_COORD( 0 );
+				WRITE_COORD( 0 );
+				WRITE_COORD( 0 );
+
+				// Fograin92: Handle specific NPCs here (e.g. Icky)
+				if( FClassnameIs(pev, "monster_ichthyosaur") )
+					WRITE_SHORT(iWaterIcky);
+				else
+					WRITE_SHORT(iDefaultWaves);
+
+			MESSAGE_END();
+		}
+	}
+
+
 	// to test model's eye height
 	//UTIL_ParticleEffect ( pev->origin + pev->view_ofs, g_vecZero, 255, 10 );
 
