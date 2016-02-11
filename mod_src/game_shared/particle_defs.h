@@ -290,6 +290,8 @@ enum ParticleIDs
 	iImpactBloodRedLOW,		// Fograin92: Hit impact / Red blood particles (LOW FX)
 	iImpactBloodYellow,		// Fograin92: Hit impact / Yellow blood particles
 	iImpactBloodYellowLOW,	// Fograin92: Hit impact / Yellow blood particles (LOW FX)
+	iBloodRedPuddle1,		// Fograin92: Dynamic blood puddle (RED)
+	iBloodAlienPuddle1,		// Fograin92: Dynamic blood puddle (RED)
 	
 	// Water FX
 	iImpactWater,			// Fograin92: Water hit impact / splash
@@ -318,19 +320,21 @@ enum ParticleIDs
 //========== PARTICLE DEFS ===========//
 
 // Fograin92: Pulled from BattleGrounds
-const char SPARK_PARTICLE[MAX_PARTICLE_PATH]		= "particles/spark01.tga";
-const char WHITE_SMOKE_PARTICLE[MAX_PARTICLE_PATH]	= "particles/smoke_gun.tga";
-const char BROWN_SMOKE_PARTICLE[MAX_PARTICLE_PATH]	= "particles/brownsmoke.tga";
+const char SPARK_PARTICLE[MAX_PARTICLE_PATH]		= "materials/fx/spark01.tga";
+const char WHITE_SMOKE_PARTICLE[MAX_PARTICLE_PATH]	= "materials/fx/smoke_gun.tga";
+const char BROWN_SMOKE_PARTICLE[MAX_PARTICLE_PATH]	= "materials/fx/brownsmoke.tga";
 
-// Fograin92: Red blood particles
+// Fograin92: Red blood
 const char blood_red_animated[MAX_PARTICLE_PATH]	= "materials/fx/blood_red_animated.tga";
 const char blood_red_impact[MAX_PARTICLE_PATH]		= "materials/fx/blood_red_impact.tga";
 const char blood_red_drips[MAX_PARTICLE_PATH]		= "materials/fx/blood_red_drips.tga";
+const char blood_red_puddle1[MAX_PARTICLE_PATH]		= "materials/fx/blood_red_puddle01.tga";
 
-// Fograin92: Alien blood particles
+// Fograin92: Alien blood
 const char blood_yellow_animated[MAX_PARTICLE_PATH]		= "materials/fx/blood_yellow_animated.tga";
 const char blood_yellow_impact[MAX_PARTICLE_PATH]		= "materials/fx/blood_yellow_impact.tga";
 const char blood_yellow_drips[MAX_PARTICLE_PATH]		= "materials/fx/blood_yellow_drips.tga";
+const char blood_yellow_puddle01[MAX_PARTICLE_PATH]		= "materials/fx/blood_yellow_puddle01.tga";
 
 // Fograin92: Water FX
 const char water_impact_core[MAX_PARTICLE_PATH]		= "materials/fx/water_splash.tga";
@@ -357,7 +361,10 @@ const char particle_yellow[MAX_PARTICLE_PATH]	= "materials/fx/particle_yellow.tg
 
 const char fleck_cement1[MAX_PARTICLE_PATH]		= "materials/fx/fleck_cement1.tga";
 const char particle_wood[MAX_PARTICLE_PATH]		= "materials/fx/particle_wood.tga";
+const char particle_wood2[MAX_PARTICLE_PATH]	= "materials/fx/particle_wood2.tga";
+const char particle_wood3[MAX_PARTICLE_PATH]	= "materials/fx/particle_wood3.tga";
 const char glass_shards[MAX_PARTICLE_PATH]		= "materials/fx/glass_shards.tga";
+
 
 
 #endif	// PARTICLE_DEFS_H

@@ -191,6 +191,8 @@ void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_syste
 			CreateMappedPS("particles/exp/explo1_fire.txt", pSystem);
 			CreateMappedPS("particles/exp/explo1_shockwave.txt", pSystem);
 
+			//gEngfuncs.pEventAPI->EV_PlaySound( 0, pSystem->vPosition, 0, "sound\\weapons\\explode_dist.wav", 1.0, ATTN_NONE, 0, PITCH_NORM );
+
 			// Create dynamic light
 			dlight_t *dl = gEngfuncs.pEfxAPI->CL_AllocDlight (0);
 			VectorCopy (pSystem->vPosition, dl->origin);
@@ -224,6 +226,33 @@ void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_syste
 			CreateMappedPS("particles/impact/e_impacts_glass.txt", pSystem);
 		break;
 
+		// Fograin92: Wood impact
+		case iImpactBSPwood:
+			CreateMappedPS("particles/impact/e_impacts_wood.txt", pSystem);
+			CreateMappedPS("particles/impact/e_impacts_wood2.txt", pSystem);
+			CreateMappedPS("particles/impact/e_impacts_wood3.txt", pSystem);
+		break;
+
+		// Fograin92: Metal-like impact
+		case iImpactBSPmetal:
+		case iImpactBSPvent:
+		case iImpactBSPgrate:
+		case iImpactBSPcomputer:
+			// TODO: Some nice sparks?
+			//CreateMappedPS("particles/impact/e_impacts_sparks.txt", pSystem);
+		break;
+
+		// Fograin92: Dynamic blood puddle (RED)
+		case iBloodRedPuddle1:
+			CreateMappedPS("particles/gore/blood_red_puddle1.txt", pSystem);
+		break;
+
+		// Fograin92: Dynamic blood puddle (ALIEN)
+		case iBloodAlienPuddle1:
+			CreateMappedPS("particles/gore/blood_yellow_puddle1.txt", pSystem);
+		break;
+
+
 		
 	}
 
@@ -235,7 +264,8 @@ void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_syste
 /*
 // REFERENCE Purposes
 
-	
+	// Fograin92: REF for level based fire?
+	// TODO: Add some fire after explosion?
 	if(iPreset == iDefaultFire) 
 	{
 //		gEngfuncs.Con_Printf("iPreset == iDefaultFire\n");
@@ -261,30 +291,6 @@ void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_syste
 		}
 	}
 
-	if(iPreset == iDefaultBangalorSmoke) 
-	{
-//		gEngfuncs.Con_Printf("iPreset == iDefaultBangalorSmoke\n");
-
-		CreateMappedPS("particles/engine/e_smoke_beng.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
-
-	if(iPreset == iDefaultTracerSmoke) 
-	{
-//		gEngfuncs.Con_Printf("iPreset == iDefaultTracerSmoke\n");
-
-		CreateMappedPS("particles/engine/e_smoke_tracer.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
-	
 	if(iPreset == iDefaultFinalFire) 
 	{
 //		gEngfuncs.Con_Printf("iPreset == iDefaultFinalFire\n");
@@ -318,31 +324,7 @@ void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_syste
 		}
 	}	
 	
-
-	if(iPreset == iDefaultHitWood1) 
-	{       
-//		gEngfuncs.Con_Printf("iPreset == iDefaultHitWood1\n");
-
-		CreateMappedPS("particles/engine/e_impact_wood.txt", pSystem);
-		CreateMappedPS("particles/engine/e_impact_wood_core.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
 	
-	if(iPreset == iDefaultHitSparks) 
-	{       
-		gEngfuncs.Con_Printf("iPreset == iDefaultHitSparks\n");
-
-		CreateMappedPS("particles/engine/e_impact_sparks.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
 
 	if(iPreset == iDefaultScorch) 
 	{   
@@ -404,32 +386,7 @@ void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_syste
 			return;
 		}
 	}
-
-	if(iPreset == iDefaultLeavesBush) 
-	{    
-//		gEngfuncs.Con_Printf("iPreset == iDefaultGasCanister\n");
-		
-		CreateMappedPS("particles/engine/e_impacts_leaves_bush.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
-
-	if(iPreset == iBloodSplat) 
-	{    
-//		gEngfuncs.Con_Printf("iPreset == iBloodSplat\n");
-		
-		CreateMappedPS("particles/engine/e_bloodsplat_red.txt", pSystem);
-		CreateMappedPS("particles/engine/e_bloodsplat_drips_red.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
-
+	
 	if(iPreset == iDefaultTeleportWave) 
 	{    		
 		CreateMappedPS("particles/engine/e_teleport_wave.txt", pSystem);
@@ -473,15 +430,6 @@ void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_syste
 		}
 	}
 
-	if(iPreset == iDefaultBloodSlowCore) 
-	{    	
-		CreateMappedPS("particles/engine/e_impact_headshot_human_core.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
 	if(iPreset == DEBUG_DOT) 
 	{    	
 		CreateMappedPS("particles/engine/dot.txt", pSystem);
@@ -501,55 +449,6 @@ void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_syste
 		}
 	}
 
-	if(iPreset == iDefaultBloodSlowDrop) 
-	{    	
-		CreateMappedPS("particles/engine/e_impact_headshot_human.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-	}
-
-	if(iPreset == iDefaultExplosionGrass) 
-	{
-		// explositions are made up of 5 ps
-		CreateMappedPS("particles/explo1_fire.txt", pSystem);
-		CreateMappedPS("particles/explo1_glow.txt", pSystem);
-		CreateMappedPS("particles/explo1_ground_wave.txt", pSystem);
-		CreateMappedPS("particles/explo1_sparks.txt", pSystem);
-		CreateMappedPS("particles/explo1_tong.txt", pSystem);
-
-		CreateMappedPS("particles/explo2_darksmoke.txt", pSystem);
-		CreateMappedPS("particles/explo2_grounddust.txt", pSystem);
-		CreateMappedPS("particles/explo2_firedust.txt", pSystem);
-		CreateMappedPS("particles/explo2_dirt.txt", pSystem);
-		CreateMappedPS("particles/explo2_debris.txt", pSystem);
-//		CreateMappedPS("particles/explo2_shockwave.txt", pSystem);
-
-		if(pSystem == NULL) 
-		{
-			return;
-		}
-
-		// play a sound as well
-		gEngfuncs.pEventAPI->EV_PlaySound( 0, pSystem->vPosition, 0, "sound\\weapons\\explode_dist.wav", 1.0, ATTN_NONE, 0, PITCH_NORM );
-
-		// create dynamic light
-		
-		dlight_t *dl = gEngfuncs.pEfxAPI->CL_AllocDlight (0);
-		VectorCopy (pSystem->vPosition, dl->origin);
-		dl->radius = 100;//500
-		dl->color.r = 245;//254;
-		dl->color.g = 216;//160;
-		dl->color.b = 200;//24;
-		dl->decay = 0.2;
-		dl->die = (gEngfuncs.GetClientTime() + 0.1);
-		
-		gEngfuncs.Con_Printf("iPreset == iDefaultExplosion\n");
-	}
-
-	
 	if(iPreset == iDefaultExplosionGas) 
 	{
 		CreateMappedPS("particles/exp_gas_darksmoke.txt", pSystem);
@@ -593,61 +492,8 @@ void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_syste
 */
 }
 
-// wrappers to create particle system's
-// flintlock smoke ps
-void CParticleSystemManager::CreateFlintPS(vec3_t vPosition)
-{
-	if(CheckDrawSystem() == false)
-		return;
 
-	AddSystem(new CFlintlockSmokeParticleSystem(vPosition));
-}
-
-// barrel smoke ps
-void CParticleSystemManager::CreateBarrelPS(vec3_t vPosition, vec3_t vDirection)
-{
-	if(CheckDrawSystem() == false)
-		return;
-
-	AddSystem(new CBarrelSmokeParticleSystem(vPosition, vDirection));
-}
-
-// spark ps
-void CParticleSystemManager::CreateSparkPS(vec3_t vPosition, vec3_t vDirection)
-{
-	if(CheckDrawSystem() == false)
-		return;
-
-	AddSystem(new CSparkParticleSystem(vPosition, vDirection));
-}
-
-// white smoke ps
-void CParticleSystemManager::CreateWhitePS(vec3_t vPosition, vec3_t vDirection)
-{
-	if(CheckDrawSystem() == false)
-		return;
-
-	AddSystem(new CWhiteSmokeParticleSystem(vPosition, vDirection));
-}
-
-// brown smoke ps
-void CParticleSystemManager::CreateBrownPS(vec3_t vPosition, vec3_t vDirection)
-{
-	if(CheckDrawSystem() == false)
-		return;
-
-	AddSystem(new CBrownSmokeParticleSystem(vPosition, vDirection));
-}
-
-void CParticleSystemManager::CreateMuzzleFlash(vec3_t vPosition, vec3_t vDirection, int iType)
-{
-	if(CheckDrawSystem() == false)
-		return;
-
-	AddSystem(new CMuzzleFlashParticleSystem(vPosition, vDirection, iType));
-}
-
-// grass system
+// Grass system
 void CParticleSystemManager::CreateGrassPS( char* sFile, particle_system_management* pSystem )
 {
 	if(pSystem == NULL) {
@@ -661,12 +507,22 @@ void CParticleSystemManager::CreateGrassPS( char* sFile, particle_system_managem
 	AddSystem(new CGrassParticleSystem(sFile, pSystem));
 }
 
+
+void CParticleSystemManager::CreateMuzzleFlash(vec3_t vPosition, vec3_t vDirection, int iType)
+{
+	if(CheckDrawSystem() == false)
+		return;
+
+	AddSystem(new CMuzzleFlashParticleSystem(vPosition, vDirection, iType));
+}
+
+
 // mapped ps
 void CParticleSystemManager::CreateMappedPS( char* sFile, particle_system_management* pSystem )
 {
-	if(pSystem == NULL) {
+	if(pSystem == NULL)
 		return;
-	}
+
 	// no d3d/software
 	if (IEngineStudio.IsHardware() == false)
 		return;
@@ -723,15 +579,17 @@ void CParticleSystemManager::PrecacheTextures( void )
 {
 	gEngfuncs.Con_Printf("Caching frequently used particles, this may take a few moments\n");
 
-	// Fograin92: Red blood particles
+	// Fograin92: Red blood 
 	LoadTGA(NULL, const_cast<char*>(blood_red_animated));
 	LoadTGA(NULL, const_cast<char*>(blood_red_impact));
 	LoadTGA(NULL, const_cast<char*>(blood_red_drips));
+	LoadTGA(NULL, const_cast<char*>(blood_red_puddle1));
 
-	// Fograin92: Yellow blood particles
+	// Fograin92: Yellow blood
 	LoadTGA(NULL, const_cast<char*>(blood_yellow_animated));
 	LoadTGA(NULL, const_cast<char*>(blood_yellow_impact));
 	LoadTGA(NULL, const_cast<char*>(blood_yellow_drips));
+	LoadTGA(NULL, const_cast<char*>(blood_yellow_puddle01));
 
 	// Fograin92: Water hit impact / splash particles
 	LoadTGA(NULL, const_cast<char*>(water_impact_core));
@@ -758,6 +616,8 @@ void CParticleSystemManager::PrecacheTextures( void )
 
 	LoadTGA(NULL, const_cast<char*>(fleck_cement1));
 	LoadTGA(NULL, const_cast<char*>(particle_wood));
+	LoadTGA(NULL, const_cast<char*>(particle_wood2));
+	LoadTGA(NULL, const_cast<char*>(particle_wood3));
 	LoadTGA(NULL, const_cast<char*>(glass_shards));
 	
 

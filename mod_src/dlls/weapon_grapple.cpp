@@ -128,6 +128,8 @@ void CGrappleHook :: Hit( CBaseEntity* Target )
 			// Fograin92: Check what did we hit
 			if ((FClassnameIs (pList[i]->pev, "monster_babycrab" ))
 				||	(FClassnameIs (pList[i]->pev, "monster_headcrab" ))
+				||	(FClassnameIs (pList[i]->pev, "monster_cockroach" ))
+				||	(FClassnameIs (pList[i]->pev, "monster_rat" ))
 				)
 			{
 				m_iHitMonster = 2;	// Fograin92: This is tiny monster.

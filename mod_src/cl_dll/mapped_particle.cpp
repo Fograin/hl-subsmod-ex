@@ -468,7 +468,19 @@ void CMappedParticle::Update( float flTimeSinceLastDraw )
 	
 	VectorMA( sParticle.vPosition, (60.0 * flTimeSinceLastDraw), sParticle.vVelocity, sParticle.vPosition );
 	
-	sParticle.flSize += flTimeSinceLastDraw * sParticle.flGrowth;
+	// Fograin92: Handle custom scaling (HACKY WAY)
+	if( pSys->flScaleIncreasePerSecond < 0.1 )
+	{
+		// Fograin92: Limit scaling
+		if( sParticle.flSize < 0.8 )
+			sParticle.flSize += flTimeSinceLastDraw * sParticle.flGrowth;
+	}
+	else
+	{
+		// Fograin92: Default grow code
+		sParticle.flSize += flTimeSinceLastDraw * sParticle.flGrowth;
+	}
+
 	sParticle.flCurrentRotation += flTimeSinceLastDraw * sParticle.flRotation;
 	while (sParticle.flCurrentRotation > 360)
 	{

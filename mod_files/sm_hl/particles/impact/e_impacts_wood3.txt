@@ -1,0 +1,43 @@
+starting_particles 5
+new_particles_per_second 0
+
+texture materials/fx/particle_wood3.tga
+
+scale 0.09
+growth 0
+lifetime 0.9
+
+lifetime_var 0.1
+
+rotation_speed 333
+gravity 10
+
+starting_velocity_x 0.0
+starting_velocity_y 0.0
+starting_velocity_z 0.0
+
+velocity_var_x 2.0
+velocity_var_y 2.0
+velocity_var_z 10.0
+
+transparency 128
+
+system_life 1
+
+display_mode 32
+	
+
+starting_frame 1
+
+ending_frame 1
+
+frames_in_image 1
+
+falloff none
+
+fade_in 0
+
+fade_out 1
+collision bounce
+light_check once
+wind 1

@@ -37,7 +37,8 @@ private:
 	inline float TimeSinceLastDraw( void ) const { return (gEngfuncs.GetClientTime() - m_flLastDraw); }
 public:
 	// creates and destroys a particle system
-	CParticleSystemManager() { 
+	CParticleSystemManager()
+	{ 
 		m_flLastSort = 0.0; m_flLastDebug = 0.0;
 		m_pParticleSystems.clear(); m_pParticles.clear(); m_pUnsortedParticles.clear();
 	}
@@ -56,11 +57,6 @@ public:
 	void UpdateSystems( void );
 
 	// wrappers to create particle systems
-	void CreateFlintPS(vec3_t vPosition);
-	void CreateBarrelPS(vec3_t vPosition, vec3_t vDirection);
-	void CreateSparkPS(vec3_t vPosition, vec3_t vDirection);
-	void CreateWhitePS(vec3_t vPosition, vec3_t vDirection);
-	void CreateBrownPS(vec3_t vPosition, vec3_t vDirection);
 	void CreateGrassPS(char* sFile, particle_system_management* pSystem );
 	void CreateMappedPS(char* sFile, particle_system_management* pSystem );
 	void CreatePresetPS(unsigned int iPreset, particle_system_management* pSystem);
