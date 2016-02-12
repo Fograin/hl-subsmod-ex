@@ -75,7 +75,7 @@ void CGrenade::Explode( TraceResult *pTrace, int bitsDamageType )
 	MESSAGE_END();
 */
 
-	// Fograin92: Particles based explosion (bonus)
+	// Fograin92: Particles based explosion
 	if (CVAR_GET_FLOAT("sm_particles") > 0)
 	{
 		MESSAGE_BEGIN(MSG_ALL, gmsgParticles);
@@ -103,7 +103,7 @@ void CGrenade::Explode( TraceResult *pTrace, int bitsDamageType )
 			WRITE_SHORT( m_iExplode );
 			WRITE_BYTE( 20 ); // scale * 10
 			WRITE_BYTE( 255 ); // brightness
-		MESSAGE_END();
+	MESSAGE_END();
 
 
 	CSoundEnt::InsertSound ( bits_SOUND_COMBAT, pev->origin, NORMAL_EXPLOSION_VOLUME, 3.0 );
@@ -130,9 +130,21 @@ void CGrenade::Explode( TraceResult *pTrace, int bitsDamageType )
 
 	switch ( RANDOM_LONG( 0, 2 ) )
 	{
-		case 0:	EMIT_SOUND(ENT(pev), CHAN_VOICE, "weapons/debris1.wav", 0.55, ATTN_NORM);	break;
-		case 1:	EMIT_SOUND(ENT(pev), CHAN_VOICE, "weapons/debris2.wav", 0.55, ATTN_NORM);	break;
-		case 2:	EMIT_SOUND(ENT(pev), CHAN_VOICE, "weapons/debris3.wav", 0.55, ATTN_NORM);	break;
+		// Fograin92: Added explosion SFX
+		case 1:
+			EMIT_SOUND(ENT(pev), CHAN_VOICE, "weapons/debris2.wav", 0.55, ATTN_NORM);
+			EMIT_SOUND(ENT(pev), CHAN_VOICE, "weapons/explode3.wav", 0.80, ATTN_NORM);
+		break;
+
+		case 2:
+			EMIT_SOUND(ENT(pev), CHAN_VOICE, "weapons/debris3.wav", 0.55, ATTN_NORM);
+			EMIT_SOUND(ENT(pev), CHAN_VOICE, "weapons/explode4.wav", 0.80, ATTN_NORM);
+		break;
+
+		default:
+			EMIT_SOUND(ENT(pev), CHAN_VOICE, "weapons/debris1.wav", 0.55, ATTN_NORM);
+			EMIT_SOUND(ENT(pev), CHAN_VOICE, "weapons/explode5.wav", 0.80, ATTN_NORM);
+		break;
 	}
 
 	pev->effects |= EF_NODRAW;

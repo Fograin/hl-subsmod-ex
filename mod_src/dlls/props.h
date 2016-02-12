@@ -141,7 +141,13 @@ static const char * const pSoundsBustMetal[] =
 	"debris/bustmetal2.wav",
 };
 
-
+// Explosion sounds
+static const char * const pSoundsExplode[] = 
+{
+	"weapons/explode3.wav",
+	"weapons/explode4.wav",
+	"weapons/explode5.wav",
+};
 
 // Spawn items when broke
 static const char * const pSpawnObjects[] = 

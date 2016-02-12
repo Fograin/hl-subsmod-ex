@@ -629,6 +629,9 @@ void CWorld :: Precache( void )
 	for (int i = 0; i<ARRAYSIZE( pSoundsBustMetal ); i++ )
 		PRECACHE_SOUND((char *)pSoundsBustMetal[i]);
 
+	// Fograin92: Precache explosion sounds
+	for (int i = 0; i<ARRAYSIZE( pSoundsExplode ); i++ )
+		PRECACHE_SOUND((char *)pSoundsExplode[i]);
 
 //
 // Setup light animation tables. 'a' is total darkness, 'z' is maxbright.
