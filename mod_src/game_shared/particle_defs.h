@@ -291,7 +291,9 @@ enum ParticleIDs
 	iImpactBloodYellow,		// Fograin92: Hit impact / Yellow blood particles
 	iImpactBloodYellowLOW,	// Fograin92: Hit impact / Yellow blood particles (LOW FX)
 	iBloodRedPuddle1,		// Fograin92: Dynamic blood puddle (RED)
+	iBloodRedPuddle2,
 	iBloodAlienPuddle1,		// Fograin92: Dynamic blood puddle (RED)
+	iBloodAlienPuddle2,
 	
 	// Water FX
 	iImpactWater,			// Fograin92: Water hit impact / splash
@@ -329,12 +331,14 @@ const char blood_red_animated[MAX_PARTICLE_PATH]	= "materials/fx/blood_red_anima
 const char blood_red_impact[MAX_PARTICLE_PATH]		= "materials/fx/blood_red_impact.tga";
 const char blood_red_drips[MAX_PARTICLE_PATH]		= "materials/fx/blood_red_drips.tga";
 const char blood_red_puddle1[MAX_PARTICLE_PATH]		= "materials/fx/blood_red_puddle01.tga";
+const char blood_red_puddle2[MAX_PARTICLE_PATH]		= "materials/fx/blood_red_puddle02.tga";
 
 // Fograin92: Alien blood
 const char blood_yellow_animated[MAX_PARTICLE_PATH]		= "materials/fx/blood_yellow_animated.tga";
 const char blood_yellow_impact[MAX_PARTICLE_PATH]		= "materials/fx/blood_yellow_impact.tga";
 const char blood_yellow_drips[MAX_PARTICLE_PATH]		= "materials/fx/blood_yellow_drips.tga";
 const char blood_yellow_puddle01[MAX_PARTICLE_PATH]		= "materials/fx/blood_yellow_puddle01.tga";
+const char blood_yellow_puddle02[MAX_PARTICLE_PATH]		= "materials/fx/blood_yellow_puddle02.tga";
 
 // Fograin92: Water FX
 const char water_impact_core[MAX_PARTICLE_PATH]		= "materials/fx/water_splash.tga";

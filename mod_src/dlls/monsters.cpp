@@ -3261,7 +3261,6 @@ void CBaseMonster::CorpseFallThink( void )
 	if ( pev->flags & FL_ONGROUND )
 	{
 		SetThink ( NULL );
-
 		SetSequenceBox( );
 		UTIL_SetOrigin( pev, pev->origin );// link into world.
 	}

@@ -472,6 +472,11 @@ void CBaseMonster :: RunTask ( Task_t *pTask )
 				{
 					// body is gonna be around for a while, so have it stink for a bit.
 					CSoundEnt::InsertSound ( bits_SOUND_CARCASS, pev->origin, 384, 30 );
+
+					// Fograin92: Call this so we can delay blood puddle FX
+					SetThink( &CBaseMonster::CorpseFallThink );
+					pev->nextthink = gpGlobals->time + 1.0;
+
 				}
 			}
 			break;

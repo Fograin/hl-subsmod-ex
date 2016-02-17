@@ -247,13 +247,19 @@ void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_syste
 			CreateMappedPS("particles/gore/blood_red_puddle1.txt", pSystem);
 		break;
 
+		case iBloodRedPuddle2:
+			CreateMappedPS("particles/gore/blood_red_puddle2.txt", pSystem);
+		break;
+
 		// Fograin92: Dynamic blood puddle (ALIEN)
 		case iBloodAlienPuddle1:
 			CreateMappedPS("particles/gore/blood_yellow_puddle1.txt", pSystem);
 		break;
 
+		case iBloodAlienPuddle2:
+			CreateMappedPS("particles/gore/blood_yellow_puddle2.txt", pSystem);
+		break;
 
-		
 	}
 
 	if(pSystem == NULL)
@@ -584,12 +590,14 @@ void CParticleSystemManager::PrecacheTextures( void )
 	LoadTGA(NULL, const_cast<char*>(blood_red_impact));
 	LoadTGA(NULL, const_cast<char*>(blood_red_drips));
 	LoadTGA(NULL, const_cast<char*>(blood_red_puddle1));
+	LoadTGA(NULL, const_cast<char*>(blood_red_puddle2));
 
 	// Fograin92: Yellow blood
 	LoadTGA(NULL, const_cast<char*>(blood_yellow_animated));
 	LoadTGA(NULL, const_cast<char*>(blood_yellow_impact));
 	LoadTGA(NULL, const_cast<char*>(blood_yellow_drips));
 	LoadTGA(NULL, const_cast<char*>(blood_yellow_puddle01));
+	LoadTGA(NULL, const_cast<char*>(blood_yellow_puddle02));
 
 	// Fograin92: Water hit impact / splash particles
 	LoadTGA(NULL, const_cast<char*>(water_impact_core));

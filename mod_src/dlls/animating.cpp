@@ -26,6 +26,9 @@
 #include "animation.h"
 #include "saverestore.h"
 
+#include "particle_defs.h"	// Fograin92: BG Particle system
+extern int gmsgParticles;	// Fograin92: BG Particle system
+
 TYPEDESCRIPTION	CBaseAnimating::m_SaveData[] = 
 {
 	DEFINE_FIELD( CBaseMonster, m_flFrameRate, FIELD_FLOAT ),
@@ -314,5 +317,71 @@ void CBaseAnimating :: SetSequenceBox( void )
 		rmax.z = rmin.z + 1;
 		UTIL_SetSize( pev, rmin, rmax );
 	}
+
+
+	// Fograin92: Spawn blood puddle FX
+	if( CVAR_GET_FLOAT("sm_particles") > 0 )
+	{
+		Vector vecSrc;
+		vecSrc = Center();
+
+		// Fograin92: Only if NOT in water
+		if( pev->waterlevel == 0 )
+		{
+			// Fograin92: Handle specific NPCs
+			if( FClassnameIs(pev, "monster_alien_controller")
+				|| FClassnameIs(pev, "monster_apache")
+				|| FClassnameIs(pev, "monster_barnacle")
+				|| FClassnameIs(pev, "monster_cockroach")
+				|| FClassnameIs(pev, "monster_flyer")
+				|| FClassnameIs(pev, "monster_gargantua")
+				|| FClassnameIs(pev, "monster_geneworm")
+				|| FClassnameIs(pev, "monster_ichthyosaur")
+				|| FClassnameIs(pev, "monster_leech")
+				|| FClassnameIs(pev, "monster_nihilanth")
+				|| FClassnameIs(pev, "monster_osprey")
+				|| FClassnameIs(pev, "monster_pitworm")
+				|| FClassnameIs(pev, "monster_rat")
+				|| FClassnameIs(pev, "monster_robo_loader")
+				|| FClassnameIs(pev, "monster_tentacle")
+				)
+			{
+				// Fograin92: Placeholder for different after death particles
+			}
+			else
+			{
+				MESSAGE_BEGIN(MSG_ALL, gmsgParticles);
+					WRITE_SHORT(0);
+					WRITE_BYTE(0);
+					WRITE_COORD(pev->origin.x);	// pev->origin xyz
+					WRITE_COORD(pev->origin.y);
+					WRITE_COORD(pev->origin.z + 0.2);
+					WRITE_COORD(0);
+					WRITE_COORD(0);
+					WRITE_COORD(0);
+					//WRITE_COORD(pev->angles.x); // pev->angles xyz
+					//WRITE_COORD(pev->angles.y);
+					//WRITE_COORD(pev->angles.z);
+					
+					if( BloodColor() == BLOOD_COLOR_RED )
+					{
+						//int iRand = RANDOM_LONG(0,1);
+						if( RANDOM_LONG(0,1) )
+							WRITE_SHORT(iBloodRedPuddle1);
+						else
+							WRITE_SHORT(iBloodRedPuddle2);
+					}
+					else
+					{
+						if( RANDOM_LONG(0,1) )
+							WRITE_SHORT(iBloodAlienPuddle1);
+						else
+							WRITE_SHORT(iBloodAlienPuddle2);
+					}
+				MESSAGE_END();
+			}
+		} // if( pev->waterlevel == 0 )
+	} // if(CVAR_GET_FLOAT("sm_particles") > 0)
+
 }
 

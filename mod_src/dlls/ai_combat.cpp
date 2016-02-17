@@ -20,8 +20,8 @@
 #include "props.h"	// Fograin92
 #include "player.h" // Fograin92
 
-#include "particle_defs.h"	// BG Particle system
-extern int gmsgParticles;	// BG Particle system
+#include "particle_defs.h"	// Fograin92: BG Particle system
+extern int gmsgParticles;	// Fograin92: BG Particle system
 
 
 extern DLL_GLOBAL Vector		g_vecAttackDir;
@@ -271,66 +271,13 @@ void CBaseMonster::BecomeDead( void )
 	pev->health = pev->max_health / 2;
 	pev->max_health = 5; // max_health now becomes a counter for how many blood decals the corpse can place.
 
-
-	// Fograin92: Spawn blood puddle FX, only when NPC is on the ground
-	if( (CVAR_GET_FLOAT("sm_particles") > 0) && (pev->flags & FL_ONGROUND) )
-	{
-		Vector vecSrc;
-		vecSrc = Center();
-
-		// Fograin92: Only if NOT in water
-		if( pev->waterlevel == 0 )
-		{
-			// Fograin92: Handle specific NPCs
-			if( FClassnameIs(pev, "monster_alien_controller")
-				|| FClassnameIs(pev, "monster_apache")
-				|| FClassnameIs(pev, "monster_barnacle")
-				|| FClassnameIs(pev, "monster_cockroach")
-				|| FClassnameIs(pev, "monster_flyer")
-				|| FClassnameIs(pev, "monster_gargantua")
-				|| FClassnameIs(pev, "monster_geneworm")
-				|| FClassnameIs(pev, "monster_ichthyosaur")
-				|| FClassnameIs(pev, "monster_leech")
-				|| FClassnameIs(pev, "monster_nihilanth")
-				|| FClassnameIs(pev, "monster_osprey")
-				|| FClassnameIs(pev, "monster_pitworm")
-				|| FClassnameIs(pev, "monster_rat")
-				|| FClassnameIs(pev, "monster_robo_loader")
-				|| FClassnameIs(pev, "monster_tentacle")
-				)
-			{
-				// Fograin92: Placeholder for different after death particles
-			}
-			else
-			{
-				MESSAGE_BEGIN(MSG_ALL, gmsgParticles);
-					WRITE_SHORT(0);
-					WRITE_BYTE(0);
-					WRITE_COORD(vecSrc.x);	// pev->origin xyz
-					WRITE_COORD(vecSrc.y);
-					WRITE_COORD(pev->origin.z + 1);
-					WRITE_COORD(0);
-					WRITE_COORD(0);
-					WRITE_COORD(0);
-					//WRITE_COORD(pev->angles.x); // pev->angles xyz
-					//WRITE_COORD(pev->angles.y);
-					//WRITE_COORD(pev->angles.z);
-					if( m_bloodColor == BLOOD_COLOR_RED )
-						WRITE_SHORT(iBloodRedPuddle1);
-					else
-						WRITE_SHORT(iBloodAlienPuddle1);
-				MESSAGE_END();
-			}
-		} // if( pev->waterlevel == 0 )
-	} // if(CVAR_GET_FLOAT("sm_particles") > 0)
-
 	// make the corpse fly away from the attack vector
 	// Fograin92: Re-enabled
 	pev->movetype = MOVETYPE_TOSS;
 	pev->flags &= ~FL_ONGROUND;
-	//pev->origin.z += 2;
-	//pev->velocity = g_vecAttackDir * -1;
-	//pev->velocity = pev->velocity * RANDOM_FLOAT( 300, 400 );
+	pev->origin.z += 2;
+	pev->velocity = g_vecAttackDir * -1;
+	pev->velocity = pev->velocity * RANDOM_FLOAT( 300, 400 );
 }
 
 
