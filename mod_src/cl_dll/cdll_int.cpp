@@ -32,6 +32,7 @@ extern "C"
 #include "hud_servers.h"
 #include "vgui_int.h"
 
+
 #define DLLEXPORT __declspec( dllexport )
 
 
@@ -168,6 +169,9 @@ int DLLEXPORT HUD_VidInit( void )
 	gHUD.VidInit();
 	VGui_Startup();
 
+	// Fograin92: Initialize new sound engine
+	//gSoundEngine.Init();
+
 	return 1;
 }
 
@@ -201,6 +205,7 @@ redraw the HUD.
 int DLLEXPORT HUD_Redraw( float time, int intermission )
 {
 	gHUD.Redraw( time, intermission );
+
 	return 1;
 }
 

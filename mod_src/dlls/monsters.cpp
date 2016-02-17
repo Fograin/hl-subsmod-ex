@@ -3263,6 +3263,7 @@ void CBaseMonster::CorpseFallThink( void )
 		SetThink ( NULL );
 		SetSequenceBox( );
 		UTIL_SetOrigin( pev, pev->origin );// link into world.
+
 	}
 	else
 		pev->nextthink = gpGlobals->time + 0.1;
