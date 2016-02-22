@@ -148,6 +148,10 @@ static char grgchTextureType[CTEXTURESMAX];
 
 int g_onladder = 0;
 
+// Fograin92: New Audio engine
+extern void PM_PlaySample( const char *szFile, float fVolume, int iPitch, float *origin );
+
+
 void PM_SwapTextures( int i, int j )
 {
 	char chTemp;
@@ -286,11 +290,44 @@ char PM_FindTextureType( char *name )
 	return CHAR_TEX_CONCRETE;
 }
 
+// Fograin92: New audio engine
+void PM_PlayGroupSound( const char* szValue, int irand, float fvol )
+{
+	static char szBuf[128];
+	int i;
+	for (i = 0; szValue[i]; i++)
+	{
+		if (szValue[i] == '?')
+		{
+			strcpy(szBuf, szValue);
+			switch (irand)
+			{
+			// right foot
+			case 0:	szBuf[i] = '1';	break;
+			case 1:	szBuf[i] = '3';	break;
+			// left foot
+			case 2:	szBuf[i] = '2';	break;
+			case 3:	szBuf[i] = '4';	break;
+			default: szBuf[i] = '#';
+			}
+#ifdef CLIENT_DLL
+			PM_PlaySample( szBuf, fvol, PITCH_NORM, pmove->origin );
+#endif
+			return;
+		}
+	}
+#ifdef CLIENT_DLL
+	PM_PlaySample( szValue, fvol, PITCH_NORM, pmove->origin );
+#endif
+}
+
 void PM_PlayStepSound( int step, float fvol )
 {
 	static int iSkipStep = 0;
 	int irand;
 	vec3_t hvel;
+	const char* szValue;
+	int iType;
 
 	pmove->iStepLeft = !pmove->iStepLeft;
 
@@ -310,6 +347,7 @@ void PM_PlayStepSound( int step, float fvol )
 
 	if ( pmove->multiplayer && ( !g_onladder && Length( hvel ) <= 220 ) )
 		return;
+
 
 	// irand - 0,1 for right foot, 2,3 for left foot
 	// used to alternate left and right foot
@@ -432,7 +470,8 @@ void PM_PlayStepSound( int step, float fvol )
 		}
 		break;
 	}
-}	
+}
+
 
 int PM_MapTextureTypeStepType(char chTextureType)
 {
@@ -2487,21 +2526,23 @@ void PM_Jump (void)
 		{
 			// Don't play sound again for 1 second
 			pmove->flSwimTime = 1000;
-			switch ( pmove->RandomLong( 0, 3 ) )
-			{ 
+#ifdef CLIENT_DLL
+			switch ( pmove->RandomLong(0,3) )
+			{
 			case 0:
-				pmove->PM_PlaySound( CHAN_BODY, "player/pl_wade1.wav", 1, ATTN_NORM, 0, PITCH_NORM );
+				PM_PlaySample("player/pl_wade1.wav", VOL_NORM, PITCH_NORM, pmove->origin);
 				break;
 			case 1:
-				pmove->PM_PlaySound( CHAN_BODY, "player/pl_wade2.wav", 1, ATTN_NORM, 0, PITCH_NORM );
+				PM_PlaySample("player/pl_wade2.wav", VOL_NORM, PITCH_NORM, pmove->origin);
 				break;
 			case 2:
-				pmove->PM_PlaySound( CHAN_BODY, "player/pl_wade3.wav", 1, ATTN_NORM, 0, PITCH_NORM );
+				PM_PlaySample("player/pl_wade3.wav", VOL_NORM, PITCH_NORM, pmove->origin);
 				break;
 			case 3:
-				pmove->PM_PlaySound( CHAN_BODY, "player/pl_wade4.wav", 1, ATTN_NORM, 0, PITCH_NORM );
+				PM_PlaySample("player/pl_wade4.wav", VOL_NORM, PITCH_NORM, pmove->origin);
 				break;
 			}
+#endif
 		}
 
 		return;
@@ -2525,14 +2566,7 @@ void PM_Jump (void)
 
 	PM_PreventMegaBunnyJumping();
 
-	if ( tfc )
-	{
-		pmove->PM_PlaySound( CHAN_BODY, "player/plyrjmp8.wav", 0.5, ATTN_NORM, 0, PITCH_NORM );
-	}
-	else
-	{
-		PM_PlayStepSound( PM_MapTextureTypeStepType( pmove->chtexturetype ), 1.0 );
-	}
+	PM_PlayStepSound( PM_MapTextureTypeStepType( pmove->chtexturetype ), 1.0 );
 
 	// See if user can super long jump?
 	cansuperjump = atoi( pmove->PM_Info_ValueForKey( pmove->physinfo, "slj" ) ) == 1 ? true : false;
@@ -2665,7 +2699,9 @@ void PM_CheckFalling( void )
 				//pmove->PM_PlaySound( CHAN_VOICE, "player/pl_fallpain2.wav", 1, ATTN_NORM, 0, PITCH_NORM );
 				//break;
 			//case 1:
-				pmove->PM_PlaySound( CHAN_VOICE, "player/pl_fallpain3.wav", 1, ATTN_NORM, 0, PITCH_NORM );
+#ifdef CLIENT_DLL
+				PM_PlaySample("player/pl_fallpain3.wav", fvol, PITCH_NORM, pmove->origin);
+#endif
 			//	break;
 			//}
 			fvol = 1.0;
@@ -2674,11 +2710,6 @@ void PM_CheckFalling( void )
 		{
 			qboolean tfc = false;
 			tfc = atoi( pmove->PM_Info_ValueForKey( pmove->physinfo, "tfc" ) ) == 1 ? true : false;
-
-			if ( tfc )
-			{
-				pmove->PM_PlaySound( CHAN_VOICE, "player/pl_fallpain3.wav", 1, ATTN_NORM, 0, PITCH_NORM );
-			}
 
 			fvol = 0.85;
 		}
@@ -2725,21 +2756,23 @@ void PM_PlayWaterSounds( void )
 	if  ( ( pmove->oldwaterlevel == 0 && pmove->waterlevel != 0 ) ||
 		  ( pmove->oldwaterlevel != 0 && pmove->waterlevel == 0 ) )
 	{
+#ifdef CLIENT_DLL
 		switch ( pmove->RandomLong(0,3) )
 		{
 		case 0:
-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_wade1.wav", 1, ATTN_NORM, 0, PITCH_NORM );
+			PM_PlaySample("player/pl_wade1.wav", VOL_NORM, PITCH_NORM, pmove->origin);
 			break;
 		case 1:
-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_wade2.wav", 1, ATTN_NORM, 0, PITCH_NORM );
+			PM_PlaySample("player/pl_wade2.wav", VOL_NORM, PITCH_NORM, pmove->origin);
 			break;
 		case 2:
-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_wade3.wav", 1, ATTN_NORM, 0, PITCH_NORM );
+			PM_PlaySample("player/pl_wade3.wav", VOL_NORM, PITCH_NORM, pmove->origin);
 			break;
 		case 3:
-			pmove->PM_PlaySound( CHAN_BODY, "player/pl_wade4.wav", 1, ATTN_NORM, 0, PITCH_NORM );
+			PM_PlaySample("player/pl_wade4.wav", VOL_NORM, PITCH_NORM, pmove->origin);
 			break;
 		}
+#endif
 	}
 }
 
@@ -2833,6 +2866,7 @@ void PM_CheckParamters( void )
 		pmove->cmd.forwardmove = 0;
 		pmove->cmd.sidemove    = 0;
 		pmove->cmd.upmove      = 0;
+		pmove->cmd.buttons     = 0; // LRC - no jump sounds when frozen!
 	}
 
 

@@ -27,6 +27,8 @@
 
 #include "vgui_TeamFortressViewport.h"
 
+#include "soundengine.h" // Fograin92
+
 extern float *GetClientColor( int clientIndex );
 
 #define MAX_LINES	5
@@ -220,7 +222,10 @@ void CHudSayText :: SayTextPrint( const char *pszBuf, int iBufSize, int clientIn
 	}
 
 	m_iFlags |= HUD_ACTIVE;
-	PlaySound( "misc/talk.wav", 1 );
+	//PlaySound( "misc/talk.wav", 1 );
+
+	// Fograin92: Replaced with new audio engine
+	gSoundEngine.PlaySound( "misc/talk.wav", g_vecZero, SND_HUD );
 
 	if ( ScreenHeight >= 480 )
 		Y_START = ScreenHeight - 60;

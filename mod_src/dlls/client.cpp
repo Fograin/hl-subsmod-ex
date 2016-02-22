@@ -549,6 +549,9 @@ void ClientUserInfoChanged( edict_t *pEntity, char *infobuffer )
 
 static int g_serveractive = 0;
 
+
+extern void EXResetEngine( void ); // Fograin92
+
 void ServerDeactivate( void )
 {
 //	ALERT( at_console, "ServerDeactivate()\n" );
@@ -561,6 +564,8 @@ void ServerDeactivate( void )
 	}
 
 	g_serveractive = 0;
+
+	EXResetEngine(); // Fograin92: Reset new audio engine
 
 	// Peform any shutdown operations here...
 	//

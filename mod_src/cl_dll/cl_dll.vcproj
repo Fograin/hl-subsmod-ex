@@ -2088,6 +2088,14 @@
 			<Filter
 				Name="SFX"
 				>
+				<File
+					RelativePath=".\soundengine.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\soundengine.h"
+					>
+				</File>
 			</Filter>
 		</Filter>
 	</Files>

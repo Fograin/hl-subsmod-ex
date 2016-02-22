@@ -20,6 +20,14 @@
 
 #include "sm_hook_txt.h"	// Vit_amiN
 
+
+// Fograin92: Attached new audio functions
+//==============SOUND ENGINE FUNCTIONS==============//
+extern void EXPrecacheSound( char *szFile );
+extern void EXEmitSound( edict_t *entity, int channel, const char *sample, float volume, float attenuation, int fFlags, int pitch );
+extern void EXEmitAmbientSound(edict_t *entity, float *pos, const char *samp, float vol, float attenuation, int fFlags, int pitch );
+//==============SOUND ENGINE FUNCTIONS==============//
+
 // Must be provided by user of this code
 extern enginefuncs_t g_engfuncs;
 

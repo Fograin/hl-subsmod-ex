@@ -34,6 +34,9 @@
 #include "windows.h"
 #include "gl/gl.h"
 
+// Fograin92
+#include "soundengine.h"
+
 // Spectator Mode
 extern "C" 
 {
@@ -1639,6 +1642,9 @@ void DLLEXPORT V_CalcRefdef( struct ref_params_s *pparams )
 	{
 		V_CalcNormalRefdef ( pparams );
 	}
+
+	// Fograin92
+	gSoundEngine.SetupFrame( pparams );
 
 /*
 // Example of how to overlay the whole screen with red at 50 % alpha

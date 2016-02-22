@@ -273,11 +273,27 @@ float SM_Hook_Client_pfnPlaySoundVoiceByName( const char * const pString, const 
 
 void SM_Hook_Server_EMIT_SOUND_DYN2( edict_t * const entity, const char * const pString, const int sndChannel, const float sndVolume, const float sndAttenuation, const int sndFlags, const int sndPitch )
 {
+	// Fograin92: test
+	//ALERT ( at_console, "PASS -> %s\n", pString );
+	if( pString[0] == '!' )
+	{
+		char name[32];
+		int iSentenceNum = SENTENCEG_Lookup(pString, name);
+		EXEmitSound(entity, sndChannel, name, 1.0, sndAttenuation, sndFlags, sndPitch);
+	}
+	else
+	{
+		EXEmitSound(entity, sndChannel, pString, 1.0, sndAttenuation, sndFlags, sndPitch);
+	}
+
     SM_PlaySound_Hook_SENDFUNC__FIXME_(ENTINDEX(entity), pString, (entity->v.absmin + entity->v.absmax) * 0.5f, sndChannel, sndVolume, sndAttenuation, sndFlags, sndPitch);
 }
 
 void SM_Hook_Server_EMIT_AMBIENT_SOUND( edict_t * const entity, const char * const pString, const float * const vecOrigin, const float sndVolume, const float sndAttenuation, const int sndFlags, const int sndPitch )
 {
+	// Fograin92: Hook new audio system (Channel 6 for static sound)
+	EXEmitSound(entity, 6, pString, 1.0, sndAttenuation, sndFlags, sndPitch);
+
     SM_PlaySound_Hook_SENDFUNC__FIXME_(ENTINDEX(entity), pString, vecOrigin, CHAN_AUTO, sndVolume, sndAttenuation, sndFlags, sndPitch);
 }
 

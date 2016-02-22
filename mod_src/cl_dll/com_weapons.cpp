@@ -24,6 +24,8 @@
 #include "entity_state.h"
 #include "r_efx.h"
 
+#include "soundengine.h" // Fograin92
+
 // g_runfuncs is true if this is the first time we've "predicated" a particular movement/firing
 //  command.  If it is 1, then we should play events/sounds etc., otherwise, we just will be
 //  updating state info, but not firing events
@@ -116,7 +118,9 @@ void HUD_PlaySound( char *sound, float volume )
 	if ( !g_runfuncs || !g_finalstate )
 		return;
 
-	gEngfuncs.pfnPlaySoundByNameAtLocation( sound, volume, (float *)&g_finalstate->playerstate.origin );
+	//gEngfuncs.pfnPlaySoundByNameAtLocation( sound, volume, (float *)&g_finalstate->playerstate.origin );
+	// Fograin92: Replaced with new audio engine
+	gSoundEngine.PlaySound(sound, (float *)&g_finalstate->playerstate.origin, NULL, volume);
 }
 
 /*

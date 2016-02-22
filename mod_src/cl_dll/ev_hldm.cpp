@@ -31,6 +31,8 @@
 #include "r_studioint.h"
 #include "com_model.h"
 
+#include "soundengine.h" // Fograin92
+
 extern engine_studio_api_t IEngineStudio;
 
 static int tracerCount[ 32 ];
@@ -209,7 +211,10 @@ float EV_HLDM_PlayTextureSound( int idx, pmtrace_t *ptr, float *vecSrc, float *v
 	}
 
 	// play material hit sound
-	gEngfuncs.pEventAPI->EV_PlaySound( 0, ptr->endpos, CHAN_STATIC, rgsz[gEngfuncs.pfnRandomLong(0,cnt-1)], fvol, fattn, 0, 96 + gEngfuncs.pfnRandomLong(0,0xf) );
+	//gEngfuncs.pEventAPI->EV_PlaySound( 0, ptr->endpos, CHAN_STATIC, rgsz[gEngfuncs.pfnRandomLong(0,cnt-1)], fvol, fattn, 0, 96 + gEngfuncs.pfnRandomLong(0,0xf) );
+
+	gSoundEngine.PlaySound( rgsz[gEngfuncs.pfnRandomLong(0,cnt-1)], g_vecZero, SND_RELATIVE, CHAN_WEAPON, gEngfuncs.pfnRandomFloat(0.92, 1.0), 98 + gEngfuncs.pfnRandomLong( 0, 3 ), ATTN_NORM, NULL );
+
 	return fvolbar;
 }
 
@@ -247,11 +252,34 @@ void EV_HLDM_GunshotDecalTrace( pmtrace_t *pTrace, char *decalName )
 	{
 		switch( iRand % 5)
 		{
-		case 0:	gEngfuncs.pEventAPI->EV_PlaySound( -1, pTrace->endpos, 0, "weapons/ric1.wav", 1.0, ATTN_NORM, 0, PITCH_NORM ); break;
-		case 1:	gEngfuncs.pEventAPI->EV_PlaySound( -1, pTrace->endpos, 0, "weapons/ric2.wav", 1.0, ATTN_NORM, 0, PITCH_NORM ); break;
-		case 2:	gEngfuncs.pEventAPI->EV_PlaySound( -1, pTrace->endpos, 0, "weapons/ric3.wav", 1.0, ATTN_NORM, 0, PITCH_NORM ); break;
-		case 3:	gEngfuncs.pEventAPI->EV_PlaySound( -1, pTrace->endpos, 0, "weapons/ric4.wav", 1.0, ATTN_NORM, 0, PITCH_NORM ); break;
-		case 4:	gEngfuncs.pEventAPI->EV_PlaySound( -1, pTrace->endpos, 0, "weapons/ric5.wav", 1.0, ATTN_NORM, 0, PITCH_NORM ); break;
+			/*
+			case 0:	gEngfuncs.pEventAPI->EV_PlaySound( -1, pTrace->endpos, 0, "weapons/ric1.wav", 1.0, ATTN_NORM, 0, PITCH_NORM ); break;
+			case 1:	gEngfuncs.pEventAPI->EV_PlaySound( -1, pTrace->endpos, 0, "weapons/ric2.wav", 1.0, ATTN_NORM, 0, PITCH_NORM ); break;
+			case 2:	gEngfuncs.pEventAPI->EV_PlaySound( -1, pTrace->endpos, 0, "weapons/ric3.wav", 1.0, ATTN_NORM, 0, PITCH_NORM ); break;
+			case 3:	gEngfuncs.pEventAPI->EV_PlaySound( -1, pTrace->endpos, 0, "weapons/ric4.wav", 1.0, ATTN_NORM, 0, PITCH_NORM ); break;
+			case 4:	gEngfuncs.pEventAPI->EV_PlaySound( -1, pTrace->endpos, 0, "weapons/ric5.wav", 1.0, ATTN_NORM, 0, PITCH_NORM ); break;
+			*/
+
+			// Fograin92
+			case 0:
+				gSoundEngine.PlaySound( "weapons/ric1.wav", pTrace->endpos, SND_RELATIVE, CHAN_WEAPON, gEngfuncs.pfnRandomFloat(0.92, 1.0), 98 + gEngfuncs.pfnRandomLong( 0, 3 ), ATTN_NORM, NULL);
+			break;
+
+			case 1:
+				gSoundEngine.PlaySound( "weapons/ric2.wav", pTrace->endpos, SND_RELATIVE, CHAN_WEAPON, gEngfuncs.pfnRandomFloat(0.92, 1.0), 98 + gEngfuncs.pfnRandomLong( 0, 3 ), ATTN_NORM, NULL);
+			break;
+
+			case 2:
+				gSoundEngine.PlaySound( "weapons/ric3.wav", pTrace->endpos, SND_RELATIVE, CHAN_WEAPON, gEngfuncs.pfnRandomFloat(0.92, 1.0), 98 + gEngfuncs.pfnRandomLong( 0, 3 ), ATTN_NORM, NULL);
+			break;
+
+			case 3:
+				gSoundEngine.PlaySound( "weapons/ric4.wav", pTrace->endpos, SND_RELATIVE, CHAN_WEAPON, gEngfuncs.pfnRandomFloat(0.92, 1.0), 98 + gEngfuncs.pfnRandomLong( 0, 3 ), ATTN_NORM, NULL);
+			break;
+
+			case 4:
+				gSoundEngine.PlaySound( "weapons/ric5.wav", pTrace->endpos, SND_RELATIVE, CHAN_WEAPON, gEngfuncs.pfnRandomFloat(0.92, 1.0), 98 + gEngfuncs.pfnRandomLong( 0, 3 ), ATTN_NORM, NULL);
+			break;
 		}
 	}
 
@@ -472,7 +500,9 @@ void EV_FireGlock1( event_args_t *args )
 
 	EV_EjectBrass ( ShellOrigin, ShellVelocity, angles[ YAW ], shell, TE_BOUNCE_SHELL ); 
 
-	gEngfuncs.pEventAPI->EV_PlaySound( idx, origin, CHAN_WEAPON, "weapons/pl_gun3.wav", gEngfuncs.pfnRandomFloat(0.92, 1.0), ATTN_NORM, 0, 98 + gEngfuncs.pfnRandomLong( 0, 3 ) );
+	//gEngfuncs.pEventAPI->EV_PlaySound( idx, origin, CHAN_WEAPON, "weapons/pl_gun3.wav", gEngfuncs.pfnRandomFloat(0.92, 1.0), ATTN_NORM, 0, 98 + gEngfuncs.pfnRandomLong( 0, 3 ) );
+	// Fograin92: Replaced with new audio engine
+	gSoundEngine.PlaySound( "weapons/pl_gun3.wav", g_vecZero, SND_RELATIVE, CHAN_WEAPON, gEngfuncs.pfnRandomFloat(0.92, 1.0), 98 + gEngfuncs.pfnRandomLong( 0, 3 ), ATTN_NORM, NULL, args->entindex );
 
 	EV_GetGunPosition( args, vecSrc, origin );
 	
@@ -517,7 +547,11 @@ void EV_FireGlock2( event_args_t *args )
 
 	EV_EjectBrass ( ShellOrigin, ShellVelocity, angles[ YAW ], shell, TE_BOUNCE_SHELL ); 
 
-	gEngfuncs.pEventAPI->EV_PlaySound( idx, origin, CHAN_WEAPON, "weapons/pl_gun3.wav", gEngfuncs.pfnRandomFloat(0.92, 1.0), ATTN_NORM, 0, 98 + gEngfuncs.pfnRandomLong( 0, 3 ) );
+	//gEngfuncs.pEventAPI->EV_PlaySound( idx, origin, CHAN_WEAPON, "weapons/pl_gun3.wav", gEngfuncs.pfnRandomFloat(0.92, 1.0), ATTN_NORM, 0, 98 + gEngfuncs.pfnRandomLong( 0, 3 ) );
+	// Fograin92: Replaced with new audio engine
+	gSoundEngine.PlaySound( "weapons/pl_gun3.wav", g_vecZero, SND_RELATIVE, CHAN_WEAPON, gEngfuncs.pfnRandomFloat(0.92, 1.0), 98 + gEngfuncs.pfnRandomLong( 0, 3 ), ATTN_NORM, NULL, args->entindex );
+
+
 
 	EV_GetGunPosition( args, vecSrc, origin );
 	
@@ -573,7 +607,10 @@ void EV_FireShotGunDouble( event_args_t *args )
 		EV_EjectBrass ( ShellOrigin, ShellVelocity, angles[ YAW ], shell, TE_BOUNCE_SHOTSHELL ); 
 	}
 
-	gEngfuncs.pEventAPI->EV_PlaySound( idx, origin, CHAN_WEAPON, "weapons/dbarrel1.wav", gEngfuncs.pfnRandomFloat(0.98, 1.0), ATTN_NORM, 0, 85 + gEngfuncs.pfnRandomLong( 0, 0x1f ) );
+	//gEngfuncs.pEventAPI->EV_PlaySound( idx, origin, CHAN_WEAPON, "weapons/dbarrel1.wav", gEngfuncs.pfnRandomFloat(0.98, 1.0), ATTN_NORM, 0, 85 + gEngfuncs.pfnRandomLong( 0, 0x1f ) );
+	// Fograin92: Replaced with new audio engine
+	gSoundEngine.PlaySound( "weapons/dbarrel1.wav", g_vecZero, SND_RELATIVE, CHAN_WEAPON, gEngfuncs.pfnRandomFloat(0.98, 1.0), 85 + gEngfuncs.pfnRandomLong( 0, 0x1f ), ATTN_NORM, NULL, args->entindex );
+
 
 	EV_GetGunPosition( args, vecSrc, origin );
 	VectorCopy( forward, vecAiming );
@@ -625,7 +662,10 @@ void EV_FireShotGunSingle( event_args_t *args )
 
 	EV_EjectBrass ( ShellOrigin, ShellVelocity, angles[ YAW ], shell, TE_BOUNCE_SHOTSHELL ); 
 
-	gEngfuncs.pEventAPI->EV_PlaySound( idx, origin, CHAN_WEAPON, "weapons/sbarrel1.wav", gEngfuncs.pfnRandomFloat(0.95, 1.0), ATTN_NORM, 0, 93 + gEngfuncs.pfnRandomLong( 0, 0x1f ) );
+	//gEngfuncs.pEventAPI->EV_PlaySound( idx, origin, CHAN_WEAPON, "weapons/sbarrel1.wav", gEngfuncs.pfnRandomFloat(0.95, 1.0), ATTN_NORM, 0, 93 + gEngfuncs.pfnRandomLong( 0, 0x1f ) );
+	// Fograin92: Replaced with new audio engine
+	gSoundEngine.PlaySound( "weapons/sbarrel1.wav", g_vecZero, SND_RELATIVE, CHAN_WEAPON, gEngfuncs.pfnRandomFloat(0.95, 1.0), 93 + gEngfuncs.pfnRandomLong( 0, 0x1f ), ATTN_NORM, NULL, args->entindex );
+
 
 	EV_GetGunPosition( args, vecSrc, origin );
 	VectorCopy( forward, vecAiming );
@@ -682,6 +722,7 @@ void EV_FireMP5( event_args_t *args )
 
 	EV_EjectBrass ( ShellOrigin, ShellVelocity, angles[ YAW ], shell, TE_BOUNCE_SHELL ); 
 
+	/*
 	switch( gEngfuncs.pfnRandomLong( 0, 1 ) )
 	{
 	case 0:
@@ -689,6 +730,18 @@ void EV_FireMP5( event_args_t *args )
 		break;
 	case 1:
 		gEngfuncs.pEventAPI->EV_PlaySound( idx, origin, CHAN_WEAPON, "weapons/hks2.wav", 1, ATTN_NORM, 0, 94 + gEngfuncs.pfnRandomLong( 0, 0xf ) );
+		break;
+	}
+	*/
+	// Fograin92: Replaced with new audio engine
+	switch( gEngfuncs.pfnRandomLong( 0, 1 ) )
+	{
+		case 0:
+			gSoundEngine.PlaySound( "weapons/hks1.wav", g_vecZero, SND_RELATIVE, CHAN_WEAPON, 1, 94 + gEngfuncs.pfnRandomLong( 0, 0xf ), ATTN_NORM, NULL, args->entindex );
+		break;
+
+		case 1:
+			gSoundEngine.PlaySound( "weapons/hks2.wav", g_vecZero, SND_RELATIVE, CHAN_WEAPON, 1, 94 + gEngfuncs.pfnRandomLong( 0, 0xf ), ATTN_NORM, NULL, args->entindex );
 		break;
 	}
 
@@ -721,6 +774,7 @@ void EV_FireMP52( event_args_t *args )
 		V_PunchAxis( 0, -10 );
 	}
 	
+	/*
 	switch( gEngfuncs.pfnRandomLong( 0, 1 ) )
 	{
 	case 0:
@@ -730,6 +784,18 @@ void EV_FireMP52( event_args_t *args )
 		gEngfuncs.pEventAPI->EV_PlaySound( idx, origin, CHAN_WEAPON, "weapons/glauncher2.wav", 1, ATTN_NORM, 0, 94 + gEngfuncs.pfnRandomLong( 0, 0xf ) );
 		break;
 	}
+	*/
+
+	// Fograin92: Replaced with new audio engine
+	//	switch( gEngfuncs.pfnRandomLong( 0, 1 ) )
+//	{
+//		gSoundEngine.PlaySound( "weapons/glauncher.wav", g_vecZero, SND_RELATIVE, NULL, 1, 94 + gEngfuncs.pfnRandomLong( 0, 0xf ), ATTN_NORM, NULL, args->entindex, NULL );
+//		break;
+//	case 1:
+		gSoundEngine.PlaySound( "weapons/glauncher2.wav", g_vecZero, SND_RELATIVE, NULL, 1, 94 + gEngfuncs.pfnRandomLong( 0, 0xf ), ATTN_NORM, NULL, args->entindex );
+//		break;
+//	}
+
 }
 //======================
 //		 MP5 END
@@ -772,10 +838,15 @@ void EV_FirePython( event_args_t *args )
 	switch( gEngfuncs.pfnRandomLong( 0, 1 ) )
 	{
 	case 0:
-		gEngfuncs.pEventAPI->EV_PlaySound( idx, origin, CHAN_WEAPON, "weapons/357_shot1.wav", gEngfuncs.pfnRandomFloat(0.8, 0.9), ATTN_NORM, 0, PITCH_NORM );
+		//gEngfuncs.pEventAPI->EV_PlaySound( idx, origin, CHAN_WEAPON, "weapons/357_shot1.wav", gEngfuncs.pfnRandomFloat(0.8, 0.9), ATTN_NORM, 0, PITCH_NORM );
+		// Fograin92
+		gSoundEngine.PlaySound( "weapons/357_shot1.wav", g_vecZero, SND_RELATIVE, CHAN_WEAPON, CVAR_GET_FLOAT( "volume" ), PITCH_NORM, ATTN_NORM);
+		//gSoundEngine.PlaySound( "weapons/357_shot1.wav", g_vecZero, SND_RELATIVE, CHAN_WEAPON, gEngfuncs.pfnRandomFloat(0.92, 1.0), 98 + gEngfuncs.pfnRandomLong( 0, 3 ), ATTN_NORM, NULL);
+
 		break;
 	case 1:
-		gEngfuncs.pEventAPI->EV_PlaySound( idx, origin, CHAN_WEAPON, "weapons/357_shot2.wav", gEngfuncs.pfnRandomFloat(0.8, 0.9), ATTN_NORM, 0, PITCH_NORM );
+		//gEngfuncs.pEventAPI->EV_PlaySound( idx, origin, CHAN_WEAPON, "weapons/357_shot2.wav", gEngfuncs.pfnRandomFloat(0.8, 0.9), ATTN_NORM, 0, PITCH_NORM );
+		gSoundEngine.PlaySound( "weapons/357_shot2.wav", g_vecZero, SND_RELATIVE, CHAN_WEAPON, CVAR_GET_FLOAT( "volume" ), PITCH_NORM, ATTN_NORM);
 		break;
 	}
 
@@ -1727,11 +1798,15 @@ void EV_TrainPitchAdjust( event_args_t *args )
 
 	if ( stop )
 	{
-		gEngfuncs.pEventAPI->EV_StopSound( idx, CHAN_STATIC, sz );
+		//gEngfuncs.pEventAPI->EV_StopSound( idx, CHAN_STATIC, sz );
+		// Fograin92: Replaced with new audio engine
+		//gSoundEngine.StopSound(idx, CHAN_STATIC);
 	}
 	else
 	{
-		gEngfuncs.pEventAPI->EV_PlaySound( idx, origin, CHAN_STATIC, sz, m_flVolume, ATTN_NORM, SND_CHANGE_PITCH, pitch );
+		//gEngfuncs.pEventAPI->EV_PlaySound( idx, origin, CHAN_STATIC, sz, m_flVolume, ATTN_NORM, SND_CHANGE_PITCH, pitch );
+		// Fograin92: Replaced with new audio engine
+		//gSoundEngine.PlaySound(sz, origin, SND_CHANGE_PITCH, CHAN_STATIC, VOL_NORM, pitch, ATTN_NORM, NULL, idx);
 	}
 }
 

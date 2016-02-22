@@ -25,6 +25,7 @@
 #include "particle_header.h"			// BG Particle System
 extern void SM_RegisterAllConVars();	// Vit_amiN
 #include "sm_hud.h"						// Fograin92
+#include "soundengine.h"				// Fograin92
 // Fograin92: Update MOD stuff END
 
 class CHLVoiceStatusHelper : public IVoiceStatusHelper
@@ -383,6 +384,10 @@ void CHud :: Init( void )
 	
 	ServersInit();
 
+
+	// Fograin92: New sound engine
+	gSoundEngine.Init();
+
 	MsgFunc_ResetHUD(0, 0, NULL );
 }
 
@@ -412,6 +417,10 @@ CHud :: ~CHud()
 	}
 
 	ServersShutdown();
+
+
+	// Fograin92: Shutdown new audio engine
+	gSoundEngine.Shutdown();
 }
 
 // GetSpriteIndex()
@@ -561,7 +570,6 @@ void CHud :: VidInit( void )
 	// Fograin92: Update MOD stuff
 
 // BG Particle System START
-
 	if(!pParticleManager)
 	{
 		pParticleManager = new CParticleSystemManager;
@@ -570,18 +578,11 @@ void CHud :: VidInit( void )
 
 	pParticleManager->RemoveParticles();
 	pParticleManager->RemoveSystems();
-
-/*
-	if(!pParticleManager)
-	{
-		pParticleManager = new CParticleSystemManager;
-		pParticleManager->PrecacheTextures();
-	}*/
-
-	//if(pParticleManager)
-	//	delete pParticleManager;
-	//pParticleManager = new CParticleSystemManager;
 // BG Particle System END
+
+	// Fograin92: New audio engine
+	gSoundEngine.VidInit();
+
 
 }
 

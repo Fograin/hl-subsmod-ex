@@ -32,13 +32,16 @@ extern "C"
 #include "hud_servers.h"
 #include "vgui_int.h"
 
-
 #define DLLEXPORT __declspec( dllexport )
 
 
 cl_enginefunc_t gEngfuncs;
 CHud gHUD;
 TeamFortressViewport *gViewPort = NULL;
+
+#include "soundengine.h"
+CSoundEngine gSoundEngine;	// Fograin92: New sound engine DEF (Thanks to Richard Roh·Ë)
+
 
 void InitInput (void);
 void EV_HookEvents( void );
@@ -168,9 +171,6 @@ int DLLEXPORT HUD_VidInit( void )
 {
 	gHUD.VidInit();
 	VGui_Startup();
-
-	// Fograin92: Initialize new sound engine
-	//gSoundEngine.Init();
 
 	return 1;
 }

@@ -30,6 +30,7 @@
 #include "vgui_TeamFortressViewport.h"
 
 #include "sm_hud.h"		// Fograin92
+#include "soundengine.h" // Fograin92
 
 WEAPON *gpActiveSel;	// NULL means off, 1 means just the menu bar, otherwise
 						// this points to the active weapon menu item
@@ -388,7 +389,9 @@ void CHudAmmo::Think(void)
 		gpActiveSel = NULL;
 		gHUD.m_iKeyBits &= ~IN_ATTACK;
 
-		PlaySound("common/wpn_select.wav", 1);
+		//PlaySound("common/wpn_select.wav", 1);
+		// Fograin92: Replaced with new audio engine
+		gSoundEngine.PlaySound("common/wpn_select.wav", g_vecZero, SND_HUD);
 	}
 
 }
@@ -444,7 +447,10 @@ void WeaponsResource :: SelectSlot( int iSlot, int fAdvance, int iDirection )
 
 	if ( (gpActiveSel == NULL) || (gpActiveSel == (WEAPON *)1) || (iSlot != gpActiveSel->iSlot) )
 	{
-		PlaySound( "common/wpn_hudon.wav", 1 );
+		//PlaySound( "common/wpn_hudon.wav", 1 );
+		// Fograin92: Replaced with new audio engine
+		gSoundEngine.PlaySound("common/wpn_hudon.wav", g_vecZero, SND_HUD);
+
 		p = GetFirstPos( iSlot );
 
 		if ( p && fastSwitch ) // check for fast weapon switch mode
@@ -462,7 +468,10 @@ void WeaponsResource :: SelectSlot( int iSlot, int fAdvance, int iDirection )
 	}
 	else
 	{
-		PlaySound("common/wpn_moveselect.wav", 1);
+		//PlaySound("common/wpn_moveselect.wav", 1);
+		// Fograin92: Replaced with new audio engine
+		gSoundEngine.PlaySound("common/wpn_moveselect.wav", g_vecZero, SND_HUD);
+
 		if ( gpActiveSel )
 			p = GetNextActivePos( gpActiveSel->iSlot, gpActiveSel->iSlotPos );
 		if ( !p )
@@ -754,7 +763,9 @@ void CHudAmmo::UserCmd_Close(void)
 	{
 		gpLastSel = gpActiveSel;
 		gpActiveSel = NULL;
-		PlaySound("common/wpn_hudoff.wav", 1);
+		//PlaySound("common/wpn_hudoff.wav", 1);
+		// Fograin92: Replaced with new audio engine
+		gSoundEngine.PlaySound("common/wpn_hudoff.wav", g_vecZero, SND_HUD);
 	}
 	else
 		ClientCmd("escape");

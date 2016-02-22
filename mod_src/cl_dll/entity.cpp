@@ -24,6 +24,8 @@
 #include "pmtrace.h"	
 #include "pm_shared.h"
 
+#include "soundengine.h" // Fograin92
+
 #define DLLEXPORT __declspec( dllexport )
 
 void Game_AddObjects( void );
@@ -599,7 +601,9 @@ void DLLEXPORT HUD_StudioEvent( const struct mstudioevent_s *event, const struct
 		
 		// Client side sound
 		case 5004:		
-			gEngfuncs.pfnPlaySoundByNameAtLocation( (char *)event->options, 1.0, (float *)&entity->attachment[0] );
+			//gEngfuncs.pfnPlaySoundByNameAtLocation( (char *)event->options, 1.0, (float *)&entity->attachment[0] );
+			// Fograin92: Replaced with new audio engine
+			gSoundEngine.PlaySound((char *)event->options, g_vecZero, SND_RELATIVE, CHAN_WEAPON, 1.0, PITCH_NORM, ATTN_NORM, NULL);
 		break;
 		
 		default:
@@ -893,7 +897,9 @@ void DLLEXPORT HUD_TempEntUpdate (
 
 					if (pTemp->hitSound)
 					{
-						Callback_TempEntPlaySound(pTemp, damp);
+						//Callback_TempEntPlaySound(pTemp, damp);
+						// Fograin92: Replaced with new audio engine
+						gSoundEngine.TempEntPlaySound(pTemp, damp);
 					}
 
 					if (pTemp->flags & FTENT_COLLIDEKILL)
