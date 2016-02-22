@@ -213,6 +213,7 @@ typedef struct entvars_s
 	edict_t		*euser2;
 	edict_t		*euser3;
 	edict_t		*euser4;
+
 } entvars_t;
 
 #endif//PROGDEFS_H

@@ -28,6 +28,8 @@
 
 DECLARE_MESSAGE(m_Health, Health )
 DECLARE_MESSAGE(m_Health, Damage )
+DECLARE_MESSAGE(m_Health, msgUnderWater );	// Fograin92: Hook underwater timer
+
 
 #define PAIN_NAME "sprites/%d_pain.spr"
 #define DAMAGE_NAME "sprites/%d_dmg.spr"
@@ -54,6 +56,7 @@ int CHudHealth::Init(void)
 {
 	HOOK_MESSAGE(Health);
 	HOOK_MESSAGE(Damage);
+	HOOK_MESSAGE(msgUnderWater);	// Fograin92: Hooked
 	m_iHealth = 100;
 	m_fFade = 0;
 	m_iFlags = 0;
@@ -115,7 +118,6 @@ int CHudHealth:: MsgFunc_Health(const char *pszName,  int iSize, void *pbuf )
 	return 1;
 }
 
-
 int CHudHealth:: MsgFunc_Damage(const char *pszName,  int iSize, void *pbuf )
 {
 	BEGIN_READ( pbuf, iSize );
@@ -134,6 +136,18 @@ int CHudHealth:: MsgFunc_Damage(const char *pszName,  int iSize, void *pbuf )
 	// Actually took damage?
 	if ( damageTaken > 0 || armor > 0 )
 		CalcDamageDirection(vecFrom);
+
+	return 1;
+}
+
+// Fograin92: Server MSG sending current underwater time
+int CHudHealth:: MsgFunc_msgUnderWater(const char *pszName,  int iSize, void *pbuf )
+{
+	BEGIN_READ( pbuf, iSize );
+	float x = READ_COORD();
+
+	//m_iFlags |= HUD_ACTIVE;
+	gViewPort->m_pHudNew->SetAirValue(x); // Fograin92: Send Air value to our new HUD
 
 	return 1;
 }
@@ -348,7 +362,8 @@ int CHudHealth::DrawDamage(float flTime)
 				case 2:		gViewPort->m_pHudNew->DamageSensor(5, true);	break;
 
 				// DMG_DROWN
-				case 3:		gViewPort->m_pHudNew->DamageSensor(1, true);	break;
+				case 3:		//gViewPort->m_pHudNew->DamageSensor(1, true);	
+					break;
 
 				// DMG_BURN|DMG_SLOWBURN
 				case 4:		gViewPort->m_pHudNew->DamageSensor(4, true);	break;

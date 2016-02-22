@@ -116,6 +116,7 @@ public:
 	void DamageIndicator( float fFront, float fSide );	// Mutator <- We send damage direction to this function
 	void DamageSensor( int iDmgType, bool bEnabled );	// Mutator <- We send damage data to atmospheric contaminant sensors
 	int ShouldDrawHUD();								// Should we draw HEV? (Called every HUD::Redraw, required for hud_draw cvar)
+	void SetAirValue(float fAirVal);					// Mutator <- Send new air value
 
 	// Shared vars
 	bool bHaveHEV;		// Do we have HEV/PCV equiped?
@@ -204,7 +205,15 @@ protected:
 	float			fTimer_iDmgGas;
 	float			fTimer_iDmgRad;
 	float			fTimer_iDmgShock;
-	
+
+
+	// Air counter
+	Panel			*pAirPanel;			// Air Counter panel background/container
+	ImageHolder		*pAirIcon;			// Air Counter icon
+	float			fAir;				// Air value
+	Label			*pAirLab;			// Air value text
+	//cl_entity_t		*cl_Player;		// Pointer to the player, because why the fuck not
+
 
 	// HEV Logon/Intro sequence
 	bool	bShortLogon;		// Should we use short-intro version from Hazard Course?

@@ -107,6 +107,7 @@ public:
 	virtual void Reset( void );
 	int MsgFunc_Health(const char *pszName,  int iSize, void *pbuf);
 	int MsgFunc_Damage(const char *pszName,  int iSize, void *pbuf);
+	int MsgFunc_msgUnderWater(const char *pszName,  int iSize, void *pbuf);
 	int m_iHealth;
 	int m_HUD_dmg_bio;
 	int m_HUD_cross;

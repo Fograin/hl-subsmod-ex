@@ -460,6 +460,7 @@ void CSoundEngine::SetupFrame( ref_params_t *pparams )
 	VectorCopy(pparams->viewangles, m_vViewAngles);
 	m_iViewEntity = pparams->viewentity;
 
+
 	// Setup reverbation
 	if(pparams->waterlevel == 3)
 	{

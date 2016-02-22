@@ -156,7 +156,7 @@ int gmsgStatusValue = 0;
 // Fograin92: Update MOD stuff
 int gmsgParticles = 0;			// Fograin92: BG Particle System
 int gmsgGrassParticles = 0;		// Fograin92: BG Particle System (Grass)
-
+int gmsgUnderwaterTime = 0;		// Fograin92: How long player was underwater
 
 
 void LinkUserMessages( void )
@@ -205,8 +205,10 @@ void LinkUserMessages( void )
 	gmsgStatusValue = REG_USER_MSG("StatusValue", 3);
 
 	// Fograin92: Update MOD stuff
-	gmsgParticles		= REG_USER_MSG( "Particles",	-1 );	// BG Particles
-	gmsgGrassParticles	= REG_USER_MSG( "Grass",		-1 );	// BG Particles (Grass)
+	gmsgParticles		= REG_USER_MSG( "Particles",		-1 );	// BG Particles
+	gmsgGrassParticles	= REG_USER_MSG( "Grass",			-1 );	// BG Particles (Grass)
+	gmsgUnderwaterTime	= REG_USER_MSG( "msgUnderWater",	-1 );	// How long player was underwater
+
 
 }
 
@@ -1147,7 +1149,8 @@ void CBasePlayer::TabulateAmmo()
 WaterMove
 ============
 */
-#define AIRTIME	12		// lung full of air lasts this many seconds
+// Fograin92: Changed to 20 from 12
+#define AIRTIME	20		// lung full of air lasts this many seconds
 
 void CBasePlayer::WaterMove()
 {
@@ -1167,6 +1170,9 @@ void CBasePlayer::WaterMove()
 	if (pev->waterlevel != 3) 
 	{
 		// not underwater
+
+		// Fograin92: Reset time underwater
+		m_flUnderWaterTime = 0;
 		
 		// play 'up for air' sound
 		if (pev->air_finished < gpGlobals->time)
@@ -1199,6 +1205,13 @@ void CBasePlayer::WaterMove()
 		m_bitsDamageType &= ~DMG_DROWNRECOVER;
 		m_rgbTimeBasedDamage[itbd_DrownRecover] = 0;
 
+
+		// Fograin92: Count time spend underwater
+		m_flUnderWaterTime = m_flUnderWaterTime + 0.01;
+		if(m_flUnderWaterTime > 100)
+			m_flUnderWaterTime = 100;
+
+
 		if (pev->air_finished < gpGlobals->time)		// drown!
 		{
 			if (pev->pain_finished < gpGlobals->time)
@@ -1221,6 +1234,11 @@ void CBasePlayer::WaterMove()
 			m_bitsDamageType &= ~DMG_DROWN;
 		}
 	}
+
+	// Fograin92: Send client MSG
+	MESSAGE_BEGIN( MSG_ONE, gmsgUnderwaterTime, NULL, pev );
+		WRITE_COORD( m_flUnderWaterTime );
+	MESSAGE_END();
 
 	if (!pev->waterlevel)
 	{

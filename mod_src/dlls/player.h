@@ -316,6 +316,9 @@ public:
 	char m_SbarString1[ SBAR_STRING_SIZE ];
 	
 	float m_flNextChatTime;
+
+	// Half-Life: Update Mod
+	float m_flUnderWaterTime;
 	
 };
 

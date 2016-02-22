@@ -2663,23 +2663,12 @@ void PM_CheckFalling( void )
 		}
 		else if ( pmove->flFallVelocity > PLAYER_MAX_SAFE_FALL_SPEED )
 		{
-			// Fograin92: Use new audio engine
-			/*
-			// NOTE:  In the original game dll , there were no breaks after these cases, causing the first one to 
-			// cascade into the second
-			//switch ( RandomLong(0,1) )
-			//{
-			//case 0:
-				//pmove->PM_PlaySound( CHAN_VOICE, "player/pl_fallpain2.wav", 1, ATTN_NORM, 0, PITCH_NORM );
-				//break;
-			//case 1:
-#ifdef CLIENT_DLL
-				PM_PlaySample("player/pl_fallpain3.wav", fvol, PITCH_NORM, pmove->origin);
-#endif
-			//	break;
-			//}
-			fvol = 1.0;
-			*/
+			// Fograin92: Changed to new audio engine
+			switch ( pmove->RandomLong(0,1) )
+			{
+				case 0: pmove->PM_PlaySound( CHAN_VOICE, "player/pl_fallpain2.wav", fvol, ATTN_NORM, 0, PITCH_NORM ); break;
+				case 1: pmove->PM_PlaySound( CHAN_VOICE, "player/pl_fallpain3.wav", fvol, ATTN_NORM, 0, PITCH_NORM ); break;
+			}
 		}
 		else if ( pmove->flFallVelocity > PLAYER_MAX_SAFE_FALL_SPEED / 2 )
 		{
@@ -2731,26 +2720,14 @@ void PM_PlayWaterSounds( void )
 	if  ( ( pmove->oldwaterlevel == 0 && pmove->waterlevel != 0 ) ||
 		  ( pmove->oldwaterlevel != 0 && pmove->waterlevel == 0 ) )
 	{
-		// Fograin92: Use new audio engine
-		/*
-#ifdef CLIENT_DLL
+		// Fograin92: Changed to new audio engine
 		switch ( pmove->RandomLong(0,3) )
 		{
-		case 0:
-			PM_PlaySample("player/pl_wade1.wav", VOL_NORM, PITCH_NORM, pmove->origin);
-			break;
-		case 1:
-			PM_PlaySample("player/pl_wade2.wav", VOL_NORM, PITCH_NORM, pmove->origin);
-			break;
-		case 2:
-			PM_PlaySample("player/pl_wade3.wav", VOL_NORM, PITCH_NORM, pmove->origin);
-			break;
-		case 3:
-			PM_PlaySample("player/pl_wade4.wav", VOL_NORM, PITCH_NORM, pmove->origin);
-			break;
+			case 0: pmove->PM_PlaySound( CHAN_VOICE, "player/pl_wade1.wav", VOL_NORM, ATTN_NORM, 0, PITCH_NORM ); break;
+			case 1: pmove->PM_PlaySound( CHAN_VOICE, "player/pl_wade2.wav", VOL_NORM, ATTN_NORM, 0, PITCH_NORM ); break;
+			case 2: pmove->PM_PlaySound( CHAN_VOICE, "player/pl_wade3.wav", VOL_NORM, ATTN_NORM, 0, PITCH_NORM ); break;
+			case 3: pmove->PM_PlaySound( CHAN_VOICE, "player/pl_wade4.wav", VOL_NORM, ATTN_NORM, 0, PITCH_NORM ); break;
 		}
-#endif
-		*/
 	}
 }
 

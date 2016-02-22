@@ -15,6 +15,7 @@
 #define HEV_READ_SPD	40	// HEV TEXT write-in speed
 
 
+
 //======= UTILITY FUNCTIONS =======//
 
 // IDs for all HUD objects that require adjustments
@@ -36,6 +37,7 @@ enum hudobjects_e
 	ID_AMMO_SECONDARY_ICON,	// Secondary ammo icon
 
 	ID_DMG_PANEL,	// Atmospheric contaminant sensors panel
+	ID_AIR_PANEL,	// Air Counter panel
 
 	AMOUNT			// Length of this enum
 };
@@ -165,7 +167,18 @@ const int iAdjustmentArray[][5] =
 	{ ID_DMG_PANEL,		1440,	900,	0,		800},
 	{ ID_DMG_PANEL,		1600,	900,	0,		800},
 	{ ID_DMG_PANEL,		1680,	1050,	0,		950},
-	{ ID_DMG_PANEL,		1920,	1080,	0,		980}
+	{ ID_DMG_PANEL,		1920,	1080,	0,		980},
+
+	// Air Counter panel
+	{ ID_AIR_PANEL,		1024,	576,	5,		540	},
+	{ ID_AIR_PANEL,		1024,	600,	5,		565	},
+	{ ID_AIR_PANEL,		1280,	720,	5,		680	},
+	{ ID_AIR_PANEL,		1360,	768,	5,		730	},
+	{ ID_AIR_PANEL,		1366,	768,	5,		730	},
+	{ ID_AIR_PANEL,		1440,	900,	5,		860	},
+	{ ID_AIR_PANEL,		1600,	900,	5,		860	},
+	{ ID_AIR_PANEL,		1680,	1050,	5,		1005},
+	{ ID_AIR_PANEL,		1920,	1080,	5,		920}
 };
 
 
@@ -352,6 +365,7 @@ void CHudNew::ResetVars(bool bInitOnly)
 		iPrimaryClip = 0;
 		iSecondaryAmmo = 0;
 		iSecondaryClip = 0;
+		fAir = 100;
 	}
 
 	bSoundPlaying = false;
@@ -704,6 +718,25 @@ void CHudNew::DamageSensor( int iDmgType, bool bEnabled )
 }
 
 
+// Mutator <- Send new health value
+void CHudNew::SetAirValue(float fAirVal)
+{
+	//gEngfuncs.Con_Printf("HAX -> %f\n", fAirVal);
+
+	// If new value is exactly the same as old one
+	//if (fAirVal == fAir)
+	//	return;	// We don't need to update
+
+	// Update health value
+	fAir = 100 - (fAirVal * 5.0);
+
+	if( fAir < 0 )
+		fAir = 0;
+	//UpdateHUD();
+}
+
+
+
 //======= NEW HUD =======//
 
 
@@ -907,6 +940,28 @@ CHudNew::CHudNew() : Panel(0, 0, XRES(640), YRES(480))
 
 
 
+// AIR Counter START
+	// Initialize Air Counter, background panel / container
+	pAirPanel = new Panel( AdjustPosition(ID_AIR_PANEL, false), AdjustPosition(ID_AIR_PANEL, true), 200, 64);
+	pAirPanel->setParent(this);
+	//pAirPanel->setBgColor(0, 0, 0, 100);
+	pAirPanel->setPaintBackgroundEnabled(false);
+
+	// Air icon
+	pAirIcon = new ImageHolder("gfx/vgui/hev_dmg_air.tga",	pAirPanel);
+	pAirIcon->setPos(0,0);
+
+	// Air value
+	pAirLab = new Label("0");
+	pAirLab->setFont( pFont );
+	pAirLab->setParent( pAirPanel );
+	pAirLab->setPaintBackgroundEnabled(false);
+	pAirLab->setPos(54, 0);
+	//pAirLab->setText("TEST");
+// AIR Counter END
+
+
+
 // LOGON/INTRO sequence START
 	
 	// Top-left console text
@@ -974,6 +1029,10 @@ CHudNew::~CHudNew()
 	if(pLogonText)			delete pLogonText;
 	if(pLogonConsolePanel)	delete pLogonConsolePanel;
 
+	if(pAirLab)				delete pAirLab;
+	if(pAirIcon)			delete pAirIcon;
+	if(pAirPanel)			delete pAirPanel;
+
 	if(pDmgAir)				delete pDmgAir;
 	if(pDmgBio)				delete pDmgBio;
 	if(pDmgChem)			delete pDmgChem;
@@ -1029,6 +1088,8 @@ void CHudNew::UpdateHUD()
 
 	GetGame();	// Set proper color vars
 	ShouldDrawHUD();
+
+	//cl_Player = gEngfuncs.GetLocalPlayer();	// Get pointer to local player
 }
 
 // Called every frame when HUD is visable
@@ -1375,6 +1436,41 @@ void CHudNew::paint()
 
 
 
+//========== AIR COUNTER START =======//
+	if(pAirLab && pAirIcon)
+	{
+		// Fograin92: Only display Air Counter if air value is below 100
+		if( fAir < 100 )
+		{
+			pAirIcon->setVisible(true);
+			pAirLab->setVisible(true);
+		}
+		else
+		{
+			pAirIcon->setVisible(false);
+			pAirLab->setVisible(false);
+		}
+
+		
+		// Fograin92: Change color if value is below 26
+		if(fAir < 26)
+		{
+			pAirIcon->GetBitmap()->setColor( Color(255, 0, 0, 1) );
+			pAirLab->setFgColor( 255, 0, 0, 0 );
+		}
+		else
+		{
+			pAirIcon->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1) );
+			pAirLab->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 0 );
+		}
+		
+
+		pAirLab->setText("%d", (int)fAir);
+	}
+//========== AIR COUNTER END =======//
+
+
+
 //========== ATMOSPHERIC CONTAMINANT SENSORS START =======//
 
 	// ONLY if it's not LOGON animation
@@ -1394,12 +1490,27 @@ void CHudNew::paint()
 				if (fTimer_iDmgAir <= 0)
 					fTimer_iDmgAir = 1;
 
+				// Fograin92: Check Air counter objects
+				if( pAirIcon && pAirLab )
+				{
+					pAirIcon->GetBitmap()->setColor( Color(255, 0, 0, 257-fTimer_iDmgAir) );
+					pAirLab->setFgColor( 255, 0, 0, 257-fTimer_iDmgAir );
+				}
+
 				pDmgAir->GetBitmap()->setColor( Color(255, 0, 0, 257-fTimer_iDmgAir));
 			}
 			else
 			{
-				fTimer_iDmgAir = 0;
-				DamageSensor(1, false);
+				if( pAirIcon->isVisible() && pAirLab->isVisible() && fAir < 1 )
+				{
+					// Fograin92: Reset flash timer
+					fTimer_iDmgAir = 255;
+				}
+				else
+				{
+					fTimer_iDmgAir = 0;
+					//DamageSensor(1, false);
+				}
 			}
 		}
 
@@ -1525,6 +1636,11 @@ void CHudNew::paint()
 	}	// END fTimer_Logon < 1
 
 //========== ATMOSPHERIC CONTAMINANT SENSORS END =======//
+
+
+
+
+
 
 
 
