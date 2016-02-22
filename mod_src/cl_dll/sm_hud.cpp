@@ -1594,7 +1594,7 @@ void CHudNew::paint()
 				// Play HEV INIT/BELL SOUND
 				if( !bSoundPlaying )
 				{
-					gEngfuncs.pfnPlaySoundByName( "fvox/bell.wav", 1 );
+					gEngfuncs.pfnPlaySoundByName( "fvox/bell.wav", CVAR_GET_FLOAT("sm_snd_hev") );
 					bSoundPlaying = true;
 				}
 
@@ -1704,7 +1704,7 @@ void CHudNew::paint()
 				// Play LOGON SOUND
 				if( !bSoundPlaying )
 				{
-					gEngfuncs.pfnPlaySoundByName( "fvox/hev_logon.wav", 1 );
+					gEngfuncs.pfnPlaySoundByName( "fvox/hev_logon.wav", CVAR_GET_FLOAT("sm_snd_hev") );
 					bSoundPlaying = true;
 				}
 				fTimer_Logon = 611;

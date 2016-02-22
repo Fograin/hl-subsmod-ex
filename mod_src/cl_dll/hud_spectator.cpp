@@ -559,10 +559,9 @@ void CHudSpectator::DirectorMessage( int iSize, void *pbuf )
 							value =  READ_FLOAT();
 							
 							// gEngfuncs.Con_Printf("DRC_CMD_FX_SOUND: %s %.2f\n", string, value );
-							//gEngfuncs.pEventAPI->EV_PlaySound(0, v_origin, CHAN_BODY, string, value, ATTN_NORM, 0, PITCH_NORM );
-							
+										
 							// Fograin92: Replaced with new audio engine
-							gSoundEngine.PlaySound(string, g_vecZero, SND_HUD, value);
+							gSoundEngine.PlaySound(string, g_vecZero, SND_HUD, value, CVAR_GET_FLOAT("sm_snd_sfx"));
 
 							break;
 

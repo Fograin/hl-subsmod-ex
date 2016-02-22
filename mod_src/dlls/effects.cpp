@@ -2222,7 +2222,7 @@ void CItemSoda::Spawn( void )
 
 void CItemSoda::CanThink ( void )
 {
-	EMIT_SOUND (ENT(pev), CHAN_WEAPON, "weapons/g_bounce3.wav", 1, ATTN_NORM );
+	EMIT_SOUND (ENT(pev), CHAN_WEAPON, "weapons/g_bounce3.wav", 1.0, ATTN_NORM );
 
 	pev->solid = SOLID_TRIGGER;
 	UTIL_SetSize ( pev, Vector ( -8, -8, 0 ), Vector ( 8, 8, 8 ) );
@@ -2398,7 +2398,7 @@ void CWarpball::FX_Think( void )
 
 void CWarpball::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value )
 {
-	EMIT_SOUND( edict(), CHAN_BODY, "debris/alien_teleport.wav", 1, ATTN_NORM );
+	EMIT_SOUND( edict(), CHAN_BODY, "debris/alien_teleport.wav", 1.0, ATTN_NORM );
 
 	CSprite *pSprite = CSprite::SpriteCreate( "sprites/Fexplo1.spr", pev->origin, TRUE );
 	pSprite->AnimateAndDie( RANDOM_FLOAT( 10.0, 15.0 ) ); // Sprite framerate, maybe with little variation?

@@ -447,8 +447,14 @@ cvar_t	sk_player_leg3	= { "sk_player_leg3","1" };
 // Fograin92: Half-Life Update MOD CVARs
 cvar_t	sm_hud				= { "sm_hud",				"0"};	// Used for HUD color, also it holds value of current loaded game (HL, OF, BS)
 cvar_t	sm_hev_pick			= { "sm_hev_pick",			"1", FCVAR_SERVER|FCVAR_ARCHIVE };	// Should HEV emit weapon pickup sentences?
-cvar_t	sm_weapon_holster	= { "sm_weapon_holster",	"2", FCVAR_SERVER|FCVAR_ARCHIVE };	// 0 - Don't play holster animations, 1 - Holster anims only when using turrets and tracktrain, 2 - Just like 1, but also holster anims when switching weapons
 cvar_t	sm_particles		= { "sm_particles",			"2", FCVAR_SERVER|FCVAR_ARCHIVE };	// 0 - Don't use particle system (low setting), 1 - Limited particles (medium setting), 2 - Full particles (high setting)
+
+// Fograin92: Volume cvars
+cvar_t	sm_snd_sfx			= { "sm_snd_sfx",			"0.7", FCVAR_ARCHIVE};	// Volume value of ambient sounds and special SFX like explosions etc.
+cvar_t	sm_snd_voice		= { "sm_snd_voice",			"1.0", FCVAR_ARCHIVE};	// Volume value of NPC voices (sentences, moans by zombies etc.)
+cvar_t	sm_snd_music		= { "sm_snd_music",			"0.5", FCVAR_ARCHIVE};	// Volume value of played music
+cvar_t	sm_snd_hev			= { "sm_snd_hev",			"0.7", FCVAR_ARCHIVE};	// Volume value of HEV Suit emmited sounds
+cvar_t	sm_snd_footsteps	= { "sm_snd_footsteps",		"0.5", FCVAR_ARCHIVE};	// Volume value of player and NPC footstep sounds
 
 // Fograin92: Half-Life Update MOD Skill CVARs
 cvar_t	sk_bs_helmet1	= { "sk_bs_helmet1",	"1" };
@@ -900,8 +906,12 @@ void GameDLLInit( void )
 	// Fograin92: Mod settings CVARs
 	CVAR_REGISTER (&sm_hud);
 	CVAR_REGISTER (&sm_hev_pick);
-	CVAR_REGISTER (&sm_weapon_holster);
 	CVAR_REGISTER (&sm_particles);
+	CVAR_REGISTER (&sm_snd_sfx);
+	CVAR_REGISTER (&sm_snd_voice);
+	CVAR_REGISTER (&sm_snd_music);
+	CVAR_REGISTER (&sm_snd_hev);
+	CVAR_REGISTER (&sm_snd_footsteps);
 
 	// Fograin92: Mod skill data
 	CVAR_REGISTER (&sk_bs_helmet1);
@@ -915,5 +925,7 @@ void GameDLLInit( void )
 // Fograin92: Half-Life Update MOD CVARs END
 
 	SERVER_COMMAND( "exec skill.cfg\n" );
+	SERVER_COMMAND( "exec config.cfg\n" );	// Fograin92: Fix for this damn CVAR wipe
+	
 }
 

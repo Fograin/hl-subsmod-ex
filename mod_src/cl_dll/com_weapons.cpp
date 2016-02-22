@@ -118,7 +118,6 @@ void HUD_PlaySound( char *sound, float volume )
 	if ( !g_runfuncs || !g_finalstate )
 		return;
 
-	//gEngfuncs.pfnPlaySoundByNameAtLocation( sound, volume, (float *)&g_finalstate->playerstate.origin );
 	// Fograin92: Replaced with new audio engine
 	gSoundEngine.PlaySound(sound, (float *)&g_finalstate->playerstate.origin, NULL, volume);
 }

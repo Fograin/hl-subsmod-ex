@@ -892,6 +892,9 @@ int EXPORT Host_Main( const char *progname, int bChangeGame, pfnChangeGame func 
 	SV_Init();
 	CL_Init();
 
+
+	// Fograin92: Disabled DS
+	/*
 	if( host.type == HOST_DEDICATED )
 	{
 		Con_InitConsoleCommands ();
@@ -907,9 +910,10 @@ int EXPORT Host_Main( const char *progname, int bChangeGame, pfnChangeGame func 
 	}
 	else
 	{
+	*/
 		Cmd_AddCommand( "minimize", Host_Minimize_f, "minimize main window to tray" );
 		Cbuf_AddText( "exec config.cfg\n" );
-	}
+	//}
 
 	host.errorframe = 0;
 	Cbuf_Execute();

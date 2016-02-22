@@ -779,4 +779,13 @@ typedef struct
 	int	hitgroup;		// 0 == generic, non zero is specific body part
 } trace_t;
 
+
+
+// Half-Life: Update MOD defs
+#define SM_VOLUME_SFX			CVAR_GET_FLOAT("sm_snd_sfx")
+#define SM_VOLUME_VOICE			CVAR_GET_FLOAT("sm_snd_voice")
+#define SM_VOLUME_MUSIC			CVAR_GET_FLOAT("sm_snd_music")
+#define SM_VOLUME_HEV			CVAR_GET_FLOAT("sm_snd_hev")
+#define SM_VOLUME_FOOTSTEPS		CVAR_GET_FLOAT("sm_snd_footsteps")
+
 #endif//CONST_H

@@ -232,7 +232,7 @@ BOOL CBasePlayerWeapon :: PlayEmptySound( void )
 {
 	if (m_iPlayEmptySound)
 	{
-		HUD_PlaySound( "weapons/357_cock1.wav", 0.8 );
+		HUD_PlaySound( "weapons/357_cock1.wav", CVAR_GET_FLOAT("sm_snd_sfx") );	// Fograin92: Get sound from CVAR
 		m_iPlayEmptySound = 0;
 		return 0;
 	}

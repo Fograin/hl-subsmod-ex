@@ -1,24 +1,16 @@
-/***
-*
-*	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
-*	All Rights Reserved.
-*
-*   Use, distribution, and modification of this source code and/or resulting
-*   object code is restricted to non-commercial enhancements to products from
-*   Valve LLC.  All other use, distribution, or modification is prohibited
-*   without written permission from Valve LLC.
-*
-****/
-/*
-
-===== h_export.cpp ========================================================
-
-  Entity classes exported by Halflife.
-
-*/
+//=============================================================//
+//	Half-Life Update MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	This product contains software technology licensed from:
+//	Valve LLC.
+//	Id Software, Inc. ("Id Technology")
+//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
+//
+// Entity classes exported by Halflife.
+////////////////////////////////////////////
 
 #include "extdll.h"
 #include "util.h"
@@ -32,6 +24,7 @@ server_physics_api_t g_physfuncs;
 
 
 
+// Half-Life: Update MOD [START]
 
 typedef void (__cdecl *CLGETMDL)(int, void **); 
 CLGETMDL ClientGetModelByIndex;
@@ -55,9 +48,7 @@ CLSNDEMIT ClientSoundEmit;
 typedef void (__cdecl *CLSNDAMB)(void *, void *, int, float, float, float *, int, int); 
 CLSNDAMB ClientSoundAmbient;
 
-
-
-
+// Half-Life: Update MOD [END]
 
 
 
@@ -84,24 +75,16 @@ void DLLEXPORT GiveFnptrsToDll(	enginefuncs_t* pengfuncsFromEngine, globalvars_t
 	gpGlobals = pGlobals;
 
 
-
-
-
-
-
+	// Half-Life: Update MOD [START]
 
 	HMODULE hClient = GetModuleHandleA("client.dll");
-
 	if(!hClient)
 	{
 		MessageBox(NULL, "ERROR: Failed to locate client.dll!\n\nPress Ok to quit the game.\n", "ERROR", MB_OK);
 		exit(-1);
 	}
 
-
-	//
 	// Reset Sound Engine function
-	//
 	ClientSoundReset = (CLSNDRES)GetProcAddress(hClient, "CL_SoundEngineReset");
 	if(!ClientSoundReset)
 	{
@@ -109,9 +92,7 @@ void DLLEXPORT GiveFnptrsToDll(	enginefuncs_t* pengfuncsFromEngine, globalvars_t
 		exit(-1);
 	}
 
-	//
 	// Precache Sound function
-	//
 	ClientSoundPrecache = (CLSNDPRE)GetProcAddress(hClient, "CL_SoundPrecache");
 	if(!ClientSoundPrecache)
 	{
@@ -119,10 +100,7 @@ void DLLEXPORT GiveFnptrsToDll(	enginefuncs_t* pengfuncsFromEngine, globalvars_t
 		exit(-1);
 	}
 
-	//
 	// Emit Sound function
-	//
-
 	ClientSoundEmit = (CLSNDEMIT)GetProcAddress(hClient, "CL_EmitSound");
 	if(!ClientSoundEmit)
 	{
@@ -130,37 +108,36 @@ void DLLEXPORT GiveFnptrsToDll(	enginefuncs_t* pengfuncsFromEngine, globalvars_t
 		exit(-1);
 	}
 
-
-	//
 	// Emit Ambient function
-	//
 	ClientSoundAmbient = (CLSNDAMB)GetProcAddress(hClient, "CL_EmitAmbient");
 	if(!ClientSoundAmbient)
 	{
 		MessageBox(NULL, "ERROR: Failed to link CL_EmitAmbient!\n\nPress Ok to quit the game.\n", "ERROR", MB_OK);
 		exit(-1);
 	}
+
+	// Half-Life: Update MOD [END]
 }
 
 
 #else
 
-extern "C" {
-
-void GiveFnptrsToDll(	enginefuncs_t* pengfuncsFromEngine, globalvars_t *pGlobals )
+extern "C" 
 {
-	memcpy(&g_engfuncs, pengfuncsFromEngine, sizeof(enginefuncs_t));
-	gpGlobals = pGlobals;
-}
-
+	void GiveFnptrsToDll(	enginefuncs_t* pengfuncsFromEngine, globalvars_t *pGlobals )
+	{
+		memcpy(&g_engfuncs, pengfuncsFromEngine, sizeof(enginefuncs_t));
+		gpGlobals = pGlobals;
+	}
 }
 
 #endif
 
 
-//==========================================================
-//===========================SOUND ENGINE FUNCTIONS=========
-//==========================================================
+//============================//
+// NEW AUDIO ENGINE FUNCTIONS
+// Thanks to: Richard Roháè
+//============================//
 
 // Reset engine function
 typedef void (__cdecl *CLSNDRES)(void); 
@@ -186,7 +163,7 @@ extern CLSNDEMIT ClientSoundEmit;
 
 void EXEmitSound( edict_t *entity, int channel, const char *sample, float volume, float attenuation, int fFlags, int pitch )
 {
-	//ALERT ( at_console, "PASS -> %s\n", sample );
+	//ALERT ( at_console, "PASS -> %f\n", volume );
 	ClientSoundEmit((void *)entity, (void *)sample, ENTINDEX(entity), volume, attenuation, fFlags, pitch, channel);
 };
 

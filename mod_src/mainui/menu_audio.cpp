@@ -27,19 +27,23 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #define ID_BACKGROUND		0
 #define ID_BANNER			1
-#define ID_DONE			2
+#define ID_DONE				2
 #define ID_SUITVOLUME		3
 #define ID_SOUNDVOLUME		4
 #define ID_MUSICVOLUME		5
-#define ID_INTERP			6
-#define ID_NODSP			7
+#define ID_VOICEVOLUME		6	// Fograin92
+#define ID_FOOTVOLUME		7	// Fograin92
 #define ID_MSGHINT			8
+
 
 typedef struct
 {
-	float		soundVolume;
-	float		musicVolume;
-	float		suitVolume;
+	float		soundVolume;		// Fograin92: Used for ambient+SFX volume
+	float		musicVolume;		// Fograin92: Used for in-game MP3 playback
+	float		suitVolume;			// Fograin92: Used for HEV Suit sounds
+	float		voiceVolume;		// Fograin92: Used for NPC voices (sentences, moans by zombies etc.)
+	float		footstepsVolume;	// Fograin92: Used for player and NPC footstep sounds
+
 } uiAudioValues_t;
 
 static uiAudioValues_t	uiAudioInitial;
@@ -55,9 +59,9 @@ typedef struct
 
 	menuSlider_s	soundVolume;
 	menuSlider_s	musicVolume;
-	menuSlider_s	suitVolume;
-	menuCheckBox_s	lerping;
-	menuCheckBox_s	noDSP;
+	menuSlider_s	suitVolume;	
+	menuSlider_s	voiceVolume;		// Fograin92
+	menuSlider_s	footstepsVolume;	// Fograin92
 } uiAudio_t;
 
 static uiAudio_t		uiAudio;
@@ -69,20 +73,19 @@ UI_Audio_GetConfig
 */
 static void UI_Audio_GetConfig( void )
 {
-	uiAudio.soundVolume.curValue = CVAR_GET_FLOAT( "volume" );
-	uiAudio.musicVolume.curValue = CVAR_GET_FLOAT( "musicvolume" );
-	uiAudio.suitVolume.curValue = CVAR_GET_FLOAT( "suitvolume" );
-
-	if( CVAR_GET_FLOAT( "s_lerping" ))
-		uiAudio.lerping.enabled = 1;
-
-	if( CVAR_GET_FLOAT( "dsp_off" ))
-		uiAudio.noDSP.enabled = 1;
+	// Fograin92: Changed existing CVAR names to use new audio engine + added new vars
+	uiAudio.soundVolume.curValue		= CVAR_GET_FLOAT( "sm_snd_sfx" );	
+	uiAudio.musicVolume.curValue		= CVAR_GET_FLOAT( "sm_snd_music" );
+	uiAudio.suitVolume.curValue			= CVAR_GET_FLOAT( "sm_snd_hev" );
+	uiAudio.voiceVolume.curValue		= CVAR_GET_FLOAT( "sm_snd_voice" );
+	uiAudio.footstepsVolume.curValue	= CVAR_GET_FLOAT( "sm_snd_footsteps" );
 
 	// save initial values
-	uiAudioInitial.soundVolume = uiAudio.soundVolume.curValue;
-	uiAudioInitial.musicVolume = uiAudio.musicVolume.curValue;
-	uiAudioInitial.suitVolume = uiAudio.suitVolume.curValue;
+	uiAudioInitial.soundVolume		= uiAudio.soundVolume.curValue;
+	uiAudioInitial.musicVolume		= uiAudio.musicVolume.curValue;
+	uiAudioInitial.suitVolume		= uiAudio.suitVolume.curValue;
+	uiAudioInitial.voiceVolume		= uiAudio.voiceVolume.curValue;		// Fograin92
+	uiAudioInitial.footstepsVolume	= uiAudio.footstepsVolume.curValue;	// Fograin92
 }
 
 /*
@@ -92,11 +95,12 @@ UI_Audio_SetConfig
 */
 static void UI_Audio_SetConfig( void )
 {
-	CVAR_SET_FLOAT( "volume", uiAudio.soundVolume.curValue );
-	CVAR_SET_FLOAT( "musicvolume", uiAudio.musicVolume.curValue );
-	CVAR_SET_FLOAT( "suitvolume", uiAudio.suitVolume.curValue );
-	CVAR_SET_FLOAT( "s_lerping", uiAudio.lerping.enabled );
-	CVAR_SET_FLOAT( "dsp_off", uiAudio.noDSP.enabled );
+	// Fograin92: Updated
+	CVAR_SET_FLOAT( "sm_snd_sfx",		uiAudio.soundVolume.curValue );
+	CVAR_SET_FLOAT( "sm_snd_music",		uiAudio.musicVolume.curValue );
+	CVAR_SET_FLOAT( "sm_snd_hev",		uiAudio.suitVolume.curValue );
+	CVAR_SET_FLOAT( "sm_snd_voice",		uiAudio.voiceVolume.curValue );
+	CVAR_SET_FLOAT( "sm_snd_footsteps",	uiAudio.footstepsVolume.curValue );
 }
 
 /*
@@ -106,11 +110,11 @@ UI_Audio_UpdateConfig
 */
 static void UI_Audio_UpdateConfig( void )
 {
-	CVAR_SET_FLOAT( "volume", uiAudio.soundVolume.curValue );
-	CVAR_SET_FLOAT( "musicvolume", uiAudio.musicVolume.curValue );
-	CVAR_SET_FLOAT( "suitvolume", uiAudio.suitVolume.curValue );
-	CVAR_SET_FLOAT( "s_lerping", uiAudio.lerping.enabled );
-	CVAR_SET_FLOAT( "dsp_off", uiAudio.noDSP.enabled );
+	CVAR_SET_FLOAT( "sm_snd_sfx",		uiAudio.soundVolume.curValue );
+	CVAR_SET_FLOAT( "sm_snd_music",		uiAudio.musicVolume.curValue );
+	CVAR_SET_FLOAT( "sm_snd_hev",		uiAudio.suitVolume.curValue );
+	CVAR_SET_FLOAT( "sm_snd_voice",		uiAudio.voiceVolume.curValue );
+	CVAR_SET_FLOAT( "sm_snd_footsteps",	uiAudio.footstepsVolume.curValue );
 }
 
 /*
@@ -124,12 +128,14 @@ static void UI_Audio_Callback( void *self, int event )
 
 	switch( item->id )
 	{
+		/*
 	case ID_INTERP:
 	case ID_NODSP:
 		if( event == QM_PRESSED )
 			((menuCheckBox_s *)self)->focusPic = UI_CHECKBOX_PRESSED;
 		else ((menuCheckBox_s *)self)->focusPic = UI_CHECKBOX_FOCUS;
 		break;
+		*/
 	}
 
 	if( event == QM_CHANGED )
@@ -158,8 +164,10 @@ static void UI_Audio_Init( void )
 {
 	memset( &uiAudio, 0, sizeof( uiAudio_t ));
 
+	
 	uiAudio.menu.vidInitFunc = UI_Audio_Init;
 	
+
 	uiAudio.background.generic.id	= ID_BACKGROUND;
 	uiAudio.background.generic.type = QMTYPE_BITMAP;
 	uiAudio.background.generic.flags = QMF_INACTIVE;
@@ -168,6 +176,7 @@ static void UI_Audio_Init( void )
 	uiAudio.background.generic.width = 1024;
 	uiAudio.background.generic.height = 768;
 	uiAudio.background.pic = ART_BACKGROUND;
+
 
 	uiAudio.banner.generic.id = ID_BANNER;
 	uiAudio.banner.generic.type = QMTYPE_BITMAP;
@@ -178,6 +187,7 @@ static void UI_Audio_Init( void )
 	uiAudio.banner.generic.height	= UI_BANNER_HEIGHT;
 	uiAudio.banner.pic = ART_BANNER;
 
+
 	uiAudio.done.generic.id = ID_DONE;
 	uiAudio.done.generic.type = QMTYPE_BM_BUTTON;
 	uiAudio.done.generic.flags = QMF_HIGHLIGHTIFFOCUS|QMF_DROPSHADOW;
@@ -186,73 +196,88 @@ static void UI_Audio_Init( void )
 	uiAudio.done.generic.name = "Done";
 	uiAudio.done.generic.statusText = "Go back to the Configuration Menu";
 	uiAudio.done.generic.callback = UI_Audio_Callback;
-
 	UI_UtilSetupPicButton( &uiAudio.done, PC_DONE );
 
-	uiAudio.soundVolume.generic.id = ID_SOUNDVOLUME;
-	uiAudio.soundVolume.generic.type = QMTYPE_SLIDER;
-	uiAudio.soundVolume.generic.flags = QMF_PULSEIFFOCUS|QMF_DROPSHADOW;
-	uiAudio.soundVolume.generic.name = "Game sound volume";
-	uiAudio.soundVolume.generic.x = 320;
-	uiAudio.soundVolume.generic.y = 280;
-	uiAudio.soundVolume.generic.callback = UI_Audio_Callback;
-	uiAudio.soundVolume.generic.statusText = "Set master volume level";
-	uiAudio.soundVolume.minValue	= 0.0;
-	uiAudio.soundVolume.maxValue	= 1.0;
-	uiAudio.soundVolume.range = 0.05f;
 
-	uiAudio.musicVolume.generic.id = ID_MUSICVOLUME;
-	uiAudio.musicVolume.generic.type = QMTYPE_SLIDER;
-	uiAudio.musicVolume.generic.flags = QMF_PULSEIFFOCUS|QMF_DROPSHADOW;
-	uiAudio.musicVolume.generic.name = "Game music volume";
-	uiAudio.musicVolume.generic.x = 320;
-	uiAudio.musicVolume.generic.y = 340;
-	uiAudio.musicVolume.generic.callback = UI_Audio_Callback;
-	uiAudio.musicVolume.generic.statusText = "Set background music volume level";
-	uiAudio.musicVolume.minValue = 0.0;
-	uiAudio.musicVolume.maxValue = 1.0;
-	uiAudio.musicVolume.range = 0.05f;
+	// Fograin92: Music volume
+	uiAudio.musicVolume.generic.id			= ID_MUSICVOLUME;
+	uiAudio.musicVolume.generic.type		= QMTYPE_SLIDER;
+	uiAudio.musicVolume.generic.flags		= QMF_PULSEIFFOCUS|QMF_DROPSHADOW;
+	uiAudio.musicVolume.generic.name		= "Game music volume";
+	uiAudio.musicVolume.generic.x			= 320;	//320
+	uiAudio.musicVolume.generic.y			= 280;	//340
+	uiAudio.musicVolume.generic.callback	= UI_Audio_Callback;
+	uiAudio.musicVolume.generic.statusText	= "";
+	uiAudio.musicVolume.minValue			= 0.0;
+	uiAudio.musicVolume.maxValue			= 1.0;
+	uiAudio.musicVolume.range				= 0.05f;
 
-	uiAudio.suitVolume.generic.id = ID_SUITVOLUME;
-	uiAudio.suitVolume.generic.type = QMTYPE_SLIDER;
-	uiAudio.suitVolume.generic.flags = QMF_PULSEIFFOCUS|QMF_DROPSHADOW;
-	uiAudio.suitVolume.generic.name = "Suit volume";
-	uiAudio.suitVolume.generic.x = 320;
-	uiAudio.suitVolume.generic.y = 400;
-	uiAudio.suitVolume.generic.callback = UI_Audio_Callback;
-	uiAudio.suitVolume.generic.statusText = "Singleplayer suit volume";
-	uiAudio.suitVolume.minValue = 0.0;
-	uiAudio.suitVolume.maxValue = 1.0;
-	uiAudio.suitVolume.range = 0.05f;
 
-	uiAudio.lerping.generic.id = ID_INTERP;
-	uiAudio.lerping.generic.type = QMTYPE_CHECKBOX;
-	uiAudio.lerping.generic.flags = QMF_HIGHLIGHTIFFOCUS|QMF_ACT_ONRELEASE|QMF_MOUSEONLY|QMF_DROPSHADOW;
-	uiAudio.lerping.generic.name = "Enable sound interpolation";
-	uiAudio.lerping.generic.x = 320;
-	uiAudio.lerping.generic.y = 470;
-	uiAudio.lerping.generic.callback = UI_Audio_Callback;
-	uiAudio.lerping.generic.statusText = "enable/disable interpolation on sound output";
+	// Fograin92: Ambient+SFX Volume
+	uiAudio.soundVolume.generic.id			= ID_SOUNDVOLUME;
+	uiAudio.soundVolume.generic.type		= QMTYPE_SLIDER;
+	uiAudio.soundVolume.generic.flags		= QMF_PULSEIFFOCUS|QMF_DROPSHADOW;
+	uiAudio.soundVolume.generic.name		= "Ambient + SFX sounds volume";
+	uiAudio.soundVolume.generic.x			= 320;
+	uiAudio.soundVolume.generic.y			= 340;	// 280
+	uiAudio.soundVolume.generic.callback	= UI_Audio_Callback;
+	uiAudio.soundVolume.generic.statusText	= "";
+	uiAudio.soundVolume.minValue			= 0.0;
+	uiAudio.soundVolume.maxValue			= 1.0;
+	uiAudio.soundVolume.range				= 0.05f;
 
-	uiAudio.noDSP.generic.id = ID_NODSP;
-	uiAudio.noDSP.generic.type = QMTYPE_CHECKBOX;
-	uiAudio.noDSP.generic.flags = QMF_HIGHLIGHTIFFOCUS|QMF_ACT_ONRELEASE|QMF_MOUSEONLY|QMF_DROPSHADOW;
-	uiAudio.noDSP.generic.name = "Disable DSP effects";
-	uiAudio.noDSP.generic.x = 320;
-	uiAudio.noDSP.generic.y = 520;
-	uiAudio.noDSP.generic.callback = UI_Audio_Callback;
-	uiAudio.noDSP.generic.statusText = "this disables sound processing (like echo, flanger etc)";
+
+	// Fograin92: HEV suit volume
+	uiAudio.suitVolume.generic.id			= ID_SUITVOLUME;
+	uiAudio.suitVolume.generic.type			= QMTYPE_SLIDER;
+	uiAudio.suitVolume.generic.flags		= QMF_PULSEIFFOCUS|QMF_DROPSHADOW;
+	uiAudio.suitVolume.generic.name			= "HEV/PCV sounds volume";
+	uiAudio.suitVolume.generic.x			= 320;
+	uiAudio.suitVolume.generic.y			= 400;
+	uiAudio.suitVolume.generic.callback		= UI_Audio_Callback;
+	uiAudio.suitVolume.generic.statusText	= "";
+	uiAudio.suitVolume.minValue				= 0.0;
+	uiAudio.suitVolume.maxValue				= 1.0;
+	uiAudio.suitVolume.range				= 0.05f;
+
+
+	// Fograin92: NPC voices volume
+	uiAudio.voiceVolume.generic.id			= ID_VOICEVOLUME;
+	uiAudio.voiceVolume.generic.type		= QMTYPE_SLIDER;
+	uiAudio.voiceVolume.generic.flags		= QMF_PULSEIFFOCUS|QMF_DROPSHADOW;
+	uiAudio.voiceVolume.generic.name		= "NPCs voice volume";
+	uiAudio.voiceVolume.generic.x			= 320;
+	uiAudio.voiceVolume.generic.y			= 460;
+	uiAudio.voiceVolume.generic.callback	= UI_Audio_Callback;
+	uiAudio.voiceVolume.generic.statusText	= "";
+	uiAudio.voiceVolume.minValue			= 0.0;
+	uiAudio.voiceVolume.maxValue			= 1.0;
+	uiAudio.voiceVolume.range				= 0.05f;
+
+
+	// Fograin92: Footsteps volume
+	uiAudio.footstepsVolume.generic.id			= ID_FOOTVOLUME;
+	uiAudio.footstepsVolume.generic.type		= QMTYPE_SLIDER;
+	uiAudio.footstepsVolume.generic.flags		= QMF_PULSEIFFOCUS|QMF_DROPSHADOW;
+	uiAudio.footstepsVolume.generic.name		= "Footsteps volume";
+	uiAudio.footstepsVolume.generic.x			= 320;
+	uiAudio.footstepsVolume.generic.y			= 520;
+	uiAudio.footstepsVolume.generic.callback	= UI_Audio_Callback;
+	uiAudio.footstepsVolume.generic.statusText	= "";
+	uiAudio.footstepsVolume.minValue			= 0.0;
+	uiAudio.footstepsVolume.maxValue			= 1.0;
+	uiAudio.footstepsVolume.range				= 0.05f;
+
 
 	UI_Audio_GetConfig();
-
 	UI_AddItem( &uiAudio.menu, (void *)&uiAudio.background );
 	UI_AddItem( &uiAudio.menu, (void *)&uiAudio.banner );
 	UI_AddItem( &uiAudio.menu, (void *)&uiAudio.done );
 	UI_AddItem( &uiAudio.menu, (void *)&uiAudio.soundVolume );
 	UI_AddItem( &uiAudio.menu, (void *)&uiAudio.musicVolume );
 	UI_AddItem( &uiAudio.menu, (void *)&uiAudio.suitVolume );
-	UI_AddItem( &uiAudio.menu, (void *)&uiAudio.lerping );
-	UI_AddItem( &uiAudio.menu, (void *)&uiAudio.noDSP );
+	UI_AddItem( &uiAudio.menu, (void *)&uiAudio.voiceVolume );
+	UI_AddItem( &uiAudio.menu, (void *)&uiAudio.footstepsVolume );
 }
 
 /*

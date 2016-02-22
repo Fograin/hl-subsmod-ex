@@ -460,11 +460,8 @@ void CSoundEngine::SetupFrame( ref_params_t *pparams )
 	VectorCopy(pparams->viewangles, m_vViewAngles);
 	m_iViewEntity = pparams->viewentity;
 
-
-	// Fograin92: Temporary disabled
 	// Setup reverbation
-	/*
-	if(pmove->waterlevel == 3)
+	if(pparams->waterlevel == 3)
 	{
 		if(m_iCurrentRoomType != 13)
 		{
@@ -478,8 +475,6 @@ void CSoundEngine::SetupFrame( ref_params_t *pparams )
 	{
 		SetupReverbation();
 	}
-	*/
-	SetupReverbation();
 
 	// Update sound elements
 	SetupSounds();
@@ -953,9 +948,9 @@ void CSoundEngine::PlaySound( const char *szFile, vec3_t vOrigin, int iFlags, in
 		pSentence = &m_sSentences[iID];
 
 		// Fograin92 START
-		char xszPath[256];
-		sprintf(xszPath, "PlaySound-> SentenceID -> %i\n", iID);
-		gEngfuncs.Con_Printf(xszPath);
+		//char xszPath[256];
+		//sprintf(xszPath, "PlaySound -> SentenceID -> %i\n", iID);
+		//gEngfuncs.Con_Printf(xszPath);
 		// Fograin92 END
 
 
@@ -969,10 +964,10 @@ void CSoundEngine::PlaySound( const char *szFile, vec3_t vOrigin, int iFlags, in
 		strcat(szPath, ".wav");
 
 		// Fograin92 START
-		sprintf(xszPath, "PlaySound->szFile-> %s\n", szFile);
-		gEngfuncs.Con_Printf(xszPath);
-		sprintf(xszPath, "PlaySound->szPath-> %s\n", szPath);
-		gEngfuncs.Con_Printf(xszPath);
+		//sprintf(xszPath, "PlaySound->szFile-> %s\n", szFile);
+		//gEngfuncs.Con_Printf(xszPath);
+		//sprintf(xszPath, "PlaySound->szPath-> %s\n", szPath);
+		//gEngfuncs.Con_Printf(xszPath);
 		// Fograin92 END
 	}
 	else if(szFile[0] == '*')
@@ -985,8 +980,6 @@ void CSoundEngine::PlaySound( const char *szFile, vec3_t vOrigin, int iFlags, in
 		strcpy(szPath, "sound/");
 		strcat(szPath, szFile);
 	}
-
-	
 
 
 	EnterCriticalSection(&g_CS);
@@ -1061,6 +1054,10 @@ void CSoundEngine::PlaySound( const char *szFile, vec3_t vOrigin, int iFlags, in
 	{
 		pSound->iPitch = pSentence->pOptions[0].iPitch;
 		pSound->flVolume = (float)pSentence->pOptions[0].iVolume / 100;
+
+		// Fograin92: Adjust volume of sentence 
+		pSound->flVolume = pSound->flVolume * fVolume;
+		//gEngfuncs.Con_Printf("Volume %f\n", pSound->flVolume);
 	}
 	else
 	{
@@ -2120,11 +2117,9 @@ PM_PlaySample
 */
 extern "C" void PM_PlaySample( const char *szFile, float fVolume, int iPitch, float *origin )
 { 
-
 	//char szPath[256];
 	//sprintf(szPath, "Foot-> %s", szFile);
 	//gEngfuncs.Con_Printf(szPath);
-
 	gSoundEngine.PlaySound( szFile, origin, SND_RELATIVE, CHAN_BODY, fVolume*2, iPitch );
 }
 
@@ -2171,8 +2166,7 @@ extern "C" __declspec( dllexport ) void CL_EmitSound( void *pEdict, void *pPath,
 	// Fograin92: Display sound/sentence name and pass it
 	//char szPath[256];
 	//sprintf(szPath, "%s", pPath);
-	//gEngfuncs.Con_Printf(szPath);
-
+	//gEngfuncs.Con_Printf("Volume %f\n", flVolume);
 	gSoundEngine.PlaySound((char *)pPath, g_vecZero, iFlags, iChannel, flVolume, iPitch, flAttenuation, (edict_t *)pEdict, iEntIndex);
 }
 

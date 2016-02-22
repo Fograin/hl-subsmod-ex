@@ -222,10 +222,9 @@ void CHudSayText :: SayTextPrint( const char *pszBuf, int iBufSize, int clientIn
 	}
 
 	m_iFlags |= HUD_ACTIVE;
-	//PlaySound( "misc/talk.wav", 1 );
 
 	// Fograin92: Replaced with new audio engine
-	gSoundEngine.PlaySound( "misc/talk.wav", g_vecZero, SND_HUD );
+	gSoundEngine.PlaySound( "misc/talk.wav", g_vecZero, SND_HUD, 0, CVAR_GET_FLOAT("sm_snd_sfx") );
 
 	if ( ScreenHeight >= 480 )
 		Y_START = ScreenHeight - 60;

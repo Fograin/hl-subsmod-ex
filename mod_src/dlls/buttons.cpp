@@ -406,7 +406,7 @@ int CBaseButton::TakeDamage( entvars_t* pevInflictor, entvars_t* pevAttacker, fl
 
 	if ( code == BUTTON_RETURN )
 	{
-		EMIT_SOUND(ENT(pev), CHAN_VOICE, (char*)STRING(pev->noise), 1, ATTN_NORM);
+		EMIT_SOUND(ENT(pev), CHAN_VOICE, (char*)STRING(pev->noise), 1.0, ATTN_NORM);
 
 		// Toggle buttons fire when they get back to their "home" position
 		if ( !(pev->spawnflags & SF_BUTTON_TOGGLE) )
@@ -554,6 +554,7 @@ void DoSpark(entvars_t *pev, const Vector &location )
 	UTIL_Sparks( tmp );
 
 	float flVolume = RANDOM_FLOAT ( 0.25 , 0.75 ) * 0.4;//random volume range
+
 	switch ( (int)(RANDOM_FLOAT(0,1) * 6) )
 	{
 		case 0: EMIT_SOUND(ENT(pev), CHAN_VOICE, "buttons/spark1.wav", flVolume, ATTN_NORM);	break;
@@ -589,7 +590,7 @@ void CBaseButton::ButtonUse ( CBaseEntity *pActivator, CBaseEntity *pCaller, USE
 	{
 		if (!m_fStayPushed && FBitSet(pev->spawnflags, SF_BUTTON_TOGGLE))
 		{
-			EMIT_SOUND(ENT(pev), CHAN_VOICE, (char*)STRING(pev->noise), 1, ATTN_NORM);
+			EMIT_SOUND(ENT(pev), CHAN_VOICE, (char*)STRING(pev->noise), 1.0, ATTN_NORM);
 			
 			//SUB_UseTargets( m_eoActivator );
 			ButtonReturn();
@@ -650,7 +651,7 @@ void CBaseButton:: ButtonTouch( CBaseEntity *pOther )
 
 	if ( code == BUTTON_RETURN )
 	{
-		EMIT_SOUND(ENT(pev), CHAN_VOICE, (char*)STRING(pev->noise), 1, ATTN_NORM);
+		EMIT_SOUND(ENT(pev), CHAN_VOICE, (char*)STRING(pev->noise), 1.0, ATTN_NORM);
 		SUB_UseTargets( m_hActivator, USE_TOGGLE, 0 );
 		ButtonReturn();
 	}
@@ -975,7 +976,8 @@ void CMomentaryRotButton::KeyValue( KeyValueData *pkvd )
 
 void CMomentaryRotButton::PlaySound( void )
 {
-	EMIT_SOUND(ENT(pev), CHAN_VOICE, (char*)STRING(pev->noise), 1, ATTN_NORM);
+	// Fograin92: New volume cvar
+	EMIT_SOUND(ENT(pev), CHAN_VOICE, (char*)STRING(pev->noise), 1.0, ATTN_NORM);
 }
 
 // BUGBUG: This design causes a latentcy.  When the button is retriggered, the first impulse

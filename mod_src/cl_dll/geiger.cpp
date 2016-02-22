@@ -178,10 +178,9 @@ int CHudGeiger::Draw (float flTime)
 				j += rand() & 1;
 
 			sprintf(sz, "player/geiger%d.wav", j + 1);
-			//PlaySound(sz, flvol);
+
 			// Fograin92: Replaced with new audio engine
-			gSoundEngine.PlaySound(sz, g_vecZero, SND_HUD, flvol);
-			
+			gSoundEngine.PlaySound(sz, g_vecZero, SND_HUD, 0, CVAR_GET_FLOAT("sm_snd_sfx"));
 		}
 	}
 

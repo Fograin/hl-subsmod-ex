@@ -1413,15 +1413,14 @@ int SENTENCEG_Lookup(const char *sample, char *sentencenum)
 	return -1;
 }
 
-void EMIT_SOUND_DYN(edict_t *entity, int channel, const char *sample, float volume, float attenuation,
-						   int flags, int pitch)
+void EMIT_SOUND_DYN(edict_t *entity, int channel, const char *sample, float volume, float attenuation, int flags, int pitch)
 {
 	if (sample && *sample == '!')
 	{
 		char name[32];
 		if (SENTENCEG_Lookup(sample, name) >= 0)
 		{
-			EMIT_S_SUB_DYN2(entity, channel, sample, volume, attenuation, flags, pitch);	// Vit_amiN: pseudo-hook
+			EMIT_S_SUB_DYN2(entity, channel, sample, volume, attenuation, flags, pitch);
 			EMIT_SOUND_DYN2(entity, channel, name,   volume, attenuation, flags, pitch);
 		}
 		else
@@ -1429,8 +1428,9 @@ void EMIT_SOUND_DYN(edict_t *entity, int channel, const char *sample, float volu
 	}
 	else
 	{
-		EMIT_S_SUB_DYN2(entity, channel, sample, volume, attenuation, flags, pitch);		// Vit_amiN: pseudo-hook
-		EMIT_SOUND_DYN2(entity, channel, sample, volume, attenuation, flags, pitch);
+		// Fograin92: Treat sound as SFX
+		EMIT_S_SUB_DYN2(entity, channel, sample, volume*SM_VOLUME_SFX, attenuation, flags, pitch);		// Vit_amiN: pseudo-hook
+		EMIT_SOUND_DYN2(entity, channel, sample, volume*SM_VOLUME_SFX, attenuation, flags, pitch);
 	}
 }
 
@@ -1441,7 +1441,9 @@ void EMIT_SOUND_SUIT(edict_t *entity, const char *sample)
 	float fvol;
 	int pitch = PITCH_NORM;
 
-	fvol = CVAR_GET_FLOAT("suitvolume");
+	//fvol = CVAR_GET_FLOAT("suitvolume");
+	fvol = CVAR_GET_FLOAT("sm_snd_hev"); // Fograin92: Changed cvar
+
 	if (RANDOM_LONG(0,1))
 		pitch = RANDOM_LONG(0,6) + 98;
 
@@ -1456,7 +1458,8 @@ void EMIT_GROUPID_SUIT(edict_t *entity, int isentenceg)
 	float fvol;
 	int pitch = PITCH_NORM;
 
-	fvol = CVAR_GET_FLOAT("suitvolume");
+	//fvol = CVAR_GET_FLOAT("suitvolume");
+	fvol = CVAR_GET_FLOAT("sm_snd_hev"); // Fograin92: Changed cvar
 	if (RANDOM_LONG(0,1))
 		pitch = RANDOM_LONG(0,6) + 98;
 
@@ -1471,7 +1474,8 @@ void EMIT_GROUPNAME_SUIT(edict_t *entity, const char *groupname)
 	float fvol;
 	int pitch = PITCH_NORM;
 
-	fvol = CVAR_GET_FLOAT("suitvolume");
+	//fvol = CVAR_GET_FLOAT("suitvolume");
+	fvol = CVAR_GET_FLOAT("sm_snd_hev"); // Fograin92: Changed cvar
 	if (RANDOM_LONG(0,1))
 		pitch = RANDOM_LONG(0,6) + 98;
 

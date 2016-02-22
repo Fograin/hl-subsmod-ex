@@ -1,21 +1,15 @@
-/***
-*
-*	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
-*	All Rights Reserved.
-*
-*   Use, distribution, and modification of this source code and/or resulting
-*   object code is restricted to non-commercial enhancements to products from
-*   Valve LLC.  All other use, distribution, or modification is prohibited
-*   without written permission from Valve LLC.
-*
-****/
+//=============================================================//
+//	Half-Life Update MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	This product contains software technology licensed from:
+//	Valve LLC.
+//	Id Software, Inc. ("Id Technology")
 //
-//  cdll_int.c
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
 //
-// this implementation handles the linking of the engine to the DLL
+// This implementation handles the linking of the engine to the DLL
 //
 
 #include "hud.h"
@@ -39,8 +33,9 @@ cl_enginefunc_t gEngfuncs;
 CHud gHUD;
 TeamFortressViewport *gViewPort = NULL;
 
+// Fograin92: New sound engine DEF (Thanks to Richard Roh·Ë)
 #include "soundengine.h"
-CSoundEngine gSoundEngine;	// Fograin92: New sound engine DEF (Thanks to Richard Roh·Ë)
+CSoundEngine gSoundEngine;	
 
 
 void InitInput (void);
@@ -56,20 +51,20 @@ Called when the DLL is first loaded.
 */
 extern "C" 
 {
-int		DLLEXPORT Initialize( cl_enginefunc_t *pEnginefuncs, int iVersion );
-int		DLLEXPORT HUD_VidInit( void );
-void	DLLEXPORT HUD_Init( void );
-int		DLLEXPORT HUD_Redraw( float flTime, int intermission );
-int		DLLEXPORT HUD_UpdateClientData( client_data_t *cdata, float flTime );
-void	DLLEXPORT HUD_Reset ( void );
-void	DLLEXPORT HUD_PlayerMove( struct playermove_s *ppmove, int server );
-void	DLLEXPORT HUD_PlayerMoveInit( struct playermove_s *ppmove );
-char	DLLEXPORT HUD_PlayerMoveTexture( char *name );
-int		DLLEXPORT HUD_ConnectionlessPacket( const struct netadr_s *net_from, const char *args, char *response_buffer, int *response_buffer_size );
-int		DLLEXPORT HUD_GetHullBounds( int hullnumber, float *mins, float *maxs );
-void	DLLEXPORT HUD_Frame( double time );
-void	DLLEXPORT HUD_VoiceStatus(int entindex, qboolean bTalking);
-void	DLLEXPORT HUD_DirectorMessage( int iSize, void *pbuf );
+	int		DLLEXPORT Initialize( cl_enginefunc_t *pEnginefuncs, int iVersion );
+	int		DLLEXPORT HUD_VidInit( void );
+	void	DLLEXPORT HUD_Init( void );
+	int		DLLEXPORT HUD_Redraw( float flTime, int intermission );
+	int		DLLEXPORT HUD_UpdateClientData( client_data_t *cdata, float flTime );
+	void	DLLEXPORT HUD_Reset ( void );
+	void	DLLEXPORT HUD_PlayerMove( struct playermove_s *ppmove, int server );
+	void	DLLEXPORT HUD_PlayerMoveInit( struct playermove_s *ppmove );
+	char	DLLEXPORT HUD_PlayerMoveTexture( char *name );
+	int		DLLEXPORT HUD_ConnectionlessPacket( const struct netadr_s *net_from, const char *args, char *response_buffer, int *response_buffer_size );
+	int		DLLEXPORT HUD_GetHullBounds( int hullnumber, float *mins, float *maxs );
+	void	DLLEXPORT HUD_Frame( double time );
+	void	DLLEXPORT HUD_VoiceStatus(int entindex, qboolean bTalking);
+	void	DLLEXPORT HUD_DirectorMessage( int iSize, void *pbuf );
 }
 
 /*

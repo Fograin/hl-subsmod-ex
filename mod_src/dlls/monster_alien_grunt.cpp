@@ -482,16 +482,16 @@ void CAGrunt :: HandleAnimEvent( MonsterEvent_t *pEvent )
 		switch (RANDOM_LONG(0,1))
 		{
 		// left foot
-		case 0:	EMIT_SOUND_DYN ( ENT(pev), CHAN_BODY, "player/pl_ladder2.wav", 1, ATTN_NORM, 0, 70 );	break;
-		case 1:	EMIT_SOUND_DYN ( ENT(pev), CHAN_BODY, "player/pl_ladder4.wav", 1, ATTN_NORM, 0, 70 );	break;
+		case 0:	EMIT_SOUND_DYN ( ENT(pev), CHAN_BODY, "player/pl_ladder2.wav", 1.0, ATTN_NORM, 0, 70 );	break;
+		case 1:	EMIT_SOUND_DYN ( ENT(pev), CHAN_BODY, "player/pl_ladder4.wav", 1.0, ATTN_NORM, 0, 70 );	break;
 		}
 		break;
 	case AGRUNT_AE_RIGHT_FOOT:
 		// right foot
 		switch (RANDOM_LONG(0,1))
 		{
-		case 0:	EMIT_SOUND_DYN ( ENT(pev), CHAN_BODY, "player/pl_ladder1.wav", 1, ATTN_NORM, 0, 70 );	break;
-		case 1:	EMIT_SOUND_DYN ( ENT(pev), CHAN_BODY, "player/pl_ladder3.wav", 1, ATTN_NORM, 0 ,70);	break;
+		case 0:	EMIT_SOUND_DYN ( ENT(pev), CHAN_BODY, "player/pl_ladder1.wav", 1.0, ATTN_NORM, 0, 70 );	break;
+		case 1:	EMIT_SOUND_DYN ( ENT(pev), CHAN_BODY, "player/pl_ladder3.wav", 1.0, ATTN_NORM, 0 ,70);	break;
 		}
 		break;
 
