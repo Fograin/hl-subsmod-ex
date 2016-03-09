@@ -488,7 +488,35 @@ void CHud :: VidInit( void )
 				if ( p->iRes == m_iRes )
 				{
 					char sz[256];
-					sprintf(sz, "sprites/%s.spr", p->szSprite);
+
+
+					// Fograin92: Check if this is HL/OF varation sprites
+					if( (!strcmp(p->szSprite, "640_train"))
+						|| (!strcmp(p->szSprite, "640hud1"))
+						|| (!strcmp(p->szSprite, "640hud2"))
+						|| (!strcmp(p->szSprite, "640hud3"))
+						|| (!strcmp(p->szSprite, "640hud4"))
+						|| (!strcmp(p->szSprite, "640hud5"))
+						|| (!strcmp(p->szSprite, "640hud6"))
+						|| (!strcmp(p->szSprite, "640hud7"))
+						|| (!strcmp(p->szSprite, "640hudof01"))
+						|| (!strcmp(p->szSprite, "640hudof02"))
+						|| (!strcmp(p->szSprite, "640hudof03"))
+						|| (!strcmp(p->szSprite, "640hudof04")) )
+					{
+						// Fograin92: Check if we should load OF version of HUD sprites
+						if (CVAR_GET_FLOAT("sm_hud") == 2.0 )
+							sprintf(sz, "sprites/%s_of.spr", p->szSprite);
+						else
+							sprintf(sz, "sprites/%s.spr", p->szSprite);
+					}
+					else
+					{
+						// Fograin92: It's not HL/OF variation sprite, load using default way
+						sprintf(sz, "sprites/%s.spr", p->szSprite);
+					}
+
+
 					m_rgHL_HSPRITEs[index] = SPR_Load(sz);
 					m_rgrcRects[index] = p->rc;
 					strncpy( &m_rgszSpriteNames[index * MAX_SPRITE_NAME_LENGTH], p->szName, MAX_SPRITE_NAME_LENGTH );
@@ -532,7 +560,34 @@ void CHud :: VidInit( void )
 			if ( p->iRes == m_iRes )
 			{
 				char sz[256];
-				sprintf( sz, "sprites/%s.spr", p->szSprite );
+
+				// Fograin92: Check if this is HL/OF varation sprites
+				if( (!strcmp(p->szSprite, "640_train"))
+					|| (!strcmp(p->szSprite, "640hud1"))
+					|| (!strcmp(p->szSprite, "640hud2"))
+					|| (!strcmp(p->szSprite, "640hud3"))
+					|| (!strcmp(p->szSprite, "640hud4"))
+					|| (!strcmp(p->szSprite, "640hud5"))
+					|| (!strcmp(p->szSprite, "640hud6"))
+					|| (!strcmp(p->szSprite, "640hud7"))
+					|| (!strcmp(p->szSprite, "640hudof01"))
+					|| (!strcmp(p->szSprite, "640hudof02"))
+					|| (!strcmp(p->szSprite, "640hudof03"))
+					|| (!strcmp(p->szSprite, "640hudof04")) )
+				{
+					// Fograin92: Check if we should load OF version of HUD sprites
+					if (CVAR_GET_FLOAT("sm_hud") == 2.0 )
+						sprintf(sz, "sprites/%s_of.spr", p->szSprite);
+					else
+						sprintf(sz, "sprites/%s.spr", p->szSprite);
+				}
+				else
+				{
+					// Fograin92: It's not HL/OF variation sprite, load using default way
+					sprintf(sz, "sprites/%s.spr", p->szSprite);
+				}
+
+				
 				m_rgHL_HSPRITEs[index] = SPR_Load(sz);
 				m_rgrcRects[index] = p->rc;
 				strncpy( &m_rgszSpriteNames[index * MAX_SPRITE_NAME_LENGTH], p->szName, MAX_SPRITE_NAME_LENGTH );

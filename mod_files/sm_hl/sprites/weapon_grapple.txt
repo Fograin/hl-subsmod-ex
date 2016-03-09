@@ -1,0 +1,7 @@
+6
+weapon          320 320hudof01 0   40   80  20
+weapon_s        320 320hudof01 0   60  80  20
+crosshair       320 ofch1  46  46   26  26
+weapon          640 640hudof01 0   45   170 45
+weapon_s        640 640hudof02 0   45   170 45
+crosshair       640 ofch1  46  46   26  26

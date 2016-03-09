@@ -1,0 +1,5 @@
+4
+weapon          320 320hudof01 80   80   80  20
+weapon_s        320 320hudof01 80   100  80  20
+weapon          640 640hudof03 0   90   170 45
+weapon_s        640 640hudof04 0   90   170 45

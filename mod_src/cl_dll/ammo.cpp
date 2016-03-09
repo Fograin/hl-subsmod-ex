@@ -153,7 +153,14 @@ void WeaponsResource :: LoadWeaponSprites( WEAPON *pWeapon )
 	p = GetSpriteList(pList, "weapon", iRes, i);
 	if (p)
 	{
-		sprintf(sz, "sprites/%s.spr", p->szSprite);
+		//sprintf(sz, "sprites/%s.spr", p->szSprite);
+
+		// Fograin92: Check if we should load OF version of weapon sprites
+		if (CVAR_GET_FLOAT("sm_hud") == 2.0 )
+			sprintf(sz, "sprites/%s_of.spr", p->szSprite);
+		else
+			sprintf(sz, "sprites/%s.spr", p->szSprite);
+
 		pWeapon->hInactive = SPR_Load(sz);
 		pWeapon->rcInactive = p->rc;
 
@@ -165,7 +172,15 @@ void WeaponsResource :: LoadWeaponSprites( WEAPON *pWeapon )
 	p = GetSpriteList(pList, "weapon_s", iRes, i);
 	if (p)
 	{
-		sprintf(sz, "sprites/%s.spr", p->szSprite);
+		//sprintf(sz, "sprites/%s.spr", p->szSprite);
+
+		// Fograin92: Check if we should load OF version of weapon selection sprites
+		if (CVAR_GET_FLOAT("sm_hud") == 2.0 )
+			sprintf(sz, "sprites/%s_of.spr", p->szSprite);
+		else
+			sprintf(sz, "sprites/%s.spr", p->szSprite);
+
+
 		pWeapon->hActive = SPR_Load(sz);
 		pWeapon->rcActive = p->rc;
 	}
@@ -175,7 +190,14 @@ void WeaponsResource :: LoadWeaponSprites( WEAPON *pWeapon )
 	p = GetSpriteList(pList, "ammo", iRes, i);
 	if (p)
 	{
-		sprintf(sz, "sprites/%s.spr", p->szSprite);
+		//sprintf(sz, "sprites/%s.spr", p->szSprite);
+
+		// Fograin92: Check if we should load OF version of ammo sprites
+		if (CVAR_GET_FLOAT("sm_hud") == 2.0 )
+			sprintf(sz, "sprites/%s_of.spr", p->szSprite);
+		else
+			sprintf(sz, "sprites/%s.spr", p->szSprite);
+
 		pWeapon->hAmmo = SPR_Load(sz);
 		pWeapon->rcAmmo = p->rc;
 
@@ -187,7 +209,14 @@ void WeaponsResource :: LoadWeaponSprites( WEAPON *pWeapon )
 	p = GetSpriteList(pList, "ammo2", iRes, i);
 	if (p)
 	{
-		sprintf(sz, "sprites/%s.spr", p->szSprite);
+		//sprintf(sz, "sprites/%s.spr", p->szSprite);
+
+		// Fograin92: Check if we should load OF version of ammo sprites
+		if (CVAR_GET_FLOAT("sm_hud") == 2.0 )
+			sprintf(sz, "sprites/%s_of.spr", p->szSprite);
+		else
+			sprintf(sz, "sprites/%s.spr", p->szSprite);
+
 		pWeapon->hAmmo2 = SPR_Load(sz);
 		pWeapon->rcAmmo2 = p->rc;
 
