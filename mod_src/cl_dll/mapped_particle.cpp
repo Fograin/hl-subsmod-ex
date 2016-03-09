@@ -166,7 +166,8 @@ void CMappedParticle::Draw( void )
 			return;
 	} 
 	// Fading out happens in the second half of the particles lifetime
-	else if (pSys->bFadeOut && ((sParticle.flAge / sParticle.flMaxAge) > 0.5))
+	//else if (pSys->bFadeOut && ((sParticle.flAge / sParticle.flMaxAge) > 0.5))
+	else if (pSys->bFadeOut)
 	{
 		iHealth = sParticle.iTransparency - ((sParticle.flAge - (sParticle.flMaxAge / 2)) * sParticle.iTransparency / (sParticle.flMaxAge / 2));
 		if (iHealth < 0)
@@ -183,7 +184,7 @@ void CMappedParticle::Draw( void )
 	}
 
 	// fade out particles that are closer to the player if smoke is true
-	/*
+	// Fograin92: Re-enabled
 	if (pSys->bSmoke)
 	{
 		float flThresholdStartSqrd = (PARTICLE_THRESHOLD_START * PARTICLE_THRESHOLD_START);
@@ -199,7 +200,7 @@ void CMappedParticle::Draw( void )
 			iHealth *= flTransparencyFactor;
 		}
 	}
-	*/
+	
 
 	vec3_t vPoint, vPosition;
 
@@ -395,7 +396,7 @@ void CMappedParticle::Update( float flTimeSinceLastDraw )
 		{
 			if (pSys->iAnimBehaviour == LOOP)
 			{
-				/*
+				
 				// Fograin92: This is causing game freeze (TOFIX)
 				while (flParticleTime > (1.0f / pSys->iFPS))
 				{
@@ -405,7 +406,7 @@ void CMappedParticle::Update( float flTimeSinceLastDraw )
 
 				if (iCurrentFrame > (pSys->iEndingFrame - 1))
 					iCurrentFrame = (pSys->iStartingFrame - 1);
-					*/
+					/**/
 			}
 			else if (pSys->iAnimBehaviour == REVERSE_LOOP)
 			{

@@ -432,7 +432,7 @@ void CHudNew::PickedUpItem( const char *szName )
 	{
 		bHaveHEV = true;
 		// TODO: Check if this is Hazard Course OR Impulse 101
-		//fTimer_Logon = 1;	// Start the HEV LOGON sequence
+		fTimer_Logon = 1;	// Start the HEV LOGON sequence
 	}
 
 	UpdateHUD();
@@ -1654,7 +1654,7 @@ void CHudNew::paint()
 
 //////////// DEV
 
-		bool bSkipIntro = false;
+		bool bSkipIntro = true;
 		
 		if( (fTimer_Logon <= 565) && bSkipIntro)
 		{
@@ -1689,6 +1689,10 @@ void CHudNew::paint()
 			pPainBottomDirIcon->setVisible(false);
 			pPainLeftDirIcon->setVisible(false);
 			pPainRightDirIcon->setVisible(false);
+
+			pAirPanel->setVisible(true);
+			pAirIcon->setVisible(false);
+			pAirLab->setVisible(false);
 
 			iTimerSpeed = HEV_PULSE_SPD;
 			fTimer_Logon = 566;
@@ -1745,6 +1749,10 @@ void CHudNew::paint()
 				pPainBottomDirIcon->setVisible(false);
 				pPainLeftDirIcon->setVisible(false);
 				pPainRightDirIcon->setVisible(false);
+
+				pAirPanel->setVisible(true);
+				pAirIcon->setVisible(false);
+				pAirLab->setVisible(false);
 
 				// Set new timer speed
 				iTimerSpeed = HEV_PULSE_SPD;
@@ -1820,7 +1828,7 @@ void CHudNew::paint()
 				// Play LOGON SOUND
 				if( !bSoundPlaying )
 				{
-					gEngfuncs.pfnPlaySoundByName( "fvox/hev_logon.wav", CVAR_GET_FLOAT("sm_snd_hev") );
+					gSoundEngine.PlaySound("fvox/hev_logon.wav", g_vecZero, SND_2D, 0, SM_VOLUME_HEV);
 					bSoundPlaying = true;
 				}
 				fTimer_Logon = 611;
@@ -1895,6 +1903,35 @@ void CHudNew::paint()
 				//pLogonText->setText( "atmospherics_on -> %d\n", (int)fTimer_Logon);	// DEBUG
 				pImgLogon02->setVisible(false);
 				pImgLogon03->setVisible(true);
+
+
+				// Show air counter
+				pAirIcon->setVisible(true);
+				pAirLab->setVisible(true);
+
+				// Animate air counter
+				int iFakeAir = (((int)fTimer_Logon-800)*2)+2;
+
+				if( iFakeAir > 100)
+					iFakeAir = 100;
+				
+				if( iFakeAir < 0)
+					iFakeAir = 0;
+
+				if( iFakeAir < 26 )
+				{
+					pAirIcon->GetBitmap()->setColor( Color(255, 0, 0, 1) );
+					pAirLab->setFgColor( 255, 0, 0, 0 );
+				}
+				else
+				{
+					pAirIcon->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1) );
+					pAirLab->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 0 );
+				}
+					
+				pAirLab->setText("%d", iFakeAir);
+
+
 
 				
 				// Show damage icons
@@ -2230,9 +2267,8 @@ void CHudNew::paint()
 					pPainLeftDirIcon->setVisible(false);
 
 					iHealth = (((int)fTimer_Logon-885)*2)+2;
-
 					if( iHealth > 100 )
-						iHealth = 100; // Cap the value at 100 max
+						iHealth = 100; // Cap the value at 100 max	
 				}
 			}
 			
@@ -2242,6 +2278,9 @@ void CHudNew::paint()
 				pImgLogon05->setVisible(false);
 				pImgLogon06->setVisible(true);
 				//pLogonText->setText( "weaponselect_on -> %d\n", (int)fTimer_Logon);	// DEBUG
+
+				pAirIcon->setVisible(false);
+				pAirLab->setVisible(false);
 			}
 
 			// munitionview_on.wav - part

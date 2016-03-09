@@ -15,6 +15,7 @@
 #include "cl_util.h"
 #include "vgui_TeamFortressViewport.h"
 #include "vgui_loadtga.h"
+#include "soundengine.h" // Fograin92
 using namespace vgui;
 
 
