@@ -745,6 +745,25 @@ void ClientPrecache( void )
 	PRECACHE_SOUND("player/pl_wade3.wav");
 	PRECACHE_SOUND("player/pl_wade4.wav");
 
+
+	// Fograin92: Precache OF step sounds
+	PRECACHE_SOUND("player/pl_step1_of.wav");
+	PRECACHE_SOUND("player/pl_step2_of.wav");
+	PRECACHE_SOUND("player/pl_step3_of.wav");
+	PRECACHE_SOUND("player/pl_step4_of.wav");
+
+	PRECACHE_SOUND("player/pl_tile1_of.wav");
+	PRECACHE_SOUND("player/pl_tile2_of.wav");
+	PRECACHE_SOUND("player/pl_tile3_of.wav");
+	PRECACHE_SOUND("player/pl_tile4_of.wav");
+	PRECACHE_SOUND("player/pl_tile5_of.wav");
+
+	PRECACHE_SOUND("player/pl_snow1.wav");
+	PRECACHE_SOUND("player/pl_snow2.wav");
+	PRECACHE_SOUND("player/pl_snow3.wav");
+	PRECACHE_SOUND("player/pl_snow4.wav");
+
+
 	PRECACHE_SOUND("debris/wood1.wav");			// hit wood texture
 	PRECACHE_SOUND("debris/wood2.wav");
 	PRECACHE_SOUND("debris/wood3.wav");

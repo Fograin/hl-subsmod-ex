@@ -1429,8 +1429,8 @@ void EMIT_SOUND_DYN(edict_t *entity, int channel, const char *sample, float volu
 	else
 	{
 		// Fograin92: Treat sound as SFX
-		EMIT_S_SUB_DYN2(entity, channel, sample, volume*SM_VOLUME_SFX, attenuation, flags, pitch);		// Vit_amiN: pseudo-hook
-		EMIT_SOUND_DYN2(entity, channel, sample, volume*SM_VOLUME_SFX, attenuation, flags, pitch);
+		EMIT_S_SUB_DYN2(entity, channel, sample, volume, attenuation, flags, pitch);		// Vit_amiN: pseudo-hook
+		EMIT_SOUND_DYN2(entity, channel, sample, volume, attenuation, flags, pitch);
 	}
 }
 
@@ -1700,69 +1700,102 @@ float TEXTURETYPE_PlaySound(TraceResult *ptr,  Vector vecSrc, Vector vecEnd, int
 
 	switch (chTextureType)
 	{
-	default:
-	case CHAR_TEX_CONCRETE: fvol = 0.9;	fvolbar = 0.6;
-		rgsz[0] = "player/pl_step1.wav";
-		rgsz[1] = "player/pl_step2.wav";
-		cnt = 2;
+		default:
+		case CHAR_TEX_CONCRETE:
+			fvol = 0.9;
+			fvolbar = 0.6;
+
+			// Fograin92: Check if OF
+			if (CVAR_GET_FLOAT("sm_hud") == 2.0 )
+			{
+				rgsz[0] = "player/pl_step1_of.wav";
+				rgsz[1] = "player/pl_step2_of.wav";
+			}
+			else
+			{
+				rgsz[0] = "player/pl_step1.wav";
+				rgsz[1] = "player/pl_step2.wav";
+			}
+
+			cnt = 2;
 		break;
-	case CHAR_TEX_METAL: fvol = 0.9; fvolbar = 0.3;
-		rgsz[0] = "player/pl_metal1.wav";
-		rgsz[1] = "player/pl_metal2.wav";
-		cnt = 2;
+
+		case CHAR_TEX_METAL: fvol = 0.9; fvolbar = 0.3;
+			rgsz[0] = "player/pl_metal1.wav";
+			rgsz[1] = "player/pl_metal2.wav";
+			cnt = 2;
 		break;
-	case CHAR_TEX_DIRT:	fvol = 0.9; fvolbar = 0.1;
-		rgsz[0] = "player/pl_dirt1.wav";
-		rgsz[1] = "player/pl_dirt2.wav";
-		rgsz[2] = "player/pl_dirt3.wav";
-		cnt = 3;
+
+		case CHAR_TEX_DIRT:	fvol = 0.9; fvolbar = 0.1;
+			rgsz[0] = "player/pl_dirt1.wav";
+			rgsz[1] = "player/pl_dirt2.wav";
+			rgsz[2] = "player/pl_dirt3.wav";
+			cnt = 3;
 		break;
-	case CHAR_TEX_VENT:	fvol = 0.5; fvolbar = 0.3;
-		rgsz[0] = "player/pl_duct1.wav";
-		rgsz[1] = "player/pl_duct1.wav";
-		cnt = 2;
+
+		case CHAR_TEX_VENT:	fvol = 0.5; fvolbar = 0.3;
+			rgsz[0] = "player/pl_duct1.wav";
+			rgsz[1] = "player/pl_duct1.wav";
+			cnt = 2;
 		break;
-	case CHAR_TEX_GRATE: fvol = 0.9; fvolbar = 0.5;
-		rgsz[0] = "player/pl_grate1.wav";
-		rgsz[1] = "player/pl_grate4.wav";
-		cnt = 2;
+
+		case CHAR_TEX_GRATE: fvol = 0.9; fvolbar = 0.5;
+			rgsz[0] = "player/pl_grate1.wav";
+			rgsz[1] = "player/pl_grate4.wav";
+			cnt = 2;
 		break;
-	case CHAR_TEX_TILE:	fvol = 0.8; fvolbar = 0.2;
-		rgsz[0] = "player/pl_tile1.wav";
-		rgsz[1] = "player/pl_tile3.wav";
-		rgsz[2] = "player/pl_tile2.wav";
-		rgsz[3] = "player/pl_tile4.wav";
-		cnt = 4;
+
+		case CHAR_TEX_TILE:	fvol = 0.8; fvolbar = 0.2;
+			rgsz[0] = "player/pl_tile1.wav";
+			rgsz[1] = "player/pl_tile3.wav";
+			rgsz[2] = "player/pl_tile2.wav";
+			rgsz[3] = "player/pl_tile4.wav";
+			cnt = 4;
 		break;
-	case CHAR_TEX_SLOSH: fvol = 0.9; fvolbar = 0.0;
-		rgsz[0] = "player/pl_slosh1.wav";
-		rgsz[1] = "player/pl_slosh3.wav";
-		rgsz[2] = "player/pl_slosh2.wav";
-		rgsz[3] = "player/pl_slosh4.wav";
-		cnt = 4;
+
+		case CHAR_TEX_SLOSH: fvol = 0.9; fvolbar = 0.0;
+			rgsz[0] = "player/pl_slosh1.wav";
+			rgsz[1] = "player/pl_slosh3.wav";
+			rgsz[2] = "player/pl_slosh2.wav";
+			rgsz[3] = "player/pl_slosh4.wav";
+			cnt = 4;
 		break;
-	case CHAR_TEX_WOOD: fvol = 0.9; fvolbar = 0.2;
-		rgsz[0] = "debris/wood1.wav";
-		rgsz[1] = "debris/wood2.wav";
-		rgsz[2] = "debris/wood3.wav";
-		cnt = 3;
+
+		case CHAR_TEX_WOOD: fvol = 0.9; fvolbar = 0.2;
+			rgsz[0] = "debris/wood1.wav";
+			rgsz[1] = "debris/wood2.wav";
+			rgsz[2] = "debris/wood3.wav";
+			cnt = 3;
 		break;
-	case CHAR_TEX_GLASS:
-	case CHAR_TEX_COMPUTER:
-		fvol = 0.8; fvolbar = 0.2;
-		rgsz[0] = "debris/glass1.wav";
-		rgsz[1] = "debris/glass2.wav";
-		rgsz[2] = "debris/glass3.wav";
-		cnt = 3;
+
+		case CHAR_TEX_GLASS:
+		case CHAR_TEX_COMPUTER:
+			fvol = 0.8; fvolbar = 0.2;
+			rgsz[0] = "debris/glass1.wav";
+			rgsz[1] = "debris/glass2.wav";
+			rgsz[2] = "debris/glass3.wav";
+			cnt = 3;
 		break;
-	case CHAR_TEX_FLESH:
-		if (iBulletType == BULLET_PLAYER_CROWBAR)
-			return 0.0; // crowbar already makes this sound
-		fvol = 1.0;	fvolbar = 0.2;
-		rgsz[0] = "weapons/bullet_hit1.wav";
-		rgsz[1] = "weapons/bullet_hit2.wav";
-		fattn = 1.0;
-		cnt = 2;
+
+		case CHAR_TEX_FLESH:
+			if (iBulletType == BULLET_PLAYER_CROWBAR)
+				return 0.0; // crowbar already makes this sound
+			fvol = 1.0;	fvolbar = 0.2;
+			rgsz[0] = "weapons/bullet_hit1.wav";
+			rgsz[1] = "weapons/bullet_hit2.wav";
+			fattn = 1.0;
+			cnt = 2;
+		break;
+
+		// Fograin92
+		case CHAR_TEX_SNOW:
+			fvol = 0.9;
+			fvolbar = 0.2;
+			rgsz[0] = "player/pl_snow1.wav";
+			rgsz[1] = "player/pl_snow3.wav";
+			rgsz[2] = "player/pl_snow2.wav";
+			rgsz[3] = "player/pl_snow4.wav";
+			cnt = 4;
 		break;
 	}
 

@@ -1,8 +1,16 @@
-// Half-Life Texture Types.  Modify this file only if texture names are changed!
-//  'M' metal, 'V' ventillation, 'D' dirt, 'S' slosh liquid 
-//  'T' tile, 'G' grate (Concrete is the default), 'W' wood, 'P' computer, 'Y' glass
-// NOTE: only the first 12 characters of the texture name are used
-// NOTE: a maximum of 512 textures may be tagged in this file
+// Half-Life: Update MOD texture types.
+// 'M' metal
+// 'V' ventillation
+// 'D' dirt
+// 'S' slosh liquid 
+// 'T' tile
+// 'G' grate (Concrete is the default)
+// 'W' wood
+// 'P' computer
+// 'Y' glass
+// 'O' snow
+// NOTE: only the first 32 characters of the texture name are used
+// NOTE: a maximum of 1024 textures may be tagged in this file
 
 V DUCT_FLR01
 V DUCT_FLR01A
@@ -404,4 +412,107 @@ Y GLASS_MED
 Y GLASSBLUE1
 Y GLASSBLUE2
 Y GLASSGREEEN
-Y GLASSGREEEN
+
+
+// Opposing Force textures
+O SNOW_01
+O SNOW_02
+O SNOW_03
+
+D BOOT_DIRT_01
+D BOOT_GRASS_01
+D BOOT_GRASS_02
+D BOOT_GRASS_03
+D BOOT_GRASS_04
+D BOOT_GRASS_05
+D BOOT_GRASS_06
+D DIRT_01
+D GRND_01
+D GRND_02
+
+G {GRATE_01
+G {GRATE_02
+G {GRATE_03
+G {GRATE_04
+
+M CRATE_01
+M CRATE_02
+M CRATE_04
+M CRATE_05
+M CRATE_06
+M CRATE_07
+M CRATE_08
+M CRATE_09
+M CRATE_UNBRK_
+M DOOR_BIG_01
+M DOOR_BIG_02
+M DOOR_GARAGE
+M DOOR_GARAGE_
+M DOOR_MTL_01
+M DOOR_SPLIT_0
+M DOOR_SUB_01
+M DOOR_SUB_02
+M DOOR_SUB_03
+M DOOR_TUNL
+M DOOR_WINDOW_
+M DRAWER_METAL
+M H2OTANK_FRON
+M H2OTANK_SIDE
+M H2OTANK_TOP
+M MANHOLE_COVE
+M METALWALL_01
+M METAL_A_01
+M METAL_A_02
+M METAL_A_03
+M METAL_A_04
+M METAL_STRIPE
+M MORTAR_CNTRL
+M OOR_RUSTY
+M PANEL_01
+M PCV_XCRATE
+M SILO2_PAN2
+M SILO2_WALL3
+M TABLE_01
+M TABLE_02
+M TUBE_01
+M WALL_GRN02_B
+M WALL_GRN03_B
+M WALL_GRN06
+M XCRATE_EXP_0
+M XCRATE_EXP_0
+M XCRATE_EXP_0
+
+P +0CAT_FRONT
+P +0WALL_GRN_C
+P +1CAT_FRONT
+P +1WALL_GRN_C
+P +2SGN_MESSAG
+P +2WALL_GRN_C
+P CAT_FRONT
+P CAT_INSIDE
+P CAT_SIDE
+P CAT_SIDE_02
+P SIGN_ADV_T
+P SIGN_MIRRO
+P SIGN_TAC_O
+P WALL_GRN02
+P WALL_GRN03
+
+T BEDDING
+
+W BOARD_WINDOW
+W CRATE_WD_01
+W CRATE_WD_02
+W CRATE_WD_03
+W CRATE_WD_04
+W PALLET_02
+W {PALLET_01
+
+Y GORDON_01
+Y SCREEN_01
+
+D JUNGLE_EROSION
+D JUNGLE_FLOOR_01
+D JUNGLE_FLOOR_02
+D JUNGLE_FLOOR_03
+D SAND_01

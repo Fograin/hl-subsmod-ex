@@ -151,12 +151,41 @@ static float SM_PlaySound_Hook_SENDFUNC__FIXME_(
 
 float SM_Hook_Shared_PM_PlaySound( const char * const pString, const int sndChannel, const float sndVolume, const float sndAttenuation, const int sndFlags, const int sndPitch )
 {
+	char szFootStepName[256];
+
+	// Fograin92: Check if it's OF
+	if (CVAR_GET_FLOAT("sm_hud") == 2.0 )
+	{
+		if( strncmp( pString, "player/pl_step1", 15 ) == 0 )
+			sprintf(szFootStepName, "player/pl_step1_of.wav");
+		else if( strncmp( pString, "player/pl_step2", 15 ) == 0 )
+			sprintf(szFootStepName, "player/pl_step2_of.wav");
+		else if( strncmp( pString, "player/pl_step3", 15 ) == 0 )
+			sprintf(szFootStepName, "player/pl_step3_of.wav");
+		else if( strncmp( pString, "player/pl_step4", 15 ) == 0 )
+			sprintf(szFootStepName, "player/pl_step4_of.wav");
+		else if( strncmp( pString, "player/pl_tile1", 15 ) == 0 )
+			sprintf(szFootStepName, "player/pl_tile1_of.wav");
+		else if( strncmp( pString, "player/pl_tile2", 15 ) == 0 )
+			sprintf(szFootStepName, "player/pl_tile2_of.wav");
+		else if( strncmp( pString, "player/pl_tile3", 15 ) == 0 )
+			sprintf(szFootStepName, "player/pl_tile3_of.wav");
+		else if( strncmp( pString, "player/pl_tile4", 15 ) == 0 )
+			sprintf(szFootStepName, "player/pl_tile4_of.wav");
+		else if( strncmp( pString, "player/pl_tile5", 15 ) == 0 )
+			sprintf(szFootStepName, "player/pl_tile5_of.wav");
+	}
+	else
+		sprintf(szFootStepName, "%s", pString);
+
+
+
 	// Fograin92: Hook sounds from shared code into new audio engine
 #ifndef CLIENT_DLL
-	EXEmitSound( FIND_ENTITY_BY_CLASSNAME(NULL, "player"), sndChannel, pString, sndVolume*SM_VOLUME_FOOTSTEPS, sndAttenuation, sndFlags, sndPitch );
+	EXEmitSound( FIND_ENTITY_BY_CLASSNAME(NULL, "player"), sndChannel, szFootStepName, sndVolume*SM_VOLUME_FOOTSTEPS, sndAttenuation, sndFlags, sndPitch );
 #endif
 
-    return SM_PlaySound_Hook_SENDFUNC__FIXME_(0 /* FIXME: "clgame.pmove->player_index + 1" on client, "svgame.pmove->player_index + 1" on server; check if it needs +1 or exact index */, pString, NULL /* FIXME: NULL on client, ENTINDEX(first_param) (? -- check) on server */, sndChannel, sndVolume, sndAttenuation, sndFlags, sndPitch);
+    return SM_PlaySound_Hook_SENDFUNC__FIXME_(0 /* FIXME: "clgame.pmove->player_index + 1" on client, "svgame.pmove->player_index + 1" on server; check if it needs +1 or exact index */, szFootStepName, NULL /* FIXME: NULL on client, ENTINDEX(first_param) (? -- check) on server */, sndChannel, sndVolume, sndAttenuation, sndFlags, sndPitch);
 }
 
 #ifdef CLIENT_DLL
@@ -257,8 +286,30 @@ void SM_Hook_Server_EMIT_SOUND_DYN2( edict_t * const entity, const char * const 
 			// Fograin92: It's a spoken (NPC) sentence, pass sentenceID and adjust volume with Voice Volume CVAR
 			EXEmitSound(entity, sndChannel, name, sndVolume*SM_VOLUME_VOICE, sndAttenuation, sndFlags, sndPitch);
 		}
-		
+	} // End if( pString[0] == '!' )
+
+
+	// Fograin92: Check if this is non-sentenced voice emit
+	else if( 
+			(strncmp( pString, "barney/", 7 ) == 0)
+			|| (strncmp( pString, "drill/", 6 ) == 0)
+			|| (strncmp( pString, "rosenberg/", 10 ) == 0)
+			|| (strncmp( pString, "scientist/", 10 ) == 0)
+			|| (strncmp( pString, "gman/", 5 ) == 0)
+			|| (strncmp( pString, "hgrunt/", 7 ) == 0)
+			|| (strncmp( pString, "holo/", 5 ) == 0)
+			|| (strncmp( pString, "ba_holo/", 8 ) == 0)
+			|| (strncmp( pString, "otis/", 5 ) == 0)
+			|| (strncmp( pString, "fgrunt/", 7 ) == 0)
+			|| (strncmp( pString, "intro/", 6 ) == 0)
+			|| (strncmp( pString, "ops/", 4 ) == 0)
+			)
+	{
+		EXEmitSound(entity, sndChannel, pString, sndVolume*SM_VOLUME_VOICE, sndAttenuation, sndFlags, sndPitch);
 	}
+
+
+	// Fograin92: SFX voice
 	else
 	{
 		// Fograin92: It's non-sentenced sound, pass dir + name
