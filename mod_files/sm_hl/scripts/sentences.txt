@@ -1955,6 +1955,12 @@ FG_GROUPYES fgrunt/yessir
 FG_POK0 fgrunt/restricted.wav
 FG_POK1 fgrunt/restricted2.wav
 
+// Recruit
+RE_NEG0 fgrunt/feel.wav
+RE_NEG1 fgrunt/hell.wav
+RE_NEG2 fgrunt/leave.wav
+RE_NEG3 fgrunt/situations.wav
+RE_NEG4 fgrunt/stay.wav
 
 // Radio
 RD_YOUREALIVE radio/of1a2_rd01
