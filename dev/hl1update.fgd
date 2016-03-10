@@ -730,6 +730,12 @@
 	]
 ]
 
+
+//==============//
+// ENV Entities
+//==============//
+
+
 // env_beam
 @PointClass base(Targetname, BeamStartEnd, RenderFxChoices) size(-16 -16 -16, 16 16 16) = env_beam : "Energy Beam Effect"
 [
@@ -1040,6 +1046,73 @@
 	radius(string) : "Beam Radius" : "256"
 	warp_target(string) : "Warp Target" : ""
 ]
+
+// env_blowercannon (OF)
+@PointClass base(Targetname) size(-16 -16 -16, 16 16 16) = env_blowercannon : "Blower Cannon"
+[
+  delay(string) : "Delay" : "0"
+  zoffset(integer) : "Z Offset" : 0
+  target(string) : "Target" : ""
+  weaptype(choices) :"Weapon Type" : 1 =
+  [
+    1: "Spore (Rocket)"
+    2: "Spore (Grenade)"
+    3: "Shock Beam"
+    4: "Displacer Ball"
+  ]
+  firetype(choices) :"Fire Type" : 1 =
+  [
+    1: "Toggle On/Off"
+    2: "Fire When Triggered"
+  ]
+]
+
+// env_electrified_wire (OF)
+@PointClass base(Targetname) size(-16 -16 -16, 16 16 16) = env_electrified_wire : "Electrified Wire"
+[
+  segments(integer) : "Segments" : 16
+  sparkfrequency(integer) : "Spark Frequency" : 3
+  bodysparkfrequency(integer) : "Body Spark Frequency" : 3
+  lightningfrequency(integer) : "Lightning Frequency" : 3
+  xforce(integer) : "X Force" : 80000
+  yforce(integer) : "Y Force" : 80000
+  zforce(integer) : "Z Force" : 80000
+  disable(choices) :"Disable Use" : 0 =
+  [
+    0: "Not Disabled"
+    1: "Disabled"
+  ]
+  endingmodel(string) : "Ending Model" : "models/wire_copper16.mdl"
+  bodymodel(string) : "Body Model" : "models/wire_black16.mdl"
+]
+
+// env_rope (OF)
+@PointClass base(Targetname) size(-16 -16 -16, 16 16 16) = env_rope : "Rope"
+[
+  segments(integer) : "Segments" : 16
+  disable(choices) :"Disable Use" : 0 =
+  [
+    0: "Not Disabled"
+    1: "Disabled"
+  ]
+  endingmodel(string) : "Ending Model" : "models/rope16.mdl"
+  bodymodel(string) : "Body Model" : "models/rope16.mdl"
+]
+
+// env_spritetrain (OF)
+@PointClass base(Targetname) size(-16 -16 -16, 16 16 16) color(0 128 255)= env_spritetrain : "Sprite Train"
+[
+  target(target_source) : "First stop target"
+  model(string) : "Sprite Name" : "sprites/glow01.spr"
+  speed(integer) : "Speed (units per second)" : 64
+  scale(string) : "Sprite Scale"      
+]
+
+
+//===============//
+// FUNC Entities
+//===============//
+
 
 // func_breakable
 @SolidClass base(Breakable, RenderFields, ZHLT) = func_breakable : "Breakable Object" 
@@ -1518,6 +1591,99 @@
 	WaveHeight(string) : "Wave Height" : "3.2"
 ]
 
+
+// func_op4mortarcontroller (OF)
+@SolidClass base(Target) = func_op4mortarcontroller : "Op4 Mortar Controller" 
+[
+    mortar_axis(Choices) : "Axis" : 0 =
+    [
+        0 : "Vertical"
+        1 : "Horizontal"
+    ]
+]
+
+@BaseClass base(Targetname, Target, RenderFields, Global) = BaseTankOF
+[
+  spawnflags(flags) =
+  [
+    1 : "Active" : 0
+    16: "Only Direct" : 0
+    32: "Controllable" : 0
+  ]
+
+  // Mainly for use with 1009 team settings (game_team_master)
+  master(string) : "(Team) Master" 
+
+  yawrate(string) : "Yaw rate" : "30"
+  yawrange(string) : "Yaw range" : "180"
+  yawtolerance(string) : "Yaw tolerance" : "15"
+  pitchrate(string) : "Pitch rate" : "0"
+  pitchrange(string) : "Pitch range" : "0"
+  pitchtolerance(string) : "Pitch tolerance" : "5"
+  barrel(string) : "Barrel Length" : "0"
+  barrely(string) : "Barrel Horizontal" : "0"
+  barrelz(string) : "Barrel Vertical" : "0"
+  spritesmoke(string) : "Smoke Sprite" : ""
+  spriteflash(string) : "Flash Sprite" : ""
+  spritescale(string) : "Sprite scale" : "1"
+  rotatesound(string) : "Rotate Sound" : ""
+  firerate(string) : "Rate of Fire" : "1"
+  bullet_damage(string) : "Damage Per Bullet" : "0"
+  persistence(string) : "Firing persistence" : "1"
+  firespread(choices) : "Bullet accuracy" : 0 =
+  [
+    0: "Perfect Shot"
+    1: "Small cone"
+    2: "Medium cone"
+    3: "Large cone"
+    4: "Extra-large cone"
+  ]
+  minRange(string) : "Minmum target range" : "0"
+  maxRange(string) : "Maximum target range" : "0"
+  _minlight(string) : "Minimum light level"
+  enemytype(Choices) : "Enemy Type" : 1 =
+  [
+    0: "Player"
+    1: "Ally"
+    2: "Random"
+  ]
+]
+
+// func_tank_of
+@SolidClass base(BaseTankOF) = func_tank_of : "Brush Gun Turret" 
+[
+  bullet(choices) : "Bullets" : 0 = 
+  [
+    0: "None"
+    1: "9mm"
+    2: "MP5"
+    3: "12mm"
+  ]
+]
+
+// func_tankcontrols_of
+@SolidClass = func_tankcontrols_of : "Tank controls"
+[
+  target(target_destination) : "Tank entity name"
+]
+
+// func_tanklaser_of
+@SolidClass base(BaseTankOF) = func_tanklaser_of : "Brush Laser Turret" 
+[
+  laserentity(target_source) : "env_laser Entity"
+]
+
+// func_tankrocket_of
+@SolidClass base(BaseTankOF) = func_tankrocket_of : "Brush Rocket Turret" []
+
+// func_tankmortar_of
+@SolidClass base(BaseTankOF) = func_tankmortar_of : "Brush Mortar Turret" 
+[
+  iMagnitude(Integer) : "Explosion Magnitude" : 100
+]
+
+
+
 // momentary_door
 @SolidClass base(Door, ZHLT) = momentary_door : "Momentary/Continuous door" 
 [
@@ -1697,6 +1863,21 @@
 
 // info_teleport_destination
 @PointClass size(-8 -8 0, 8 8 16) base(PlayerClass, Targetname) = info_teleport_destination : "Teleport destination" []
+
+
+// info_displacer_xen_target
+// Displacer target placement represents the point where the player's feet shall be
+@PointClass base(Targetname) size(-4 -4 -4, 4 4 4) color(200 100 50) = info_displacer_xen_target : "Displacer XEN Target" []
+
+// info_displacer_earth_target
+@PointClass base(Targetname) size(-4 -4 -4, 4 4 4) color(200 100 50) = info_displacer_earth_target : "Displacer EARTH Target" []
+
+// info_pitworm_steam_lock
+@PointClass base(Targetname, Target) = info_pitworm_steam_lock : "Pitworm Steam Lock" []
+
+// pitworm_gibshooter
+@PointClass base(gibshooterbase) = pitworm_gibshooter : "Pitworm Gib Shooter" []
+
 
 // light
 @PointClass iconsprite("sprites/lightbulb.spr") base(Target, Targetname, Light, ZHLT_point) = light : "Invisible lightsource"
@@ -2141,6 +2322,25 @@
 // trigger_playerfreeze (BS, OF)
 @PointClass base(Targetname, Targetx) = trigger_playerfreeze : "Trigger Player Freeze" []
 
+// trigger_geneworm_hit (OF)
+@SolidClass base(Targetname,Target) = trigger_geneworm_hit : "Trigger GeneWorm Hit" 
+[
+	spawnflags(flags) = 
+	[ 
+		1: "Target Once" : 0 
+		2: "Start Off" : 0
+		8: "No clients" : 0
+		16:"FireClientOnly" : 0
+		32:"TouchClientOnly" : 0
+	]
+	master(string) : "Master" 
+	delay(string) : "Delay before trigger" : "0"
+]
+
+// trigger_xen_return
+@SolidClass base(Trigger) = trigger_xen_return : "Return To Earth (self-tele)" []
+
+
 //======//
 // NPCS
 //======//
@@ -2214,7 +2414,14 @@
 @PointClass base(RenderFields, Sequence) size(-16 -16 -36, 16 16 0) studio("models/barnacle.mdl") = monster_barnacle : "Barnacle Monster" []
 
 // monster_barney
-@PointClass base(Monster,TalkMonster, Sequence) size(-16 -16 0, 16 16 72) studio("models/barney.mdl") = monster_barney : "Barney" []
+@PointClass base(Monster,TalkMonster, Sequence) size(-16 -16 0, 16 16 72) studio("models/barney.mdl") = monster_barney : "Barney"
+[
+	suspicious(choices) : "Suspicious" : 0 =
+	[
+		0 : "No"
+		1 : "Yes"
+	]
+]
 
 // monster_barney_dead
 @PointClass base(RenderFields,Appearflags, Angles, Sequence) size(-16 -16 0, 16 16 72) = monster_barney_dead : "Dead Barney" 
@@ -2614,6 +2821,12 @@
 		126 : "crouch"
 		127 : "kneel"
 	]
+	
+	suspicious(choices) : "Suspicious" : 0 =
+	[
+		0 : "No"
+		1 : "Yes"
+	]
 ]
 
 // monster_scientist_dead
@@ -2666,6 +2879,11 @@
 		73 : "sitscared"
 		74 : "sitting2"
 		75 : "sitting3"
+	]
+	suspicious(choices) : "Suspicious" : 0 =
+	[
+		0 : "No"
+		1 : "Yes"
 	]
 ]
 
@@ -2722,6 +2940,10 @@
 // monster_zombie
 @PointClass base(Monster, Sequence) size(-16 -16 0, 16 16 72) studio("models/zombie.mdl") = monster_zombie : "Scientist Zombie" []
 
+
+//=====================//
+// Blue-Shift monsters
+//=====================//
 
 // monster_rosenberg
 @PointClass base(Monster, TalkMonster) size(-16 -16 0, 16 16 72) studio("models/scientist.mdl") = monster_rosenberg : "Dr. Rosenberg" 
@@ -2860,7 +3082,414 @@
 ]
 
 
+//=========================//
+// Opposing Force monsters
+//=========================//
 
+// monster_alien_babyvoltigore
+@PointClass base(Monster) size(-40 -40 0, 40 40 64) = monster_alien_babyvoltigore : "Baby Voltigore" 
+[
+  netname(string) : "Squad Name"
+  spawnflags(Flags) =
+  [
+    32 : "SquadLeader" : 0
+  ]
+]
+
+// monster_alien_voltigore
+@PointClass base(Monster) size(-80 -80 0, 80 80 90) = monster_alien_voltigore : "Voltigore" 
+[
+  netname(string) : "Squad Name"
+  spawnflags(Flags) =
+  [
+    32 : "SquadLeader" : 0
+  ]
+]
+
+// monster_alien_slave_dead
+@PointClass base(Monster) size(-16 -16 0, 16 16 72) = monster_alien_slave_dead : "Dead Vortigaunt" 
+[
+      pose(Choices) : "Pose" : 0 =
+  [
+    0 : "On Stomach"
+  ]
+]
+
+// monster_assassin_repel
+@PointClass base(Monster) size(-16 -16 0, 16 16 72) = monster_assassin_repel : "Male Assassin (Repel)" []
+
+// monster_blkop_apache
+@PointClass base(Monster) size(-360 -360 -172, 360 360 8) = monster_blkop_apache : "Black Ops Apache" 
+[
+  spawnflags(Flags) = 
+  [
+    8 : "NoWreckage"  : 0
+    64 : "Start Inactive" : 0
+  ]
+]
+
+// monster_blkop_osprey
+@PointClass base(Monster) size(-480 -480 -112, 480 480 24) = monster_blkop_osprey : "Black Ops Osprey"
+[
+  spawnflags(Flags) = 
+  [
+    64 : "Start Inactive" : 0
+  ]
+]
+
+// monster_cleansuit_scientist
+@PointClass base(Monster, TalkMonster) size(-16 -16 0, 16 16 72) = monster_cleansuit_scientist : "Cleansuit Scientist" 
+[
+    body(Choices) : "Body" : -1 =
+    [
+        -1 : "Random"
+        0 : "Glasses"
+        1 : "Einstein"
+        2 : "Luther"
+        3 : "Slick"
+    ]
+]
+
+// monster_cleansuit_scientist_dead
+@PointClass base(Appearflags,RenderFields) size(-16 -16 0, 16 16 72) = monster_cleansuit_scientist_dead : "Dead Cleansuit Scientist" 
+[
+  body(Choices) : "Body" : -1 =
+  [
+    -1 : "Random"
+    0 : "Glasses"
+    1 : "Einstein"
+    2 : "Luther"
+    3 : "Slick"
+  ]
+      pose(Choices) : "Pose" : 0 =
+  [
+    0 : "On back"
+    1 : "On Stomach"
+    2 : "Sitting"
+    3 : "Hanging"
+    4 : "Table1"
+    5 : "Table2"
+    6 : "Table3"
+    7 : "Hi Mike!"
+    8 : "Dead Against Wall"
+  ]
+]
+
+// monster_sitting_cleansuit_scientist
+@PointClass base(Monster) size(-14 -14 22, 14 14 72) = monster_sitting_cleansuit_scientist : "Sitting Cleansuit Scientist" 
+[
+      body(Choices) : "Body" : -1 =
+  [
+    -1 : "Random"
+    0 : "Glasses"
+    1 : "Einstein"
+    2 : "Luther"
+    3 : "Slick"
+  ]
+]
+
+// monster_drillsergeant
+@PointClass base(Monster,TalkMonster) size(-16 -16 0, 16 16 72) = monster_drillsergeant : "Drill Sergeant" []
+
+// monster_drillsergeant
+@PointClass base(Monster) size(-95 -95 0, 95 95 190) = monster_geneworm : "Gene Worm" []
+
+// monster_gonome
+@PointClass base(Monster) size(-16 -16 0, 16 16 72) = monster_gonome : "Gonome" []
+
+// monster_gonome_dead
+@PointClass base(Appearflags,RenderFields) size(-16 -16 0, 16 16 72) = monster_gonome_dead : "Dead Gonome" 
+[
+      pose(Choices) : "Pose" : 0 =
+  [
+    0 : "On Stomach"
+    1 : "On Back"
+    2 : "On Side"
+  ]
+]
+
+// monster_houndeye_dead
+@PointClass base(Monster) size(-16 -16 0, 16 16 72) = monster_houndeye_dead : "Dead Houndeye" 
+[
+  pose(Choices) : "Pose" : 0 =
+  [
+    0 : "Just plain dead"
+  ]
+]
+
+// monster_grunt_ally_repel
+@PointClass base(Monster) size(-16 -16 0, 16 16 72) = monster_grunt_ally_repel : "Human Grunt Ally (Repel)"
+[
+  spawnflags(Flags) =
+  [
+    32 : "SquadLeader" : 0
+  ]
+  netname(string) : "Squad Name"
+  weapons(Choices) : "Weapons" : 3 =
+  [
+    1 : "9mmAR"
+    3 : "9mmAR + HG"
+    5 : "9mmAR + GL"
+    8 : "Shotgun"
+    10 : "Shotgun + HG"
+    16 : "Saw"
+  ]
+  head(Choices) : "Heads" : -1 =
+  [
+    -1 : "Default"
+    0 : "Gas Mask"
+    1 : "Beret"
+    2 : "Ops Mask"
+    3 : "Bandana White"
+    4 : "Bandana Black"
+  ]
+]
+
+// monster_human_grunt_ally
+@PointClass base(Monster) size(-16 -16 0, 16 16 72) = monster_human_grunt_ally : "Human Grunt Ally (camo)" 
+[
+    netname(string) : "Squad Name"
+    
+    spawnflags(Flags) =
+    [
+        32 : "SquadLeader" : 0
+    ]
+
+    weapons(Choices) : "Weapons" : 3 =
+    [
+        0 : "None"
+        1 : "9mmAR"
+        3 : "9mmAR + HG"
+        5 : "9mmAR + GL"
+        8 : "Shotgun"
+        10 : "Shotgun + HG"
+        16 : "Saw"
+    ]
+
+    head(Choices) : "Heads" : -1 =
+    [
+        -1 : "Default"
+         0 : "Gas Mask"
+         1 : "Beret"
+         2 : "Ops Mask"
+         3 : "Bandana White"
+         4 : "Bandana Black"
+         5 : "MP"
+         6 : "Major"
+         7 : "Beret (Black)"
+    ]
+]
+
+// monster_human_grunt_ally_dead
+@PointClass base(Appearflags,RenderFields) size(-16 -16 0, 16 16 72) = monster_human_grunt_ally_dead : "Dead Human Grunt Ally" 
+[
+      pose(Choices) : "Pose" : 0 =
+	[
+		0 : "On stomach"
+		1 : "On side"
+		2 : "Seated"
+		3 : "Dead On Back"
+		4 : "Dead On Stomach"
+		5 : "Head Crabbed"
+	]
+
+	weapons(Choices) : "Weapons" : 1 =
+	[
+		0 : "None"
+		1 : "9mmAR"
+		8 : "Shotgun"
+		16 : "Saw"
+	]
+
+	head(Choices) : "Heads" : 0 =
+	[
+		0 : "Gas Mask"
+		1 : "Beret"
+		2 : "Ops Mask"
+		3 : "Bandana White"
+		4 : "Bandana Black"
+		5 : "MP"
+	]
+]
+
+// monster_human_medic_ally
+@PointClass base(Monster) size(-16 -16 0, 16 16 72) = monster_human_medic_ally : "Medic" 
+[
+    netname(string) : "Squad Name"
+    
+    spawnflags(Flags) =
+    [
+        32 : "SquadLeader" : 0
+    ]
+
+    head(Choices) : "Heads" : -1 =
+    [
+       -1 : "Random"
+        0 : "White"
+        1 : "Black"
+    ]
+
+    weapons(Choices) : "Weapons" : 2 =
+    [
+	  0 : "None"
+        1 : "Desert Eagle"
+        2 : "9mm Handgun"
+        4 : "Hypodermic Needle"
+    ]
+]
+
+// monster_human_torch_ally
+@PointClass base(Monster) size(-16 -16 0, 16 16 72) = monster_human_torch_ally : "Torch" 
+[
+  netname(string) : "Squad Name"
+  spawnflags(Flags) =
+  [
+    32 : "SquadLeader" : 0
+  ]
+  weapons(Choices) : "Weapons" : 1 =
+  [
+    1 : "Desert Eagle"
+    2 : "Blow Torch"
+  ]
+]
+
+// monster_male_assassin
+@PointClass base(Monster) size(-16 -16 0, 16 16 72) = monster_male_assassin : "Male Assassin"
+[
+    netname(string) : "Squad Name"
+    
+    spawnflags(Flags) =
+    [
+        32 : "SquadLeader" : 0
+    ]
+
+    head(Choices) : "Heads" : 0 =
+    [
+       -1 : "Random"
+        0 : "Ski Mask White"
+        1 : "Ski Mask Black"
+        2 : "Night Goggles"
+    ]
+
+    weapons(Choices) : "Weapons" : 3 =
+    [
+        0 : "None"
+        1 : "9mmAR"
+        3 : "9mmAR + HG"
+        5 : "9mmAR + GL"
+        8 : "Sniper Rifle"
+    ]
+    standgroundrange(string) : "Stand Ground Range" : "0.0"
+]
+
+// monster_op4loader
+@PointClass base(Monster, RenderFields) size(-16 -16 -36, 16 16 36) = monster_op4loader : "Loader machine" 
+[
+  spawnflags(Flags) = 
+  [
+    4 : "Not solid" : 0
+  ]
+]
+
+// monster_otis
+@PointClass base(Monster,TalkMonster) size(-16 -16 0, 16 16 72) = monster_otis : "Otis"
+[
+	bodystate(Choices) : "bodystate" : -1 =
+	[
+		-1 : "Random"
+		0 : "Gun Holstered"
+		1 : "Gun Drawn"
+		3 : "Donut"
+	]
+	head(Choices) : "head" : -1 =
+	[
+		-1 : "Random"
+		0 : "Bald Head"
+		1 : "Head with hair"
+	]
+	suspicious(choices) : "Suspicious" : 0 =
+	[
+		0 : "No"
+		1 : "Yes"
+	]
+]
+
+// monster_otis_dead
+@PointClass base(Appearflags) size(-16 -16 0, 16 16 72) = monster_otis_dead : "Dead Otis" 
+[
+    pose(Choices) : "Pose" : 0 =
+    [
+        0 : "On back"
+        1 : "On side"
+        2 : "On stomach"
+	  3 : "Stuffed in Vent"
+	  4 : "Dead Sitting"
+    ]
+]
+
+//monster_pitdrone
+@PointClass base(Monster) size(-24 -24 0, 24 24 32) = monster_pitdrone : "PitDrone"
+[
+	initammo(string) : "Initial Ammo" : "6"
+]
+
+// monster_pitworm
+@PointClass base(Monster) size(-16 -16 0, 16 16 32) = monster_pitworm : "Pit Worm" []
+
+// monster_pitworm_up
+@PointClass base(Monster) size(-95 -95 0, 95 95 190) = monster_pitworm_up : "Pit Worm Upright" []
+
+// monster_shockroach
+@PointClass base(Monster) size(-16 -16 0, 16 16 36) = monster_shockroach : "Shock Roach" []
+
+// monster_zombie_barney
+@PointClass base(Monster) size(-16 -16 0, 16 16 72) = monster_zombie_barney : "Barney Zombie" []
+
+// monster_zombie_soldier
+@PointClass base(Monster) size(-16 -16 0, 16 16 72) = monster_zombie_soldier : "Soldier Zombie" []
+
+// monster_zombie_soldier_dead
+@PointClass base(Monster) size(-16 -16 0, 16 16 72) = monster_zombie_soldier_dead : "Dead Soldier Zombie"
+[
+    pose(Choices) : "Pose" : 0 =
+    [
+        0 : "On back"
+        1 : "On stomach"
+    ]
+]
+
+// monster_recruit
+@PointClass base(Monster,TalkMonster) size(-16 -16 0, 16 16 72) = monster_recruit : "Recruit" []
+
+// monster_skeleton_dead
+@PointClass base(Appearflags,RenderFields) size(-16 -16 0, 16 16 72) = monster_skeleton_dead : "Dead Skeleton" 
+[
+      pose(Choices) : "Pose" : 0 =
+	[
+		0 : "On back"
+		1 : "Seated"
+		2 : "Against Wall"
+		3 : "On Stomach"
+	]
+]
+
+// monster_shocktrooper
+@PointClass base(Monster) size(-16 -16 0, 16 16 72) = monster_shocktrooper : "Shock Trooper" 
+[
+    netname(string) : "Squad Name"
+    spawnflags(Flags) =
+    [
+        32 : "SquadLeader" : 0
+    ]
+    weapons(Choices) : "Weapons" : 3 =
+    [
+        1 : "9mmAR"
+        3 : "9mmAR + HG"
+        5 : "9mmAR + GL"
+        8 : "Shotgun"
+        10 : "Shotgun + HG"
+    ]
+]
 
 //=======//
 // PROPS
@@ -2958,6 +3587,22 @@
 	]
 ]
 
+// item_generic (OF)
+@PointClass base(Weapon, Targetx) = item_generic : "Generic scenery item"
+[
+	model(string) : "Model" : "models/egg.mdl"
+	sequencename(string) : "Sequence Name" : "idle"
+	skin(integer) : "Skin" : 0
+	body(integer) : "Body" : 0
+]
+
+// item_nuclearbomb
+@PointClass base(Weapon, Targetx) size(-16 -16 0, 16 16 36) = item_nuclearbomb : "Nuclear Bomb"
+[
+	initialstate(integer) : "Initial State" : 0
+	wait(integer) : "Wait" : 1
+]
+
 
 
 //======//
@@ -2991,6 +3636,17 @@
 
 // ammo_crossbow
 @PointClass base(Weapon, Targetx) studio("models/w_crossbow_clip.mdl") = ammo_crossbow : "Crossbow Ammo" []
+
+// ammo_556
+@PointClass base(Weapon, Targetx, RenderFields) = ammo_556 : "M249 Ammo" []
+
+// ammo_762
+@PointClass base(Weapon, Targetx, RenderFields) = ammo_762 : "Sniper Ammo" []
+
+// ammo_spore
+// Spore ammo orientation refers to the direction that the base of the plant faces
+@PointClass base(Weapon, Targetx, RenderFields) color(200 200 50) = ammo_spore : "Spore" []
+
 
 
 //=========//
@@ -3050,6 +3706,33 @@
 // weapon_snark
 @PointClass base(Weapon, Targetx) studio("models/w_squeak.mdl") = weapon_snark : "Squeak Grenade" []
 
+// weapon_displacer
+@PointClass base(Weapon, Targetx, RenderFields) = weapon_displacer : "Displacer" []
+
+// weapon_eagle
+@PointClass base(Weapon, Targetx, RenderFields) = weapon_eagle : "Desert Eagle" []
+
+// weapon_grapple
+@PointClass base(Weapon, Targetx, RenderFields) = weapon_grapple : "Barnacle Grapple" []
+
+// weapon_knife
+@PointClass base(Weapon, Targetx, RenderFields) = weapon_knife : "Knife" []
+
+// weapon_m249
+@PointClass base(Weapon, Targetx, RenderFields) = weapon_m249 : "M249 SAW" []
+
+// weapon_pipewrench
+@PointClass base(Weapon, Targetx, RenderFields) = weapon_pipewrench : "Pipe Wrench" []
+
+// weapon_shockrifle
+@PointClass base(Weapon, Targetx, RenderFields) = weapon_shockrifle : "Shock Roach" []
+
+// weapon_sniperrifle
+@PointClass base(Weapon, Targetx, RenderFields) = weapon_sniperrifle : "Sniper Rifle" []
+
+// weapon_sporelauncher
+@PointClass base(Weapon, Targetx, RenderFields) = weapon_sporelauncher : "Spore Launcher" []
+
 
 //=======//
 // PROPS
@@ -3061,7 +3744,7 @@
 	model(studio) : "Model"
 	skin(integer) : "Skin" : 0
 	body(integer) : "Body" : 0
-	scale(string) : "Scale (1.0 = normal size)" : "1.0"
+	
 	m_iszSequence_On(string) : "Sequence when on"
 	m_iAction_On(choices) : "Behaviour when on" : 0 =
 	[
@@ -3076,6 +3759,19 @@
 		1: "Loop"
 		2: "Change state when sequence ends"
 	]
+	m_PropMaterial(choices) :"Material type" : 0 =
+	[
+		0: "Glass"
+		1: "Wood"
+		2: "Metal"
+		3: "Flesh"
+		4: "Cinder Block"  
+		5: "Ceiling Tile"
+		6: "Computer"
+		7: "Unbreakable Glass"
+		8: "Rocks"
+	]
+	
 	spawnflags(flags) =
 	[
 		1: "Initially Off" : 0
@@ -3084,3 +3780,25 @@
 	]
 ]
 
+// op4mortar
+@PointClass base(Targetname) = op4mortar : "Op4 Mortar" 
+[
+    spawnflags(Flags) =
+    [
+        1  : "Active" : 0
+        16 : "Line of Sight" : 1
+        32 : "Can Control" : 1
+    ]
+    mortar_velocity(integer) : "Velocity" : 800
+    h_min(integer) : "Horiz MIN" : -90
+    h_max(integer) : "Horiz MAX" : 90
+    mindist(integer) : "Min Target Dist" : 256
+    maxdist(integer) : "Max Target Dist" : 2048
+    enemytype(Choices) : "Enemy Type" : 0 =
+    [
+        0 : "Player"
+        1 : "Ally"
+        2 : "Random"
+    ]
+    firedelay(integer) : "Fire Rate" : 5
+]
