@@ -432,7 +432,7 @@ void CHudNew::PickedUpItem( const char *szName )
 	{
 		bHaveHEV = true;
 		// TODO: Check if this is Hazard Course OR Impulse 101
-		fTimer_Logon = 1;	// Start the HEV LOGON sequence
+		//fTimer_Logon = 1;	// Start the HEV LOGON sequence
 	}
 
 	UpdateHUD();

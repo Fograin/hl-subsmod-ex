@@ -1163,51 +1163,76 @@ Vector CBaseEntity::FireBulletsPlayer ( ULONG cShots, Vector vecSrc, Vector vecD
 
 				Vector vEndpos = tr.vecEndPos;
 
-				// Fograin92: Only when particles are enabled
-				if( (CVAR_GET_FLOAT("sm_particles") > 0) && (b_CanMakeParticles) )
+				// Fograin92: Spawn impact FX
+				if( b_CanMakeParticles )
 				{
-					MESSAGE_BEGIN(MSG_ALL, gmsgParticles);
-						WRITE_SHORT(0);
-						WRITE_BYTE(0);
-						WRITE_COORD( tr.vecEndPos.x );
-						WRITE_COORD( tr.vecEndPos.y );
-						WRITE_COORD( tr.vecEndPos.z );
-						WRITE_COORD( 0 );
-						WRITE_COORD( 0 );
-						WRITE_COORD( 0 );
+					switch( chTextureType )
+					{
+						/*
+						case CHAR_TEX_CONCRETE:
+						break;
+						*/
+
+						case CHAR_TEX_METAL:
+
+						break;
+
+						case CHAR_TEX_DIRT:
+
+						break;
+
+						case CHAR_TEX_VENT:
+
+						break;
+
+						case CHAR_TEX_GRATE:
+
+						break;
+
+						case CHAR_TEX_TILE:
+
+						break;
+
+						case CHAR_TEX_SLOSH:
+
+						break;
+
+						case CHAR_TEX_WOOD:
+
+						break;
+
+						case CHAR_TEX_COMPUTER:
+
+						break;
+
+						case CHAR_TEX_GLASS:
+
+						break;
+
+						case CHAR_TEX_FLESH:
+
+						break;
 
 
-						if (chTextureType == CHAR_TEX_CONCRETE)		
-							WRITE_SHORT(iImpactBSPconcrete);
-						else if (chTextureType == CHAR_TEX_METAL)
-							WRITE_SHORT(iImpactBSPmetal);
-						else if (chTextureType == CHAR_TEX_DIRT)
-							WRITE_SHORT(iImpactBSPdirt);
-						else if (chTextureType == CHAR_TEX_VENT)
-							WRITE_SHORT(iImpactBSPvent);
-						else if (chTextureType == CHAR_TEX_GRATE)
-							WRITE_SHORT(iImpactBSPgrate);
-						else if (chTextureType == CHAR_TEX_TILE)
-							WRITE_SHORT(iImpactBSPtile);
-						else if (chTextureType == CHAR_TEX_SLOSH)
-							WRITE_SHORT(iImpactBSPslosh);
-						else if (chTextureType == CHAR_TEX_WOOD)
-							WRITE_SHORT(iImpactBSPwood);
-						else if (chTextureType == CHAR_TEX_COMPUTER)
-							WRITE_SHORT(iImpactBSPcomputer);
-						else if (chTextureType == CHAR_TEX_GLASS)
-							WRITE_SHORT(iImpactBSPglass);
-						else if (chTextureType == CHAR_TEX_FLESH)
-							WRITE_SHORT(iImpactBSPflesh);
-						else
-						{
-							// Default impact FX
-							WRITE_SHORT(iImpactBSPconcrete);
-						}
+						default:
+							// CHAR_TEX_CONCRETE
+							// Fograin92: TODO, sprite based smoke
+							MESSAGE_BEGIN( MSG_PVS, SVC_TEMPENTITY, pev->origin );
+								WRITE_BYTE( TE_SPRITE );
+								WRITE_COORD( vEndpos.x + (vecDirShooting.x * -6) );
+								WRITE_COORD( vEndpos.y + (vecDirShooting.y * -6) );
+								WRITE_COORD( vEndpos.z + (vecDirShooting.z * -2) );
+								WRITE_SHORT( g_sModelIndexImpact01 );
+								WRITE_BYTE( 4 ); // scale * 10
+								WRITE_BYTE( 200 ); // brightness
+							MESSAGE_END();
 
-					MESSAGE_END();
+							CFXGibs::SpawnFXGibs( vEndpos, 0, 1);
+						break;
+					}
 				}
 			} // END pEntity->IsBSPModel()
+
 
 
 			if ( iDamage )
@@ -1885,3 +1910,169 @@ void CGib::Killed( entvars_t *pevAttacker, int iGib )
 	CBaseEntity::Killed( pevAttacker, iGib );
 }
 
+
+
+//=========================================//
+// 3D model particles (based on gibs code)
+//=========================================//
+
+
+// Fograin92: Base FX gib spawn function
+void CFXGibs::Spawn( const char *szGibModel )
+{
+	pev->movetype = MOVETYPE_BOUNCE;
+	pev->friction = 0.55; // deading the bounce a bit
+	pev->renderamt = 255;
+	pev->rendermode = kRenderNormal;
+	pev->renderfx = kRenderFxNone;
+	pev->solid = SOLID_SLIDEBOX;
+	pev->classname = MAKE_STRING("gib");
+
+	SET_MODEL(ENT(pev), szGibModel);
+
+	m_bloodColor		= DONT_BLEED;	// Fograin92: Set blood color (TODO: Check for model)
+	pev->health			= 1;	// Fograin92: Fix insta-blowing up gibs
+	pev->takedamage		= DAMAGE_NO;	// Fograin92: FX gibs shouln't take damage
+
+	
+	UTIL_SetSize(pev, Vector( 0, 0, 0), Vector(0, 0, 0));	// Fograin92: Set size to 0, FX gibs won't collide with players and npcs
+
+	pev->nextthink = gpGlobals->time + 4;
+	m_lifeTime = 25;
+	SetThink ( &CFXGibs::WaitTillLand );
+	SetTouch ( &CFXGibs::BounceGibTouch );
+
+	m_material = matNone;
+	m_cBloodDecals = 5;// how many blood decals this gib can place (1 per bounce until none remain). 
+}
+
+
+void CFXGibs :: SpawnFXGibs( Vector vPosition, int iFXGibType, int iFXGibCount )
+{
+
+	for ( int i=0; i < iFXGibCount; i++ )
+	{
+		CFXGibs *pFXGibs = GetClassPtr( (CFXGibs *)NULL );
+		//int iRandomSub = 0;
+
+
+		// Fograin92: Choose proper FX Gib model
+		switch( iFXGibType )
+		{
+			// Fograin92: Concrete
+			case 0:
+			default:
+				pFXGibs->Spawn("models/gibs/impact_concrete.mdl");
+				pFXGibs->pev->body = RANDOM_LONG(0, 2);
+			break;
+		}
+
+
+		// Fograin92: Spawn at hit position
+		pFXGibs->pev->origin.x = vPosition.x;
+		pFXGibs->pev->origin.y = vPosition.y;
+		pFXGibs->pev->origin.z = vPosition.z;
+
+		
+		// Fograin92: Some variation
+		pFXGibs->pev->velocity.x = RANDOM_FLOAT ( -0.25, 0.25 );
+		pFXGibs->pev->velocity.y = RANDOM_FLOAT ( -0.25, 0.25 );
+		pFXGibs->pev->velocity.z = RANDOM_FLOAT ( 0.00, 0.70 );
+		pFXGibs->pev->velocity = pFXGibs->pev->velocity * RANDOM_FLOAT ( 300, 400 );
+
+		pFXGibs->pev->avelocity.x = RANDOM_LONG( 200, 600 );
+		pFXGibs->pev->avelocity.y = RANDOM_LONG( 200, 600 );
+		pFXGibs->pev->avelocity.z = RANDOM_LONG( 100, 200 );
+
+		pFXGibs->LimitVelocity();
+	}
+}
+
+
+void CFXGibs :: WaitTillLand ( void )
+{
+	if (!IsInWorld())
+	{
+		UTIL_Remove( this );
+		return;
+	}
+
+	if ( pev->velocity == g_vecZero )
+	{
+		SetThink (&CBaseEntity::SUB_StartFadeOut);
+		pev->nextthink = gpGlobals->time + m_lifeTime;
+
+		// If you bleed, you stink!
+		if ( m_bloodColor != DONT_BLEED )
+		{
+			// ok, start stinkin!
+			CSoundEnt::InsertSound ( bits_SOUND_MEAT, pev->origin, 384, 25 );
+		}
+	}
+	else
+	{
+		// wait and check again in another half second.
+		pev->nextthink = gpGlobals->time + 0.01;
+	}
+}
+
+
+void CFXGibs :: BounceGibTouch ( CBaseEntity *pOther )
+{
+	Vector	vecSpot;
+	TraceResult	tr;
+
+	//if ( RANDOM_LONG(0,1) )
+	//	return;// don't bleed everytime
+
+	if (pev->flags & FL_ONGROUND)
+	{
+		pev->velocity = pev->velocity * 0.9;
+		pev->angles.x = 0;
+		pev->angles.z = 0;
+		pev->avelocity.x = 0;
+		pev->avelocity.z = 0;
+	}
+	else
+	{
+		if ( g_Language != LANGUAGE_GERMAN && m_cBloodDecals > 0 && m_bloodColor != DONT_BLEED )
+		{
+			vecSpot = pev->origin + Vector ( 0 , 0 , 8 );//move up a bit, and trace down.
+			UTIL_TraceLine ( vecSpot, vecSpot + Vector ( 0, 0, -24 ),  ignore_monsters, ENT(pev), & tr);
+
+			UTIL_BloodDecalTrace( &tr, m_bloodColor );
+
+			m_cBloodDecals--; 
+		}
+
+		if ( m_material != matNone && RANDOM_LONG(0,2) == 0 )
+		{
+			float volume;
+			float zvel = fabs(pev->velocity.z);
+		
+			volume = 0.8 * min(1.0, ((float)zvel) / 450.0);
+
+			//CBreakable::MaterialSoundRandom( edict(), (ePropMaterial)m_material, volume );
+		}
+	}
+}
+
+
+// Fograin92: Override trace attack and don't do anything
+void CFXGibs::TraceAttack( entvars_t *pevAttacker, float flDamage, Vector vecDir, TraceResult *ptr, int bitsDamageType)
+{
+
+}
+
+// Fograin92: Override take damage and don't do anything
+int CFXGibs::TakeDamage( entvars_t* pevInflictor, entvars_t* pevAttacker, float flDamage, int bitsDamageType)
+{
+	return 0;
+}
+
+// Fograin92: Override killed function, pass default
+void CFXGibs::Killed( entvars_t *pevAttacker, int iGib )
+{
+	SetUse( NULL );	
+	CBaseEntity::Killed( pevAttacker, iGib );
+}

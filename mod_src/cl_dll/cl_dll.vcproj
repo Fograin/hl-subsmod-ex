@@ -2021,14 +2021,6 @@
 				Name="particles"
 				>
 				<File
-					RelativePath=".\grass_particle.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\grass_particles.cpp"
-					>
-				</File>
-				<File
 					RelativePath=".\mapped_particle.cpp"
 					>
 				</File>

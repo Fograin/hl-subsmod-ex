@@ -11,9 +11,7 @@
 /*
 
 ===== weapons.cpp ========================================================
-
   functions governing the selection/use of weapons for players
-
 */
 
 #include "extdll.h"
@@ -33,15 +31,34 @@ extern int gEvilImpulse101;
 
 #define NOT_USED 255
 
-DLL_GLOBAL	short	g_sModelIndexLaser;// holds the index for the laser beam
-DLL_GLOBAL  const char *g_pModelNameLaser = "sprites/laserbeam.spr";
-DLL_GLOBAL	short	g_sModelIndexLaserDot;// holds the index for the laser beam dot
-DLL_GLOBAL	short	g_sModelIndexFireball;// holds the index for the fireball
-DLL_GLOBAL	short	g_sModelIndexSmoke;// holds the index for the smoke cloud
-DLL_GLOBAL	short	g_sModelIndexWExplosion;// holds the index for the underwater explosion
-DLL_GLOBAL	short	g_sModelIndexBubbles;// holds the index for the bubbles model
-DLL_GLOBAL	short	g_sModelIndexBloodDrop;// holds the sprite index for the initial blood
-DLL_GLOBAL	short	g_sModelIndexBloodSpray;// holds the sprite index for splattered blood
+
+// Fograin92: Global crap, shared between .cpps
+DLL_GLOBAL	short	g_sModelIndexLaser;	// Holds the index for the laser beam
+DLL_GLOBAL  const char	*g_pModelNameLaser = "sprites/laserbeam.spr";
+DLL_GLOBAL	short	g_sModelIndexLaserDot;	// Holds the index for the laser beam dot
+DLL_GLOBAL	short	g_sModelIndexFireball;// Holds the index for the fireball
+DLL_GLOBAL	short	g_sModelIndexSmoke;// Holds the index for the smoke cloud
+DLL_GLOBAL	short	g_sModelIndexWExplosion;// Holds the index for the underwater explosion
+DLL_GLOBAL	short	g_sModelIndexBubbles;// Holds the index for the bubbles model
+DLL_GLOBAL	short	g_sModelIndexBloodDrop;// Holds the sprite index for the initial blood
+DLL_GLOBAL	short	g_sModelIndexBloodSpray;// Holds the sprite index for splattered blood
+
+// Fograin92: Update mod shared stuff
+DLL_GLOBAL	short	g_sModelIndexExplosion01;	// eexplo.spr
+DLL_GLOBAL	short	g_sModelIndexExplosion02;	// explode1.spr
+DLL_GLOBAL	short	g_sModelIndexExplosion03;	// explode2.spr
+DLL_GLOBAL	short	g_sModelIndexExplosion04;	// fexplo.spr
+DLL_GLOBAL	short	g_sModelIndexExplosion05;	// fexplo1.spr
+DLL_GLOBAL	short	g_sModelIndexExplosion06;	// gexplo.spr
+DLL_GLOBAL	short	g_sModelIndexExplosion07;	// hexplo.spr
+DLL_GLOBAL	short	g_sModelIndexExplosion08;	// wxplo1.spr
+DLL_GLOBAL	short	g_sModelIndexExplosion09;	// zerogxplode.spr
+DLL_GLOBAL	short	g_sModelIndexExplosion10;	// zerogxplode2.spr
+DLL_GLOBAL	short	g_sModelIndexExplosion11;	// zerogxplode3.spr
+DLL_GLOBAL	short	g_sModelIndexExplosion12;	// zerogxplode4.spr
+DLL_GLOBAL	short	g_sModelIndexFire01;		// fire.spr
+DLL_GLOBAL	short	g_sModelIndexImpact01;		// impact_wall01.spr
+
 
 ItemInfo CBasePlayerItem::ItemInfoArray[MAX_WEAPONS];
 AmmoInfo CBasePlayerItem::AmmoInfoArray[MAX_AMMO_SLOTS];
@@ -349,17 +366,33 @@ void W_Precache(void)
 
 
 	// Fograin92: Precache it everytime, not only in MP
-	UTIL_PrecacheOther( "weaponbox" );// container for dropped deathmatch weapons
+	UTIL_PrecacheOther( "weaponbox" ); // Container for dropped deathmatch weapons
 
-	g_sModelIndexFireball = PRECACHE_MODEL ("sprites/zerogxplode.spr");// fireball
-	g_sModelIndexWExplosion = PRECACHE_MODEL ("sprites/WXplo1.spr");// underwater fireball
-	g_sModelIndexSmoke = PRECACHE_MODEL ("sprites/steam1.spr");// smoke
-	g_sModelIndexBubbles = PRECACHE_MODEL ("sprites/bubble.spr");//bubbles
-	g_sModelIndexBloodSpray = PRECACHE_MODEL ("sprites/bloodspray.spr"); // initial blood
-	g_sModelIndexBloodDrop = PRECACHE_MODEL ("sprites/blood.spr"); // splattered blood 
-
+	// Fograin92: Precache shared sprites
+	g_sModelIndexFireball	= PRECACHE_MODEL ("sprites/zerogxplode.spr");	// Fireball
+	g_sModelIndexWExplosion = PRECACHE_MODEL ("sprites/WXplo1.spr");		// Underwater fireball
+	g_sModelIndexSmoke		= PRECACHE_MODEL ("sprites/steam1.spr");		// Smoke
+	g_sModelIndexBubbles	= PRECACHE_MODEL ("sprites/bubble.spr");		// Bubbles
+	g_sModelIndexBloodSpray = PRECACHE_MODEL ("sprites/bloodspray.spr");	// Initial blood
+	g_sModelIndexBloodDrop	= PRECACHE_MODEL ("sprites/blood.spr");			// Splattered blood 
 	g_sModelIndexLaser = PRECACHE_MODEL( (char *)g_pModelNameLaser );
-	g_sModelIndexLaserDot = PRECACHE_MODEL("sprites/laserdot.spr");
+	g_sModelIndexLaserDot = PRECACHE_MODEL("sprites/laserdot.spr");			// Laser dot
+
+	// Fograin92: Update MOD shared sprites
+	g_sModelIndexExplosion01	= PRECACHE_MODEL ("sprites/eexplo.spr");
+	g_sModelIndexExplosion02	= PRECACHE_MODEL ("sprites/explode1.spr");
+	g_sModelIndexExplosion03	= PRECACHE_MODEL ("sprites/explode2.spr");
+	g_sModelIndexExplosion04	= PRECACHE_MODEL ("sprites/fexplo.spr");
+	g_sModelIndexExplosion05	= PRECACHE_MODEL ("sprites/fexplo1.spr");
+	g_sModelIndexExplosion06	= PRECACHE_MODEL ("sprites/gexplo.spr");
+	g_sModelIndexExplosion07	= PRECACHE_MODEL ("sprites/hexplo.spr");
+	g_sModelIndexExplosion08	= PRECACHE_MODEL ("sprites/wxplo1.spr");
+	g_sModelIndexExplosion09	= PRECACHE_MODEL ("sprites/zerogxplode.spr");
+	g_sModelIndexExplosion10	= PRECACHE_MODEL ("sprites/zerogxplode2.spr");
+	g_sModelIndexExplosion11	= PRECACHE_MODEL ("sprites/zerogxplode3.spr");
+	g_sModelIndexExplosion12	= PRECACHE_MODEL ("sprites/zerogxplode4.spr");
+	g_sModelIndexFire01			= PRECACHE_MODEL ("sprites/fire.spr");
+	g_sModelIndexImpact01		= PRECACHE_MODEL ("sprites/impact_wall01.spr");
 
 
 	// used by explosions

@@ -2172,7 +2172,7 @@ int TeamFortressViewport::MsgFunc_Grass( const char *pszName, int iSize, void *p
 		char sDefinitionFile[256];
 		_snprintf(sDefinitionFile, sizeof(sDefinitionFile) - 1, "%s\0", READ_STRING());
 
-		pParticleManager->CreateGrassPS(sDefinitionFile, &pSystem);
+		//pParticleManager->CreateGrassPS(sDefinitionFile, &pSystem);
 	}
 	return 1;
 }

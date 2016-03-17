@@ -588,6 +588,8 @@ void CWorld :: Precache( void )
 	PRECACHE_MODEL( "models/gibs/human_gib10.mdl" );
 	PRECACHE_MODEL( "models/gibs/human_gib11.mdl" );
 
+	PRECACHE_MODEL( "models/gibs/impact_concrete.mdl" );
+
 	PRECACHE_SOUND ("weapons/ric1.wav");
 	PRECACHE_SOUND ("weapons/ric2.wav");
 	PRECACHE_SOUND ("weapons/ric3.wav");

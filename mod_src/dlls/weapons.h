@@ -370,9 +370,9 @@ public:
 };
 
 
+// Fograin92: Global crap, shared between .cpps
 extern DLL_GLOBAL	short	g_sModelIndexLaser;// holds the index for the laser beam
 extern DLL_GLOBAL	const char *g_pModelNameLaser;
-
 extern DLL_GLOBAL	short	g_sModelIndexLaserDot;// holds the index for the laser beam dot
 extern DLL_GLOBAL	short	g_sModelIndexFireball;// holds the index for the fireball
 extern DLL_GLOBAL	short	g_sModelIndexSmoke;// holds the index for the smoke cloud
@@ -380,6 +380,22 @@ extern DLL_GLOBAL	short	g_sModelIndexWExplosion;// holds the index for the under
 extern DLL_GLOBAL	short	g_sModelIndexBubbles;// holds the index for the bubbles model
 extern DLL_GLOBAL	short	g_sModelIndexBloodDrop;// holds the sprite index for blood drops
 extern DLL_GLOBAL	short	g_sModelIndexBloodSpray;// holds the sprite index for blood spray (bigger)
+
+// Fograin92: Update mod shared stuff
+extern DLL_GLOBAL	short	g_sModelIndexExplosion01;	// eexplo.spr
+extern DLL_GLOBAL	short	g_sModelIndexExplosion02;	// explode1.spr
+extern DLL_GLOBAL	short	g_sModelIndexExplosion03;	// explode2.spr
+extern DLL_GLOBAL	short	g_sModelIndexExplosion04;	// fexplo.spr
+extern DLL_GLOBAL	short	g_sModelIndexExplosion05;	// fexplo1.spr
+extern DLL_GLOBAL	short	g_sModelIndexExplosion06;	// gexplo.spr
+extern DLL_GLOBAL	short	g_sModelIndexExplosion07;	// hexplo.spr
+extern DLL_GLOBAL	short	g_sModelIndexExplosion08;	// wxplo1.spr
+extern DLL_GLOBAL	short	g_sModelIndexExplosion09;	// zerogxplode.spr
+extern DLL_GLOBAL	short	g_sModelIndexExplosion10;	// zerogxplode2.spr
+extern DLL_GLOBAL	short	g_sModelIndexExplosion11;	// zerogxplode3.spr
+extern DLL_GLOBAL	short	g_sModelIndexExplosion12;	// zerogxplode4.spr
+extern DLL_GLOBAL	short	g_sModelIndexFire01;		// fire.spr
+extern DLL_GLOBAL	short	g_sModelIndexImpact01;		// impact_wall01.spr
 
 extern void ClearMultiDamage(void);
 extern void ApplyMultiDamage(entvars_t* pevInflictor, entvars_t* pevAttacker );

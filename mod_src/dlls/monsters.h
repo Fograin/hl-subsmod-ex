@@ -167,6 +167,33 @@ public:
 	float	m_lifeTime;
 };
 
+// Fograin92: FX gibs
+class CFXGibs : public CGib
+{
+public:
+	void Spawn( const char *szGibModel );
+	int	Classify ( void )
+	{
+		return	CLASS_GIBS;	// Fograin92: Classify as a GIB
+	} 
+
+	static	void SpawnFXGibs( Vector vPosition, int iFXGibType, int iFXGibCount );
+	void EXPORT WaitTillLand( void );
+	void EXPORT BounceGibTouch ( CBaseEntity *pOther );
+
+	// Fograin92: Override this stuff
+	void TraceAttack( entvars_t *pevAttacker, float flDamage, Vector vecDir, TraceResult *ptr, int bitsDamageType);
+	int TakeDamage( entvars_t* pevInflictor, entvars_t* pevAttacker, float flDamage, int bitsDamageType);
+	void Killed( entvars_t *pevAttacker, int iGib );	// Fograin92: Override kill function
+
+
+	int		m_bloodColor;
+	int		m_cBloodDecals;
+	int		m_material;
+	float	m_lifeTime;
+};
+
+
 
 #define CUSTOM_SCHEDULES\
 		virtual Schedule_t *ScheduleFromName( const char *pName );\
