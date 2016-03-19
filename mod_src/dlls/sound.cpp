@@ -1491,7 +1491,7 @@ void EMIT_GROUPNAME_SUIT(edict_t *entity, const char *groupname)
 
 int fTextureTypeInit = FALSE;
 
-#define CTEXTURESMAX		512			// max number of textures loaded
+#define CTEXTURESMAX		1024			// Fograin92: Increased limit (max number of textures loaded)
 
 int gcTextures = 0;
 char grgszTextureName[CTEXTURESMAX][CBTEXTURENAMEMAX];	// texture names
@@ -1552,7 +1552,7 @@ static char *memfgets( byte *pMemFile, int fileSize, int &filePos, char *pBuffer
 
 void TEXTURETYPE_Init()
 {
-	char buffer[512];
+	char buffer[512];	
 	int i, j;
 	byte *pMemFile;
 	int fileSize, filePos;
@@ -1564,7 +1564,7 @@ void TEXTURETYPE_Init()
 	memset(grgchTextureType, 0, CTEXTURESMAX);
 
 	gcTextures = 0;
-	memset(buffer, 0, 512);
+	memset(buffer, 0, 512); // Fograin92: Increased limit
 
 	pMemFile = g_engfuncs.pfnLoadFileForMe( "scripts/materials.txt", &fileSize );	// Fograin92: materials.txt is now loaded from scripts directory
 	if ( !pMemFile )

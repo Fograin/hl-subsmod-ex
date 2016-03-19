@@ -1166,70 +1166,207 @@ Vector CBaseEntity::FireBulletsPlayer ( ULONG cShots, Vector vecSrc, Vector vecD
 				// Fograin92: Spawn impact FX
 				if( b_CanMakeParticles )
 				{
-					switch( chTextureType )
+					// Fograin92: TODO, add specific texture check here
+					// (...)
+
+
+
+					/*
+
+					// Fograin92: Override texture types and set proper type
+					if
+					(
+						!strncmp(pTextureName, "c1a0_wdsign", 11) 
+						
+						
+					)
 					{
-						/*
-						case CHAR_TEX_CONCRETE:
-						break;
-						*/
+						// Fograin92: Sprite based smoke
+								MESSAGE_BEGIN( MSG_PVS, SVC_TEMPENTITY, pev->origin );
+									WRITE_BYTE( TE_SPRITE );
+									WRITE_COORD( vEndpos.x + (vecDirShooting.x * -6) );
+									WRITE_COORD( vEndpos.y + (vecDirShooting.y * -6) );
+									WRITE_COORD( vEndpos.z + (vecDirShooting.z * -2) );
+									WRITE_SHORT( g_sModelIndexImpact01 );
+									WRITE_BYTE( 4 ); // scale * 10
+									WRITE_BYTE( 200 ); // brightness
+								MESSAGE_END();
 
-						case CHAR_TEX_METAL:
-
-						break;
-
-						case CHAR_TEX_DIRT:
-
-						break;
-
-						case CHAR_TEX_VENT:
-
-						break;
-
-						case CHAR_TEX_GRATE:
-
-						break;
-
-						case CHAR_TEX_TILE:
-
-						break;
-
-						case CHAR_TEX_SLOSH:
-
-						break;
-
-						case CHAR_TEX_WOOD:
-
-						break;
-
-						case CHAR_TEX_COMPUTER:
-
-						break;
-
-						case CHAR_TEX_GLASS:
-
-						break;
-
-						case CHAR_TEX_FLESH:
-
-						break;
-
-
-						default:
-							// CHAR_TEX_CONCRETE
-							// Fograin92: TODO, sprite based smoke
-							MESSAGE_BEGIN( MSG_PVS, SVC_TEMPENTITY, pev->origin );
-								WRITE_BYTE( TE_SPRITE );
-								WRITE_COORD( vEndpos.x + (vecDirShooting.x * -6) );
-								WRITE_COORD( vEndpos.y + (vecDirShooting.y * -6) );
-								WRITE_COORD( vEndpos.z + (vecDirShooting.z * -2) );
-								WRITE_SHORT( g_sModelIndexImpact01 );
-								WRITE_BYTE( 4 ); // scale * 10
-								WRITE_BYTE( 200 ); // brightness
-							MESSAGE_END();
-
-							CFXGibs::SpawnFXGibs( vEndpos, 0, 1);
-						break;
+								// Fograin92: Spawn concrete debris
+								CFXGibs::SpawnFXGibs( vEndpos, 5, 1);
 					}
+					*/
+
+
+
+					// Fograin92: Else, check texture type, based on material type
+					//else
+					//{
+						switch( chTextureType )
+						{
+							case CHAR_TEX_CONCRETE:
+								// Fograin92: Sprite based smoke
+								MESSAGE_BEGIN( MSG_PVS, SVC_TEMPENTITY, pev->origin );
+									WRITE_BYTE( TE_SPRITE );
+									WRITE_COORD( vEndpos.x + (vecDirShooting.x * -6) );
+									WRITE_COORD( vEndpos.y + (vecDirShooting.y * -6) );
+									WRITE_COORD( vEndpos.z + (vecDirShooting.z * -2) );
+									WRITE_SHORT( g_sModelIndexImpact01 );
+									WRITE_BYTE( 4 ); // scale * 10
+									WRITE_BYTE( 200 ); // brightness
+								MESSAGE_END();
+
+								// Fograin92: Spawn concrete debris
+								CFXGibs::SpawnFXGibs( vEndpos, 0, 1);
+							break;
+								
+							case CHAR_TEX_METAL:
+								// Fograin92: Sprite based smoke
+								MESSAGE_BEGIN( MSG_PVS, SVC_TEMPENTITY, pev->origin );
+									WRITE_BYTE( TE_SPRITE );
+									WRITE_COORD( vEndpos.x + (vecDirShooting.x * -6) );
+									WRITE_COORD( vEndpos.y + (vecDirShooting.y * -6) );
+									WRITE_COORD( vEndpos.z + (vecDirShooting.z * -2) );
+									WRITE_SHORT( g_sModelIndexImpact01 );
+									WRITE_BYTE( 4 ); // scale * 10
+									WRITE_BYTE( 200 ); // brightness
+								MESSAGE_END();
+
+								// Fograin92: Spawn concrete debris
+								CFXGibs::SpawnFXGibs( vEndpos, 5, 1);
+							break;
+
+							case CHAR_TEX_DIRT:
+								// Fograin92: Sprite based smoke
+								MESSAGE_BEGIN( MSG_PVS, SVC_TEMPENTITY, pev->origin );
+									WRITE_BYTE( TE_SPRITE );
+									WRITE_COORD( vEndpos.x + (vecDirShooting.x * -6) );
+									WRITE_COORD( vEndpos.y + (vecDirShooting.y * -6) );
+									WRITE_COORD( vEndpos.z + (vecDirShooting.z * -2) );
+									WRITE_SHORT( g_sModelIndexImpact01 );
+									WRITE_BYTE( 4 ); // scale * 10
+									WRITE_BYTE( 200 ); // brightness
+								MESSAGE_END();
+							break;
+
+							case CHAR_TEX_VENT:
+								// Fograin92: Sprite based smoke
+								MESSAGE_BEGIN( MSG_PVS, SVC_TEMPENTITY, pev->origin );
+									WRITE_BYTE( TE_SPRITE );
+									WRITE_COORD( vEndpos.x + (vecDirShooting.x * -6) );
+									WRITE_COORD( vEndpos.y + (vecDirShooting.y * -6) );
+									WRITE_COORD( vEndpos.z + (vecDirShooting.z * -2) );
+									WRITE_SHORT( g_sModelIndexImpact01 );
+									WRITE_BYTE( 4 ); // scale * 10
+									WRITE_BYTE( 200 ); // brightness
+								MESSAGE_END();
+
+								CFXGibs::SpawnFXGibs( vEndpos, 2, 1);
+							break;
+
+							case CHAR_TEX_GRATE:
+								// Fograin92: Sprite based smoke
+								MESSAGE_BEGIN( MSG_PVS, SVC_TEMPENTITY, pev->origin );
+									WRITE_BYTE( TE_SPRITE );
+									WRITE_COORD( vEndpos.x + (vecDirShooting.x * -6) );
+									WRITE_COORD( vEndpos.y + (vecDirShooting.y * -6) );
+									WRITE_COORD( vEndpos.z + (vecDirShooting.z * -2) );
+									WRITE_SHORT( g_sModelIndexImpact01 );
+									WRITE_BYTE( 4 ); // scale * 10
+									WRITE_BYTE( 200 ); // brightness
+								MESSAGE_END();
+
+								CFXGibs::SpawnFXGibs( vEndpos, 2, 1);
+							break;
+
+							case CHAR_TEX_TILE:
+								// Fograin92: Sprite based smoke
+								MESSAGE_BEGIN( MSG_PVS, SVC_TEMPENTITY, pev->origin );
+									WRITE_BYTE( TE_SPRITE );
+									WRITE_COORD( vEndpos.x + (vecDirShooting.x * -6) );
+									WRITE_COORD( vEndpos.y + (vecDirShooting.y * -6) );
+									WRITE_COORD( vEndpos.z + (vecDirShooting.z * -2) );
+									WRITE_SHORT( g_sModelIndexImpact01 );
+									WRITE_BYTE( 4 ); // scale * 10
+									WRITE_BYTE( 200 ); // brightness
+								MESSAGE_END();
+
+								// Fograin92: Spawn concrete debris
+								CFXGibs::SpawnFXGibs( vEndpos, 0, 1);
+							break;
+
+							case CHAR_TEX_SLOSH:
+
+							break;
+
+							case CHAR_TEX_WOOD:
+								// Fograin92: Sprite based smoke
+								MESSAGE_BEGIN( MSG_PVS, SVC_TEMPENTITY, pev->origin );
+									WRITE_BYTE( TE_SPRITE );
+									WRITE_COORD( vEndpos.x + (vecDirShooting.x * -6) );
+									WRITE_COORD( vEndpos.y + (vecDirShooting.y * -6) );
+									WRITE_COORD( vEndpos.z + (vecDirShooting.z * -2) );
+									WRITE_SHORT( g_sModelIndexImpact01 );
+									WRITE_BYTE( 4 ); // scale * 10
+									WRITE_BYTE( 200 ); // brightness
+								MESSAGE_END();
+
+								// Fograin92: Spawn concrete debris
+								CFXGibs::SpawnFXGibs( vEndpos, 1, 1);
+							break;
+
+							case CHAR_TEX_COMPUTER:
+								// Fograin92: Sprite based smoke
+								MESSAGE_BEGIN( MSG_PVS, SVC_TEMPENTITY, pev->origin );
+									WRITE_BYTE( TE_SPRITE );
+									WRITE_COORD( vEndpos.x + (vecDirShooting.x * -6) );
+									WRITE_COORD( vEndpos.y + (vecDirShooting.y * -6) );
+									WRITE_COORD( vEndpos.z + (vecDirShooting.z * -2) );
+									WRITE_SHORT( g_sModelIndexImpact01 );
+									WRITE_BYTE( 4 ); // scale * 10
+									WRITE_BYTE( 200 ); // brightness
+								MESSAGE_END();
+
+								// Fograin92: Spawn concrete debris
+								CFXGibs::SpawnFXGibs( vEndpos, 6, 1);
+							break;
+
+							case CHAR_TEX_GLASS:
+								// Fograin92: Sprite based smoke
+								MESSAGE_BEGIN( MSG_PVS, SVC_TEMPENTITY, pev->origin );
+									WRITE_BYTE( TE_SPRITE );
+									WRITE_COORD( vEndpos.x + (vecDirShooting.x * -6) );
+									WRITE_COORD( vEndpos.y + (vecDirShooting.y * -6) );
+									WRITE_COORD( vEndpos.z + (vecDirShooting.z * -2) );
+									WRITE_SHORT( g_sModelIndexImpact01 );
+									WRITE_BYTE( 4 ); // scale * 10
+									WRITE_BYTE( 200 ); // brightness
+								MESSAGE_END();
+
+								// Fograin92: Spawn concrete debris
+								CFXGibs::SpawnFXGibs( vEndpos, 9, 1);
+							break;
+
+							case CHAR_TEX_FLESH:
+
+							break;
+
+
+							default:
+								// Fograin92: Sprite based smoke
+								MESSAGE_BEGIN( MSG_PVS, SVC_TEMPENTITY, pev->origin );
+									WRITE_BYTE( TE_SPRITE );
+									WRITE_COORD( vEndpos.x + (vecDirShooting.x * -6) );
+									WRITE_COORD( vEndpos.y + (vecDirShooting.y * -6) );
+									WRITE_COORD( vEndpos.z + (vecDirShooting.z * -2) );
+									WRITE_SHORT( g_sModelIndexImpact01 );
+									WRITE_BYTE( 4 ); // scale * 10
+									WRITE_BYTE( 200 ); // brightness
+								MESSAGE_END();
+							break;
+						}
+					//} // END -> else, material type check
+
 				}
 			} // END pEntity->IsBSPModel()
 
@@ -1916,6 +2053,8 @@ void CGib::Killed( entvars_t *pevAttacker, int iGib )
 // 3D model particles (based on gibs code)
 //=========================================//
 
+// Fograin92: Look into monsters.h for class defines
+
 
 // Fograin92: Base FX gib spawn function
 void CFXGibs::Spawn( const char *szGibModel )
@@ -1959,7 +2098,76 @@ void CFXGibs :: SpawnFXGibs( Vector vPosition, int iFXGibType, int iFXGibCount )
 		// Fograin92: Choose proper FX Gib model
 		switch( iFXGibType )
 		{
-			// Fograin92: Concrete
+			// Fograin92: Wood debris
+			case 1:
+				pFXGibs->Spawn("models/gibs/impact_wood.mdl");
+				pFXGibs->pev->body = RANDOM_LONG(0, 2);
+			break;
+
+			// Fograin92: Vent debris
+			case 2:
+				pFXGibs->Spawn("models/gibs/impact_vent.mdl");
+				pFXGibs->pev->body = RANDOM_LONG(0, 3);
+			break;
+
+			// Fograin92: Desert rock debris
+			case 3:
+				pFXGibs->Spawn("models/gibs/impact_rock.mdl");
+				pFXGibs->pev->body = RANDOM_LONG(0, 2);
+			break;
+
+			// Fograin92: Paper parts
+			case 4:
+				pFXGibs->Spawn("models/gibs/impact_paper.mdl");
+				pFXGibs->pev->body = RANDOM_LONG(0, 6);
+			break;
+
+			// Fograin92: Metal
+			case 5:
+				pFXGibs->Spawn("models/gibs/impact_metal.mdl");
+				pFXGibs->pev->body = RANDOM_LONG(0, 3);
+			break;
+
+			// Fograin92: Metal black
+			case 6:
+				pFXGibs->Spawn("models/gibs/impact_metal_black.mdl");
+				pFXGibs->pev->body = RANDOM_LONG(0, 3);
+			break;
+
+			// Fograin92: Metal green
+			case 7:
+				pFXGibs->Spawn("models/gibs/impact_metal_green.mdl");
+				pFXGibs->pev->body = RANDOM_LONG(0, 3);
+			break;
+
+			// Fograin92: Metal floor (dark)
+			case 8:
+				pFXGibs->Spawn("models/gibs/impact_metal_floor.mdl");
+				pFXGibs->pev->body = RANDOM_LONG(0, 2);
+			break;
+
+			// Fograin92: Glass debris
+			case 9:
+				pFXGibs->Spawn("models/gibs/impact_glass.mdl");
+				pFXGibs->pev->body = RANDOM_LONG(0, 6);
+				pFXGibs->pev->rendermode = kRenderTransTexture;
+			break;
+
+			// Fograin92: Ceiling debris
+			case 10:
+				pFXGibs->Spawn("models/gibs/impact_ceiling.mdl");
+				pFXGibs->pev->body = RANDOM_LONG(0, 1);
+			break;
+
+			// Fograin92: Cactus parts
+			case 11:
+				pFXGibs->Spawn("models/gibs/impact_cactus.mdl");
+				pFXGibs->pev->body = RANDOM_LONG(0, 3);
+			break;
+
+
+
+			// Fograin92: Concrete debris
 			case 0:
 			default:
 				pFXGibs->Spawn("models/gibs/impact_concrete.mdl");

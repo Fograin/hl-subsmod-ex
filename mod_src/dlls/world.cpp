@@ -589,6 +589,20 @@ void CWorld :: Precache( void )
 	PRECACHE_MODEL( "models/gibs/human_gib11.mdl" );
 
 	PRECACHE_MODEL( "models/gibs/impact_concrete.mdl" );
+	PRECACHE_MODEL( "models/gibs/impact_wood.mdl" );
+	PRECACHE_MODEL( "models/gibs/impact_vent.mdl" );
+	PRECACHE_MODEL( "models/gibs/impact_rock.mdl" );
+	PRECACHE_MODEL( "models/gibs/impact_paper.mdl" );
+	PRECACHE_MODEL( "models/gibs/impact_metal.mdl" );
+	PRECACHE_MODEL( "models/gibs/impact_metal_black.mdl" );
+	PRECACHE_MODEL( "models/gibs/impact_metal_green.mdl" );
+	PRECACHE_MODEL( "models/gibs/impact_metal_floor.mdl" );
+	PRECACHE_MODEL( "models/gibs/impact_glass.mdl" );
+	PRECACHE_MODEL( "models/gibs/impact_ceiling.mdl" );
+	PRECACHE_MODEL( "models/gibs/impact_cactus.mdl" );
+	PRECACHE_MODEL( "models/gibs/impact_blood_red.mdl" );
+	PRECACHE_MODEL( "models/gibs/impact_blood_yellow.mdl" );
+
 
 	PRECACHE_SOUND ("weapons/ric1.wav");
 	PRECACHE_SOUND ("weapons/ric2.wav");

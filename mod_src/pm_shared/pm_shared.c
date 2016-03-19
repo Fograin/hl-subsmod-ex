@@ -80,7 +80,7 @@ typedef struct hull_s
 #define	STOP_EPSILON	0.1
 
 // Fograin92: Doubled limits
-#define CTEXTURESMAX		1024			// max number of textures loaded
+#define CTEXTURESMAX		1024			// Fograin92: Increased to 2k (max number of textures loaded)
 #define CBTEXTURENAMEMAX	32			// only load first n chars of name
 
 #define CHAR_TEX_CONCRETE	'C'			// texture types
