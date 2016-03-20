@@ -721,18 +721,11 @@ void CHudNew::DamageSensor( int iDmgType, bool bEnabled )
 // Mutator <- Send new health value
 void CHudNew::SetAirValue(float fAirVal)
 {
-	//gEngfuncs.Con_Printf("HAX -> %f\n", fAirVal);
-
-	// If new value is exactly the same as old one
-	//if (fAirVal == fAir)
-	//	return;	// We don't need to update
-
 	// Update health value
-	fAir = 100 - (fAirVal * 5.0);
+	fAir = 100 - (fAirVal * 8.4);	// Fograin92: Updated for capped 60FPS
 
 	if( fAir < 0 )
 		fAir = 0;
-	//UpdateHUD();
 }
 
 

@@ -155,7 +155,6 @@ void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_syste
 		case iImpactBloodRed:
 			CreateMappedPS("particles/gore/blood_red_animated.txt", pSystem);	// Blood impact animated
 			CreateMappedPS("particles/gore/blood_red_impact.txt", pSystem);		// Blood impact-mist
-			//CreateMappedPS("particles/gore/blood_red_drips.txt", pSystem);		// Blood drips
 		break;
 
 		// Fograin92: Hit impact / Red blood particles (LOW FX)
@@ -168,7 +167,6 @@ void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_syste
 		case iImpactBloodYellow:
 			CreateMappedPS("particles/gore/blood_yellow_animated.txt", pSystem);	// Blood impact animated
 			CreateMappedPS("particles/gore/blood_yellow_impact.txt", pSystem);		// Blood impact-mist
-			//CreateMappedPS("particles/gore/blood_yellow_drips.txt", pSystem);		// Blood drips
 		break;
 
 		// Fograin92: Hit impact / Alien blood particles (LOW FX)
@@ -187,7 +185,6 @@ void CParticleSystemManager::CreatePresetPS(unsigned int iPreset, particle_syste
 		// Fograin92: Default explosion (FULL FX)
 		case iExplosionDefault:
 		{
-			//CreateMappedPS("particles/exp/explo1_firedust.txt", pSystem);
 			CreateMappedPS("particles/exp/explo1_fire.txt", pSystem);
 			CreateMappedPS("particles/exp/explo1_shockwave.txt", pSystem);
 

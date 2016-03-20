@@ -1,28 +1,20 @@
-/***
-*
-*	Copyright (c) 1996-2002, Valve LLC. All rights reserved.
-*	
-*	This product contains software technology licensed from Id 
-*	Software, Inc. ("Id Technology").  Id Technology (c) 1996 Id Software, Inc. 
-*	All Rights Reserved.
-*
-*   This source code contains proprietary and confidential information of
-*   Valve LLC and its suppliers.  Access to this code is restricted to
-*   persons who have executed a written SDK license with Valve.  Any access,
-*   use or distribution of this code by or to any unlicensed person is illegal.
-*
-****/
+//=============================================================//
+//	Half-Life Update MOD
+//	https://github.com/Fograin/hl-subsmod-ex
+//	
+//	This product contains software technology licensed from:
+//	Valve LLC.
+//	Id Software, Inc. ("Id Technology")
+//
+//	Before using any parts of this code, read licence.txt file 
+//=============================================================//
+/*
+  Header file for monster-related utility code
+*/
 #ifndef MONSTERS_H
 #include "skill.h"
 #define MONSTERS_H
 
-/*
-
-===== monsters.h ========================================================
-
-  Header file for monster-related utility code
-
-*/
 
 // CHECKLOCALMOVE result types 
 #define	LOCALMOVE_INVALID					0 // move is not possible
@@ -167,7 +159,32 @@ public:
 	float	m_lifeTime;
 };
 
+
 // Fograin92: FX gibs
+enum fxgibs_types_e
+{
+	// Fograin92: World debris
+	FXG_CONCRETE = 0,
+	FXG_WOOD,
+	FXG_VENT,
+	FXG_ROCK,
+	FXG_PAPER,
+	FXG_METAL,
+	FXG_METAL_BLACK,
+	FXG_METAL_GREEN,
+	FXG_METAL_FLOOR,
+	FXG_GLASS,
+	FXG_CEILING,
+	FXG_CACTUS,
+
+	// Fograin92: Gore FX
+	FXG_BLOOD_RED,
+	FXG_BLOOD_YELLOW,
+
+	AMOUNT			// Length of this enum
+};
+
+
 class CFXGibs : public CGib
 {
 public:
@@ -184,11 +201,9 @@ public:
 	// Fograin92: Override this stuff
 	void TraceAttack( entvars_t *pevAttacker, float flDamage, Vector vecDir, TraceResult *ptr, int bitsDamageType);
 	int TakeDamage( entvars_t* pevInflictor, entvars_t* pevAttacker, float flDamage, int bitsDamageType);
-	void Killed( entvars_t *pevAttacker, int iGib );	// Fograin92: Override kill function
-
+	void Killed( entvars_t *pevAttacker, int iGib );
 
 	int		m_bloodColor;
-	int		m_cBloodDecals;
 	int		m_material;
 	float	m_lifeTime;
 };

@@ -1217,7 +1217,7 @@ Vector CBaseEntity::FireBulletsPlayer ( ULONG cShots, Vector vecSrc, Vector vecD
 								MESSAGE_END();
 
 								// Fograin92: Spawn concrete debris
-								CFXGibs::SpawnFXGibs( vEndpos, 0, 1);
+								CFXGibs::SpawnFXGibs( vEndpos, FXG_CONCRETE, 1);
 							break;
 								
 							case CHAR_TEX_METAL:
@@ -1233,7 +1233,7 @@ Vector CBaseEntity::FireBulletsPlayer ( ULONG cShots, Vector vecSrc, Vector vecD
 								MESSAGE_END();
 
 								// Fograin92: Spawn concrete debris
-								CFXGibs::SpawnFXGibs( vEndpos, 5, 1);
+								CFXGibs::SpawnFXGibs( vEndpos, FXG_METAL, 1);
 							break;
 
 							case CHAR_TEX_DIRT:
@@ -1261,7 +1261,7 @@ Vector CBaseEntity::FireBulletsPlayer ( ULONG cShots, Vector vecSrc, Vector vecD
 									WRITE_BYTE( 200 ); // brightness
 								MESSAGE_END();
 
-								CFXGibs::SpawnFXGibs( vEndpos, 2, 1);
+								CFXGibs::SpawnFXGibs( vEndpos, FXG_VENT, 1);
 							break;
 
 							case CHAR_TEX_GRATE:
@@ -1276,7 +1276,7 @@ Vector CBaseEntity::FireBulletsPlayer ( ULONG cShots, Vector vecSrc, Vector vecD
 									WRITE_BYTE( 200 ); // brightness
 								MESSAGE_END();
 
-								CFXGibs::SpawnFXGibs( vEndpos, 2, 1);
+								CFXGibs::SpawnFXGibs( vEndpos, FXG_VENT, 1);
 							break;
 
 							case CHAR_TEX_TILE:
@@ -1292,7 +1292,7 @@ Vector CBaseEntity::FireBulletsPlayer ( ULONG cShots, Vector vecSrc, Vector vecD
 								MESSAGE_END();
 
 								// Fograin92: Spawn concrete debris
-								CFXGibs::SpawnFXGibs( vEndpos, 0, 1);
+								CFXGibs::SpawnFXGibs( vEndpos, FXG_CONCRETE, 1);
 							break;
 
 							case CHAR_TEX_SLOSH:
@@ -1312,7 +1312,7 @@ Vector CBaseEntity::FireBulletsPlayer ( ULONG cShots, Vector vecSrc, Vector vecD
 								MESSAGE_END();
 
 								// Fograin92: Spawn concrete debris
-								CFXGibs::SpawnFXGibs( vEndpos, 1, 1);
+								CFXGibs::SpawnFXGibs( vEndpos, FXG_WOOD, 1);
 							break;
 
 							case CHAR_TEX_COMPUTER:
@@ -1328,7 +1328,7 @@ Vector CBaseEntity::FireBulletsPlayer ( ULONG cShots, Vector vecSrc, Vector vecD
 								MESSAGE_END();
 
 								// Fograin92: Spawn concrete debris
-								CFXGibs::SpawnFXGibs( vEndpos, 6, 1);
+								CFXGibs::SpawnFXGibs( vEndpos, FXG_METAL_BLACK, 1);
 							break;
 
 							case CHAR_TEX_GLASS:
@@ -1344,11 +1344,11 @@ Vector CBaseEntity::FireBulletsPlayer ( ULONG cShots, Vector vecSrc, Vector vecD
 								MESSAGE_END();
 
 								// Fograin92: Spawn concrete debris
-								CFXGibs::SpawnFXGibs( vEndpos, 9, 1);
+								CFXGibs::SpawnFXGibs( vEndpos, FXG_GLASS, 1);
 							break;
 
 							case CHAR_TEX_FLESH:
-
+								CFXGibs::SpawnFXGibs( vEndpos, FXG_BLOOD_RED, 1);
 							break;
 
 
@@ -2070,7 +2070,7 @@ void CFXGibs::Spawn( const char *szGibModel )
 	SET_MODEL(ENT(pev), szGibModel);
 
 	m_bloodColor		= DONT_BLEED;	// Fograin92: Set blood color (TODO: Check for model)
-	pev->health			= 1;	// Fograin92: Fix insta-blowing up gibs
+	pev->health			= 1;
 	pev->takedamage		= DAMAGE_NO;	// Fograin92: FX gibs shouln't take damage
 
 	
@@ -2082,7 +2082,6 @@ void CFXGibs::Spawn( const char *szGibModel )
 	SetTouch ( &CFXGibs::BounceGibTouch );
 
 	m_material = matNone;
-	m_cBloodDecals = 5;// how many blood decals this gib can place (1 per bounce until none remain). 
 }
 
 
@@ -2092,83 +2091,109 @@ void CFXGibs :: SpawnFXGibs( Vector vPosition, int iFXGibType, int iFXGibCount )
 	for ( int i=0; i < iFXGibCount; i++ )
 	{
 		CFXGibs *pFXGibs = GetClassPtr( (CFXGibs *)NULL );
-		//int iRandomSub = 0;
-
 
 		// Fograin92: Choose proper FX Gib model
 		switch( iFXGibType )
 		{
 			// Fograin92: Wood debris
-			case 1:
+			case FXG_WOOD:
 				pFXGibs->Spawn("models/gibs/impact_wood.mdl");
 				pFXGibs->pev->body = RANDOM_LONG(0, 2);
 			break;
 
+
 			// Fograin92: Vent debris
-			case 2:
+			case FXG_VENT:
 				pFXGibs->Spawn("models/gibs/impact_vent.mdl");
 				pFXGibs->pev->body = RANDOM_LONG(0, 3);
 			break;
 
+
 			// Fograin92: Desert rock debris
-			case 3:
+			case FXG_ROCK:
 				pFXGibs->Spawn("models/gibs/impact_rock.mdl");
 				pFXGibs->pev->body = RANDOM_LONG(0, 2);
 			break;
 
+
 			// Fograin92: Paper parts
-			case 4:
+			case FXG_PAPER:
 				pFXGibs->Spawn("models/gibs/impact_paper.mdl");
 				pFXGibs->pev->body = RANDOM_LONG(0, 6);
 			break;
 
+
 			// Fograin92: Metal
-			case 5:
+			case FXG_METAL:
 				pFXGibs->Spawn("models/gibs/impact_metal.mdl");
 				pFXGibs->pev->body = RANDOM_LONG(0, 3);
 			break;
 
+
 			// Fograin92: Metal black
-			case 6:
+			case FXG_METAL_BLACK:
 				pFXGibs->Spawn("models/gibs/impact_metal_black.mdl");
 				pFXGibs->pev->body = RANDOM_LONG(0, 3);
 			break;
 
+
 			// Fograin92: Metal green
-			case 7:
+			case FXG_METAL_GREEN:
 				pFXGibs->Spawn("models/gibs/impact_metal_green.mdl");
 				pFXGibs->pev->body = RANDOM_LONG(0, 3);
 			break;
 
+
 			// Fograin92: Metal floor (dark)
-			case 8:
+			case FXG_METAL_FLOOR:
 				pFXGibs->Spawn("models/gibs/impact_metal_floor.mdl");
 				pFXGibs->pev->body = RANDOM_LONG(0, 2);
 			break;
 
+
 			// Fograin92: Glass debris
-			case 9:
+			case FXG_GLASS:
 				pFXGibs->Spawn("models/gibs/impact_glass.mdl");
 				pFXGibs->pev->body = RANDOM_LONG(0, 6);
 				pFXGibs->pev->rendermode = kRenderTransTexture;
 			break;
 
+
 			// Fograin92: Ceiling debris
-			case 10:
+			case FXG_CEILING:
 				pFXGibs->Spawn("models/gibs/impact_ceiling.mdl");
 				pFXGibs->pev->body = RANDOM_LONG(0, 1);
 			break;
 
+
 			// Fograin92: Cactus parts
-			case 11:
+			case FXG_CACTUS:
 				pFXGibs->Spawn("models/gibs/impact_cactus.mdl");
 				pFXGibs->pev->body = RANDOM_LONG(0, 3);
 			break;
 
 
 
+
+			// Fograin92: Blood drips (RED)
+			case FXG_BLOOD_RED:
+				//pFXGibs->Spawn("models/gibs/impact_cactus.mdl");
+				//pFXGibs->pev->body = RANDOM_LONG(0, 3);
+				//pFXGibs->m_bloodColor = BLOOD_COLOR_RED;
+			break;
+
+			// Fograin92: Blood drips (YELLOW)
+			case FXG_BLOOD_YELLOW:
+				//pFXGibs->Spawn("models/gibs/impact_cactus.mdl");
+				//pFXGibs->pev->body = RANDOM_LONG(0, 3);
+				//pFXGibs->m_bloodColor = BLOOD_COLOR_YELLOW;
+			break;
+
+
+
+
 			// Fograin92: Concrete debris
-			case 0:
+			case FXG_CONCRETE:
 			default:
 				pFXGibs->Spawn("models/gibs/impact_concrete.mdl");
 				pFXGibs->pev->body = RANDOM_LONG(0, 2);
@@ -2181,19 +2206,29 @@ void CFXGibs :: SpawnFXGibs( Vector vPosition, int iFXGibType, int iFXGibCount )
 		pFXGibs->pev->origin.y = vPosition.y;
 		pFXGibs->pev->origin.z = vPosition.z;
 
-		
-		// Fograin92: Some variation
-		pFXGibs->pev->velocity.x = RANDOM_FLOAT ( -0.25, 0.25 );
-		pFXGibs->pev->velocity.y = RANDOM_FLOAT ( -0.25, 0.25 );
-		pFXGibs->pev->velocity.z = RANDOM_FLOAT ( 0.00, 0.70 );
-		pFXGibs->pev->velocity = pFXGibs->pev->velocity * RANDOM_FLOAT ( 300, 400 );
 
-		pFXGibs->pev->avelocity.x = RANDOM_LONG( 200, 600 );
-		pFXGibs->pev->avelocity.y = RANDOM_LONG( 200, 600 );
-		pFXGibs->pev->avelocity.z = RANDOM_LONG( 100, 200 );
+		// Fograin92: If this is blood/liquid drop, use different velocity
+		if( iFXGibType == FXG_BLOOD_RED || iFXGibType == FXG_BLOOD_YELLOW )
+		{
 
+		}
+		// Fograin92: Else, apply variation velocity
+		else
+		{
+			pFXGibs->pev->velocity.x = RANDOM_FLOAT ( -0.25, 0.25 );
+			pFXGibs->pev->velocity.y = RANDOM_FLOAT ( -0.25, 0.25 );
+			pFXGibs->pev->velocity.z = RANDOM_FLOAT ( 0.00, 0.70 );
+			pFXGibs->pev->velocity = pFXGibs->pev->velocity * RANDOM_FLOAT ( 300, 400 );
+
+			pFXGibs->pev->avelocity.x = RANDOM_LONG( 200, 600 );
+			pFXGibs->pev->avelocity.y = RANDOM_LONG( 200, 600 );
+			pFXGibs->pev->avelocity.z = RANDOM_LONG( 100, 200 );
+		}
+
+		// Fograin92: Limit velocity for all spawned debris/drips
 		pFXGibs->LimitVelocity();
-	}
+
+	}	// END FOR
 }
 
 
@@ -2233,36 +2268,46 @@ void CFXGibs :: BounceGibTouch ( CBaseEntity *pOther )
 	//if ( RANDOM_LONG(0,1) )
 	//	return;// don't bleed everytime
 
-	if (pev->flags & FL_ONGROUND)
+
+	// Fograin92: Handle blood drips
+	if( m_bloodColor == BLOOD_COLOR_RED || m_bloodColor == BLOOD_COLOR_YELLOW )
 	{
-		pev->velocity = pev->velocity * 0.9;
-		pev->angles.x = 0;
-		pev->angles.z = 0;
-		pev->avelocity.x = 0;
-		pev->avelocity.z = 0;
+		vecSpot = pev->origin + Vector ( 0 , 0 , 8 );	// Move up a bit, and trace down.
+		UTIL_TraceLine ( vecSpot, vecSpot + Vector ( 0, 0, -24 ),  ignore_monsters, ENT(pev), & tr);
+		UTIL_BloodDecalTrace( &tr, m_bloodColor );	// Fograin92: Leave nice blood decal
+		UTIL_Remove( this );	// Fograin92: Our blood drip spawned a decal, let's remove it
+
+		// Fograin92: TODO, drips splat sound?
 	}
+
+	// Fograin92: It's a debris
 	else
 	{
-		if ( g_Language != LANGUAGE_GERMAN && m_cBloodDecals > 0 && m_bloodColor != DONT_BLEED )
+		if (pev->flags & FL_ONGROUND)
 		{
-			vecSpot = pev->origin + Vector ( 0 , 0 , 8 );//move up a bit, and trace down.
-			UTIL_TraceLine ( vecSpot, vecSpot + Vector ( 0, 0, -24 ),  ignore_monsters, ENT(pev), & tr);
-
-			UTIL_BloodDecalTrace( &tr, m_bloodColor );
-
-			m_cBloodDecals--; 
+			pev->velocity = pev->velocity * 0.9;
+			pev->angles.x = 0;
+			pev->angles.z = 0;
+			pev->avelocity.x = 0;
+			pev->avelocity.z = 0;
 		}
-
-		if ( m_material != matNone && RANDOM_LONG(0,2) == 0 )
+		else
 		{
-			float volume;
-			float zvel = fabs(pev->velocity.z);
-		
-			volume = 0.8 * min(1.0, ((float)zvel) / 450.0);
+			// Fograin92: Emit sound on "bounce"
+			/*
+			if ( m_material != matNone && RANDOM_LONG(0,2) == 0 )
+			{
+				float volume;
+				float zvel = fabs(pev->velocity.z);
+			
+				volume = 0.8 * min(1.0, ((float)zvel) / 450.0);
 
-			//CBreakable::MaterialSoundRandom( edict(), (ePropMaterial)m_material, volume );
+				//CBreakable::MaterialSoundRandom( edict(), (ePropMaterial)m_material, volume );
+			}
+			*/
 		}
-	}
+	} // End of debris
+
 }
 
 
