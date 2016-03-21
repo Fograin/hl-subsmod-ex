@@ -26,6 +26,7 @@
 extern void SM_RegisterAllConVars();	// Vit_amiN
 #include "sm_hud.h"						// Fograin92
 #include "soundengine.h"				// Fograin92
+#include "sm_menu.h"					// Fograin92
 // Fograin92: Update MOD stuff END
 
 class CHLVoiceStatusHelper : public IVoiceStatusHelper

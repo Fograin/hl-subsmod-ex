@@ -475,28 +475,6 @@
 				</FileConfiguration>
 			</File>
 			<File
-				RelativePath="hud_redraw.cpp"
-				>
-				<FileConfiguration
-					Name="Debug|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-				<FileConfiguration
-					Name="Release|Win32"
-					>
-					<Tool
-						Name="VCCLCompilerTool"
-						AdditionalIncludeDirectories=""
-						PreprocessorDefinitions=""
-					/>
-				</FileConfiguration>
-			</File>
-			<File
 				RelativePath="hud_servers.cpp"
 				>
 				<FileConfiguration
@@ -2016,6 +1994,28 @@
 					RelativePath="hud.h"
 					>
 				</File>
+				<File
+					RelativePath="hud_redraw.cpp"
+					>
+					<FileConfiguration
+						Name="Debug|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							AdditionalIncludeDirectories=""
+							PreprocessorDefinitions=""
+						/>
+					</FileConfiguration>
+					<FileConfiguration
+						Name="Release|Win32"
+						>
+						<Tool
+							Name="VCCLCompilerTool"
+							AdditionalIncludeDirectories=""
+							PreprocessorDefinitions=""
+						/>
+					</FileConfiguration>
+				</File>
 			</Filter>
 			<Filter
 				Name="particles"
@@ -2074,6 +2074,14 @@
 				</File>
 				<File
 					RelativePath=".\sm_hud.h"
+					>
+				</File>
+				<File
+					RelativePath=".\sm_menu.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\sm_menu.h"
 					>
 				</File>
 			</Filter>

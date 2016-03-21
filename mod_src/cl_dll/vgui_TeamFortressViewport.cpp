@@ -595,6 +595,11 @@ TeamFortressViewport::TeamFortressViewport(int x,int y,int wide,int tall) : Pane
 	m_pHudNew = new CHudNew();
 	m_pHudNew->setParent(this);
 	m_pHudNew->setVisible(true);
+
+	// Fograin92: New main menu
+	m_pMenuNew = new CMainMenuNew();
+	m_pMenuNew->setParent(this);
+	m_pMenuNew->setVisible(true);
 }
 
 //-----------------------------------------------------------------------------
@@ -633,9 +638,13 @@ void TeamFortressViewport::Initialize( void )
 		m_pMsgsBasePanel->Initialize();
 	}
 
-	// New HUD
+	// Fograin92: New HUD
 	if (m_pHudNew)
-		m_pHudNew->UpdateHUD();		// Update new HUD
+		m_pHudNew->UpdateHUD();		// Fograin92: Update new HUD
+
+	// Fograin92: New main menu
+	if (m_pMenuNew)
+		m_pMenuNew->UpdateMainMenu();		// Fograin92: Update new main menu
 
 	pParticleManager->RemoveSystems();	// BG Particle System
 
@@ -2193,6 +2202,31 @@ bool TeamFortressViewport::SlotInput( int iSlot )
 // Direct Key Input
 int	TeamFortressViewport::KeyInput( int down, int keynum, const char *pszCurrentBinding )
 {
+	//gEngfuncs.Con_Printf( "^3 -> KeyInput\n" );
+
+	// Fograin92: Capture ESC key
+	if( gEngfuncs.Con_IsVisible() == false )
+	{
+		if ( keynum == K_ESCAPE )
+		{
+			// Fograin92: We're already drawing our main menu
+			if( gViewPort->m_pMenuNew->bDrawMenu )
+			{
+				// Fograin92: Close it, TODO add checks for additional stuff
+				gViewPort->m_pMenuNew->bDrawMenu = false;
+			}
+
+			// Fograin92: Else, display our menu
+			else
+			{
+				gViewPort->m_pMenuNew->bDrawMenu = true;
+			}
+
+			return 0;
+		}
+	}
+
+
 	// Enter gets out of Spectator Mode by bringing up the Team Menu
 	if (m_iUser1 && gEngfuncs.Con_IsVisible() == false )
 	{

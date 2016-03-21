@@ -133,6 +133,10 @@ int CHud :: Redraw( float flTime, int intermission )
 
 	// Fograin92: Check if we need to show/hide our HUD
 	gViewPort->m_pHudNew->ShouldDrawHUD();
+
+	// Fograin92: Check if we should draw main menu
+	gViewPort->m_pMenuNew->ShouldDrawMenu();
+
 	
 	if ( m_pCvarDraw->value )
 	{

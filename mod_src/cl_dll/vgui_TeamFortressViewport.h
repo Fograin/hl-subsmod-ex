@@ -43,6 +43,9 @@ class VGUI_MsgsBasePanel;	// Vit_amiN
 #include "sm_hud.h"		// Fograin92
 class CHudNew;
 
+#include "sm_menu.h"		// Fograin92
+class CMainMenuNew;
+
 // Fograin92: Update MOD stuff END
 
 #define TF_DEFS_ONLY
@@ -590,6 +593,7 @@ public:
 // Fograin92: Update MOD stuff START
 	VGUI_MsgsBasePanel		*m_pMsgsBasePanel;	// Fograin92, Vit_amiN
 	CHudNew					*m_pHudNew;			// Fograin92
+	CMainMenuNew			*m_pMenuNew;		// Fograin92
 
 // Fograin92: Update MOD stuff END
 
