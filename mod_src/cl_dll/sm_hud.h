@@ -100,7 +100,6 @@ protected:
 };
 
 
-
 // Define our main HUD container
 class CHudNew : public Panel
 {

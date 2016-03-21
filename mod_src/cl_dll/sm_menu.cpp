@@ -15,11 +15,22 @@
 //======= UTILITY FUNCTIONS =======//
 
 
-// IDs for all HUD objects that require adjustments
+// IDs for all main menu objects that require adjustments
 enum sm_mainmenu_e
 {
-	ID_MENU = 0,	// New main menu ID
-	AMOUNT			// Length of this enum
+	ID_MENU = 0,		// New main menu ID
+
+	ID_LABEL_GAMETITLE,
+	ID_PANEL_MAINMENU,
+	ID_BTN_CONSOLE,
+	ID_BTN_NEWGAME,
+	ID_BTN_LOADGAME,
+	ID_BTN_SAVEGAME,
+	ID_BTN_OPTIONS,
+	ID_BTN_EXTRAS,
+	ID_BTN_QUIT,
+
+	AMOUNT				// Length of this enum
 };
 
 
@@ -27,16 +38,27 @@ enum sm_mainmenu_e
 const int iMenuAdjustmentArray[][5] =
 {
 	//--OBJECT ID-------ResX----ResY---AdjX---AdjY
-	{ ID_MENU,	1024,	576,	5,		540	},
-	{ ID_MENU,	1024,	600,	5,		565	},
-	{ ID_MENU,	1280,	720,	5,		680	},
-	{ ID_MENU,	1360,	768,	5,		730	},
-	{ ID_MENU,	1366,	768,	5,		730	},
-	{ ID_MENU,	1440,	900,	5,		860	},
-	{ ID_MENU,	1600,	900,	5,		860	},
-	{ ID_MENU,	1680,	1050,	5,		1005},
-	{ ID_MENU,	1920,	1080,	5,		1035}
+	{ ID_LABEL_GAMETITLE,	1024,	576,	5,		540	},
+	{ ID_LABEL_GAMETITLE,	1024,	600,	5,		565	},
+	{ ID_LABEL_GAMETITLE,	1280,	720,	5,		680	},
+	{ ID_LABEL_GAMETITLE,	1360,	768,	5,		730	},
+	{ ID_LABEL_GAMETITLE,	1366,	768,	5,		730	},
+	{ ID_LABEL_GAMETITLE,	1440,	900,	5,		860	},
+	{ ID_LABEL_GAMETITLE,	1600,	900,	5,		860	},
+	{ ID_LABEL_GAMETITLE,	1680,	1050,	5,		1005},
+	{ ID_LABEL_GAMETITLE,	1920,	1080,	40,		400},
+
+	{ ID_PANEL_MAINMENU,	1024,	576,	5,		540	},
+	{ ID_PANEL_MAINMENU,	1024,	600,	5,		565	},
+	{ ID_PANEL_MAINMENU,	1280,	720,	5,		680	},
+	{ ID_PANEL_MAINMENU,	1360,	768,	5,		730	},
+	{ ID_PANEL_MAINMENU,	1366,	768,	5,		730	},
+	{ ID_PANEL_MAINMENU,	1440,	900,	5,		860	},
+	{ ID_PANEL_MAINMENU,	1600,	900,	5,		860	},
+	{ ID_PANEL_MAINMENU,	1680,	1050,	5,		1005},
+	{ ID_PANEL_MAINMENU,	1920,	1080,	40,		480}
 };
+
 
 
 // Return adjusted position of HUD object, based on current screen resolution
@@ -127,12 +149,14 @@ void CMainMenuNew::ResetVars(bool bInitOnly)
 	if( bInitOnly )
 	{
 		bDrawMenu = false;
+		bResError = false;
 	}
 
 	// foo
 }
 
 
+extern int	g_iVisibleMouse;
 // Check if we should draw our main menu
 // Called every CHud:Redraw tick
 int CMainMenuNew::ShouldDrawMenu()
@@ -155,12 +179,21 @@ int CMainMenuNew::ShouldDrawMenu()
 		// Fograin92: Looks good, let's draw it
 		this->setVisible(true);
 		this->paint();
+
+		// Fograin92: Draw mouse cursor
+		g_iVisibleMouse = 1;
+		App::getInstance()->setCursorOveride( App::getInstance()->getScheme()->getCursor(Scheme::SchemeCursor::scu_arrow) );
+		
 		return 1;
 	}
 	// Fograin92: Else, let's hide our main menu
 	else
 	{
 		this->setVisible(false);
+
+		// Fograin92: Hide mouse cursor
+		g_iVisibleMouse = 0;
+		App::getInstance()->setCursorOveride( App::getInstance()->getScheme()->getCursor(Scheme::SchemeCursor::scu_none) );
 		return 0;
 	}
 
@@ -191,8 +224,96 @@ CMainMenuNew::CMainMenuNew() : Panel(0, 0, XRES(640), YRES(480))
 	// Set main menu variables to initial values
 	ResetVars(true);
 
-	this->setBgColor(0, 0, 0, 100);
+	this->setBgColor(0, 0, 0, 50);
 	this->setPaintBackgroundEnabled(true);
+
+	//m_LocalPlayer = gEngfuncs.GetLocalPlayer();	// Get the local player's index
+
+	// Get scheme data
+	pSchemes	= gViewPort->GetSchemeManager();
+	pFont		= pSchemes->getFont( pSchemes->getSchemeHandle( "MAINMENU_Big", true, true) );		// Get font for game title
+	pFontText	= pSchemes->getFont( pSchemes->getSchemeHandle( "MAINMENU_Normal", true, true) );	// Get font for VGUI Text
+
+
+	// Game title
+	pLabelGameTitle = new Label("");
+	pLabelGameTitle->setFont( pFont );
+	pLabelGameTitle->setParent( this );
+	pLabelGameTitle->setPaintBackgroundEnabled(false);
+	pLabelGameTitle->setPos( MenuAdjustPosition(ID_LABEL_GAMETITLE, false), MenuAdjustPosition(ID_LABEL_GAMETITLE, true) );
+	pLabelGameTitle->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_GAMETITLE" ) ) );
+	pLabelGameTitle->setFgColor( 255, 255, 255, 0 );
+
+
+	// Main menu buttons panel
+	pPanelMainMenu = new Panel( MenuAdjustPosition(ID_PANEL_MAINMENU, false), MenuAdjustPosition(ID_PANEL_MAINMENU, true), 240, 300);
+	pPanelMainMenu->setParent(this);
+	pPanelMainMenu->setBgColor(0, 0, 0, 100);
+	pPanelMainMenu->setPaintBackgroundEnabled(true);
+
+
+	// Main menu -> Console
+	pBtn_Console = new CommandButton( "1", 0, 0, 240, 40);
+	pBtn_Console->setFont( pFontText );
+	pBtn_Console->setContentAlignment(vgui::Label::a_west);
+    pBtn_Console->setParent( pPanelMainMenu );
+	pBtn_Console->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_CONSOLE" )) );
+	pBtn_Console->setPaintBackgroundEnabled(false);
+    //pBtn_Console->addActionSignal( new CMenuHandler_TextWindow(HIDE_TEXTWINDOW) );
+
+	// Main menu -> New Game button
+	pBtn_NewGame = new CommandButton( "2", 0, 40, 240, 40);
+	pBtn_NewGame->setFont( pFontText );
+	pBtn_NewGame->setContentAlignment(vgui::Label::a_west);
+    pBtn_NewGame->setParent( pPanelMainMenu );
+	pBtn_NewGame->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_NEWGAME" )) );
+	pBtn_NewGame->setPaintBackgroundEnabled(false);
+    //pBtn_NewGame->addActionSignal( new CMenuHandler_TextWindow(HIDE_TEXTWINDOW) );
+
+	// Main menu -> Load game button
+	pBtn_LoadGame = new CommandButton( "3", 0, 80, 240, 40);
+	pBtn_LoadGame->setFont( pFontText );
+	pBtn_LoadGame->setContentAlignment(vgui::Label::a_west);
+    pBtn_LoadGame->setParent( pPanelMainMenu );
+	pBtn_LoadGame->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_LOADGAME" )) );
+	pBtn_LoadGame->setPaintBackgroundEnabled(false);
+    //pBtn_LoadGame->addActionSignal( new CMenuHandler_TextWindow(HIDE_TEXTWINDOW) );
+
+	// Main menu -> Load game button
+	pBtn_SaveGame = new CommandButton( "4", 0, 120, 240, 40);
+	pBtn_SaveGame->setFont( pFontText );
+	pBtn_SaveGame->setContentAlignment(vgui::Label::a_west);
+    pBtn_SaveGame->setParent( pPanelMainMenu );
+	pBtn_SaveGame->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_SAVEGAME" )) );
+	pBtn_SaveGame->setPaintBackgroundEnabled(false);
+    //pBtn_SaveGame->addActionSignal( new CMenuHandler_TextWindow(HIDE_TEXTWINDOW) );
+
+	// Main menu -> Options button
+	pBtn_SaveGame = new CommandButton( "5", 0, 160, 240, 40);
+	pBtn_SaveGame->setFont( pFontText );
+	pBtn_SaveGame->setContentAlignment(vgui::Label::a_west);
+    pBtn_SaveGame->setParent( pPanelMainMenu );
+	pBtn_SaveGame->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_OPTIONS" )) );
+	pBtn_SaveGame->setPaintBackgroundEnabled(false);
+    //pBtn_SaveGame->addActionSignal( new CMenuHandler_TextWindow(HIDE_TEXTWINDOW) );
+
+	// Main menu -> Extras button
+	pBtn_Extras = new CommandButton( "6", 0, 200, 240, 40);
+	pBtn_Extras->setFont( pFontText );
+	pBtn_Extras->setContentAlignment(vgui::Label::a_west);
+    pBtn_Extras->setParent( pPanelMainMenu );
+	pBtn_Extras->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_EXTRAS" )) );
+	pBtn_Extras->setPaintBackgroundEnabled(false);
+    //pBtn_SaveGame->addActionSignal( new CMenuHandler_TextWindow(HIDE_TEXTWINDOW) );
+
+	// Main menu -> Quit button
+	pBtn_Quit = new CommandButton( "7", 0, 240, 240, 40);
+	pBtn_Quit->setFont( pFontText );
+	pBtn_Quit->setContentAlignment(vgui::Label::a_west);
+    pBtn_Quit->setParent( pPanelMainMenu );
+	pBtn_Quit->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_QUIT" )) );
+	pBtn_Quit->setPaintBackgroundEnabled(false);
+    //pBtn_SaveGame->addActionSignal( new CMenuHandler_TextWindow(HIDE_TEXTWINDOW) );
 
 	
 
@@ -207,6 +328,14 @@ CMainMenuNew::~CMainMenuNew()
 	ResetVars(true);
 
 	// Delete objects
+	if(pBtn_Quit)			delete pBtn_Quit;
+	if(pBtn_Extras)			delete pBtn_Extras;
+	if(pBtn_Options)		delete pBtn_Options;
+	if(pBtn_LoadGame)		delete pBtn_LoadGame;
+	if(pBtn_NewGame)		delete pBtn_NewGame;
+	if(pBtn_Console)		delete pBtn_Console;
+	if(pPanelMainMenu)		delete pPanelMainMenu;
+	if(pLabelGameTitle)		delete pLabelGameTitle;
 	// FOO
 }
 
@@ -217,8 +346,6 @@ void CMainMenuNew::paint()
 {
 	//gEngfuncs.Con_Printf( "^2HLU -> CMainMenuNew -> paint()\n" );
 	//char cString[32];	// Helper string
-
-
 	Panel::paint();		// Proceed with rendering
 }
 

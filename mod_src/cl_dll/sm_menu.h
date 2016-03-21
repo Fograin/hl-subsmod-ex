@@ -16,13 +16,13 @@
 #include "vgui_TeamFortressViewport.h"
 #include "vgui_loadtga.h"
 #include "soundengine.h" // Fograin92
+#include "sm_hud.h"
 using namespace vgui;
 
 
 // Load best possible result for our resolution
 // Written by: BUzer | Edited by: Fograin92
-/*
-inline BitmapTGA* LoadResolutionImage (const char *imgname)
+inline BitmapTGA* LoadResolutionMenuImage (const char *imgname)
 {
 	BitmapTGA *pBitmap;
 	static int resArray[] =
@@ -64,16 +64,14 @@ inline BitmapTGA* LoadResolutionImage (const char *imgname)
 	return pBitmap;
 }
 
-
 // Simple class that owns pointer to a bitmap and draws it
 // Written by: BUzer
-class ImageHolder : public Panel
+class MenuImageHolder : public Panel
 {
 public:
-	ImageHolder(const char *imgname, Panel *parent) : Panel(0, 0, 10, 10)
+	MenuImageHolder(const char *imgname, Panel *parent) : Panel(0, 0, 10, 10)
 	{
-		
-		m_pBitmap = LoadResolutionImage(imgname);
+		m_pBitmap = LoadResolutionMenuImage(imgname);
 		if (m_pBitmap)
 		{
 			setParent(parent);
@@ -86,7 +84,7 @@ public:
 		
 	}
 
-	~ImageHolder() {delete m_pBitmap;}
+	~MenuImageHolder() {delete m_pBitmap;}
 	BitmapTGA *GetBitmap() {return m_pBitmap;}
 
 protected:
@@ -99,9 +97,10 @@ protected:
 	int sizeX, sizeY;	// Fograin92: Used for panel size
 	BitmapTGA *m_pBitmap;
 };
-*/
 
 
+// Prepare command button
+class CommandButton;
 
 
 // Define our main menu container
@@ -132,6 +131,30 @@ protected:
 
 	// Base vars
 	bool bResError;						// Resolution is not supported error
+
+	// Player pointer
+	//cl_entity_t *m_LocalPlayer;
+
+	// Objects
+	CSchemeManager *pSchemes;		// Scheme manager data
+	Font *pFont;					// Base FONT (BIG)
+	Font *pFontText;				// Text FONT (Normal)
+
+
+	// Main menu game title
+	Label			*pLabelGameTitle;
+
+	// Main menu buttons panel
+	Panel			*pPanelMainMenu;
+
+	// Main menu buttons
+	CommandButton	*pBtn_Console;
+	CommandButton	*pBtn_NewGame;
+	CommandButton	*pBtn_LoadGame;
+	CommandButton	*pBtn_SaveGame;
+	CommandButton	*pBtn_Options;
+	CommandButton	*pBtn_Extras;
+	CommandButton	*pBtn_Quit;
 };
 
 

@@ -2202,8 +2202,6 @@ bool TeamFortressViewport::SlotInput( int iSlot )
 // Direct Key Input
 int	TeamFortressViewport::KeyInput( int down, int keynum, const char *pszCurrentBinding )
 {
-	//gEngfuncs.Con_Printf( "^3 -> KeyInput\n" );
-
 	// Fograin92: Capture ESC key
 	if( gEngfuncs.Con_IsVisible() == false )
 	{
@@ -2214,12 +2212,15 @@ int	TeamFortressViewport::KeyInput( int down, int keynum, const char *pszCurrent
 			{
 				// Fograin92: Close it, TODO add checks for additional stuff
 				gViewPort->m_pMenuNew->bDrawMenu = false;
+				SetCursorPos ( gEngfuncs.GetWindowCenterX(), gEngfuncs.GetWindowCenterY() ); // Fograin92: Clear mouse position
+				//gEngfuncs.pfnClientCmd("pause\n");
 			}
 
 			// Fograin92: Else, display our menu
 			else
 			{
 				gViewPort->m_pMenuNew->bDrawMenu = true;
+				//gEngfuncs.pfnClientCmd("pause\n");
 			}
 
 			return 0;

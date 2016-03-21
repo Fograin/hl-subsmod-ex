@@ -415,7 +415,6 @@ void DLLEXPORT IN_Accumulate (void)
 			IN_ResetMouse();
 		}
 	}
-
 }
 
 /*
