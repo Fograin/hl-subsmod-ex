@@ -158,4 +158,53 @@ protected:
 };
 
 
+// Fograin92: Handle button click
+class CMainMenuNew_BTNhandler : public ActionSignal
+{
+private:
+	int	_iBTNnum;	// ID of clicked button
+
+public:
+	CMainMenuNew_BTNhandler(int	iBTNnum)
+	{
+		_iBTNnum = iBTNnum;
+	}
+
+	// Used as public handler
+	void handleAction(int iBTNnum);
+
+	// Link with action signal
+	virtual void actionPerformed(Panel* panel)
+	{
+		this->handleAction(_iBTNnum);
+	}
+};
+
+
+// Fograin92: Handle changing cvars
+/*
+class CMainMenuNew_CVARhandler : public ActionSignal
+{
+private:
+	struct cvar_s * m_cvar;
+
+public:
+	CMainMenuNew_CVARhandler( char * cvarname )
+	{
+		m_cvar = gEngfuncs.pfnGetCvarPointer( cvarname );
+	}
+
+	virtual void actionPerformed(Panel* panel)
+	{
+		if ( m_cvar->value )
+			m_cvar->value = 0.0f;
+		else
+			m_cvar->value = 1.0f;
+
+		gViewPort->UpdateSpectatorPanel();
+	}
+};
+*/
+
+
 #endif // _SM_MENU_H_

@@ -14,8 +14,8 @@
 
 //======= UTILITY FUNCTIONS =======//
 
-
 // IDs for all main menu objects that require adjustments
+// ALSO, IDs for btn handlers
 enum sm_mainmenu_e
 {
 	ID_MENU = 0,		// New main menu ID
@@ -223,7 +223,6 @@ CMainMenuNew::CMainMenuNew() : Panel(0, 0, XRES(640), YRES(480))
 {
 	// Set main menu variables to initial values
 	ResetVars(true);
-
 	this->setBgColor(0, 0, 0, 50);
 	this->setPaintBackgroundEnabled(true);
 
@@ -249,7 +248,7 @@ CMainMenuNew::CMainMenuNew() : Panel(0, 0, XRES(640), YRES(480))
 	pPanelMainMenu = new Panel( MenuAdjustPosition(ID_PANEL_MAINMENU, false), MenuAdjustPosition(ID_PANEL_MAINMENU, true), 240, 300);
 	pPanelMainMenu->setParent(this);
 	pPanelMainMenu->setBgColor(0, 0, 0, 100);
-	pPanelMainMenu->setPaintBackgroundEnabled(true);
+	pPanelMainMenu->setPaintBackgroundEnabled(false);
 
 
 	// Main menu -> Console
@@ -259,7 +258,7 @@ CMainMenuNew::CMainMenuNew() : Panel(0, 0, XRES(640), YRES(480))
     pBtn_Console->setParent( pPanelMainMenu );
 	pBtn_Console->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_CONSOLE" )) );
 	pBtn_Console->setPaintBackgroundEnabled(false);
-    //pBtn_Console->addActionSignal( new CMenuHandler_TextWindow(HIDE_TEXTWINDOW) );
+    pBtn_Console->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_CONSOLE) );
 
 	// Main menu -> New Game button
 	pBtn_NewGame = new CommandButton( "2", 0, 40, 240, 40);
@@ -268,7 +267,7 @@ CMainMenuNew::CMainMenuNew() : Panel(0, 0, XRES(640), YRES(480))
     pBtn_NewGame->setParent( pPanelMainMenu );
 	pBtn_NewGame->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_NEWGAME" )) );
 	pBtn_NewGame->setPaintBackgroundEnabled(false);
-    //pBtn_NewGame->addActionSignal( new CMenuHandler_TextWindow(HIDE_TEXTWINDOW) );
+    pBtn_NewGame->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_NEWGAME) );
 
 	// Main menu -> Load game button
 	pBtn_LoadGame = new CommandButton( "3", 0, 80, 240, 40);
@@ -277,7 +276,7 @@ CMainMenuNew::CMainMenuNew() : Panel(0, 0, XRES(640), YRES(480))
     pBtn_LoadGame->setParent( pPanelMainMenu );
 	pBtn_LoadGame->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_LOADGAME" )) );
 	pBtn_LoadGame->setPaintBackgroundEnabled(false);
-    //pBtn_LoadGame->addActionSignal( new CMenuHandler_TextWindow(HIDE_TEXTWINDOW) );
+    pBtn_LoadGame->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_LOADGAME) );
 
 	// Main menu -> Load game button
 	pBtn_SaveGame = new CommandButton( "4", 0, 120, 240, 40);
@@ -286,16 +285,16 @@ CMainMenuNew::CMainMenuNew() : Panel(0, 0, XRES(640), YRES(480))
     pBtn_SaveGame->setParent( pPanelMainMenu );
 	pBtn_SaveGame->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_SAVEGAME" )) );
 	pBtn_SaveGame->setPaintBackgroundEnabled(false);
-    //pBtn_SaveGame->addActionSignal( new CMenuHandler_TextWindow(HIDE_TEXTWINDOW) );
+    pBtn_SaveGame->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_SAVEGAME) );
 
 	// Main menu -> Options button
-	pBtn_SaveGame = new CommandButton( "5", 0, 160, 240, 40);
-	pBtn_SaveGame->setFont( pFontText );
-	pBtn_SaveGame->setContentAlignment(vgui::Label::a_west);
-    pBtn_SaveGame->setParent( pPanelMainMenu );
-	pBtn_SaveGame->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_OPTIONS" )) );
-	pBtn_SaveGame->setPaintBackgroundEnabled(false);
-    //pBtn_SaveGame->addActionSignal( new CMenuHandler_TextWindow(HIDE_TEXTWINDOW) );
+	pBtn_Options = new CommandButton( "5", 0, 160, 240, 40);
+	pBtn_Options->setFont( pFontText );
+	pBtn_Options->setContentAlignment(vgui::Label::a_west);
+    pBtn_Options->setParent( pPanelMainMenu );
+	pBtn_Options->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_OPTIONS" )) );
+	pBtn_Options->setPaintBackgroundEnabled(false);
+    pBtn_Options->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_OPTIONS) );
 
 	// Main menu -> Extras button
 	pBtn_Extras = new CommandButton( "6", 0, 200, 240, 40);
@@ -304,7 +303,7 @@ CMainMenuNew::CMainMenuNew() : Panel(0, 0, XRES(640), YRES(480))
     pBtn_Extras->setParent( pPanelMainMenu );
 	pBtn_Extras->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_EXTRAS" )) );
 	pBtn_Extras->setPaintBackgroundEnabled(false);
-    //pBtn_SaveGame->addActionSignal( new CMenuHandler_TextWindow(HIDE_TEXTWINDOW) );
+    pBtn_Extras->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_EXTRAS) );
 
 	// Main menu -> Quit button
 	pBtn_Quit = new CommandButton( "7", 0, 240, 240, 40);
@@ -313,7 +312,7 @@ CMainMenuNew::CMainMenuNew() : Panel(0, 0, XRES(640), YRES(480))
     pBtn_Quit->setParent( pPanelMainMenu );
 	pBtn_Quit->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_QUIT" )) );
 	pBtn_Quit->setPaintBackgroundEnabled(false);
-    //pBtn_SaveGame->addActionSignal( new CMenuHandler_TextWindow(HIDE_TEXTWINDOW) );
+    pBtn_Quit->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_QUIT) );
 
 	
 
@@ -350,3 +349,26 @@ void CMainMenuNew::paint()
 }
 
 
+
+
+// Main menu button handler
+void CMainMenuNew_BTNhandler::handleAction(int iBTNnum)
+{
+	// Check button
+	switch( iBTNnum )
+	{
+		case ID_BTN_CONSOLE:
+			gEngfuncs.Con_Printf( "^3-> BTN_CONSOLE\n");
+		break;
+
+
+		case ID_BTN_QUIT:
+			ClientCmd("quit\n");
+		break;
+
+		case 0:
+		default:
+			gEngfuncs.Con_Printf( "^3-> UNHANDLED BTN\n");
+		break;
+	}
+}
