@@ -457,7 +457,7 @@ void CMainMenuNew::StartChapter(int iSelectedFrame)
 
 			// QUESTIONABLE ETHICS
 			case 3:
-				ClientCmd("map c2a4e\n");
+				ClientCmd("map c2a4d\n");
 			break;
 		}
 	}

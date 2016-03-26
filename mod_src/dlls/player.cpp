@@ -2854,8 +2854,372 @@ void CBasePlayer::Spawn( void )
 
 
 	// Fograin92: Give starting gear after player used chapter selection
-	// PLACEHOLDER
-	
+	if( !strcmp( STRING(gpGlobals->mapname), "c1a0c") )
+	{
+		// UNFORESEEN CONSEQUENCES
+		GiveNamedItem( "item_suit" );
+	}
+
+	// OFFICE COMPLEX
+	else if( !strcmp( STRING(gpGlobals->mapname), "c1a2") )
+	{
+		GiveNamedItem( "item_suit" );
+		GiveNamedItem( "weapon_crowbar" );
+		GiveNamedItem( "weapon_9mmhandgun" );
+		GiveNamedItem( "ammo_9mmclip" );
+		GiveNamedItem( "ammo_9mmclip" );
+		GiveNamedItem( "ammo_9mmclip" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+	}
+
+	// "WE'VE GOT HOSTILES"
+	else if( !strcmp( STRING(gpGlobals->mapname), "c1a3") )
+	{
+		GiveNamedItem( "item_suit" );
+		GiveNamedItem( "weapon_crowbar" );
+		GiveNamedItem( "weapon_9mmhandgun" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "weapon_shotgun" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+	}
+
+	// BLAST PIT
+	else if( !strcmp( STRING(gpGlobals->mapname), "c1a4") )
+	{
+		GiveNamedItem( "item_suit" );
+		GiveNamedItem( "weapon_crowbar" );
+		GiveNamedItem( "weapon_9mmhandgun" );
+		GiveNamedItem( "weapon_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "weapon_shotgun" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+	}
+
+	// POWER UP
+	else if( !strcmp( STRING(gpGlobals->mapname), "c2a1") )
+	{
+		GiveNamedItem( "item_suit" );
+		GiveNamedItem( "weapon_crowbar" );
+		GiveNamedItem( "weapon_9mmhandgun" );
+		GiveNamedItem( "weapon_357" );
+		GiveNamedItem( "ammo_357" );
+		GiveNamedItem( "ammo_357" );
+		GiveNamedItem( "weapon_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_ARgrenades" );
+		GiveNamedItem( "weapon_shotgun" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "weapon_satchel" );
+		GiveNamedItem( "weapon_tripmine" );
+		GiveNamedItem( "weapon_tripmine" );
+		GiveNamedItem( "weapon_tripmine" );
+		GiveNamedItem( "weapon_tripmine" );
+		GiveNamedItem( "weapon_tripmine" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+	}
+
+	// ON A RAIL
+	else if( !strcmp( STRING(gpGlobals->mapname), "c2a2") )
+	{
+		GiveNamedItem( "item_suit" );
+		GiveNamedItem( "weapon_crowbar" );
+		GiveNamedItem( "weapon_9mmhandgun" );
+		GiveNamedItem( "weapon_357" );
+		GiveNamedItem( "ammo_357" );
+		GiveNamedItem( "ammo_357" );
+		GiveNamedItem( "weapon_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_ARgrenades" );
+		GiveNamedItem( "weapon_shotgun" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "weapon_satchel" );
+		GiveNamedItem( "weapon_satchel" );
+		GiveNamedItem( "weapon_satchel" );
+		GiveNamedItem( "weapon_tripmine" );
+		GiveNamedItem( "weapon_tripmine" );
+		GiveNamedItem( "weapon_tripmine" );
+		GiveNamedItem( "weapon_tripmine" );
+		GiveNamedItem( "weapon_tripmine" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+	}
+
+	// APPREHENSION
+	else if( !strcmp( STRING(gpGlobals->mapname), "c2a3") )
+	{
+		GiveNamedItem( "item_suit" );
+		GiveNamedItem( "weapon_crowbar" );
+		GiveNamedItem( "weapon_9mmhandgun" );
+		GiveNamedItem( "weapon_357" );
+		GiveNamedItem( "ammo_357" );
+		GiveNamedItem( "ammo_357" );
+		GiveNamedItem( "ammo_357" );
+		GiveNamedItem( "ammo_357" );
+		GiveNamedItem( "weapon_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_ARgrenades" );
+		GiveNamedItem( "weapon_shotgun" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "weapon_satchel" );
+		GiveNamedItem( "weapon_tripmine" );
+		GiveNamedItem( "weapon_tripmine" );
+		GiveNamedItem( "weapon_tripmine" );
+		GiveNamedItem( "weapon_tripmine" );
+		GiveNamedItem( "weapon_tripmine" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+	}
+
+	// RESIDUE PROCESSING
+	else if( !strcmp( STRING(gpGlobals->mapname), "c2a4") )
+	{
+		GiveNamedItem( "item_suit" );
+		GiveNamedItem( "weapon_crowbar" );
+	}
+
+	// QUESTIONABLE ETHICS
+	else if( !strcmp( STRING(gpGlobals->mapname), "c2a4d") )
+	{
+		GiveNamedItem( "item_suit" );
+		GiveNamedItem( "weapon_crowbar" );
+		GiveNamedItem( "weapon_9mmhandgun" );
+		GiveNamedItem( "ammo_9mmclip" );
+		GiveNamedItem( "weapon_357" );
+		GiveNamedItem( "ammo_357" );
+		GiveNamedItem( "weapon_satchel" );
+	}
+
+	// SURFACE TENSION
+	else if( !strcmp( STRING(gpGlobals->mapname), "c2a5") )
+	{
+		GiveNamedItem( "item_suit" );
+		GiveNamedItem( "weapon_crowbar" );
+		GiveNamedItem( "weapon_9mmhandgun" );
+		GiveNamedItem( "weapon_357" );
+		GiveNamedItem( "ammo_357" );
+		GiveNamedItem( "weapon_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_ARgrenades" );
+		GiveNamedItem( "weapon_shotgun" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "weapon_crossbow" );
+		GiveNamedItem( "ammo_crossbow" );
+		GiveNamedItem( "weapon_gauss" );
+		GiveNamedItem( "ammo_gaussclip" );
+		GiveNamedItem( "weapon_satchel" );
+		GiveNamedItem( "weapon_satchel" );
+		GiveNamedItem( "weapon_tripmine" );
+		GiveNamedItem( "weapon_tripmine" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_snark" );
+	}
+
+	// "FORGET ABOUT FREEMAN!"
+	else if( !strcmp( STRING(gpGlobals->mapname), "c3a1") )
+	{
+		GiveNamedItem( "item_suit" );
+		GiveNamedItem( "weapon_crowbar" );
+		GiveNamedItem( "weapon_9mmhandgun" );
+		GiveNamedItem( "weapon_357" );
+		GiveNamedItem( "ammo_357" );
+		GiveNamedItem( "weapon_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_ARgrenades" );
+		GiveNamedItem( "weapon_shotgun" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "weapon_crossbow" );
+		GiveNamedItem( "ammo_crossbow" );
+		GiveNamedItem( "weapon_rpg" );
+		GiveNamedItem( "ammo_rpgclip" );
+		GiveNamedItem( "weapon_gauss" );
+		GiveNamedItem( "ammo_gaussclip" );
+		GiveNamedItem( "weapon_hornetgun" );
+		GiveNamedItem( "weapon_satchel" );
+		GiveNamedItem( "weapon_satchel" );
+		GiveNamedItem( "weapon_tripmine" );
+		GiveNamedItem( "weapon_tripmine" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_snark" );
+	}
+
+	// LAMBDA CORE
+	else if( !strcmp( STRING(gpGlobals->mapname), "c3a2") )
+	{
+		GiveNamedItem( "item_suit" );
+		GiveNamedItem( "weapon_crowbar" );
+		GiveNamedItem( "weapon_9mmhandgun" );
+		GiveNamedItem( "weapon_357" );
+		GiveNamedItem( "ammo_357" );
+		GiveNamedItem( "weapon_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_ARgrenades" );
+		GiveNamedItem( "weapon_shotgun" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "weapon_crossbow" );
+		GiveNamedItem( "ammo_crossbow" );
+		GiveNamedItem( "weapon_rpg" );
+		GiveNamedItem( "ammo_rpgclip" );
+		GiveNamedItem( "weapon_gauss" );
+		GiveNamedItem( "ammo_gaussclip" );
+		GiveNamedItem( "weapon_hornetgun" );
+		GiveNamedItem( "weapon_satchel" );
+		GiveNamedItem( "weapon_satchel" );
+		GiveNamedItem( "weapon_tripmine" );
+		GiveNamedItem( "weapon_tripmine" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_snark" );
+	}
+
+	// XEN + GONARCH'S LAIR + INTERLOPER + NIHILANTH
+	else if
+	( 
+		!strcmp( STRING(gpGlobals->mapname), "c4a1") ||
+		!strcmp( STRING(gpGlobals->mapname), "c4a2") ||
+		!strcmp( STRING(gpGlobals->mapname), "c4a1a") ||
+		!strcmp( STRING(gpGlobals->mapname), "c4a1f")
+	)
+	{
+		GiveNamedItem( "item_suit" );
+		GiveNamedItem( "weapon_crowbar" );
+		GiveNamedItem( "weapon_9mmhandgun" );
+		GiveNamedItem( "weapon_357" );
+		GiveNamedItem( "ammo_357" );
+		GiveNamedItem( "ammo_357" );
+		GiveNamedItem( "ammo_357" );
+		GiveNamedItem( "ammo_357" );
+		GiveNamedItem( "ammo_357" );
+		GiveNamedItem( "weapon_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_ARgrenades" );
+		GiveNamedItem( "ammo_ARgrenades" );
+		GiveNamedItem( "ammo_ARgrenades" );
+		GiveNamedItem( "weapon_shotgun" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "weapon_crossbow" );
+		GiveNamedItem( "ammo_crossbow" );
+		GiveNamedItem( "ammo_crossbow" );
+		GiveNamedItem( "ammo_crossbow" );
+		GiveNamedItem( "ammo_crossbow" );
+		GiveNamedItem( "ammo_crossbow" );
+		GiveNamedItem( "ammo_crossbow" );
+		GiveNamedItem( "weapon_rpg" );
+		GiveNamedItem( "ammo_rpgclip" );
+		GiveNamedItem( "ammo_rpgclip" );
+		GiveNamedItem( "ammo_rpgclip" );
+		GiveNamedItem( "ammo_rpgclip" );
+		GiveNamedItem( "ammo_rpgclip" );
+		GiveNamedItem( "weapon_gauss" );
+		GiveNamedItem( "weapon_egon" );
+		GiveNamedItem( "ammo_gaussclip" );
+		GiveNamedItem( "ammo_gaussclip" );
+		GiveNamedItem( "ammo_gaussclip" );
+		GiveNamedItem( "weapon_hornetgun" );
+		GiveNamedItem( "weapon_satchel" );
+		GiveNamedItem( "weapon_satchel" );
+		GiveNamedItem( "weapon_satchel" );
+		GiveNamedItem( "weapon_satchel" );
+		GiveNamedItem( "weapon_satchel" );
+		GiveNamedItem( "weapon_tripmine" );
+		GiveNamedItem( "weapon_tripmine" );
+		GiveNamedItem( "weapon_tripmine" );
+		GiveNamedItem( "weapon_tripmine" );
+		GiveNamedItem( "weapon_tripmine" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_snark" );
+		GiveNamedItem( "weapon_snark" );
+		GiveNamedItem( "weapon_snark" );
+		GiveNamedItem( "item_longjump" );
+	}
+
+
 }
 
 
