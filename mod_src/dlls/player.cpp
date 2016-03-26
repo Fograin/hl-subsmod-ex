@@ -2765,7 +2765,7 @@ ReturnSpot:
 	return pSpot->edict();
 }
 
-// Fograin92: Called everytime player spawns (map transition, load)
+// Fograin92: Called when player is spawned AFTER clean map load
 void CBasePlayer::Spawn( void )
 {
 	pev->classname		= MAKE_STRING("player");
@@ -2851,6 +2851,11 @@ void CBasePlayer::Spawn( void )
 	m_lastx = m_lasty = 0;
 	m_flNextChatTime = gpGlobals->time;
 	g_pGameRules->PlayerSpawn( this );
+
+
+	// Fograin92: Give starting gear after player used chapter selection
+	// PLACEHOLDER
+	
 }
 
 

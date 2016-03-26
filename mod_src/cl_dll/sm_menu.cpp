@@ -30,6 +30,18 @@ enum sm_mainmenu_e
 	ID_BTN_EXTRAS,
 	ID_BTN_QUIT,
 
+	ID_PANEL_NEWGAME,
+	ID_BTN_NEWGAME_CLOSE,
+	ID_BTN_NEWGAME_NEXT,
+	ID_BTN_NEWGAME_PREV,
+	ID_BTN_NEWGAME_HL,
+	ID_BTN_NEWGAME_OF,
+	ID_BTN_NEWGAME_BS,
+	ID_BTN_NEWGAME_CHAPTER01,
+	ID_BTN_NEWGAME_CHAPTER02,
+	ID_BTN_NEWGAME_CHAPTER03,
+
+
 	AMOUNT				// Length of this enum
 };
 
@@ -38,8 +50,6 @@ enum sm_mainmenu_e
 const int iMenuAdjustmentArray[][5] =
 {
 	//--OBJECT ID-------ResX----ResY---AdjX---AdjY
-	{ ID_LABEL_GAMETITLE,	1024,	576,	5,		540	},
-	{ ID_LABEL_GAMETITLE,	1024,	600,	5,		565	},
 	{ ID_LABEL_GAMETITLE,	1280,	720,	5,		680	},
 	{ ID_LABEL_GAMETITLE,	1360,	768,	5,		730	},
 	{ ID_LABEL_GAMETITLE,	1366,	768,	5,		730	},
@@ -48,15 +58,22 @@ const int iMenuAdjustmentArray[][5] =
 	{ ID_LABEL_GAMETITLE,	1680,	1050,	5,		1005},
 	{ ID_LABEL_GAMETITLE,	1920,	1080,	40,		400},
 
-	{ ID_PANEL_MAINMENU,	1024,	576,	5,		540	},
-	{ ID_PANEL_MAINMENU,	1024,	600,	5,		565	},
 	{ ID_PANEL_MAINMENU,	1280,	720,	5,		680	},
 	{ ID_PANEL_MAINMENU,	1360,	768,	5,		730	},
 	{ ID_PANEL_MAINMENU,	1366,	768,	5,		730	},
 	{ ID_PANEL_MAINMENU,	1440,	900,	5,		860	},
 	{ ID_PANEL_MAINMENU,	1600,	900,	5,		860	},
 	{ ID_PANEL_MAINMENU,	1680,	1050,	5,		1005},
-	{ ID_PANEL_MAINMENU,	1920,	1080,	40,		480}
+	{ ID_PANEL_MAINMENU,	1920,	1080,	40,		480},
+
+	{ ID_PANEL_NEWGAME,		1280,	720,	5,		680	},
+	{ ID_PANEL_NEWGAME,		1360,	768,	5,		730	},
+	{ ID_PANEL_NEWGAME,		1366,	768,	5,		730	},
+	{ ID_PANEL_NEWGAME,		1440,	900,	5,		860	},
+	{ ID_PANEL_NEWGAME,		1600,	900,	5,		860	},
+	{ ID_PANEL_NEWGAME,		1680,	1050,	5,		1005},
+	{ ID_PANEL_NEWGAME,		1920,	1080,	300,		300}
+
 };
 
 
@@ -150,6 +167,8 @@ void CMainMenuNew::ResetVars(bool bInitOnly)
 	{
 		bDrawMenu = false;
 		bResError = false;
+		iActiveNewGameSP = 1;
+		iActiveNewGameG = 1;
 	}
 
 	// foo
@@ -208,10 +227,427 @@ void CMainMenuNew::UpdateMainMenu()
 }
 
 
+// This function handles all key input passed from TeamFortressViewport.
+// It returns 0 if key wasn't handled, and it should be processed by TeamFortressViewport or Engine
+int CMainMenuNew::HandleKeyboardInput(int iKey)
+{
+	// MAIN MENU is visible
+	if( bDrawMenu )
+	{
 
-//======= SHARED/MUTATOR FUNCTIONS =======//
+		// Handle ESC key, when main menu is visible
+		if( iKey == K_ESCAPE )
+		{
+			// Check if we're drawing sub-menus, if YES then close them first
+			if( pPanelNewGame->isVisible() )
+			{
+				pPanelNewGame->setVisible(false);
+				pPanelMainMenuFade->setVisible(false);
+				gSoundEngine.PlaySound("common/launch_dnmenu1.wav", g_vecZero, SND_2D, 0, SM_VOLUME_HEV);
+			}
 
-// FOO
+			// Looks like we're only drawing main menu, let's close it
+			else
+			{
+				bDrawMenu = false;
+				SetCursorPos( gEngfuncs.GetWindowCenterX(), gEngfuncs.GetWindowCenterY() ); // Clear mouse position
+			}
+
+			return K_ESCAPE;
+		} // END  iKey == K_ESCAPE
+
+
+		// Main menu is visible or was visiable moments ago, choke key input
+		return 1;
+	}
+
+	// ELSE, main menu is not visable, check if we should draw it
+	else
+	{
+		if( iKey == K_ESCAPE )
+		{
+			// ESC was pressed, draw menu
+			bDrawMenu = true;
+			return K_ESCAPE;
+		}
+	}
+
+	// Fograin92: The passed key wasn't handled, return 0
+	return 0;
+}
+
+
+// Change submenu, Update submenu visuals
+void CMainMenuNew::Submenu_NewGame(int iGame, int iPage)
+{
+	// Clean visible sub menus (prevent overlay)
+	pIMGmm_HL01->setVisible(false);
+	pIMGmm_HL02->setVisible(false);
+	pIMGmm_HL03->setVisible(false);
+	pIMGmm_HL04->setVisible(false);
+	pIMGmm_HL05->setVisible(false);
+	pIMGmm_HL06->setVisible(false);
+	pIMGmm_HL07->setVisible(false);
+	pBtn_newgame_next->setVisible(false);
+	pBtn_newgame_prev->setVisible(false);
+
+
+	// Update control vars
+	iActiveNewGameG = iGame;
+	iActiveNewGameSP = iPage;
+
+
+	// Limit (and fix) vars
+	if( iActiveNewGameG < 1 )
+		iActiveNewGameG = 1;
+
+	if( iActiveNewGameG > 3 )
+		iActiveNewGameG = 3;
+
+	if( iActiveNewGameSP < 1 )
+		iActiveNewGameSP = 1;
+
+
+	// Limit HL pages
+	if( iActiveNewGameG == 1 )
+	{
+		if( iActiveNewGameSP > 7 )
+			iActiveNewGameSP = 7;
+	}
+
+
+	// Show elements based on current vars
+	if( iActiveNewGameG == 1 )
+	{
+		// HL -> Sub menu 1
+		if( iActiveNewGameSP == 1 )
+		{
+			pIMGmm_HL01->setVisible(true);
+			pBtn_newgame_next->setVisible(true);
+		}
+		// HL -> Sub menu 2
+		else if( iActiveNewGameSP == 2 )
+		{
+			pIMGmm_HL02->setVisible(true);
+			pBtn_newgame_next->setVisible(true);
+			pBtn_newgame_prev->setVisible(true);
+		}
+		// HL -> Sub menu 3
+		else if( iActiveNewGameSP == 3 )
+		{
+			pIMGmm_HL03->setVisible(true);
+			pBtn_newgame_next->setVisible(true);
+			pBtn_newgame_prev->setVisible(true);
+		}
+		// HL -> Sub menu 4
+		else if( iActiveNewGameSP == 4 )
+		{
+			pIMGmm_HL04->setVisible(true);
+			pBtn_newgame_next->setVisible(true);
+			pBtn_newgame_prev->setVisible(true);
+		}
+		// HL -> Sub menu 5
+		else if( iActiveNewGameSP == 5 )
+		{
+			pIMGmm_HL05->setVisible(true);
+			pBtn_newgame_next->setVisible(true);
+			pBtn_newgame_prev->setVisible(true);
+		}
+		// HL -> Sub menu 6
+		else if( iActiveNewGameSP == 6 )
+		{
+			pIMGmm_HL06->setVisible(true);
+			pBtn_newgame_next->setVisible(true);
+			pBtn_newgame_prev->setVisible(true);
+		}
+		// HL -> Sub menu 7
+		else if( iActiveNewGameSP == 7 )
+		{
+			pIMGmm_HL07->setVisible(true);
+			pBtn_newgame_prev->setVisible(true);
+		}
+	
+	}
+
+
+}
+
+void CMainMenuNew::StartChapter(int iSelectedFrame)
+{
+	// HL 1 -> SUB MENU 01
+	if( iActiveNewGameG == 1 && iActiveNewGameSP == 1 )
+	{
+		switch( iSelectedFrame )
+		{
+			// HAZARD COURSE
+			case 1:
+				ClientCmd("map t0a0\n");
+			break;
+
+			// BLACK MESA INBOUND
+			case 2:
+				ClientCmd("map c0a0\n");
+			break;
+
+			// ANOMALOUS MATERIALS
+			case 3:
+				ClientCmd("map c1a0\n");
+			break;
+		}
+	}
+
+	// HL 1 -> SUB MENU 02
+	else if( iActiveNewGameG == 1 && iActiveNewGameSP == 2 )
+	{
+		switch( iSelectedFrame )
+		{
+			// UNFORESEEN CONSEQUENCES
+			case 1:
+				ClientCmd("map c1a0c\n");
+			break;
+
+			// OFFICE COMPLEX
+			case 2:
+				ClientCmd("map c1a2\n");
+			break;
+
+			// "WE'VE GOT HOSTILES"
+			case 3:
+				ClientCmd("map c1a3\n");
+			break;
+		}
+	}
+
+	// HL 1 -> SUB MENU 03
+	else if( iActiveNewGameG == 1 && iActiveNewGameSP == 3 )
+	{
+		switch( iSelectedFrame )
+		{
+			// BLAST PIT
+			case 1:
+				ClientCmd("map c1a4\n");
+			break;
+
+			// POWER UP
+			case 2:
+				ClientCmd("map c2a1\n");
+			break;
+
+			// ON A RAIL
+			case 3:
+				ClientCmd("map c2a2\n");
+			break;
+		}
+	}
+
+	// HL 1 -> SUB MENU 04
+	else if( iActiveNewGameG == 1 && iActiveNewGameSP == 4 )
+	{
+		switch( iSelectedFrame )
+		{
+			// APPREHENSION
+			case 1:
+				ClientCmd("map c2a3\n");
+			break;
+
+			// RESIDUE PROCESSING
+			case 2:
+				ClientCmd("map c2a4\n");
+			break;
+
+			// QUESTIONABLE ETHICS
+			case 3:
+				ClientCmd("map c2a4e\n");
+			break;
+		}
+	}
+
+	// HL 1 -> SUB MENU 05
+	else if( iActiveNewGameG == 1 && iActiveNewGameSP == 5 )
+	{
+		switch( iSelectedFrame )
+		{
+			// SURFACE TENSION
+			case 1:
+				ClientCmd("map c2a5\n");
+			break;
+
+			// "FORGET ABOUT FREEMAN!"
+			case 2:
+				ClientCmd("map c3a1\n");
+			break;
+
+			// LAMBDA CORE
+			case 3:
+				ClientCmd("map c3a2\n");
+			break;
+		}
+	}
+
+	// HL 1 -> SUB MENU 06
+	else if( iActiveNewGameG == 1 && iActiveNewGameSP == 6 )
+	{
+		switch( iSelectedFrame )
+		{
+			// XEN
+			case 1:
+				ClientCmd("map c4a1\n");
+			break;
+
+			// GONARCH'S LAIR
+			case 2:
+				ClientCmd("map c4a2\n");
+			break;
+
+			// INTERLOPER
+			case 3:
+				ClientCmd("map c4a1a\n");
+			break;
+		}
+	}
+
+	// HL 1 -> SUB MENU 07
+	else if( iActiveNewGameG == 1 && iActiveNewGameSP == 7 )
+	{
+		switch( iSelectedFrame )
+		{
+			// NIHILANTH
+			case 1:
+				ClientCmd("map c4a1f\n");
+			break;
+
+			// ENDGAME
+			case 2:
+				ClientCmd("map c5a1\n");
+			break;
+
+			// UPLINK
+			case 3:
+				ClientCmd("map XXX\n");
+			break;
+		}
+	}
+
+}
+
+
+// Handle new main menu VGUI button actions
+int CMainMenuNew::HandleMainMenuInput(int iBTN)
+{
+	// Play sounds for different buttons
+	switch( iBTN )
+	{
+		// Default open panel sound
+		case ID_BTN_NEWGAME:
+		case ID_BTN_LOADGAME:
+		case ID_BTN_SAVEGAME:
+		case ID_BTN_OPTIONS:
+		case ID_BTN_EXTRAS:
+			gSoundEngine.PlaySound("common/launch_select2.wav", g_vecZero, SND_2D, 0, SM_VOLUME_HEV);
+		break;
+
+		// Panel close sound
+		case ID_BTN_NEWGAME_CLOSE:
+			gSoundEngine.PlaySound("common/launch_dnmenu1.wav", g_vecZero, SND_2D, 0, SM_VOLUME_HEV);
+		break;
+	}
+
+
+	// Handle button actions
+	switch( iBTN )
+	{
+		// Main menu buttons
+		case ID_BTN_CONSOLE:
+			gEngfuncs.Con_Printf( "^3-> BTN_CONSOLE\n");
+			ClientCmd("toggleconsole\n");
+		break;
+
+		case ID_BTN_NEWGAME:
+		{
+			pPanelMainMenuFade->setVisible(true);
+			pPanelNewGame->setVisible(true);
+			Submenu_NewGame(iActiveNewGameG, iActiveNewGameSP);
+		}
+		break;
+
+		case ID_BTN_QUIT:
+			ClientCmd("quit\n");
+		break;
+
+
+
+		// New game panel buttons
+		case ID_BTN_NEWGAME_CLOSE:
+			gEngfuncs.Con_Printf( "^3HLU -> ID_BTN_NEWGAME_CLOSE\n");
+			pPanelMainMenuFade->setVisible(false);
+			pPanelNewGame->setVisible(false);
+		break;
+
+		case ID_BTN_NEWGAME_NEXT:
+			gEngfuncs.Con_Printf( "^3HLU -> ID_BTN_NEWGAME_NEXT\n");
+			Submenu_NewGame(iActiveNewGameG, iActiveNewGameSP+1);
+		break;
+
+		case ID_BTN_NEWGAME_PREV:
+			gEngfuncs.Con_Printf( "^3HLU -> ID_BTN_NEWGAME_PREV\n");
+			Submenu_NewGame(iActiveNewGameG, iActiveNewGameSP-1);
+		break;
+
+		case ID_BTN_NEWGAME_HL:
+			gEngfuncs.Con_Printf( "^3HLU -> ID_BTN_NEWGAME_HL\n");
+			Submenu_NewGame(1, 1);
+
+		break;
+
+		case ID_BTN_NEWGAME_OF:
+			gEngfuncs.Con_Printf( "^3HLU -> ID_BTN_NEWGAME_OF\n");
+			Submenu_NewGame(2, 1);
+		break;
+
+		case ID_BTN_NEWGAME_BS:
+			gEngfuncs.Con_Printf( "^3HLU -> ID_BTN_NEWGAME_BS\n");
+			Submenu_NewGame(3, 1);
+		break;
+
+		case ID_BTN_NEWGAME_CHAPTER01:
+			gEngfuncs.Con_Printf( "^3HLU -> ID_BTN_NEWGAME_CHAPTER01\n");
+			StartChapter(1);
+			pPanelMainMenuFade->setVisible(false);	// Close submenu
+			pPanelNewGame->setVisible(false);
+			HandleKeyboardInput(K_ESCAPE); // Force ESC cmd
+		break;
+
+		case ID_BTN_NEWGAME_CHAPTER02:
+			gEngfuncs.Con_Printf( "^3HLU -> ID_BTN_NEWGAME_CHAPTER02\n");
+			StartChapter(2);
+			pPanelMainMenuFade->setVisible(false);
+			pPanelNewGame->setVisible(false);
+			HandleKeyboardInput(K_ESCAPE); // Force ESC cmd
+		break;
+
+		case ID_BTN_NEWGAME_CHAPTER03:
+			gEngfuncs.Con_Printf( "^3HLU -> ID_BTN_NEWGAME_CHAPTER03\n");
+			StartChapter(3);
+			pPanelMainMenuFade->setVisible(false);
+			pPanelNewGame->setVisible(false);
+			HandleKeyboardInput(K_ESCAPE); // Force ESC cmd
+		break;
+
+
+		// Unhandled button
+		case 0:
+		default:
+			gEngfuncs.Con_Printf( "^3-> UNHANDLED BTN\n");
+		break;
+	}
+
+
+	// Fograin92: The passed button wasn't handled, return 0
+	return 0;
+}
+
+
+
 
 
 //======= NEW MAIN MENU =======//
@@ -219,7 +655,7 @@ void CMainMenuNew::UpdateMainMenu()
 
 
 // New main menu constructor
-CMainMenuNew::CMainMenuNew() : Panel(0, 0, XRES(640), YRES(480))
+CMainMenuNew::CMainMenuNew() : Panel( 0, 0, XRES(640), YRES(480) )
 {
 	// Set main menu variables to initial values
 	ResetVars(true);
@@ -258,7 +694,7 @@ CMainMenuNew::CMainMenuNew() : Panel(0, 0, XRES(640), YRES(480))
     pBtn_Console->setParent( pPanelMainMenu );
 	pBtn_Console->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_CONSOLE" )) );
 	pBtn_Console->setPaintBackgroundEnabled(false);
-    pBtn_Console->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_CONSOLE) );
+    pBtn_Console->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_CONSOLE, this) );
 
 	// Main menu -> New Game button
 	pBtn_NewGame = new CommandButton( "2", 0, 40, 240, 40);
@@ -267,7 +703,7 @@ CMainMenuNew::CMainMenuNew() : Panel(0, 0, XRES(640), YRES(480))
     pBtn_NewGame->setParent( pPanelMainMenu );
 	pBtn_NewGame->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_NEWGAME" )) );
 	pBtn_NewGame->setPaintBackgroundEnabled(false);
-    pBtn_NewGame->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_NEWGAME) );
+    pBtn_NewGame->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_NEWGAME, this) );
 
 	// Main menu -> Load game button
 	pBtn_LoadGame = new CommandButton( "3", 0, 80, 240, 40);
@@ -276,7 +712,7 @@ CMainMenuNew::CMainMenuNew() : Panel(0, 0, XRES(640), YRES(480))
     pBtn_LoadGame->setParent( pPanelMainMenu );
 	pBtn_LoadGame->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_LOADGAME" )) );
 	pBtn_LoadGame->setPaintBackgroundEnabled(false);
-    pBtn_LoadGame->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_LOADGAME) );
+    pBtn_LoadGame->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_LOADGAME, this) );
 
 	// Main menu -> Load game button
 	pBtn_SaveGame = new CommandButton( "4", 0, 120, 240, 40);
@@ -285,7 +721,7 @@ CMainMenuNew::CMainMenuNew() : Panel(0, 0, XRES(640), YRES(480))
     pBtn_SaveGame->setParent( pPanelMainMenu );
 	pBtn_SaveGame->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_SAVEGAME" )) );
 	pBtn_SaveGame->setPaintBackgroundEnabled(false);
-    pBtn_SaveGame->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_SAVEGAME) );
+    pBtn_SaveGame->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_SAVEGAME, this) );
 
 	// Main menu -> Options button
 	pBtn_Options = new CommandButton( "5", 0, 160, 240, 40);
@@ -294,7 +730,7 @@ CMainMenuNew::CMainMenuNew() : Panel(0, 0, XRES(640), YRES(480))
     pBtn_Options->setParent( pPanelMainMenu );
 	pBtn_Options->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_OPTIONS" )) );
 	pBtn_Options->setPaintBackgroundEnabled(false);
-    pBtn_Options->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_OPTIONS) );
+    pBtn_Options->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_OPTIONS, this) );
 
 	// Main menu -> Extras button
 	pBtn_Extras = new CommandButton( "6", 0, 200, 240, 40);
@@ -303,7 +739,7 @@ CMainMenuNew::CMainMenuNew() : Panel(0, 0, XRES(640), YRES(480))
     pBtn_Extras->setParent( pPanelMainMenu );
 	pBtn_Extras->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_EXTRAS" )) );
 	pBtn_Extras->setPaintBackgroundEnabled(false);
-    pBtn_Extras->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_EXTRAS) );
+    pBtn_Extras->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_EXTRAS, this) );
 
 	// Main menu -> Quit button
 	pBtn_Quit = new CommandButton( "7", 0, 240, 240, 40);
@@ -312,7 +748,135 @@ CMainMenuNew::CMainMenuNew() : Panel(0, 0, XRES(640), YRES(480))
     pBtn_Quit->setParent( pPanelMainMenu );
 	pBtn_Quit->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_QUIT" )) );
 	pBtn_Quit->setPaintBackgroundEnabled(false);
-    pBtn_Quit->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_QUIT) );
+    pBtn_Quit->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_QUIT, this) );
+
+
+	// Main menu "fade-like" background
+	pPanelMainMenuFade = new Panel( 0, 0, XRES(640), YRES(480) );
+	pPanelMainMenuFade->setParent(this);
+	pPanelMainMenuFade->setBgColor(0, 0, 0, 50);
+	pPanelMainMenuFade->setPaintBackgroundEnabled(true);
+	pPanelMainMenuFade->setVisible(false);
+
+
+	// Main menu -> new game panel
+	pPanelNewGame = new Panel( MenuAdjustPosition(ID_PANEL_NEWGAME, false), MenuAdjustPosition(ID_PANEL_NEWGAME, true), 1000, 600);
+	pPanelNewGame->setParent(this);
+	pPanelNewGame->setPaintBackgroundEnabled(false);
+	pPanelNewGame->setVisible(false);
+	
+	// New game -> background IMG 01
+	pIMGmm_HL01 = new MenuImageHolder("gfx/vgui/mm_newHL01.tga", pPanelNewGame);
+	pIMGmm_HL01->setPos( 0, 0 );
+	pIMGmm_HL01->setVisible(false);
+
+	// New game -> background IMG 02
+	pIMGmm_HL02 = new MenuImageHolder("gfx/vgui/mm_newHL02.tga", pPanelNewGame);
+	pIMGmm_HL02->setPos( 0, 0 );
+	pIMGmm_HL02->setVisible(false);
+
+	// New game -> background IMG 03
+	pIMGmm_HL03 = new MenuImageHolder("gfx/vgui/mm_newHL03.tga", pPanelNewGame);
+	pIMGmm_HL03->setPos( 0, 0 );
+	pIMGmm_HL03->setVisible(false);
+
+	// New game -> background IMG 04
+	pIMGmm_HL04 = new MenuImageHolder("gfx/vgui/mm_newHL04.tga", pPanelNewGame);
+	pIMGmm_HL04->setPos( 0, 0 );
+	pIMGmm_HL04->setVisible(false);
+
+	// New game -> background IMG 05
+	pIMGmm_HL05 = new MenuImageHolder("gfx/vgui/mm_newHL05.tga", pPanelNewGame);
+	pIMGmm_HL05->setPos( 0, 0 );
+	pIMGmm_HL05->setVisible(false);
+
+	// New game -> background IMG 06
+	pIMGmm_HL06 = new MenuImageHolder("gfx/vgui/mm_newHL06.tga", pPanelNewGame);
+	pIMGmm_HL06->setPos( 0, 0 );
+	pIMGmm_HL06->setVisible(false);
+
+	// New game -> background IMG 07
+	pIMGmm_HL07 = new MenuImageHolder("gfx/vgui/mm_newHL07.tga", pPanelNewGame);
+	pIMGmm_HL07->setPos( 0, 0 );
+	pIMGmm_HL07->setVisible(false);
+
+
+	// New game -> close button
+	pBtn_newgame_close = new CommandButton( "", 940, 20, 32, 32);
+	pBtn_newgame_close->setFont( pFontText );
+    pBtn_newgame_close->setParent( pPanelNewGame );
+	pBtn_newgame_close->setPaintBackgroundEnabled(true);
+    pBtn_newgame_close->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_NEWGAME_CLOSE, this) );
+
+	// New game -> HL1 button
+	pBtn_newgame_hl = new CommandButton( "", 448, 98, 32, 32);
+	pBtn_newgame_hl->setFont( pFontText );
+    pBtn_newgame_hl->setParent( pPanelNewGame );
+	pBtn_newgame_hl->setPaintBackgroundEnabled(true);
+    pBtn_newgame_hl->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_NEWGAME_HL, this) );
+
+	// New game -> OF button
+	pBtn_newgame_of = new CommandButton( "", 484, 98, 32, 32);
+	pBtn_newgame_of->setFont( pFontText );
+    pBtn_newgame_of->setParent( pPanelNewGame );
+	pBtn_newgame_of->setPaintBackgroundEnabled(true);
+    pBtn_newgame_of->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_NEWGAME_OF, this) );
+
+	// New game -> BS button
+	pBtn_newgame_bs = new CommandButton( "", 520, 98, 32, 32);
+	pBtn_newgame_bs->setFont( pFontText );
+    pBtn_newgame_bs->setParent( pPanelNewGame );
+	pBtn_newgame_bs->setPaintBackgroundEnabled(true);
+    pBtn_newgame_bs->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_NEWGAME_BS, this) );
+
+	// New game -> Chapter 01
+	pBtn_newgame_chapter01 = new CommandButton( "", 40, 198, 300, 300);
+	pBtn_newgame_chapter01->setFont( pFontText );
+    pBtn_newgame_chapter01->setParent( pPanelNewGame );
+	pBtn_newgame_chapter01->setPaintBackgroundEnabled(true);
+    pBtn_newgame_chapter01->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_NEWGAME_CHAPTER01, this) );
+
+	// New game -> Chapter 02
+	pBtn_newgame_chapter02 = new CommandButton( "", 350, 198, 300, 300);
+	pBtn_newgame_chapter02->setFont( pFontText );
+    pBtn_newgame_chapter02->setParent( pPanelNewGame );
+	pBtn_newgame_chapter02->setPaintBackgroundEnabled(true);
+    pBtn_newgame_chapter02->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_NEWGAME_CHAPTER02, this) );
+
+	// New game -> Chapter 03
+	pBtn_newgame_chapter03 = new CommandButton( "", 660, 198, 300, 300);
+	pBtn_newgame_chapter03->setFont( pFontText );
+    pBtn_newgame_chapter03->setParent( pPanelNewGame );
+	pBtn_newgame_chapter03->setPaintBackgroundEnabled(true);
+    pBtn_newgame_chapter03->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_NEWGAME_CHAPTER03, this) );
+
+	// New game -> Next
+	pBtn_newgame_next = new CommandButton( "", 872, 548, 98, 28);
+	pBtn_newgame_next->setFont( pFontText );
+    pBtn_newgame_next->setParent( pPanelNewGame );
+	pBtn_newgame_next->setPaintBackgroundEnabled(true);
+    pBtn_newgame_next->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_NEWGAME_NEXT, this) );
+	pBtn_newgame_next->setVisible(false);
+
+	// New game -> Previous
+	pBtn_newgame_prev = new CommandButton( "", 30, 548, 194, 28);
+	pBtn_newgame_prev->setFont( pFontText );
+    pBtn_newgame_prev->setParent( pPanelNewGame );
+	pBtn_newgame_prev->setPaintBackgroundEnabled(true);
+    pBtn_newgame_prev->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_NEWGAME_PREV, this) );
+	pBtn_newgame_prev->setVisible(false);
+
+	/*
+	CommandButton	*pBtn_newgame_prev;
+	*/
+	// New Game label
+	//pLabelNewGame = new Label("");
+	//pLabelNewGame->setFont( pFont );
+	//pLabelNewGame->setParent( pPanelNewGame );
+	//pLabelNewGame->setPaintBackgroundEnabled(false);
+	//pLabelNewGame->setPos( 10, 10 );
+	//pLabelNewGame->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_NEWGAME" ) ) );
+	//pLabelNewGame->setFgColor( 255, 255, 255, 0 );
 
 	
 
@@ -327,15 +891,33 @@ CMainMenuNew::~CMainMenuNew()
 	ResetVars(true);
 
 	// Delete objects
+	if(pIMGmm_HL07)			delete pIMGmm_HL07;
+	if(pIMGmm_HL06)			delete pIMGmm_HL06;
+	if(pIMGmm_HL05)			delete pIMGmm_HL05;
+	if(pIMGmm_HL04)			delete pIMGmm_HL04;
+	if(pIMGmm_HL03)			delete pIMGmm_HL03;
+	if(pIMGmm_HL02)			delete pIMGmm_HL02;
+	if(pIMGmm_HL01)			delete pIMGmm_HL01;
+
+	if(pBtn_newgame_prev)	delete pBtn_newgame_prev;
+	if(pBtn_newgame_next)	delete pBtn_newgame_next;
+	if(pBtn_newgame_bs)		delete pBtn_newgame_bs;
+	if(pBtn_newgame_of)		delete pBtn_newgame_of;
+	if(pBtn_newgame_hl)		delete pBtn_newgame_hl;
+	if(pBtn_newgame_close)	delete pBtn_newgame_close;
+	if(pPanelNewGame)		delete pPanelNewGame;
+
+	if(pPanelMainMenuFade)	delete pPanelMainMenuFade;
+
 	if(pBtn_Quit)			delete pBtn_Quit;
 	if(pBtn_Extras)			delete pBtn_Extras;
 	if(pBtn_Options)		delete pBtn_Options;
 	if(pBtn_LoadGame)		delete pBtn_LoadGame;
 	if(pBtn_NewGame)		delete pBtn_NewGame;
 	if(pBtn_Console)		delete pBtn_Console;
+
 	if(pPanelMainMenu)		delete pPanelMainMenu;
 	if(pLabelGameTitle)		delete pLabelGameTitle;
-	// FOO
 }
 
 
@@ -349,26 +931,3 @@ void CMainMenuNew::paint()
 }
 
 
-
-
-// Main menu button handler
-void CMainMenuNew_BTNhandler::handleAction(int iBTNnum)
-{
-	// Check button
-	switch( iBTNnum )
-	{
-		case ID_BTN_CONSOLE:
-			gEngfuncs.Con_Printf( "^3-> BTN_CONSOLE\n");
-		break;
-
-
-		case ID_BTN_QUIT:
-			ClientCmd("quit\n");
-		break;
-
-		case 0:
-		default:
-			gEngfuncs.Con_Printf( "^3-> UNHANDLED BTN\n");
-		break;
-	}
-}

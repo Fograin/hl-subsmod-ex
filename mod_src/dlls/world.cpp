@@ -524,7 +524,6 @@ void CWorld :: Precache( void )
 	else
 		ALERT( at_console, "^3HLU -> Game -> Half-Life\n");
 
-
 	// Set up game rules
 	if (g_pGameRules)
 	{

@@ -2202,29 +2202,18 @@ bool TeamFortressViewport::SlotInput( int iSlot )
 // Direct Key Input
 int	TeamFortressViewport::KeyInput( int down, int keynum, const char *pszCurrentBinding )
 {
-	// Fograin92: Capture ESC key
+	// Fograin92: If we're NOT in console
 	if( gEngfuncs.Con_IsVisible() == false )
 	{
-		if ( keynum == K_ESCAPE )
+		// Fograin92: Pass pressed key to our new main menu AND check if we handled it
+		if( gViewPort->m_pMenuNew->HandleKeyboardInput( keynum ) > 0 )
 		{
-			// Fograin92: We're already drawing our main menu
-			if( gViewPort->m_pMenuNew->bDrawMenu )
-			{
-				// Fograin92: Close it, TODO add checks for additional stuff
-				gViewPort->m_pMenuNew->bDrawMenu = false;
-				SetCursorPos ( gEngfuncs.GetWindowCenterX(), gEngfuncs.GetWindowCenterY() ); // Fograin92: Clear mouse position
-				//gEngfuncs.pfnClientCmd("pause\n");
-			}
-
-			// Fograin92: Else, display our menu
-			else
-			{
-				gViewPort->m_pMenuNew->bDrawMenu = true;
-				//gEngfuncs.pfnClientCmd("pause\n");
-			}
-
+			// Fograin92: If main menu returned anything else than 0, that means key press was handled by it.
+			// Fograin92: In that case we can safely skip the rest of KeyInput function
 			return 0;
 		}
+
+		// Fograin92: ELSE, just exec the rest of the code
 	}
 
 

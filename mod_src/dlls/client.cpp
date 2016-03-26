@@ -679,17 +679,13 @@ void StartFrame( void )
 }
 
 
+// Fograin92: Precache sounds used by clientside
 void ClientPrecache( void )
 {
-	// setup precaches always needed
-	PRECACHE_SOUND("player/sprayer.wav");			// spray paint sound for PreAlpha
-	
-	// PRECACHE_SOUND("player/pl_jumpland2.wav");		// UNDONE: play 2x step sound
-	
-	PRECACHE_SOUND("player/pl_fallpain2.wav");		
-	PRECACHE_SOUND("player/pl_fallpain3.wav");		
-	
-	PRECACHE_SOUND("player/pl_step1.wav");		// walk on concrete
+
+//======= PRECACHE SOUNDS =======//
+	// Fograin92: Player movement sounds (footsteps, ladder climbing, swiming etc.)
+	PRECACHE_SOUND("player/pl_step1.wav");		// Walk on concrete
 	PRECACHE_SOUND("player/pl_step2.wav");
 	PRECACHE_SOUND("player/pl_step3.wav");
 	PRECACHE_SOUND("player/pl_step4.wav");
@@ -745,7 +741,6 @@ void ClientPrecache( void )
 	PRECACHE_SOUND("player/pl_wade3.wav");
 	PRECACHE_SOUND("player/pl_wade4.wav");
 
-
 	// Fograin92: Precache OF step sounds
 	PRECACHE_SOUND("player/pl_step1_of.wav");
 	PRECACHE_SOUND("player/pl_step2_of.wav");
@@ -764,51 +759,60 @@ void ClientPrecache( void )
 	PRECACHE_SOUND("player/pl_snow4.wav");
 
 
-	PRECACHE_SOUND("debris/wood1.wav");			// hit wood texture
-	PRECACHE_SOUND("debris/wood2.wav");
-	PRECACHE_SOUND("debris/wood3.wav");
-
-	PRECACHE_SOUND("plats/train_use1.wav");		// use a train
-
-	PRECACHE_SOUND("buttons/spark5.wav");		// hit computer texture
-	PRECACHE_SOUND("buttons/spark6.wav");
-	PRECACHE_SOUND("debris/glass1.wav");
-	PRECACHE_SOUND("debris/glass2.wav");
-	PRECACHE_SOUND("debris/glass3.wav");
-
-	PRECACHE_SOUND( SOUND_FLASHLIGHT_ON );
-	PRECACHE_SOUND( SOUND_FLASHLIGHT_OFF );
-
-// player gib sounds
-	PRECACHE_SOUND("common/bodysplat.wav");		               
-
-// player pain sounds
+	// Fograin92: Player pain/damage sounds
 	PRECACHE_SOUND("player/pl_pain2.wav");
 	PRECACHE_SOUND("player/pl_pain4.wav");
 	PRECACHE_SOUND("player/pl_pain5.wav");
 	PRECACHE_SOUND("player/pl_pain6.wav");
 	PRECACHE_SOUND("player/pl_pain7.wav");
 
-	PRECACHE_MODEL("models/player.mdl");
-
-	// hud sounds
-
-	PRECACHE_SOUND("common/wpn_hudoff.wav");
-	PRECACHE_SOUND("common/wpn_hudon.wav");
-	PRECACHE_SOUND("common/wpn_moveselect.wav");
-	PRECACHE_SOUND("common/wpn_select.wav");
-	PRECACHE_SOUND("common/wpn_denyselect.wav");
+	PRECACHE_SOUND("player/pl_fallpain2.wav");		
+	PRECACHE_SOUND("player/pl_fallpain3.wav");
 
 
-	// geiger sounds
+	// Fograin92: HUD, Main menu and other UI sounds
+	PRECACHE_SOUND("plats/train_use1.wav");		// Use a train
 
-	PRECACHE_SOUND("player/geiger6.wav");
+	PRECACHE_SOUND( SOUND_FLASHLIGHT_ON );		// Flashlight
+	PRECACHE_SOUND( SOUND_FLASHLIGHT_OFF );
+
+	PRECACHE_SOUND("player/geiger6.wav");		// Geiger counter
 	PRECACHE_SOUND("player/geiger5.wav");
 	PRECACHE_SOUND("player/geiger4.wav");
 	PRECACHE_SOUND("player/geiger3.wav");
 	PRECACHE_SOUND("player/geiger2.wav");
 	PRECACHE_SOUND("player/geiger1.wav");
 
+	PRECACHE_SOUND("common/wpn_hudoff.wav");	// HUD weapon selection
+	PRECACHE_SOUND("common/wpn_hudon.wav");
+	PRECACHE_SOUND("common/wpn_moveselect.wav");
+	PRECACHE_SOUND("common/wpn_select.wav");
+	PRECACHE_SOUND("common/wpn_denyselect.wav");
+
+	PRECACHE_SOUND("common/launch_dnmenu1.wav");	// New main menu sounds
+	PRECACHE_SOUND("common/launch_select2.wav");
+	
+	// Fograin92: MISC sounds used by client
+	PRECACHE_SOUND("player/sprayer.wav");		// Spray paint sound for PreAlpha
+
+	PRECACHE_SOUND("debris/wood1.wav");			// Hit wood texture
+	PRECACHE_SOUND("debris/wood2.wav");
+	PRECACHE_SOUND("debris/wood3.wav");
+
+	PRECACHE_SOUND("buttons/spark5.wav");		// Hit computer texture
+	PRECACHE_SOUND("buttons/spark6.wav");
+	PRECACHE_SOUND("debris/glass1.wav");
+	PRECACHE_SOUND("debris/glass2.wav");
+	PRECACHE_SOUND("debris/glass3.wav");
+
+	PRECACHE_SOUND("common/bodysplat.wav");		// Player gib sounds
+
+
+//======= PRECACHE MODELS =======//
+	PRECACHE_MODEL("models/player.mdl");	// Fograin92: Player model
+
+
+//======= PRECACHE ENTS =======//
 	if (giPrecacheGrunt)
 		UTIL_PrecacheOther("monster_human_grunt");
 }

@@ -11,6 +11,7 @@
 #ifndef _SM_MENU_H_
 #define _SM_MENU_H_
 
+#include "../engine/keydefs.h"
 #include "hud.h"
 #include "cl_util.h"
 #include "vgui_TeamFortressViewport.h"
@@ -112,8 +113,11 @@ public:
 	~CMainMenuNew();
 
 	// Shared functions
-	int ShouldDrawMenu();		// Should we draw main menu? (Called every HUD::Redraw)
-	void UpdateMainMenu();		// Update Main Menu variables
+	int ShouldDrawMenu();				// Should we draw main menu? (Called every HUD::Redraw)
+	void UpdateMainMenu();				// Update Main Menu variables
+	int HandleKeyboardInput(int iKey);	// All keyboard input from TemFortressViewport is passed here
+	int HandleMainMenuInput(int iBTN);	// Handle new main menu VGUI button actions
+
 
 	// Shared vars
 	bool bDrawMenu;				// Used to control if menu should be displayed or not, also used to force draw.
@@ -131,6 +135,10 @@ protected:
 
 	// Base vars
 	bool bResError;						// Resolution is not supported error
+
+	// Sub menu functions
+	void Submenu_NewGame(int iGame, int iPage); // Change submenu
+	void StartChapter(int iSelectedFrame);	// Start new game on selected chapter
 
 	// Player pointer
 	//cl_entity_t *m_LocalPlayer;
@@ -155,6 +163,35 @@ protected:
 	CommandButton	*pBtn_Options;
 	CommandButton	*pBtn_Extras;
 	CommandButton	*pBtn_Quit;
+
+	// Main menu "fade-like" background
+	Panel			*pPanelMainMenuFade;
+
+	// Main menu -> new game panel
+	int				iActiveNewGameG;	// What game is currently active
+	int				iActiveNewGameSP;	// What new game sub-panel is currently active
+	Panel			*pPanelNewGame;
+	Label			*pLabelNewGame;
+
+	MenuImageHolder	*pIMGmm_HL01;	// Used as background images for main menu
+	MenuImageHolder	*pIMGmm_HL02;
+	MenuImageHolder	*pIMGmm_HL03;
+	MenuImageHolder	*pIMGmm_HL04;
+	MenuImageHolder	*pIMGmm_HL05;
+	MenuImageHolder	*pIMGmm_HL06;
+	MenuImageHolder	*pIMGmm_HL07;
+
+	CommandButton	*pBtn_newgame_close;
+	CommandButton	*pBtn_newgame_hl;
+	CommandButton	*pBtn_newgame_of;
+	CommandButton	*pBtn_newgame_bs;
+	CommandButton	*pBtn_newgame_next;
+	CommandButton	*pBtn_newgame_prev;
+
+	CommandButton	*pBtn_newgame_chapter01;
+	CommandButton	*pBtn_newgame_chapter02;
+	CommandButton	*pBtn_newgame_chapter03;
+
 };
 
 
@@ -163,20 +200,19 @@ class CMainMenuNew_BTNhandler : public ActionSignal
 {
 private:
 	int	_iBTNnum;	// ID of clicked button
+	CMainMenuNew *_pMainMenu;	// Pointer to our main menu
 
 public:
-	CMainMenuNew_BTNhandler(int	iBTNnum)
+	CMainMenuNew_BTNhandler(int	iBTNnum, CMainMenuNew *pMainMenu)
 	{
 		_iBTNnum = iBTNnum;
+		_pMainMenu = pMainMenu;	// Hook our main menu panel
 	}
-
-	// Used as public handler
-	void handleAction(int iBTNnum);
 
 	// Link with action signal
 	virtual void actionPerformed(Panel* panel)
 	{
-		this->handleAction(_iBTNnum);
+		_pMainMenu->HandleMainMenuInput(_iBTNnum);
 	}
 };
 
