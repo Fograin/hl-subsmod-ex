@@ -364,6 +364,10 @@ class CItemBattery : public CItem
 		Precache( );
 		SET_MODEL(ENT(pev), "models/w_battery.mdl");
 		CItem::Spawn( );
+
+		// Fograin92: Enable thinking
+		SetThink ( &CItemBattery::BatteryThink );
+		pev->nextthink = gpGlobals->time + 0.01;
 	}
 
 	void Precache( void )
@@ -372,8 +376,44 @@ class CItemBattery : public CItem
 		PRECACHE_SOUND( "items/gunpickup2.wav" );
 	}
 
+	// Fograin92: Cast world and entity light
+	void BatteryThink( void )
+	{
+		// Fograin92: Dynamic world light (not really BS-like but it looks nice :D)
+		MESSAGE_BEGIN( MSG_PVS, SVC_TEMPENTITY, pev->origin );
+			WRITE_BYTE(TE_DLIGHT);
+			WRITE_COORD(pev->origin.x);	// X
+			WRITE_COORD(pev->origin.y);	// Y
+			WRITE_COORD(pev->origin.z);	// Z
+			WRITE_BYTE( 4 );		// radius * 0.1 
+			WRITE_BYTE( 0 );		// r
+			WRITE_BYTE( 255 );		// g
+			WRITE_BYTE( 255 );		// b
+			WRITE_BYTE( 1 );		// time * 10
+			WRITE_BYTE( 1 );		// decay * 0.1
+		MESSAGE_END( );
+
+		// Fograin92: Dynamic entity light
+		MESSAGE_BEGIN( MSG_BROADCAST, SVC_TEMPENTITY );
+			WRITE_BYTE( TE_ELIGHT );
+			WRITE_SHORT( entindex( ) );		// entity, attachment
+			WRITE_COORD(pev->origin.x);	// X
+			WRITE_COORD(pev->origin.y);	// Y
+			WRITE_COORD(pev->origin.z);	// Z
+			WRITE_COORD( pev->renderamt );	// radius
+			WRITE_BYTE( 0 );		// r
+			WRITE_BYTE( 255 );		// g
+			WRITE_BYTE( 255 );		// b
+			WRITE_BYTE( 1 );	// life * 10
+			WRITE_COORD( 1 ); // decay
+		MESSAGE_END();
+
+		pev->nextthink = gpGlobals->time + 0.01;
+	}
+
 	BOOL MyTouch( CBasePlayer *pPlayer )
 	{
+
 		if ( pPlayer->pev->deadflag != DEAD_NO )
 			return FALSE;
 
@@ -413,6 +453,7 @@ class CItemBattery : public CItem
 		}
 		return FALSE;
 	}
+
 };
 LINK_ENTITY_TO_CLASS(item_battery, CItemBattery);
 
@@ -471,6 +512,10 @@ class CHealthKit : public CItem
 		Precache( );
 		SET_MODEL(ENT(pev), "models/w_medkit.mdl");
 		CItem::Spawn();
+
+		// Fograin92: Enable thinking
+		SetThink ( &CHealthKit::HealthkitThink );
+		pev->nextthink = gpGlobals->time + 0.01;
 	}
 
 	void CHealthKit::Precache( void )
@@ -478,6 +523,42 @@ class CHealthKit : public CItem
 		PRECACHE_MODEL("models/w_medkit.mdl");
 		PRECACHE_SOUND("items/smallmedkit1.wav");
 	}
+
+	// Fograin92: Cast world and entity light
+	void HealthkitThink( void )
+	{
+		// Fograin92: Dynamic world light (not really BS-like but it looks nice :D)
+		MESSAGE_BEGIN( MSG_PVS, SVC_TEMPENTITY, pev->origin );
+			WRITE_BYTE(TE_DLIGHT);
+			WRITE_COORD(pev->origin.x - 6);	// X
+			WRITE_COORD(pev->origin.y);	// Y
+			WRITE_COORD(pev->origin.z + 3);	// Z
+			WRITE_BYTE( 4 );		// radius * 0.1 
+			WRITE_BYTE( 255 );		// r
+			WRITE_BYTE( 100 );		// g
+			WRITE_BYTE( 100 );		// b
+			WRITE_BYTE( 1 );		// time * 10
+			WRITE_BYTE( 1 );		// decay * 0.1
+		MESSAGE_END( );
+
+		// Fograin92: Dynamic entity light
+		MESSAGE_BEGIN( MSG_BROADCAST, SVC_TEMPENTITY );
+			WRITE_BYTE( TE_ELIGHT );
+			WRITE_SHORT( entindex( ) );		// entity, attachment
+			WRITE_COORD(pev->origin.x - 6);	// X
+			WRITE_COORD(pev->origin.y);	// Y
+			WRITE_COORD(pev->origin.z + 3);	// Z
+			WRITE_COORD( pev->renderamt );	// radius
+			WRITE_BYTE( 255 );		// r
+			WRITE_BYTE( 100 );		// g
+			WRITE_BYTE( 100 );		// b
+			WRITE_BYTE( 1 );	// life * 10
+			WRITE_COORD( 1 ); // decay
+		MESSAGE_END();
+
+		pev->nextthink = gpGlobals->time + 0.01;
+	}
+
 
 	BOOL CHealthKit::MyTouch( CBasePlayer *pPlayer )
 	{
