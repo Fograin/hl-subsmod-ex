@@ -8,56 +8,7 @@
 //
 //	Before using any parts of this code, read licence.txt file 
 //=============================================================//
-#include	"extdll.h"
-#include	"util.h"
-#include	"cbase.h"
-#include	"monsters.h"
-#include	"talkmonster.h"
-#include	"ai_schedule.h"
-#include	"ai_default.h"
-#include	"ai_scripted.h"
-#include	"weapons.h"
-#include	"soundent.h"
-
-#define DRILL_GROUP_BODY			0
-#define DRILL_GROUP_ACCESSORIES		0
-
-#define DRILL_ACCESSORIES_NONE			0
-#define DRILL_ACCESSORIES_WHISTLE		1
-#define DRILL_ACCESSORIES_MEGAPHONE		2
-#define DRILL_ACCESSORIES_BINOCULARS	3
-
-
-class CDrillSGT : public CTalkMonster
-{
-public:
-	void Spawn( void );
-	void Precache( void );
-	void SetYawSpeed( void );
-	int  ISoundMask( void );
-	int  Classify ( void );
-
-	virtual int	ObjectCaps( void ) { return CTalkMonster :: ObjectCaps() | FCAP_IMPULSE_USE; }
-	int TakeDamage( entvars_t* pevInflictor, entvars_t* pevAttacker, float flDamage, int bitsDamageType);
-	void DeclineFollowing( void );
-
-	// Override these to set behavior
-	Schedule_t *GetScheduleOfType ( int Type );
-	Schedule_t *GetSchedule ( void );
-	MONSTERSTATE GetIdealState ( void );
-
-	void DeathSound( void );
-	void PainSound( void );
-	void TalkInit( void );
-	void TraceAttack( entvars_t *pevAttacker, float flDamage, Vector vecDir, TraceResult *ptr, int bitsDamageType);
-	void Killed( entvars_t *pevAttacker, int iGib );
-
-private:
-	float	m_painTime;
-};
-
-LINK_ENTITY_TO_CLASS( monster_drillsergeant, CDrillSGT );
-
+#include	"monster_drillsergeant.h"	// Fograin92
 
 
 //=========================================================
@@ -170,37 +121,37 @@ void CDrillSGT :: TalkInit()
 	{
 		m_szGrp[TLK_ANSWER]		=	"DR_DR2_ADD";
 		m_szGrp[TLK_QUESTION]	=	"DR_DR2_ADD";
-		m_szGrp[TLK_IDLE]		=	"DR_DR2_ADD";
-		m_szGrp[TLK_STARE]		=	"DR_DR2_ADD";
+		m_szGrp[TLK_IDLE]		=	"NULL";
+		m_szGrp[TLK_STARE]		=	"NULL";
 		m_szGrp[TLK_USE]		=	"DR_DR2_ADD";
 		m_szGrp[TLK_UNUSE]		=	"DR_DR2_ADD";
-		m_szGrp[TLK_STOP]		=	"DR_DR2_ADD";
-		m_szGrp[TLK_NOSHOOT]	=	"DR_DR2_ADD";
+		m_szGrp[TLK_STOP]		=	"NULL";
+		m_szGrp[TLK_NOSHOOT]	=	"NULL";
 		m_szGrp[TLK_HELLO]		=	"NULL";
-		m_szGrp[TLK_PHELLO]		=	"DR_DR2_ADD";
-		m_szGrp[TLK_PIDLE]		=	"DR_DR2_ADD";
-		m_szGrp[TLK_PQUESTION]	=	"DR_DR2_ADD";
-		m_szGrp[TLK_SMELL]		=	"DR_DR2_ADD";
-		m_szGrp[TLK_WOUND]		=	"DR_DR2_ADD";
-		m_szGrp[TLK_MORTAL]		=	"DR_DR2_ADD";
+		m_szGrp[TLK_PHELLO]		=	"NULL";
+		m_szGrp[TLK_PIDLE]		=	"NULL";
+		m_szGrp[TLK_PQUESTION]	=	"NULL";
+		m_szGrp[TLK_SMELL]		=	"NULL";
+		m_szGrp[TLK_WOUND]		=	"NULL";
+		m_szGrp[TLK_MORTAL]		=	"NULL";
 	}
 	else
 	{
 		m_szGrp[TLK_ANSWER]		=	"DR_ADD";
 		m_szGrp[TLK_QUESTION]	=	"DR_ADD";
-		m_szGrp[TLK_IDLE]		=	"DR_ADD";
-		m_szGrp[TLK_STARE]		=	"DR_ADD";
+		m_szGrp[TLK_IDLE]		=	"NULL";
+		m_szGrp[TLK_STARE]		=	"NULL";
 		m_szGrp[TLK_USE]		=	"DR_ADD";
 		m_szGrp[TLK_UNUSE]		=	"DR_ADD";
-		m_szGrp[TLK_STOP]		=	"DR_ADD";
-		m_szGrp[TLK_NOSHOOT]	=	"DR_ADD";
+		m_szGrp[TLK_STOP]		=	"NULL";
+		m_szGrp[TLK_NOSHOOT]	=	"NULL";
 		m_szGrp[TLK_HELLO]		=	"NULL";
-		m_szGrp[TLK_PHELLO]		=	"DR_ADD";
-		m_szGrp[TLK_PIDLE]		=	"DR_ADD";
-		m_szGrp[TLK_PQUESTION]	=	"DR_ADD";
-		m_szGrp[TLK_SMELL]		=	"DR_ADD";
-		m_szGrp[TLK_WOUND]		=	"DR_ADD";
-		m_szGrp[TLK_MORTAL]		=	"DR_ADD";
+		m_szGrp[TLK_PHELLO]		=	"NULL";
+		m_szGrp[TLK_PIDLE]		=	"NULL";
+		m_szGrp[TLK_PQUESTION]	=	"NULL";
+		m_szGrp[TLK_SMELL]		=	"NULL";
+		m_szGrp[TLK_WOUND]		=	"NULL";
+		m_szGrp[TLK_MORTAL]		=	"NULL";
 	}
 
 	m_voicePitch = 100;
@@ -355,3 +306,8 @@ void CDrillSGT::DeclineFollowing( void )
 		PlaySentence( "DR_ADD", 2, VOL_NORM, ATTN_NORM );
 }
 
+
+//=========//
+// LINKERS
+//=========//
+LINK_ENTITY_TO_CLASS( monster_drillsergeant, CDrillSGT );

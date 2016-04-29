@@ -9,82 +9,111 @@
 //	Before using any parts of this code, read licence.txt file 
 //=============================================================//
 
-#include "extdll.h"
-#include "util.h"
-#include "cbase.h"
-#include "monsters.h"
-#include "weapons.h"
-#include "nodes.h"
-#include "effects.h"
-
+#include "monster_apache.h"	// Fograin92
 extern DLL_GLOBAL int		g_iSkillLevel;
 
-#define SF_WAITFORTRIGGER	(0x04 | 0x40) // UNDONE: Fix!
-#define SF_NOWRECKAGE		0x08
 
-class CApache : public CBaseMonster
+//================//
+// HVR Rocket
+//================//
+TYPEDESCRIPTION	CApacheHVR::m_SaveData[] = 
 {
-	int		Save( CSave &save );
-	int		Restore( CRestore &restore );
-	static	TYPEDESCRIPTION m_SaveData[];
+//	DEFINE_FIELD( CApacheHVR, m_iTrail, FIELD_INTEGER ),	// Dont' save, precache
+	DEFINE_FIELD( CApacheHVR, m_vecForward, FIELD_VECTOR ),
+};
 
-	void Spawn( void );
-	void Precache( void );
-	int  Classify( void ) { return CLASS_HUMAN_MILITARY; };
-	int  BloodColor( void ) { return DONT_BLEED; }
-	void Killed( entvars_t *pevAttacker, int iGib );
-	void GibMonster( void );
+IMPLEMENT_SAVERESTORE( CApacheHVR, CGrenade );
 
-	void SetObjectCollisionBox( void )
+void CApacheHVR :: Spawn( void )
+{
+	Precache( );
+	// motor
+	pev->movetype = MOVETYPE_FLY;
+	pev->solid = SOLID_BBOX;
+
+	SET_MODEL(ENT(pev), "models/HVR.mdl");
+	UTIL_SetSize(pev, Vector( 0, 0, 0), Vector(0, 0, 0));
+	UTIL_SetOrigin( pev, pev->origin );
+
+	SetThink( &CApacheHVR::IgniteThink );
+	SetTouch( &CApacheHVR::ExplodeTouch );
+
+	UTIL_MakeAimVectors( pev->angles );
+	m_vecForward = gpGlobals->v_forward;
+	pev->gravity = 0.5;
+
+	pev->nextthink = gpGlobals->time + 0.1;
+
+	pev->dmg = 150;
+}
+
+
+void CApacheHVR :: Precache( void )
+{
+	PRECACHE_MODEL("models/HVR.mdl");
+	m_iTrail = PRECACHE_MODEL("sprites/smoke.spr");
+	PRECACHE_SOUND ("weapons/rocket1.wav");
+}
+
+
+void CApacheHVR :: IgniteThink( void  )
+{
+	// pev->movetype = MOVETYPE_TOSS;
+
+	// pev->movetype = MOVETYPE_FLY;
+	pev->effects |= EF_LIGHT;
+
+	// make rocket sound
+	EMIT_SOUND( ENT(pev), CHAN_VOICE, "weapons/rocket1.wav", 1, 0.5 );
+
+	// rocket trail
+	MESSAGE_BEGIN( MSG_BROADCAST, SVC_TEMPENTITY );
+
+		WRITE_BYTE( TE_BEAMFOLLOW );
+		WRITE_SHORT(entindex());	// entity
+		WRITE_SHORT(m_iTrail );	// model
+		WRITE_BYTE( 15 ); // life
+		WRITE_BYTE( 5 );  // width
+		WRITE_BYTE( 224 );   // r, g, b
+		WRITE_BYTE( 224 );   // r, g, b
+		WRITE_BYTE( 255 );   // r, g, b
+		WRITE_BYTE( 255 );	// brightness
+
+	MESSAGE_END();  // move PHS/PVS data sending into here (SEND_ALL, SEND_PVS, SEND_PHS)
+
+	// set to accelerate
+	SetThink( &CApacheHVR::AccelerateThink );
+	pev->nextthink = gpGlobals->time + 0.1;
+}
+
+
+void CApacheHVR :: AccelerateThink( void  )
+{
+	// check world boundaries
+	if (pev->origin.x < -4096 || pev->origin.x > 4096 || pev->origin.y < -4096 || pev->origin.y > 4096 || pev->origin.z < -4096 || pev->origin.z > 4096)
 	{
-		pev->absmin = pev->origin + Vector( -300, -300, -172);
-		pev->absmax = pev->origin + Vector(300, 300, 8);
+		UTIL_Remove( this );
+		return;
 	}
 
-	void EXPORT HuntThink( void );
-	void EXPORT FlyTouch( CBaseEntity *pOther );
-	void EXPORT CrashTouch( CBaseEntity *pOther );
-	void EXPORT DyingThink( void );
-	void EXPORT StartupUse( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE useType, float value );
-	void EXPORT NullThink( void );
+	// accelerate
+	float flSpeed = pev->velocity.Length();
+	if (flSpeed < 1800)
+	{
+		pev->velocity = pev->velocity + m_vecForward * 200;
+	}
 
-	void ShowDamage( void );
-	void Flight( void );
-	void FireRocket( void );
-	BOOL FireGun( void );
-	
-	int  TakeDamage( entvars_t* pevInflictor, entvars_t* pevAttacker, float flDamage, int bitsDamageType );
-	void TraceAttack( entvars_t *pevAttacker, float flDamage, Vector vecDir, TraceResult *ptr, int bitsDamageType);
+	// re-aim
+	pev->angles = UTIL_VecToAngles( pev->velocity );
 
-	int m_iRockets;
-	float m_flForce;
-	float m_flNextRocket;
+	pev->nextthink = gpGlobals->time + 0.1;
+}
 
-	Vector m_vecTarget;
-	Vector m_posTarget;
 
-	Vector m_vecDesired;
-	Vector m_posDesired;
 
-	Vector m_vecGoal;
-
-	Vector m_angGun;
-	float m_flLastSeen;
-	float m_flPrevSeen;
-
-	int m_iSoundState; // don't save this
-
-	int m_iSpriteTexture;
-	int m_iExplode;
-	int m_iBodyGibs;
-
-	float m_flGoalSpeed;
-
-	int m_iDoSmokePuff;
-	CBeam *m_pBeam;
-};
-LINK_ENTITY_TO_CLASS( monster_apache, CApache );
-
+//================//
+// monster_apache
+//================//
 TYPEDESCRIPTION	CApache::m_SaveData[] = 
 {
 	DEFINE_FIELD( CApache, m_iRockets, FIELD_INTEGER ),
@@ -98,10 +127,6 @@ TYPEDESCRIPTION	CApache::m_SaveData[] =
 	DEFINE_FIELD( CApache, m_angGun, FIELD_VECTOR ),
 	DEFINE_FIELD( CApache, m_flLastSeen, FIELD_TIME ),
 	DEFINE_FIELD( CApache, m_flPrevSeen, FIELD_TIME ),
-//	DEFINE_FIELD( CApache, m_iSoundState, FIELD_INTEGER ),		// Don't save, precached
-//	DEFINE_FIELD( CApache, m_iSpriteTexture, FIELD_INTEGER ),
-//	DEFINE_FIELD( CApache, m_iExplode, FIELD_INTEGER ),
-//	DEFINE_FIELD( CApache, m_iBodyGibs, FIELD_INTEGER ),
 	DEFINE_FIELD( CApache, m_pBeam, FIELD_CLASSPTR ),
 	DEFINE_FIELD( CApache, m_flGoalSpeed, FIELD_FLOAT ),
 	DEFINE_FIELD( CApache, m_iDoSmokePuff, FIELD_INTEGER ),
@@ -930,115 +955,14 @@ void CApache::TraceAttack( entvars_t *pevAttacker, float flDamage, Vector vecDir
 
 
 
-
-
-class CApacheHVR : public CGrenade
-{
-	void Spawn( void );
-	void Precache( void );
-	void EXPORT IgniteThink( void );
-	void EXPORT AccelerateThink( void );
-
-	int		Save( CSave &save );
-	int		Restore( CRestore &restore );
-	static	TYPEDESCRIPTION m_SaveData[];
-
-	int m_iTrail;
-	Vector m_vecForward;
-};
+//=========//
+// LINKERS
+//=========//
 LINK_ENTITY_TO_CLASS( hvr_rocket, CApacheHVR );
-
-TYPEDESCRIPTION	CApacheHVR::m_SaveData[] = 
-{
-//	DEFINE_FIELD( CApacheHVR, m_iTrail, FIELD_INTEGER ),	// Dont' save, precache
-	DEFINE_FIELD( CApacheHVR, m_vecForward, FIELD_VECTOR ),
-};
-
-IMPLEMENT_SAVERESTORE( CApacheHVR, CGrenade );
-
-void CApacheHVR :: Spawn( void )
-{
-	Precache( );
-	// motor
-	pev->movetype = MOVETYPE_FLY;
-	pev->solid = SOLID_BBOX;
-
-	SET_MODEL(ENT(pev), "models/HVR.mdl");
-	UTIL_SetSize(pev, Vector( 0, 0, 0), Vector(0, 0, 0));
-	UTIL_SetOrigin( pev, pev->origin );
-
-	SetThink( &CApacheHVR::IgniteThink );
-	SetTouch( &CApacheHVR::ExplodeTouch );
-
-	UTIL_MakeAimVectors( pev->angles );
-	m_vecForward = gpGlobals->v_forward;
-	pev->gravity = 0.5;
-
-	pev->nextthink = gpGlobals->time + 0.1;
-
-	pev->dmg = 150;
-}
+LINK_ENTITY_TO_CLASS( monster_apache, CApache );
 
 
-void CApacheHVR :: Precache( void )
-{
-	PRECACHE_MODEL("models/HVR.mdl");
-	m_iTrail = PRECACHE_MODEL("sprites/smoke.spr");
-	PRECACHE_SOUND ("weapons/rocket1.wav");
-}
 
 
-void CApacheHVR :: IgniteThink( void  )
-{
-	// pev->movetype = MOVETYPE_TOSS;
-
-	// pev->movetype = MOVETYPE_FLY;
-	pev->effects |= EF_LIGHT;
-
-	// make rocket sound
-	EMIT_SOUND( ENT(pev), CHAN_VOICE, "weapons/rocket1.wav", 1, 0.5 );
-
-	// rocket trail
-	MESSAGE_BEGIN( MSG_BROADCAST, SVC_TEMPENTITY );
-
-		WRITE_BYTE( TE_BEAMFOLLOW );
-		WRITE_SHORT(entindex());	// entity
-		WRITE_SHORT(m_iTrail );	// model
-		WRITE_BYTE( 15 ); // life
-		WRITE_BYTE( 5 );  // width
-		WRITE_BYTE( 224 );   // r, g, b
-		WRITE_BYTE( 224 );   // r, g, b
-		WRITE_BYTE( 255 );   // r, g, b
-		WRITE_BYTE( 255 );	// brightness
-
-	MESSAGE_END();  // move PHS/PVS data sending into here (SEND_ALL, SEND_PVS, SEND_PHS)
-
-	// set to accelerate
-	SetThink( &CApacheHVR::AccelerateThink );
-	pev->nextthink = gpGlobals->time + 0.1;
-}
-
-
-void CApacheHVR :: AccelerateThink( void  )
-{
-	// check world boundaries
-	if (pev->origin.x < -4096 || pev->origin.x > 4096 || pev->origin.y < -4096 || pev->origin.y > 4096 || pev->origin.z < -4096 || pev->origin.z > 4096)
-	{
-		UTIL_Remove( this );
-		return;
-	}
-
-	// accelerate
-	float flSpeed = pev->velocity.Length();
-	if (flSpeed < 1800)
-	{
-		pev->velocity = pev->velocity + m_vecForward * 200;
-	}
-
-	// re-aim
-	pev->angles = UTIL_VecToAngles( pev->velocity );
-
-	pev->nextthink = gpGlobals->time + 0.1;
-}
 
 // monster_blkop_apache

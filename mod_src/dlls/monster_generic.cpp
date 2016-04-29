@@ -12,30 +12,8 @@
 //=========================================================
 // Generic Monster - purely for scripted sequence work.
 //=========================================================
-#include	"extdll.h"
-#include	"util.h"
-#include	"cbase.h"
-#include	"monsters.h"
-#include	"ai_schedule.h"
+#include	"monster_generic.h"
 
-// For holograms, make them not solid so the player can walk through them
-#define	SF_GENERICMONSTER_NOTSOLID					4 
-
-//=========================================================
-// Monster's Anim Events Go Here
-//=========================================================
-
-class CGenericMonster : public CBaseMonster
-{
-public:
-	void Spawn( void );
-	void Precache( void );
-	void SetYawSpeed( void );
-	int  Classify ( void );
-	void HandleAnimEvent( MonsterEvent_t *pEvent );
-	int ISoundMask ( void );
-};
-LINK_ENTITY_TO_CLASS( monster_generic, CGenericMonster );
 
 //=========================================================
 // Classify - indicates this monster's place in the 
@@ -128,3 +106,10 @@ void CGenericMonster :: Precache()
 //=========================================================
 // AI Schedules Specific to this monster
 //=========================================================
+
+
+
+//=========//
+// LINKERS
+//=========//
+LINK_ENTITY_TO_CLASS( monster_generic, CGenericMonster );

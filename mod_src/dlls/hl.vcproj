@@ -1899,6 +1899,10 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\monster_alien_controller.h"
+					>
+				</File>
+				<File
 					RelativePath=".\monster_alien_grunt.cpp"
 					>
 					<FileConfiguration
@@ -1928,6 +1932,10 @@
 							PreprocessorDefinitions=""
 						/>
 					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\monster_alien_grunt.h"
+					>
 				</File>
 				<File
 					RelativePath=".\monster_alien_slave.cpp"
@@ -1961,7 +1969,15 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\monster_alien_slave.h"
+					>
+				</File>
+				<File
 					RelativePath=".\monster_alien_voltigore.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\monster_alien_voltigore.h"
 					>
 				</File>
 				<File
@@ -2027,6 +2043,10 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\monster_barnacle.h"
+					>
+				</File>
+				<File
 					RelativePath=".\monster_barney.cpp"
 					>
 					<FileConfiguration
@@ -2056,6 +2076,10 @@
 							PreprocessorDefinitions=""
 						/>
 					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\monster_barney.h"
+					>
 				</File>
 				<File
 					RelativePath=".\monster_bigmomma.cpp"
@@ -2089,6 +2113,10 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\monster_bigmomma.h"
+					>
+				</File>
+				<File
 					RelativePath=".\monster_bloater.cpp"
 					>
 					<FileConfiguration
@@ -2120,6 +2148,10 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\monster_bloater.h"
+					>
+				</File>
+				<File
 					RelativePath=".\monster_bullchicken.cpp"
 					>
 					<FileConfiguration
@@ -2149,6 +2181,10 @@
 							PreprocessorDefinitions=""
 						/>
 					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\monster_bullchicken.h"
+					>
 				</File>
 				<File
 					RelativePath=".\monster_cockroach.cpp"
@@ -2186,6 +2222,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\monster_drillsergeant.h"
+					>
+				</File>
+				<File
 					RelativePath=".\monster_flyer.cpp"
 					>
 					<FileConfiguration
@@ -2215,6 +2255,10 @@
 							PreprocessorDefinitions=""
 						/>
 					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\monster_flyer.h"
+					>
 				</File>
 				<File
 					RelativePath=".\monster_gargantua.cpp"
@@ -2248,6 +2292,10 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\monster_gargantua.h"
+					>
+				</File>
+				<File
 					RelativePath=".\monster_generic.cpp"
 					>
 					<FileConfiguration
@@ -2277,6 +2325,10 @@
 							PreprocessorDefinitions=""
 						/>
 					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\monster_generic.h"
+					>
 				</File>
 				<File
 					RelativePath=".\monster_geneworm.cpp"
@@ -2314,7 +2366,15 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\monster_gman.h"
+					>
+				</File>
+				<File
 					RelativePath=".\monster_gonome.cpp"
+					>
+				</File>
+				<File
+					RelativePath=".\monster_gonome.h"
 					>
 				</File>
 				<File
@@ -2349,6 +2409,10 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\monster_headcrab.h"
+					>
+				</File>
+				<File
 					RelativePath=".\monster_houndeye.cpp"
 					>
 					<FileConfiguration
@@ -2380,6 +2444,10 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\monster_houndeye.h"
+					>
+				</File>
+				<File
 					RelativePath=".\monster_human_assassin.cpp"
 					>
 					<FileConfiguration
@@ -2409,6 +2477,10 @@
 							PreprocessorDefinitions=""
 						/>
 					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\monster_human_assassin.h"
+					>
 				</File>
 				<File
 					RelativePath=".\monster_human_grunt.cpp"
@@ -2485,6 +2557,10 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\monster_ichthyosaur.h"
+					>
+				</File>
+				<File
 					RelativePath=".\monster_leech.cpp"
 					>
 					<FileConfiguration
@@ -2520,6 +2596,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\monster_male_assassin.h"
+					>
+				</File>
+				<File
 					RelativePath=".\monster_nihilanth.cpp"
 					>
 					<FileConfiguration
@@ -2551,6 +2631,10 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\monster_nihilanth.h"
+					>
+				</File>
+				<File
 					RelativePath=".\monster_osprey.cpp"
 					>
 					<FileConfiguration
@@ -2580,6 +2664,10 @@
 							PreprocessorDefinitions=""
 						/>
 					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\monster_osprey.h"
+					>
 				</File>
 				<File
 					RelativePath=".\monster_otis.cpp"
@@ -2629,6 +2717,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\monster_recruit.h"
+					>
+				</File>
+				<File
 					RelativePath=".\monster_robo_loader.cpp"
 					>
 				</File>
@@ -2668,6 +2760,10 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\monster_scientist.h"
+					>
+				</File>
+				<File
 					RelativePath=".\monster_shocktrooper.cpp"
 					>
 				</File>
@@ -2703,6 +2799,10 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\monster_tentacle.h"
+					>
+				</File>
+				<File
 					RelativePath=".\monster_zombie.cpp"
 					>
 					<FileConfiguration
@@ -2732,6 +2832,10 @@
 							PreprocessorDefinitions=""
 						/>
 					</FileConfiguration>
+				</File>
+				<File
+					RelativePath=".\monster_zombie.h"
+					>
 				</File>
 				<File
 					RelativePath="monsterevent.h"

@@ -8,57 +8,12 @@
 //
 //	Before using any parts of this code, read licence.txt file 
 //=============================================================//
-#include	"extdll.h"
-#include	"util.h"
-#include	"cbase.h"
-#include	"monsters.h"
-#include	"ai_schedule.h"
+#include	"monster_barnacle.h"	// Fograin92
 
-#define	BARNACLE_BODY_HEIGHT	44 // how 'tall' the barnacle's model is.
-#define BARNACLE_PULL_SPEED		8
-#define BARNACLE_KILL_VICTIM_DELAY	5 // how many seconds after pulling prey in to gib them. 
 
-//=========================================================
-// Monster's Anim Events Go Here
-//=========================================================
-#define	BARNACLE_AE_PUKEGIB	2
-
-class CBarnacle : public CBaseMonster
-{
-public:
-	void Spawn( void );
-	void Precache( void );
-	CBaseEntity *TongueTouchEnt ( float *pflLength );
-	int  Classify ( void );
-	void HandleAnimEvent( MonsterEvent_t *pEvent );
-	void EXPORT BarnacleThink ( void );
-	void EXPORT WaitTillDead ( void );
-	void Killed( entvars_t *pevAttacker, int iGib );
-	int TakeDamage( entvars_t *pevInflictor, entvars_t *pevAttacker, float flDamage, int bitsDamageType );
-	virtual int		Save( CSave &save );
-	virtual int		Restore( CRestore &restore );
-	static	TYPEDESCRIPTION m_SaveData[];
-
-	float m_flAltitude;
-	float m_flCachedLength;	// tongue cached length
-	float m_flKillVictimTime;
-	int   m_cGibs;		// barnacle loads up on gibs each time it kills something.
-	BOOL  m_fTongueExtended;
-	BOOL  m_fLiftingPrey;
-	float m_flTongueAdj;
-
-	// FIXME: need a custom barnacle model with non-generic hitgroup
-	// otherwise we can apply to damage to tongue instead of body
-#ifdef BARNACLE_FIX_VISIBILITY
-	void SetObjectCollisionBox( void )
-	{
-		pev->absmin = pev->origin + Vector( -16, -16, -m_flCachedLength );
-		pev->absmax = pev->origin + Vector( 16, 16, 0 );
-	}
-#endif
-};
-LINK_ENTITY_TO_CLASS( monster_barnacle, CBarnacle );
-
+//==================//
+// monster_barnacle
+//==================//
 TYPEDESCRIPTION	CBarnacle::m_SaveData[] = 
 {
 	DEFINE_FIELD( CBarnacle, m_flAltitude, FIELD_FLOAT ),
@@ -69,7 +24,6 @@ TYPEDESCRIPTION	CBarnacle::m_SaveData[] =
 	DEFINE_FIELD( CBarnacle, m_flTongueAdj, FIELD_FLOAT ),
 	DEFINE_FIELD( CBarnacle, m_flCachedLength, FIELD_FLOAT ),
 };
-
 IMPLEMENT_SAVERESTORE( CBarnacle, CBaseMonster );
 
 
@@ -439,3 +393,9 @@ CBaseEntity *CBarnacle :: TongueTouchEnt ( float *pflLength )
 
 	return NULL;
 }
+
+
+//=========//
+// LINKERS
+//=========//
+LINK_ENTITY_TO_CLASS( monster_barnacle, CBarnacle );
