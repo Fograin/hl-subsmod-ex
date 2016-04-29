@@ -1398,6 +1398,21 @@ Vector CBaseEntity::FireBulletsPlayer ( ULONG cShots, Vector vecSrc, Vector vecD
 			case BULLET_PLAYER_357:		
 				pEntity->TraceAttack(pevAttacker, gSkillData.plrDmg357, vecDir, &tr, DMG_BULLET); 
 				break;
+
+			// Fograin92: M249 ammo
+			case BULLET_PLAYER_556:		
+				pEntity->TraceAttack(pevAttacker, gSkillData.ammo_556, vecDir, &tr, DMG_BULLET); 
+				break;
+
+			// Fograin92: 762 ammo
+			case BULLET_PLAYER_762:		
+				pEntity->TraceAttack(pevAttacker, gSkillData.ammo_762, vecDir, &tr, DMG_BULLET); 
+				break;
+
+			// Fograin92: Desert Eagle ammo
+			case BULLET_PLAYER_DEAGLE:		
+				pEntity->TraceAttack(pevAttacker, gSkillData.sk_plr_eagle, vecDir, &tr, DMG_BULLET); 
+				break;
 				
 			case BULLET_NONE: // FIX 
 				pEntity->TraceAttack(pevAttacker, 50, vecDir, &tr, DMG_CLUB);

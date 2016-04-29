@@ -28,7 +28,7 @@ extern "C"
 	void EV_FirePython( struct event_args_s *args  );
 	void EV_FireGauss( struct event_args_s *args  );
 	void EV_SpinGauss( struct event_args_s *args  );
-	//void EV_Crowbar( struct event_args_s *args );
+	//void EV_Crowbar( struct event_args_s *args );	// Fograin92: Disabled
 	void EV_FireCrossbow( struct event_args_s *args );
 	void EV_FireCrossbow2( struct event_args_s *args );
 	void EV_FireRpg( struct event_args_s *args );
@@ -37,7 +37,21 @@ extern "C"
 	void EV_HornetGunFire( struct event_args_s *args );
 	void EV_TripmineFire( struct event_args_s *args );
 	void EV_SnarkFire( struct event_args_s *args );
+
+	// Fograin92: Update MOD stuff
 	//void EV_FireGRAPPLE( struct event_args_s *args ); // Rara: GRAPPLE
+	void EV_FireEagle( struct event_args_s *args  );
+	void EV_Knife( struct event_args_s *args );
+	void EV_FireM249( struct event_args_s *args  );
+	void EV_FireM40a1( struct event_args_s *args  );
+	void EV_SpinDisplacer( struct event_args_s *args  );
+	void EV_FireDisplacer( struct event_args_s *args  );
+	void EV_SporeLauncherRocket( struct event_args_s *args  );
+	void EV_SporeLauncherGrenade( struct event_args_s *args  );
+	void EV_FireShock( struct event_args_s *args  );
+	void EV_WrenchNormal( struct event_args_s *args  );
+	void EV_WrenchLarge( struct event_args_s *args  );
+
 
 	void EV_TrainPitchAdjust( struct event_args_s *args );
 }
@@ -79,4 +93,15 @@ void Game_HookEvents( void )
 
 	// Fograin92: Update MOD stuff
 	//gEngfuncs.pfnHookEvent( "events/weapon_grapple.sc", 		EV_FireGRAPPLE ); // Rara
+	gEngfuncs.pfnHookEvent( "events/eagle.sc",					EV_FireEagle );
+	gEngfuncs.pfnHookEvent( "events/knife.sc",				    EV_Knife );
+	gEngfuncs.pfnHookEvent( "events/m249.sc",					EV_FireM249 );
+	gEngfuncs.pfnHookEvent( "events/m40a1.sc",					EV_FireM40a1 );
+	gEngfuncs.pfnHookEvent( "events/spindisplacer.sc",			EV_SpinDisplacer );
+	gEngfuncs.pfnHookEvent( "events/firedisplacer.sc",			EV_FireDisplacer );
+	gEngfuncs.pfnHookEvent( "events/sporerocket.sc",			EV_SporeLauncherRocket );
+	gEngfuncs.pfnHookEvent( "events/sporegrenade.sc",			EV_SporeLauncherGrenade );
+	gEngfuncs.pfnHookEvent( "events/shockrifle.sc",				EV_FireShock );
+	gEngfuncs.pfnHookEvent( "events/wrench.sc",					EV_WrenchNormal );
+	gEngfuncs.pfnHookEvent( "events/wrench2.sc",				EV_WrenchLarge );
 }

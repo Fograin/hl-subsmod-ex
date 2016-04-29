@@ -74,100 +74,122 @@ public:
 #define WEAPON_TRIPMINE			13
 #define	WEAPON_SATCHEL			14
 #define	WEAPON_SNARK			15
-#define WEAPON_GRAPPLE			16	// Rara
+
+// Fograin92: Half-Life Update MOD weapons
+#define WEAPON_GRAPPLE			16
+#define WEAPON_KNIFE			17
+#define WEAPON_WRENCH			18
+#define WEAPON_DEAGLE			19
+#define WEAPON_M249				20
+#define WEAPON_SNIPERRIFLE		21
+#define WEAPON_SPORELAUNCHER	22
+#define WEAPON_SHOCKRIFLE		23
+#define WEAPON_DISPLACER		24
+
 
 #define WEAPON_ALLWEAPONS		(~(1<<WEAPON_SUIT))
 
 #define WEAPON_SUIT				31	// ?????
 
-#define MAX_WEAPONS			32
-
-
+#define MAX_WEAPONS			32	// Fograin92: Increased from 32
 #define MAX_NORMAL_BATTERY	100
 
 
 // weapon weight factors (for auto-switching)   (-1 = noswitch)
-#define CROWBAR_WEIGHT		0
-#define GLOCK_WEIGHT		10
-#define PYTHON_WEIGHT		15
-#define MP5_WEIGHT			15
-#define SHOTGUN_WEIGHT		15
-#define CROSSBOW_WEIGHT		10
-#define RPG_WEIGHT			20
-#define GAUSS_WEIGHT		20
-#define EGON_WEIGHT			20
-#define HORNETGUN_WEIGHT	10
-#define HANDGRENADE_WEIGHT	5
-#define SNARK_WEIGHT		5
-#define SATCHEL_WEIGHT		-10
-#define TRIPMINE_WEIGHT		-10
-#define GRAPPLE_WEIGHT		25	// Rara
+#define WEIGHT_CROWBAR		0
+#define WEIGHT_GLOCK		10
+#define WEIGHT_PYTHON		15
+#define WEIGHT_MP5			15
+#define WEIGHT_SHOTGUN		15
+#define WEIGHT_CROSSBOW		10
+#define WEIGHT_RPG			20
+#define WEIGHT_GAUSS		20
+#define WEIGHT_EGON			20
+#define WEIGHT_HORNETGUN	10
+#define WEIGHT_HANDGRENADE	5
+#define WEIGHT_SNARK		5
+#define WEIGHT_SATCHEL		-10
+#define WEIGHT_TRIPMINE		-10
+
+// Fograin92: Update MOD
+#define WEIGHT_GRAPPLE			10
+#define WEIGHT_KNIFE			0
+#define WEIGHT_PIPEWRENCH		0
+#define WEIGHT_DEAGLE			25
+#define WEIGHT_M249				25
+#define WEIGHT_SNIPERRIFLE		10
+#define WEIGHT_SHOCKRIFLE		10
+#define WEIGHT_SPORELAUNCHER	10
+#define WEIGHT_DISPLACER		20
 
 
 // weapon clip/carry ammo capacities
-#define URANIUM_MAX_CARRY		100
-#define	_9MM_MAX_CARRY			250
-#define _357_MAX_CARRY			36
-#define BUCKSHOT_MAX_CARRY		125
-#define BOLT_MAX_CARRY			50
-#define ROCKET_MAX_CARRY		5
-#define HANDGRENADE_MAX_CARRY	10
-#define SATCHEL_MAX_CARRY		5
-#define TRIPMINE_MAX_CARRY		5
-#define SNARK_MAX_CARRY			15
-#define HORNET_MAX_CARRY		8
-#define M203_GRENADE_MAX_CARRY	10
+#define MAX_CARRY_URANIUM			100
+#define	MAX_CARRY_9MM				250
+#define MAX_CARRY_357				36
+#define MAX_CARRY_BUCKSHOT			125
+#define MAX_CARRY_BOLT				50
+#define MAX_CARRY_ROCKET			5
+#define MAX_CARRY_HANDGRENADE		10
+#define MAX_CARRY_SATCHEL			5
+#define MAX_CARRY_TRIPMINE			5
+#define MAX_CARRY_SNARK				15
+#define MAX_CARRY_HORNET			8
+#define MAX_CARRY_M203_GRENADE		10
+// Fograin92: Update MOD max_carry
+#define MAX_CARRY_M249				300
+#define MAX_CARRY_SNIPERRIFLE		15
+#define MAX_CARRY_SHOCKRIFLE		8
+#define MAX_CARRY_SPORELAUNCHER		15
+
 
 // the maximum amount of ammo each weapon's clip can hold
 #define WEAPON_NOCLIP			-1
 
 //#define CROWBAR_MAX_CLIP		WEAPON_NOCLIP
-#define GLOCK_MAX_CLIP			17
-#define PYTHON_MAX_CLIP			6
-#define MP5_MAX_CLIP			50
-#define MP5_DEFAULT_AMMO		25
-#define SHOTGUN_MAX_CLIP		8
-#define CROSSBOW_MAX_CLIP		5
-#define RPG_MAX_CLIP			1
-#define GAUSS_MAX_CLIP			WEAPON_NOCLIP
-#define EGON_MAX_CLIP			WEAPON_NOCLIP
-#define HORNETGUN_MAX_CLIP		WEAPON_NOCLIP
-#define HANDGRENADE_MAX_CLIP	WEAPON_NOCLIP
-#define SATCHEL_MAX_CLIP		WEAPON_NOCLIP
-#define TRIPMINE_MAX_CLIP		WEAPON_NOCLIP
-#define SNARK_MAX_CLIP			WEAPON_NOCLIP
+#define MAX_CLIP_GLOCK			17
+#define MAX_CLIP_PYTHON			6
+#define MAX_CLIP_MP5			50
+#define MAX_CLIP_SHOTGUN		8
+#define MAX_CLIP_CROSSBOW		5
+#define MAX_CLIP_RPG			1
+#define MAX_CLIP_M249			100
+#define MAX_CLIP_SNIPERRIFLE	5
+#define MAX_CLIP_DEAGLE			7
 
 
 // the default amount of ammo that comes with each gun when it spawns
-#define GLOCK_DEFAULT_GIVE			17
-#define PYTHON_DEFAULT_GIVE			6
-#define MP5_DEFAULT_GIVE			25
-#define MP5_DEFAULT_GIVE_OF			50	// Rara
-#define MP5_DEFAULT_AMMO			25
-#define MP5_M203_DEFAULT_GIVE		0
-#define SHOTGUN_DEFAULT_GIVE		12
-#define CROSSBOW_DEFAULT_GIVE		5
-#define RPG_DEFAULT_GIVE			1
-#define GAUSS_DEFAULT_GIVE			20
-#define EGON_DEFAULT_GIVE			20
-#define HANDGRENADE_DEFAULT_GIVE	1	// Fograin92: Changed from 5 to 1
-#define SATCHEL_DEFAULT_GIVE		1
-#define TRIPMINE_DEFAULT_GIVE		1
-#define SNARK_DEFAULT_GIVE			5
-#define HIVEHAND_DEFAULT_GIVE		8
+#define DEFAULT_GIVE_GLOCK			17
+#define DEFAULT_GIVE_PYTHON			6
+#define DEFAULT_GIVE_MP5			25
+#define DEFAULT_GIVE_MP5_OF			50	// Rara
+#define DEFAULT_AMMO_MP5			25
+#define DEFAULT_GIVE_SHOTGUN		12
+#define DEFAULT_GIVE_CROSSBOW		5
+#define DEFAULT_GIVE_RPG			1
+#define DEFAULT_GIVE_GAUSS			20
+#define DEFAULT_GIVE_EGON			20
+#define DEFAULT_GIVE_HANDGRENADE	1	// Fograin92: Changed from 5 to 1
+#define DEFAULT_GIVE_SATCHEL		1
+#define DEFAULT_GIVE_TRIPMINE		1
+#define DEFAULT_GIVE_SNARK			5
+#define DEFAULT_GIVE_HIVEHAND		8
+#define DEFAULT_GIVE_M249			50
+#define DEFAULT_GIVE_DISPLACER		20
+
 
 // The amount of ammo given to a player by an ammo item.
-#define AMMO_URANIUMBOX_GIVE	20
-#define AMMO_GLOCKCLIP_GIVE		GLOCK_MAX_CLIP
-#define AMMO_357BOX_GIVE		PYTHON_MAX_CLIP
-#define AMMO_MP5CLIP_GIVE		MP5_MAX_CLIP
-#define AMMO_CHAINBOX_GIVE		200
-#define AMMO_M203BOX_GIVE		2
-#define AMMO_BUCKSHOTBOX_GIVE	12
-#define AMMO_CROSSBOWCLIP_GIVE	CROSSBOW_MAX_CLIP
-#define AMMO_RPGCLIP_GIVE		RPG_MAX_CLIP
-#define AMMO_URANIUMBOX_GIVE	20
-#define AMMO_SNARKBOX_GIVE		5
+#define AMMO_GIVE_URANIUMBOX	20
+#define AMMO_GIVE_GLOCKCLIP		MAX_CLIP_GLOCK
+#define AMMO_GIVE_357BOX		MAX_CLIP_PYTHON
+#define AMMO_GIVE_MP5CLIP		MAX_CLIP_MP5
+#define AMMO_GIVE_CHAINBOX		200
+#define AMMO_GIVE_M203BOX		2
+#define AMMO_GIVE_BUCKSHOTBOX	12
+#define AMMO_GIVE_CROSSBOWCLIP	MAX_CLIP_CROSSBOW
+#define AMMO_GIVE_RPGCLIP		MAX_CLIP_RPG
+#define AMMO_GIVE_SNARKBOX		5
+
 
 // bullet types
 typedef	enum
@@ -178,6 +200,9 @@ typedef	enum
 	BULLET_PLAYER_357, // python
 	BULLET_PLAYER_BUCKSHOT, // shotgun
 	BULLET_PLAYER_CROWBAR, // crowbar swipe
+	BULLET_PLAYER_556,	// Fograin92: M249 ammo
+	BULLET_PLAYER_762,	// Fograin92: Sniper rifle ammo
+	BULLET_PLAYER_DEAGLE,	// Fograin92: Desert eagle
 
 	BULLET_MONSTER_9MM,
 	BULLET_MONSTER_MP5,
@@ -1106,7 +1131,7 @@ public:
 
 	void Spawn(void);
 	void Precache(void);
-	int iItemSlot() { return 3; }
+	int iItemSlot() { return 1; }
 	int GetItemInfo(ItemInfo *p);
 	int AddToPlayer(CBasePlayer *pPlayer);
 	void Holster(int skiplocal = 0);
@@ -1133,4 +1158,182 @@ private:
 };
 
 
+//=========================//
+// Written by: Highlander 
+// Edits by: Fograin92
+//=========================//
+class CM249 : public CBasePlayerWeapon
+{
+public:
+	void Spawn( void );
+	void Precache( void );
+	int iItemSlot( void ) { return 3; }
+	int GetItemInfo(ItemInfo *p);
+	int AddToPlayer( CBasePlayer *pPlayer );
+
+	void PrimaryAttack( void );
+	BOOL Deploy( void );
+	void Holster( int skiplocal = 0 );
+	void Reload( void );
+	void WeaponIdle( void );
+	void UpdateClip( void );
+	float m_flNextAnimTime;
+	int m_iShell;
+	int m_iLink;
+
+	virtual BOOL UseDecrement( void )
+	{ 
+#if defined( CLIENT_WEAPONS )
+		return TRUE;
+#else
+		return FALSE;
+#endif
+	}
+
+private:
+	unsigned short m_usM249;
+
+};
+
+
+//=========================//
+// Written by: Highlander 
+// Edits by: Fograin92
+//=========================//
+class CSniperRifle : public CBasePlayerWeapon
+{
+public:
+	void Spawn( void );
+	void Precache( void );
+	int iItemSlot( void ) { return 3; }
+	int GetItemInfo(ItemInfo *p);
+	int AddToPlayer( CBasePlayer *pPlayer );
+	void PrimaryAttack( void );
+	void SecondaryAttack( void );
+	BOOL Deploy( void );
+	void Holster( int skiplocal = 0 );
+	void Reload( void );
+	void WeaponIdle( void );
+	float m_flSoundDelay;
+
+	BOOL m_fInZoom;// don't save this. 
+
+	virtual BOOL UseDecrement( void )
+	{ 
+#if defined( CLIENT_WEAPONS )
+		return TRUE;
+#else
+		return FALSE;
+#endif
+	}
+
+private:
+	unsigned short m_usM40a1;
+};
+
+
+//=========================//
+// Written by: Highlander 
+// Edits by: Fograin92
+//=========================//
+class CEagleLaser : public CBaseEntity
+{
+	void Spawn( void );
+	void Precache( void );
+
+	int	ObjectCaps( void ) { return FCAP_DONT_SAVE; }
+
+public:
+	void Suspend( float flSuspendTime );
+	void EXPORT Revive( void );
+
+	static CEagleLaser *CreateSpotDeagle( void );
+};
+
+
+//=========================//
+// Written by: Highlander 
+// Edits by: Fograin92
+//=========================//
+class CDeagle : public CBasePlayerWeapon
+{
+public:
+/*
+#ifndef CLIENT_DLL
+	int		Save( CSave &save );
+	int		Restore( CRestore &restore );
+	static	TYPEDESCRIPTION m_SaveData[];
+#endif
+*/
+	void Spawn( void );
+	void Precache( void );
+	int iItemSlot( void ) { return 2; }
+	int GetItemInfo(ItemInfo *p);
+
+	void PrimaryAttack( void );
+	void SecondaryAttack( void );
+	BOOL Deploy( void );
+	void Holster( int skiplocal = 0 );
+	void Reload( void );
+	void WeaponIdle( void );
+
+	void UpdateSpot( void );
+	CEagleLaser *m_pEagleLaser;
+	int m_fEagleLaserActive;
+	virtual BOOL UseDecrement( void )
+	{ 
+#if defined( CLIENT_WEAPONS )
+		return TRUE;
+#else
+		return FALSE;
+#endif
+	}
+
+private:
+	int m_iShell;
+	
+
+	unsigned short m_usEagle;
+};
+
+
+//=========================//
+// Written by: Highlander 
+// Edits by: Fograin92
+//=========================//
+class CDisplacer : public CBasePlayerWeapon
+{
+public:
+	void Spawn( void );
+	void Precache( void );
+	int iItemSlot( void ) { return 5; }
+	int GetItemInfo(ItemInfo *p);
+	int AddToPlayer( CBasePlayer *pPlayer );
+	void PrimaryAttack( void );
+	void SecondaryAttack( void );
+	BOOL Deploy( void );
+	void Holster( int skiplocal = 0 );
+	void WeaponIdle( void );
+
+	void EXPORT FireThink( void );
+	void EXPORT AltFireThink( void );
+	virtual BOOL UseDecrement( void )
+	{ 
+#if defined( CLIENT_WEAPONS )
+		return TRUE;
+#else
+		return FALSE;
+#endif
+	}
+
+private:
+
+    int m_iWorld;
+	int m_iBeam;
+	int m_iSecondaryMode;
+	unsigned short m_usSpinDisplacer;
+	unsigned short m_usFireDisplacer;
+};
+
 #endif // WEAPONS_H
+

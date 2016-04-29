@@ -66,6 +66,19 @@ extern "C"
 	void EV_TripmineFire( struct event_args_s *args  );
 	void EV_SnarkFire( struct event_args_s *args  );
 
+	// Fograin92: Update MOD stuff
+	void EV_FireEagle( struct event_args_s *args  );
+	void EV_Knife( struct event_args_s *args  );
+	void EV_FireM249( struct event_args_s *args  );
+	void EV_FireM40a1( struct event_args_s *args  );
+	void EV_SpinDisplacer( struct event_args_s *args  );
+	void EV_FireDisplacer( struct event_args_s *args  );
+	void EV_SporeLauncherRocket( struct event_args_s *args  );
+	void EV_SporeLauncherGrenade( struct event_args_s *args  );
+	void EV_FireShock( struct event_args_s *args  );
+	void EV_WrenchNormal( struct event_args_s *args  );
+	void EV_WrenchLarge( struct event_args_s *args  );
+
 	void EV_TrainPitchAdjust( struct event_args_s *args );
 }
 
@@ -365,6 +378,9 @@ void EV_HLDM_DecalGunshot( pmtrace_t *pTrace, int iBulletType )
 		case BULLET_MONSTER_MP5:
 		case BULLET_PLAYER_BUCKSHOT:
 		case BULLET_PLAYER_357:
+		case BULLET_PLAYER_556:	// Fograin92
+		case BULLET_PLAYER_762: // Fograin92
+		case BULLET_PLAYER_DEAGLE: // Fograin92
 		default:
 			// smoke and decal
 			EV_HLDM_GunshotDecalTrace( pTrace, EV_HLDM_DamageDecal( pe ) );
@@ -504,6 +520,34 @@ void EV_HLDM_FireBullets( int idx, float *forward, float *right, float *up, int 
 				EV_HLDM_PlayTextureSound( idx, &tr, vecSrc, vecEnd, iBulletType );
 				EV_HLDM_DecalGunshot( &tr, iBulletType );
 				
+				break;
+
+			// Fograin92
+			case BULLET_PLAYER_556:		
+				
+				if ( !tracer )
+				{
+					EV_HLDM_PlayTextureSound( idx, &tr, vecSrc, vecEnd, iBulletType );
+					EV_HLDM_DecalGunshot( &tr, iBulletType );
+				}
+				break;
+
+			// Fograin92
+			case BULLET_PLAYER_762:		
+				if ( !tracer )
+				{
+					EV_HLDM_PlayTextureSound( idx, &tr, vecSrc, vecEnd, iBulletType );
+					EV_HLDM_DecalGunshot( &tr, iBulletType );
+				}
+				break;
+
+			// Fograin92
+			case BULLET_PLAYER_DEAGLE:		
+				if ( !tracer )
+				{
+					EV_HLDM_PlayTextureSound( idx, &tr, vecSrc, vecEnd, iBulletType );
+					EV_HLDM_DecalGunshot( &tr, iBulletType );
+				}
 				break;
 
 			}
@@ -826,6 +870,8 @@ void EV_FireMP52( event_args_t *args )
 //======================
 //		 MP5 END
 //======================
+
+
 
 //======================
 //	   PHYTON START 
@@ -1781,6 +1827,455 @@ void EV_SnarkFire( event_args_t *args )
 //======================
 //	   SQUEAK END
 //======================
+
+
+
+
+//======================
+//	    DEAGLE START
+//======================
+void EV_FireEagle( event_args_t *args )
+{
+	int idx;
+	vec3_t origin;
+	vec3_t angles;
+	vec3_t velocity;
+	int empty;
+
+	vec3_t ShellVelocity;
+	vec3_t ShellOrigin;
+	int shell;
+	int laseractive;
+
+	vec3_t vecSrc, vecAiming;
+	vec3_t up, right, forward;
+	
+	idx = args->entindex;
+	VectorCopy( args->origin, origin );
+	VectorCopy( args->angles, angles );
+	VectorCopy( args->velocity, velocity );
+
+	empty = args->bparam1;
+	AngleVectors( angles, forward, right, up );
+	laseractive = args->bparam2;
+
+	shell = gEngfuncs.pEventAPI->EV_FindModelIndex ("models/shell.mdl");// brass shell
+
+	if ( EV_IsLocal( idx ) )
+	{
+		EV_MuzzleFlash();
+		gEngfuncs.pEventAPI->EV_WeaponAnimation( empty ? DEAGLE_SHOOT_EMPTY : DEAGLE_SHOOT, 2 );
+
+		V_PunchAxis( 0, -5.0 );
+	}
+
+	EV_GetDefaultShellInfo( args, origin, velocity, ShellVelocity, ShellOrigin, forward, right, up, 20, -12, 4 );
+	EV_EjectBrass ( ShellOrigin, ShellVelocity, angles[ YAW ], shell, TE_BOUNCE_SHELL ); 
+
+
+	gSoundEngine.PlaySound( "weapons/desert_eagle_fire.wav", g_vecZero, SND_RELATIVE, CHAN_WEAPON, CVAR_GET_FLOAT("sm_snd_sfx"), 94 + gEngfuncs.pfnRandomLong( 0, 0xf ), ATTN_NORM, NULL, args->entindex );
+		
+	EV_GetGunPosition( args, vecSrc, origin );
+	
+	VectorCopy( forward, vecAiming );
+
+
+//EV_Dynamic_MuzzleFlash ( vecSrc );
+	EV_HLDM_FireBullets( idx, forward, right, up, 1, vecSrc, vecAiming, 8192, BULLET_PLAYER_DEAGLE, 0, 0, args->fparam1, args->fparam2 );
+}
+//======================
+//	   DEAGLE END
+//======================
+//======================
+//	   KNIFE START
+//======================
+
+enum knife_e {
+	KNIFE_IDLE1 = 0,
+	KNIFE_DRAW,
+	KNIFE_HOLSTER,
+	KNIFE_SLASHHIT,
+	KNIFE_SLASHMISS,
+	KNIFE_CHARGE,
+	KNIFE_STAB,
+};
+
+int g_iSwing_knife;
+
+//Only predict the miss sounds, hit sounds are still played 
+//server side, so players don't get the wrong idea.
+void EV_Knife( event_args_t *args )
+{
+	int idx;
+	vec3_t origin;
+	vec3_t angles;
+	vec3_t velocity;
+
+	idx = args->entindex;
+	VectorCopy( args->origin, origin );
+
+	if ( EV_IsLocal( idx ) )
+	{
+		gEngfuncs.pEventAPI->EV_WeaponAnimation( KNIFE_SLASHMISS, 1 );
+
+		switch ( gEngfuncs.pfnRandomLong ( 0 , 1 ) )
+		{
+			case 0:	gEngfuncs.pEventAPI->EV_PlaySound( idx, origin, CHAN_WEAPON, "weapons/knife_swipe1.wav", 1, ATTN_NORM, 0, 100 );	break;
+			case 1:	gEngfuncs.pEventAPI->EV_PlaySound( idx, origin, CHAN_WEAPON, "weapons/knife_swipe2.wav", 1, ATTN_NORM, 0, 100 );	break;
+		}
+	}
+}
+//======================
+//	   KNIFE END 
+//======================
+//======================
+//	    M249 START
+//======================
+int g_iShellType; // Ported to client side, no need to send through messages.
+void EV_FireM249( event_args_t *args )
+{
+	int idx;
+	vec3_t origin;
+	vec3_t angles;
+	vec3_t velocity;
+	float flDamage = args->fparam1;
+	pmtrace_t tr;
+
+	vec3_t ShellVelocity;
+	vec3_t ShellOrigin;
+	int shell;
+
+	int	nMaxHits = 5;
+	vec3_t vecSrc, vecAiming;
+	vec3_t up, right, forward;
+	float flSpread = 0.01;
+
+	idx = args->entindex;
+	VectorCopy( args->origin, origin );
+	VectorCopy( args->angles, angles );
+	VectorCopy( args->velocity, velocity );
+
+	AngleVectors( angles, forward, right, up );
+	
+	g_iShellType = !g_iShellType;
+
+	if ( g_iShellType )
+		shell = gEngfuncs.pEventAPI->EV_FindModelIndex ("models/saw_link.mdl");// saw shell
+	else
+		shell = gEngfuncs.pEventAPI->EV_FindModelIndex ("models/saw_shell.mdl");// saw shell
+
+	if ( EV_IsLocal( idx ) )
+	{
+		// Add muzzle flash to current weapon model
+		EV_MuzzleFlash();
+		gEngfuncs.pEventAPI->EV_WeaponAnimation( M249_FIRE1 + gEngfuncs.pfnRandomLong(0,1), args->iparam1 );
+
+
+		V_PunchAxis( 0, gEngfuncs.pfnRandomFloat( -2, 2 + gEngfuncs.pfnRandomLong(0,0.3) ) );
+		V_PunchAxis( 1, gEngfuncs.pfnRandomFloat( 2 + gEngfuncs.pfnRandomLong(0,0.1) , -2 ) );
+	}
+
+	EV_GetDefaultShellInfo( args, origin, velocity, ShellVelocity, ShellOrigin, forward, right, up, 10, -12, 8 );
+	EV_EjectBrass ( ShellOrigin, ShellVelocity, angles[ YAW ], shell, TE_BOUNCE_SHELL ); 
+
+	switch( gEngfuncs.pfnRandomLong( 0, 2 ) )
+	{
+		case 0:
+			gSoundEngine.PlaySound( "weapons/saw_fire1.wav", g_vecZero, SND_RELATIVE, CHAN_WEAPON, CVAR_GET_FLOAT("sm_snd_sfx"), 94 + gEngfuncs.pfnRandomLong( 0, 0xf ), ATTN_NORM, NULL, args->entindex );
+		break;
+
+		case 1:
+			gSoundEngine.PlaySound( "weapons/saw_fire2.wav", g_vecZero, SND_RELATIVE, CHAN_WEAPON, CVAR_GET_FLOAT("sm_snd_sfx"), 94 + gEngfuncs.pfnRandomLong( 0, 0xf ), ATTN_NORM, NULL, args->entindex );
+		break;
+
+		case 2:
+			gSoundEngine.PlaySound( "weapons/saw_fire3.wav", g_vecZero, SND_RELATIVE, CHAN_WEAPON, CVAR_GET_FLOAT("sm_snd_sfx"), 94 + gEngfuncs.pfnRandomLong( 0, 0xf ), ATTN_NORM, NULL, args->entindex );
+		break;
+	}
+
+	EV_GetGunPosition( args, vecSrc, origin );
+	VectorCopy( forward, vecAiming );
+//EV_Dynamic_MuzzleFlash ( vecSrc );
+
+	EV_HLDM_FireBullets( idx, forward, right, up, 1, vecSrc, vecAiming, 8192, BULLET_PLAYER_556, 2, &tracerCount[idx-1], args->fparam1, args->fparam2 );
+}
+//======================
+//		 M249 END
+//======================
+//======================
+//	    SNIPER START
+//======================
+void EV_FireM40a1( event_args_t *args )
+{
+	int idx;
+	vec3_t origin;
+	vec3_t angles;
+	vec3_t velocity;
+	int empty;
+
+	vec3_t vecSrc, vecAiming;
+	vec3_t up, right, forward;
+	
+	idx = args->entindex;
+	VectorCopy( args->origin, origin );
+	VectorCopy( args->angles, angles );
+	VectorCopy( args->velocity, velocity );
+
+	float flSpread = 0.001;
+
+	empty = args->bparam1;
+	AngleVectors( angles, forward, right, up );
+
+	if ( EV_IsLocal( idx ) )
+	{
+		gEngfuncs.pEventAPI->EV_WeaponAnimation( empty ? SNIPER_FIRELASTROUND : SNIPER_FIRE, 2 );
+
+		V_PunchAxis( 0, -2.0 );
+	}
+
+	gSoundEngine.PlaySound( "weapons/sniper_fire.wav", g_vecZero, SND_RELATIVE, CHAN_WEAPON, CVAR_GET_FLOAT("sm_snd_sfx"), 94 + gEngfuncs.pfnRandomLong( 0, 0xf ), ATTN_NORM, NULL, args->entindex );
+
+	EV_GetGunPosition( args, vecSrc, origin );
+	VectorCopy( forward, vecAiming );
+//EV_Dynamic_MuzzleFlash ( vecSrc );
+
+EV_HLDM_FireBullets( idx, forward, right, up, 1, vecSrc, vecAiming, 8192, BULLET_PLAYER_762, 0, 0, flSpread, flSpread );
+}
+//======================
+//	   SNIPER END
+//======================
+//======================
+//	   DISPLACER START
+//======================
+void EV_SpinDisplacer(event_args_t *args)//Original code idea by Xwider
+{
+	if (EV_IsLocal(args->entindex))
+	{
+		gEngfuncs.pEventAPI->EV_WeaponAnimation(DISPLACER_SPINUP, 0);
+		cl_entity_t *view = gEngfuncs.GetViewModel();
+		if (view != NULL)
+		{
+			float life = 1.05;
+
+			gEngfuncs.pEfxAPI->R_BeamEnts(view->index | 0x2000, view->index | 0x4000, args->iparam2, life, 0.6, 0.5, 0.005, 1.2, 0, 10, 96, 128, 16);	
+			gEngfuncs.pEfxAPI->R_BeamEnts(view->index | 0x3000, view->index | 0x2000, args->iparam2, life, 0.6, 0.5, 0.005, 1.2, 0, 10, 96, 128, 16);
+			gEngfuncs.pEfxAPI->R_BeamEnts(view->index | 0x3000, view->index | 0x4000, args->iparam2, life, 0.6, 0.5, 0.005, 1.2, 0, 10, 96, 128, 16);
+		}
+	}
+	if (args->bparam2 == 1)// sound mode
+		gSoundEngine.PlaySound( "weapons/displacer_spin.wav", g_vecZero, SND_RELATIVE, CHAN_WEAPON, CVAR_GET_FLOAT("sm_snd_sfx"), 94 + gEngfuncs.pfnRandomLong( 0, 0xf ), ATTN_NORM, NULL, args->entindex );
+	else
+		gSoundEngine.PlaySound( "weapons/displacer_spin2.wav", g_vecZero, SND_RELATIVE, CHAN_WEAPON, CVAR_GET_FLOAT("sm_snd_sfx"), 94 + gEngfuncs.pfnRandomLong( 0, 0xf ), ATTN_NORM, NULL, args->entindex );
+}
+void EV_FireDisplacer(event_args_t *args)
+{
+	if (EV_IsLocal(args->entindex))
+	{
+		gEngfuncs.pEventAPI->EV_WeaponAnimation( DISPLACER_FIRE, 0 );
+
+		V_PunchAxis( 0, -2.0 );
+	}
+	gSoundEngine.PlaySound( "weapons/displacer_fire.wav", g_vecZero, SND_RELATIVE, CHAN_WEAPON, CVAR_GET_FLOAT("sm_snd_sfx"), 94 + gEngfuncs.pfnRandomLong( 0, 0xf ), ATTN_NORM, NULL, args->entindex );
+}
+//======================
+//	   DISPLACER END
+//======================
+//======================
+//	    SPORE START 
+//======================
+enum sporelauncher_e {
+	SPORELAUNCHER_IDLE = 0,
+	SPORELAUNCHER_FIDGET,
+	SPORELAUNCHER_RELOAD_REACH,		// reload prepare
+	SPORELAUNCHER_RELOAD_LOAD,		// reload in progress
+	SPORELAUNCHER_RELOAD_AIM,		// reload end
+	SPORELAUNCHER_FIRE,				// fire rocket
+	SPORELAUNCHER_HOLSTER,			// holster
+	SPORELAUNCHER_DRAW,				// draw
+	SPORELAUNCHER_FIRE2,			// grenadefire
+};
+
+void EV_SporeLauncherRocket( event_args_t *args )
+{
+	int idx;
+	vec3_t origin;
+
+	idx = args->entindex;
+	VectorCopy( args->origin, origin );
+	
+	gEngfuncs.pEventAPI->EV_PlaySound( idx, origin, CHAN_WEAPON, "weapons/splauncher_fire.wav", 0.9, ATTN_NORM, 0, PITCH_NORM );
+
+	//Only play the weapon anims if I shot it. 
+	if ( EV_IsLocal( idx ) )
+	{
+		gEngfuncs.pEventAPI->EV_WeaponAnimation( SPORELAUNCHER_FIRE, 1 );
+	
+		V_PunchAxis( 0, -5.0 );
+	}
+}
+
+void EV_SporeLauncherGrenade( event_args_t *args )
+{
+	int idx;
+	vec3_t origin;
+
+	idx = args->entindex;
+	VectorCopy( args->origin, origin );
+	
+	gEngfuncs.pEventAPI->EV_PlaySound( idx, origin, CHAN_WEAPON, "weapons/splauncher_altfire.wav", 0.9, ATTN_NORM, 0, PITCH_NORM );
+
+	//Only play the weapon anims if I shot it. 
+	if ( EV_IsLocal( idx ) )
+	{
+		gEngfuncs.pEventAPI->EV_WeaponAnimation( SPORELAUNCHER_FIRE, 1 );
+	
+		V_PunchAxis( 0, -5.0 );
+	}
+}
+//======================
+//	     SPORE END 
+//======================
+//======================
+//	   SHOCK START
+//======================
+enum shockrifle_e {
+	SHOCK_IDLE1 = 0,
+	SHOCK_FIRE,
+	SHOCK_DRAW,
+	SHOCK_HOLSTER,
+	SHOCK_IDLE3
+};
+
+void EV_FireShock( event_args_t *args )
+{
+	int idx;
+	vec3_t origin;
+	vec3_t angles;
+	vec3_t velocity;
+
+	vec3_t vecSrc, vecAiming;
+	vec3_t up, right, forward;
+	
+	idx = args->entindex;
+	VectorCopy( args->origin, origin );
+	VectorCopy( args->angles, angles );
+	VectorCopy( args->velocity, velocity );
+
+	AngleVectors( angles, forward, right, up );
+
+		gEngfuncs.pEventAPI->EV_WeaponAnimation(SHOCK_FIRE, 2);
+		cl_entity_t *view = gEngfuncs.GetViewModel();
+		if (view != NULL)
+		{
+			float life = 0.1;
+
+			gEngfuncs.pEfxAPI->R_BeamEnts(view->index | 0x2000, view->index | 0x1000, args->iparam2, life, 0.8, 0.5, 0.5, 0.6, 0, 10, 0, 4, 10);
+			gEngfuncs.pEfxAPI->R_BeamEnts(view->index | 0x3000, view->index | 0x1000, args->iparam2, life, 0.8, 0.5, 0.5, 0.6, 0, 10, 0, 4, 10);
+			gEngfuncs.pEfxAPI->R_BeamEnts(view->index | 0x4000, view->index | 0x1000, args->iparam2, life, 0.8, 0.5, 0.5, 0.6, 0, 10, 0, 4, 10);
+		}
+
+	idx = args->entindex;
+	VectorCopy( args->origin, origin );
+	
+	gEngfuncs.pEventAPI->EV_PlaySound( idx, origin, CHAN_WEAPON, "weapons/shock_fire.wav", 1, ATTN_NORM, 0, 93 + gEngfuncs.pfnRandomLong(0,0xF) );
+
+	//Only play the weapon anims if I shot it. 
+	if ( EV_IsLocal( idx ) )
+	{
+		if ( args->iparam1 )
+			gEngfuncs.pEventAPI->EV_WeaponAnimation( SHOCK_FIRE, 1 );
+	}
+
+	EV_GetGunPosition( args, vecSrc, origin );
+	VectorCopy( forward, vecAiming );
+
+	dlight_t *dl = gEngfuncs.pEfxAPI->CL_AllocDlight( 999 );
+	dl->die = gEngfuncs.GetClientTime();
+	dl->origin[0] = vecSrc.x;
+	dl->origin[1] = vecSrc.y;
+	dl->origin[2] = vecSrc.z;
+	dl->color.r = 0;
+	dl->color.g = 255;
+	dl->color.b = 255;
+	dl->radius = 260;
+}
+//======================
+//	   SHOCK END
+//======================
+//======================
+//	   WRENCH START
+//======================
+enum wrench_e {
+	WRENCH_IDLE1 = 0,
+	WRENCH_IDLE2,
+	WRENCH_IDLE3,
+	WRENCH_DRAW,
+	WRENCH_HOLSTER,
+	WRENCH_ATTACK1HIT,
+	WRENCH_ATTACK1MISS,
+	WRENCH_ATTACK2HIT,
+	WRENCH_ATTACK2MISS,
+	WRENCH_ATTACK3HIT,
+	WRENCH_ATTACK3MISS,
+	WRENCH_BIGWIND,
+	WRENCH_BIGHIT,
+	WRENCH_BIGMISS,
+	WRENCH_BIGLOOP,
+};
+
+//int g_iSwing_knife;
+int g_iSwing;
+
+//Only predict the miss sounds, hit sounds are still played 
+//server side, so players don't get the wrong idea.
+void EV_WrenchNormal( event_args_t *args )
+{
+	int idx;
+	vec3_t origin;
+	vec3_t angles;
+	vec3_t velocity;
+
+	idx = args->entindex;
+	VectorCopy( args->origin, origin );
+
+	if ( EV_IsLocal( idx ) )
+	{
+		gEngfuncs.pEventAPI->EV_WeaponAnimation( WRENCH_ATTACK1MISS, 1 );
+		switch( (g_iSwing++) % 3 )
+		{
+			case 0:
+				gEngfuncs.pEventAPI->EV_PlaySound( idx, origin, CHAN_WEAPON, "weapons/pwrench_miss2.wav", 1, ATTN_NORM, 0, PITCH_NORM); 
+				gEngfuncs.pEventAPI->EV_WeaponAnimation ( WRENCH_ATTACK1MISS, 1 ); break;
+			case 1:
+				gEngfuncs.pEventAPI->EV_PlaySound( idx, origin, CHAN_WEAPON, "weapons/pwrench_miss1.wav", 1, ATTN_NORM, 0, PITCH_NORM); 
+				gEngfuncs.pEventAPI->EV_WeaponAnimation ( WRENCH_ATTACK2MISS, 1 ); break;
+			case 2:
+				gEngfuncs.pEventAPI->EV_PlaySound( idx, origin, CHAN_WEAPON, "weapons/pwrench_miss2.wav", 1, ATTN_NORM, 0, PITCH_NORM); 
+				gEngfuncs.pEventAPI->EV_WeaponAnimation ( WRENCH_ATTACK3MISS, 1 ); break;
+		}
+	}
+}
+void EV_WrenchLarge( event_args_t *args )
+{
+	int idx;
+	vec3_t origin;
+	vec3_t angles;
+	vec3_t velocity;
+	idx = args->entindex;
+	VectorCopy( args->origin, origin );
+
+	if ( EV_IsLocal( idx ) )
+	{
+
+		gEngfuncs.pEventAPI->EV_PlaySound( idx, origin, CHAN_WEAPON, "weapons/pwrench_big_miss.wav", 1, ATTN_NORM, 0, PITCH_NORM);
+		gEngfuncs.pEventAPI->EV_WeaponAnimation( WRENCH_BIGMISS, 1 );
+		V_PunchAxis( 0, 5.0 );
+	}
+}
+//======================
+//	   WRENCH END 
+//======================
+
 
 
 void EV_TrainPitchAdjust( event_args_t *args )

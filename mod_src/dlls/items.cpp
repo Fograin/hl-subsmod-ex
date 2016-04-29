@@ -232,7 +232,7 @@ class CAirtank : public CGrenade
 		pev->owner = ENT( pevAttacker );
 
 		// UNDONE: this should make a big bubble cloud, not an explosion
-		// Fograin92: Fuck it, explosions = more fun
+		// Fograin92: Fuck it, explosions == more fun
 		Explode( pev->origin, Vector( 0, 0, -1 ) );
 	}
 
@@ -514,8 +514,8 @@ class CHealthKit : public CItem
 		CItem::Spawn();
 
 		// Fograin92: Enable thinking
-		SetThink ( &CHealthKit::HealthkitThink );
-		pev->nextthink = gpGlobals->time + 0.01;
+		//SetThink ( &CHealthKit::HealthkitThink );
+		//pev->nextthink = gpGlobals->time + 0.01;
 	}
 
 	void CHealthKit::Precache( void )
@@ -525,39 +525,12 @@ class CHealthKit : public CItem
 	}
 
 	// Fograin92: Cast world and entity light
+	/*
 	void HealthkitThink( void )
 	{
-		// Fograin92: Dynamic world light (not really BS-like but it looks nice :D)
-		MESSAGE_BEGIN( MSG_PVS, SVC_TEMPENTITY, pev->origin );
-			WRITE_BYTE(TE_DLIGHT);
-			WRITE_COORD(pev->origin.x - 6);	// X
-			WRITE_COORD(pev->origin.y);	// Y
-			WRITE_COORD(pev->origin.z + 3);	// Z
-			WRITE_BYTE( 4 );		// radius * 0.1 
-			WRITE_BYTE( 255 );		// r
-			WRITE_BYTE( 100 );		// g
-			WRITE_BYTE( 100 );		// b
-			WRITE_BYTE( 1 );		// time * 10
-			WRITE_BYTE( 1 );		// decay * 0.1
-		MESSAGE_END( );
-
-		// Fograin92: Dynamic entity light
-		MESSAGE_BEGIN( MSG_BROADCAST, SVC_TEMPENTITY );
-			WRITE_BYTE( TE_ELIGHT );
-			WRITE_SHORT( entindex( ) );		// entity, attachment
-			WRITE_COORD(pev->origin.x - 6);	// X
-			WRITE_COORD(pev->origin.y);	// Y
-			WRITE_COORD(pev->origin.z + 3);	// Z
-			WRITE_COORD( pev->renderamt );	// radius
-			WRITE_BYTE( 255 );		// r
-			WRITE_BYTE( 100 );		// g
-			WRITE_BYTE( 100 );		// b
-			WRITE_BYTE( 1 );	// life * 10
-			WRITE_COORD( 1 ); // decay
-		MESSAGE_END();
-
-		pev->nextthink = gpGlobals->time + 0.01;
+		pev->nextthink = gpGlobals->time + 0.05;
 	}
+	*/
 
 
 	BOOL CHealthKit::MyTouch( CBasePlayer *pPlayer )

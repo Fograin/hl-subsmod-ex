@@ -1141,6 +1141,10 @@ void CBasePlayer::TabulateAmmo()
 	ammo_rockets = AmmoInventory( GetAmmoIndex( "rockets" ) );
 	ammo_uranium = AmmoInventory( GetAmmoIndex( "uranium" ) );
 	ammo_hornets = AmmoInventory( GetAmmoIndex( "Hornets" ) );
+
+	// Fograin92: Opposing Force ammo types
+	ammo_556 = AmmoInventory( GetAmmoIndex( "556" ) );
+	ammo_762 = AmmoInventory( GetAmmoIndex( "762" ) );
 }
 
 
@@ -2858,6 +2862,7 @@ void CBasePlayer::Spawn( void )
 	{
 		// UNFORESEEN CONSEQUENCES
 		GiveNamedItem( "item_suit" );
+		// Fograin92: TODO give weapon_hands
 	}
 
 	// OFFICE COMPLEX
@@ -3462,6 +3467,10 @@ void CBasePlayer::SelectItem(const char *pstr)
 		else if (FClassnameIs(m_pActiveItem->pev, "weapon_tripmine"))		m_fWeaponDeployDelay = UTIL_WeaponTimeBase() + 0.5;
 		else if (FClassnameIs(m_pActiveItem->pev, "weapon_snark"))			m_fWeaponDeployDelay = UTIL_WeaponTimeBase() + 1.0;
 		else if (FClassnameIs(m_pActiveItem->pev, "weapon_grapple"))		m_fWeaponDeployDelay = UTIL_WeaponTimeBase() + 0.5;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_m249"))			m_fWeaponDeployDelay = UTIL_WeaponTimeBase() + 1.0;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_sniperrifle"))	m_fWeaponDeployDelay = UTIL_WeaponTimeBase() + 1.0;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_eagle"))			m_fWeaponDeployDelay = UTIL_WeaponTimeBase() + 1.0;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_displacer"))		m_fWeaponDeployDelay = UTIL_WeaponTimeBase() + 1.0;
 
 		m_pActiveItem->Holster();	// Fograin92: Execute Holster function
 	}
@@ -3508,6 +3517,10 @@ void CBasePlayer::SelectLastItem(void)
 		else if (FClassnameIs(m_pActiveItem->pev, "weapon_tripmine"))		m_fWeaponDeployDelay = UTIL_WeaponTimeBase() + 0.5;
 		else if (FClassnameIs(m_pActiveItem->pev, "weapon_snark"))			m_fWeaponDeployDelay = UTIL_WeaponTimeBase() + 1.0;
 		else if (FClassnameIs(m_pActiveItem->pev, "weapon_grapple"))		m_fWeaponDeployDelay = UTIL_WeaponTimeBase() + 0.5;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_m249"))			m_fWeaponDeployDelay = UTIL_WeaponTimeBase() + 0.5;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_sniperrifle"))	m_fWeaponDeployDelay = UTIL_WeaponTimeBase() + 1.0;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_eagle"))			m_fWeaponDeployDelay = UTIL_WeaponTimeBase() + 1.0;
+		else if (FClassnameIs(m_pActiveItem->pev, "weapon_displacer"))		m_fWeaponDeployDelay = UTIL_WeaponTimeBase() + 1.0;
 
 		m_pActiveItem->Holster();	// Fograin92: Execute Holster function
 	}
@@ -3922,7 +3935,7 @@ void CBasePlayer::CheatImpulseCommands( int iImpulse )
 			// Base items
 			GiveNamedItem( "item_suit" );
 	
-			// Base weapons and ammo
+			// Fograin92: Base weapons and ammo
 			GiveNamedItem( "weapon_crowbar" );
 			GiveNamedItem( "weapon_9mmhandgun" );
 			GiveNamedItem( "ammo_9mmclip" );
@@ -3946,9 +3959,13 @@ void CBasePlayer::CheatImpulseCommands( int iImpulse )
 			GiveNamedItem( "weapon_tripmine" );
 			GiveNamedItem( "weapon_snark" );
 
-			// Opposing Force weapons and ammo
+			// Fograin92: Opposing Force weapons and ammo
 			GiveNamedItem( "weapon_grapple" );
-		
+			GiveNamedItem( "weapon_sniperrifle" );
+			GiveNamedItem( "weapon_m249" );
+			GiveNamedItem( "weapon_eagle" );
+			GiveNamedItem( "weapon_displacer" );
+
 			gEvilImpulse101 = FALSE;
 		break;
 

@@ -411,7 +411,7 @@ int CGrapple::GetItemInfo( ItemInfo* Info )
 	Info->iPosition = 3; 
 	Info->iFlags = 0;
 	Info->iId = WEAPON_GRAPPLE; 
-	Info->iWeight = GRAPPLE_WEIGHT;
+	Info->iWeight = WEIGHT_GRAPPLE;
 	return 1; 
 }
 

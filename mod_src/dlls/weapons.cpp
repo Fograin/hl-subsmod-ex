@@ -190,6 +190,11 @@ void DecalGunshot( TraceResult *pTrace, int iBulletType )
 		case BULLET_MONSTER_MP5:
 		case BULLET_PLAYER_BUCKSHOT:
 		case BULLET_PLAYER_357:
+
+		case BULLET_PLAYER_556:	// Fograin92
+		case BULLET_PLAYER_762: // Fograin92
+		case BULLET_PLAYER_DEAGLE: // Fograin92
+
 		default:
 			// smoke and decal
 			UTIL_GunshotDecalTrace( pTrace, DamageDecal( pEntity, DMG_BULLET ) );
@@ -353,6 +358,10 @@ void W_Precache(void)
 
 	// Precache OF Weapons
 	UTIL_PrecacheOtherWeapon( "weapon_grapple" );	// Rara
+	UTIL_PrecacheOtherWeapon( "weapon_m249" );
+	UTIL_PrecacheOtherWeapon( "weapon_sniperrifle" );
+	UTIL_PrecacheOtherWeapon( "weapon_eagle" );
+	UTIL_PrecacheOtherWeapon( "weapon_displacer" );
 
 	// Precache HL Ammo
 	UTIL_PrecacheOther( "ammo_9mmclip" );
@@ -363,6 +372,10 @@ void W_Precache(void)
 	UTIL_PrecacheOther( "ammo_crossbow" );
 	UTIL_PrecacheOther( "ammo_rpgclip" );
 	UTIL_PrecacheOther( "ammo_gaussclip" );
+
+	// Precache OF Ammo
+	UTIL_PrecacheOther( "ammo_556" );
+	UTIL_PrecacheOther( "ammo_762" );
 
 
 	// Fograin92: Precache it everytime, not only in MP

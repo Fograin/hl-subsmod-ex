@@ -12,11 +12,14 @@
 typedef	enum
 {
 	BULLET_NONE = 0,
-	BULLET_PLAYER_9MM, // glock
-	BULLET_PLAYER_MP5, // mp5
-	BULLET_PLAYER_357, // python
+	BULLET_PLAYER_9MM,		// glock
+	BULLET_PLAYER_MP5,		// mp5
+	BULLET_PLAYER_357,		// python
 	BULLET_PLAYER_BUCKSHOT, // shotgun
-	BULLET_PLAYER_CROWBAR, // crowbar swipe
+	BULLET_PLAYER_CROWBAR,	// crowbar swipe
+	BULLET_PLAYER_556,		// Fograin92: m249 ammo
+	BULLET_PLAYER_762,		// Fograin92: sniper ammo
+	BULLET_PLAYER_DEAGLE,	// Fograin92: Desert eagle bullet
 
 	BULLET_MONSTER_9MM,
 	BULLET_MONSTER_MP5,
@@ -86,6 +89,80 @@ enum gauss_e {
 	GAUSS_HOLSTER,
 	GAUSS_DRAW
 };
+
+// Fograin92: Update mod stuff
+enum m249_e
+{
+	M249_SLOWIDLE = 0,
+	M249_IDLE1,
+	M249_RELOAD,
+	M249_RELOAD2,
+	M249_HOLSTER,
+	M249_DRAW,
+	M249_FIRE1,
+	M249_FIRE2,
+	M249_FIRE3,
+};
+
+enum m4a1_e
+{
+	M4A1_LONGIDLE = 0,
+	M4A1_IDLE1,
+	M4A1_LAUNCH,
+	M4A1_RELOAD,
+	M4A1_DEPLOY,
+	M4A1_EMPTY,
+	M4A1_FIRE1,
+	M4A1_FIRE2,
+	M4A1_FIRE3,
+};
+
+enum deagle_e {
+	DEAGLE_IDLE1 = 0,
+	DEAGLE_IDLE2,
+	DEAGLE_IDLE3,
+	DEAGLE_IDLE4,
+	DEAGLE_IDLE5,
+	DEAGLE_SHOOT,
+	DEAGLE_SHOOT_EMPTY,
+	DEAGLE_RELOAD,
+	DEAGLE_RELOAD_NOT_EMPTY,
+	DEAGLE_DRAW,
+	DEAGLE_HOLSTER,
+};
+
+enum sniper_e {
+	SNIPER_DRAW = 0,
+	SNIPER_SLOWIDLE1,
+	SNIPER_FIRE,
+	SNIPER_FIRELASTROUND,
+	SNIPER_RELOAD1,
+	SNIPER_RELOAD2,
+	SNIPER_RELOAD3,
+	SNIPER_SLOWIDLE2,
+	SNIPER_HOLSTER,
+};
+
+enum displacer_e 
+{
+    DISPLACER_IDLE1 = 0,
+    DISPLACER_IDLE2,
+    DISPLACER_SPINUP,
+    DISPLACER_SPIN,
+    DISPLACER_FIRE,
+    DISPLACER_DRAW,
+    DISPLACER_HOLSTER,
+};
+
+
+
+
+
+
+
+
+
+
 
 void EV_HLDM_GunshotDecalTrace( pmtrace_t *pTrace, char *decalName );
 void EV_HLDM_DecalGunshot( pmtrace_t *pTrace, int iBulletType );

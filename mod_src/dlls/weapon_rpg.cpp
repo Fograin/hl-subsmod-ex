@@ -193,7 +193,7 @@ void CRpgRocket :: IgniteThink( void  )
 
 	// set to follow laser spot
 	SetThink( &CRpgRocket::FollowThink );
-	pev->nextthink = gpGlobals->time + 0.1;
+	pev->nextthink = gpGlobals->time + 0.01;	// Fograin92: Changed from 0.1
 }
 
 
@@ -315,7 +315,7 @@ void CRpg::Reload( void )
 #endif
 
 	if ( m_iClip == 0 )
-		iResult = DefaultReload( RPG_MAX_CLIP, RPG_RELOAD, 2 );
+		iResult = DefaultReload( MAX_CLIP_RPG, RPG_RELOAD, 2 );
 	
 	if ( iResult )
 		m_flTimeWeaponIdle = UTIL_WeaponTimeBase() + UTIL_SharedRandomFloat( m_pPlayer->random_seed, 10, 15 );
@@ -337,11 +337,11 @@ void CRpg::Spawn( )
 #endif
 	{
 		// more default ammo in multiplay. 
-		m_iDefaultAmmo = RPG_DEFAULT_GIVE * 2;
+		m_iDefaultAmmo = DEFAULT_GIVE_RPG * 2;
 	}
 	else
 	{
-		m_iDefaultAmmo = RPG_DEFAULT_GIVE;
+		m_iDefaultAmmo = DEFAULT_GIVE_RPG;
 	}
 
 	FallInit();// get ready to fall down.
@@ -372,15 +372,15 @@ int CRpg::GetItemInfo(ItemInfo *p)
 {
 	p->pszName = STRING(pev->classname);
 	p->pszAmmo1 = "rockets";
-	p->iMaxAmmo1 = ROCKET_MAX_CARRY;
+	p->iMaxAmmo1 = MAX_CARRY_ROCKET;
 	p->pszAmmo2 = NULL;
 	p->iMaxAmmo2 = -1;
-	p->iMaxClip = RPG_MAX_CLIP;
+	p->iMaxClip = MAX_CLIP_RPG;
 	p->iSlot = 3;
 	p->iPosition = 0;
 	p->iId = m_iId = WEAPON_RPG;
 	p->iFlags = 0;
-	p->iWeight = RPG_WEIGHT;
+	p->iWeight = WEIGHT_RPG;
 
 	return 1;
 }
@@ -608,14 +608,14 @@ class CRpgAmmo : public CBasePlayerAmmo
 #endif
 		{
 			// hand out more ammo per rocket in multiplayer.
-			iGive = AMMO_RPGCLIP_GIVE * 2;
+			iGive = AMMO_GIVE_RPGCLIP * 2;
 		}
 		else
 		{
-			iGive = AMMO_RPGCLIP_GIVE;
+			iGive = AMMO_GIVE_RPGCLIP;
 		}
 
-		if (pOther->GiveAmmo( iGive, "rockets", ROCKET_MAX_CARRY ) != -1)
+		if (pOther->GiveAmmo( iGive, "rockets", MAX_CARRY_ROCKET ) != -1)
 		{
 			EMIT_SOUND(ENT(pev), CHAN_ITEM, "items/9mmclip1.wav", 1, ATTN_NORM);
 			return TRUE;

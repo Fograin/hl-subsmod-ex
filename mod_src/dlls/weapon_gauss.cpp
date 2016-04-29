@@ -62,7 +62,7 @@ void CGauss::Spawn( )
 	m_iId = WEAPON_GAUSS;
 	SET_MODEL(ENT(pev), "models/w_gauss.mdl");
 
-	m_iDefaultAmmo = GAUSS_DEFAULT_GIVE;
+	m_iDefaultAmmo = DEFAULT_GIVE_GAUSS;
 
 	FallInit();// get ready to fall down.
 }
@@ -106,7 +106,7 @@ int CGauss::GetItemInfo(ItemInfo *p)
 {
 	p->pszName = STRING(pev->classname);
 	p->pszAmmo1 = "uranium";
-	p->iMaxAmmo1 = URANIUM_MAX_CARRY;
+	p->iMaxAmmo1 = MAX_CARRY_URANIUM;
 	p->pszAmmo2 = NULL;
 	p->iMaxAmmo2 = -1;
 	p->iMaxClip = WEAPON_NOCLIP;
@@ -114,7 +114,7 @@ int CGauss::GetItemInfo(ItemInfo *p)
 	p->iPosition = 1;
 	p->iId = m_iId = WEAPON_GAUSS;
 	p->iFlags = 0;
-	p->iWeight = GAUSS_WEIGHT;
+	p->iWeight = WEIGHT_GAUSS;
 
 	return 1;
 }
@@ -609,7 +609,7 @@ class CGaussAmmo : public CBasePlayerAmmo
 	}
 	BOOL AddAmmo( CBaseEntity *pOther ) 
 	{ 
-		if (pOther->GiveAmmo( AMMO_URANIUMBOX_GIVE, "uranium", URANIUM_MAX_CARRY ) != -1)
+		if (pOther->GiveAmmo( AMMO_GIVE_URANIUMBOX, "uranium", MAX_CARRY_URANIUM ) != -1)
 		{
 			EMIT_SOUND(ENT(pev), CHAN_ITEM, "items/9mmclip1.wav", 1, ATTN_NORM);
 			return TRUE;

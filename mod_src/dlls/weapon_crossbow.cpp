@@ -268,7 +268,7 @@ void CCrossbow::Spawn( )
 	m_iId = WEAPON_CROSSBOW;
 	SET_MODEL(ENT(pev), "models/w_crossbow.mdl");
 
-	m_iDefaultAmmo = CROSSBOW_DEFAULT_GIVE;
+	m_iDefaultAmmo = DEFAULT_GIVE_CROSSBOW;
 
 	FallInit();// get ready to fall down.
 }
@@ -307,15 +307,15 @@ int CCrossbow::GetItemInfo(ItemInfo *p)
 {
 	p->pszName = STRING(pev->classname);
 	p->pszAmmo1 = "bolts";
-	p->iMaxAmmo1 = BOLT_MAX_CARRY;
+	p->iMaxAmmo1 = MAX_CARRY_BOLT;
 	p->pszAmmo2 = NULL;
 	p->iMaxAmmo2 = -1;
-	p->iMaxClip = CROSSBOW_MAX_CLIP;
+	p->iMaxClip = MAX_CLIP_CROSSBOW;
 	p->iSlot = 2;
 	p->iPosition = 2;
 	p->iId = WEAPON_CROSSBOW;
 	p->iFlags = 0;
-	p->iWeight = CROSSBOW_WEIGHT;
+	p->iWeight = WEIGHT_CROSSBOW;
 	return 1;
 }
 
@@ -577,7 +577,7 @@ class CCrossbowAmmo : public CBasePlayerAmmo
 	}
 	BOOL AddAmmo( CBaseEntity *pOther ) 
 	{ 
-		if (pOther->GiveAmmo( AMMO_CROSSBOWCLIP_GIVE, "bolts", BOLT_MAX_CARRY ) != -1)
+		if (pOther->GiveAmmo( AMMO_GIVE_CROSSBOWCLIP, "bolts", MAX_CARRY_BOLT ) != -1)
 		{
 			EMIT_SOUND(ENT(pev), CHAN_ITEM, "items/9mmclip1.wav", 1, ATTN_NORM);
 			return TRUE;

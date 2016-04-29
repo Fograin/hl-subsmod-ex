@@ -212,7 +212,7 @@ void CSatchel::Spawn( )
 	m_iId = WEAPON_SATCHEL;
 	SET_MODEL(ENT(pev), "models/w_satchel.mdl");
 
-	m_iDefaultAmmo = SATCHEL_DEFAULT_GIVE;
+	m_iDefaultAmmo = DEFAULT_GIVE_SATCHEL;
 		
 	FallInit();// get ready to fall down.
 }
@@ -238,7 +238,7 @@ int CSatchel::GetItemInfo(ItemInfo *p)
 {
 	p->pszName = STRING(pev->classname);
 	p->pszAmmo1 = "Satchel Charge";
-	p->iMaxAmmo1 = SATCHEL_MAX_CARRY;
+	p->iMaxAmmo1 = MAX_CARRY_SATCHEL;
 	p->pszAmmo2 = NULL;
 	p->iMaxAmmo2 = -1;
 	p->iMaxClip = WEAPON_NOCLIP;
@@ -246,7 +246,7 @@ int CSatchel::GetItemInfo(ItemInfo *p)
 	p->iPosition = 1;
 	p->iFlags = ITEM_FLAG_SELECTONEMPTY | ITEM_FLAG_LIMITINWORLD | ITEM_FLAG_EXHAUSTIBLE;
 	p->iId = m_iId = WEAPON_SATCHEL;
-	p->iWeight = SATCHEL_WEIGHT;
+	p->iWeight = WEIGHT_SATCHEL;
 
 	return 1;
 }

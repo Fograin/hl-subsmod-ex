@@ -368,9 +368,9 @@ void CMainMenuNew::Submenu_NewGame(int iGame, int iPage)
 		}
 	
 	}
-
-
 }
+
+
 
 void CMainMenuNew::StartChapter(int iSelectedFrame)
 {

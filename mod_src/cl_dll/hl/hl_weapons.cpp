@@ -64,8 +64,11 @@ CHandGrenade	g_HandGren;
 CSatchel		g_Satchel;
 CTripmine		g_Tripmine;
 CSqueak			g_Snark;
-CGrapple		g_Grapple;	// Fograin92: Grapple weapon
-
+CGrapple		g_Grapple;		// Fograin92: Grapple weapon
+CM249			g_M249;			// Fograin92: M249 OF weapon
+CSniperRifle	g_M40a1;		// Fograin92: Sniper rifle OF weapon
+CDisplacer		g_Displacer;	// Fograin92: OF Displacer
+CDeagle			g_Deagle;		// Fograin92: OF Deagle
 
 /*
 ======================
@@ -637,6 +640,10 @@ void HUD_InitClientWeapons( void )
 	HUD_PrepEntity( &g_Tripmine	, &player );
 	HUD_PrepEntity( &g_Snark	, &player );
 	HUD_PrepEntity( &g_Grapple	, &player );	// Fograin92: Grapple weapon
+	HUD_PrepEntity( &g_M249		, &player );	// Fograin92: M249 SAW weapon
+	HUD_PrepEntity( &g_M40a1	, &player );	// Fograin92: Sniper rifle
+	HUD_PrepEntity( &g_Displacer	, &player );	// Fograin92: Displacer
+	HUD_PrepEntity( &g_Deagle	, &player );	// Fograin92: Desert eagle
 }
 
 /*
@@ -764,6 +771,23 @@ void HUD_WeaponsPostThink( local_state_s *from, local_state_s *to, usercmd_t *cm
 		case WEAPON_GRAPPLE:
 			pWeapon = &g_Grapple;
 			break;
+		
+		case WEAPON_M249:
+			pWeapon = &g_M249;
+			break;
+
+		case WEAPON_SNIPERRIFLE:
+			pWeapon = &g_M40a1;
+			break;
+
+		case WEAPON_DEAGLE:
+			pWeapon = &g_Deagle;
+			break;
+
+		case WEAPON_DISPLACER:
+			pWeapon = &g_Displacer;
+			break;
+			
 	}
 
 	// Store pointer to our destination entity_state_t so we can get our origin, etc. from it

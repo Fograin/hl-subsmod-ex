@@ -361,7 +361,7 @@ void CTripmine::Spawn( )
 
 	FallInit();// get ready to fall down
 
-	m_iDefaultAmmo = TRIPMINE_DEFAULT_GIVE;
+	m_iDefaultAmmo = DEFAULT_GIVE_TRIPMINE;
 
 #ifdef CLIENT_DLL
 	if ( !bIsMultiplayer() )
@@ -388,14 +388,14 @@ int CTripmine::GetItemInfo(ItemInfo *p)
 {
 	p->pszName = STRING(pev->classname);
 	p->pszAmmo1 = "Trip Mine";
-	p->iMaxAmmo1 = TRIPMINE_MAX_CARRY;
+	p->iMaxAmmo1 = MAX_CARRY_TRIPMINE;
 	p->pszAmmo2 = NULL;
 	p->iMaxAmmo2 = -1;
 	p->iMaxClip = WEAPON_NOCLIP;
 	p->iSlot = 4;
 	p->iPosition = 2;
 	p->iId = m_iId = WEAPON_TRIPMINE;
-	p->iWeight = TRIPMINE_WEIGHT;
+	p->iWeight = WEIGHT_TRIPMINE;
 	p->iFlags = ITEM_FLAG_LIMITINWORLD | ITEM_FLAG_EXHAUSTIBLE;
 
 	return 1;

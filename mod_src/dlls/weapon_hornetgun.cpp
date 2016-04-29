@@ -47,7 +47,7 @@ void CHgun::Spawn( )
 	m_iId = WEAPON_HORNETGUN;
 	SET_MODEL(ENT(pev), "models/w_hgun.mdl");
 
-	m_iDefaultAmmo = HIVEHAND_DEFAULT_GIVE;
+	m_iDefaultAmmo = DEFAULT_GIVE_HIVEHAND;
 	m_iFirePhase = 0;
 
 	FallInit();// get ready to fall down.
@@ -74,7 +74,7 @@ int CHgun::AddToPlayer( CBasePlayer *pPlayer )
 		if ( g_pGameRules->IsMultiplayer() )
 		{
 			// in multiplayer, all hivehands come full. 
-			pPlayer->m_rgAmmo[ PrimaryAmmoIndex() ] = HORNET_MAX_CARRY;
+			pPlayer->m_rgAmmo[ PrimaryAmmoIndex() ] = MAX_CARRY_HORNET;
 		}
 #endif
 
@@ -90,7 +90,7 @@ int CHgun::GetItemInfo(ItemInfo *p)
 {
 	p->pszName = STRING(pev->classname);
 	p->pszAmmo1 = "Hornets";
-	p->iMaxAmmo1 = HORNET_MAX_CARRY;
+	p->iMaxAmmo1 = MAX_CARRY_HORNET;
 	p->pszAmmo2 = NULL;
 	p->iMaxAmmo2 = -1;
 	p->iMaxClip = WEAPON_NOCLIP;
@@ -98,7 +98,7 @@ int CHgun::GetItemInfo(ItemInfo *p)
 	p->iPosition = 3;
 	p->iId = m_iId = WEAPON_HORNETGUN;
 	p->iFlags = ITEM_FLAG_NOAUTOSWITCHEMPTY | ITEM_FLAG_NOAUTORELOAD;
-	p->iWeight = HORNETGUN_WEIGHT;
+	p->iWeight = WEIGHT_HORNETGUN;
 
 	return 1;
 }
@@ -257,10 +257,10 @@ void CHgun::SecondaryAttack( void )
 
 void CHgun::Reload( void )
 {
-	if (m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] >= HORNET_MAX_CARRY)
+	if (m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] >= MAX_CARRY_HORNET)
 		return;
 
-	while (m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] < HORNET_MAX_CARRY && m_flRechargeTime < gpGlobals->time)
+	while (m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] < MAX_CARRY_HORNET && m_flRechargeTime < gpGlobals->time)
 	{
 		m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType]++;
 		m_flRechargeTime += 0.5;

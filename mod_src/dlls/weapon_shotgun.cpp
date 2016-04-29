@@ -44,7 +44,7 @@ void CShotgun::Spawn( )
 	m_iId = WEAPON_SHOTGUN;
 	SET_MODEL(ENT(pev), "models/w_shotgun.mdl");
 
-	m_iDefaultAmmo = SHOTGUN_DEFAULT_GIVE;
+	m_iDefaultAmmo = DEFAULT_GIVE_SHOTGUN;
 
 	FallInit();// get ready to fall
 }
@@ -95,15 +95,15 @@ int CShotgun::GetItemInfo(ItemInfo *p)
 {
 	p->pszName = STRING(pev->classname);
 	p->pszAmmo1 = "buckshot";
-	p->iMaxAmmo1 = BUCKSHOT_MAX_CARRY;
+	p->iMaxAmmo1 = MAX_CARRY_BUCKSHOT;
 	p->pszAmmo2 = NULL;
 	p->iMaxAmmo2 = -1;
-	p->iMaxClip = SHOTGUN_MAX_CLIP;
+	p->iMaxClip = MAX_CLIP_SHOTGUN;
 	p->iSlot = 2;
 	p->iPosition = 1;
 	p->iFlags = 0;
 	p->iId = m_iId = WEAPON_SHOTGUN;
-	p->iWeight = SHOTGUN_WEIGHT;
+	p->iWeight = WEIGHT_SHOTGUN;
 
 	return 1;
 }
@@ -293,7 +293,7 @@ void CShotgun::SecondaryAttack( void )
 
 void CShotgun::Reload( void )
 {
-	if (m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] <= 0 || m_iClip == SHOTGUN_MAX_CLIP)
+	if (m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] <= 0 || m_iClip == MAX_CLIP_SHOTGUN)
 		return;
 
 	// don't reload until recoil is done
@@ -415,7 +415,7 @@ class CShotgunAmmo : public CBasePlayerAmmo
 	}
 	BOOL AddAmmo( CBaseEntity *pOther ) 
 	{ 
-		if (pOther->GiveAmmo( AMMO_BUCKSHOTBOX_GIVE, "buckshot", BUCKSHOT_MAX_CARRY ) != -1)
+		if (pOther->GiveAmmo( AMMO_GIVE_BUCKSHOTBOX, "buckshot", MAX_CARRY_BUCKSHOT ) != -1)
 		{
 			EMIT_SOUND(ENT(pev), CHAN_ITEM, "items/9mmclip1.wav", 1, ATTN_NORM);
 			return TRUE;

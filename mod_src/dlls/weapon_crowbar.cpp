@@ -71,7 +71,7 @@ int CCrowbar::GetItemInfo(ItemInfo *p)
 	p->iSlot = 0;
 	p->iPosition = 0;
 	p->iId = WEAPON_CROWBAR;
-	p->iWeight = CROWBAR_WEIGHT;
+	p->iWeight = WEIGHT_CROWBAR;
 	return 1;
 }
 
@@ -79,12 +79,9 @@ int CCrowbar::GetItemInfo(ItemInfo *p)
 BOOL CCrowbar::Deploy( )
 {
 	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
-		pev->body = 1;
+		return DefaultDeploy( "models/v_crowbar_bs.mdl", "models/p_crowbar.mdl", CROWBAR_DRAW, "crowbar" );
 	else if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
-		pev->body = 2;
-	else
-		pev->body = 0;
-
+		return DefaultDeploy( "models/v_crowbar_of.mdl", "models/p_crowbar.mdl", CROWBAR_DRAW, "crowbar" );
 
 	return DefaultDeploy( "models/v_crowbar.mdl", "models/p_crowbar.mdl", CROWBAR_DRAW, "crowbar" );
 }
@@ -147,6 +144,7 @@ int CCrowbar::Swing( int fFirst )
 	}
 #endif
 
+	// Fograin92: Disabled :P
 	//PLAYBACK_EVENT_FULL( FEV_NOTHOST, m_pPlayer->edict(), m_usCrowbar, 0.0, (float *)&g_vecZero, (float *)&g_vecZero, 0, 0, 0, 0.0, 0, 0.0 );
 
 
