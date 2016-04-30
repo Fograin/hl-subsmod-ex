@@ -156,13 +156,10 @@ protected:
 	Panel			*pPanelMainMenu;
 
 	// Main menu buttons
-	CommandButton	*pBtn_Console;
-	CommandButton	*pBtn_NewGame;
-	CommandButton	*pBtn_LoadGame;
-	CommandButton	*pBtn_SaveGame;
-	CommandButton	*pBtn_Options;
-	CommandButton	*pBtn_Extras;
-	CommandButton	*pBtn_Quit;
+	CommandButton	*pBtn_GameSet;		// Game settings button
+	CommandButton	*pBtn_NewGame;		// Story mode button
+	CommandButton	*pBtn_Arcade;		// Arcade mode button
+	CommandButton	*pBtn_Quit;			// Quit button
 
 	// Main menu "fade-like" background
 	Panel			*pPanelMainMenuFade;

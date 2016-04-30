@@ -119,7 +119,7 @@ public:
 	void SetAirValue(float fAirVal);					// Mutator <- Send new air value
 
 	// Shared vars
-	bool bHaveHEV;		// Do we have HEV/PCV equiped?
+	bool bHaveHEV;		// Do we have HEV/PCV/Armor equiped?
 
 protected:
 

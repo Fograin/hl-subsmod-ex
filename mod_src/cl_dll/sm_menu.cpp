@@ -20,16 +20,17 @@ enum sm_mainmenu_e
 {
 	ID_MENU = 0,		// New main menu ID
 
-	ID_LABEL_GAMETITLE,
-	ID_PANEL_MAINMENU,
-	ID_BTN_CONSOLE,
-	ID_BTN_NEWGAME,
-	ID_BTN_LOADGAME,
-	ID_BTN_SAVEGAME,
-	ID_BTN_OPTIONS,
-	ID_BTN_EXTRAS,
-	ID_BTN_QUIT,
+	ID_LABEL_GAMETITLE,	// Top text
 
+	// Main menu panel
+	ID_PANEL_MAINMENU,
+	//ID_BTN_CONSOLE,	// Developer console button
+	ID_BTN_NEWGAME,	// Story mode
+	ID_BTN_GAMESET,	// Game settings
+	ID_BTN_ARCADE,	// Arcade mode
+	ID_BTN_QUIT,	// Quit - Return to engine main menu
+
+	// Story mode -> new game
 	ID_PANEL_NEWGAME,
 	ID_BTN_NEWGAME_CLOSE,
 	ID_BTN_NEWGAME_NEXT,
@@ -190,6 +191,11 @@ int CMainMenuNew::ShouldDrawMenu()
 		// Fograin92: If yes, we force draw our main menu
 		this->bDrawMenu = true;
 	}
+	else
+	{
+		// Fograin92: Any other map is loaded, let's close the chapter selection menu
+		this->bDrawMenu = false;
+	}
 
 
 	// Fograin92: Check if we should draw our menu
@@ -262,6 +268,7 @@ int CMainMenuNew::HandleKeyboardInput(int iKey)
 	}
 
 	// ELSE, main menu is not visable, check if we should draw it
+	/*
 	else
 	{
 		if( iKey == K_ESCAPE )
@@ -271,6 +278,7 @@ int CMainMenuNew::HandleKeyboardInput(int iKey)
 			return K_ESCAPE;
 		}
 	}
+	*/
 
 	// Fograin92: The passed key wasn't handled, return 0
 	return 0;
@@ -539,10 +547,8 @@ int CMainMenuNew::HandleMainMenuInput(int iBTN)
 	{
 		// Default open panel sound
 		case ID_BTN_NEWGAME:
-		case ID_BTN_LOADGAME:
-		case ID_BTN_SAVEGAME:
-		case ID_BTN_OPTIONS:
-		case ID_BTN_EXTRAS:
+		case ID_BTN_GAMESET:
+		case ID_BTN_ARCADE:
 			gSoundEngine.PlaySound("common/launch_select2.wav", g_vecZero, SND_2D, 0, SM_VOLUME_HEV);
 		break;
 
@@ -557,11 +563,18 @@ int CMainMenuNew::HandleMainMenuInput(int iBTN)
 	switch( iBTN )
 	{
 		// Main menu buttons
+		/*
 		case ID_BTN_CONSOLE:
 			gEngfuncs.Con_Printf( "^3-> BTN_CONSOLE\n");
 			ClientCmd("toggleconsole\n");
 		break;
+		*/
 
+		// Game settings
+		// TODO
+
+
+		// Story mode
 		case ID_BTN_NEWGAME:
 		{
 			pPanelMainMenuFade->setVisible(true);
@@ -570,6 +583,7 @@ int CMainMenuNew::HandleMainMenuInput(int iBTN)
 		}
 		break;
 
+		// Quit
 		case ID_BTN_QUIT:
 			ClientCmd("quit\n");
 		break;
@@ -660,7 +674,7 @@ CMainMenuNew::CMainMenuNew() : Panel( 0, 0, XRES(640), YRES(480) )
 	// Set main menu variables to initial values
 	ResetVars(true);
 	this->setBgColor(0, 0, 0, 50);
-	this->setPaintBackgroundEnabled(true);
+	this->setPaintBackgroundEnabled(false);
 
 	//m_LocalPlayer = gEngfuncs.GetLocalPlayer();	// Get the local player's index
 
@@ -670,7 +684,7 @@ CMainMenuNew::CMainMenuNew() : Panel( 0, 0, XRES(640), YRES(480) )
 	pFontText	= pSchemes->getFont( pSchemes->getSchemeHandle( "MAINMENU_Normal", true, true) );	// Get font for VGUI Text
 
 
-	// Game title
+	// Top text
 	pLabelGameTitle = new Label("");
 	pLabelGameTitle->setFont( pFont );
 	pLabelGameTitle->setParent( this );
@@ -681,68 +695,41 @@ CMainMenuNew::CMainMenuNew() : Panel( 0, 0, XRES(640), YRES(480) )
 
 
 	// Main menu buttons panel
-	pPanelMainMenu = new Panel( MenuAdjustPosition(ID_PANEL_MAINMENU, false), MenuAdjustPosition(ID_PANEL_MAINMENU, true), 240, 300);
+	pPanelMainMenu = new Panel( MenuAdjustPosition(ID_PANEL_MAINMENU, false), MenuAdjustPosition(ID_PANEL_MAINMENU, true), 300, 400);
 	pPanelMainMenu->setParent(this);
 	pPanelMainMenu->setBgColor(0, 0, 0, 100);
-	pPanelMainMenu->setPaintBackgroundEnabled(false);
+	pPanelMainMenu->setPaintBackgroundEnabled(true);
 
 
-	// Main menu -> Console
-	pBtn_Console = new CommandButton( "1", 0, 0, 240, 40);
-	pBtn_Console->setFont( pFontText );
-	pBtn_Console->setContentAlignment(vgui::Label::a_west);
-    pBtn_Console->setParent( pPanelMainMenu );
-	pBtn_Console->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_CONSOLE" )) );
-	pBtn_Console->setPaintBackgroundEnabled(false);
-    pBtn_Console->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_CONSOLE, this) );
+	// Main menu -> Game settings button
+	pBtn_GameSet = new CommandButton( "1", 0, 0, 280, 40);
+	pBtn_GameSet->setFont( pFontText );
+	pBtn_GameSet->setContentAlignment(vgui::Label::a_west);
+    pBtn_GameSet->setParent( pPanelMainMenu );
+	pBtn_GameSet->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_GAMESET" )) );
+	pBtn_GameSet->setPaintBackgroundEnabled(false);
+    pBtn_GameSet->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_GAMESET, this) );
 
-	// Main menu -> New Game button
-	pBtn_NewGame = new CommandButton( "2", 0, 40, 240, 40);
+	// Main menu -> Story mode button
+	pBtn_NewGame = new CommandButton( "2", 0, 40, 280, 40);
 	pBtn_NewGame->setFont( pFontText );
 	pBtn_NewGame->setContentAlignment(vgui::Label::a_west);
     pBtn_NewGame->setParent( pPanelMainMenu );
-	pBtn_NewGame->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_NEWGAME" )) );
+	pBtn_NewGame->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_STORYMODE" )) );
 	pBtn_NewGame->setPaintBackgroundEnabled(false);
     pBtn_NewGame->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_NEWGAME, this) );
 
-	// Main menu -> Load game button
-	pBtn_LoadGame = new CommandButton( "3", 0, 80, 240, 40);
-	pBtn_LoadGame->setFont( pFontText );
-	pBtn_LoadGame->setContentAlignment(vgui::Label::a_west);
-    pBtn_LoadGame->setParent( pPanelMainMenu );
-	pBtn_LoadGame->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_LOADGAME" )) );
-	pBtn_LoadGame->setPaintBackgroundEnabled(false);
-    pBtn_LoadGame->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_LOADGAME, this) );
-
-	// Main menu -> Load game button
-	pBtn_SaveGame = new CommandButton( "4", 0, 120, 240, 40);
-	pBtn_SaveGame->setFont( pFontText );
-	pBtn_SaveGame->setContentAlignment(vgui::Label::a_west);
-    pBtn_SaveGame->setParent( pPanelMainMenu );
-	pBtn_SaveGame->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_SAVEGAME" )) );
-	pBtn_SaveGame->setPaintBackgroundEnabled(false);
-    pBtn_SaveGame->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_SAVEGAME, this) );
-
-	// Main menu -> Options button
-	pBtn_Options = new CommandButton( "5", 0, 160, 240, 40);
-	pBtn_Options->setFont( pFontText );
-	pBtn_Options->setContentAlignment(vgui::Label::a_west);
-    pBtn_Options->setParent( pPanelMainMenu );
-	pBtn_Options->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_OPTIONS" )) );
-	pBtn_Options->setPaintBackgroundEnabled(false);
-    pBtn_Options->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_OPTIONS, this) );
-
-	// Main menu -> Extras button
-	pBtn_Extras = new CommandButton( "6", 0, 200, 240, 40);
-	pBtn_Extras->setFont( pFontText );
-	pBtn_Extras->setContentAlignment(vgui::Label::a_west);
-    pBtn_Extras->setParent( pPanelMainMenu );
-	pBtn_Extras->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_EXTRAS" )) );
-	pBtn_Extras->setPaintBackgroundEnabled(false);
-    pBtn_Extras->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_EXTRAS, this) );
+	// Main menu -> Arcade mode button
+	pBtn_Arcade = new CommandButton( "3", 0, 80, 280, 40);
+	pBtn_Arcade->setFont( pFontText );
+	pBtn_Arcade->setContentAlignment(vgui::Label::a_west);
+    pBtn_Arcade->setParent( pPanelMainMenu );
+	pBtn_Arcade->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_ARCADE" )) );
+	pBtn_Arcade->setPaintBackgroundEnabled(false);
+    pBtn_Arcade->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_ARCADE, this) );
 
 	// Main menu -> Quit button
-	pBtn_Quit = new CommandButton( "7", 0, 240, 240, 40);
+	pBtn_Quit = new CommandButton( "4", 0, 120, 280, 40);
 	pBtn_Quit->setFont( pFontText );
 	pBtn_Quit->setContentAlignment(vgui::Label::a_west);
     pBtn_Quit->setParent( pPanelMainMenu );
@@ -765,37 +752,37 @@ CMainMenuNew::CMainMenuNew() : Panel( 0, 0, XRES(640), YRES(480) )
 	pPanelNewGame->setPaintBackgroundEnabled(false);
 	pPanelNewGame->setVisible(false);
 	
-	// New game -> background IMG 01
+	// New game -> background HL IMG 01
 	pIMGmm_HL01 = new MenuImageHolder("gfx/vgui/mm_newHL01.tga", pPanelNewGame);
 	pIMGmm_HL01->setPos( 0, 0 );
 	pIMGmm_HL01->setVisible(false);
 
-	// New game -> background IMG 02
+	// New game -> background HL IMG 02
 	pIMGmm_HL02 = new MenuImageHolder("gfx/vgui/mm_newHL02.tga", pPanelNewGame);
 	pIMGmm_HL02->setPos( 0, 0 );
 	pIMGmm_HL02->setVisible(false);
 
-	// New game -> background IMG 03
+	// New game -> background HL IMG 03
 	pIMGmm_HL03 = new MenuImageHolder("gfx/vgui/mm_newHL03.tga", pPanelNewGame);
 	pIMGmm_HL03->setPos( 0, 0 );
 	pIMGmm_HL03->setVisible(false);
 
-	// New game -> background IMG 04
+	// New game -> background HL IMG 04
 	pIMGmm_HL04 = new MenuImageHolder("gfx/vgui/mm_newHL04.tga", pPanelNewGame);
 	pIMGmm_HL04->setPos( 0, 0 );
 	pIMGmm_HL04->setVisible(false);
 
-	// New game -> background IMG 05
+	// New game -> background HL IMG 05
 	pIMGmm_HL05 = new MenuImageHolder("gfx/vgui/mm_newHL05.tga", pPanelNewGame);
 	pIMGmm_HL05->setPos( 0, 0 );
 	pIMGmm_HL05->setVisible(false);
 
-	// New game -> background IMG 06
+	// New game -> background HL IMG 06
 	pIMGmm_HL06 = new MenuImageHolder("gfx/vgui/mm_newHL06.tga", pPanelNewGame);
 	pIMGmm_HL06->setPos( 0, 0 );
 	pIMGmm_HL06->setVisible(false);
 
-	// New game -> background IMG 07
+	// New game -> background HL IMG 07
 	pIMGmm_HL07 = new MenuImageHolder("gfx/vgui/mm_newHL07.tga", pPanelNewGame);
 	pIMGmm_HL07->setPos( 0, 0 );
 	pIMGmm_HL07->setVisible(false);
@@ -866,19 +853,10 @@ CMainMenuNew::CMainMenuNew() : Panel( 0, 0, XRES(640), YRES(480) )
     pBtn_newgame_prev->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_NEWGAME_PREV, this) );
 	pBtn_newgame_prev->setVisible(false);
 
-	/*
-	CommandButton	*pBtn_newgame_prev;
-	*/
-	// New Game label
-	//pLabelNewGame = new Label("");
-	//pLabelNewGame->setFont( pFont );
-	//pLabelNewGame->setParent( pPanelNewGame );
-	//pLabelNewGame->setPaintBackgroundEnabled(false);
-	//pLabelNewGame->setPos( 10, 10 );
-	//pLabelNewGame->setText( SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#MAINMENU_BTN_NEWGAME" ) ) );
-	//pLabelNewGame->setFgColor( 255, 255, 255, 0 );
 
-	
+	// TODO: Panels for expansions
+	// TODO: Arcade mode panel
+
 
 	UpdateMainMenu();
 }
@@ -910,11 +888,9 @@ CMainMenuNew::~CMainMenuNew()
 	if(pPanelMainMenuFade)	delete pPanelMainMenuFade;
 
 	if(pBtn_Quit)			delete pBtn_Quit;
-	if(pBtn_Extras)			delete pBtn_Extras;
-	if(pBtn_Options)		delete pBtn_Options;
-	if(pBtn_LoadGame)		delete pBtn_LoadGame;
+	if(pBtn_Arcade)			delete pBtn_Arcade;
 	if(pBtn_NewGame)		delete pBtn_NewGame;
-	if(pBtn_Console)		delete pBtn_Console;
+	if(pBtn_GameSet)		delete pBtn_GameSet;
 
 	if(pPanelMainMenu)		delete pPanelMainMenu;
 	if(pLabelGameTitle)		delete pLabelGameTitle;

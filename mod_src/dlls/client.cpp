@@ -806,6 +806,9 @@ void ClientPrecache( void )
 	PRECACHE_SOUND("debris/glass3.wav");
 
 	PRECACHE_SOUND("common/bodysplat.wav");		// Player gib sounds
+	PRECACHE_SOUND("fvox/hev_logon.wav");		// Fograin92: HEV Logon sound
+	PRECACHE_SOUND("fvox/bell.wav");			// Fograin92: HEV pickup bell
+	PRECACHE_SOUND("player/pcv_vest.wav");		// Fograin92: OF PCV pickup sound
 
 
 //======= PRECACHE MODELS =======//

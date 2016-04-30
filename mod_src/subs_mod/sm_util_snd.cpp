@@ -174,6 +174,8 @@ float SM_Hook_Shared_PM_PlaySound( const char * const pString, const int sndChan
 			sprintf(szFootStepName, "player/pl_tile4_of.wav");
 		else if( strncmp( pString, "player/pl_tile5", 15 ) == 0 )
 			sprintf(szFootStepName, "player/pl_tile5_of.wav");
+		else
+			sprintf(szFootStepName, "%s", pString);
 	}
 	else
 		sprintf(szFootStepName, "%s", pString);
@@ -322,7 +324,70 @@ void SM_Hook_Server_EMIT_SOUND_DYN2( edict_t * const entity, const char * const 
 void SM_Hook_Server_EMIT_AMBIENT_SOUND( edict_t * const entity, const char * const pString, const float * const vecOrigin, const float sndVolume, const float sndAttenuation, const int sndFlags, const int sndPitch )
 {
 	// Fograin92: Hook new audio system (Channel 6 for static sound)
-	EXEmitSound(entity, 6, pString, sndVolume, sndAttenuation, sndFlags, sndPitch);
+	//EXEmitSound(entity, 6, pString, sndVolume, sndAttenuation, sndFlags, sndPitch);
+
+
+	// Fograin92: Pass sound dir, name or sentence ID to the new sound engine
+	if( pString[0] == '!' )
+	{
+		char name[32];
+		int iSentenceNum = SENTENCEG_Lookup(pString, name);
+
+		// Fograin92: Check if this is HEV sentence
+		if( strncmp( pString, "!HEV", 4 ) == 0 )
+		{
+			// Fograin92: Adjust volume using HEV Suit volume
+			EXEmitSound(entity, 6, name, sndVolume*SM_VOLUME_HEV, sndAttenuation, sndFlags, sndPitch);
+		}
+
+		// Fograin92: Check if this is random world (ambient) sentence OR creature sentence (e.g. SLV_IDLE)
+		else if( 
+			(strncmp( pString, "!WILD", 5 ) == 0)
+			|| (strncmp( pString, "!ROCKET", 7 ) == 0)
+			|| (strncmp( pString, "!FAR_WAR", 8 ) == 0)
+			|| (strncmp( pString, "!NEAR_WAR", 9 ) == 0)
+			|| (strncmp( pString, "!SLV_", 5 ) == 0)
+			|| (strncmp( pString, "!ST_", 4 ) == 0) )
+		{
+			// Fograin92: All world-ambient sentences AND creature voices are controlled by SFX Volume
+			EXEmitSound(entity, 6, name, sndVolume*SM_VOLUME_SFX, sndAttenuation, sndFlags, sndPitch);
+		}
+
+		else
+		{
+			// Fograin92: It's a spoken (NPC) sentence, pass sentenceID and adjust volume with Voice Volume CVAR
+			EXEmitSound(entity, 6, name, sndVolume*SM_VOLUME_VOICE, sndAttenuation, sndFlags, sndPitch);
+		}
+	} // End if( pString[0] == '!' )
+
+
+	// Fograin92: Check if this is non-sentenced voice emit
+	else if( 
+			(strncmp( pString, "barney/", 7 ) == 0)
+			|| (strncmp( pString, "drill/", 6 ) == 0)
+			|| (strncmp( pString, "rosenberg/", 10 ) == 0)
+			|| (strncmp( pString, "scientist/", 10 ) == 0)
+			|| (strncmp( pString, "gman/", 5 ) == 0)
+			|| (strncmp( pString, "hgrunt/", 7 ) == 0)
+			|| (strncmp( pString, "holo/", 5 ) == 0)
+			|| (strncmp( pString, "ba_holo/", 8 ) == 0)
+			|| (strncmp( pString, "otis/", 5 ) == 0)
+			|| (strncmp( pString, "fgrunt/", 7 ) == 0)
+			|| (strncmp( pString, "intro/", 6 ) == 0)
+			|| (strncmp( pString, "ops/", 4 ) == 0)
+			)
+	{
+		EXEmitSound(entity, 6, pString, sndVolume*SM_VOLUME_VOICE, sndAttenuation, sndFlags, sndPitch);
+	}
+
+
+	// Fograin92: SFX voice
+	else
+	{
+		// Fograin92: It's non-sentenced sound, pass dir + name
+		EXEmitSound(entity, 6, pString, sndVolume*SM_VOLUME_SFX, sndAttenuation, sndFlags, sndPitch);
+	}
+
 
     SM_PlaySound_Hook_SENDFUNC__FIXME_(ENTINDEX(entity), pString, vecOrigin, CHAN_AUTO, sndVolume, sndAttenuation, sndFlags, sndPitch);
 }

@@ -614,10 +614,8 @@ void CSoundEngine::SetupSounds( void )
 			_FMOD_Channel_Set3DAttributes(pSound->pChannel, &vPos, NULL);
 		}
 
-		// Fograin92: temporary disabled
 		else if(pSound->pEdict)
 		{
-			
 			edict_t *pEdict = pSound->pEdict;
 			if(pEdict->free)
 				continue;
@@ -1054,11 +1052,18 @@ void CSoundEngine::PlaySound( const char *szFile, vec3_t vOrigin, int iFlags, in
 	if(pSentence && (iFlags & SND_SENTENCE))
 	{
 		pSound->iPitch = pSentence->pOptions[0].iPitch;
-		pSound->flVolume = (float)pSentence->pOptions[0].iVolume / 100;
 
-		// Fograin92: Adjust volume of sentence 
-		pSound->flVolume = pSound->flVolume * fVolume;
-		//gEngfuncs.Con_Printf("Volume %f\n", pSound->flVolume);
+		// Fograin92: Set correct volume of first sound
+		pSound->flVolume = fVolume;
+		//pSound->flVolume = (float)pSentence->pOptions[0].iVolume / 100;
+
+		// Fograin92: Match volume for other sentence chunks
+		for( int i=0; i < pSentence->pOptions.size(); i++ )
+		{
+			//gEngfuncs.Con_Printf("^2HLU->Update chunk volume %f\n", fVolume );
+			pSentence->pOptions[i].iVolume = int(fVolume*100);
+		}
+		//gEngfuncs.Con_Printf("^2HLU->Sentence Length %f\n", (float)pSentence->pOptions.size() );
 	}
 	else
 	{
@@ -1077,8 +1082,6 @@ void CSoundEngine::PlaySound( const char *szFile, vec3_t vOrigin, int iFlags, in
 	if(!iEntIndex)
 		pSound->pEdict = 0;
 
-
-	// Fograin92: Temporary disabled
 	if(pSound->pEdict)
 	{
 		vec3_t vRealMins = pSound->pEdict->v.maxs + pSound->pEdict->v.origin;
@@ -1142,6 +1145,7 @@ void CSoundEngine::PlaySound( const char *szFile, vec3_t vOrigin, int iFlags, in
 		pSound->bStereo = true;
 	else
 		pSound->bStereo = false;
+
 
 	if(pSound->pEdict)
 		m_hResult = _FMOD_System_PlaySound(m_pSystem, FMOD_CHANNEL_FREE, pSound->pSound, true, &pSound->pChannel);
@@ -1242,7 +1246,11 @@ void CSoundEngine::PlaySentenceChunk( sound_t *pSound, sentence_t *pSentence, so
 
 	pSound->pCache = pSoundData;
 	pSound->iPitch = pChunk->iPitch;
+
+	// Fograin92: Volume of a sentence chunk
 	pSound->flVolume = (float)pChunk->iVolume / 100;
+	//gEngfuncs.Con_Printf("Chunk volume %f\n", (float)pChunk->iVolume);
+
 
 	memset(&sSoundInfo, 0, sizeof(FMOD_CREATESOUNDEXINFO));
 	sSoundInfo.cbsize = sizeof(FMOD_CREATESOUNDEXINFO);

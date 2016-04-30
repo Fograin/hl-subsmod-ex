@@ -18,6 +18,10 @@
 // lists.
 //=========================================================
 
+#ifndef SOUNDENT_H
+#define SOUNDENT_H
+
+
 #define	MAX_WORLD_SOUNDS	64 // maximum number of sounds handled by the world at one time.
 
 #define bits_SOUND_NONE		0
@@ -93,3 +97,5 @@ public:
 private:
 	CSound		m_SoundPool[ MAX_WORLD_SOUNDS ];
 };
+
+#endif	// SOUNDENT_H

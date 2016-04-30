@@ -352,7 +352,7 @@ void CHudNew::ResetVars(bool bInitOnly)
 	{
 		bHaveHEV = false;
 		bResError = false;
-		bShortLogon = false;
+		bShortLogon = true;	// Fograin92: By default we use short logon
 
 		iHealthSizeX = XRES(125);
 		iHealthSizeY = YRES(25);
@@ -427,13 +427,22 @@ void CHudNew::PickedUpItem( const char *szName )
 {
 	//gEngfuncs.Con_Printf( "^3HLU -> CHudNew -> Picked up: %s\n", szName );
 
-	// If we picked up HEV/PCV
+	// If we picked up HEV/PCV/Armor - Short logon version
 	if( !strcmp( szName, "item_suit" ) )
 	{
+		bShortLogon = true;
 		bHaveHEV = true;
-		// TODO: Check if this is Hazard Course OR Impulse 101
-		//fTimer_Logon = 1;	// Start the HEV LOGON sequence
+		fTimer_Logon = 1;	// Start the HEV LOGON sequence
 	}
+
+	// If we picked up HEV - Full logon version
+	if( !strcmp( szName, "item_suit_long" ) )
+	{
+		bShortLogon = false;
+		bHaveHEV = true;
+		fTimer_Logon = 1;	// Start the HEV LOGON sequence
+	}
+
 
 	UpdateHUD();
 }
@@ -1645,11 +1654,9 @@ void CHudNew::paint()
 		char cStringA[1024] = "";
 		char cStringB[1024] = "";
 
-//////////// DEV
 
-		bool bSkipIntro = true;
-		
-		if( (fTimer_Logon <= 565) && bSkipIntro)
+		// Fograin92: First let's clean the HUD elements, before animation starts
+		if( fTimer_Logon < 2 )
 		{
 			// Hide HUD elements (leave panels, but hide contents)
 			pHealthPanel->setVisible(true);
@@ -1688,14 +1695,15 @@ void CHudNew::paint()
 			pAirLab->setVisible(false);
 
 			iTimerSpeed = HEV_PULSE_SPD;
-			fTimer_Logon = 566;
+			//fTimer_Logon = 566;
+			// TODO: IF Barney armor then skip to the end phase
 			pLogonText->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 0 );
 			pLogonText->setBgColor( 0, 0, 0, 0 );
 		}
-////////////DEV END
-		
 
-//========= HEV LOGON PHASE 1 START =========//
+
+
+//========= HEV/PCV LOGON PHASE 1 START =========//
 		if( fTimer_Logon <= 565 )
 		{
 			pLogonText->setVisible(true);
@@ -1707,45 +1715,14 @@ void CHudNew::paint()
 				// Play HEV INIT/BELL SOUND
 				if( !bSoundPlaying )
 				{
-					gEngfuncs.pfnPlaySoundByName( "fvox/bell.wav", CVAR_GET_FLOAT("sm_snd_hev") );
+					// Fograin92: If it's opposing force
+					if (CVAR_GET_FLOAT("sm_hud") == 2.0 )
+						gSoundEngine.PlaySound("player/pcv_vest.wav", g_vecZero, SND_2D, 0, SM_VOLUME_HEV);
+					else
+						gSoundEngine.PlaySound("fvox/bell.wav", g_vecZero, SND_2D, 0, SM_VOLUME_HEV);
+					
 					bSoundPlaying = true;
 				}
-
-				// Hide HUD elements (leave panels, but hide contents)
-				pHealthPanel->setVisible(true);
-				pHealthIcon->setVisible(false);
-				pHealthLab->setVisible(false);
-				pArmorIconHL->setVisible(false);
-				pArmorIconHLc->setVisible(false);
-				pArmorLab->setVisible(false);
-
-				pAmmoPanel->setVisible(true);
-				pPrimaryAmmoLab->setVisible(false);
-				pSecondaryAmmoPanel->setVisible(true);
-				pSecondaryAmmoLab->setVisible(false);
-
-				pIconAmmo9mm->setVisible(false);
-				pIconAmmoGlock->setVisible(false);
-				pIconAmmo357->setVisible(false);			
-				pIconAmmoAR->setVisible(false);			
-				pIconAmmoBuckshot->setVisible(false);		
-				pIconAmmoArrow->setVisible(false);	
-				pIconAmmoRocket->setVisible(false);		
-				pIconAmmoUranium->setVisible(false);		
-				pIconAmmoBee->setVisible(false);			
-				pIconAmmoGrenade->setVisible(false);
-				pIconAmmoSatchel->setVisible(false);
-				pIconAmmoTripmine->setVisible(false);
-				pIconAmmoSnark->setVisible(false);
-
-				pPainTopDirIcon->setVisible(false);
-				pPainBottomDirIcon->setVisible(false);
-				pPainLeftDirIcon->setVisible(false);
-				pPainRightDirIcon->setVisible(false);
-
-				pAirPanel->setVisible(true);
-				pAirIcon->setVisible(false);
-				pAirLab->setVisible(false);
 
 				// Set new timer speed
 				iTimerSpeed = HEV_PULSE_SPD;
@@ -1794,8 +1771,19 @@ void CHudNew::paint()
 				}
 			}
 
+			// Fograin92: Check if it's HEV or PCV
+			if (CVAR_GET_FLOAT("sm_hud") == 2.0 )
+			{
+				// Fograin92: It's Opposing Force, let's play PCV startup
+				sprintf( cStringB, "%s", SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#PCV_LOGON_01" ) ) );
+			}
+			else
+			{
+				// Fograin92: It's NOT Opposing Force, play default HEV startup
+				sprintf( cStringB, "%s", SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#HEV_LOGON_01" ) ) );
+			}
+
 			// Load text from HEV_LOGON_01 (PHASE 1)
-			sprintf( cStringB, "%s", SUBST_EOFS_IN_MEMORY( CHudTextMessage::BufferedLocaliseTextString( "#HEV_LOGON_01" ) ) );
 			strncpy( cStringA, cStringB, iScanNum );
 
 			// Let's use simple modulo here to create pulsing "_" sign
@@ -1807,8 +1795,17 @@ void CHudNew::paint()
 //========= HEV LOGON PHASE 1 END =========//
 
 
+		// Fograin92: Check if it's a short logon or full logon
+		if( (fTimer_Logon > 565) && bShortLogon )
+		{
+			// Fograin92: It's a HEV short logon or PCV pickup, skip to cleanup phase
+			fTimer_Logon = 0;
+		}
+
+
 
 //========= HEV LOGON PHASE 2 START =========//
+		// Fograin92: This phase is executed when it's a full logon
 		else if( (fTimer_Logon > 565) && (fTimer_Logon <= 4000) )
 		{
 			// Clear text and play HEV LOGON sound
@@ -1847,12 +1844,8 @@ void CHudNew::paint()
 				if( iAlpha > 255 )
 					iAlpha = 255;
 
-				pLogonText->setVisible(false);	// true
-				pLogonText->setText( "hev_logon -> %d ; %d\n", iAlpha, (int)fTimer_Logon);	// DEBUG
 				pImgLogon01->setVisible(true);
 				//pImgLogon01->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], iAlpha) );
-
-				//TODO: ADD HEV TGA IMAGE
 			}
 			
 			// powerarmor_on.wav - part
@@ -2378,9 +2371,35 @@ void CHudNew::paint()
 //========= HEV LOGON PHASE 2 END =========//
 
 
+		// Fograin92: Check if we did disable timer (aka. short logon)
+		if( fTimer_Logon < 1 )
+		{
+			// Fograin92: Clean logon text
+			pLogonText->setText("");
+			pLogonText->setVisible(false);
 
-		// Icrement timer and let the magic of animation happen
-		fTimer_Logon += (gHUD.m_flTimeDelta * iTimerSpeed);
+			// Fograin92: Display health icon and HP level
+			pHealthIcon->setVisible(true);
+			pHealthLab->setVisible(true);
+
+			// Fograin92: Display armor icons and power level
+			pArmorIconHL->setVisible(true);
+			pArmorIconHLc->setVisible(true);
+			pArmorLab->setVisible(true);
+
+			// Fograin92: Clean ammo panels
+			pAmmoPanel->setVisible(false);
+			pPrimaryAmmoLab->setVisible(true);
+			pSecondaryAmmoPanel->setVisible(false);
+			pSecondaryAmmoLab->setVisible(true);
+			pIconAmmoAR->setVisible(true);
+		}
+		else
+		{
+			// Fograin92: The animation is still going, icrement timer and let the magic of animation happen
+			fTimer_Logon += (gHUD.m_flTimeDelta * iTimerSpeed);
+		}
+
 
 	}
 	// ELSE -> fTimer_Logon == 0 or less, disable animation
