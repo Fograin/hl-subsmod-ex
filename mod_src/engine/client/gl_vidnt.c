@@ -112,6 +112,7 @@ typedef struct vidmode_s
 	qboolean		wideScreen;
 } vidmode_t;
 
+/*
 vidmode_t vidmode[] =
 {
 { "Mode  0: 4x3",	640,	480,	false	},
@@ -139,6 +140,21 @@ vidmode_t vidmode[] =
 { "Mode 22: 16x9",	2560,	1600,	true	},
 { "Mode 23: 16x9",	1600,	 900,	true	},
 };
+*/
+
+vidmode_t vidmode[] =
+{
+{ "Mode 1: 16x9",	1280,	720,	true	},
+{ "Mode 2: 16x10",	1280,	800,	true	},
+{ "Mode 3: 16x9",	1360,	768,	true	},
+{ "Mode 4: 16x9",	1366,	768,	true	},
+{ "Mode 5: 16x10",	1440,	900,	true	},
+{ "Mode 6: 16x9",	1600,	 900,	true	},
+{ "Mode 7: 16x10",	1680,	1050,	true	},
+{ "Mode 8: 16x9",	1920,	1080,	true	},
+};
+
+
 
 static dllfunc_t opengl_110funcs[] =
 {

@@ -104,7 +104,7 @@ DWORD WINAPI WatchThread( LPVOID lpParam )
 					// Fograin92: No active window detected
 					if(!g_hWnd)
 					{
-						MessageBox(NULL, "Can't find any window lol", "Sound engine error!", MB_OK | MB_SETFOREGROUND | MB_ICONERROR);
+						MessageBox(NULL, "Game restart required.", "WARNING!", MB_OK | MB_SETFOREGROUND | MB_ICONERROR);
 						return 0;
 					}
 				}

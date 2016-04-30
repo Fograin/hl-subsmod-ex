@@ -37,6 +37,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #define MAX_VIDMODES	(sizeof( uiVideoModes ) / sizeof( uiVideoModes[0] )) + 1
 
+/*
 static const char *uiVideoModes[] =
 {
 	"640 x 480",
@@ -64,6 +65,21 @@ static const char *uiVideoModes[] =
 	"2560 x 1600 (wide)",
 	"1600 x 900 (wide)",
 };
+*/
+
+// Fograin92: Changed display modes
+static const char *uiVideoModes[] =
+{
+	"1280 x 720 (16:9)",
+	"1280 x 800 (16:10)",
+	"1360 x 768 (16:9)",
+	"1366 x 768 (16:9)",
+	"1440 x 900 (16:10)",
+	"1600 x 900 (16:9)",
+	"1680 x 1050 (16:10)",
+	"1920 x 1080 (16:9)",
+};
+
 
 typedef struct
 {

@@ -49,9 +49,8 @@ const int iAdjustmentArray[][5] =
 	//--OBJECT ID-------ResX----ResY---AdjX---AdjY
 
 	// Health+Armor panel adjustments
-	{ ID_HA_PANEL,	1024,	576,	5,		540	},
-	{ ID_HA_PANEL,	1024,	600,	5,		565	},
 	{ ID_HA_PANEL,	1280,	720,	5,		680	},
+	{ ID_HA_PANEL,	1280,	800,	5,		760	},
 	{ ID_HA_PANEL,	1360,	768,	5,		730	},
 	{ ID_HA_PANEL,	1366,	768,	5,		730	},
 	{ ID_HA_PANEL,	1440,	900,	5,		860	},
@@ -60,9 +59,8 @@ const int iAdjustmentArray[][5] =
 	{ ID_HA_PANEL,	1920,	1080,	5,		1035},
 
 	// Health icon adjustments
-	{ ID_HEALTH_ICON,	1024,	576,	0,		0},
-	{ ID_HEALTH_ICON,	1024,	600,	0,		0},
 	{ ID_HEALTH_ICON,	1280,	720,	0,		5},
+	{ ID_HEALTH_ICON,	1280,	800,	0,		5},
 	{ ID_HEALTH_ICON,	1360,	768,	0,		5},
 	{ ID_HEALTH_ICON,	1366,	768,	0,		5},
 	{ ID_HEALTH_ICON,	1440,	900,	0,		10},
@@ -71,9 +69,8 @@ const int iAdjustmentArray[][5] =
 	{ ID_HEALTH_ICON,	1920,	1080,	0,		10},
 
 	// Health Label adjustments
-	{ ID_HEALTH_LAB,	1024,	576,	30,		0 },
-	{ ID_HEALTH_LAB,	1024,	600,	30,		0 },
 	{ ID_HEALTH_LAB,	1280,	720,	30,		0 },
+	{ ID_HEALTH_LAB,	1280,	800,	30,		0 },
 	{ ID_HEALTH_LAB,	1360,	768,	30,		0 },
 	{ ID_HEALTH_LAB,	1366,	768,	30,		0 },
 	{ ID_HEALTH_LAB,	1440,	900,	30,		0 },
@@ -82,9 +79,8 @@ const int iAdjustmentArray[][5] =
 	{ ID_HEALTH_LAB,	1920,	1080,	30,		0 },
 
 	// Armor icon adjustments
-	{ ID_ARMOR_ICON,	1024,	576,	90,		0 },
-	{ ID_ARMOR_ICON,	1024,	600,	90,		0 },
 	{ ID_ARMOR_ICON,	1280,	720,	100,	5 },
+	{ ID_ARMOR_ICON,	1280,	800,	100,	5 },
 	{ ID_ARMOR_ICON,	1360,	768,	100,	5 },
 	{ ID_ARMOR_ICON,	1366,	768,	100,	5 },
 	{ ID_ARMOR_ICON,	1440,	900,	100,	10 },
@@ -93,9 +89,8 @@ const int iAdjustmentArray[][5] =
 	{ ID_ARMOR_ICON,	1920,	1080,	100,	10 },
 
 	// Armor Label adjustments
-	{ ID_ARMOR_LAB,		1024,	576,	120,	0 },
-	{ ID_ARMOR_LAB,		1024,	600,	120,	0 },
 	{ ID_ARMOR_LAB,		1280,	720,	130,	0 },
+	{ ID_ARMOR_LAB,		1280,	800,	130,	0 },
 	{ ID_ARMOR_LAB,		1360,	768,	130,	0 },
 	{ ID_ARMOR_LAB,		1366,	768,	130,	0 },
 	{ ID_ARMOR_LAB,		1440,	900,	130,	0 },
@@ -104,9 +99,8 @@ const int iAdjustmentArray[][5] =
 	{ ID_ARMOR_LAB,		1920,	1080,	130,	0 },
 
 	// Ammo panel adjustments
-	{ ID_AMMO_PANEL,	1024,	576,	900,	540	},
-	{ ID_AMMO_PANEL,	1024,	600,	900,	565	},
 	{ ID_AMMO_PANEL,	1280,	720,	1120,	680	},
+	{ ID_AMMO_PANEL,	1280,	800,	1120,	760	},
 	{ ID_AMMO_PANEL,	1360,	768,	1200,	730	},
 	{ ID_AMMO_PANEL,	1366,	768,	1200,	730	},
 	{ ID_AMMO_PANEL,	1440,	900,	1280,	860	},
@@ -115,9 +109,8 @@ const int iAdjustmentArray[][5] =
 	{ ID_AMMO_PANEL,	1920,	1080,	1750,	1035},
 
 	// Primary ammo label
-	{ ID_AMMO_PRIMARY_LAB,	1024,	576,	0,		0 },
-	{ ID_AMMO_PRIMARY_LAB,	1024,	600,	0,		0 },
 	{ ID_AMMO_PRIMARY_LAB,	1280,	720,	0,		0 },
+	{ ID_AMMO_PRIMARY_LAB,	1280,	800,	0,		0 },
 	{ ID_AMMO_PRIMARY_LAB,	1360,	768,	0,		0 },
 	{ ID_AMMO_PRIMARY_LAB,	1366,	768,	0,		0 },
 	{ ID_AMMO_PRIMARY_LAB,	1440,	900,	0,		0 },
@@ -126,9 +119,8 @@ const int iAdjustmentArray[][5] =
 	{ ID_AMMO_PRIMARY_LAB,	1920,	1080,	0,		0 },
 
 	// Primary ammo icon
-	{ ID_AMMO_PRIMARY_ICON,	1024,	576,	90,		0},
-	{ ID_AMMO_PRIMARY_ICON,	1024,	600,	90,		0},
 	{ ID_AMMO_PRIMARY_ICON,	1280,	720,	115,	5},
+	{ ID_AMMO_PRIMARY_ICON,	1280,	800,	115,	5},
 	{ ID_AMMO_PRIMARY_ICON,	1360,	768,	115,	5},
 	{ ID_AMMO_PRIMARY_ICON,	1366,	768,	115,	5},
 	{ ID_AMMO_PRIMARY_ICON,	1440,	900,	115,	5},
@@ -137,9 +129,8 @@ const int iAdjustmentArray[][5] =
 	{ ID_AMMO_PRIMARY_ICON,	1920,	1080,	120,	10},
 
 	// Secondary ammo panel adjustments
-	{ ID_AMMO_PANEL2,	1024,	576,	900,	515},
-	{ ID_AMMO_PANEL2,	1024,	600,	900,	535},
 	{ ID_AMMO_PANEL2,	1280,	720,	1120,	650},
+	{ ID_AMMO_PANEL2,	1280,	800,	1120,	730},
 	{ ID_AMMO_PANEL2,	1360,	768,	1200,	700},
 	{ ID_AMMO_PANEL2,	1366,	768,	1200,	700},
 	{ ID_AMMO_PANEL2,	1440,	900,	1280,	830},
@@ -148,9 +139,8 @@ const int iAdjustmentArray[][5] =
 	{ ID_AMMO_PANEL2,	1920,	1080,	1750,	1000},
 
 	// Secondary ammo label
-	{ ID_AMMO_SECONDARY_LAB,	1024,	576,	55,		0},
-	{ ID_AMMO_SECONDARY_LAB,	1024,	600,	55,		0},
 	{ ID_AMMO_SECONDARY_LAB,	1280,	720,	70,		0},
+	{ ID_AMMO_SECONDARY_LAB,	1280,	800,	70,		0},
 	{ ID_AMMO_SECONDARY_LAB,	1360,	768,	70,		0},
 	{ ID_AMMO_SECONDARY_LAB,	1366,	768,	70,		0},
 	{ ID_AMMO_SECONDARY_LAB,	1440,	900,	70,		0},
@@ -159,9 +149,8 @@ const int iAdjustmentArray[][5] =
 	{ ID_AMMO_SECONDARY_LAB,	1920,	1080,	80,		0},
 
 	// Atmospheric contaminant sensors panel
-	{ ID_DMG_PANEL,		1024,	576,	0,		475},
-	{ ID_DMG_PANEL,		1024,	600,	0,		500},
 	{ ID_DMG_PANEL,		1280,	720,	0,		620},
+	{ ID_DMG_PANEL,		1280,	800,	0,		700},
 	{ ID_DMG_PANEL,		1360,	768,	0,		670},
 	{ ID_DMG_PANEL,		1366,	768,	0,		670},
 	{ ID_DMG_PANEL,		1440,	900,	0,		800},
@@ -170,14 +159,13 @@ const int iAdjustmentArray[][5] =
 	{ ID_DMG_PANEL,		1920,	1080,	0,		980},
 
 	// Air Counter panel
-	{ ID_AIR_PANEL,		1024,	576,	5,		540	},
-	{ ID_AIR_PANEL,		1024,	600,	5,		565	},
-	{ ID_AIR_PANEL,		1280,	720,	5,		680	},
-	{ ID_AIR_PANEL,		1360,	768,	5,		730	},
-	{ ID_AIR_PANEL,		1366,	768,	5,		730	},
-	{ ID_AIR_PANEL,		1440,	900,	5,		860	},
-	{ ID_AIR_PANEL,		1600,	900,	5,		860	},
-	{ ID_AIR_PANEL,		1680,	1050,	5,		1005},
+	{ ID_AIR_PANEL,		1280,	720,	5,		560},
+	{ ID_AIR_PANEL,		1280,	800,	5,		580},
+	{ ID_AIR_PANEL,		1360,	768,	5,		600},
+	{ ID_AIR_PANEL,		1366,	768,	5,		600},
+	{ ID_AIR_PANEL,		1440,	900,	5,		760},
+	{ ID_AIR_PANEL,		1600,	900,	5,		760},
+	{ ID_AIR_PANEL,		1680,	1050,	5,		880},
 	{ ID_AIR_PANEL,		1920,	1080,	5,		920}
 };
 

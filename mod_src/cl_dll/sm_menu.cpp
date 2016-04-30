@@ -51,29 +51,32 @@ enum sm_mainmenu_e
 const int iMenuAdjustmentArray[][5] =
 {
 	//--OBJECT ID-------ResX----ResY---AdjX---AdjY
-	{ ID_LABEL_GAMETITLE,	1280,	720,	5,		680	},
-	{ ID_LABEL_GAMETITLE,	1360,	768,	5,		730	},
-	{ ID_LABEL_GAMETITLE,	1366,	768,	5,		730	},
-	{ ID_LABEL_GAMETITLE,	1440,	900,	5,		860	},
-	{ ID_LABEL_GAMETITLE,	1600,	900,	5,		860	},
-	{ ID_LABEL_GAMETITLE,	1680,	1050,	5,		1005},
+	{ ID_LABEL_GAMETITLE,	1280,	720,	5,		240},
+	{ ID_LABEL_GAMETITLE,	1280,	800,	5,		240},
+	{ ID_LABEL_GAMETITLE,	1360,	768,	5,		320},
+	{ ID_LABEL_GAMETITLE,	1366,	768,	5,		320},
+	{ ID_LABEL_GAMETITLE,	1440,	900,	25,		360},
+	{ ID_LABEL_GAMETITLE,	1600,	900,	30,		360},
+	{ ID_LABEL_GAMETITLE,	1680,	1050,	30,		400},
 	{ ID_LABEL_GAMETITLE,	1920,	1080,	40,		400},
 
-	{ ID_PANEL_MAINMENU,	1280,	720,	5,		680	},
-	{ ID_PANEL_MAINMENU,	1360,	768,	5,		730	},
-	{ ID_PANEL_MAINMENU,	1366,	768,	5,		730	},
-	{ ID_PANEL_MAINMENU,	1440,	900,	5,		860	},
-	{ ID_PANEL_MAINMENU,	1600,	900,	5,		860	},
-	{ ID_PANEL_MAINMENU,	1680,	1050,	5,		1005},
+	{ ID_PANEL_MAINMENU,	1280,	720,	5,		280},
+	{ ID_PANEL_MAINMENU,	1280,	800,	5,		280},
+	{ ID_PANEL_MAINMENU,	1360,	768,	5,		380},
+	{ ID_PANEL_MAINMENU,	1366,	768,	5,		380},
+	{ ID_PANEL_MAINMENU,	1440,	900,	5,		440},
+	{ ID_PANEL_MAINMENU,	1600,	900,	5,		440},
+	{ ID_PANEL_MAINMENU,	1680,	1050,	5,		480},
 	{ ID_PANEL_MAINMENU,	1920,	1080,	40,		480},
 
-	{ ID_PANEL_NEWGAME,		1280,	720,	5,		680	},
-	{ ID_PANEL_NEWGAME,		1360,	768,	5,		730	},
-	{ ID_PANEL_NEWGAME,		1366,	768,	5,		730	},
-	{ ID_PANEL_NEWGAME,		1440,	900,	5,		860	},
-	{ ID_PANEL_NEWGAME,		1600,	900,	5,		860	},
-	{ ID_PANEL_NEWGAME,		1680,	1050,	5,		1005},
-	{ ID_PANEL_NEWGAME,		1920,	1080,	300,		300}
+	{ ID_PANEL_NEWGAME,		1280,	720,	5,		50},
+	{ ID_PANEL_NEWGAME,		1280,	800,	5,		50},
+	{ ID_PANEL_NEWGAME,		1360,	768,	50,		100},
+	{ ID_PANEL_NEWGAME,		1366,	768,	50,		100},
+	{ ID_PANEL_NEWGAME,		1440,	900,	100,	200},
+	{ ID_PANEL_NEWGAME,		1600,	900,	200,	200},
+	{ ID_PANEL_NEWGAME,		1680,	1050,	200,	280},
+	{ ID_PANEL_NEWGAME,		1920,	1080,	300,	300}
 
 };
 
@@ -250,21 +253,26 @@ int CMainMenuNew::HandleKeyboardInput(int iKey)
 				pPanelNewGame->setVisible(false);
 				pPanelMainMenuFade->setVisible(false);
 				gSoundEngine.PlaySound("common/launch_dnmenu1.wav", g_vecZero, SND_2D, 0, SM_VOLUME_HEV);
+
+				// Main menu is visible or was visiable moments ago, choke key input
+				return K_ESCAPE;
 			}
 
-			// Looks like we're only drawing main menu, let's close it
+			/*
+			// Looks like we're only drawing new game menu, let's show engine main menu
 			else
 			{
 				bDrawMenu = false;
 				SetCursorPos( gEngfuncs.GetWindowCenterX(), gEngfuncs.GetWindowCenterY() ); // Clear mouse position
 			}
+			*/
 
-			return K_ESCAPE;
+			
 		} // END  iKey == K_ESCAPE
 
 
 		// Main menu is visible or was visiable moments ago, choke key input
-		return 1;
+		//return 1;
 	}
 
 	// ELSE, main menu is not visable, check if we should draw it
@@ -585,7 +593,7 @@ int CMainMenuNew::HandleMainMenuInput(int iBTN)
 
 		// Quit
 		case ID_BTN_QUIT:
-			ClientCmd("quit\n");
+			ClientCmd("disconnect\n");	// Fograin92: Return to main menu
 		break;
 
 
