@@ -39,6 +39,8 @@ enum hudobjects_e
 	ID_DMG_PANEL,	// Atmospheric contaminant sensors panel
 	ID_AIR_PANEL,	// Air Counter panel
 
+	ID_CROSSHAIR,	// Crosshair image
+
 	AMOUNT			// Length of this enum
 };
 
@@ -166,8 +168,20 @@ const int iAdjustmentArray[][5] =
 	{ ID_AIR_PANEL,		1440,	900,	5,		760},
 	{ ID_AIR_PANEL,		1600,	900,	5,		760},
 	{ ID_AIR_PANEL,		1680,	1050,	5,		880},
-	{ ID_AIR_PANEL,		1920,	1080,	5,		920}
+	{ ID_AIR_PANEL,		1920,	1080,	5,		920},
+
+	// Crosshair (64x64) images
+	{ ID_CROSSHAIR,		1280,	720,	608,	328},
+	{ ID_CROSSHAIR,		1280,	800,	608,	368},
+	{ ID_CROSSHAIR,		1360,	768,	648,	352},
+	{ ID_CROSSHAIR,		1366,	768,	651,	352},
+	{ ID_CROSSHAIR,		1440,	900,	688,	418},
+	{ ID_CROSSHAIR,		1600,	900,	768,	418},
+	{ ID_CROSSHAIR,		1680,	1050,	808,	493},
+	{ ID_CROSSHAIR,		1920,	1080,	928,	508}
+
 };
+
 
 
 // Return adjusted position of HUD object, based on current screen resolution
@@ -258,8 +272,8 @@ void CHudNew::GetGame()
 	if (CVAR_GET_FLOAT("sm_hud") == 1.0 )
 	{
 		iHudColor[0] = 0;	// R
-		iHudColor[1] = 96;	// G
-		iHudColor[2] = 180;	// B
+		iHudColor[1] = 180;	// G
+		iHudColor[2] = 255;	// B
 
 		pHealthLab->setFont( pFont );
 		pArmorLab->setFont( pFont );
@@ -272,7 +286,7 @@ void CHudNew::GetGame()
 	else if (CVAR_GET_FLOAT("sm_hud") == 2.0 )
 	{
 		iHudColor[0] = 0;	// R
-		iHudColor[1] = 160;	// G
+		iHudColor[1] = 255;	// G
 		iHudColor[2] = 0;	// B
 
 		pHealthLab->setFont( pFontOF );
@@ -951,6 +965,66 @@ CHudNew::CHudNew() : Panel(0, 0, XRES(640), YRES(480))
 // AIR Counter END
 
 
+// CROSSHAIRS START
+	pCrosshairDefault = new ImageHolder("gfx/vgui/crosshair_default.tga",	this);
+	pCrosshairDefault->setPos( AdjustPosition(ID_CROSSHAIR, false), AdjustPosition(ID_CROSSHAIR, true) );
+	pCrosshairDefault->setVisible(false);
+
+	pCrosshairGlock = new ImageHolder("gfx/vgui/crosshair_glock.tga",	this);
+	pCrosshairGlock->setPos( AdjustPosition(ID_CROSSHAIR, false), AdjustPosition(ID_CROSSHAIR, true) );
+	pCrosshairGlock->setVisible(false);
+
+	pCrosshair357 = new ImageHolder("gfx/vgui/crosshair_357.tga",	this);
+	pCrosshair357->setPos( AdjustPosition(ID_CROSSHAIR, false), AdjustPosition(ID_CROSSHAIR, true) );
+	pCrosshair357->setVisible(false);
+
+	pCrosshairDeagle = new ImageHolder("gfx/vgui/crosshair_deagle.tga",	this);
+	pCrosshairDeagle->setPos( AdjustPosition(ID_CROSSHAIR, false), AdjustPosition(ID_CROSSHAIR, true) );
+	pCrosshairDeagle->setVisible(false);
+
+	pCrosshairMP5 = new ImageHolder("gfx/vgui/crosshair_mp5.tga",	this);
+	pCrosshairMP5->setPos( AdjustPosition(ID_CROSSHAIR, false), AdjustPosition(ID_CROSSHAIR, true) );
+	pCrosshairMP5->setVisible(false);
+
+	pCrosshairShotgun = new ImageHolder("gfx/vgui/crosshair_shotgun.tga",	this);
+	pCrosshairShotgun->setPos( AdjustPosition(ID_CROSSHAIR, false), AdjustPosition(ID_CROSSHAIR, true) );
+	pCrosshairShotgun->setVisible(false);
+
+	pCrosshairCrossbow = new ImageHolder("gfx/vgui/crosshair_crossbow.tga",	this);
+	pCrosshairCrossbow->setPos( AdjustPosition(ID_CROSSHAIR, false), AdjustPosition(ID_CROSSHAIR, true) );
+	pCrosshairCrossbow->setVisible(false);
+
+	pCrosshairRPG = new ImageHolder("gfx/vgui/crosshair_RPG.tga",	this);
+	pCrosshairRPG->setPos( AdjustPosition(ID_CROSSHAIR, false), AdjustPosition(ID_CROSSHAIR, true) );
+	pCrosshairRPG->setVisible(false);
+
+	pCrosshairGauss = new ImageHolder("gfx/vgui/crosshair_gauss.tga",	this);
+	pCrosshairGauss->setPos( AdjustPosition(ID_CROSSHAIR, false), AdjustPosition(ID_CROSSHAIR, true) );
+	pCrosshairGauss->setVisible(false);
+
+	pCrosshairEgon = new ImageHolder("gfx/vgui/crosshair_egon.tga",	this);
+	pCrosshairEgon->setPos( AdjustPosition(ID_CROSSHAIR, false), AdjustPosition(ID_CROSSHAIR, true) );
+	pCrosshairEgon->setVisible(false);
+
+	pCrosshairHive = new ImageHolder("gfx/vgui/crosshair_hive.tga",	this);
+	pCrosshairHive->setPos( AdjustPosition(ID_CROSSHAIR, false), AdjustPosition(ID_CROSSHAIR, true) );
+	pCrosshairHive->setVisible(false);
+
+	pCrosshairM249 = new ImageHolder("gfx/vgui/crosshair_m249.tga",	this);
+	pCrosshairM249->setPos( AdjustPosition(ID_CROSSHAIR, false), AdjustPosition(ID_CROSSHAIR, true) );
+	pCrosshairM249->setVisible(false);
+
+	pCrosshairDisplacer = new ImageHolder("gfx/vgui/crosshair_default.tga",	this);
+	pCrosshairDisplacer->setPos( AdjustPosition(ID_CROSSHAIR, false), AdjustPosition(ID_CROSSHAIR, true) );
+	pCrosshairDisplacer->setVisible(false);
+
+	pCrosshairSniper = new ImageHolder("gfx/vgui/crosshair_sniper.tga",	this);
+	pCrosshairSniper->setPos( AdjustPosition(ID_CROSSHAIR, false), AdjustPosition(ID_CROSSHAIR, true) );
+	pCrosshairSniper->setVisible(false);
+
+// CROSSHAIRS END
+
+
 
 // LOGON/INTRO sequence START
 	
@@ -1019,6 +1093,22 @@ CHudNew::~CHudNew()
 	if(pLogonText)			delete pLogonText;
 	if(pLogonConsolePanel)	delete pLogonConsolePanel;
 
+	// Crosshairs
+	if(pCrosshairDefault)	delete pCrosshairDefault;
+	if(pCrosshairGlock)		delete pCrosshairGlock;
+	if(pCrosshair357)		delete pCrosshair357;
+	if(pCrosshairDeagle)	delete pCrosshairDeagle;
+	if(pCrosshairMP5)		delete pCrosshairMP5;
+	if(pCrosshairShotgun)	delete pCrosshairShotgun;
+	if(pCrosshairCrossbow)	delete pCrosshairCrossbow;
+	if(pCrosshairRPG)		delete pCrosshairRPG;
+	if(pCrosshairGauss)		delete pCrosshairGauss;
+	if(pCrosshairEgon)		delete pCrosshairEgon;
+	if(pCrosshairHive)		delete pCrosshairHive;
+	if(pCrosshairM249)		delete pCrosshairM249;
+	if(pCrosshairDisplacer)	delete pCrosshairDisplacer;
+	if(pCrosshairSniper)	delete pCrosshairSniper;
+
 	if(pAirLab)				delete pAirLab;
 	if(pAirIcon)			delete pAirIcon;
 	if(pAirPanel)			delete pAirPanel;
@@ -1082,12 +1172,51 @@ void CHudNew::UpdateHUD()
 	//cl_Player = gEngfuncs.GetLocalPlayer();	// Get pointer to local player
 }
 
+
+// Clean visibility of elements to prevent rendering glitches
+void CHudNew::RefreshVisual()
+{
+	// Clean ammo icons
+	pIconAmmoGlock->setVisible(false);
+	pIconAmmo9mm->setVisible(false);
+	pSecondaryAmmoPanel->setVisible(false);
+	pIconAmmo357->setVisible(false);
+	pIconAmmoBuckshot->setVisible(false);
+	pIconAmmoArrow->setVisible(false);
+	pIconAmmoRocket->setVisible(false);
+	pIconAmmoUranium->setVisible(false);
+	pIconAmmoBee->setVisible(false);
+	pIconAmmoGrenade->setVisible(false);
+	pIconAmmoSatchel->setVisible(false);
+	pIconAmmoTripmine->setVisible(false);
+	pIconAmmoSnark->setVisible(false);
+
+	// Clean crosshairds
+	pCrosshairDefault->setVisible(false);
+	pCrosshairGlock->setVisible(false);
+	pCrosshair357->setVisible(false);
+	pCrosshairMP5->setVisible(false);
+	pCrosshairShotgun->setVisible(false);
+	pCrosshairCrossbow->setVisible(false);
+	pCrosshairRPG->setVisible(false);
+	pCrosshairGauss->setVisible(false);
+	pCrosshairEgon->setVisible(false);
+	pCrosshairHive->setVisible(false);
+	pCrosshairM249->setVisible(false);
+	pCrosshairDisplacer->setVisible(false);
+	pCrosshairSniper->setVisible(false);
+	pCrosshairDeagle->setVisible(false);
+}
+
+
 // Called every frame when HUD is visable
 void CHudNew::paint()
 {
+	// Fograin92: Reset visuals
+	RefreshVisual();
+
 	//gEngfuncs.Con_Printf( "^2HLU -> CHudNew -> paint()\n" );
 	char cString[32];	// Helper string
-
 
 //========== HEALTH + ARMOR PANEL START =======//
 
@@ -1097,13 +1226,13 @@ void CHudNew::paint()
 		// Change icon and text color to red if health is below 25%
 		if (iHealth < 25)
 		{
-			pHealthIcon->GetBitmap()->setColor( Color(255, 0, 0, 1) );
-			pHealthLab->setFgColor( 255, 0, 0, 0 );
+			pHealthIcon->GetBitmap()->setColor( Color(255, 0, 0, 50) );
+			pHealthLab->setFgColor( 255, 0, 0, 50 );
 		}
 		else
 		{
-			pHealthIcon->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-			pHealthLab->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 0 );
+			pHealthIcon->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 50 ));
+			pHealthLab->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 50 );
 		}
 
 		// Display counter as 3 digit [000]
@@ -1124,15 +1253,15 @@ void CHudNew::paint()
 		// Change icon and text color to red if armor is below 25%
 		if (iArmor < 25)
 		{
-			pArmorIconHL->GetBitmap()->setColor( Color(255, 0, 0, 1) );
-			pArmorIconHLc->GetBitmap()->setColor( Color(255, 0, 0, 1) );
-			pArmorLab->setFgColor( 255, 0, 0, 0 );
+			pArmorIconHL->GetBitmap()->setColor( Color(255, 0, 0, 50) );
+			pArmorIconHLc->GetBitmap()->setColor( Color(255, 0, 0, 50) );
+			pArmorLab->setFgColor( 255, 0, 0, 50 );
 		}
 		else
 		{
-			pArmorIconHL->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-			pArmorIconHLc->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-			pArmorLab->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 0 );
+			pArmorIconHL->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 50));
+			pArmorIconHLc->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 50));
+			pArmorLab->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 50 );
 		}
 
 		// Update charge level
@@ -1158,7 +1287,7 @@ void CHudNew::paint()
 
 
 
-//========== PRIMARY / SECONDARY AMMO PANEL START =======//
+//========== PRIMARY / SECONDARY AMMO PANEL START  + CROSSHAIRS =======//
 	if( pPrimaryAmmoLab )
 	{
 		// Weapon pointer
@@ -1171,6 +1300,11 @@ void CHudNew::paint()
 				// Hide ammo panels
 				pAmmoPanel->setVisible(false);
 				pSecondaryAmmoPanel->setVisible(false);
+
+				// Draw crosshair for grapple weapon
+				if( !strcmp(pxWeapon->szName, "weapon_grapple") )
+					pCrosshairDefault->setVisible(true);
+
 			}
 
 			// We have normal weapon
@@ -1227,47 +1361,81 @@ void CHudNew::paint()
 				// Change color
 				if( (iPrimaryClip < 1) && (iPrimaryAmmo < 1) )	// Ammunition depleted
 				{
-					pPrimaryAmmoLab->setFgColor( 255, 0, 0, 0 );
-					pIconAmmo9mm->GetBitmap()->setColor( Color(255, 0, 0, 1));
-					pIconAmmoGlock->GetBitmap()->setColor( Color(255, 0, 0, 1));
-					pIconAmmo357->GetBitmap()->setColor( Color(255, 0, 0, 1));
-					pIconAmmoBuckshot->GetBitmap()->setColor( Color(255, 0, 0, 1));
-					pIconAmmoArrow->GetBitmap()->setColor( Color(255, 0, 0, 1));
-					pIconAmmoRocket->GetBitmap()->setColor( Color(255, 0, 0, 1));
-					pIconAmmoUranium->GetBitmap()->setColor( Color(255, 0, 0, 1));
-					pIconAmmoBee->GetBitmap()->setColor( Color(255, 0, 0, 1));
-					pIconAmmoGrenade->GetBitmap()->setColor( Color(255, 0, 0, 1));
-					pIconAmmoSatchel->GetBitmap()->setColor( Color(255, 0, 0, 1));
-					pIconAmmoTripmine->GetBitmap()->setColor( Color(255, 0, 0, 1));
-					pIconAmmoSnark->GetBitmap()->setColor( Color(255, 0, 0, 1));
+					// Red ammo icons
+					pPrimaryAmmoLab->setFgColor( 255, 0, 0, 50 );
+					pIconAmmo9mm->GetBitmap()->setColor( Color(255, 0, 0, 50));
+					pIconAmmoGlock->GetBitmap()->setColor( Color(255, 0, 0, 50));
+					pIconAmmo357->GetBitmap()->setColor( Color(255, 0, 0, 50));
+					pIconAmmoBuckshot->GetBitmap()->setColor( Color(255, 0, 0, 50));
+					pIconAmmoArrow->GetBitmap()->setColor( Color(255, 0, 0, 50));
+					pIconAmmoRocket->GetBitmap()->setColor( Color(255, 0, 0, 50));
+					pIconAmmoUranium->GetBitmap()->setColor( Color(255, 0, 0, 50));
+					pIconAmmoBee->GetBitmap()->setColor( Color(255, 0, 0, 50));
+					pIconAmmoGrenade->GetBitmap()->setColor( Color(255, 0, 0, 50));
+					pIconAmmoSatchel->GetBitmap()->setColor( Color(255, 0, 0, 50));
+					pIconAmmoTripmine->GetBitmap()->setColor( Color(255, 0, 0, 50));
+					pIconAmmoSnark->GetBitmap()->setColor( Color(255, 0, 0, 50));
+
+					// Red crosshairs
+					pCrosshairDefault->GetBitmap()->setColor(	Color(255, 0, 0, 50 ));
+					pCrosshairGlock->GetBitmap()->setColor(		Color(255, 0, 0, 50 ));
+					pCrosshair357->GetBitmap()->setColor(		Color(255, 0, 0, 50 ));
+					pCrosshairDeagle->GetBitmap()->setColor(	Color(255, 0, 0, 50 ));
+					pCrosshairMP5->GetBitmap()->setColor(		Color(255, 0, 0, 50 ));
+					pCrosshairShotgun->GetBitmap()->setColor(	Color(255, 0, 0, 50 ));
+					pCrosshairCrossbow->GetBitmap()->setColor(	Color(255, 0, 0, 50 ));
+					pCrosshairRPG->GetBitmap()->setColor(		Color(255, 0, 0, 50 ));
+					pCrosshairGauss->GetBitmap()->setColor(		Color(255, 0, 0, 50 ));
+					pCrosshairEgon->GetBitmap()->setColor(		Color(255, 0, 0, 50 ));
+					pCrosshairHive->GetBitmap()->setColor(		Color(255, 0, 0, 50 ));
+					pCrosshairM249->GetBitmap()->setColor(		Color(255, 0, 0, 50 ));
+					pCrosshairDisplacer->GetBitmap()->setColor( Color(255, 0, 0, 50 ));
+					pCrosshairSniper->GetBitmap()->setColor(	Color(255, 0, 0, 50 ));
 				}
 				else
 				{
-					pPrimaryAmmoLab->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 0 );
-					pIconAmmo9mm->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-					pIconAmmoGlock->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-					pIconAmmo357->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-					pIconAmmoBuckshot->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-					pIconAmmoArrow->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-					pIconAmmoRocket->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-					pIconAmmoUranium->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-					pIconAmmoBee->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-					pIconAmmoGrenade->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-					pIconAmmoSatchel->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-					pIconAmmoTripmine->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
-					pIconAmmoSnark->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+					// Recolor ammo icons
+					pPrimaryAmmoLab->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 50 );
+					pIconAmmo9mm->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 50));
+					pIconAmmoGlock->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 50));
+					pIconAmmo357->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 50));
+					pIconAmmoBuckshot->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 50));
+					pIconAmmoArrow->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 50));
+					pIconAmmoRocket->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 50));
+					pIconAmmoUranium->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 50));
+					pIconAmmoBee->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 50));
+					pIconAmmoGrenade->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 50));
+					pIconAmmoSatchel->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 50));
+					pIconAmmoTripmine->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 50));
+					pIconAmmoSnark->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 50));
+
+					// Recolor crosshairs
+					pCrosshairDefault->GetBitmap()->setColor(	Color(iHudColor[0], iHudColor[1], iHudColor[2], 50 ));
+					pCrosshairGlock->GetBitmap()->setColor(		Color(iHudColor[0], iHudColor[1], iHudColor[2], 50 ));
+					pCrosshair357->GetBitmap()->setColor(		Color(iHudColor[0], iHudColor[1], iHudColor[2], 50 ));
+					pCrosshairDeagle->GetBitmap()->setColor(	Color(iHudColor[0], iHudColor[1], iHudColor[2], 50 ));
+					pCrosshairMP5->GetBitmap()->setColor(		Color(iHudColor[0], iHudColor[1], iHudColor[2], 50 ));
+					pCrosshairShotgun->GetBitmap()->setColor(	Color(iHudColor[0], iHudColor[1], iHudColor[2], 50 ));
+					pCrosshairCrossbow->GetBitmap()->setColor(	Color(iHudColor[0], iHudColor[1], iHudColor[2], 50 ));
+					pCrosshairRPG->GetBitmap()->setColor(		Color(iHudColor[0], iHudColor[1], iHudColor[2], 50 ));
+					pCrosshairGauss->GetBitmap()->setColor(		Color(iHudColor[0], iHudColor[1], iHudColor[2], 50 ));
+					pCrosshairEgon->GetBitmap()->setColor(		Color(iHudColor[0], iHudColor[1], iHudColor[2], 50 ));
+					pCrosshairHive->GetBitmap()->setColor(		Color(iHudColor[0], iHudColor[1], iHudColor[2], 50 ));
+					pCrosshairM249->GetBitmap()->setColor(		Color(iHudColor[0], iHudColor[1], iHudColor[2], 50 ));
+					pCrosshairDisplacer->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 50 ));
+					pCrosshairSniper->GetBitmap()->setColor(	Color(iHudColor[0], iHudColor[1], iHudColor[2], 50 ));
 				}
 
 				// Secondary ammo color
 				if( iSecondaryAmmo < 1 )
 				{
-					pSecondaryAmmoLab->setFgColor( 255, 0, 0, 0 );
-					pIconAmmoAR->GetBitmap()->setColor( Color(255, 0, 0, 1));
+					pSecondaryAmmoLab->setFgColor( 255, 0, 0, 50 );
+					pIconAmmoAR->GetBitmap()->setColor( Color(255, 0, 0, 50));
 				}
 				else
 				{
-					pSecondaryAmmoLab->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 0 );
-					pIconAmmoAR->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1));
+					pSecondaryAmmoLab->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 50 );
+					pIconAmmoAR->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 50));
 				}
 
 				//sprintf(cString, "%s", pxWeapon->szName);
@@ -1275,83 +1443,116 @@ void CHudNew::paint()
 
 				// Show / Hide -> 9mm (glock) ammo
 				if( !strcmp(pxWeapon->szName, "weapon_glock") || !strcmp(pxWeapon->szName, "weapon_9mmhandgun"))
+				{
 					pIconAmmoGlock->setVisible(true);
-				else
-					pIconAmmoGlock->setVisible(false);
+					pCrosshairGlock->setVisible(true);
+				}
 
 				// Show / Hide -> 9mm (mp5) ammo
 				if( !strcmp(pxWeapon->szName, "weapon_9mmAR") || !strcmp(pxWeapon->szName, "weapon_mp5"))
 				{
 					pIconAmmo9mm->setVisible(true);
 					pSecondaryAmmoPanel->setVisible(true);
+					pCrosshairMP5->setVisible(true);
 				}
-				else
-				{
-					pIconAmmo9mm->setVisible(false);
-					pSecondaryAmmoPanel->setVisible(false);
-				}
-
+				
 				// Show / Hide -> 357 ammo
 				if( !strcmp(pxWeapon->szName, "weapon_357") )
+				{
 					pIconAmmo357->setVisible(true);
-				else
-					pIconAmmo357->setVisible(false);
+					pCrosshair357->setVisible(true);
+				}
+				
 
 				// Show / Hide -> Buckshot ammo
 				if( !strcmp(pxWeapon->szName, "weapon_shotgun") )
+				{
 					pIconAmmoBuckshot->setVisible(true);
-				else
-					pIconAmmoBuckshot->setVisible(false);
+					pCrosshairShotgun->setVisible(true);
+				}
+				
 
 				// Show / Hide -> Crossbow ammo
 				if( !strcmp(pxWeapon->szName, "weapon_crossbow") )
+				{
 					pIconAmmoArrow->setVisible(true);
-				else
-					pIconAmmoArrow->setVisible(false);
+					pCrosshairCrossbow->setVisible(true);
+				}
+				
 
 				// Show / Hide -> Rocket ammo
 				if( !strcmp(pxWeapon->szName, "weapon_rpg") )
+				{
 					pIconAmmoRocket->setVisible(true);
-				else
-					pIconAmmoRocket->setVisible(false);
+					pCrosshairRPG->setVisible(true);
+				}
+				
 
-				// Show / Hide -> Uranium ammo
-				if( !strcmp(pxWeapon->szName, "weapon_egon")
-					|| !strcmp(pxWeapon->szName, "weapon_gauss")
-					)
+				// Show / Hide -> Gauss ammo
+				if( !strcmp(pxWeapon->szName, "weapon_gauss") )
+				{
 					pIconAmmoUranium->setVisible(true);
-				else
-					pIconAmmoUranium->setVisible(false);
-
+					pCrosshairGauss->setVisible(true);
+				}
+				
+				// Show / Hide -> Egon ammo
+				if( !strcmp(pxWeapon->szName, "weapon_egon") )
+				{
+					pIconAmmoUranium->setVisible(true);
+					pCrosshairEgon->setVisible(true);
+				}
+				
 				// Show / Hide -> Bee ammo
 				if( !strcmp(pxWeapon->szName, "weapon_hornetgun") )
+				{
 					pIconAmmoBee->setVisible(true);
-				else
-					pIconAmmoBee->setVisible(false);
+					pCrosshairHive->setVisible(true);
+				}
 
 				// Show / Hide -> Handgrenade ammo
 				if( !strcmp(pxWeapon->szName, "weapon_handgrenade") )
 					pIconAmmoGrenade->setVisible(true);
-				else
-					pIconAmmoGrenade->setVisible(false);
 
 				// Show / Hide -> Satchel ammo
 				if( !strcmp(pxWeapon->szName, "weapon_satchel") )
 					pIconAmmoSatchel->setVisible(true);
-				else
-					pIconAmmoSatchel->setVisible(false);
-
+				
 				// Show / Hide -> Tripmine ammo
 				if( !strcmp(pxWeapon->szName, "weapon_tripmine") )
 					pIconAmmoTripmine->setVisible(true);
-				else
-					pIconAmmoTripmine->setVisible(false);
-
+				
 				// Show / Hide -> Snark ammo
 				if( !strcmp(pxWeapon->szName, "weapon_snark") )
 					pIconAmmoSnark->setVisible(true);
-				else
-					pIconAmmoSnark->setVisible(false);
+
+				// Show / Hide -> Deagle ammo
+				if( !strcmp(pxWeapon->szName, "weapon_eagle") )
+				{
+					//pIconAmmoBee->setVisible(true);
+					pCrosshairDeagle->setVisible(true);
+				}
+				
+				// Show / Hide -> M249 ammo
+				if( !strcmp(pxWeapon->szName, "weapon_m249") )
+				{
+					//pIconAmmoBee->setVisible(true);
+					pCrosshairM249->setVisible(true);
+				}
+				
+				// Show / Hide -> M249 ammo
+				if( !strcmp(pxWeapon->szName, "weapon_displacer") )
+				{
+					pIconAmmoUranium->setVisible(true);
+					pCrosshairDisplacer->setVisible(true);
+				}
+				
+				// Show / Hide -> Sniper ammo
+				if( !strcmp(pxWeapon->szName, "weapon_sniperrifle") )
+				{
+					//pIconAmmoUranium->setVisible(true);
+					pCrosshairSniper->setVisible(true);
+				}
+
 			}
 		}
 	}
@@ -1445,20 +1646,19 @@ void CHudNew::paint()
 		// Fograin92: Change color if value is below 26
 		if(fAir < 26)
 		{
-			pAirIcon->GetBitmap()->setColor( Color(255, 0, 0, 1) );
-			pAirLab->setFgColor( 255, 0, 0, 0 );
+			pAirIcon->GetBitmap()->setColor( Color(255, 0, 0, 50) );
+			pAirLab->setFgColor( 255, 0, 0, 50 );
 		}
 		else
 		{
-			pAirIcon->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 1) );
-			pAirLab->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 0 );
+			pAirIcon->GetBitmap()->setColor( Color(iHudColor[0], iHudColor[1], iHudColor[2], 50) );
+			pAirLab->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 50 );
 		}
 		
 
 		pAirLab->setText("%d", (int)fAir);
 	}
 //========== AIR COUNTER END =======//
-
 
 
 //========== ATMOSPHERIC CONTAMINANT SENSORS START =======//
@@ -1684,8 +1884,15 @@ void CHudNew::paint()
 
 			iTimerSpeed = HEV_PULSE_SPD;
 			//fTimer_Logon = 566;
-			// TODO: IF Barney armor then skip to the end phase
-			pLogonText->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 0 );
+
+			// Fograin92: If this is Blue-Shift then skip the whole logon text
+			if (CVAR_GET_FLOAT("sm_hud") == 1 )
+			{
+				fTimer_Logon = 566;
+				bShortLogon = true;
+			}
+
+			pLogonText->setFgColor( iHudColor[0], iHudColor[1], iHudColor[2], 50 );
 			pLogonText->setBgColor( 0, 0, 0, 0 );
 		}
 

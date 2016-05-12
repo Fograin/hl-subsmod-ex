@@ -294,6 +294,7 @@ void CItemSuitLong::Spawn( void )
 	Precache( );
 	SET_MODEL(ENT(pev), "models/w_suit.mdl");
 	CItem::Spawn( );
+	pev->sequence = 1;	// Fograin92: Proper animation
 }
 
 void CItemSuitLong::Precache( void )

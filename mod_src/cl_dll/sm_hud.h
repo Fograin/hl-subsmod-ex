@@ -127,6 +127,7 @@ protected:
 	int AdjustPosition(int iHudObjectID, bool bReturnY);		// Return adjusted X position of HUD object, based on current screen resolution
 	void GetGame();	// Set proper HUD variables depending on "sm_hud" value
 	void ResetVars(bool bInitOnly);	// Reset HUD Variables (called by constructor and destructor)
+	void RefreshVisual();	// Reset visibility of HUD elements
 	
 	// Main functions
 	virtual void paint();		// Called every frame when HUD is visable
@@ -215,8 +216,25 @@ protected:
 	//cl_entity_t		*cl_Player;		// Pointer to the player, because why the fuck not
 
 
+	// Crosshairs
+	ImageHolder		*pCrosshairDefault;		// Default crosshair
+	ImageHolder		*pCrosshairGlock;
+	ImageHolder		*pCrosshair357;
+	ImageHolder		*pCrosshairDeagle;
+	ImageHolder		*pCrosshairMP5;
+	ImageHolder		*pCrosshairShotgun;
+	ImageHolder		*pCrosshairCrossbow;
+	ImageHolder		*pCrosshairRPG;
+	ImageHolder		*pCrosshairGauss;
+	ImageHolder		*pCrosshairEgon;
+	ImageHolder		*pCrosshairHive;
+	ImageHolder		*pCrosshairM249;
+	ImageHolder		*pCrosshairDisplacer;
+	ImageHolder		*pCrosshairSniper;
+
+
 	// HEV Logon/Intro sequence
-	bool	bShortLogon;		// Should we use short-intro version from Hazard Course?
+	bool	bShortLogon;		// Should we use short-intro version?
 	float	fTimer_Logon;		// Logon/Intro sequence timer, when set the sequence starts, when it's over the whole sequence is over.
 	float	fTimer_LogonOLD;	// Previous value of the timer, used to check if timer was changed between paint() execs.
 	int		iScanNum;			// Length of characters to display. Used for write-in effect.

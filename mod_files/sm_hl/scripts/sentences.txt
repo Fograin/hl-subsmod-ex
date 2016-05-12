@@ -974,6 +974,14 @@ SC_BS_HELLO3 scientist/sc_hello3
 SC_BS_HELLO4 scientist/sc_hello4
 SC_BS_HELLO5 scientist/sc_hello5
 
+// monster_scientist -> Hello [gearbox]
+SC_OF_HELLO0 scientist/saved
+SC_OF_HELLO1 scientist/please
+SC_OF_HELLO2 scientist/getalong
+SC_OF_HELLO3 scientist/fix
+SC_OF_HELLO4 scientist/corporal
+SC_OF_HELLO5 scientist/advance
+
 // monster_scientist -> Answer
 SC_ANSWER0 scientist/notsure
 SC_ANSWER1 scientist/notcertain

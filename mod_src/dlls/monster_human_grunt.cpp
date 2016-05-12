@@ -954,8 +954,12 @@ void CHGrunt :: HandleAnimEvent( MonsterEvent_t *pEvent )
 		{
 			if ( FOkToSpeak() )
 			{
-				SENTENCEG_PlayRndSz(ENT(pev), "HG_ALERT", HGRUNT_SENTENCE_VOLUME, GRUNT_ATTN, 0, m_voicePitch);
-				 JustSpoke();
+				// Fograin92: Check if this is Blue Shift or Opposing Force
+				if( (CVAR_GET_FLOAT("sm_hud") == 1) || (CVAR_GET_FLOAT("sm_hud") == 2) )	
+					SENTENCEG_PlayRndSz(ENT(pev), "HG_BS_ALERT", HGRUNT_SENTENCE_VOLUME, GRUNT_ATTN, 0, m_voicePitch);
+				else
+					SENTENCEG_PlayRndSz(ENT(pev), "HG_ALERT", HGRUNT_SENTENCE_VOLUME, GRUNT_ATTN, 0, m_voicePitch);
+				JustSpoke();
 			}
 
 		}
@@ -2063,8 +2067,14 @@ Schedule_t *CHGrunt :: GetSchedule( void )
 						if (FOkToSpeak())// && RANDOM_LONG(0,1))
 						{
 							if ((m_hEnemy != NULL) && m_hEnemy->IsPlayer())
+							{
 								// player
-								SENTENCEG_PlayRndSz( ENT(pev), "HG_ALERT", HGRUNT_SENTENCE_VOLUME, GRUNT_ATTN, 0, m_voicePitch);
+								// Fograin92: Check if this is Blue Shift or Opposing Force
+								if( (CVAR_GET_FLOAT("sm_hud") == 1) || (CVAR_GET_FLOAT("sm_hud") == 2) )	
+									SENTENCEG_PlayRndSz( ENT(pev), "HG_BS_ALERT", HGRUNT_SENTENCE_VOLUME, GRUNT_ATTN, 0, m_voicePitch);
+								else
+									SENTENCEG_PlayRndSz( ENT(pev), "HG_ALERT", HGRUNT_SENTENCE_VOLUME, GRUNT_ATTN, 0, m_voicePitch);
+							}
 							else if ((m_hEnemy != NULL) &&
 									(m_hEnemy->Classify() != CLASS_PLAYER_ALLY) && 
 									(m_hEnemy->Classify() != CLASS_HUMAN_PASSIVE) && 

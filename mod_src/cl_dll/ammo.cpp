@@ -104,6 +104,8 @@ void WeaponsResource :: LoadWeaponSprites( WEAPON *pWeapon )
 
 	client_sprite_t *p;
 	
+	// Fograin92: Disable crosshairs from hud.txt
+	/*
 	p = GetSpriteList( pList, "crosshair", iRes, i );
 	if (p)
 	{
@@ -112,6 +114,7 @@ void WeaponsResource :: LoadWeaponSprites( WEAPON *pWeapon )
 		pWeapon->rcCrosshair = p->rc;
 	}
 	else
+	*/
 		pWeapon->hCrosshair = NULL;
 
 	p = GetSpriteList(pList, "autoaim", iRes, i);

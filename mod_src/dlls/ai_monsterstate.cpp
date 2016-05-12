@@ -60,8 +60,14 @@ void CBaseMonster :: SetState ( MONSTERSTATE State )
 //=========================================================
 void CBaseMonster :: RunAI ( void )
 {
+	// Fograin92: Disable water waves for monster_generic
+	if( FClassnameIs(pev, "monster_generic") )
+	{
+		// Fograin92: Disabled
+	}
+
 	// Fograin92: Cast water waves when NPC is in the water (Inspired by code from: SysOP)
-	if( CVAR_GET_FLOAT("sm_particles") > 0 )
+	else if( CVAR_GET_FLOAT("sm_particles") > 0 )
 	{
 		int iRandomness = 0;
 

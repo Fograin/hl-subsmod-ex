@@ -23,7 +23,6 @@
 #include "gamerules.h"
 
 
-
 // Fograin92: Base item class
 class CItem : public CBaseEntity
 {

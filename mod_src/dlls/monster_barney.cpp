@@ -25,108 +25,6 @@ TYPEDESCRIPTION	CBarney::m_SaveData[] =
 
 IMPLEMENT_SAVERESTORE( CBarney, CTalkMonster );
 
-//=========================================================
-// AI Schedules Specific to this monster
-//=========================================================
-Task_t	tlBaFollow[] =
-{
-	{ TASK_MOVE_TO_TARGET_RANGE,(float)128		},	// Move within 128 of target ent (client)
-	{ TASK_SET_SCHEDULE,		(float)SCHED_TARGET_FACE },
-};
-
-Schedule_t	slBaFollow[] =
-{
-	{
-		tlBaFollow,
-		ARRAYSIZE ( tlBaFollow ),
-		bits_COND_NEW_ENEMY		|
-		bits_COND_LIGHT_DAMAGE	|
-		bits_COND_HEAVY_DAMAGE	|
-		bits_COND_HEAR_SOUND |
-		bits_COND_PROVOKED,
-		bits_SOUND_DANGER,
-		"Follow"
-	},
-};
-
-//=========================================================
-// BarneyDraw- much better looking draw schedule for when
-// barney knows who he's gonna attack.
-//=========================================================
-Task_t	tlBarneyEnemyDraw[] =
-{
-	{ TASK_STOP_MOVING,					0				},
-	{ TASK_FACE_ENEMY,					0				},
-	{ TASK_PLAY_SEQUENCE_FACE_ENEMY,	(float) ACT_ARM },
-};
-
-Schedule_t slBarneyEnemyDraw[] = 
-{
-	{
-		tlBarneyEnemyDraw,
-		ARRAYSIZE ( tlBarneyEnemyDraw ),
-		0,
-		0,
-		"Barney Enemy Draw"
-	}
-};
-
-Task_t	tlBaFaceTarget[] =
-{
-	{ TASK_SET_ACTIVITY,		(float)ACT_IDLE },
-	{ TASK_FACE_TARGET,			(float)0		},
-	{ TASK_SET_ACTIVITY,		(float)ACT_IDLE },
-	{ TASK_SET_SCHEDULE,		(float)SCHED_TARGET_CHASE },
-};
-
-Schedule_t	slBaFaceTarget[] =
-{
-	{
-		tlBaFaceTarget,
-		ARRAYSIZE ( tlBaFaceTarget ),
-		bits_COND_CLIENT_PUSH	|
-		bits_COND_NEW_ENEMY		|
-		bits_COND_LIGHT_DAMAGE	|
-		bits_COND_HEAVY_DAMAGE	|
-		bits_COND_HEAR_SOUND |
-		bits_COND_PROVOKED,
-		bits_SOUND_DANGER,
-		"FaceTarget"
-	},
-};
-
-
-Task_t	tlIdleBaStand[] =
-{
-	{ TASK_STOP_MOVING,			0				},
-	{ TASK_SET_ACTIVITY,		(float)ACT_IDLE },
-	{ TASK_WAIT,				(float)2		}, // repick IDLESTAND every two seconds.
-	{ TASK_TLK_HEADRESET,		(float)0		}, // reset head position
-};
-
-Schedule_t	slIdleBaStand[] =
-{
-	{ 
-		tlIdleBaStand,
-		ARRAYSIZE ( tlIdleBaStand ), 
-		bits_COND_NEW_ENEMY		|
-		bits_COND_LIGHT_DAMAGE	|
-		bits_COND_HEAVY_DAMAGE	|
-		bits_COND_HEAR_SOUND	|
-		bits_COND_SMELL			|
-		bits_COND_PROVOKED,
-
-		bits_SOUND_COMBAT		|// sound flags - change these, and you'll break the talking code.
-		//bits_SOUND_PLAYER		|
-		//bits_SOUND_WORLD		|
-		
-		bits_SOUND_DANGER		|
-		bits_SOUND_MEAT			|// scents
-		bits_SOUND_CARCASS		|
-		bits_SOUND_GARBAGE,
-		"IdleStand"
-	},
-};
 
 DEFINE_CUSTOM_SCHEDULES( CBarney )
 {
@@ -136,8 +34,8 @@ DEFINE_CUSTOM_SCHEDULES( CBarney )
 	slIdleBaStand,
 };
 
-
 IMPLEMENT_CUSTOM_SCHEDULES( CBarney, CTalkMonster );
+
 
 void CBarney :: StartTask( Task_t *pTask )
 {
@@ -307,13 +205,14 @@ void CBarney :: HandleAnimEvent( MonsterEvent_t *pEvent )
 
 	case BARNEY_AE_DRAW:
 		// barney's bodygroup switches here so he can pull gun from holster
-		pev->body = BARNEY_BODY_GUNDRAWN;		
+		//pev->body = BARNEY_BODY_GUNDRAWN;	
+		SetBodygroup( BA_GRP_GUN, GLOCK_DRAWN );	// Fograin92
 		m_fGunDrawn = TRUE;
 		break;
 
 	case BARNEY_AE_HOLSTER:
 		// change bodygroup to replace gun in holster
-		pev->body = BARNEY_BODY_GUNHOLSTERED;
+		SetBodygroup( BA_GRP_GUN, GLOCK_HOLSTERED );	// Fograin92
 		m_fGunDrawn = FALSE;
 		break;
 
@@ -347,8 +246,16 @@ void CBarney :: Spawn()
 
 	MonsterInit();
 
-	// Fograin92: test
-	//pev->weaponmodel = MAKE_STRING("models/p_357.mdl");
+	// Fograin92: Body variations
+	if( pev->frags == 1 )
+	{
+		SetBodygroup( BA_GRP_BODY, BODY_UNARMED );
+	}
+	else
+	{
+		SetBodygroup( BA_GRP_BODY, BODY_DEFAULT );
+	}
+
 
 	SetUse( &CTalkMonster::FollowerUse );
 }
@@ -394,7 +301,15 @@ void CBarney :: TalkInit()
 	m_szGrp[TLK_STOP] =		"BA_STOP";
 
 	m_szGrp[TLK_NOSHOOT] =	"BA_SCARED";
-	m_szGrp[TLK_HELLO] =	"BA_HELLO";
+	
+	// Fograin92: Set proper sentences, based on game
+	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// BS
+		m_szGrp[TLK_HELLO] =	"BA_BS_HELLO";
+	else if (CVAR_GET_FLOAT("sm_hud") == 2 )	// OF
+		m_szGrp[TLK_HELLO] =	"BA_OF_HELLO";
+	else
+		m_szGrp[TLK_HELLO] =	"BA_HELLO";
+
 
 	m_szGrp[TLK_PLHURT1] =	"!BA_CUREA";
 	m_szGrp[TLK_PLHURT2] =	"!BA_CUREB"; 
@@ -459,13 +374,27 @@ int CBarney :: TakeDamage( entvars_t* pevInflictor, entvars_t* pevAttacker, floa
 			else
 			{
 				// Hey, be careful with that
-				PlaySentence( "BA_SHOT", 4, VOL_NORM, ATTN_NORM );
+			
+				// Fograin92: Set proper sentances
+				if (CVAR_GET_FLOAT("sm_hud") == 1 )	// BS
+					PlaySentence( "BA_BS_SHOT", 4, VOL_NORM, ATTN_NORM );
+				else if (CVAR_GET_FLOAT("sm_hud") == 2 )	// OF
+					PlaySentence( "BA_SHOT", 4, VOL_NORM, ATTN_NORM );
+				else
+					PlaySentence( "BA_SHOT", 4, VOL_NORM, ATTN_NORM );
+
 				Remember( bits_MEMORY_SUSPICIOUS );
 			}
 		}
 		else if ( !(m_hEnemy->IsPlayer()) && pev->deadflag == DEAD_NO )
 		{
-			PlaySentence( "BA_SHOT", 4, VOL_NORM, ATTN_NORM );
+			// Fograin92: Set proper sentances
+			if (CVAR_GET_FLOAT("sm_hud") == 1 )	// BS
+				PlaySentence( "BA_BS_SHOT", 4, VOL_NORM, ATTN_NORM );
+			else if (CVAR_GET_FLOAT("sm_hud") == 2 )	// OF
+				PlaySentence( "BA_SHOT", 4, VOL_NORM, ATTN_NORM );
+			else
+				PlaySentence( "BA_SHOT", 4, VOL_NORM, ATTN_NORM );
 		}
 	}
 
@@ -485,9 +414,9 @@ void CBarney :: PainSound ( void )
 
 	switch (RANDOM_LONG(0,2))
 	{
-	case 0: EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "barney/ba_pain1.wav", 1, ATTN_NORM, 0, GetVoicePitch()); break;
-	case 1: EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "barney/ba_pain2.wav", 1, ATTN_NORM, 0, GetVoicePitch()); break;
-	case 2: EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "barney/ba_pain3.wav", 1, ATTN_NORM, 0, GetVoicePitch()); break;
+		case 0: EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "barney/ba_pain1.wav", 1, ATTN_NORM, 0, GetVoicePitch()); break;
+		case 1: EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "barney/ba_pain2.wav", 1, ATTN_NORM, 0, GetVoicePitch()); break;
+		case 2: EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "barney/ba_pain3.wav", 1, ATTN_NORM, 0, GetVoicePitch()); break;
 	}
 }
 
@@ -498,9 +427,9 @@ void CBarney :: DeathSound ( void )
 {
 	switch (RANDOM_LONG(0,2))
 	{
-	case 0: EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "barney/ba_die1.wav", 1, ATTN_NORM, 0, GetVoicePitch()); break;
-	case 1: EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "barney/ba_die2.wav", 1, ATTN_NORM, 0, GetVoicePitch()); break;
-	case 2: EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "barney/ba_die3.wav", 1, ATTN_NORM, 0, GetVoicePitch()); break;
+		case 0: EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "barney/ba_die1.wav", 1, ATTN_NORM, 0, GetVoicePitch()); break;
+		case 1: EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "barney/ba_die2.wav", 1, ATTN_NORM, 0, GetVoicePitch()); break;
+		case 2: EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "barney/ba_die3.wav", 1, ATTN_NORM, 0, GetVoicePitch()); break;
 	}
 }
 
@@ -537,17 +466,15 @@ void CBarney::TraceAttack( entvars_t *pevAttacker, float flDamage, Vector vecDir
 
 void CBarney::Killed( entvars_t *pevAttacker, int iGib )
 {
-	if ( pev->body < BARNEY_BODY_GUNGONE )
-	{// drop the gun!
-		Vector vecGunPos;
-		Vector vecGunAngles;
+	// Fograin92: Fixed
+	Vector vecGunPos;
+	Vector vecGunAngles;
 
-		pev->body = BARNEY_BODY_GUNGONE;
+	GetAttachment( 0, vecGunPos, vecGunAngles );
+	CBaseEntity *pGun = DropItem( "weapon_9mmhandgun", vecGunPos, vecGunAngles );
 
-		GetAttachment( 0, vecGunPos, vecGunAngles );
-		
-		CBaseEntity *pGun = DropItem( "weapon_9mmhandgun", vecGunPos, vecGunAngles );
-	}
+	SetBodygroup( BA_GRP_GUN, GUN_NONE );	// Fograin92
+
 
 	SetUse( NULL );	
 	CTalkMonster::Killed( pevAttacker, iGib );
@@ -696,7 +623,13 @@ MONSTERSTATE CBarney :: GetIdealState ( void )
 
 void CBarney::DeclineFollowing( void )
 {
-	PlaySentence( "BA_POK", 2, VOL_NORM, ATTN_NORM );
+	// Fograin92: Set proper sentances
+	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// BS
+		PlaySentence( "BA_BS_POK", 2, VOL_NORM, ATTN_NORM );
+	else if (CVAR_GET_FLOAT("sm_hud") == 2 )	// OF
+		PlaySentence( "BA_POK", 2, VOL_NORM, ATTN_NORM );
+	else
+		PlaySentence( "BA_POK", 2, VOL_NORM, ATTN_NORM );
 }
 
 

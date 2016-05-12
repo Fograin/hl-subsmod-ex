@@ -2729,6 +2729,10 @@
 					>
 				</File>
 				<File
+					RelativePath=".\monster_rosenberg.h"
+					>
+				</File>
+				<File
 					RelativePath=".\monster_scientist.cpp"
 					>
 					<FileConfiguration

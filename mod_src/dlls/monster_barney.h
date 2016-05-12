@@ -23,20 +23,154 @@
 #include	"soundent.h"
 
 
-//================//
-// monster_barney
-//================//
 
-// Monster's Anim Events Go Here
+// Fograin92: Monster anim events, schedules and other crap
+Task_t	tlBaFollow[] =
+{
+	{ TASK_MOVE_TO_TARGET_RANGE,(float)128		},	// Move within 128 of target ent (client)
+	{ TASK_SET_SCHEDULE,		(float)SCHED_TARGET_FACE },
+};
+
+Schedule_t	slBaFollow[] =
+{
+	{
+		tlBaFollow,
+		ARRAYSIZE ( tlBaFollow ),
+		bits_COND_NEW_ENEMY		|
+		bits_COND_LIGHT_DAMAGE	|
+		bits_COND_HEAVY_DAMAGE	|
+		bits_COND_HEAR_SOUND |
+		bits_COND_PROVOKED,
+		bits_SOUND_DANGER,
+		"Follow"
+	},
+};
+
+
+//=========================================================
+// BarneyDraw- much better looking draw schedule for when
+// barney knows who he's gonna attack.
+//=========================================================
+Task_t	tlBarneyEnemyDraw[] =
+{
+	{ TASK_STOP_MOVING,					0				},
+	{ TASK_FACE_ENEMY,					0				},
+	{ TASK_PLAY_SEQUENCE_FACE_ENEMY,	(float) ACT_ARM },
+};
+
+Schedule_t slBarneyEnemyDraw[] = 
+{
+	{
+		tlBarneyEnemyDraw,
+		ARRAYSIZE ( tlBarneyEnemyDraw ),
+		0,
+		0,
+		"Barney Enemy Draw"
+	}
+};
+
+Task_t	tlBaFaceTarget[] =
+{
+	{ TASK_SET_ACTIVITY,		(float)ACT_IDLE },
+	{ TASK_FACE_TARGET,			(float)0		},
+	{ TASK_SET_ACTIVITY,		(float)ACT_IDLE },
+	{ TASK_SET_SCHEDULE,		(float)SCHED_TARGET_CHASE },
+};
+
+Schedule_t	slBaFaceTarget[] =
+{
+	{
+		tlBaFaceTarget,
+		ARRAYSIZE ( tlBaFaceTarget ),
+		bits_COND_CLIENT_PUSH	|
+		bits_COND_NEW_ENEMY		|
+		bits_COND_LIGHT_DAMAGE	|
+		bits_COND_HEAVY_DAMAGE	|
+		bits_COND_HEAR_SOUND |
+		bits_COND_PROVOKED,
+		bits_SOUND_DANGER,
+		"FaceTarget"
+	},
+};
+
+Task_t	tlIdleBaStand[] =
+{
+	{ TASK_STOP_MOVING,			0				},
+	{ TASK_SET_ACTIVITY,		(float)ACT_IDLE },
+	{ TASK_WAIT,				(float)2		}, // repick IDLESTAND every two seconds.
+	{ TASK_TLK_HEADRESET,		(float)0		}, // reset head position
+};
+
+Schedule_t	slIdleBaStand[] =
+{
+	{ 
+		tlIdleBaStand,
+		ARRAYSIZE ( tlIdleBaStand ), 
+		bits_COND_NEW_ENEMY		|
+		bits_COND_LIGHT_DAMAGE	|
+		bits_COND_HEAVY_DAMAGE	|
+		bits_COND_HEAR_SOUND	|
+		bits_COND_SMELL			|
+		bits_COND_PROVOKED,
+
+		bits_SOUND_COMBAT		|// sound flags - change these, and you'll break the talking code.
+		//bits_SOUND_PLAYER		|
+		//bits_SOUND_WORLD		|
+		
+		bits_SOUND_DANGER		|
+		bits_SOUND_MEAT			|// scents
+		bits_SOUND_CARCASS		|
+		bits_SOUND_GARBAGE,
+		"IdleStand"
+	},
+};
+
+
+
+// Fograin92: Bodygroup defines
+#define BA_GRP_BODY		0
+#define BA_GRP_GUN		1
+
+// Fograin92: Body types
+enum ba_bodies
+{
+	BODY_DEFAULT	= 0,
+	BODY_UNARMED	= 1,
+
+	BA_BODY_AMOUNT
+};
+
+// Fograin92: Hands bodygroup
+enum ba_gun
+{
+	GLOCK_HOLSTERED		= 0,
+	GLOCK_DRAWN			= 1,
+	GUN_NONE			= 2,
+
+	BA_GUN_AMOUNT
+};
+
+
+// Fograin92: Barney skin choices
+enum ba_skins
+{
+	// Default body
+	SKIN_DEFAULT	= 0,
+	SKIN_HURT		= 1,
+
+	BA_SKIN_AMOUNT
+};
+
+
 // first flag is barney dying for scripted sequences?
 #define		BARNEY_AE_DRAW		( 2 )
 #define		BARNEY_AE_SHOOT		( 3 )
 #define		BARNEY_AE_HOLSTER	( 4 )
 
-#define	BARNEY_BODY_GUNHOLSTERED	0
-#define	BARNEY_BODY_GUNDRAWN		1
-#define BARNEY_BODY_GUNGONE			2
 
+//================//
+// monster_barney
+//================//
 class CBarney : public CTalkMonster
 {
 public:

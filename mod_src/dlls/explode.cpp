@@ -214,6 +214,29 @@ void CEnvExplosion::Use( CBaseEntity *pActivator, CBaseEntity *pCaller, USE_TYPE
 		MESSAGE_END();
 	}
 
+	// Fograin92: SFX part
+	//CSoundEnt::InsertSound ( bits_SOUND_COMBAT, pev->origin, NORMAL_EXPLOSION_VOLUME, 3.0 );
+
+	switch ( RANDOM_LONG( 0, 2 ) )
+	{
+		// Fograin92: Added explosion SFX
+		case 1:
+			EMIT_SOUND(ENT(pev), CHAN_VOICE, "weapons/debris2.wav", 0.55, ATTN_NORM);
+			EMIT_SOUND(ENT(pev), CHAN_VOICE, "weapons/explode3.wav", 0.80, ATTN_NORM);
+		break;
+
+		case 2:
+			EMIT_SOUND(ENT(pev), CHAN_VOICE, "weapons/debris3.wav", 0.55, ATTN_NORM);
+			EMIT_SOUND(ENT(pev), CHAN_VOICE, "weapons/explode4.wav", 0.80, ATTN_NORM);
+		break;
+
+		default:
+			EMIT_SOUND(ENT(pev), CHAN_VOICE, "weapons/debris1.wav", 0.55, ATTN_NORM);
+			EMIT_SOUND(ENT(pev), CHAN_VOICE, "weapons/explode5.wav", 0.80, ATTN_NORM);
+		break;
+	}
+
+
 	// do damage
 	if ( !( pev->spawnflags & SF_ENVEXPLOSION_NODAMAGE ) )
 	{

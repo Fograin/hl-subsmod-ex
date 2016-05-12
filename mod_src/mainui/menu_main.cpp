@@ -253,7 +253,9 @@ static void UI_Main_Callback( void *self, int event )
 		break;
 	
 		case ID_BTN_NEWGAME:
-			UI_MainMenu_ToggleButtons(ID_NEWGAME_WINDOW);
+			// Fograin92: Load chapter selection menu
+			CLIENT_COMMAND( FALSE, "map sm4_mainmenu\n" );
+			//UI_MainMenu_ToggleButtons(ID_NEWGAME_WINDOW);
 		break;
 
 		case ID_BTN_OPTIONS:
