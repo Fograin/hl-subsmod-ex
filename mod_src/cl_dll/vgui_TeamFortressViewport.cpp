@@ -1914,11 +1914,27 @@ void TeamFortressViewport::CreateSpectatorMenu()
 // Fograin92, Vit_amiN: Panel for messages handling
 void TeamFortressViewport::CreateMsgsBasePanel()
 {
-	// Create the Panel
-	m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this,	// It sets parent by itself
+	// Fograin92: TODO, check sv_language and load localized .txt
+
+	// Fograin92: Check if we should load closed captions
+	if( CVAR_GET_FLOAT("cl_sm_subtitles_enabled") == 2 )
+	{
+		// Load shared text, dialogues and closed captions
+		m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this,	// It sets parent by itself
+											  pCustomTitleFilesArrayCC,
+											  ARRAYSIZE(pCustomTitleFilesArrayCC),
+											  0, 0, ScreenWidth, ScreenHeight);
+	}
+	else
+	{
+		// Load shared text and dialogues
+		m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this,	// It sets parent by itself
 											  pCustomTitleFilesArray,
 											  ARRAYSIZE(pCustomTitleFilesArray),
 											  0, 0, ScreenWidth, ScreenHeight);
+	}
+
+	
 	m_pMsgsBasePanel->Initialize();
 }
 

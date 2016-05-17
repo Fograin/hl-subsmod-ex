@@ -551,16 +551,20 @@ void DLLEXPORT HUD_CreateEntities( void )
 // Fograin92: Dynamic muzzle flash light
 void MuzzleFlashLight(float *origin)
 {
-	dlight_t *muzzleFlash;
-	muzzleFlash = gEngfuncs.pEfxAPI->CL_AllocDlight (0);
-	muzzleFlash->origin.x = origin[0];
-	muzzleFlash->origin.y = origin[1];
-	muzzleFlash->origin.z = origin[2];
-	muzzleFlash->radius = 256;
-	muzzleFlash->color.r = 180;
-	muzzleFlash->color.g = 160;
-	muzzleFlash->color.b = 120;
-	muzzleFlash->die = gEngfuncs.GetClientTime() + 0.1;
+	// Fograin92: Check if dynamic lights are enabled
+	if( CVAR_GET_FLOAT("sm_dyn_lights") == 1 )
+	{
+		dlight_t *muzzleFlash;
+		muzzleFlash = gEngfuncs.pEfxAPI->CL_AllocDlight (0);
+		muzzleFlash->origin.x = origin[0];
+		muzzleFlash->origin.y = origin[1];
+		muzzleFlash->origin.z = origin[2];
+		muzzleFlash->radius = 256;
+		muzzleFlash->color.r = 180;
+		muzzleFlash->color.g = 160;
+		muzzleFlash->color.b = 120;
+		muzzleFlash->die = gEngfuncs.GetClientTime() + 0.1;
+	}
 }
 
 /*

@@ -189,6 +189,49 @@ protected:
 	CommandButton	*pBtn_newgame_chapter02;
 	CommandButton	*pBtn_newgame_chapter03;
 
+
+	// Main menu -> game settings panel
+	Panel			*pPanelGameSet;
+	MenuImageHolder	*pIMGmm_GameSet;
+
+	CommandButton	*pBtn_GameSet_close;
+	CommandButton	*pBtn_GameSet_ok;
+
+	CommandButton	*pBtn_GameSet_diff1;
+	CommandButton	*pBtn_GameSet_diff2;
+	CommandButton	*pBtn_GameSet_diff3;
+	MenuImageHolder	*pIMGmm_GameSet_diff1;
+	MenuImageHolder	*pIMGmm_GameSet_diff2;
+	MenuImageHolder	*pIMGmm_GameSet_diff3;
+
+	CommandButton	*pBtn_GameSet_particles1;
+	CommandButton	*pBtn_GameSet_particles2;
+	CommandButton	*pBtn_GameSet_particles3;
+	MenuImageHolder	*pIMGmm_GameSet_particles1;
+	MenuImageHolder	*pIMGmm_GameSet_particles2;
+	MenuImageHolder	*pIMGmm_GameSet_particles3;
+
+	// Game set -> advanced options
+	CommandButton	*pBtn_GameSet_adv1;
+	MenuImageHolder	*pIMGmm_GameSet_adv1;
+	CommandButton	*pBtn_GameSet_adv2;
+	MenuImageHolder	*pIMGmm_GameSet_adv2;
+	CommandButton	*pBtn_GameSet_adv3;
+	MenuImageHolder	*pIMGmm_GameSet_adv3;
+	CommandButton	*pBtn_GameSet_adv4;
+	MenuImageHolder	*pIMGmm_GameSet_adv4;
+	CommandButton	*pBtn_GameSet_adv5;
+	MenuImageHolder	*pIMGmm_GameSet_adv5;
+	CommandButton	*pBtn_GameSet_adv6;
+	MenuImageHolder	*pIMGmm_GameSet_adv6;
+	CommandButton	*pBtn_GameSet_adv7;
+	MenuImageHolder	*pIMGmm_GameSet_adv7;
+	CommandButton	*pBtn_GameSet_adv8;
+	MenuImageHolder	*pIMGmm_GameSet_adv8;
+	CommandButton	*pBtn_GameSet_adv9;
+	MenuImageHolder	*pIMGmm_GameSet_adv9;
+	CommandButton	*pBtn_GameSet_adv10;
+	MenuImageHolder	*pIMGmm_GameSet_adv10;
 };
 
 

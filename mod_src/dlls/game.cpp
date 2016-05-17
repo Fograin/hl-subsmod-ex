@@ -448,6 +448,9 @@ cvar_t	sk_player_leg3	= { "sk_player_leg3","1" };
 cvar_t	sm_hud				= { "sm_hud",				"0"};	// Used for HUD color, also it holds value of current loaded game (HL, OF, BS)
 cvar_t	sm_hev_pick			= { "sm_hev_pick",			"1", FCVAR_SERVER|FCVAR_ARCHIVE };	// Should HEV emit weapon pickup sentences?
 cvar_t	sm_particles		= { "sm_particles",			"2", FCVAR_SERVER|FCVAR_ARCHIVE };	// 0 - Don't use particle system (low setting), 1 - Limited particles (medium setting), 2 - Full particles (high setting)
+cvar_t	sm_hev_logon		= { "sm_hev_logon",			"1", FCVAR_SERVER|FCVAR_ARCHIVE };	// Should HEV/PCV play boot up sequence?
+cvar_t	sm_dyn_lights		= { "sm_dyn_lights",		"1", FCVAR_SERVER|FCVAR_ARCHIVE };	// Should we draw dynamic lighting?
+
 
 // Fograin92: Volume cvars
 cvar_t	sm_snd_sfx			= { "sm_snd_sfx",			"0.7", FCVAR_ARCHIVE};	// Volume value of ambient sounds and special SFX like explosions etc.
@@ -1159,6 +1162,8 @@ void GameDLLInit( void )
 	CVAR_REGISTER (&sm_hud);
 	CVAR_REGISTER (&sm_hev_pick);
 	CVAR_REGISTER (&sm_particles);
+	CVAR_REGISTER (&sm_hev_logon);
+	CVAR_REGISTER (&sm_dyn_lights);
 	CVAR_REGISTER (&sm_snd_sfx);
 	CVAR_REGISTER (&sm_snd_voice);
 	CVAR_REGISTER (&sm_snd_music);

@@ -635,7 +635,7 @@ void SV_Init( void )
 {
 	SV_InitOperatorCommands();
 
-	skill = Cvar_Get ("skill", "1", CVAR_LATCH, "game skill level" );
+	skill = Cvar_Get ("skill", "1", CVAR_ARCHIVE, "game skill level" );	// Fograin92: Changed from CVAR_LATCH
 	deathmatch = Cvar_Get ("deathmatch", "0", CVAR_LATCH|CVAR_SERVERINFO, "displays deathmatch state" );
 	teamplay = Cvar_Get ("teamplay", "0", CVAR_LATCH|CVAR_SERVERINFO, "displays teamplay state" );
 	coop = Cvar_Get ("coop", "0", CVAR_LATCH|CVAR_SERVERINFO, "displays cooperative state" );

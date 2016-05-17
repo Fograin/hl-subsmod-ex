@@ -257,6 +257,11 @@ float SM_Hook_Client_pfnPlaySoundVoiceByName( const char * const pString, const 
 
 void SM_Hook_Server_EMIT_SOUND_DYN2( edict_t * const entity, const char * const pString, const int sndChannel, const float sndVolume, const float sndAttenuation, const int sndFlags, const int sndPitch )
 {
+	// Fograin92
+	//char xszPath[256];
+	//sprintf(xszPath, "%s\n", pString);
+	//ALERT ( at_console, xszPath );
+
 	// Fograin92: Pass sound dir, name or sentence ID to the new sound engine
 	if( pString[0] == '!' )
 	{

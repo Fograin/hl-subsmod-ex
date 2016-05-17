@@ -42,8 +42,26 @@ enum sm_mainmenu_e
 	ID_BTN_NEWGAME_CHAPTER02,
 	ID_BTN_NEWGAME_CHAPTER03,
 
+	// Game set
+	ID_BTN_GAMESET_CLOSE,
+	ID_BTN_GAMESET_DIFF01,
+	ID_BTN_GAMESET_DIFF02,
+	ID_BTN_GAMESET_DIFF03,
+	ID_BTN_GAMESET_PARTICLES01,
+	ID_BTN_GAMESET_PARTICLES02,
+	ID_BTN_GAMESET_PARTICLES03,
+	ID_BTN_GAMESET_ADV01,
+	ID_BTN_GAMESET_ADV02,
+	ID_BTN_GAMESET_ADV03,
+	ID_BTN_GAMESET_ADV04,
+	ID_BTN_GAMESET_ADV05,
+	ID_BTN_GAMESET_ADV06,
+	ID_BTN_GAMESET_ADV07,
+	ID_BTN_GAMESET_ADV08,
+	ID_BTN_GAMESET_ADV09,
+	ID_BTN_GAMESET_ADV10,
 
-	AMOUNT				// Length of this enum
+	MM_AMOUNT				// Length of this enum
 };
 
 
@@ -251,6 +269,15 @@ int CMainMenuNew::HandleKeyboardInput(int iKey)
 			if( pPanelNewGame->isVisible() )
 			{
 				pPanelNewGame->setVisible(false);
+				pPanelMainMenuFade->setVisible(false);
+				gSoundEngine.PlaySound("common/launch_dnmenu1.wav", g_vecZero, SND_2D, 0, SM_VOLUME_HEV);
+
+				// Main menu is visible or was visiable moments ago, choke key input
+				return K_ESCAPE;
+			}
+			else if( pPanelGameSet->isVisible() )
+			{
+				pPanelGameSet->setVisible(false);
 				pPanelMainMenuFade->setVisible(false);
 				gSoundEngine.PlaySound("common/launch_dnmenu1.wav", g_vecZero, SND_2D, 0, SM_VOLUME_HEV);
 
@@ -562,6 +589,7 @@ int CMainMenuNew::HandleMainMenuInput(int iBTN)
 
 		// Panel close sound
 		case ID_BTN_NEWGAME_CLOSE:
+		case ID_BTN_GAMESET_CLOSE:
 			gSoundEngine.PlaySound("common/launch_dnmenu1.wav", g_vecZero, SND_2D, 0, SM_VOLUME_HEV);
 		break;
 	}
@@ -579,7 +607,13 @@ int CMainMenuNew::HandleMainMenuInput(int iBTN)
 		*/
 
 		// Game settings
-		// TODO
+		case ID_BTN_GAMESET:
+		{
+			pPanelMainMenuFade->setVisible(true);
+			pPanelGameSet->setVisible(true);
+			//Submenu_NewGame(iActiveNewGameG, iActiveNewGameSP);
+		}
+		break;
 
 
 		// Story mode
@@ -656,6 +690,73 @@ int CMainMenuNew::HandleMainMenuInput(int iBTN)
 		break;
 
 
+		// Game set panel buttons
+		case ID_BTN_GAMESET_CLOSE:
+			gEngfuncs.Con_Printf( "^3HLU -> ID_BTN_GAMESET_CLOSE\n");
+			pPanelMainMenuFade->setVisible(false);
+			pPanelGameSet->setVisible(false);
+		break;
+
+		// Game set difficulty settings
+		case ID_BTN_GAMESET_DIFF01:
+			//gEngfuncs.Con_Printf( "^3HLU -> ID_BTN_GAMESET_CLOSE\n");
+			ClientCmd("skill 1\n");
+		break;
+
+		case ID_BTN_GAMESET_DIFF02:
+			//gEngfuncs.Con_Printf( "^3HLU -> ID_BTN_GAMESET_CLOSE\n");
+			ClientCmd("skill 2\n");
+		break;
+
+		case ID_BTN_GAMESET_DIFF03:
+			//gEngfuncs.Con_Printf( "^3HLU -> ID_BTN_GAMESET_CLOSE\n");
+			ClientCmd("skill 3\n");
+		break;
+
+
+		// Particles settings
+		case ID_BTN_GAMESET_PARTICLES01:
+			ClientCmd("sm_particles 0\n");
+		break;
+
+		case ID_BTN_GAMESET_PARTICLES02:
+			ClientCmd("sm_particles 1\n");
+		break;
+
+		case ID_BTN_GAMESET_PARTICLES03:
+			ClientCmd("sm_particles 2\n");
+		break;
+
+
+		// Advanced settings
+		case ID_BTN_GAMESET_ADV01:
+			if( CVAR_GET_FLOAT("sm_hev_logon") == 1 )
+				ClientCmd("sm_hev_logon 0\n");
+			else
+				ClientCmd("sm_hev_logon 1\n");
+		break;
+
+		case ID_BTN_GAMESET_ADV02:
+			if( CVAR_GET_FLOAT("sm_dyn_lights") == 1 )
+				ClientCmd("sm_dyn_lights 0\n");
+			else
+				ClientCmd("sm_dyn_lights 1\n");
+		break;
+
+		case ID_BTN_GAMESET_ADV03:
+			if( CVAR_GET_FLOAT("gl_shadows") == 1 )
+				ClientCmd("gl_shadows 0\n");
+			else
+				ClientCmd("gl_shadows 1\n");
+		break;
+
+		case ID_BTN_GAMESET_ADV04:
+			if( CVAR_GET_FLOAT("sm_hev_pick") == 1 )
+				ClientCmd("sm_hev_pick 0\n");
+			else
+				ClientCmd("sm_hev_pick 1\n");
+		break;
+
 		// Unhandled button
 		case 0:
 		default:
@@ -706,7 +807,7 @@ CMainMenuNew::CMainMenuNew() : Panel( 0, 0, XRES(640), YRES(480) )
 	pPanelMainMenu = new Panel( MenuAdjustPosition(ID_PANEL_MAINMENU, false), MenuAdjustPosition(ID_PANEL_MAINMENU, true), 300, 400);
 	pPanelMainMenu->setParent(this);
 	pPanelMainMenu->setBgColor(0, 0, 0, 100);
-	pPanelMainMenu->setPaintBackgroundEnabled(true);
+	pPanelMainMenu->setPaintBackgroundEnabled(false);
 
 
 	// Main menu -> Game settings button
@@ -862,10 +963,148 @@ CMainMenuNew::CMainMenuNew() : Panel( 0, 0, XRES(640), YRES(480) )
 	pBtn_newgame_prev->setVisible(false);
 
 
-	// TODO: Panels for expansions
-	// TODO: Arcade mode panel
+
+	// GAME SETTINGS PANEL
+	// Game set panel
+	pPanelGameSet = new Panel( MenuAdjustPosition(ID_PANEL_NEWGAME, false), MenuAdjustPosition(ID_PANEL_NEWGAME, true), 1000, 600);
+	pPanelGameSet->setParent(this);
+	pPanelGameSet->setPaintBackgroundEnabled(false);
+	pPanelGameSet->setVisible(false);
+	
+	// Game set BG
+	pIMGmm_GameSet = new MenuImageHolder("gfx/vgui/mm_gamemode.tga", pPanelGameSet);
+	pIMGmm_GameSet->setPos( 0, 0 );
+	pIMGmm_GameSet->setVisible(true);
+
+	// Game set panel -> CLOSE 
+	pBtn_GameSet_close = new CommandButton( "", 940, 20, 32, 32);
+	pBtn_GameSet_close->setFont( pFontText );
+    pBtn_GameSet_close->setParent( pIMGmm_GameSet );
+	pBtn_GameSet_close->setPaintBackgroundEnabled(true);
+    pBtn_GameSet_close->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_GAMESET_CLOSE, this) );
+	pBtn_GameSet_close->setVisible(true);
+
+	// Game set panel -> OK
+	pBtn_GameSet_ok = new CommandButton( "", 909, 548, 64, 28);
+	pBtn_GameSet_ok->setFont( pFontText );
+    pBtn_GameSet_ok->setParent( pPanelGameSet );
+	pBtn_GameSet_ok->setPaintBackgroundEnabled(true);
+    pBtn_GameSet_ok->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_GAMESET_CLOSE, this) );
+	pBtn_GameSet_ok->setVisible(true);
 
 
+	// Game set difficulty buttons
+	pIMGmm_GameSet_diff1 = new MenuImageHolder("gfx/vgui/mm_check.tga", pIMGmm_GameSet);
+	pIMGmm_GameSet_diff1->setPos( 33, 112 );
+	pIMGmm_GameSet_diff1->setVisible(true);
+
+	pBtn_GameSet_diff1 = new CommandButton( "", 33, 112, 24, 24);
+	pBtn_GameSet_diff1->setFont( pFontText );
+    pBtn_GameSet_diff1->setParent( pIMGmm_GameSet );
+	pBtn_GameSet_diff1->setPaintBackgroundEnabled(true);
+    pBtn_GameSet_diff1->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_GAMESET_DIFF01, this) );
+	pBtn_GameSet_diff1->setVisible(true);
+
+	pIMGmm_GameSet_diff2 = new MenuImageHolder("gfx/vgui/mm_check.tga", pIMGmm_GameSet);
+	pIMGmm_GameSet_diff2->setPos( 33, 141 );
+	pIMGmm_GameSet_diff2->setVisible(true);
+
+	pBtn_GameSet_diff2 = new CommandButton( "", 33, 141, 24, 24);
+	pBtn_GameSet_diff2->setFont( pFontText );
+    pBtn_GameSet_diff2->setParent( pIMGmm_GameSet );
+	pBtn_GameSet_diff2->setPaintBackgroundEnabled(true);
+    pBtn_GameSet_diff2->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_GAMESET_DIFF02, this) );
+	pBtn_GameSet_diff2->setVisible(true);
+
+	pIMGmm_GameSet_diff3 = new MenuImageHolder("gfx/vgui/mm_check.tga", pIMGmm_GameSet);
+	pIMGmm_GameSet_diff3->setPos( 33, 170 );
+	pIMGmm_GameSet_diff3->setVisible(true);
+
+	pBtn_GameSet_diff3 = new CommandButton( "", 33, 170, 24, 24);
+	pBtn_GameSet_diff3->setFont( pFontText );
+    pBtn_GameSet_diff3->setParent( pIMGmm_GameSet );
+	pBtn_GameSet_diff3->setPaintBackgroundEnabled(true);
+    pBtn_GameSet_diff3->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_GAMESET_DIFF03, this) );
+	pBtn_GameSet_diff3->setVisible(true);
+
+
+	// Game set subtitles buttons
+	pIMGmm_GameSet_particles1 = new MenuImageHolder("gfx/vgui/mm_check.tga", pIMGmm_GameSet);
+	pIMGmm_GameSet_particles1->setPos( 653, 112 );
+	pIMGmm_GameSet_particles1->setVisible(true);
+
+	pBtn_GameSet_particles1 = new CommandButton( "", 653, 112, 24, 24);
+	pBtn_GameSet_particles1->setFont( pFontText );
+    pBtn_GameSet_particles1->setParent( pIMGmm_GameSet );
+	pBtn_GameSet_particles1->setPaintBackgroundEnabled(true);
+    pBtn_GameSet_particles1->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_GAMESET_PARTICLES01, this) );
+	pBtn_GameSet_particles1->setVisible(true);
+
+	pIMGmm_GameSet_particles2 = new MenuImageHolder("gfx/vgui/mm_check.tga", pIMGmm_GameSet);
+	pIMGmm_GameSet_particles2->setPos( 653, 141 );
+	pIMGmm_GameSet_particles2->setVisible(true);
+
+	pBtn_GameSet_particles2 = new CommandButton( "", 653, 141, 24, 24);
+	pBtn_GameSet_particles2->setFont( pFontText );
+    pBtn_GameSet_particles2->setParent( pIMGmm_GameSet );
+	pBtn_GameSet_particles2->setPaintBackgroundEnabled(true);
+    pBtn_GameSet_particles2->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_GAMESET_PARTICLES02, this) );
+	pBtn_GameSet_particles2->setVisible(true);
+
+	pIMGmm_GameSet_particles3 = new MenuImageHolder("gfx/vgui/mm_check.tga", pIMGmm_GameSet);
+	pIMGmm_GameSet_particles3->setPos( 653, 170 );
+	pIMGmm_GameSet_particles3->setVisible(true);
+
+	pBtn_GameSet_particles3 = new CommandButton( "", 653, 170, 24, 24);
+	pBtn_GameSet_particles3->setFont( pFontText );
+    pBtn_GameSet_particles3->setParent( pIMGmm_GameSet );
+	pBtn_GameSet_particles3->setPaintBackgroundEnabled(true);
+    pBtn_GameSet_particles3->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_GAMESET_PARTICLES03, this) );
+	pBtn_GameSet_particles3->setVisible(true);
+
+
+	// Game set - advanced options
+	pIMGmm_GameSet_adv1 = new MenuImageHolder("gfx/vgui/mm_check.tga", pIMGmm_GameSet);
+	pIMGmm_GameSet_adv1->setPos( 33, 247 );
+	pIMGmm_GameSet_adv1->setVisible(true);
+	pBtn_GameSet_adv1 = new CommandButton( "", 33, 247, 24, 24);
+	pBtn_GameSet_adv1->setFont( pFontText );
+    pBtn_GameSet_adv1->setParent( pIMGmm_GameSet );
+	pBtn_GameSet_adv1->setPaintBackgroundEnabled(true);
+    pBtn_GameSet_adv1->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_GAMESET_ADV01, this) );
+	pBtn_GameSet_adv1->setVisible(true);
+
+	pIMGmm_GameSet_adv2 = new MenuImageHolder("gfx/vgui/mm_check.tga", pIMGmm_GameSet);
+	pIMGmm_GameSet_adv2->setPos( 33, 276 );
+	pIMGmm_GameSet_adv2->setVisible(true);
+	pBtn_GameSet_adv2 = new CommandButton( "", 33, 276, 24, 24);
+	pBtn_GameSet_adv2->setFont( pFontText );
+    pBtn_GameSet_adv2->setParent( pIMGmm_GameSet );
+	pBtn_GameSet_adv2->setPaintBackgroundEnabled(true);
+    pBtn_GameSet_adv2->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_GAMESET_ADV02, this) );
+	pBtn_GameSet_adv2->setVisible(true);
+
+	pIMGmm_GameSet_adv3 = new MenuImageHolder("gfx/vgui/mm_check.tga", pIMGmm_GameSet);
+	pIMGmm_GameSet_adv3->setPos( 33, 305 );
+	pIMGmm_GameSet_adv3->setVisible(true);
+	pBtn_GameSet_adv3 = new CommandButton( "", 33, 305, 24, 24);
+	pBtn_GameSet_adv3->setFont( pFontText );
+    pBtn_GameSet_adv3->setParent( pIMGmm_GameSet );
+	pBtn_GameSet_adv3->setPaintBackgroundEnabled(true);
+    pBtn_GameSet_adv3->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_GAMESET_ADV03, this) );
+	pBtn_GameSet_adv3->setVisible(true);
+
+	pIMGmm_GameSet_adv4 = new MenuImageHolder("gfx/vgui/mm_check.tga", pIMGmm_GameSet);
+	pIMGmm_GameSet_adv4->setPos( 33, 334 );
+	pIMGmm_GameSet_adv4->setVisible(true);
+	pBtn_GameSet_adv4 = new CommandButton( "", 33, 334, 24, 24);
+	pBtn_GameSet_adv4->setFont( pFontText );
+    pBtn_GameSet_adv4->setParent( pIMGmm_GameSet );
+	pBtn_GameSet_adv4->setPaintBackgroundEnabled(true);
+    pBtn_GameSet_adv4->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_GAMESET_ADV04, this) );
+	pBtn_GameSet_adv4->setVisible(true);
+
+	
 	UpdateMainMenu();
 }
 
@@ -877,6 +1116,36 @@ CMainMenuNew::~CMainMenuNew()
 	ResetVars(true);
 
 	// Delete objects
+	if(pIMGmm_GameSet_adv10)		delete pIMGmm_GameSet_adv10;
+	if(pIMGmm_GameSet_adv9)			delete pIMGmm_GameSet_adv9;
+	if(pIMGmm_GameSet_adv8)			delete pIMGmm_GameSet_adv8;
+	if(pIMGmm_GameSet_adv7)			delete pIMGmm_GameSet_adv7;
+	if(pIMGmm_GameSet_adv6)			delete pIMGmm_GameSet_adv6;
+	if(pIMGmm_GameSet_adv5)			delete pIMGmm_GameSet_adv5;
+	if(pIMGmm_GameSet_adv4)			delete pIMGmm_GameSet_adv4;
+	if(pIMGmm_GameSet_adv3)			delete pIMGmm_GameSet_adv3;
+	if(pIMGmm_GameSet_adv2)			delete pIMGmm_GameSet_adv2;
+	if(pIMGmm_GameSet_adv1)			delete pIMGmm_GameSet_adv1;
+
+	if(pIMGmm_GameSet_particles3)	delete pIMGmm_GameSet_particles3;
+	if(pIMGmm_GameSet_particles2)	delete pIMGmm_GameSet_particles2;
+	if(pIMGmm_GameSet_particles1)	delete pIMGmm_GameSet_particles1;
+	if(pBtn_GameSet_particles3)		delete pBtn_GameSet_particles3;
+	if(pBtn_GameSet_particles2)		delete pBtn_GameSet_particles2;
+	if(pBtn_GameSet_particles1)		delete pBtn_GameSet_particles1;
+
+	if(pIMGmm_GameSet_diff3)	delete pIMGmm_GameSet_diff3;
+	if(pIMGmm_GameSet_diff2)	delete pIMGmm_GameSet_diff2;
+	if(pIMGmm_GameSet_diff1)	delete pIMGmm_GameSet_diff1;
+	if(pBtn_GameSet_diff3)		delete pBtn_GameSet_diff3;
+	if(pBtn_GameSet_diff2)		delete pBtn_GameSet_diff2;
+	if(pBtn_GameSet_diff1)		delete pBtn_GameSet_diff1;
+
+	if(pBtn_GameSet_ok)		delete pBtn_GameSet_ok;
+	if(pBtn_GameSet_close)	delete pBtn_GameSet_close;
+	if(pIMGmm_GameSet)		delete pIMGmm_GameSet;
+	if(pPanelGameSet)		delete pPanelGameSet;
+
 	if(pIMGmm_HL07)			delete pIMGmm_HL07;
 	if(pIMGmm_HL06)			delete pIMGmm_HL06;
 	if(pIMGmm_HL05)			delete pIMGmm_HL05;
@@ -911,6 +1180,77 @@ void CMainMenuNew::paint()
 {
 	//gEngfuncs.Con_Printf( "^2HLU -> CMainMenuNew -> paint()\n" );
 	//char cString[32];	// Helper string
+
+
+	// Fograin92: Display correct checkbox options
+	if( pPanelGameSet->isVisible() )
+	{
+		// Difficulty settings
+		if( CVAR_GET_FLOAT("skill") == 2 )
+		{
+			pIMGmm_GameSet_diff1->setVisible(false);
+			pIMGmm_GameSet_diff2->setVisible(true);
+			pIMGmm_GameSet_diff3->setVisible(false);
+		}
+		else if( CVAR_GET_FLOAT("skill") == 3 )
+		{
+			pIMGmm_GameSet_diff1->setVisible(false);
+			pIMGmm_GameSet_diff2->setVisible(false);
+			pIMGmm_GameSet_diff3->setVisible(true);
+		}
+		else
+		{
+			pIMGmm_GameSet_diff1->setVisible(true);
+			pIMGmm_GameSet_diff2->setVisible(false);
+			pIMGmm_GameSet_diff3->setVisible(false);
+		}
+
+		// Particles settings
+		if( CVAR_GET_FLOAT("sm_particles") == 1 )
+		{
+			pIMGmm_GameSet_particles1->setVisible(false);
+			pIMGmm_GameSet_particles2->setVisible(true);
+			pIMGmm_GameSet_particles3->setVisible(false);
+		}
+		else if( CVAR_GET_FLOAT("sm_particles") == 2 )
+		{
+			pIMGmm_GameSet_particles1->setVisible(false);
+			pIMGmm_GameSet_particles2->setVisible(false);
+			pIMGmm_GameSet_particles3->setVisible(true);
+		}
+		else
+		{
+			pIMGmm_GameSet_particles1->setVisible(true);
+			pIMGmm_GameSet_particles2->setVisible(false);
+			pIMGmm_GameSet_particles3->setVisible(false);
+		}
+
+
+		// Advanced settings
+		if( CVAR_GET_FLOAT("sm_hev_logon") == 1 )
+			pIMGmm_GameSet_adv1->setVisible(true);
+		else
+			pIMGmm_GameSet_adv1->setVisible(false);
+
+		if( CVAR_GET_FLOAT("sm_dyn_lights") == 1 )
+			pIMGmm_GameSet_adv2->setVisible(true);
+		else
+			pIMGmm_GameSet_adv2->setVisible(false);
+
+		if( CVAR_GET_FLOAT("gl_shadows") == 1 )
+			pIMGmm_GameSet_adv3->setVisible(true);
+		else
+			pIMGmm_GameSet_adv3->setVisible(false);
+
+		if( CVAR_GET_FLOAT("sm_hev_pick") == 1 )
+			pIMGmm_GameSet_adv4->setVisible(true);
+		else
+			pIMGmm_GameSet_adv4->setVisible(false);
+
+		
+	}
+
+
 	Panel::paint();		// Proceed with rendering
 }
 

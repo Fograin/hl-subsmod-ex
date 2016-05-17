@@ -13,12 +13,20 @@
 #include "sm_structs.h"
 #include "sm_defines.h"
 
-// Custom .txt files to load, shared goes first
+
+// Load shared .txt files and dialogue subtitles
 static const char * const pCustomTitleFilesArray[] = 
 {
 	"scripts/sm_text_base.txt",
 	"scripts/sm_text_subs.txt",
-	//"scripts/sm_text_CC.txt",	// Fograin92: Closed captions
+};
+
+// Load shared .txt files, dialogue subtitles AND closed captions
+static const char * const pCustomTitleFilesArrayCC[] = 
+{
+	"scripts/sm_text_base.txt",
+	"scripts/sm_text_subs.txt",
+	"scripts/sm_text_CC.txt",
 };
 
 
@@ -178,17 +186,24 @@ static const client_textmessage_sentence_t pBSTramSounds[] =
 // Fix sentences, Blue-Shift Hazard Course hologram
 static const client_textmessage_sentence_t pBSHoloSounds[] =
 {
-	{ "/tr_holo_breath.wav",		"!HOLO_BREATH"		},
-	{ "/tr_holo_done.wav",			"!HOLO_DONE"		},
-	{ "/tr_holo_fallshort.wav",		"!HOLO_FALLSHORT"	},
-	{ "/tr_holo_fantastic.wav",		"!HOLO_FANTASTIC"	},
-	{ "/tr_holo_flashlight.wav",	"!HOLO_FLASHLIGHT"	},
-	{ "/tr_holo_greatwork.wav",		"!HOLO_GREATWORK"	},
-	{ "/tr_holo_jumpdown.wav",		"!HOLO_JUMPDOWN"	},
-	{ "/tr_holo_keeptrying.wav",	"!HOLO_KEEPTRYING"	},
-	{ "/tr_holo_lightoff.wav",		"!HOLO_LIGHTOFF"	},
-	{ "/tr_holo_nicejob.wav",		"!HOLO_NICEJOB"		},
-	{ "/tr_holo_radiation.wav",		"!HOLO_RADIATION"	},
+	{ "/tr_holo_breath.wav",		"!BS_BREATH"		},
+	{ "/tr_holo_done.wav",			"!BS_DONE"			},
+	{ "/tr_holo_fallshort.wav",		"!BS_FALLSHORT"		},
+	{ "/tr_holo_fantastic.wav",		"!BS_FANTASTIC"		},
+	{ "/tr_holo_flashlight.wav",	"!BS_FLASHLIGHT"	},
+	{ "/tr_holo_greatwork.wav",		"!BS_GREATWORK"		},
+	{ "/tr_holo_jumpdown.wav",		"!BS_JUMPDOWN"		},
+	{ "/tr_holo_keeptrying.wav",	"!BS_KEEPTRYING"	},
+	{ "/tr_holo_lightoff.wav",		"!BS_LIGHTOFF"		},
+	{ "/tr_holo_nicejob.wav",		"!BS_NICEJOB"		},
+	{ "/tr_holo_radiation.wav",		"!BS_RADIATION"		},
+};
+
+
+// Fograin92: Closed captions
+static const client_textmessage_sentence_t pCCSounds[] =
+{
+	{ "/pl_gun3.wav",		"WPN_PISTOL_SHOOT"	},
 };
 
 
@@ -233,13 +248,14 @@ static const client_textmessage_sndgroup_t pSoundGroups[] =
     { "tride",			strlen("tride"),		pHLTRideSounds,		ARRAYSIZE(pHLTRideSounds)		},
     { "turret",			strlen("turret"),		NULL,				0								},
     { "vox",			strlen("vox"),			NULL,				0								},
-    { "weapons",		strlen("weapons"),		NULL,				0								},
+    { "weapons",		strlen("weapons"),		pCCSounds,			ARRAYSIZE(pCCSounds)			},
     { "x",				strlen("x"),			NULL,				0								},
     { "zombie",			strlen("zombie"),		NULL,				0								},
 
 	// Blue Shift sentence fixes
 	{ "tram",			strlen("tram"),			pBSTramSounds,		ARRAYSIZE(pBSTramSounds)		},
 	{ "ba_holo",		strlen("ba_holo"),		pBSHoloSounds,		ARRAYSIZE(pBSHoloSounds)		},
+
 };
 
 

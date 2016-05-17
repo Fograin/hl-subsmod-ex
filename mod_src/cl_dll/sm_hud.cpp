@@ -275,11 +275,12 @@ void CHudNew::GetGame()
 		iHudColor[1] = 180;	// G
 		iHudColor[2] = 255;	// B
 
-		pHealthLab->setFont( pFont );
-		pArmorLab->setFont( pFont );
-		pPrimaryAmmoLab->setFont( pFont );
-		pSecondaryAmmoLab->setFont( pFont );
-		pLogonText->setFont( pFontText );
+		// Fograin92: Disabled for now
+		//pHealthLab->setFont( pFont );
+		//pArmorLab->setFont( pFont );
+		//pPrimaryAmmoLab->setFont( pFont );
+		//pSecondaryAmmoLab->setFont( pFont );
+		//pLogonText->setFont( pFontText );
 	}
 
 	// Opposing Force HUD
@@ -289,11 +290,12 @@ void CHudNew::GetGame()
 		iHudColor[1] = 255;	// G
 		iHudColor[2] = 0;	// B
 
-		pHealthLab->setFont( pFontOF );
-		pArmorLab->setFont( pFontOF );
-		pPrimaryAmmoLab->setFont( pFontOF );
-		pSecondaryAmmoLab->setFont( pFontOF );
-		pLogonText->setFont( pFontTextOF );
+		// Fograin92: Disabled for now
+		//pHealthLab->setFont( pFontOF );
+		//pArmorLab->setFont( pFontOF );
+		//pPrimaryAmmoLab->setFont( pFontOF );
+		//pSecondaryAmmoLab->setFont( pFontOF );
+		//pLogonText->setFont( pFontTextOF );
 	}
 
 	// Default / Half-Life 1 HUD
@@ -303,14 +305,20 @@ void CHudNew::GetGame()
 		iHudColor[1] = 160;	// G
 		iHudColor[2] = 0;	// B
 
-		pHealthLab->setFont( pFont );
-		pArmorLab->setFont( pFont );
-		pPrimaryAmmoLab->setFont( pFont );
-		pSecondaryAmmoLab->setFont( pFont );
-		pLogonText->setFont( pFontText );
+		// Fograin92: Disabled for now
+		//pHealthLab->setFont( pFont );
+		//pArmorLab->setFont( pFont );
+		//pPrimaryAmmoLab->setFont( pFont );
+		//pSecondaryAmmoLab->setFont( pFont );
+		//pLogonText->setFont( pFontText );
 	}
 
-
+	// Fograin92: Apply default VGUI fonts for all games
+	pHealthLab->setFont( pFont );
+	pArmorLab->setFont( pFont );
+	pPrimaryAmmoLab->setFont( pFont );
+	pSecondaryAmmoLab->setFont( pFont );
+	pLogonText->setFont( pFontText );
 	
 }
 
@@ -1885,8 +1893,8 @@ void CHudNew::paint()
 			iTimerSpeed = HEV_PULSE_SPD;
 			//fTimer_Logon = 566;
 
-			// Fograin92: If this is Blue-Shift then skip the whole logon text
-			if (CVAR_GET_FLOAT("sm_hud") == 1 )
+			// Fograin92: If this is Blue-Shift OR player disabled logon then skip the whole logon text
+			if( (CVAR_GET_FLOAT("sm_hud") == 1 ) || (CVAR_GET_FLOAT("sm_hev_logon") == 0) )
 			{
 				fTimer_Logon = 566;
 				bShortLogon = true;

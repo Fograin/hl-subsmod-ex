@@ -349,36 +349,40 @@ void CItemBattery::Precache( void )
 // Fograin92: Cast world and entity light
 void CItemBattery::BatteryThink( void )
 {
-	// Fograin92: Dynamic world light (not really BS-like but it looks nice :D)
-	MESSAGE_BEGIN( MSG_PVS, SVC_TEMPENTITY, pev->origin );
-		WRITE_BYTE(TE_DLIGHT);
-		WRITE_COORD(pev->origin.x);	// X
-		WRITE_COORD(pev->origin.y);	// Y
-		WRITE_COORD(pev->origin.z);	// Z
-		WRITE_BYTE( 4 );		// radius * 0.1 
-		WRITE_BYTE( 0 );		// r
-		WRITE_BYTE( 255 );		// g
-		WRITE_BYTE( 255 );		// b
-		WRITE_BYTE( 1 );		// time * 10
-		WRITE_BYTE( 1 );		// decay * 0.1
-	MESSAGE_END( );
+	// Fograin92: Check if dynamic lights are enabled
+	if( CVAR_GET_FLOAT("sm_dyn_lights") == 1 )
+	{
+		// Fograin92: Dynamic world light (not really BS-like but it looks nice :D)
+		MESSAGE_BEGIN( MSG_PVS, SVC_TEMPENTITY, pev->origin );
+			WRITE_BYTE(TE_DLIGHT);
+			WRITE_COORD(pev->origin.x);	// X
+			WRITE_COORD(pev->origin.y);	// Y
+			WRITE_COORD(pev->origin.z);	// Z
+			WRITE_BYTE( 4 );		// radius * 0.1 
+			WRITE_BYTE( 0 );		// r
+			WRITE_BYTE( 255 );		// g
+			WRITE_BYTE( 255 );		// b
+			WRITE_BYTE( 1 );		// time * 10
+			WRITE_BYTE( 1 );		// decay * 0.1
+		MESSAGE_END( );
 
-	// Fograin92: Dynamic entity light
-	MESSAGE_BEGIN( MSG_BROADCAST, SVC_TEMPENTITY );
-		WRITE_BYTE( TE_ELIGHT );
-		WRITE_SHORT( entindex( ) );		// entity, attachment
-		WRITE_COORD(pev->origin.x);	// X
-		WRITE_COORD(pev->origin.y);	// Y
-		WRITE_COORD(pev->origin.z);	// Z
-		WRITE_COORD( pev->renderamt );	// radius
-		WRITE_BYTE( 0 );		// r
-		WRITE_BYTE( 255 );		// g
-		WRITE_BYTE( 255 );		// b
-		WRITE_BYTE( 1 );	// life * 10
-		WRITE_COORD( 1 ); // decay
-	MESSAGE_END();
+		// Fograin92: Dynamic entity light
+		MESSAGE_BEGIN( MSG_BROADCAST, SVC_TEMPENTITY );
+			WRITE_BYTE( TE_ELIGHT );
+			WRITE_SHORT( entindex( ) );		// entity, attachment
+			WRITE_COORD(pev->origin.x);	// X
+			WRITE_COORD(pev->origin.y);	// Y
+			WRITE_COORD(pev->origin.z);	// Z
+			WRITE_COORD( pev->renderamt );	// radius
+			WRITE_BYTE( 0 );		// r
+			WRITE_BYTE( 255 );		// g
+			WRITE_BYTE( 255 );		// b
+			WRITE_BYTE( 1 );	// life * 10
+			WRITE_COORD( 1 ); // decay
+		MESSAGE_END();
+	}
 
-	pev->nextthink = gpGlobals->time + 0.01;
+	pev->nextthink = gpGlobals->time + 0.05;
 }
 
 

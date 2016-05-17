@@ -598,7 +598,7 @@ void EV_FireGlock1( event_args_t *args )
 	EV_EjectBrass ( ShellOrigin, ShellVelocity, angles[ YAW ], shell, TE_BOUNCE_SHELL ); 
 
 	// Fograin92: Replaced with new audio engine
-	gSoundEngine.PlaySound( "weapons/pl_gun3.wav", g_vecZero, SND_RELATIVE, CHAN_WEAPON, CVAR_GET_FLOAT("sm_snd_sfx"), 98 + gEngfuncs.pfnRandomLong( 0, 3 ), ATTN_NORM, NULL, args->entindex );
+	//gSoundEngine.PlaySound( "weapons/pl_gun3.wav", g_vecZero, SND_RELATIVE, CHAN_WEAPON, CVAR_GET_FLOAT("sm_snd_sfx"), 98 + gEngfuncs.pfnRandomLong( 0, 3 ), ATTN_NORM, NULL, args->entindex );
 
 	EV_GetGunPosition( args, vecSrc, origin );
 	VectorCopy( forward, vecAiming );
