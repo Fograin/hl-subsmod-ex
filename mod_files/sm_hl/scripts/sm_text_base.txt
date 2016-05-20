@@ -30,7 +30,7 @@ $holdtime 3.5
 // How long it takes to fade out the message after holding
 $fadeout 1.5
 
-$chained SM_INTRO_CR_01
+//$chained SM_INTRO_CR_01
 CR27
 {
 Black Mesa Research Facility
@@ -245,7 +245,7 @@ Randy Lundeen
 Yatsze Mark
 }
 
-$chained SM_OUTRO_CR_01
+//$chained SM_OUTRO_CR_01
 END3
 {
 Lisa Mennet
@@ -359,8 +359,8 @@ POSTMORTEM:
 Subject declined offer of employment.
 }
 
-//CHAPTER TITLES
 
+//CHAPTER TITLES
 $fadein 0.01
 $position -1 0.4
 $holdtime 3.5
@@ -804,3 +804,354 @@ Half-Life: Paranoia mod team (Base subtitles code)
 combineoverwiki.net (Quotes from HL games)
 half-life.wikia.com (Nihilanth quotes)
 }
+
+
+
+//=================//
+// BLUE-SHIFT TEXT
+//=================//
+
+
+//INTRO CREDITS
+// Test values -- JAY
+// Lower left
+$position 0.1 0.7
+$effect 17
+// Final fade-in color
+$color 128 128 128
+// This is the highlight/flash color
+$color2 0 0 0
+$fadein 1.5
+$fadeout 0.5
+$holdtime 1.2
+
+BS_CR1
+{
+Matt Armstrong
+}
+
+BS_CR2
+{
+Stephen Bahl
+}
+
+BS_CR3
+{
+Sean Cavanaugh
+}
+
+BS_CR4
+{
+Patrick Deupree
+}
+
+BS_CR5
+{
+Rob Heironimus
+}
+
+BS_CR6
+{
+Steve Jones
+}
+
+BS_CR7
+{
+Brian Martel
+}
+
+BS_CR8
+{
+David Mertz
+}
+
+BS_CR9
+{
+Landon Montgomery
+}
+
+BS_CR10
+{
+Stephen Palmer
+}
+
+BS_CR11
+{
+Randy Pitchford
+}
+
+BS_CR12
+{
+Sean Reardon
+}
+
+BS_CR13
+{
+Matthew VanDolen
+}
+
+BS_CR14
+{
+Mike Wardwell
+}
+
+
+//END CREDITS
+$position -1 -1
+$effect 16
+// Final fade-in color
+$color 128 128 128
+// This is the highlight/flash color
+$color2 0 0 0
+$fadein 1
+$fadeout 1
+$holdtime 8
+
+BS_END1
+{
+Matt Armstrong
+Stephen Bahl
+Sean Cavanaugh
+Patrick Deupree
+Rob Heironimus
+}
+
+BS_END2
+{
+Steve Jones
+Brian Martel
+Chris McArthur
+David Mertz
+Landon Montgomery
+}
+
+BS_END3
+{
+Stephen Palmer
+Randy Pitchford
+Sean Reardon
+Matthew VanDolen
+Mike Wardwell
+}
+
+SPTHANKS
+{
+Special thanks to:
+}
+
+THANKS1
+{
+Brian Hess
+Jon St. John
+Kristy Junio
+Joe Kennebec
+Kathy Levin
+}
+
+THANKS2
+{
+Eli Luna
+Harry S. Robins
+Rob Selitto
+Mike Shapiro
+}
+
+THANKS3
+{
+Blue Spark Studios
+Captivation Digital Laboratories
+Valve Software
+Sierra Studios
+Sega of America
+}
+
+holdtime 6.5
+BSTITLE
+{
+Half-Life: Blue Shift
+}
+
+GEARBOXIS
+{
+Gearbox is:
+}
+
+$holdtime 20
+ENDCHEAT
+{
+THE END
+}
+
+//INTRO TITLES
+// All centered for now
+$position -1 -1
+$effect 18
+// This is the final color
+$color 140 140 140
+// This is the highlight color
+$color2 240 110 0
+// This is the time it takes to fade each character
+$fadein 0.01
+// This is the amount of time the highlight lags behind the leading edge of the text
+$fxtime 0.25
+// How long to hold the message on the screen (after it scans out)
+$holdtime 3.5
+// How long it takes to fade out the message after holding
+$fadeout 1.3
+
+INTRO1
+{
+SUBJECT:
+B. Calhoun
+}
+
+
+BS_CR29
+{
+EDUCATION:
+2 years Martinson College
+Undecided Major
+}
+
+BS_CR30
+{
+EMPLOYER:
+Black Mesa Research Facility
+}
+
+BS_CR31
+{
+POSITION:
+Security Officer
+}
+
+BS_CR32
+{
+ASSIGNMENT:
+Area 3 Security
+}
+
+BS_CR33
+{
+CLEARANCE:
+Level 3
+}
+
+BS_CR34
+{
+DISASTER RESPONSE PRIORITY:
+Preservation of facility 
+equipment and materials.
+}
+
+BS_CR35
+{
+SECONDARY PRIORITY:
+Welfare of research personnel.
+}
+
+BS_CR36
+{
+LOW PRIORITY:
+Personal safety.
+}
+
+
+$fadein 0.03
+$holdtime 9
+
+BS_GAMEOVER
+{
+SUBJECT:  CALHOUN
+
+STATUS:  EMPLOYMENT TERMINATED
+
+REASON FOR TERMINATION:
+Improper handling of a firearm
+in the facility.
+}
+
+XEN1FAILURE
+{
+SUBJECT:  CALHOUN
+
+STATUS:  UNKNOWN
+
+Employee is assumed to have perished with
+remaining personnel during Lambda incident.
+
+}
+
+BSGAMEEND
+{
+SUBJECT:  CALHOUN
+
+STATUS:  OUT OF RANGE
+
+NO FURTHER COMMENT
+}
+
+$fadein 0.02
+$holdtime 9
+
+ROSENDEAD
+{
+SUBJECT:  CALHOUN
+
+STATUS:  UNKNOWN
+
+Employee is assumed to have perished with
+remaining personnel during Lambda incident.
+
+}
+
+
+// BS CHAPTER TITLES
+$fadein 0.01
+$position -1 0.4
+$holdtime 4
+
+$position -1 0.65
+BA_TRAMTITLE
+{
+LIVING QUARTERS OUTBOUND
+}
+
+BA_SECURITYTITLE
+{
+INSECURITY
+}
+
+BA_CANALSTITLE
+{
+DUTY CALLS
+}
+
+BA_YARDTITLE
+{
+CAPTIVE FREIGHT
+}
+
+BA_XENTITLE
+{
+FOCAL POINT
+}
+
+BA_POWERTITLE
+{
+POWER STRUGGLE
+}
+
+BA_TELEPORTTITLE
+{
+A LEAP OF FAITH
+}
+
+$fadein 0.04
+$holdtime 2
+
+CHUMTOAD
+{
+CHUMTOAD'S LAIR
+}
+

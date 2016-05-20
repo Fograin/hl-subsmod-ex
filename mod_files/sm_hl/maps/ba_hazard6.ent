@@ -1613,7 +1613,7 @@
 "volstart" "5"
 "health" "8"
 "targetname" "snd_granted"
-"message" "!na1"
+"message" "!EA0"
 "spawnflags" "50"
 "classname" "ambient_generic"
 }

@@ -9,62 +9,12 @@
 //	Before using any parts of this code, read licence.txt file 
 //=============================================================//
 
-//=========================================================
-// Hit groups!	
-//=========================================================
-/*
-
-  1 - Head
-  2 - Stomach
-  3 - Gun
-
-*/
-
-
-#include	"extdll.h"
-#include	"plane.h"
-#include	"util.h"
-#include	"cbase.h"
-#include	"monsters.h"
-#include	"ai_schedule.h"
-#include	"animation.h"
-#include	"squadmonster.h"
-#include	"weapons.h"
-#include	"talkmonster.h"
-#include	"soundent.h"
-#include	"effects.h"
-#include	"customentity.h"
+#include	"monster_human_grunt.h"
 
 int g_fGruntQuestion;				// true if an idle grunt asked a question. Cleared when someone answers.
 
 extern DLL_GLOBAL int		g_iSkillLevel;
 
-//=========================================================
-// monster-specific DEFINE's
-//=========================================================
-#define	GRUNT_CLIP_SIZE					36 // how many bullets in a clip? - NOTE: 3 round burst sound, so keep as 3 * x!
-#define GRUNT_VOL						0.35		// volume of grunt sounds
-#define GRUNT_ATTN						ATTN_NORM	// attenutation of grunt sentences
-#define HGRUNT_LIMP_HEALTH				20
-#define HGRUNT_DMG_HEADSHOT				( DMG_BULLET | DMG_CLUB )	// damage types that can kill a grunt with a single headshot.
-#define HGRUNT_NUM_HEADS				2 // how many grunt heads are there? 
-#define HGRUNT_MINIMUM_HEADSHOT_DAMAGE	15 // must do at least this much damage in one shot to head to score a headshot kill
-#define	HGRUNT_SENTENCE_VOLUME			(float)0.35 // volume of grunt sentences
-
-#define HGRUNT_9MMAR				( 1 << 0)
-#define HGRUNT_HANDGRENADE			( 1 << 1)
-#define HGRUNT_GRENADELAUNCHER		( 1 << 2)
-#define HGRUNT_SHOTGUN				( 1 << 3)
-
-#define HEAD_GROUP					1
-#define HEAD_GRUNT					0
-#define HEAD_COMMANDER				1
-#define HEAD_SHOTGUN				2
-#define HEAD_M203					3
-#define GUN_GROUP					2
-#define GUN_MP5						0
-#define GUN_SHOTGUN					1
-#define GUN_NONE					2
 
 //=========================================================
 // Monster's Anim Events Go Here
@@ -113,74 +63,6 @@ enum
 //=========================================================
 #define bits_COND_GRUNT_NOFIRE	( bits_COND_SPECIAL1 )
 
-class CHGrunt : public CSquadMonster
-{
-public:
-	void Spawn( void );
-	void Precache( void );
-	void SetYawSpeed ( void );
-	int  Classify ( void );
-	int ISoundMask ( void );
-	void HandleAnimEvent( MonsterEvent_t *pEvent );
-	BOOL FCanCheckAttacks ( void );
-	BOOL CheckMeleeAttack1 ( float flDot, float flDist );
-	BOOL CheckRangeAttack1 ( float flDot, float flDist );
-	BOOL CheckRangeAttack2 ( float flDot, float flDist );
-	void CheckAmmo ( void );
-	void SetActivity ( Activity NewActivity );
-	void StartTask ( Task_t *pTask );
-	void RunTask ( Task_t *pTask );
-	void DeathSound( void );
-	void PainSound( void );
-	void IdleSound ( void );
-	Vector GetGunPosition( void );
-	void Shoot ( void );
-	void Shotgun ( void );
-	void PrescheduleThink ( void );
-	void GibMonster( void );
-	void SpeakSentence( void );
-
-	int	Save( CSave &save ); 
-	int Restore( CRestore &restore );
-	
-	CBaseEntity	*Kick( void );
-	Schedule_t	*GetSchedule( void );
-	Schedule_t  *GetScheduleOfType ( int Type );
-	void TraceAttack( entvars_t *pevAttacker, float flDamage, Vector vecDir, TraceResult *ptr, int bitsDamageType);
-	int TakeDamage( entvars_t *pevInflictor, entvars_t *pevAttacker, float flDamage, int bitsDamageType );
-
-	int IRelationship ( CBaseEntity *pTarget );
-
-	BOOL FOkToSpeak( void );
-	void JustSpoke( void );
-
-	CUSTOM_SCHEDULES;
-	static TYPEDESCRIPTION m_SaveData[];
-
-	// checking the feasibility of a grenade toss is kind of costly, so we do it every couple of seconds,
-	// not every server frame.
-	float m_flNextGrenadeCheck;
-	float m_flNextPainTime;
-	float m_flLastEnemySightTime;
-
-	Vector	m_vecTossVelocity;
-
-	BOOL	m_fThrowGrenade;
-	BOOL	m_fStanding;
-	BOOL	m_fFirstEncounter;// only put on the handsign show in the squad's first encounter.
-	int		m_cClipSize;
-
-	int m_voicePitch;
-
-	int		m_iBrassShell;
-	int		m_iShotgunShell;
-
-	int		m_iSentence;
-
-	static const char *pGruntSentences[];
-};
-
-LINK_ENTITY_TO_CLASS( monster_human_grunt, CHGrunt );
 
 TYPEDESCRIPTION	CHGrunt::m_SaveData[] = 
 {
@@ -272,7 +154,7 @@ void CHGrunt :: GibMonster ( void )
 	Vector	vecGunPos;
 	Vector	vecGunAngles;
 
-	if ( GetBodygroup( 2 ) != 2 )
+	if ( GetBodygroup( HG_GRP_WEAPONS ) != HG_WPN_NONE )
 	{// throw a gun if the grunt has one
 		GetAttachment( 0, vecGunPos, vecGunAngles );
 		
@@ -600,7 +482,7 @@ void CHGrunt :: TraceAttack( entvars_t *pevAttacker, float flDamage, Vector vecD
 	if (ptr->iHitgroup == 11)
 	{
 		// make sure we're wearing one
-		if (GetBodygroup( 1 ) == HEAD_GRUNT && (bitsDamageType & (DMG_BULLET | DMG_SLASH | DMG_BLAST | DMG_CLUB)))
+		if (GetBodygroup( HG_GRP_HEAD ) == HEAD_HG00 && (bitsDamageType & (DMG_BULLET | DMG_SLASH | DMG_BLAST | DMG_CLUB)))
 		{
 			// absorb damage
 			flDamage -= 20;
@@ -847,7 +729,7 @@ void CHGrunt :: HandleAnimEvent( MonsterEvent_t *pEvent )
 			GetAttachment( 0, vecGunPos, vecGunAngles );
 
 			// switch to body group with no gun.
-			SetBodygroup( GUN_GROUP, GUN_NONE );
+			SetBodygroup( HG_GRP_WEAPONS, HG_WPN_NONE );
 
 			// now spawn a gun.
 			if (FBitSet( pev->weapons, HGRUNT_SHOTGUN ))
@@ -1002,13 +884,11 @@ void CHGrunt :: Spawn()
 	{
 		// initialize to original values
 		pev->weapons = HGRUNT_9MMAR | HGRUNT_HANDGRENADE;
-		// pev->weapons = HGRUNT_SHOTGUN;
-		// pev->weapons = HGRUNT_9MMAR | HGRUNT_GRENADELAUNCHER;
 	}
 
 	if (FBitSet( pev->weapons, HGRUNT_SHOTGUN ))
 	{
-		SetBodygroup( GUN_GROUP, GUN_SHOTGUN );
+		SetBodygroup( HG_GRP_WEAPONS, HG_WPN_SHOTGUN );
 		m_cClipSize		= 8;
 	}
 	else
@@ -1017,25 +897,42 @@ void CHGrunt :: Spawn()
 	}
 	m_cAmmoLoaded		= m_cClipSize;
 
+	/*
 	if (RANDOM_LONG( 0, 99 ) < 80)
 		pev->skin = 0;	// light skin
 	else
 		pev->skin = 1;	// dark skin
+		*/
 
+	/*
 	if (FBitSet( pev->weapons, HGRUNT_SHOTGUN ))
 	{
-		SetBodygroup( HEAD_GROUP, HEAD_SHOTGUN);
+		// Fograin92: TODO, head set from frags
+		//SetBodygroup( HEAD_GROUP, HEAD_SHOTGUN);
 	}
 	else if (FBitSet( pev->weapons, HGRUNT_GRENADELAUNCHER ))
 	{
-		SetBodygroup( HEAD_GROUP, HEAD_M203 );
-		pev->skin = 1; // alway dark skin
+		// Fograin92: TODO, head set from frags
+		//SetBodygroup( HEAD_GROUP, HEAD_M203 );
+		//pev->skin = 1; // alway dark skin
+	}
+	*/
+
+
+	// Fograin92: Head variations
+	if( pev->frags == 0 )
+	{
+		// Fograin92: Random Head
+		SetBodygroup( HG_GRP_HEAD, RANDOM_LONG(1, HG_HEAD_AMOUNT-2) );
+	}
+	else
+	{
+		// Fograin92: Map defined head
+		SetBodygroup( HG_GRP_HEAD, pev->frags );
 	}
 
+
 	CTalkMonster::g_talkWaitTime = 0;
-
-	//pev->weaponmodel = MAKE_STRING("models/p_9mmAR.mdl");
-
 	MonsterInit();
 }
 
@@ -1045,8 +942,6 @@ void CHGrunt :: Spawn()
 void CHGrunt :: Precache()
 {
 	PRECACHE_MODEL("models/hgrunt.mdl");
-
-	//PRECACHE_MODEL("models/p_9mmAR.mdl");
 
 	PRECACHE_SOUND( "hgrunt/gr_mgun1.wav" );
 	PRECACHE_SOUND( "hgrunt/gr_mgun2.wav" );
@@ -2497,28 +2392,38 @@ void CDeadHGrunt :: Spawn( void )
 	case 0: // Grunt with Gun
 		pev->body = 0;
 		pev->skin = 0;
-		SetBodygroup( HEAD_GROUP, HEAD_GRUNT );
-		SetBodygroup( GUN_GROUP, GUN_MP5 );
+		SetBodygroup( HG_GRP_HEAD, HEAD_HG00 );
+		SetBodygroup( HG_GRP_WEAPONS, HG_WPN_MP5 );
 		break;
 	case 1: // Commander with Gun
 		pev->body = 0;
 		pev->skin = 0;
-		SetBodygroup( HEAD_GROUP, HEAD_COMMANDER );
-		SetBodygroup( GUN_GROUP, GUN_MP5 );
+		SetBodygroup( HG_GRP_HEAD, HEAD_HG02 );
+		SetBodygroup( HG_GRP_WEAPONS, HG_WPN_MP5 );
 		break;
 	case 2: // Grunt no Gun
 		pev->body = 0;
 		pev->skin = 0;
-		SetBodygroup( HEAD_GROUP, HEAD_GRUNT );
-		SetBodygroup( GUN_GROUP, GUN_NONE );
+		SetBodygroup( HG_GRP_HEAD, HEAD_HG03 );
+		SetBodygroup( HG_GRP_WEAPONS, HG_WPN_NONE );
 		break;
 	case 3: // Commander no Gun
 		pev->body = 0;
 		pev->skin = 0;
-		SetBodygroup( HEAD_GROUP, HEAD_COMMANDER );
-		SetBodygroup( GUN_GROUP, GUN_NONE );
+		SetBodygroup( HG_GRP_HEAD, HEAD_HG04 );
+		SetBodygroup( HG_GRP_WEAPONS, HG_WPN_NONE );
 		break;
 	}
 
 	MonsterInitDead();
 }
+
+
+
+
+
+
+
+
+// Linkers
+LINK_ENTITY_TO_CLASS( monster_human_grunt, CHGrunt );

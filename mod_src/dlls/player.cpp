@@ -340,8 +340,12 @@ void CBasePlayer :: DeathSound( void )
 		break;
 	}
 
-	// play one of the suit death alarms
-	EMIT_GROUPNAME_SUIT(ENT(pev), "HEV_DEAD");
+	// Fograin92: Play only if it's HL1 game
+	if( CVAR_GET_FLOAT("sm_hud") < 1 )
+	{
+		// play one of the suit death alarms
+		EMIT_GROUPNAME_SUIT(ENT(pev), "HEV_DEAD");
+	}
 }
 
 // override takehealth
@@ -3224,6 +3228,87 @@ void CBasePlayer::Spawn( void )
 		GiveNamedItem( "item_longjump" );
 	}
 
+	// Duty Calls
+	else if( !strcmp( STRING(gpGlobals->mapname), "ba_canal1") )
+	{
+		GiveNamedItem( "item_suit" );
+		GiveNamedItem( "item_helmet" );
+		GiveNamedItem( "item_armorvest" );
+		GiveNamedItem( "weapon_9mmhandgun" );
+		GiveNamedItem( "ammo_9mmAR" );
+	}
+
+	// Captive Freight
+	else if( !strcmp( STRING(gpGlobals->mapname), "ba_yard1") )
+	{
+		GiveNamedItem( "item_suit" );
+		GiveNamedItem( "item_helmet" );
+		GiveNamedItem( "item_armorvest" );
+		GiveNamedItem( "weapon_crowbar" );
+		GiveNamedItem( "weapon_9mmhandgun" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "weapon_shotgun" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "weapon_357" );
+		GiveNamedItem( "ammo_357" );
+	}
+
+	// Focal Point
+	else if( !strcmp( STRING(gpGlobals->mapname), "ba_xen1") )
+	{
+		GiveNamedItem( "item_suit" );
+		GiveNamedItem( "item_helmet" );
+		GiveNamedItem( "item_armorvest" );
+		GiveNamedItem( "weapon_crowbar" );
+		GiveNamedItem( "weapon_9mmhandgun" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "weapon_shotgun" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "weapon_9mmAR" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_rpg" );
+		GiveNamedItem( "ammo_rpgclip" );
+		GiveNamedItem( "weapon_357" );
+		GiveNamedItem( "ammo_357" );
+	}
+
+	// Focal Point
+	else if( !strcmp( STRING(gpGlobals->mapname), "ba_power1") )
+	{
+		GiveNamedItem( "item_suit" );
+		GiveNamedItem( "item_helmet" );
+		GiveNamedItem( "item_armorvest" );
+		GiveNamedItem( "weapon_crowbar" );
+		GiveNamedItem( "weapon_9mmhandgun" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "ammo_9mmAR" );
+		GiveNamedItem( "weapon_shotgun" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "ammo_buckshot" );
+		GiveNamedItem( "weapon_9mmAR" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_handgrenade" );
+		GiveNamedItem( "weapon_rpg" );
+		GiveNamedItem( "ammo_rpgclip" );
+		GiveNamedItem( "ammo_rpgclip" );
+		GiveNamedItem( "ammo_rpgclip" );
+		GiveNamedItem( "weapon_357" );
+		GiveNamedItem( "ammo_357" );
+		GiveNamedItem( "ammo_357" );
+		GiveNamedItem( "ammo_357" );
+	}
 
 }
 

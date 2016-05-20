@@ -8,8 +8,8 @@
 //
 //	Before using any parts of this code, read licence.txt file 
 //=============================================================//
-#ifndef MONSTER_ALIEN_S_H
-#define MONSTER_ALIEN_S_H
+#ifndef MONSTER_HUMAN_ASS_H
+#define MONSTER_HUMAN_ASS_H
 
 #include	"extdll.h"
 #include	"util.h"
@@ -65,4 +65,4 @@ public:
 	int		m_iShell;
 };
 
-#endif // MONSTER_ALIEN_S_H
+#endif // MONSTER_HUMAN_ASS_H

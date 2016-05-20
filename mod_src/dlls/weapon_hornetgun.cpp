@@ -60,6 +60,10 @@ void CHgun::Precache( void )
 	PRECACHE_MODEL("models/w_hgun.mdl");
 	PRECACHE_MODEL("models/p_hgun.mdl");
 
+	PRECACHE_SOUND("agrunt/ag_fire1.wav");
+	PRECACHE_SOUND("agrunt/ag_fire2.wav");
+	PRECACHE_SOUND("agrunt/ag_fire3.wav");
+
 	m_usHornetFire = PRECACHE_EVENT ( 1, "events/firehornet.sc" );
 
 	UTIL_PrecacheOther("hornet");
@@ -155,7 +159,21 @@ void CHgun::PrimaryAttack()
 
 	PLAYBACK_EVENT_FULL( flags, m_pPlayer->edict(), m_usHornetFire, 0.0, (float *)&g_vecZero, (float *)&g_vecZero, 0.0, 0.0, FIREMODE_TRACK, 0, 0, 0 );
 
-	
+	// Fograin92: Server side sound
+	switch( RANDOM_LONG(1,3) ) 
+	{
+		case 1: 
+			EMIT_SOUND(ENT(pev), CHAN_WEAPON, "agrunt/ag_fire1.wav", 0.80, ATTN_NORM);
+		break;
+
+		case 2: 
+			EMIT_SOUND(ENT(pev), CHAN_WEAPON, "agrunt/ag_fire2.wav", 0.80, ATTN_NORM);
+		break;
+
+		case 3: 
+			EMIT_SOUND(ENT(pev), CHAN_WEAPON, "agrunt/ag_fire3.wav", 0.80, ATTN_NORM);
+		break;
+	}
 
 	// player "shoot" animation
 	m_pPlayer->SetAnimation( PLAYER_ATTACK1 );
@@ -242,6 +260,21 @@ void CHgun::SecondaryAttack( void )
 
 	PLAYBACK_EVENT_FULL( flags, m_pPlayer->edict(), m_usHornetFire, 0.0, (float *)&g_vecZero, (float *)&g_vecZero, 0.0, 0.0, FIREMODE_FAST, 0, 0, 0 );
 
+	// Fograin92: Server side sound
+	switch( RANDOM_LONG(1,3) ) 
+	{
+		case 1: 
+			EMIT_SOUND(ENT(pev), CHAN_WEAPON, "agrunt/ag_fire1.wav", 0.80, ATTN_NORM);
+		break;
+
+		case 2: 
+			EMIT_SOUND(ENT(pev), CHAN_WEAPON, "agrunt/ag_fire2.wav", 0.80, ATTN_NORM);
+		break;
+
+		case 3: 
+			EMIT_SOUND(ENT(pev), CHAN_WEAPON, "agrunt/ag_fire3.wav", 0.80, ATTN_NORM);
+		break;
+	}
 
 	m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType]--;
 	m_pPlayer->m_iWeaponVolume = NORMAL_GUN_VOLUME;

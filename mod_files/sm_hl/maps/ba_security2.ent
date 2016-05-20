@@ -452,7 +452,7 @@
 }
 {
 "origin" "704 1744 484"
-"angles" "0 0 -90"
+"angles" "-90 0 -90"
 "body" "0"
 "model" "models/w_shotgun.mdl"
 "TriggerCondition" "0"
@@ -593,7 +593,7 @@
 }
 {
 "origin" "704 1760 484"
-"angles" "0 0 -90"
+"angles" "-90 0 -90"
 "body" "0"
 "model" "models/w_shotgun.mdl"
 "TriggerCondition" "0"
@@ -607,7 +607,7 @@
 }
 {
 "origin" "704 1776 484"
-"angles" "0 0 -90"
+"angles" "-90 0 -90"
 "body" "0"
 "model" "models/w_shotgun.mdl"
 "TriggerCondition" "0"
@@ -621,7 +621,7 @@
 }
 {
 "origin" "704 1792 484"
-"angles" "0 0 -90"
+"angles" "-90 0 -90"
 "body" "0"
 "model" "models/w_shotgun.mdl"
 "TriggerCondition" "0"
@@ -1501,7 +1501,7 @@
 }
 {
 "origin" "817 -1280 -284"
-"model" "models/holo.mdl"
+"model" "models/holo_bs.mdl"
 "body" "0"
 "TriggerCondition" "0"
 "rendercolor" "0 0 0"
@@ -3137,7 +3137,7 @@
 {
 "origin" "-1024 2144 496"
 "loadtime" "6"
-"message" "GAMEOVER"
+"message" "BS_GAMEOVER"
 "messagetime" "0"
 "rendercolor" "0 0 0"
 "renderamt" "255"
@@ -3401,7 +3401,7 @@
 "refire" "3"
 "radius" "512"
 "duration" "2"
-"sentence" "!BA_HELLO1"
+"sentence" "!BA_BS_HELLO0"
 "entity" "wrangler"
 "delay" "0"
 "targetname" "wrangler_hello"

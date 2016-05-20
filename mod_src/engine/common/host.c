@@ -859,7 +859,7 @@ int EXPORT Host_Main( const char *progname, int bChangeGame, pfnChangeGame func 
 	host_limitlocal = Cvar_Get( "host_limitlocal", "0", 0, "apply cl_cmdrate and rate to loopback connection" );
 	con_gamemaps = Cvar_Get( "con_mapfilter", "1", CVAR_ARCHIVE, "when true show only maps in game folder" );
 	build = Cvar_Get( "build", va( "%i", Q_buildnum()), CVAR_INIT, "returns a current build number" );
-	ver = Cvar_Get( "ver", va( "Half-Life: Update MOD (rev: %i) ALPHA VERSION", Q_buildnum()), CVAR_INIT, "shows an mod version" );	// Fograin92
+	ver = Cvar_Get( "ver", va( "Half-Life: Update MOD (build: %i) ALPHA VERSION", Q_buildnum()), CVAR_INIT, "shows an mod version" );	// Fograin92
 
 	// content control
 	//Cvar_Get( "violence_hgibs", "1", CVAR_ARCHIVE, "show human gib entities" );

@@ -26,18 +26,17 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 
 #define ART_BANNER	     	"gfx/shell/head_config"
 
-#define ID_BACKGROUND    	0
-#define ID_BANNER	     	1
-
+#define ID_BACKGROUND	0
+#define ID_BANNER		1
 #define ID_CONTROLS		2
-#define ID_AUDIO	     	3
-#define ID_VIDEO	     	4
-#define ID_UPDATE   	5
-#define ID_DONE	     	6
-#define ID_MSGBOX	 	7
-#define ID_MSGTEXT	 	8
-#define ID_YES	 	130
-#define ID_NO	 	131
+#define ID_AUDIO		3
+#define ID_VIDEO		4
+#define ID_UPDATE		5
+#define ID_DONE			6
+#define ID_MSGBOX		7
+#define ID_MSGTEXT		8
+#define ID_YES	 		130
+#define ID_NO	 		131
 
 typedef struct
 {
@@ -69,7 +68,6 @@ UI_MsgBox_Ownerdraw
 static void UI_MsgBox_Ownerdraw( void *self )
 {
 	menuCommon_s	*item = (menuCommon_s *)self;
-
 	UI_FillRect( item->x, item->y, item->width, item->height, uiPromptBgColor );
 }
 
@@ -82,12 +80,10 @@ static void UI_CheckUpdatesDialog( void )
 	uiOptions.video.generic.flags ^= QMF_INACTIVE;
 	uiOptions.update.generic.flags ^= QMF_INACTIVE;
 	uiOptions.done.generic.flags ^= QMF_INACTIVE;
-
 	uiOptions.msgBox.generic.flags ^= QMF_HIDDEN;
 	uiOptions.updatePrompt.generic.flags ^= QMF_HIDDEN;
 	uiOptions.no.generic.flags ^= QMF_HIDDEN;
 	uiOptions.yes.generic.flags ^= QMF_HIDDEN;
-
 }
 
 /*
@@ -119,26 +115,32 @@ static void UI_Options_Callback( void *self, int event )
 
 	switch( item->id )
 	{
-	case ID_DONE:
-		UI_PopMenu();
+		case ID_DONE:
+			UI_PopMenu();
 		break;
-	case ID_CONTROLS:
-		UI_Controls_Menu();
+
+		case ID_CONTROLS:
+			UI_Controls_Menu();
 		break;
-	case ID_AUDIO:
-		UI_Audio_Menu();
+
+		case ID_AUDIO:
+			UI_Audio_Menu();
 		break;
-	case ID_VIDEO:
-		UI_Video_Menu();
+
+		case ID_VIDEO:
+			UI_Video_Menu();
 		break;
-	case ID_UPDATE:
-		UI_CheckUpdatesDialog();
+
+		case ID_UPDATE:
+			UI_CheckUpdatesDialog();
 		break;
-	case ID_YES:
-		SHELL_EXECUTE( gMenu.m_gameinfo.update_url, NULL, TRUE );
+
+		case ID_YES:
+			SHELL_EXECUTE( gMenu.m_gameinfo.update_url, NULL, TRUE );
 		break;
-	case ID_NO:
-		UI_CheckUpdatesDialog();
+
+		case ID_NO:
+			UI_CheckUpdatesDialog();
 		break;
 	}
 }
@@ -181,7 +183,6 @@ static void UI_Options_Init( void )
 	uiOptions.controls.generic.name = "Controls";
 	uiOptions.controls.generic.statusText = "Change keyboard and mouse settings";
 	uiOptions.controls.generic.callback = UI_Options_Callback;
-
 	UI_UtilSetupPicButton( &uiOptions.controls, PC_CONTROLS );
 
 	uiOptions.audio.generic.id = ID_AUDIO;
@@ -192,7 +193,6 @@ static void UI_Options_Init( void )
 	uiOptions.audio.generic.name = "Audio";
 	uiOptions.audio.generic.statusText = "Change sound volume and quality";
 	uiOptions.audio.generic.callback = UI_Options_Callback;
-
 	UI_UtilSetupPicButton( &uiOptions.audio, PC_AUDIO );
 
 	uiOptions.video.generic.id = ID_VIDEO;
@@ -205,18 +205,14 @@ static void UI_Options_Init( void )
 	uiOptions.video.generic.callback = UI_Options_Callback;
 	UI_UtilSetupPicButton( &uiOptions.video, PC_VIDEO );
 
-	if( !strlen( gMenu.m_gameinfo.update_url ))
-		uiOptions.update.generic.flags |= QMF_GRAYED;
-
 	uiOptions.done.generic.id = ID_DONE;
 	uiOptions.done.generic.type = QMTYPE_BM_BUTTON;
 	uiOptions.done.generic.flags = QMF_HIGHLIGHTIFFOCUS|QMF_DROPSHADOW|QMF_NOTIFY;
 	uiOptions.done.generic.x = 72;
-	uiOptions.done.generic.y = 430;
+	uiOptions.done.generic.y = 380;
 	uiOptions.done.generic.name = "Done";
 	uiOptions.done.generic.statusText = "Go back to the Main Menu";
 	uiOptions.done.generic.callback = UI_Options_Callback;
-
 	UI_UtilSetupPicButton( &uiOptions.done, PC_DONE );
 
 	uiOptions.msgBox.generic.id = ID_MSGBOX;
@@ -242,7 +238,6 @@ static void UI_Options_Init( void )
 	uiOptions.yes.generic.x = 380;
 	uiOptions.yes.generic.y = 460;
 	uiOptions.yes.generic.callback = UI_Options_Callback;
-
 	UI_UtilSetupPicButton( &uiOptions.yes, PC_OK );
 
 	uiOptions.no.generic.id = ID_NO;
@@ -252,7 +247,6 @@ static void UI_Options_Init( void )
 	uiOptions.no.generic.x = 530;
 	uiOptions.no.generic.y = 460;
 	uiOptions.no.generic.callback = UI_Options_Callback;
-
 	UI_UtilSetupPicButton( &uiOptions.no, PC_CANCEL );
 
 	UI_AddItem( &uiOptions.menu, (void *)&uiOptions.background );
@@ -261,7 +255,6 @@ static void UI_Options_Init( void )
 	UI_AddItem( &uiOptions.menu, (void *)&uiOptions.controls );
 	UI_AddItem( &uiOptions.menu, (void *)&uiOptions.audio );
 	UI_AddItem( &uiOptions.menu, (void *)&uiOptions.video );
-	UI_AddItem( &uiOptions.menu, (void *)&uiOptions.update );
 	UI_AddItem( &uiOptions.menu, (void *)&uiOptions.msgBox );
 	UI_AddItem( &uiOptions.menu, (void *)&uiOptions.updatePrompt );
 	UI_AddItem( &uiOptions.menu, (void *)&uiOptions.no );

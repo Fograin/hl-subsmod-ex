@@ -168,6 +168,23 @@ void CM249::PrimaryAttack()
 
 	PLAYBACK_EVENT_FULL( flags, m_pPlayer->edict(), m_usM249, 0.0, (float *)&g_vecZero, (float *)&g_vecZero, vecDir.x, vecDir.y, pev->body, 0, 0, 0 );
 
+	// Fograin92: Server side sound
+	switch( RANDOM_LONG(1,3) ) 
+	{
+		case 1: 
+			EMIT_SOUND(ENT(pev), CHAN_WEAPON, "weapons/saw_fire1.wav", 0.80, ATTN_NORM);
+		break;
+
+		case 2: 
+			EMIT_SOUND(ENT(pev), CHAN_WEAPON, "weapons/saw_fire2.wav", 0.80, ATTN_NORM);
+		break;
+
+		case 3: 
+			EMIT_SOUND(ENT(pev), CHAN_WEAPON, "weapons/saw_fire3.wav", 0.80, ATTN_NORM);
+		break;
+	}
+
+
 	if (!m_iClip && m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] <= 0)
 		// HEV suit - indicate out of ammo condition
 		m_pPlayer->SetSuitUpdate("!HEV_AMO0", FALSE, 0);

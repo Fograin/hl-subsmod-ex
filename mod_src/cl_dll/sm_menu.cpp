@@ -333,7 +333,8 @@ void CMainMenuNew::Submenu_NewGame(int iGame, int iPage)
 	pIMGmm_HL07->setVisible(false);
 	pBtn_newgame_next->setVisible(false);
 	pBtn_newgame_prev->setVisible(false);
-
+	pIMGmm_BS01->setVisible(false);
+	pIMGmm_BS02->setVisible(false);
 
 	// Update control vars
 	iActiveNewGameG = iGame;
@@ -357,6 +358,14 @@ void CMainMenuNew::Submenu_NewGame(int iGame, int iPage)
 		if( iActiveNewGameSP > 7 )
 			iActiveNewGameSP = 7;
 	}
+
+	// Limit BS pages
+	if( iActiveNewGameG == 3 )
+	{
+		if( iActiveNewGameSP > 2 )
+			iActiveNewGameSP = 2;
+	}
+
 
 
 	// Show elements based on current vars
@@ -409,8 +418,24 @@ void CMainMenuNew::Submenu_NewGame(int iGame, int iPage)
 			pIMGmm_HL07->setVisible(true);
 			pBtn_newgame_prev->setVisible(true);
 		}
-	
 	}
+	// Blue-Shift
+	else if( iActiveNewGameG == 3 )
+	{
+		// BS -> Sub menu 1
+		if( iActiveNewGameSP == 1 )
+		{
+			pIMGmm_BS01->setVisible(true);
+			pBtn_newgame_next->setVisible(true);
+		}
+		// BS -> Sub menu 2
+		else if( iActiveNewGameSP == 2 )
+		{
+			pIMGmm_BS02->setVisible(true);
+			pBtn_newgame_prev->setVisible(true);
+		}
+	}
+
 }
 
 
@@ -571,6 +596,51 @@ void CMainMenuNew::StartChapter(int iSelectedFrame)
 		}
 	}
 
+
+	// BS -> SUB MENU 01
+	else if( iActiveNewGameG == 3 && iActiveNewGameSP == 1 )
+	{
+		switch( iSelectedFrame )
+		{
+			// HAZARD COURSE
+			case 1:
+				ClientCmd("map ba_hazard1\n");
+			break;
+
+			// Insecurity
+			case 2:
+				ClientCmd("map ba_tram1\n");
+			break;
+
+			// Duty Calls
+			case 3:
+				ClientCmd("map ba_canal1\n");
+			break;
+		}
+	}
+
+	// BS -> SUB MENU 02
+	else if( iActiveNewGameG == 3 && iActiveNewGameSP == 2 )
+	{
+		switch( iSelectedFrame )
+		{
+			// Captive Freight
+			case 1:
+				ClientCmd("map ba_yard1\n");
+			break;
+
+			// Focal Point
+			case 2:
+				ClientCmd("map ba_xen1\n");
+			break;
+
+			// Power Struggle
+			case 3:
+				ClientCmd("map ba_power1\n");
+			break;
+		}
+	}
+
 }
 
 
@@ -591,6 +661,10 @@ int CMainMenuNew::HandleMainMenuInput(int iBTN)
 		case ID_BTN_NEWGAME_CLOSE:
 		case ID_BTN_GAMESET_CLOSE:
 			gSoundEngine.PlaySound("common/launch_dnmenu1.wav", g_vecZero, SND_2D, 0, SM_VOLUME_HEV);
+		break;
+
+		default:
+			gSoundEngine.PlaySound("common/launch_select2.wav", g_vecZero, SND_2D, 0, SM_VOLUME_HEV);
 		break;
 	}
 
@@ -657,7 +731,7 @@ int CMainMenuNew::HandleMainMenuInput(int iBTN)
 
 		case ID_BTN_NEWGAME_OF:
 			gEngfuncs.Con_Printf( "^3HLU -> ID_BTN_NEWGAME_OF\n");
-			Submenu_NewGame(2, 1);
+			//Submenu_NewGame(2, 1);
 		break;
 
 		case ID_BTN_NEWGAME_BS:
@@ -896,6 +970,15 @@ CMainMenuNew::CMainMenuNew() : Panel( 0, 0, XRES(640), YRES(480) )
 	pIMGmm_HL07->setPos( 0, 0 );
 	pIMGmm_HL07->setVisible(false);
 
+	// New game -> background BS IMG 01
+	pIMGmm_BS01 = new MenuImageHolder("gfx/vgui/mm_newBS01.tga", pPanelNewGame);
+	pIMGmm_BS01->setPos( 0, 0 );
+	pIMGmm_BS01->setVisible(false);
+
+	// New game -> background BS IMG 02
+	pIMGmm_BS02 = new MenuImageHolder("gfx/vgui/mm_newBS02.tga", pPanelNewGame);
+	pIMGmm_BS02->setPos( 0, 0 );
+	pIMGmm_BS02->setVisible(false);
 
 	// New game -> close button
 	pBtn_newgame_close = new CommandButton( "", 940, 20, 32, 32);
@@ -1145,6 +1228,9 @@ CMainMenuNew::~CMainMenuNew()
 	if(pBtn_GameSet_close)	delete pBtn_GameSet_close;
 	if(pIMGmm_GameSet)		delete pIMGmm_GameSet;
 	if(pPanelGameSet)		delete pPanelGameSet;
+
+	if(pIMGmm_BS02)			delete pIMGmm_BS02;
+	if(pIMGmm_BS01)			delete pIMGmm_BS01;
 
 	if(pIMGmm_HL07)			delete pIMGmm_HL07;
 	if(pIMGmm_HL06)			delete pIMGmm_HL06;

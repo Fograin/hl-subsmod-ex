@@ -29,14 +29,10 @@ const char *MenuButtons[PC_BUTTONCOUNT] =
 {
 	"New game",
 	"Resume Game",
-	"Hazard Course",
 	"Configuration",
 	"Load game",
 	"Save/load game",
 	"Quit",
-	"Easy",
-	"Medium",
-	"Difficult",
 	"Save game",
 	"Load game",
 	"Cancel",
@@ -52,14 +48,6 @@ const char *MenuButtons[PC_BUTTONCOUNT] =
 	"Adv controls",
 	"Delete",
 	"Console",
-	"Adv options",
-	"Custom Game",
-	"Activate",
-	"Refresh list",
-	"Deactivate",
-	"Extras",
-	"Uplink",
-	"Boot Camp",
 	"Credits"
 };
 

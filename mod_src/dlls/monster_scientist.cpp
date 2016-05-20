@@ -297,7 +297,7 @@ void CScientist :: Spawn( void )
 	else if (CVAR_GET_FLOAT("sm_hud") == 2 )	// OF
 		SET_MODEL(ENT(pev), "models/scientist_of.mdl");
 	else
-		SET_MODEL(ENT(pev), "models/scientist_bs.mdl");	// HL
+		SET_MODEL(ENT(pev), "models/scientist.mdl");
 
 	UTIL_SetSize(pev, VEC_HUMAN_HULL_MIN, VEC_HUMAN_HULL_MAX);
 
@@ -323,8 +323,8 @@ void CScientist :: Spawn( void )
 
 	// Fograin92: Disabled, skin is included in body type
 	// Luther is black, make his hands black
-	//if ( pev->body == HEAD_LUTHER )
-	//	pev->skin = 1;
+	if ( pev->body == HEAD_LUTHER )
+		pev->skin = 1;
 	
 	MonsterInit();
 	SetUse( &CTalkMonster::FollowerUse );
@@ -777,7 +777,16 @@ void CDeadScientist::KeyValue( KeyValueData *pkvd )
 void CDeadScientist :: Spawn( )
 {
 	PRECACHE_MODEL("models/scientist.mdl");
-	SET_MODEL(ENT(pev), "models/scientist.mdl");
+	PRECACHE_MODEL("models/scientist_bs.mdl");	// Fograin92
+	PRECACHE_MODEL("models/scientist_of.mdl");	// Fograin92
+	
+	// Fograin92
+	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// BS
+		SET_MODEL(ENT(pev), "models/scientist_bs.mdl");
+	else if (CVAR_GET_FLOAT("sm_hud") == 2 )	// OF
+		SET_MODEL(ENT(pev), "models/scientist_of.mdl");
+	else
+		SET_MODEL(ENT(pev), "models/scientist.mdl");
 	
 	pev->effects		= 0;
 	pev->sequence		= 0;
@@ -793,8 +802,8 @@ void CDeadScientist :: Spawn( )
 	
 	// Fograin92: Disabled, skin is included in body type
 	// Luther is black, make his hands black
-	//if ( pev->body == HEAD_LUTHER )
-	//	pev->skin = 1;
+	if ( pev->body == HEAD_LUTHER )
+		pev->skin = 1;
 
 	pev->sequence = LookupSequence( m_szPoses[m_iPose] );
 	if (pev->sequence == -1)
@@ -836,7 +845,17 @@ SITTING_ANIM_sitting3
 void CSittingScientist :: Spawn( )
 {
 	PRECACHE_MODEL("models/scientist.mdl");
-	SET_MODEL(ENT(pev), "models/scientist.mdl");
+	PRECACHE_MODEL("models/scientist_bs.mdl");	// Fograin92
+	PRECACHE_MODEL("models/scientist_of.mdl");	// Fograin92
+	
+	// Fograin92
+	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// BS
+		SET_MODEL(ENT(pev), "models/scientist_bs.mdl");
+	else if (CVAR_GET_FLOAT("sm_hud") == 2 )	// OF
+		SET_MODEL(ENT(pev), "models/scientist_of.mdl");
+	else
+		SET_MODEL(ENT(pev), "models/scientist.mdl");
+
 	Precache();
 	InitBoneControllers();
 
@@ -861,8 +880,8 @@ void CSittingScientist :: Spawn( )
 	
 	// Fograin92: Disabled, skin is included in body type
 	// Luther is black, make his hands black
-	//if ( pev->body == HEAD_LUTHER )
-	//	pev->skin = 1;
+	if ( pev->body == HEAD_LUTHER )
+		pev->skin = 1;
 	
 	m_baseSequence = LookupSequence( "sitlookleft" );
 	pev->sequence = m_baseSequence + RANDOM_LONG(0,4);
@@ -1092,7 +1111,7 @@ void CRosenberg :: Spawn( void )
 	// White hands
 	pev->skin = 0;
 	pev->body = 0; // Fograin92: Make sure we have body '0', bodygroups are handled little bit different now
-	SetBodygroup( SCI_GRP_BODY, HEAD_ROSENBERG ); // Fograin92: Set correct head
+	SetBodygroup( 1, 3 ); // Fograin92: Set correct head
 	
 	MonsterInit();
 	SetUse( &CRosenberg::FollowerUse );
@@ -1213,11 +1232,11 @@ void CRosenberg :: HandleAnimEvent( MonsterEvent_t *pEvent )
 		break;
 
 		case SCIENTIST_AE_NEEDLEON:
-			SetBodygroup( SCI_GRP_HANDS, HANDS_NEEDLE ); // Fograin92: Show the needle model
+			SetBodygroup( 2, 1 ); // Fograin92: Show the needle model
 		break;
 
 		case SCIENTIST_AE_NEEDLEOFF:
-			SetBodygroup( SCI_GRP_HANDS, HANDS_EMPTY ); // Fograin92: Hide the needle model
+			SetBodygroup( 2, 0 ); // Fograin92: Show the needle model
 		break;
 
 		default:

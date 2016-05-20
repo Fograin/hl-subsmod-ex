@@ -195,6 +195,23 @@ void CMP5::PrimaryAttack()
 
 	PLAYBACK_EVENT_FULL( flags, m_pPlayer->edict(), m_usMP5, 0.0, (float *)&g_vecZero, (float *)&g_vecZero, vecDir.x, vecDir.y, 0, 0, 0, 0 );
 
+	// Fograin92: Server side sound
+	switch( RANDOM_LONG(1,3) ) 
+	{
+		case 1: 
+			EMIT_SOUND(ENT(pev), CHAN_WEAPON, "weapons/hks1.wav", 0.80, ATTN_NORM);
+		break;
+
+		case 2: 
+			EMIT_SOUND(ENT(pev), CHAN_WEAPON, "weapons/hks2.wav", 0.80, ATTN_NORM);
+		break;
+
+		case 3: 
+			EMIT_SOUND(ENT(pev), CHAN_WEAPON, "weapons/hks3.wav", 0.80, ATTN_NORM);
+		break;
+	}
+
+
 #ifndef CLIENT_DLL
 	if (!m_iClip && m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] <= 0)
 	{
@@ -259,6 +276,18 @@ void CMP5::SecondaryAttack( void )
 #endif
 
 	PLAYBACK_EVENT( flags, m_pPlayer->edict(), m_usMP52 );
+	// Fograin92: Server side sound
+	switch( RANDOM_LONG(1,2) ) 
+	{
+		case 1: 
+			EMIT_SOUND(ENT(pev), CHAN_WEAPON, "weapons/glauncher.wav", 0.80, ATTN_NORM);
+		break;
+
+		case 2: 
+			EMIT_SOUND(ENT(pev), CHAN_WEAPON, "weapons/glauncher2.wav", 0.80, ATTN_NORM);
+		break;
+	}
+
 	
 	m_flNextPrimaryAttack = UTIL_WeaponTimeBase() + 1;
 	m_flNextSecondaryAttack = UTIL_WeaponTimeBase() + 1;

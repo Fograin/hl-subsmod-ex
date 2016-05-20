@@ -8,8 +8,8 @@
 //
 //	Before using any parts of this code, read licence.txt file 
 //=============================================================//
-#ifndef MONSTER_ALIEN_S_H
-#define MONSTER_ALIEN_S_H
+#ifndef MONSTER_ICKY_H
+#define MONSTER_ICKY_H
 
 #include	"extdll.h"
 #include	"util.h"
@@ -108,4 +108,4 @@ public:
 	void PainSound( void );
 };
 
-#endif // MONSTER_ALIEN_S_H
+#endif // MONSTER_ICKY_H

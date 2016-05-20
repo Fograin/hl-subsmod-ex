@@ -185,6 +185,18 @@ void CPython::PrimaryAttack()
 
 	PLAYBACK_EVENT_FULL( flags, m_pPlayer->edict(), m_usFirePython, 0.0, (float *)&g_vecZero, (float *)&g_vecZero, vecDir.x, vecDir.y, 0, 0, 0, 0 );
 
+	// Fograin92: Server side sound
+	switch( RANDOM_LONG(1,2) ) 
+	{
+		case 1: 
+			EMIT_SOUND(ENT(pev), CHAN_WEAPON, "weapons/357_shot1.wav", 0.80, ATTN_NORM);
+		break;
+
+		case 2: 
+			EMIT_SOUND(ENT(pev), CHAN_WEAPON, "weapons/357_shot2.wav", 0.80, ATTN_NORM);
+		break;
+	}
+
 #ifndef CLIENT_DLL
 	if (!m_iClip && m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType] <= 0)
 	{

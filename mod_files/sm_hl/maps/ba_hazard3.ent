@@ -1432,7 +1432,7 @@
 }
 {
 "origin" "480 952 -128"
-"m_iszPlay" "intropush"
+"m_iszPlay" "buttonpush"
 "m_fMoveTo" "1"
 "m_flRepeat" "0"
 "m_flRadius" "512"

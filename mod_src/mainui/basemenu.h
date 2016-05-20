@@ -434,41 +434,31 @@ void UI_PopMenu( void );
 
 // Precache
 void UI_Main_Precache( void );
-void UI_NewGame_Precache( void );
 void UI_LoadGame_Precache( void );
 void UI_SaveGame_Precache( void );
 void UI_SaveLoad_Precache( void );
 void UI_Options_Precache( void );
-void UI_PlayerSetup_Precache( void );
 void UI_Controls_Precache( void );
 void UI_AdvControls_Precache( void );
-void UI_GameOptions_Precache( void );
-void UI_CreateGame_Precache( void );
 void UI_Audio_Precache( void );
 void UI_Video_Precache( void );
 void UI_VidOptions_Precache( void );
 void UI_VidModes_Precache( void );
-void UI_CustomGame_Precache( void );
 void UI_Credits_Precache( void );
 void UI_GoToSite_Precache( void );
 
 // Menus
 void UI_Main_Menu( void );
-void UI_NewGame_Menu( void );
 void UI_LoadGame_Menu( void );
 void UI_SaveGame_Menu( void );
 void UI_SaveLoad_Menu( void );
 void UI_Options_Menu( void );
-void UI_PlayerSetup_Menu( void );
 void UI_Controls_Menu( void );
 void UI_AdvControls_Menu( void );
-void UI_GameOptions_Menu( void );
-void UI_CreateGame_Menu( void );
 void UI_Audio_Menu( void );
 void UI_Video_Menu( void );
 void UI_VidOptions_Menu( void );
 void UI_VidModes_Menu( void );
-void UI_CustomGame_Menu( void );
 void UI_Credits_Menu( void );
 
 //

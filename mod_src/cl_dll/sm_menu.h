@@ -178,6 +178,9 @@ protected:
 	MenuImageHolder	*pIMGmm_HL06;
 	MenuImageHolder	*pIMGmm_HL07;
 
+	MenuImageHolder	*pIMGmm_BS01;	// Blue Shift chapter selection
+	MenuImageHolder	*pIMGmm_BS02;
+
 	CommandButton	*pBtn_newgame_close;
 	CommandButton	*pBtn_newgame_hl;
 	CommandButton	*pBtn_newgame_of;

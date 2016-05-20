@@ -153,7 +153,7 @@ public:
 #define MAX_CLIP_SHOTGUN		8
 #define MAX_CLIP_CROSSBOW		5
 #define MAX_CLIP_RPG			1
-#define MAX_CLIP_M249			100
+#define MAX_CLIP_M249			50
 #define MAX_CLIP_SNIPERRIFLE	5
 #define MAX_CLIP_DEAGLE			7
 

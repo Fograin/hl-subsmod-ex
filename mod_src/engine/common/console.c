@@ -1711,7 +1711,7 @@ void Con_DrawSolidConsole( float frac )
 		int	stringLen, width = 0, charH;
 
 		//Q_snprintf( curbuild, MAX_STRING, "Xash3D %i/%g (hw build %i)", PROTOCOL_VERSION, XASH_VERSION, Q_buildnum( ));
-		Q_snprintf( curbuild, MAX_STRING, "Half-Life: Update MOD (rev: %i) ALPHA VERSION << ", Q_buildnum() );	// Fograin92
+		Q_snprintf( curbuild, MAX_STRING, "Half-Life: Update MOD (build: %i) ALPHA VERSION << ", Q_buildnum() );	// Fograin92
 		Con_DrawStringLen( curbuild, &stringLen, &charH );
 		start = scr_width->integer - stringLen;
 		stringLen = Con_StringLength( curbuild );
@@ -1873,7 +1873,7 @@ void Con_DrawVersion( void )
 	}
 
 	// Fograin92: Update MOD version
-	Q_snprintf( curbuild, MAX_STRING, "Half-Life: Update MOD (rev: %i) ALPHA VERSION", Q_buildnum() );
+	Q_snprintf( curbuild, MAX_STRING, "Half-Life: Update MOD (build: %i) ALPHA VERSION", Q_buildnum() );
 
 	Con_DrawStringLen( curbuild, &stringLen, &charH );
 	start = scr_width->integer - stringLen * 1.05f;

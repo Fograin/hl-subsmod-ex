@@ -8,8 +8,8 @@
 //
 //	Before using any parts of this code, read licence.txt file 
 //=============================================================//
-#ifndef MONSTER_ALIEN_S_H
-#define MONSTER_ALIEN_S_H
+#ifndef MONSTER_HEADCRAB_H
+#define MONSTER_HEADCRAB_H
 
 #include	"extdll.h"
 #include	"util.h"
@@ -17,8 +17,6 @@
 #include	"monsters.h"
 #include	"ai_schedule.h"
 #include	"game.h"
-
-
 
 
 class CHeadCrab : public CBaseMonster
@@ -58,8 +56,6 @@ public:
 	static const char *pBiteSounds[];
 };
 
-
-
 class CBabyCrab : public CHeadCrab
 {
 public:
@@ -73,4 +69,4 @@ public:
 	virtual float GetSoundVolue( void ) { return 0.8; }
 };
 
-#endif // MONSTER_ALIEN_S_H
+#endif // MONSTER_HEADCRAB_H

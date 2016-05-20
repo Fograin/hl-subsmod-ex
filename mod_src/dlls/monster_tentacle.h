@@ -8,8 +8,8 @@
 //
 //	Before using any parts of this code, read licence.txt file 
 //=============================================================//
-#ifndef MONSTER_ALIEN_S_H
-#define MONSTER_ALIEN_S_H
+#ifndef MONSTER_TENTACLE_H
+#define MONSTER_TENTACLE_H
 
 #include	"extdll.h"
 #include	"util.h"
@@ -115,4 +115,4 @@ public:
 
 
 
-#endif // MONSTER_ALIEN_S_H
+#endif // MONSTER_TENTACLE_H

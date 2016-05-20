@@ -1350,24 +1350,16 @@ void UI_Precache( void )
 		return;
 
 	UI_Main_Precache();
-	UI_NewGame_Precache();
 	UI_LoadGame_Precache();
 	UI_SaveGame_Precache();
 	UI_SaveLoad_Precache();
-
 	UI_Options_Precache();
-
-
-	UI_PlayerSetup_Precache();
 	UI_Controls_Precache();
 	UI_AdvControls_Precache();
-	UI_GameOptions_Precache();
-	UI_CreateGame_Precache();
 	UI_Audio_Precache();
 	UI_Video_Precache();
 	UI_VidOptions_Precache();
 	UI_VidModes_Precache();
-	UI_CustomGame_Precache();
 	UI_Credits_Precache();
 }
 
@@ -1548,21 +1540,17 @@ void UI_Init( void )
 	ui_showmodels = CVAR_REGISTER( "ui_showmodels", "0", FCVAR_ARCHIVE );
 
 	Cmd_AddCommand( "menu_main", UI_Main_Menu );
-	Cmd_AddCommand( "menu_newgame", UI_NewGame_Menu );
 	Cmd_AddCommand( "menu_loadgame", UI_LoadGame_Menu );
 	Cmd_AddCommand( "menu_savegame", UI_SaveGame_Menu );
 	Cmd_AddCommand( "menu_saveload", UI_SaveLoad_Menu );
 	Cmd_AddCommand( "menu_options", UI_Options_Menu );
-	Cmd_AddCommand( "menu_playersetup", UI_PlayerSetup_Menu );
 	Cmd_AddCommand( "menu_controls", UI_Controls_Menu );
 	Cmd_AddCommand( "menu_advcontrols", UI_AdvControls_Menu );
-	Cmd_AddCommand( "menu_gameoptions", UI_GameOptions_Menu );
-	Cmd_AddCommand( "menu_creategame", UI_CreateGame_Menu );
 	Cmd_AddCommand( "menu_audio", UI_Audio_Menu );
 	Cmd_AddCommand( "menu_video", UI_Video_Menu );
 	Cmd_AddCommand( "menu_vidoptions", UI_VidOptions_Menu );
 	Cmd_AddCommand( "menu_vidmodes", UI_VidModes_Menu );
-	Cmd_AddCommand( "menu_customgame", UI_CustomGame_Menu );
+
 
 	CHECK_MAP_LIST( TRUE );
 

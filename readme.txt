@@ -1,6 +1,6 @@
 //=========================================//
 // Half-Life Update MOD - SVN repository
-// Copyright(C) 2014-2015, HL1 Update Team
+// Copyright(C) 2014-2016, HL1 Update Team
 //=========================================//
 
 Usage info:

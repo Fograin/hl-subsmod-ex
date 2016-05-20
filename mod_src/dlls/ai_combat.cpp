@@ -1940,6 +1940,7 @@ void CGib :: WaitTillLand ( void )
 		}
 
 		// Fograin92: Gib bounced off a ground or floor, re-enable collision
+		/*
 		pev->solid = SOLID_SLIDEBOX;
 
 		studiohdr_t *pstudiohdr;
@@ -1954,6 +1955,7 @@ void CGib :: WaitTillLand ( void )
 			mstudioseqdesc_t *pseqdesc = (mstudioseqdesc_t *)((byte *)pstudiohdr + pstudiohdr->seqindex);
 			UTIL_SetSize( pev, pseqdesc[pev->sequence].bbmin, pseqdesc[pev->sequence].bbmax );
 		}
+		*/
 
 	}
 	else

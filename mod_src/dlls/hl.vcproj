@@ -2514,6 +2514,10 @@
 					</FileConfiguration>
 				</File>
 				<File
+					RelativePath=".\monster_human_grunt.h"
+					>
+				</File>
+				<File
 					RelativePath=".\monster_human_grunt_ally.cpp"
 					>
 				</File>
@@ -2722,14 +2726,6 @@
 				</File>
 				<File
 					RelativePath=".\monster_robo_loader.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\monster_rosenberg.cpp"
-					>
-				</File>
-				<File
-					RelativePath=".\monster_rosenberg.h"
 					>
 				</File>
 				<File

@@ -362,7 +362,7 @@ void CCrossbow::Holster( int skiplocal /* = 0 */ )
 
 void CCrossbow::PrimaryAttack( void )
 {
-
+/*
 #ifdef CLIENT_DLL
 	if ( IsZoomActive() && bIsMultiplayer() )	// Vit_amiN 
 #else
@@ -372,7 +372,7 @@ void CCrossbow::PrimaryAttack( void )
 		FireSniperBolt();
 		return;
 	}
-
+*/
 	FireBolt();
 }
 
@@ -443,6 +443,11 @@ void CCrossbow::FireBolt()
 #endif
 
 	PLAYBACK_EVENT_FULL( flags, m_pPlayer->edict(), m_usCrossbow, 0.0, (float *)&g_vecZero, (float *)&g_vecZero, 0, 0, m_iClip, m_pPlayer->m_rgAmmo[m_iPrimaryAmmoType], 0, 0 );
+
+	// Fograin92
+	EMIT_SOUND(ENT(pev), CHAN_WEAPON, "weapons/xbow_fire1.wav", 0.80, ATTN_NORM);
+	//EMIT_SOUND(ENT(pev), CHAN_WEAPON, "weapons/xbow_reload1.wav", 0.80, ATTN_NORM);
+
 
 	// player "shoot" animation
 	m_pPlayer->SetAnimation( PLAYER_ATTACK1 );

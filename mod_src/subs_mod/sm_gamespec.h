@@ -60,18 +60,22 @@ static const client_textmessage_sentence_t pHLGManSounds[] =
 // Fix sentences, Half-Life Human Grunts
 static const client_textmessage_sentence_t pHLHGruntSounds[] =
 {
-	{ "/gr_die1.wav",			"!HG_DIE"		},
-	{ "/gr_die2.wav",			"!HG_DIE"		},
-	{ "/gr_die3.wav",			"!HG_DIE"		},
-	{ "/gr_pain1.wav",			"!HG_PAIN"		},
-	{ "/gr_pain2.wav",			"!HG_PAIN"		},
-	{ "/gr_pain3.wav",			"!HG_PAIN"		},
-	{ "/gr_pain4.wav",			"!HG_PAIN"		},
-	{ "/gr_pain5.wav",			"!HG_PAIN"		},
-	{ "/c2a3_ambush_fx.wav",	"!HG_AMBUSH_FX"	},
-	{ "/c2a3_ambush_vox.wav",	"!HG_AMBUSH"	},
-	{ "/c2a5_hg_abandon.wav",	"!HG_ABANDON"	},
-	{ "/c2a5_hg_lebuz.wav",		"!HG_LEBUZ"		},
+	{ "/gr_die1.wav",			"!HG_DIE"			},
+	{ "/gr_die2.wav",			"!HG_DIE"			},
+	{ "/gr_die3.wav",			"!HG_DIE"			},
+	{ "/gr_pain1.wav",			"!HG_PAIN"			},
+	{ "/gr_pain2.wav",			"!HG_PAIN"			},
+	{ "/gr_pain3.wav",			"!HG_PAIN"			},
+	{ "/gr_pain4.wav",			"!HG_PAIN"			},
+	{ "/gr_pain5.wav",			"!HG_PAIN"			},
+	{ "/c2a3_ambush_fx.wav",	"!HG_AMBUSH_FX"		},
+	{ "/c2a3_ambush_vox.wav",	"!HG_AMBUSH"		},
+	{ "/c2a5_hg_abandon.wav",	"!HG_ABANDON"		},
+	{ "/c2a5_hg_lebuz.wav",		"!HG_LEBUZ"			},
+	{ "/hg_canal1.wav",			"!HG_CANAL1"		},
+	{ "/hg_canal2.wav",			"!HG_CANAL2"		},
+	{ "/hg_canal3.wav",			"!HG_CANAL3"		},
+	{ "/hg_got_barney.wav",		"!HG_GOT_BARNEY"	},
 };
 
 
@@ -199,6 +203,14 @@ static const client_textmessage_sentence_t pBSHoloSounds[] =
 	{ "/tr_holo_radiation.wav",		"!BS_RADIATION"		},
 };
 
+// Fograin92: Fix sentences, Blue-Shift Rosenberg
+static const client_textmessage_sentence_t pBSRosenbergSounds[] =
+{
+	{ "/ro_xen_call1.wav",		"!RO_XEN_CALL1"	},
+	{ "/ro_xen_call2.wav",		"!RO_XEN_CALL2"	},
+	{ "/ro_xen_call3.wav",		"!RO_XEN_CALL3"	},
+};
+
 
 // Fograin92: Closed captions
 static const client_textmessage_sentence_t pCCSounds[] =
@@ -253,8 +265,9 @@ static const client_textmessage_sndgroup_t pSoundGroups[] =
     { "zombie",			strlen("zombie"),		NULL,				0								},
 
 	// Blue Shift sentence fixes
-	{ "tram",			strlen("tram"),			pBSTramSounds,		ARRAYSIZE(pBSTramSounds)		},
-	{ "ba_holo",		strlen("ba_holo"),		pBSHoloSounds,		ARRAYSIZE(pBSHoloSounds)		},
+	{ "tram",			strlen("tram"),			pBSTramSounds,			ARRAYSIZE(pBSTramSounds)		},
+	{ "ba_holo",		strlen("ba_holo"),		pBSHoloSounds,			ARRAYSIZE(pBSHoloSounds)		},
+	{ "rosenberg",		strlen("rosenberg"),	pBSRosenbergSounds,		ARRAYSIZE(pBSRosenbergSounds)	},
 
 };
 

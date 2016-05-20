@@ -1184,36 +1184,40 @@ void CHudNew::UpdateHUD()
 // Clean visibility of elements to prevent rendering glitches
 void CHudNew::RefreshVisual()
 {
-	// Clean ammo icons
-	pIconAmmoGlock->setVisible(false);
-	pIconAmmo9mm->setVisible(false);
-	pSecondaryAmmoPanel->setVisible(false);
-	pIconAmmo357->setVisible(false);
-	pIconAmmoBuckshot->setVisible(false);
-	pIconAmmoArrow->setVisible(false);
-	pIconAmmoRocket->setVisible(false);
-	pIconAmmoUranium->setVisible(false);
-	pIconAmmoBee->setVisible(false);
-	pIconAmmoGrenade->setVisible(false);
-	pIconAmmoSatchel->setVisible(false);
-	pIconAmmoTripmine->setVisible(false);
-	pIconAmmoSnark->setVisible(false);
+	// Fograin92: Only if it's not logon sequence
+	if( fTimer_Logon < 1 )
+	{
+		// Clean ammo icons
+		pIconAmmoGlock->setVisible(false);
+		pIconAmmo9mm->setVisible(false);
+		pSecondaryAmmoPanel->setVisible(false);
+		pIconAmmo357->setVisible(false);
+		pIconAmmoBuckshot->setVisible(false);
+		pIconAmmoArrow->setVisible(false);
+		pIconAmmoRocket->setVisible(false);
+		pIconAmmoUranium->setVisible(false);
+		pIconAmmoBee->setVisible(false);
+		pIconAmmoGrenade->setVisible(false);
+		pIconAmmoSatchel->setVisible(false);
+		pIconAmmoTripmine->setVisible(false);
+		pIconAmmoSnark->setVisible(false);
 
-	// Clean crosshairds
-	pCrosshairDefault->setVisible(false);
-	pCrosshairGlock->setVisible(false);
-	pCrosshair357->setVisible(false);
-	pCrosshairMP5->setVisible(false);
-	pCrosshairShotgun->setVisible(false);
-	pCrosshairCrossbow->setVisible(false);
-	pCrosshairRPG->setVisible(false);
-	pCrosshairGauss->setVisible(false);
-	pCrosshairEgon->setVisible(false);
-	pCrosshairHive->setVisible(false);
-	pCrosshairM249->setVisible(false);
-	pCrosshairDisplacer->setVisible(false);
-	pCrosshairSniper->setVisible(false);
-	pCrosshairDeagle->setVisible(false);
+		// Clean crosshairds
+		pCrosshairDefault->setVisible(false);
+		pCrosshairGlock->setVisible(false);
+		pCrosshair357->setVisible(false);
+		pCrosshairMP5->setVisible(false);
+		pCrosshairShotgun->setVisible(false);
+		pCrosshairCrossbow->setVisible(false);
+		pCrosshairRPG->setVisible(false);
+		pCrosshairGauss->setVisible(false);
+		pCrosshairEgon->setVisible(false);
+		pCrosshairHive->setVisible(false);
+		pCrosshairM249->setVisible(false);
+		pCrosshairDisplacer->setVisible(false);
+		pCrosshairSniper->setVisible(false);
+		pCrosshairDeagle->setVisible(false);
+	}
 }
 
 
@@ -2569,6 +2573,11 @@ void CHudNew::paint()
 			{
 				pImgLogon08->setVisible(false);
 				//pLogonText->setText( "safe_day -> %d\n", (int)fTimer_Logon);	// DEBUG
+			}
+			else if( fTimer_Logon > 1130 )
+			{
+				// Fograin92: Logon finished
+				fTimer_Logon = 0;
 			}
 		}
 //========= HEV LOGON PHASE 2 END =========//

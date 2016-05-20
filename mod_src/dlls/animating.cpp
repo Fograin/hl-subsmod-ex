@@ -344,6 +344,8 @@ void CBaseAnimating :: SetSequenceBox( void )
 				|| FClassnameIs(pev, "monster_rat")
 				|| FClassnameIs(pev, "monster_robo_loader")
 				|| FClassnameIs(pev, "monster_tentacle")
+				|| FClassnameIs(pev, "monster_generic")
+				|| FClassnameIs(pev, "monster_hevsuit_dead")
 				)
 			{
 				// Fograin92: Placeholder for different after death particles

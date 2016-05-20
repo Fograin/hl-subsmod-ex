@@ -1996,7 +1996,7 @@ void CStudioModelRenderer::SetupModelExtraData(void)
 		return;
 
 	// generate extra data for this model
-	gEngfuncs.Con_Printf("Generating extra data for model %s\n", m_pRenderModel->name);
+	//gEngfuncs.Con_Printf("Generating extra data for model %s\n", m_pRenderModel->name);
 	
 	// get number of submodels
 	int i, n = 0;	

@@ -487,6 +487,9 @@ void CRpg::PrimaryAttack()
 
 		PLAYBACK_EVENT( flags, m_pPlayer->edict(), m_usRpg );
 
+		// Fograin92
+		EMIT_SOUND(ENT(pev), CHAN_WEAPON, "weapons/rocketfire1.wav", 0.80, ATTN_NORM);
+
 		m_iClip--; 
 				
 		m_flNextPrimaryAttack = UTIL_WeaponTimeBase() + 1.5;
