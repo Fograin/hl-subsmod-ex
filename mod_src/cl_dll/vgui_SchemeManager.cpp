@@ -622,9 +622,55 @@ SchemeHandle_t CSchemeManager::loadNewScheme(
 	
 	if ((curr_schm->fontFlags & CScheme::FONT_FLAG_GENERATED) == CScheme::FONT_FLAG_NONE_FLAGS)
 	{
+		/**************************
+		Fograin92: Language IDs
+		[fonts]
+		0 = English	
+		1 = Polish
+		2 = Albanian
+		3 = Czech
+		4 = Croatian
+		5 = Hungarian
+		6 = Portuguese
+		7 = Romanian
+		8 = Serbian
+		9 = Slovak
+		10 = Slovene
+
+		[fonts_ansi]
+		20 = French
+		21 = German
+		22 = Spanish
+
+		[fonts_cyrillic]
+		30 = Bulgarian
+		31 = Russian
+		32 = Serbian
+		33 = Ukrainian
+
+		[fonts_greek]
+		40 = Greek
+
+		[fonts_turkish]
+		50 = Turkish
+		**************************/
+
+		// Fograin92: Check language
+		int iLangID = CVAR_GET_FLOAT("sv_language");
+
 		for (int leq_rID = curr_schm->resIndex; !pFontData && leq_rID >= 0; leq_rID--)
 		{
-			sprintf(fontFilename, "gfx\\vgui\\fonts\\%d_%s.tga", g_ResArray[leq_rID], schemeName);
+			// Fograin92: Check language ID
+			if( iLangID >= 20 && iLangID <= 29 )
+				sprintf(fontFilename, "gfx\\vgui\\fonts_ansi\\%d_%s.tga", g_ResArray[leq_rID], schemeName);
+			else if( iLangID >= 30 && iLangID <= 39 )
+				sprintf(fontFilename, "gfx\\vgui\\fonts_cyrillic\\%d_%s.tga", g_ResArray[leq_rID], schemeName);
+			else if( iLangID == 40 )
+				sprintf(fontFilename, "gfx\\vgui\\fonts_greek\\%d_%s.tga", g_ResArray[leq_rID], schemeName);
+			else if( iLangID == 50 )
+				sprintf(fontFilename, "gfx\\vgui\\fonts_turkish\\%d_%s.tga", g_ResArray[leq_rID], schemeName);
+			else
+				sprintf(fontFilename, "gfx\\vgui\\fonts\\%d_%s.tga", g_ResArray[leq_rID], schemeName);
 			pFontData = gEngfuncs.COM_LoadFile(fontFilename, 5, &fontFileLength);
 			if (!pFontData) gEngfuncs.Con_DPrintf("Missing stored bitmap font: \"%s\"\n", fontFilename);
 		}
@@ -634,7 +680,18 @@ SchemeHandle_t CSchemeManager::loadNewScheme(
 			gEngfuncs.Con_Printf("Failed to find LEQ stored bitmap font for scheme \"%s\"\n", schemeName);
 			for (int gtr_rID = curr_schm->resIndex + 1; !pFontData && gtr_rID < g_NumReses; gtr_rID++)
 			{
-				sprintf(fontFilename, "gfx\\vgui\\fonts\\%d_%s.tga", g_ResArray[gtr_rID], schemeName);
+				// Fograin92: Check language ID
+				if( iLangID >= 20 && iLangID <= 29 )
+					sprintf(fontFilename, "gfx\\vgui\\fonts_ansi\\%d_%s.tga", g_ResArray[gtr_rID], schemeName);
+				else if( iLangID >= 30 && iLangID <= 39 )
+					sprintf(fontFilename, "gfx\\vgui\\fonts_cyrillic\\%d_%s.tga", g_ResArray[gtr_rID], schemeName);
+				else if( iLangID == 40 )
+					sprintf(fontFilename, "gfx\\vgui\\fonts_greek\\%d_%s.tga", g_ResArray[gtr_rID], schemeName);
+				else if( iLangID == 50 )
+					sprintf(fontFilename, "gfx\\vgui\\fonts_turkish\\%d_%s.tga", g_ResArray[gtr_rID], schemeName);
+				else
+					sprintf(fontFilename, "gfx\\vgui\\fonts\\%d_%s.tga", g_ResArray[gtr_rID], schemeName);
+
 				pFontData = gEngfuncs.COM_LoadFile(fontFilename, 5, &fontFileLength);
 				if (!pFontData) gEngfuncs.Con_DPrintf("Missing stored bitmap font: \"%s\"\n", fontFilename);
 			}

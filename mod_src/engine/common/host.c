@@ -848,7 +848,7 @@ int EXPORT Host_Main( const char *progname, int bChangeGame, pfnChangeGame func 
 		Cmd_AddCommand ( "host_error", Host_Error_f, "just throw a host error to test shutdown procedures");
 		Cmd_AddCommand ( "crash", Host_Crash_f, "a way to force a bus error for development reasons");
 		Cmd_AddCommand ( "net_error", Net_Error_f, "send network bad message from random place");
-          }
+	}
 
 	host_cheats = Cvar_Get( "sv_cheats", "0", CVAR_LATCH, "allow cheat variables to enable" );
 	host_maxfps = Cvar_Get( "fps_max", "72", CVAR_ARCHIVE, "host fps upper limit" );
@@ -873,6 +873,9 @@ int EXPORT Host_Main( const char *progname, int bChangeGame, pfnChangeGame func 
 		if( host.developer > 1 ) Cvar_SetFloat( "sv_cheats", 1.0f );
 		Cbuf_AddText( "exec video.cfg\n" );
 	}
+
+	// Fograin92: Set language ID
+	Cbuf_AddText( "exec language.cfg\n" );
 
 	Mod_Init();
 	NET_Init();

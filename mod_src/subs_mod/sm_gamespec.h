@@ -14,20 +14,63 @@
 #include "sm_defines.h"
 
 
+// Fograin92: English subtitles
 // Load shared .txt files and dialogue subtitles
 static const char * const pCustomTitleFilesArray[] = 
 {
-	"scripts/sm_text_base.txt",
-	"scripts/sm_text_subs.txt",
+	"scripts/english_text_base.txt",
+	"scripts/english_text_subs.txt",
 };
 
 // Load shared .txt files, dialogue subtitles AND closed captions
 static const char * const pCustomTitleFilesArrayCC[] = 
 {
-	"scripts/sm_text_base.txt",
-	"scripts/sm_text_subs.txt",
-	"scripts/sm_text_CC.txt",
+	"scripts/english_text_base.txt",
+	"scripts/english_text_subs.txt",
+	"scripts/english_text_CC.txt",
 };
+
+
+//================================//
+// Fograin92: Localized subtitles
+//================================//
+
+// Fograin92: Polish locale
+static const char * const pCustomTitleFilesArray_PL[] = 
+{
+	"scripts/polish_text_base.txt",
+	"scripts/polish_text_subs.txt",
+};
+
+static const char * const pCustomTitleFilesArrayCC_PL[] = 
+{
+	"scripts/polish_text_base.txt",
+	"scripts/polish_text_subs.txt",
+	"scripts/polish_text_CC.txt",
+};
+
+// Fograin92: Russian locale
+static const char * const pCustomTitleFilesArray_RU[] = 
+{
+	"scripts/russian_text_base.txt",
+	"scripts/russian_text_subs.txt",
+};
+
+static const char * const pCustomTitleFilesArrayCC_RU[] = 
+{
+	"scripts/russian_text_base.txt",
+	"scripts/russian_text_subs.txt",
+	"scripts/russian_text_CC.txt",
+};
+
+
+
+
+
+
+
+
+
 
 
 // Fix sentences, Half-Life Barney

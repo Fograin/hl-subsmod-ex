@@ -647,7 +647,7 @@ void SV_Init( void )
 	Cvar_Get ("servercfgfile","server.cfg", 0, "name of dedicated server configuration file" );
 	Cvar_Get ("lservercfgfile","listenserver.cfg", 0, "name of listen server configuration file" );
 	Cvar_Get ("motdfile", "motd.txt", 0, "name of 'message of the day' file" );
-	Cvar_Get ("sv_language", "0", 0, "game language (currently unused)" );
+	Cvar_Get ("sv_language", "0", 0, "game language" );
 	Cvar_Get ("suitvolume", "0.25", CVAR_ARCHIVE, "HEV suit volume" );
 	Cvar_Get ("sv_background", "0", CVAR_READ_ONLY, "indicate what background map is running" );
 	Cvar_Get( "gamedir", GI->gamefolder, CVAR_SERVERINFO|CVAR_SERVERNOTIFY|CVAR_INIT, "game folder" );

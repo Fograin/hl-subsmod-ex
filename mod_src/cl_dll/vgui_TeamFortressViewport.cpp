@@ -1914,24 +1914,71 @@ void TeamFortressViewport::CreateSpectatorMenu()
 // Fograin92, Vit_amiN: Panel for messages handling
 void TeamFortressViewport::CreateMsgsBasePanel()
 {
-	// Fograin92: TODO, check sv_language and load localized .txt
+	/**************************
+	Fograin92: Language IDs
+	[fonts]
+	0 = English	
+	1 = Polish
+	2 = Albanian
+	3 = Czech
+	4 = Croatian
+	5 = Hungarian
+	6 = Portuguese
+	7 = Romanian
+	8 = Serbian
+	9 = Slovak
+	10 = Slovene
+
+	[fonts_ansi]
+	20 = French
+	21 = German
+	22 = Spanish
+
+	[fonts_cyrillic]
+	30 = Bulgarian
+	31 = Russian
+	32 = Serbian
+	33 = Ukrainian
+
+	[fonts_greek]
+	40 = Greek
+
+	[fonts_turkish]
+	50 = Turkish
+	**************************/
 
 	// Fograin92: Check if we should load closed captions
 	if( CVAR_GET_FLOAT("cl_sm_subtitles_enabled") == 2 )
 	{
 		// Load shared text, dialogues and closed captions
-		m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this,	// It sets parent by itself
-											  pCustomTitleFilesArrayCC,
-											  ARRAYSIZE(pCustomTitleFilesArrayCC),
-											  0, 0, ScreenWidth, ScreenHeight);
+
+		// Fograin92: Polish locale
+		if( CVAR_GET_FLOAT("sv_language") == 1 )
+			m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this, pCustomTitleFilesArrayCC_PL, ARRAYSIZE(pCustomTitleFilesArrayCC_PL), 0, 0, ScreenWidth, ScreenHeight);
+
+		// Fograin92: Russian locale
+		else if( CVAR_GET_FLOAT("sv_language") == 31 )
+			m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this, pCustomTitleFilesArrayCC_RU, ARRAYSIZE(pCustomTitleFilesArrayCC_RU), 0, 0, ScreenWidth, ScreenHeight);
+
+		// Fograin92: Default / English locale
+		else
+			m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this, pCustomTitleFilesArrayCC, ARRAYSIZE(pCustomTitleFilesArrayCC), 0, 0, ScreenWidth, ScreenHeight);
 	}
 	else
 	{
 		// Load shared text and dialogues
-		m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this,	// It sets parent by itself
-											  pCustomTitleFilesArray,
-											  ARRAYSIZE(pCustomTitleFilesArray),
-											  0, 0, ScreenWidth, ScreenHeight);
+
+		// Fograin92: Polish locale
+		if( CVAR_GET_FLOAT("sv_language") == 1 )
+			m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this, pCustomTitleFilesArray_PL, ARRAYSIZE(pCustomTitleFilesArray_PL), 0, 0, ScreenWidth, ScreenHeight);
+
+		// Fograin92: Russian locale
+		else if( CVAR_GET_FLOAT("sv_language") == 31 )
+			m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this, pCustomTitleFilesArrayCC_RU, ARRAYSIZE(pCustomTitleFilesArray_RU), 0, 0, ScreenWidth, ScreenHeight);
+
+		// Fograin92: Default / English locale
+		else
+			m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this, pCustomTitleFilesArray, ARRAYSIZE(pCustomTitleFilesArray), 0, 0, ScreenWidth, ScreenHeight);
 	}
 
 	

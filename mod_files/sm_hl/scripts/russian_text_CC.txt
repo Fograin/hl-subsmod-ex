@@ -1,0 +1,43 @@
+//====================================================
+// Half-Life Update MOD - Closed captions file
+//====================================================
+// Parameters info:
+// $effect X 			<= Used by mod to assign messages
+// $color2 R G B 		<= Text highlight color
+// $color R G B 		<= Text final color
+// $fadein SECONDS		<= Time it takes to fade each character
+// $fxtime SECONDS		<= This is the amount of time the highlight lags behind the leading edge of the text
+// $fadeout SECONDS		<= How long it takes to fade out the message after holding
+//====================================================
+// Additional info:
+// Font = Arial narrow 16
+//===========================================================
+// Language: English
+// Writen by: Fograin92
+//===========================================================
+
+// Global subtitles settings
+$effect 18
+$position 0 0
+$fadein 0.01
+$fxtime 0.25
+$fadeout 0.5
+
+
+//=========//
+// WEAPONS
+//=========//
+$color  255 222 152
+$color2 128 111  76
+
+$holdtime 2
+WPN_PISTOL_SHOOT
+{
+[9MM PISTOL SHOOT]
+}
+
+
+//============//
+// Explosions
+//============//
+
