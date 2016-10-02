@@ -344,6 +344,12 @@ void CScientist :: Precache( void )
 	PRECACHE_SOUND("scientist/sci_pain4.wav");
 	PRECACHE_SOUND("scientist/sci_pain5.wav");
 
+	PRECACHE_SOUND("scientist/sci_death1.wav");	// Fograin92
+	PRECACHE_SOUND("scientist/sci_death2.wav");	// Fograin92
+	PRECACHE_SOUND("scientist/sci_death3.wav");	// Fograin92
+	PRECACHE_SOUND("scientist/sci_death4.wav");	// Fograin92
+	PRECACHE_SOUND("scientist/sci_death5.wav");	// Fograin92
+
 	// every new scientist must call this, otherwise
 	// when a level is loaded, nobody will talk (time is reset to 0)
 	TalkInit();
@@ -453,11 +459,11 @@ void CScientist :: PainSound ( void )
 
 	switch (RANDOM_LONG(0,4))
 	{
-	case 0: EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "scientist/sci_pain1.wav", 1, ATTN_NORM, 0, GetVoicePitch()); break;
-	case 1: EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "scientist/sci_pain2.wav", 1, ATTN_NORM, 0, GetVoicePitch()); break;
-	case 2: EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "scientist/sci_pain3.wav", 1, ATTN_NORM, 0, GetVoicePitch()); break;
-	case 3: EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "scientist/sci_pain4.wav", 1, ATTN_NORM, 0, GetVoicePitch()); break;
-	case 4: EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "scientist/sci_pain5.wav", 1, ATTN_NORM, 0, GetVoicePitch()); break;
+		case 0: EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "scientist/sci_pain1.wav", 1, ATTN_NORM, 0, GetVoicePitch()); break;
+		case 1: EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "scientist/sci_pain2.wav", 1, ATTN_NORM, 0, GetVoicePitch()); break;
+		case 2: EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "scientist/sci_pain3.wav", 1, ATTN_NORM, 0, GetVoicePitch()); break;
+		case 3: EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "scientist/sci_pain4.wav", 1, ATTN_NORM, 0, GetVoicePitch()); break;
+		case 4: EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "scientist/sci_pain5.wav", 1, ATTN_NORM, 0, GetVoicePitch()); break;
 	}
 }
 
@@ -466,7 +472,21 @@ void CScientist :: PainSound ( void )
 //=========================================================
 void CScientist :: DeathSound ( void )
 {
-	PainSound();
+	//PainSound();
+	// Fograin92: Using different sci_death sounds. Required for correct CC subs
+	if (gpGlobals->time < m_painTime )
+		return;
+	
+	m_painTime = gpGlobals->time + RANDOM_FLOAT(0.5, 0.75);
+
+	switch (RANDOM_LONG(0,4))
+	{
+		case 0: EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "scientist/sci_death1.wav", 1, ATTN_NORM, 0, GetVoicePitch()); break;
+		case 1: EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "scientist/sci_death2.wav", 1, ATTN_NORM, 0, GetVoicePitch()); break;
+		case 2: EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "scientist/sci_death3.wav", 1, ATTN_NORM, 0, GetVoicePitch()); break;
+		case 3: EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "scientist/sci_death4.wav", 1, ATTN_NORM, 0, GetVoicePitch()); break;
+		case 4: EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "scientist/sci_death5.wav", 1, ATTN_NORM, 0, GetVoicePitch()); break;
+	}
 }
 
 

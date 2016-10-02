@@ -411,11 +411,13 @@ void CBullsquid :: AlertSound ( void )
 
 	switch ( RANDOM_LONG ( 0, 1  ) )
 	{
-	case 0:
-		EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "bullchicken/bc_idle1.wav", 1, ATTN_NORM, 0, iPitch );	
+		case 0:
+			// Fograin92: Changed sound from idle1 to pain1, for correct CC. Also it sounds better as alert sound.
+			EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "bullchicken/bc_pain1.wav", 1, ATTN_NORM, 0, iPitch );	
 		break;
-	case 1:
-		EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "bullchicken/bc_idle2.wav", 1, ATTN_NORM, 0, iPitch );	
+
+		case 1:
+			EMIT_SOUND_DYN( ENT(pev), CHAN_VOICE, "bullchicken/bc_idle2.wav", 1, ATTN_NORM, 0, iPitch );	
 		break;
 	}
 }

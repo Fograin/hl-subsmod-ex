@@ -30,14 +30,695 @@ $fadeout 0.5
 $color  255 222 152
 $color2 128 111  76
 
+
 $holdtime 2
-WPN_PISTOL_SHOOT
+WPN_EMPTY
 {
-[9MM PISTOL SHOOT]
+[EMPTY CHAMBER]
+}
+
+$holdtime 2
+WPN_RELOAD
+{
+[RELOADING]
+}
+
+$holdtime 2
+WPN_CBAR_HITWRLD
+{
+[CROWBAR WHACK!]
+}
+
+$holdtime 2
+WPN_CBAR_HITFLESH
+{
+[CROWBAR THWACK]
+}
+
+$holdtime 2
+WPN_CBAR_MISS
+{
+[CROWBAR SWOOSH]
+}
+
+$holdtime 2
+WPN_PISTOL_SHOT
+{
+[9MM PISTOL SHOT]
+}
+
+$holdtime 2
+WPN_357_SHOT
+{
+[.357 SHOT]
+}
+
+$holdtime 2
+WPN_MP5_SHOT
+{
+[9MM SMG SHOT]
+}
+
+$holdtime 2
+WPN_MP5_SHOT2
+{
+[AR GRENADE LAUNCH]
+}
+
+$holdtime 2
+WPN_SHOTGUN_SHOT
+{
+[SINGLE SHOTGUN BLAST]
+}
+
+$holdtime 2
+WPN_SHOTGUN_SHOT2
+{
+[DOUBLE SHOTGUN BLAST]
+}
+
+$holdtime 2
+WPN_XBOW_SHOT
+{
+[CROSSBOW SHOT]
+}
+
+$holdtime 2
+WPN_RPG_SHOT
+{
+[RPG LAUNCH]
+}
+
+$holdtime 2
+WPN_GAUSS_SHOT
+{
+[TAU CANNON SHOT]
+}
+
+$holdtime 2
+WPN_EGON_SHOT
+{
+[GLUON GUN CHARGE]
+}
+
+$holdtime 2
+WPN_HIVE_SHOT
+{
+[ALIEN HORNET HIVE SHOT]
+}
+
+$holdtime 2
+WPN_TM_DEPLOY
+{
+[TRIPMINE PLACED]
+}
+
+$holdtime 2
+WPN_TM_ACTIVATE
+{
+[TRIPMINE ACTIVATED]
+}
+
+// TODO:
+// silenced glock
+//pl_gun1
+//pl_gun2
+//OF weapons
+
+
+//======================//
+// HUD & PLAYER ACTIONS
+//======================//
+$color  255 222 152
+$color2 128 111  76
+
+
+$holdtime 2
+PLR_BREATH
+{
+[BREATHING]
+}
+
+$holdtime 2
+PLR_GEIGER
+{
+[GEIGER COUNTER TICK]
+}
+
+$holdtime 2
+PLR_HEARTHBEAT
+{
+[HEARTHBEAT SOUNDS]
+}
+
+$holdtime 2
+PLR_AMMO_PICKUP
+{
+[AMMO PICKUP]
+}
+
+$holdtime 2
+PLR_FLASHLIGHT
+{
+[FLASHLIGHT TOGGLE]
+}
+
+$holdtime 2
+PLR_HK_START
+{
+[HEALING]
+}
+
+$holdtime 2
+PLR_HK_NO
+{
+[HEALING DENIED]
+}
+
+$holdtime 2
+PLR_HK_SMALL
+{
+[SMALL MEDKIT PICKUP]
+}
+
+$holdtime 2
+PLR_HEVC_START
+{
+[CHARGING HEV]
+}
+
+$holdtime 2
+PLR_HEVC_NO
+{
+[HEV CHARGE DENIED]
+}
+
+$holdtime 2
+PLR_PCV_ON
+{
+[P.C.V. ACTIVATED]
+}
+
+$holdtime 2
+PLR_USE_NO
+{
+[CAN'T USE]
 }
 
 
-//============//
-// Explosions
-//============//
 
+//======//
+// NPCs
+//======//
+$color  255 222 152
+$color2 128 111  76
+
+$holdtime 2
+NPC_CMN_PAIN
+{
+*pain*
+}
+
+$holdtime 2
+NPC_CMN_DEATH
+{
+*death*
+}
+
+$holdtime 2
+NPC_CMN_SCREAM
+{
+*screaming*
+}
+
+$holdtime 2
+NPC_AGRUNT_ALERT
+{
+[ALIEN GRUNT ALERTED]
+}
+
+$holdtime 2
+NPC_AGRUNT_DEATH
+{
+[ALIEN GRUNT DEATH]
+}
+
+$holdtime 2
+NPC_ASLAVE_ALERT
+{
+[ALIEN SLAVE ALERTED]
+}
+
+$holdtime 2
+NPC_ASLAVE_DEATH
+{
+[ALIEN SLAVE DEATH]
+}
+
+$holdtime 2
+NPC_BARNACLE_ALERT
+{
+[BARNACLE PULL]
+}
+
+$holdtime 2
+NPC_BARNACLE_BITE
+{
+[BARNACLE BITE]
+}
+
+$holdtime 2
+NPC_BARNACLE_CHEW
+{
+[BARNACLE DIGESTION]
+}
+
+$holdtime 2
+NPC_BARNACLE_DIE
+{
+[BARNACLE DEATH]
+}
+
+$holdtime 2
+NPC_BARNEY_DIE
+{
+[SECURITY GUARD DIES]
+}
+
+$holdtime 2
+NPC_BOID_IDLE
+{
+[ALIEN FLOCK SOUNDS]
+}
+
+$holdtime 2
+NPC_BC_SPIT
+{
+[BULLSQUID SPIT]
+}
+
+$holdtime 2
+NPC_BC_ATTACK
+{
+[BULLSQUID ATTACK]
+}
+
+$holdtime 2
+NPC_BC_DEATH
+{
+[BULLSQUID DEATH]
+}
+
+$holdtime 2
+NPC_BC_ALERT
+{
+[BULLSQUID DEATH]
+}
+
+$holdtime 2
+NPC_CON_ALERT
+{
+[ALIEN CONTROLLER ALERTED]
+}
+
+$holdtime 2
+NPC_CON_DEATH
+{
+[ALIEN CONTROLLER DEATH]
+}
+
+$holdtime 2
+NPC_GARG_ALERT
+{
+[GARGANTUA ALERTED]
+}
+
+$holdtime 2
+NPC_GARG_DEATH
+{
+[GARGANTUA DIES]
+}
+
+$holdtime 2
+NPC_GARG_STOMP
+{
+[GARGANTUA STOMP ATTACK]
+}
+
+$holdtime 2
+NPC_GARG_FLAME
+{
+[GARGANTUA FLAME ATTACK]
+}
+
+$holdtime 2
+NPC_GARG_BREATH
+{
+[GARGANTUA HEAVY BREATHING]
+}
+
+$holdtime 2
+NPC_GON_ALERT
+{
+[GONARCH ALERTED]
+}
+
+$holdtime 2
+NPC_GON_DEATH
+{
+[GONARCH DIES]
+}
+
+$holdtime 2
+NPC_HC_ALERT
+{
+[HEADCRAB ALERTED]
+}
+
+$holdtime 2
+NPC_HC_JUMP
+{
+[HEADCRAB JUMPS]
+}
+
+$holdtime 2
+NPC_HC_DIE
+{
+[HEADCRAB DIES]
+}
+
+$holdtime 2
+NPC_GR_DIE
+{
+[HUMAN GRUNT DIES]
+}
+
+$holdtime 2
+NPC_HE_ALERT
+{
+[HOUNDEYE ALERTED]
+}
+
+$holdtime 2
+NPC_HE_ATTACK
+{
+[HOUNDEYE CHARGE ATTACK]
+}
+
+$holdtime 2
+NPC_HE_DIES
+{
+[HOUNDEYE DIES]
+}
+
+$holdtime 2
+NPC_ICKY_ALERT
+{
+[ICHTHYOSAUR ALERTED]
+}
+
+$holdtime 2
+NPC_ICKY_BITE
+{
+[ICHTHYOSAUR BITES]
+}
+
+$holdtime 2
+NPC_ICKY_DEATH
+{
+[ICHTHYOSAUR DIES]
+}
+
+$holdtime 2
+NPC_SNARK_DEATH
+{
+[SNARK EXPLODES]
+}
+
+$holdtime 2
+NPC_SNARK_ALERT
+{
+[SNARK ALERTED]
+}
+
+$holdtime 2
+NPC_SNARK_HUNTS
+{
+[SNARK SQUEEKS]
+}
+
+$holdtime 2
+NPC_TE_DEATH
+{
+[TENTACLE DIES]
+}
+
+$holdtime 2
+NPC_TE_STRIKE
+{
+[TENTACLE STRIKES]
+}
+
+$holdtime 2
+NPC_TU_DEPLOY
+{
+[TURRET DEPLOYED]
+}
+
+$holdtime 2
+NPC_TU_ALERT
+{
+[TURRET ALERTED]
+}
+
+$holdtime 2
+NPC_TU_DEATH
+{
+[TURRET DESTROYED]
+}
+
+$holdtime 2
+NPC_TU_RETRACT
+{
+[TURRET RETRACTS]
+}
+
+$holdtime 2
+NPC_NIH_DEATH
+{
+[NIHILANTH DIES]
+}
+
+$holdtime 2
+NPC_ZMB_ATTACK
+{
+[HEADCRAB ZOMBIE ATTACKS]
+}
+
+$holdtime 2
+NPC_ZMB_ALERT
+{
+[HEADCRAB ZOMBIE ALERTED]
+}
+
+$holdtime 2
+NPC_ZMB_ROAR
+{
+[HEADCRAB ZOMBIE ROARS]
+}
+
+$holdtime 2
+// Not defined
+NPC_ROSEN_DIES
+{
+[DR. ROSENBERG DIED]
+}
+
+$holdtime 2
+NPC_FGRUNT_DIES
+{
+[SOLDIER DIED]
+}
+
+$holdtime 2
+NPC_GENE_DIES
+{
+[GENEWORM DIES]
+}
+
+$holdtime 2
+NPC_GENE_ENTRY
+{
+[GENEWORM APPEARS]
+}
+
+$holdtime 2
+NPC_GON_DEATH
+{
+[GONOME DIES]
+}
+
+$holdtime 2
+// Not defined
+NPC_GON_ALERT
+{
+[GONOME ALERTED]
+}
+
+$holdtime 2
+NPC_PIT_ALERT
+{
+[PITDRONE ALERTED]
+}
+
+$holdtime 2
+NPC_PIT_DIES
+{
+[PITDRONE DIES]
+}
+
+$holdtime 2
+NPC_PITW_ALERT
+{
+[PITWORM ALERTED]
+}
+
+$holdtime 2
+NPC_PITW_DIES
+{
+[PITWORM DIES]
+}
+
+$holdtime 2
+NPC_SHOCKR_ALERT
+{
+[SHOCKROACH ALERTED]
+}
+
+$holdtime 2
+NPC_SHOCKR_DIES
+{
+[SHOCKROACH DIES]
+}
+
+$holdtime 2
+NPC_SHOCKT_ALERT
+{
+[SHOCKTROOPER ALERTED]
+}
+
+$holdtime 2
+NPC_SHOCKT_DIES
+{
+[SHOCKTROOPER ALERTED]
+}
+
+$holdtime 2
+NPC_VOLTI_ALERT
+{
+[VOLTIGORE ALERTED]
+}
+
+$holdtime 2
+NPC_VOLTI_DIES
+{
+[VOLTIGORE DIES]
+}
+
+
+
+//=====//
+// SFX
+//=====//
+$color  255 222 152
+$color2 128 111  76
+
+$holdtime 2
+SFX_EXPLOSION
+{
+[EXPLOSION!]
+}
+
+$holdtime 2
+SFX_MORTAR
+{
+[MORTAR SHOT!]
+}
+
+$holdtime 2
+SFX_STATIC
+{
+[RADIO STATIC]
+}
+
+$holdtime 2
+SFX_DISF
+{
+[DISTANT FIGHTING SOUNDS]
+}
+
+$holdtime 2
+SFX_TRAIN_USE
+{
+[FLATBED TRAIN ENGINE START]
+}
+
+$holdtime 2
+SFX_TRAIN_START
+{
+[FLATBED TRAIN MOVING]
+}
+
+$holdtime 2
+SFX_TRAIN_BRAKES
+{
+[FLATBED TRAIN BRAKE SOUNDS]
+}
+
+$holdtime 2
+SFX_BTN_USE
+{
+[BUTTON SOUND]
+}
+
+$holdtime 2
+SFX_BTN_USEN
+{
+[LOCKED BUTTON SOUND]
+}
+
+$holdtime 2
+SFX_LOCKED
+{
+[LOCKED]
+}
+
+$holdtime 2
+SFX_LEVER
+{
+[LEVER SOUND]
+}
+
+$holdtime 2
+SFX_BELL
+{
+[RANDOM BELL]
+}
+
+$holdtime 2
+SFX_EBELL
+{
+[ELEVATOR BELL]
+}
+
+$holdtime 2
+SFX_ALARM
+{
+[ALARM SOUNDS]
+}
+
+
+// [Water Splash]
+// Potencial features?
+// [Low Health Warning!]
+// [Low Ammunition Warning!]

@@ -814,7 +814,6 @@ void ClientPrecache( void )
 //======= PRECACHE MODELS =======//
 	PRECACHE_MODEL("models/player.mdl");	// Fograin92: Player model
 
-
 //======= PRECACHE ENTS =======//
 	if (giPrecacheGrunt)
 		UTIL_PrecacheOther("monster_human_grunt");
