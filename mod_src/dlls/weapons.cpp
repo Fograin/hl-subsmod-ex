@@ -191,9 +191,11 @@ void DecalGunshot( TraceResult *pTrace, int iBulletType )
 		case BULLET_PLAYER_BUCKSHOT:
 		case BULLET_PLAYER_357:
 
-		case BULLET_PLAYER_556:	// Fograin92
-		case BULLET_PLAYER_762: // Fograin92
-		case BULLET_PLAYER_DEAGLE: // Fograin92
+		case BULLET_PLAYER_556:		// Fograin92
+		case BULLET_PLAYER_762:		// Fograin92
+		case BULLET_PLAYER_DEAGLE:	// Fograin92
+		case BULLET_MONSTER_556:	// Fograin92
+		case BULLET_MONSTER_357:	// Fograin92
 
 		default:
 			// smoke and decal

@@ -1437,6 +1437,25 @@ BOOL UTIL_TeamsMatch( const char *pTeamName1, const char *pTeamName2 )
 	return FALSE;
 }
 
+// Fograin92
+//LRC - moved here from barney.cpp
+BOOL UTIL_IsFacing( entvars_t *pevTest, const Vector &reference )
+{
+	Vector vecDir = (reference - pevTest->origin);
+	vecDir.z = 0;
+	vecDir = vecDir.Normalize();
+	Vector forward, angle;
+	angle = pevTest->v_angle;
+	angle.x = 0;
+	UTIL_MakeVectorsPrivate( angle, forward, NULL, NULL );
+	// He's facing me, he meant it
+	if ( DotProduct( forward, vecDir ) > 0.96 )	// +/- 15 degrees or so
+	{
+		return TRUE;
+	}
+	return FALSE;
+}
+
 
 void UTIL_StringToVector( float *pVector, const char *pString )
 {

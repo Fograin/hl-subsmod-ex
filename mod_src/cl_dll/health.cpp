@@ -351,7 +351,7 @@ int CHudHealth::DrawDamage(float flTime)
 	{
 		if (m_bitsDamage & giDmgFlags[i])
 		{
-			gEngfuncs.Con_Printf( "^3SM-> DMG TYPE: %d \n", i);
+			//gEngfuncs.Con_Printf( "^3SM-> DMG TYPE: %d \n", i);
 
 			switch(i)
 			{

@@ -63,11 +63,89 @@ static const char * const pCustomTitleFilesArrayCC_RU[] =
 	"scripts/russian_text_CC.txt",
 };
 
+// Fograin92: Czech locale
+static const char * const pCustomTitleFilesArray_CZ[] = 
+{
+	"scripts/czech_text_base.txt",
+	"scripts/czech_text_subs.txt",
+};
 
+static const char * const pCustomTitleFilesArrayCC_CZ[] = 
+{
+	"scripts/czech_text_base.txt",
+	"scripts/czech_text_subs.txt",
+	"scripts/czech_text_CC.txt",
+};
 
+// Fograin92: Hungarian locale
+static const char * const pCustomTitleFilesArray_HU[] = 
+{
+	"scripts/hungarian_text_base.txt",
+	"scripts/hungarian_text_subs.txt",
+};
 
+static const char * const pCustomTitleFilesArrayCC_HU[] = 
+{
+	"scripts/hungarian_text_base.txt",
+	"scripts/hungarian_text_subs.txt",
+	"scripts/hungarian_text_CC.txt",
+};
 
+// Fograin92: Portuguese locale
+static const char * const pCustomTitleFilesArray_PT[] = 
+{
+	"scripts/portuguese_text_base.txt",
+	"scripts/portuguese_text_subs.txt",
+};
 
+static const char * const pCustomTitleFilesArrayCC_PT[] = 
+{
+	"scripts/portuguese_text_base.txt",
+	"scripts/portuguese_text_subs.txt",
+	"scripts/portuguese_text_CC.txt",
+};
+
+// Fograin92: Greek locale
+static const char * const pCustomTitleFilesArray_EL[] = 
+{
+	"scripts/greek_text_base.txt",
+	"scripts/greek_text_subs.txt",
+};
+
+static const char * const pCustomTitleFilesArrayCC_EL[] = 
+{
+	"scripts/greek_text_base.txt",
+	"scripts/greek_text_subs.txt",
+	"scripts/greek_text_CC.txt",
+};
+
+// Fograin92: Turkish locale
+static const char * const pCustomTitleFilesArray_TR[] = 
+{
+	"scripts/turkish_text_base.txt",
+	"scripts/turkish_text_subs.txt",
+};
+
+static const char * const pCustomTitleFilesArrayCC_TR[] = 
+{
+	"scripts/turkish_text_base.txt",
+	"scripts/turkish_text_subs.txt",
+	"scripts/turkish_text_CC.txt",
+};
+
+// Fograin92: Spanish locale
+static const char * const pCustomTitleFilesArray_ES[] = 
+{
+	"scripts/spanish_text_base.txt",
+	"scripts/spanish_text_subs.txt",
+};
+
+static const char * const pCustomTitleFilesArrayCC_ES[] = 
+{
+	"scripts/spanish_text_base.txt",
+	"scripts/spanish_text_subs.txt",
+	"scripts/spanish_text_CC.txt",
+};
 
 
 

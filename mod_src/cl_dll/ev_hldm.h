@@ -24,6 +24,10 @@ typedef	enum
 	BULLET_MONSTER_9MM,
 	BULLET_MONSTER_MP5,
 	BULLET_MONSTER_12MM,
+
+	// Fograin92: New bullets
+	BULLET_MONSTER_556,
+	BULLET_MONSTER_357,
 } Bullet;
 
 enum glock_e {

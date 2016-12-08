@@ -1928,6 +1928,7 @@ void TeamFortressViewport::CreateMsgsBasePanel()
 	8 = Serbian
 	9 = Slovak
 	10 = Slovene
+	11 = Spanish
 
 	[fonts_ansi]
 	20 = French
@@ -1956,9 +1957,33 @@ void TeamFortressViewport::CreateMsgsBasePanel()
 		if( CVAR_GET_FLOAT("sv_language") == 1 )
 			m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this, pCustomTitleFilesArrayCC_PL, ARRAYSIZE(pCustomTitleFilesArrayCC_PL), 0, 0, ScreenWidth, ScreenHeight);
 
+		// Fograin92: Czech locale
+		else if( CVAR_GET_FLOAT("sv_language") == 3 )
+			m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this, pCustomTitleFilesArrayCC_CZ, ARRAYSIZE(pCustomTitleFilesArrayCC_CZ), 0, 0, ScreenWidth, ScreenHeight);
+
+		// Fograin92: Hungarian locale
+		else if( CVAR_GET_FLOAT("sv_language") == 5 )
+			m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this, pCustomTitleFilesArrayCC_HU, ARRAYSIZE(pCustomTitleFilesArrayCC_HU), 0, 0, ScreenWidth, ScreenHeight);
+
+		// Fograin92: Portuguese locale
+		else if( CVAR_GET_FLOAT("sv_language") == 6 )
+			m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this, pCustomTitleFilesArrayCC_PT, ARRAYSIZE(pCustomTitleFilesArrayCC_PT), 0, 0, ScreenWidth, ScreenHeight);
+
+		// Fograin92: Spanish locale
+		else if( CVAR_GET_FLOAT("sv_language") == 11 )
+			m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this, pCustomTitleFilesArrayCC_ES, ARRAYSIZE(pCustomTitleFilesArrayCC_ES), 0, 0, ScreenWidth, ScreenHeight);
+
 		// Fograin92: Russian locale
 		else if( CVAR_GET_FLOAT("sv_language") == 31 )
 			m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this, pCustomTitleFilesArrayCC_RU, ARRAYSIZE(pCustomTitleFilesArrayCC_RU), 0, 0, ScreenWidth, ScreenHeight);
+
+		// Fograin92: Greek locale
+		else if( CVAR_GET_FLOAT("sv_language") == 40 )
+			m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this, pCustomTitleFilesArrayCC_EL, ARRAYSIZE(pCustomTitleFilesArrayCC_EL), 0, 0, ScreenWidth, ScreenHeight);
+
+		// Fograin92: Turkish locale
+		else if( CVAR_GET_FLOAT("sv_language") == 50 )
+			m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this, pCustomTitleFilesArrayCC_TR, ARRAYSIZE(pCustomTitleFilesArrayCC_TR), 0, 0, ScreenWidth, ScreenHeight);
 
 		// Fograin92: Default / English locale
 		else
@@ -1972,9 +1997,33 @@ void TeamFortressViewport::CreateMsgsBasePanel()
 		if( CVAR_GET_FLOAT("sv_language") == 1 )
 			m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this, pCustomTitleFilesArray_PL, ARRAYSIZE(pCustomTitleFilesArray_PL), 0, 0, ScreenWidth, ScreenHeight);
 
+		// Fograin92: Czech locale
+		else if( CVAR_GET_FLOAT("sv_language") == 3 )
+			m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this, pCustomTitleFilesArray_CZ, ARRAYSIZE(pCustomTitleFilesArray_CZ), 0, 0, ScreenWidth, ScreenHeight);
+
+		// Fograin92: Hungarian locale
+		else if( CVAR_GET_FLOAT("sv_language") == 5 )
+			m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this, pCustomTitleFilesArray_HU, ARRAYSIZE(pCustomTitleFilesArray_HU), 0, 0, ScreenWidth, ScreenHeight);
+
+		// Fograin92: Portuguese locale
+		else if( CVAR_GET_FLOAT("sv_language") == 6 )
+			m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this, pCustomTitleFilesArray_PT, ARRAYSIZE(pCustomTitleFilesArray_PT), 0, 0, ScreenWidth, ScreenHeight);
+
+		// Fograin92: Spanish locale
+		else if( CVAR_GET_FLOAT("sv_language") == 11 )
+			m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this, pCustomTitleFilesArray_ES, ARRAYSIZE(pCustomTitleFilesArray_ES), 0, 0, ScreenWidth, ScreenHeight);
+
 		// Fograin92: Russian locale
 		else if( CVAR_GET_FLOAT("sv_language") == 31 )
-			m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this, pCustomTitleFilesArrayCC_RU, ARRAYSIZE(pCustomTitleFilesArray_RU), 0, 0, ScreenWidth, ScreenHeight);
+			m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this, pCustomTitleFilesArray_RU, ARRAYSIZE(pCustomTitleFilesArray_RU), 0, 0, ScreenWidth, ScreenHeight);
+
+		// Fograin92: Greek locale
+		else if( CVAR_GET_FLOAT("sv_language") == 40 )
+			m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this, pCustomTitleFilesArray_EL, ARRAYSIZE(pCustomTitleFilesArray_EL), 0, 0, ScreenWidth, ScreenHeight);
+
+		// Fograin92: Turkish locale
+		else if( CVAR_GET_FLOAT("sv_language") == 50 )
+			m_pMsgsBasePanel = new VGUI_MsgsBasePanel(this, pCustomTitleFilesArray_TR, ARRAYSIZE(pCustomTitleFilesArray_TR), 0, 0, ScreenWidth, ScreenHeight);
 
 		// Fograin92: Default / English locale
 		else

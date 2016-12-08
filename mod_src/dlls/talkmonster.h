@@ -39,6 +39,7 @@
 
 #define TLK_CFRIENDS		4
 
+/*
 typedef enum
 {
 	TLK_ANSWER = 0,
@@ -62,7 +63,31 @@ typedef enum
 
 	TLK_CGROUPS,					// MUST be last entry
 } TALKGROUPNAMES;
+*/
+typedef enum
+{
+	TLK_ANSWER = 0,
+	TLK_QUESTION,
+	TLK_IDLE,
+	TLK_STARE,
+	TLK_USE,
+	TLK_UNUSE,
+	TLK_DECLINE, //LRC- refuse to accompany
+	TLK_STOP,
+	TLK_NOSHOOT,
+	TLK_HELLO,
+	TLK_PHELLO,
+	TLK_PIDLE,
+	TLK_PQUESTION,
+	TLK_PLHURT1,
+	TLK_PLHURT2,
+	TLK_PLHURT3,
+	TLK_SMELL,
+	TLK_WOUND,
+	TLK_MORTAL,
 
+	TLK_CGROUPS,					// MUST be last entry
+} TALKGROUPNAMES;
 
 enum
 {

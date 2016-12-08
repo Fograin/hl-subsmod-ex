@@ -838,6 +838,20 @@ int CMainMenuNew::HandleMainMenuInput(int iBTN)
 				ClientCmd("sm_fx_flesh 1\n");
 		break;
 
+		case ID_BTN_GAMESET_ADV06:
+			if( CVAR_GET_FLOAT("sm_fx_dropclip") == 1 )
+				ClientCmd("sm_fx_dropclip 0\n");
+			else
+				ClientCmd("sm_fx_dropclip 1\n");
+		break;
+
+		case ID_BTN_GAMESET_ADV07:
+			if( CVAR_GET_FLOAT("sm_longjump_snd") == 1 )
+				ClientCmd("sm_longjump_snd 0\n");
+			else
+				ClientCmd("sm_longjump_snd 1\n");
+		break;
+
 		// Unhandled button
 		case 0:
 		default:
@@ -1204,6 +1218,26 @@ CMainMenuNew::CMainMenuNew() : Panel( 0, 0, XRES(640), YRES(480) )
     pBtn_GameSet_adv5->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_GAMESET_ADV05, this) );
 	pBtn_GameSet_adv5->setVisible(true);
 
+	pIMGmm_GameSet_adv6 = new MenuImageHolder("gfx/vgui/mm_check.tga", pIMGmm_GameSet);
+	pIMGmm_GameSet_adv6->setPos( 33, 394 );
+	pIMGmm_GameSet_adv6->setVisible(true);
+	pBtn_GameSet_adv6 = new CommandButton( "", 33, 394, 24, 24);
+	pBtn_GameSet_adv6->setFont( pFontText );
+    pBtn_GameSet_adv6->setParent( pIMGmm_GameSet );
+	pBtn_GameSet_adv6->setPaintBackgroundEnabled(true);
+    pBtn_GameSet_adv6->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_GAMESET_ADV06, this) );
+	pBtn_GameSet_adv6->setVisible(true);
+
+	pIMGmm_GameSet_adv7 = new MenuImageHolder("gfx/vgui/mm_check.tga", pIMGmm_GameSet);
+	pIMGmm_GameSet_adv7->setPos( 33, 424 );
+	pIMGmm_GameSet_adv7->setVisible(true);
+	pBtn_GameSet_adv7 = new CommandButton( "", 33, 424, 24, 24);
+	pBtn_GameSet_adv7->setFont( pFontText );
+    pBtn_GameSet_adv7->setParent( pIMGmm_GameSet );
+	pBtn_GameSet_adv7->setPaintBackgroundEnabled(true);
+    pBtn_GameSet_adv7->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_GAMESET_ADV07, this) );
+	pBtn_GameSet_adv7->setVisible(true);
+
 	
 	UpdateMainMenu();
 }
@@ -1354,6 +1388,16 @@ void CMainMenuNew::paint()
 			pIMGmm_GameSet_adv5->setVisible(true);
 		else
 			pIMGmm_GameSet_adv5->setVisible(false);
+
+		if( CVAR_GET_FLOAT("sm_fx_dropclip") == 1 )
+			pIMGmm_GameSet_adv6->setVisible(true);
+		else
+			pIMGmm_GameSet_adv6->setVisible(false);
+
+		if( CVAR_GET_FLOAT("sm_longjump_snd") == 1 )
+			pIMGmm_GameSet_adv7->setVisible(true);
+		else
+			pIMGmm_GameSet_adv7->setVisible(false);
 
 		
 	}

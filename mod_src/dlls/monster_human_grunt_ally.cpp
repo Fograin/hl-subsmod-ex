@@ -8,4 +8,3 @@
 //
 //	Before using any parts of this code, read licence.txt file 
 //=============================================================//
-

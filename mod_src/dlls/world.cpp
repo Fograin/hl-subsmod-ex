@@ -602,6 +602,7 @@ void CWorld :: Precache( void )
 	PRECACHE_MODEL( "models/gibs/impact_blood_red.mdl" );
 	PRECACHE_MODEL( "models/gibs/impact_blood_yellow.mdl" );
 
+	// Fograin92: Clip/Magazines models
 	PRECACHE_MODEL( "models/clip_357.mdl" );
 	PRECACHE_MODEL( "models/clip_glock.mdl" );
 	PRECACHE_MODEL( "models/clip_mp5.mdl" );

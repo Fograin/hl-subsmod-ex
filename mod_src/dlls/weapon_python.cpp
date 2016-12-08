@@ -200,15 +200,19 @@ void CPython::Reload( void )
 	int bUseScope = FALSE;
 
 #ifndef CLIENT_DLL
-	// Fograin92: Drop empty shells
-	for( int i=5; i>=m_iClip; i--)
+	// Fograin92: Check if we should drop
+	if (CVAR_GET_FLOAT("sm_fx_dropclip") == 1)
 	{
-		CDropClip *pDropClip = GetClassPtr( (CDropClip *)NULL );
-		pDropClip->Spawn( "models/clip_357.mdl", RANDOM_FLOAT(1.5, 2.0));
-		pDropClip->pev->body = 0;
-		pDropClip->pev->owner = m_pPlayer->edict();
-		//pDropClip->pev->solid = SOLID_NOT;
+		// Fograin92: Drop empty shells
+		for( int i=5; i>=m_iClip; i--)
+		{
+			CDropClip *pDropClip = GetClassPtr( (CDropClip *)NULL );
+			pDropClip->Spawn( "models/clip_357.mdl", RANDOM_FLOAT(1.5, 2.0));
+			pDropClip->pev->body = 0;
+			pDropClip->pev->owner = m_pPlayer->edict();
+			//pDropClip->pev->solid = SOLID_NOT;
 
+		}
 	}
 #endif // CLIENT_DLL
 

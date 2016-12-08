@@ -755,7 +755,7 @@ $chained SM_INTRO_CR_02
 SM_INTRO_CR_01
 {
 Half-Life: Subtitles Mod by:
-Marek "Fograin92" Apostel
+Fograin92
 Vit_amiN (You know this guy)
 }
 
@@ -788,13 +788,13 @@ $chained SM_OUTRO_CR_02
 SM_OUTRO_CR_01
 {
 Half-Life: Subtitles Mod
-Version: 3.0
+Version: 4.0
 }
 
 SM_OUTRO_CR_02
 {
 Subtitles MOD team:
-Marek "Fograin92" Apostel - Leader / Headbanger / English subtitles
+Fograin92 - Leader / Headbanger / English subtitles
 Vit_amiN (You know this guy) - Programmer / Summoner
 
 Special thanks to:
@@ -1153,5 +1153,401 @@ $holdtime 2
 CHUMTOAD
 {
 CHUMTOAD'S LAIR
+}
+
+
+//=====================//
+// OPPOSING FORCE TEXT
+//=====================//
+
+//INTRO CREDITS
+$position 0.8 0.8
+$effect 1
+$color 128 128 128
+$color2 0 0 0
+$fadein 1
+$fadeout 1.5
+$holdtime 1
+
+
+OF_CR1
+{
+Stephen Bahl
+}
+
+OF_CR2
+{
+Patrick Deupree
+}
+
+OF_CR3
+{
+John Faulkenbury
+}
+
+OF_CR4
+{
+Rob Heironimus
+}
+
+OF_CR5
+{
+Steve Jones
+}
+
+OF_CR6
+{
+Brian Martel
+}
+
+OF_CR7
+{
+David Mertz
+}
+
+OF_CR8
+{
+Landon Montgomery
+}
+
+OF_CR9
+{
+Tollbooth Willy
+}
+
+OF_CR10
+{
+Randy Pitchford
+}
+
+OF_CR11
+{
+Sean Reardon
+}
+
+OF_CR12
+{
+Mike Wardwell
+}
+
+
+//END CREDITS
+$position -1 -1
+$effect 0
+$color 128 128 128
+$color2 0 0 0
+$fadein 0.5
+$fadeout 0.5
+$holdtime 10
+
+OF_END1
+{
+Stephen Bahl
+Patrick Deupree
+John Faulkenbury
+Rob Heironimus
+Steve Jones
+Brian Martel
+David Mertz
+Landon Montgomery
+Randy Pitchford
+Sean Reardon
+Mike Wardwell
+}
+
+OF_END2
+{
+Matt Armstrong
+Kristy Junio
+Joe Kennebec
+Doug Lombardi
+Eli Luna
+Gabe Newell
+Frank Nuccio
+Genevieve Ostergard
+Stephen Palmer
+Jeff Pobst
+}
+
+OF_END3
+{
+Dustin Porter
+Danny Richardson
+Harry S. Robins
+David Sawyer
+John Shaffstall
+Mike Shapiro
+Jon St. John
+Valve Software
+Sierra Studios
+}
+
+//INTRO TITLES
+$position -1 -1
+$effect 2
+$color 100 100 100
+$color2 0 250 0
+$fadein 0.01
+$fxtime 0.25
+$holdtime 4
+$fadeout 1.5
+
+
+OF_CR28
+{
+SUBJECT:
+Adrian Shephard
+Male, age 22
+}
+
+OF_CR29
+{
+TRAINING:
+United States Marine Corps,
+Special Forces
+}
+
+OF_CR30
+{
+RANK:
+Corporal
+}
+
+OF_CR31
+{
+Commanding Officer:
+Sergeant Dwight T. Barnes
+}
+
+OF_CR32
+{
+CURRENT ASSIGNMENT:
+Hazardous Environment Combat Unit
+Santego Military Base, Arizona
+}
+
+OF_CR33
+{
+MISSION:
+Classified
+}
+
+
+$fadein 0.03
+$holdtime 9
+GFOLLOW_LOSER
+{
+SUBJECT:  SHEPHARD
+
+STATUS:  EVALUATION TERMINATED
+
+POSTMORTEM:
+Subject attempted to create
+temporal paradox.
+}
+
+
+
+$fadein 0.03
+$holdtime 9
+OF_GAMEOVER
+{
+SUBJECT:  SHEPHARD
+
+STATUS:  DETAINED
+
+FURTHER EVALUATION PENDING
+}
+
+$fadein 0.03
+$holdtime 9
+BC_FAILURE
+{
+SUBJECT:  SHEPHARD
+
+STATUS:  AWAITING COURT MARTIAL
+}
+
+$fadein 0.03
+$holdtime 9
+OFGAMEOVER
+{
+SUBJECT:  CPL. SHEPHARD
+
+STATUS:  EVALUATION DECLINED
+
+POSTMORTEM:
+Subject failed to effectively utilize
+human assets in achievement of goal.
+}
+
+$fadein 0.03
+$holdtime 9
+DISP_LOSER
+{
+SUBJECT:  SHEPHARD
+
+STATUS:  ACCIDENTAL DEATH
+
+POSTMORTEM:
+DISPLACER SELF-TELEPORT MISHAP
+}
+
+//CHAPTER TITLES
+$fadein 0.01
+$position -1 0.8
+$holdtime 3.5
+
+OF_BOOT0TITLE
+{
+Boot Camp
+}
+
+OF0A0
+{
+OPPOSING FORCE
+}
+
+OF1A1TITLE
+{
+INCOMING
+}
+
+OF1A3TITLE
+{
+WELCOME TO BLACK MESA
+}
+
+OF1A5TITLE
+{
+"WE ARE PULLING OUT"
+}
+
+OF2A1TITLE
+{
+MISSING IN ACTION
+}
+
+OF2A4TITLE
+{
+FRIENDLY FIRE
+}
+
+OF3A1TITLE
+{
+WE ARE NOT ALONE
+}
+
+OF3A3TITLE
+{
+CRUSH DEPTH
+}
+
+OF4A1TITLE
+{
+VICARIOUS REALITY
+}
+
+OF4A4TITLE
+{
+PIT WORM'S NEST
+}
+
+OF5A1TITLE
+{
+FOXTROT UNIFORM
+}
+
+OF6A1TITLE
+{
+"THE PACKAGE"
+}
+
+OF6A4TITLE
+{
+WORLDS COLLIDE
+}
+
+OF7A0TITLE
+{
+CONCLUSION
+}
+
+
+// Game title
+$position -1 -1
+$effect 0
+$color 180 180 180
+$color2 0 0 0
+$fadein 1.0
+$holdtime 3.0
+$fadeout 1.5
+
+OF_GAMETITLE
+{
+Half-Life: Opposing Force
+}
+
+
+//BOOT CAMP TRAINING TEXT
+$position -1 0.65
+$effect 2
+$color 100 100 100
+$color2 0 200 50
+$fadein 0.005
+$fxtime 0.5
+$holdtime 7.0
+$fadeout 1.5
+$position -1 0.65
+
+
+BCROPES01
+{
+TOUCH ROPES TO ATTACH TO THEM
+CLIMB UP AND DOWN ROPES BY LOOKING IN 
+THE DIRECTION YOU WISH TO TRAVEL AND 
+PRESSING THE FORWARD KEY
+PRESS THE JUMP KEY OR CLIMB OFF THE
+BOTTOM TO DETACH FROM THE ROPE
+}
+
+BCROPES02
+{
+ONCE ATTACHED TO ROPES
+PRESS THE MOVEMENT KEYS TO AFFECT
+DIRECTION OF SWINGING MOVEMENT
+PRESS THE JUMP KEY TO DETACH AT ANY TIME
+}
+
+BCROPES03
+{
+WHEN SWINGING ON ROPES PRESS THE JUMP
+KEY TO LET GO AND TRAVEL IN THE DIRECTION
+OF SWINGING MOVEMENT
+}
+
+BCROPES04
+{
+
+}
+
+BCPISTOL01
+{
+TO INCREASE THE ACCURACY OF THE DESERT
+EAGLE PRESS THE ATTACK2 KEY TO ACTIVATE
+AND DEACTIVATE THE LASER SIGHT
+}
+
+BCRIFLE01
+{
+PRESS ATTACK2 KEY TO ACTIVATE THE ZOOM
+FUNCTION OF THE SNIPER RIFLE
+}
+
+//BOOT CAMP TRAINING TEXT
+BCNVISION
+{
+PRESS THE NIGHT VISION GOGGLE KEY
+TO ACTIVATE NIGHT VISION GOGGLES
 }
 

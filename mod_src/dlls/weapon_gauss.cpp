@@ -81,6 +81,7 @@ void CGauss::Precache( void )
 	PRECACHE_SOUND("weapons/electro5.wav");
 	PRECACHE_SOUND("weapons/electro6.wav");
 	PRECACHE_SOUND("ambience/pulsemachine.wav");
+	PRECACHE_SOUND("weapons/gauss_spin.wav");	// Fograin92
 	
 	m_iGlow = PRECACHE_MODEL( "sprites/hotglow.spr" );
 	m_iBalls = PRECACHE_MODEL( "sprites/hotglow.spr" );
@@ -212,6 +213,9 @@ void CGauss::SecondaryAttack()
 		PLAYBACK_EVENT_FULL( FEV_NOTHOST, m_pPlayer->edict(), m_usGaussSpin, 0.0, (float *)&g_vecZero, (float *)&g_vecZero, 0.0, 0.0, 110, 0, 0, 0 );
 
 		m_iSoundState = SND_CHANGE_PITCH;
+
+		// Fograin92
+		EMIT_SOUND(ENT(m_pPlayer->pev), CHAN_WEAPON, "weapons/gauss_spin.wav", 0.8, ATTN_NORM);
 	}
 	else if (m_fInAttack == 1)
 	{

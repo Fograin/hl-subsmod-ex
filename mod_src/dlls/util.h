@@ -283,6 +283,7 @@ extern char			*UTIL_VarArgs( char *format, ... );
 extern void			UTIL_Remove( CBaseEntity *pEntity );
 extern BOOL			UTIL_IsValidEntity( edict_t *pent );
 extern BOOL			UTIL_TeamsMatch( const char *pTeamName1, const char *pTeamName2 );
+extern BOOL			UTIL_IsFacing( entvars_t *pevTest, const Vector &reference ); //LRC, Fograin92
 
 // Use for ease-in, ease-out style interpolation (accel/decel)
 extern float		UTIL_SplineFraction( float value, float scale );

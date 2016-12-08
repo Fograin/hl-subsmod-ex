@@ -451,6 +451,8 @@ cvar_t	sm_particles		= { "sm_particles",			"2", FCVAR_SERVER|FCVAR_ARCHIVE };	//
 cvar_t	sm_hev_logon		= { "sm_hev_logon",			"1", FCVAR_SERVER|FCVAR_ARCHIVE };	// Should HEV/PCV play boot up sequence?
 cvar_t	sm_dyn_lights		= { "sm_dyn_lights",		"1", FCVAR_SERVER|FCVAR_ARCHIVE };	// Should we draw dynamic lighting?
 cvar_t	sm_fx_flesh			= { "sm_fx_flesh",			"1", FCVAR_SERVER|FCVAR_ARCHIVE };	// Should we spwn flesh gibs
+cvar_t	sm_fx_dropclip		= { "sm_fx_dropclip",		"1", FCVAR_SERVER|FCVAR_ARCHIVE };	// Should empty clips/magazines be dropped?
+cvar_t	sm_longjump_snd		= { "sm_longjump_snd",		"1", FCVAR_SERVER|FCVAR_ARCHIVE };	// Play long jump sound?
 
 
 // Fograin92: Volume cvars
@@ -1166,6 +1168,8 @@ void GameDLLInit( void )
 	CVAR_REGISTER (&sm_hev_logon);
 	CVAR_REGISTER (&sm_dyn_lights);
 	CVAR_REGISTER (&sm_fx_flesh);
+	CVAR_REGISTER (&sm_fx_dropclip);
+	CVAR_REGISTER (&sm_longjump_snd);
 	CVAR_REGISTER (&sm_snd_sfx);
 	CVAR_REGISTER (&sm_snd_voice);
 	CVAR_REGISTER (&sm_snd_music);

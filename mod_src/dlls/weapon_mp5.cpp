@@ -307,10 +307,14 @@ void CMP5::Reload( void )
 	// Fograin92: Drop empty clip
 	if( m_iClip < 2 )
 	{
-		CDropClip *pDropClip = GetClassPtr( (CDropClip *)NULL );
-		pDropClip->Spawn( "models/clip_mp5.mdl", 0.75);
-		pDropClip->pev->body = 0;
-		pDropClip->pev->owner = m_pPlayer->edict();
+		// Fograin92: Check if we should drop
+		if (CVAR_GET_FLOAT("sm_fx_dropclip") == 1)
+		{
+			CDropClip *pDropClip = GetClassPtr( (CDropClip *)NULL );
+			pDropClip->Spawn( "models/clip_mp5.mdl", 0.75);
+			pDropClip->pev->body = 0;
+			pDropClip->pev->owner = m_pPlayer->edict();
+		}
 	}
 #endif // CLIENT_DLL
 

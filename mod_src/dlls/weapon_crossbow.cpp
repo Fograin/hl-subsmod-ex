@@ -344,17 +344,6 @@ void CCrossbow::Holster( int skiplocal /* = 0 */ )
 
 void CCrossbow::PrimaryAttack( void )
 {
-/*
-#ifdef CLIENT_DLL
-	if ( IsZoomActive() && bIsMultiplayer() )	// Vit_amiN 
-#else
-	if ( IsZoomActive() && g_pGameRules->IsMultiplayer() )	// Vit_amiN 
-#endif
-	{
-		FireSniperBolt();
-		return;
-	}
-*/
 	FireBolt();
 }
 
@@ -504,10 +493,14 @@ void CCrossbow::Reload( void )
 	// Fograin92: Drop empty clip
 	if( m_iClip < 2 )
 	{
-		CDropClip *pDropClip = GetClassPtr( (CDropClip *)NULL );
-		pDropClip->Spawn( "models/clip_xbow.mdl", 1);
-		pDropClip->pev->body = 0;
-		pDropClip->pev->owner = m_pPlayer->edict();
+		// Fograin92: Check if we should drop
+		if (CVAR_GET_FLOAT("sm_fx_dropclip") == 1)
+		{
+			CDropClip *pDropClip = GetClassPtr( (CDropClip *)NULL );
+			pDropClip->Spawn( "models/clip_xbow.mdl", 1);
+			pDropClip->pev->body = 0;
+			pDropClip->pev->owner = m_pPlayer->edict();
+		}
 	}
 #endif // CLIENT_DLL
 

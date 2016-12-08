@@ -203,12 +203,12 @@ int CHudNew::AdjustPosition(int iHudObjectID, bool bReturnY)
 			// We found current object ID and screen resolution is in iAdjustmentArray
 			if(bReturnY)
 			{
-				gEngfuncs.Con_Printf( "^3SM-> HUD OBJECT ID: %d -> Res in array -> Adjusting Y position.\n", iHudObjectID);
+				//gEngfuncs.Con_Printf( "^3SM-> HUD OBJECT ID: %d -> Res in array -> Adjusting Y position.\n", iHudObjectID);
 				return iAdjustmentArray[iY][4]; // Return Y adjustment
 			}
 			else
 			{
-				gEngfuncs.Con_Printf( "^3SM-> HUD OBJECT ID: %d -> Res in array -> Adjusting X position.\n", iHudObjectID);
+				//gEngfuncs.Con_Printf( "^3SM-> HUD OBJECT ID: %d -> Res in array -> Adjusting X position.\n", iHudObjectID);
 				return iAdjustmentArray[iY][3]; // Return X adjustment
 			}
 		}
@@ -224,7 +224,7 @@ int CHudNew::AdjustPosition(int iHudObjectID, bool bReturnY)
 			if( (iAdjustmentArray[iY][0] == iHudObjectID) && (iAdjustmentArray[iY][2] == ScreenHeight) )
 			{
 				// We found something for this Y resolution
-				gEngfuncs.Con_Printf( "^3SM-> HUD OBJECT ID: %d -> Custom res -> Adjusting Y position.\n", iHudObjectID);
+				//gEngfuncs.Con_Printf( "^3SM-> HUD OBJECT ID: %d -> Custom res -> Adjusting Y position.\n", iHudObjectID);
 				return iAdjustmentArray[iY][4];
 			}
 		}
@@ -235,7 +235,7 @@ int CHudNew::AdjustPosition(int iHudObjectID, bool bReturnY)
 			if( (iAdjustmentArray[iY][0] == iHudObjectID) && (iAdjustmentArray[iY][1] == ScreenWidth) )
 			{
 				// We found something for this X resolution
-				gEngfuncs.Con_Printf( "^3SM-> HUD OBJECT ID: %d -> Custom res -> Adjusting X position.\n", iHudObjectID);
+				//gEngfuncs.Con_Printf( "^3SM-> HUD OBJECT ID: %d -> Custom res -> Adjusting X position.\n", iHudObjectID);
 				return iAdjustmentArray[iY][3];
 			}
 		}

@@ -1595,7 +1595,7 @@ void CBasePlayer::Jump()
 	{
 		SetAnimation( PLAYER_SUPERJUMP );
 		// Fograin92: Long jump sound
-		//if (CVAR_GET_FLOAT("sm_snd_longjump") == 1)
+		if (CVAR_GET_FLOAT("sm_longjump_snd") == 1)
 			EMIT_SOUND(ENT(pev), CHAN_VOICE, "player/pl_long_jump.wav", 1, ATTN_NORM);
 	}
 
@@ -2623,7 +2623,7 @@ void CBasePlayer::PostThink()
 		{
 			if (m_pActiveItem)
 			{
-				ALERT(at_console, "SM->DEPLOYING: %s\n", STRING(m_pActiveItem->pev->classname));
+				//ALERT(at_console, "SM->DEPLOYING: %s\n", STRING(m_pActiveItem->pev->classname));
 				m_pActiveItem->Deploy();
 				m_pActiveItem->UpdateItemInfo();
 			}
@@ -3534,7 +3534,7 @@ void CBasePlayer::SelectItem(const char *pstr)
 	if (m_pActiveItem)
 	{
 		// Fograin92: Get our currently deployed weapon
-		ALERT(at_console, "SM->HOLSTERING: %s\n", STRING(m_pActiveItem->pev->classname));
+		//ALERT(at_console, "SM->HOLSTERING: %s\n", STRING(m_pActiveItem->pev->classname));
 
 		// Fograin92: Next weapon deployment time fixes
 		if (FClassnameIs(m_pActiveItem->pev, "weapon_crowbar"))				m_fWeaponDeployDelay = UTIL_WeaponTimeBase() + 0.4;
@@ -3584,7 +3584,7 @@ void CBasePlayer::SelectLastItem(void)
 	// Fograin92: Get our currently deployed weapon
 	if (m_pActiveItem)
 	{
-		ALERT(at_console, "SM->HOLSTERING: %s\n", STRING(m_pActiveItem->pev->classname));
+		//ALERT(at_console, "SM->HOLSTERING: %s\n", STRING(m_pActiveItem->pev->classname));
 
 		// Fograin92: Next weapon deployment time fixes
 		if (FClassnameIs(m_pActiveItem->pev, "weapon_crowbar"))				m_fWeaponDeployDelay = UTIL_WeaponTimeBase() + 0.4;

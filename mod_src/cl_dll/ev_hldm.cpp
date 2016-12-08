@@ -378,9 +378,11 @@ void EV_HLDM_DecalGunshot( pmtrace_t *pTrace, int iBulletType )
 			case BULLET_MONSTER_MP5:
 			case BULLET_PLAYER_BUCKSHOT:
 			case BULLET_PLAYER_357:
-			case BULLET_PLAYER_556:	// Fograin92
-			case BULLET_PLAYER_762: // Fograin92
-			case BULLET_PLAYER_DEAGLE: // Fograin92
+			case BULLET_PLAYER_556:		// Fograin92
+			case BULLET_PLAYER_762:		// Fograin92
+			case BULLET_PLAYER_DEAGLE:	// Fograin92
+			case BULLET_MONSTER_556:	// Fograin92
+			case BULLET_MONSTER_357:	// Fograin92
 			default:
 				// smoke and decal
 				EV_HLDM_GunshotDecalTrace( pTrace, EV_HLDM_DamageDecal( pe ) );
@@ -423,6 +425,8 @@ int EV_HLDM_CheckTracer( int idx, float *vecSrc, float *end, float *forward, flo
 			case BULLET_MONSTER_MP5:
 			case BULLET_MONSTER_9MM:
 			case BULLET_MONSTER_12MM:
+			case BULLET_MONSTER_556:
+			case BULLET_MONSTER_357:
 			default:
 				EV_CreateTracer( vecTracerSrc, end );
 				break;
@@ -891,6 +895,8 @@ void EV_SpinGauss( event_args_t *args )
 
 	pitch = args->iparam1;
 	iSoundState = args->bparam1 ? SND_CHANGE_PITCH : 0;
+
+	//gSoundEngine.PlaySound( "weapons/gauss_spin.wav", g_vecZero, SND_RELATIVE, CHAN_WEAPON, CVAR_GET_FLOAT("sm_snd_sfx"), 98 + gEngfuncs.pfnRandomLong( 0, 3 ), ATTN_NORM, NULL, args->entindex );
 }
 
 /*
@@ -905,7 +911,7 @@ void EV_StopPreviousGauss( int idx )
 	gEngfuncs.pEventAPI->EV_KillEvents( idx, "events/gaussspin.sc" );
 	//gEngfuncs.pEventAPI->EV_StopSound( idx, CHAN_WEAPON, "ambience/pulsemachine.wav" );
 	// Fograin92: Replaced with new audio engine
-	//gSoundEngine.StopSound(idx, CHAN_STATIC);
+	gSoundEngine.StopSound(idx, CHAN_WEAPON);
 }
 
 extern float g_flApplyVel;
