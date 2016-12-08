@@ -450,6 +450,7 @@ cvar_t	sm_hev_pick			= { "sm_hev_pick",			"1", FCVAR_SERVER|FCVAR_ARCHIVE };	// 
 cvar_t	sm_particles		= { "sm_particles",			"2", FCVAR_SERVER|FCVAR_ARCHIVE };	// 0 - Don't use particle system (low setting), 1 - Limited particles (medium setting), 2 - Full particles (high setting)
 cvar_t	sm_hev_logon		= { "sm_hev_logon",			"1", FCVAR_SERVER|FCVAR_ARCHIVE };	// Should HEV/PCV play boot up sequence?
 cvar_t	sm_dyn_lights		= { "sm_dyn_lights",		"1", FCVAR_SERVER|FCVAR_ARCHIVE };	// Should we draw dynamic lighting?
+cvar_t	sm_fx_flesh			= { "sm_fx_flesh",			"1", FCVAR_SERVER|FCVAR_ARCHIVE };	// Should we spwn flesh gibs
 
 
 // Fograin92: Volume cvars
@@ -1164,6 +1165,7 @@ void GameDLLInit( void )
 	CVAR_REGISTER (&sm_particles);
 	CVAR_REGISTER (&sm_hev_logon);
 	CVAR_REGISTER (&sm_dyn_lights);
+	CVAR_REGISTER (&sm_fx_flesh);
 	CVAR_REGISTER (&sm_snd_sfx);
 	CVAR_REGISTER (&sm_snd_voice);
 	CVAR_REGISTER (&sm_snd_music);

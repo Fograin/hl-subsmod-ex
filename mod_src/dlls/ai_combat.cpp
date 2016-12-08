@@ -22,7 +22,7 @@
 
 #include "particle_defs.h"	// Fograin92: BG Particle system
 extern int gmsgParticles;	// Fograin92: BG Particle system
-
+#include "gamerules.h"
 
 extern DLL_GLOBAL Vector		g_vecAttackDir;
 extern DLL_GLOBAL int			g_iSkillLevel;
@@ -1369,6 +1369,17 @@ Vector CBaseEntity::FireBulletsPlayer ( ULONG cShots, Vector vecSrc, Vector vecD
 
 				}
 			} // END pEntity->IsBSPModel()
+			
+			/*
+			// Fograin92: We did hit NPC
+			else
+			{
+				if(pEntity->BloodColor() == BLOOD_COLOR_RED)
+					CFXGibs::SpawnFXGibs( vEndpos, FXG_BLOOD_RED, 5);
+				else
+
+				//if (pEntity && pEntity->Classify() != CLASS_NONE && pEntity->Classify() != CLASS_MACHINE)
+			}*/
 
 
 
@@ -2191,19 +2202,18 @@ void CFXGibs :: SpawnFXGibs( Vector vPosition, int iFXGibType, int iFXGibCount )
 
 
 
-
 			// Fograin92: Blood drips (RED)
 			case FXG_BLOOD_RED:
-				//pFXGibs->Spawn("models/gibs/impact_cactus.mdl");
-				//pFXGibs->pev->body = RANDOM_LONG(0, 3);
-				//pFXGibs->m_bloodColor = BLOOD_COLOR_RED;
+				pFXGibs->Spawn("models/gibs/impact_blood_red.mdl");
+				pFXGibs->pev->body = RANDOM_LONG(0, 2);
+				pFXGibs->m_bloodColor = BLOOD_COLOR_RED;
 			break;
 
 			// Fograin92: Blood drips (YELLOW)
 			case FXG_BLOOD_YELLOW:
-				//pFXGibs->Spawn("models/gibs/impact_cactus.mdl");
-				//pFXGibs->pev->body = RANDOM_LONG(0, 3);
-				//pFXGibs->m_bloodColor = BLOOD_COLOR_YELLOW;
+				pFXGibs->Spawn("models/gibs/impact_blood_yellow.mdl");
+				pFXGibs->pev->body = RANDOM_LONG(0, 2);
+				pFXGibs->m_bloodColor = BLOOD_COLOR_YELLOW;
 			break;
 
 
@@ -2227,7 +2237,14 @@ void CFXGibs :: SpawnFXGibs( Vector vPosition, int iFXGibType, int iFXGibCount )
 		// Fograin92: If this is blood/liquid drop, use different velocity
 		if( iFXGibType == FXG_BLOOD_RED || iFXGibType == FXG_BLOOD_YELLOW )
 		{
+			pFXGibs->pev->velocity.x = RANDOM_FLOAT ( -0.25, 0.25 );
+			pFXGibs->pev->velocity.y = RANDOM_FLOAT ( -0.25, 0.25 );
+			pFXGibs->pev->velocity.z = RANDOM_FLOAT ( 0.00, 0.70 );
+			pFXGibs->pev->velocity = pFXGibs->pev->velocity * RANDOM_FLOAT ( 300, 400 );
 
+			pFXGibs->pev->avelocity.x = RANDOM_LONG( 200, 600 );
+			pFXGibs->pev->avelocity.y = RANDOM_LONG( 200, 600 );
+			pFXGibs->pev->avelocity.z = RANDOM_LONG( 100, 200 );
 		}
 		// Fograin92: Else, apply variation velocity
 		else
@@ -2342,6 +2359,144 @@ int CFXGibs::TakeDamage( entvars_t* pevInflictor, entvars_t* pevAttacker, float 
 
 // Fograin92: Override killed function, pass default
 void CFXGibs::Killed( entvars_t *pevAttacker, int iGib )
+{
+	SetUse( NULL );	
+	CBaseEntity::Killed( pevAttacker, iGib );
+}
+
+
+
+//=========================================//
+// Dropped weapon/item (based on gibs code)
+//=========================================//
+// Fograin92: Look into monsters.h for class defines
+
+
+// Fograin92: Dropped weapon spawn function
+void CDropClip::Spawn( const char *szGibModel, float fDelay)
+{
+	pev->movetype = MOVETYPE_BOUNCE;
+	pev->friction = 0.55; // deading the bounce a bit
+	pev->renderamt = 255;
+	pev->rendermode = kRenderNormal;
+	pev->renderfx = kRenderFxNone;
+	pev->solid = SOLID_NOT;
+	pev->classname = MAKE_STRING("gib");
+
+	SET_MODEL(ENT(pev), szGibModel);
+
+	m_bloodColor		= DONT_BLEED;
+	pev->health			= 1;
+	pev->takedamage		= DAMAGE_NO;
+
+	UTIL_SetSize(pev, Vector( 0, 0, 0), Vector(0, 0, 0));	// Fograin92: Set size to 0, FX gibs won't collide with players and npcs
+
+	pev->nextthink = gpGlobals->time + fDelay;
+	m_lifeTime = 60;
+	SetThink ( &CDropClip::WaitTillSpawn );
+	SetTouch ( NULL );
+	//SetThink ( &CDropClip::WaitTillLand );
+	//SetTouch ( &CDropClip::BounceGibTouch );
+
+	m_material = matMetal;
+}
+
+// Fograin92: Delayed spawn
+void CDropClip :: WaitTillSpawn ( void )
+{
+	edict_t		*pentPlayer = FIND_CLIENT_IN_PVS( pev->owner );
+
+	// Fograin92: pev->owner is a player
+	if( pentPlayer )
+	{
+		entvars_t	*pevPlayer;
+		pevPlayer = VARS( pentPlayer );
+
+		pev->origin = pevPlayer->origin;
+		pev->velocity = gpGlobals->v_forward * 100;
+		pev->avelocity.x = RANDOM_LONG( 200, 300 );
+		pev->avelocity.y = RANDOM_LONG( 200, 300 );
+		pev->avelocity.z = RANDOM_LONG( 100, 200 );
+	}
+	else
+	{
+		entvars_t	*pevOwner;
+		pevOwner = VARS( pev->owner );
+
+		pev->origin = pevOwner->origin;
+	}
+
+	pev->nextthink = gpGlobals->time + 0.1;
+	SetThink ( &CDropClip::WaitTillLand );
+	SetTouch ( &CDropClip::BounceGibTouch );
+}
+
+
+// Fograin92: Remove if it fell out of the level
+void CDropClip :: WaitTillLand ( void )
+{
+	if (!IsInWorld())
+	{
+		UTIL_Remove( this );
+		return;
+	}
+
+	if ( pev->velocity == g_vecZero )
+	{
+		SetThink (&CBaseEntity::SUB_StartFadeOut);
+		pev->nextthink = gpGlobals->time + m_lifeTime;
+	}
+	else
+	{
+		// wait and check again in another half second.
+		pev->nextthink = gpGlobals->time + 0.01;
+	}
+
+	pev->solid = SOLID_SLIDEBOX;
+}
+
+
+void CDropClip :: BounceGibTouch ( CBaseEntity *pOther )
+{
+	// Fograin92: If weapon is on the ground
+	if (pev->flags & FL_ONGROUND)
+	{
+		pev->velocity = pev->velocity * 0.9;
+		pev->angles.x = 0;
+		pev->angles.z = 0;
+		pev->avelocity.x = 0;
+		pev->avelocity.z = 0;
+	}
+	else
+	{
+		// Fograin92: Emit sound on "bounce"
+		if ( m_material != matNone && RANDOM_LONG(0,2) == 0 )
+		{
+			float volume;
+			float zvel = fabs(pev->velocity.z);
+			
+			volume = 0.8 * min(1.0, ((float)zvel) / 450.0);
+			//CBreakable::MaterialSoundRandom( edict(), (ePropMaterial)m_material, volume );
+		}
+	}
+
+}
+
+
+// Fograin92: Override trace attack and don't do anything
+void CDropClip::TraceAttack( entvars_t *pevAttacker, float flDamage, Vector vecDir, TraceResult *ptr, int bitsDamageType)
+{
+
+}
+
+// Fograin92: Override take damage and don't do anything
+int CDropClip::TakeDamage( entvars_t* pevInflictor, entvars_t* pevAttacker, float flDamage, int bitsDamageType)
+{
+	return 0;
+}
+
+// Fograin92: Override killed function, pass default
+void CDropClip::Killed( entvars_t *pevAttacker, int iGib )
 {
 	SetUse( NULL );	
 	CBaseEntity::Killed( pevAttacker, iGib );

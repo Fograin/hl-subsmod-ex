@@ -102,8 +102,6 @@ void CDeagle::Precache( void )
 {
 	UTIL_PrecacheOther( "eagle_laser" );
 	PRECACHE_MODEL("models/v_desert_eagle.mdl");
-	PRECACHE_MODEL("models/v_desert_eagle_bs.mdl");	// Fograin92
-	PRECACHE_MODEL("models/v_desert_eagle_of.mdl");	// Fograin92
 	PRECACHE_MODEL("models/w_desert_eagle.mdl");
 	PRECACHE_MODEL("models/p_desert_eagle.mdl");
 	m_iShell = PRECACHE_MODEL ("models/shell.mdl");// brass shell
@@ -139,12 +137,6 @@ int CDeagle::GetItemInfo(ItemInfo *p)
 // Fograin92: Deploy correct weapon model
 BOOL CDeagle::Deploy( )
 {
-	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
-		return DefaultDeploy( "models/v_desert_eagle_bs.mdl", "models/p_desert_eagle.mdl", DEAGLE_DRAW, "onehanded", 0 );
-	
-	if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
-		return DefaultDeploy( "models/v_desert_eagle_of.mdl", "models/p_desert_eagle.mdl", DEAGLE_DRAW, "onehanded", 0 );
-
 	return DefaultDeploy( "models/v_desert_eagle.mdl", "models/p_desert_eagle.mdl", DEAGLE_DRAW, "onehanded", 0 );
 }
 

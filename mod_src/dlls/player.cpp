@@ -1594,6 +1594,9 @@ void CBasePlayer::Jump()
 		pev->velocity.Length() > 50 )
 	{
 		SetAnimation( PLAYER_SUPERJUMP );
+		// Fograin92: Long jump sound
+		//if (CVAR_GET_FLOAT("sm_snd_longjump") == 1)
+			EMIT_SOUND(ENT(pev), CHAN_VOICE, "player/pl_long_jump.wav", 1, ATTN_NORM);
 	}
 
 	// If you're standing on a conveyor, add it's velocity to yours (for momentum)

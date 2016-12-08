@@ -78,8 +78,6 @@ void CPython::Spawn( )
 void CPython::Precache( void )
 {
 	PRECACHE_MODEL("models/v_357.mdl");
-	PRECACHE_MODEL("models/v_357_bs.mdl");	// Fograin92
-	PRECACHE_MODEL("models/v_357_of.mdl");	// Fograin92
 	PRECACHE_MODEL("models/w_357.mdl");
 	PRECACHE_MODEL("models/p_357.mdl");
 
@@ -97,26 +95,6 @@ void CPython::Precache( void )
 // Fograin92: The correct model will be deployed
 BOOL CPython::Deploy( )
 {
-#ifdef CLIENT_DLL
-	if ( bIsMultiplayer() )
-#else
-	if ( g_pGameRules->IsMultiplayer() )
-#endif
-	{
-		// enable laser sight geometry.
-		pev->body = 1;
-	}
-	else
-	{
-		pev->body = 0;
-	}
-
-	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
-		return DefaultDeploy( "models/v_357_bs.mdl", "models/p_357.mdl", PYTHON_DRAW, "python", UseDecrement(), pev->body );
-	
-	if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
-		return DefaultDeploy( "models/v_357_of.mdl", "models/p_357.mdl", PYTHON_DRAW, "python", UseDecrement(), pev->body );
-
 	return DefaultDeploy( "models/v_357.mdl", "models/p_357.mdl", PYTHON_DRAW, "python", UseDecrement(), pev->body );
 }
 
@@ -220,6 +198,20 @@ void CPython::Reload( void )
 		return;
 
 	int bUseScope = FALSE;
+
+#ifndef CLIENT_DLL
+	// Fograin92: Drop empty shells
+	for( int i=5; i>=m_iClip; i--)
+	{
+		CDropClip *pDropClip = GetClassPtr( (CDropClip *)NULL );
+		pDropClip->Spawn( "models/clip_357.mdl", RANDOM_FLOAT(1.5, 2.0));
+		pDropClip->pev->body = 0;
+		pDropClip->pev->owner = m_pPlayer->edict();
+		//pDropClip->pev->solid = SOLID_NOT;
+
+	}
+#endif // CLIENT_DLL
+
 
 	if (DefaultReload( 6, PYTHON_RELOAD, 2.0, bUseScope ))
 	{

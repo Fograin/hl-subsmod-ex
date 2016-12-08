@@ -602,6 +602,11 @@ void CWorld :: Precache( void )
 	PRECACHE_MODEL( "models/gibs/impact_blood_red.mdl" );
 	PRECACHE_MODEL( "models/gibs/impact_blood_yellow.mdl" );
 
+	PRECACHE_MODEL( "models/clip_357.mdl" );
+	PRECACHE_MODEL( "models/clip_glock.mdl" );
+	PRECACHE_MODEL( "models/clip_mp5.mdl" );
+	PRECACHE_MODEL( "models/clip_xbow.mdl" );
+
 
 	PRECACHE_SOUND ("weapons/ric1.wav");
 	PRECACHE_SOUND ("weapons/ric2.wav");
@@ -647,6 +652,9 @@ void CWorld :: Precache( void )
 	// Fograin92: Precache explosion sounds
 	for (int i = 0; i<ARRAYSIZE( pSoundsExplode ); i++ )
 		PRECACHE_SOUND((char *)pSoundsExplode[i]);
+
+	// Fograin92: Precache longjump sound
+	PRECACHE_SOUND("items/pl_long_jump.wav");
 
 //
 // Setup light animation tables. 'a' is total darkness, 'z' is maxbright.

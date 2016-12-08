@@ -470,11 +470,10 @@ void CBarney::Killed( entvars_t *pevAttacker, int iGib )
 	Vector vecGunPos;
 	Vector vecGunAngles;
 
+	// Fograin92: Drop weapon
 	GetAttachment( 0, vecGunPos, vecGunAngles );
 	CBaseEntity *pGun = DropItem( "weapon_9mmhandgun", vecGunPos, vecGunAngles );
-
 	SetBodygroup( BA_GRP_GUN, GUN_NONE );	// Fograin92
-
 
 	SetUse( NULL );	
 	CTalkMonster::Killed( pevAttacker, iGib );

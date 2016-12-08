@@ -44,8 +44,6 @@ void CSniperRifle::Spawn( )
 void CSniperRifle::Precache( void )
 {
 	PRECACHE_MODEL("models/v_m40a1.mdl");
-	PRECACHE_MODEL("models/v_m40a1_bs.mdl");	// Fograin92
-	PRECACHE_MODEL("models/v_m40a1_of.mdl");	// Fograin92
 	PRECACHE_MODEL("models/w_m40a1.mdl");
 	PRECACHE_MODEL("models/p_m40a1.mdl");
 
@@ -80,12 +78,6 @@ int CSniperRifle::GetItemInfo(ItemInfo *p)
 // Fograin92: Changed deploy function
 BOOL CSniperRifle::Deploy( )
 {
-	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
-		return DefaultDeploy( "models/v_m40a1_bs.mdl", "models/p_m40a1_bs.mdl", SNIPER_DRAW, "gauss", 0 );
-	
-	if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
-		return DefaultDeploy( "models/v_m40a1_of.mdl", "models/p_m40a1_of.mdl", SNIPER_DRAW, "gauss", 0 );
-
 	return DefaultDeploy( "models/v_m40a1.mdl", "models/p_m40a1.mdl", SNIPER_DRAW, "gauss", 0 );
 }
 

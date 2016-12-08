@@ -831,6 +831,13 @@ int CMainMenuNew::HandleMainMenuInput(int iBTN)
 				ClientCmd("sm_hev_pick 1\n");
 		break;
 
+		case ID_BTN_GAMESET_ADV05:
+			if( CVAR_GET_FLOAT("sm_fx_flesh") == 1 )
+				ClientCmd("sm_fx_flesh 0\n");
+			else
+				ClientCmd("sm_fx_flesh 1\n");
+		break;
+
 		// Unhandled button
 		case 0:
 		default:
@@ -1187,6 +1194,16 @@ CMainMenuNew::CMainMenuNew() : Panel( 0, 0, XRES(640), YRES(480) )
     pBtn_GameSet_adv4->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_GAMESET_ADV04, this) );
 	pBtn_GameSet_adv4->setVisible(true);
 
+	pIMGmm_GameSet_adv5 = new MenuImageHolder("gfx/vgui/mm_check.tga", pIMGmm_GameSet);
+	pIMGmm_GameSet_adv5->setPos( 33, 364 );
+	pIMGmm_GameSet_adv5->setVisible(true);
+	pBtn_GameSet_adv5 = new CommandButton( "", 33, 364, 24, 24);
+	pBtn_GameSet_adv5->setFont( pFontText );
+    pBtn_GameSet_adv5->setParent( pIMGmm_GameSet );
+	pBtn_GameSet_adv5->setPaintBackgroundEnabled(true);
+    pBtn_GameSet_adv5->addActionSignal( new CMainMenuNew_BTNhandler(ID_BTN_GAMESET_ADV05, this) );
+	pBtn_GameSet_adv5->setVisible(true);
+
 	
 	UpdateMainMenu();
 }
@@ -1332,6 +1349,11 @@ void CMainMenuNew::paint()
 			pIMGmm_GameSet_adv4->setVisible(true);
 		else
 			pIMGmm_GameSet_adv4->setVisible(false);
+
+		if( CVAR_GET_FLOAT("sm_fx_flesh") == 1 )
+			pIMGmm_GameSet_adv5->setVisible(true);
+		else
+			pIMGmm_GameSet_adv5->setVisible(false);
 
 		
 	}

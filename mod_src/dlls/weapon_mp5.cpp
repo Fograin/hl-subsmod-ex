@@ -63,8 +63,6 @@ void CMP5::Spawn( )
 void CMP5::Precache( void )
 {
 	PRECACHE_MODEL("models/v_9mmAR.mdl");
-	PRECACHE_MODEL("models/v_9mmAR_bs.mdl");	// Fograin92
-	PRECACHE_MODEL("models/v_9mmAR_of.mdl");	// Fograin92
 	PRECACHE_MODEL("models/w_9mmAR.mdl");
 	PRECACHE_MODEL("models/p_9mmAR.mdl");
 
@@ -123,12 +121,6 @@ int CMP5::AddToPlayer( CBasePlayer *pPlayer )
 // Fograin92: The correct model will be deployed
 BOOL CMP5::Deploy( )
 {
-	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
-		return DefaultDeploy( "models/v_9mmAR_bs.mdl", "models/p_9mmAR.mdl", MP5_DEPLOY, "mp5" );
-	
-	if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
-		return DefaultDeploy( "models/v_9mmAR_of.mdl", "models/p_9mmAR.mdl", MP5_DEPLOY, "mp5" );
-
 	return DefaultDeploy( "models/v_9mmAR.mdl", "models/p_9mmAR.mdl", MP5_DEPLOY, "mp5" );
 }
 
@@ -310,6 +302,17 @@ void CMP5::Reload( void )
 {
 	if ( m_pPlayer->ammo_9mm <= 0 )
 		return;
+
+#ifndef CLIENT_DLL
+	// Fograin92: Drop empty clip
+	if( m_iClip < 2 )
+	{
+		CDropClip *pDropClip = GetClassPtr( (CDropClip *)NULL );
+		pDropClip->Spawn( "models/clip_mp5.mdl", 0.75);
+		pDropClip->pev->body = 0;
+		pDropClip->pev->owner = m_pPlayer->edict();
+	}
+#endif // CLIENT_DLL
 
 	DefaultReload( MAX_CLIP_MP5, MP5_RELOAD, 1.5 );
 }

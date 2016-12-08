@@ -992,6 +992,15 @@ BOOL CBasePlayerWeapon :: DefaultDeploy( char *szViewModel, char *szWeaponModel,
 	if (!CanDeploy( ))
 		return FALSE;
 
+	// Fograin92: Check game type and select proper hand model for weapon
+	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
+		pev->body = 1;
+	else if (CVAR_GET_FLOAT("sm_hud") == 2 ) // Opposing Force
+		pev->body = 2;
+	else
+		pev->body = 0;
+
+
 	m_pPlayer->TabulateAmmo();
 	m_pPlayer->pev->viewmodel = MAKE_STRING(szViewModel);
 	m_pPlayer->pev->weaponmodel = MAKE_STRING(szWeaponModel);

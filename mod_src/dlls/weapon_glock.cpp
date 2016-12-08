@@ -51,8 +51,6 @@ void CGlock::Spawn( )
 void CGlock::Precache( void )
 {
 	PRECACHE_MODEL("models/v_9mmhandgun.mdl");
-	PRECACHE_MODEL("models/v_9mmhandgun_bs.mdl");	// Fograin92
-	PRECACHE_MODEL("models/v_9mmhandgun_of.mdl");	// Fograin92
 	PRECACHE_MODEL("models/w_9mmhandgun.mdl");
 	PRECACHE_MODEL("models/p_9mmhandgun.mdl");
 
@@ -90,14 +88,6 @@ int CGlock::GetItemInfo(ItemInfo *p)
 // Fograin92: The correct model will be deployed
 BOOL CGlock::Deploy( )
 {
-	// pev->body = 1;
-
-	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
-		return DefaultDeploy( "models/v_9mmhandgun_bs.mdl", "models/p_9mmhandgun.mdl", GLOCK_DRAW, "onehanded", 0 );
-	
-	if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
-		return DefaultDeploy( "models/v_9mmhandgun_of.mdl", "models/p_9mmhandgun.mdl", GLOCK_DRAW, "onehanded", 0 );
-
 	return DefaultDeploy( "models/v_9mmhandgun.mdl", "models/p_9mmhandgun.mdl", GLOCK_DRAW, "onehanded", 0 );	
 }
 
@@ -203,8 +193,24 @@ void CGlock::Reload( void )
 
 	int iResult;
 
-	if (m_iClip == 0)
-		iResult = DefaultReload( 17, GLOCK_RELOAD, 1.5 );
+
+	// Fograin92: Drop clip if it's empty
+	if (m_iClip < 2)
+	{
+
+#ifndef CLIENT_DLL
+		CDropClip *pDropClip = GetClassPtr( (CDropClip *)NULL );
+		pDropClip->Spawn( "models/clip_glock.mdl", 0.8);
+		pDropClip->pev->body = 0;
+		pDropClip->pev->owner = m_pPlayer->edict();
+#endif // CLIENT_DLL
+
+		// Fograin92: Send proper glock reload anim
+		if (m_iClip == 0)
+			iResult = DefaultReload( 17, GLOCK_RELOAD, 1.5 );
+		else
+			iResult = DefaultReload( 17, GLOCK_RELOAD_NOT_EMPTY, 1.5 );
+	}
 	else
 		iResult = DefaultReload( 17, GLOCK_RELOAD_NOT_EMPTY, 1.5 );
 
@@ -213,7 +219,6 @@ void CGlock::Reload( void )
 		m_flTimeWeaponIdle = UTIL_WeaponTimeBase() + UTIL_SharedRandomFloat( m_pPlayer->random_seed, 10, 15 );
 	}
 }
-
 
 
 void CGlock::WeaponIdle( void )

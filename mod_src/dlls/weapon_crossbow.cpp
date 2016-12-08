@@ -289,8 +289,6 @@ void CCrossbow::Precache( void )
 {
 	PRECACHE_MODEL("models/w_crossbow.mdl");
 	PRECACHE_MODEL("models/v_crossbow.mdl");
-	PRECACHE_MODEL("models/v_crossbow_of.mdl");	// Fograin92
-	PRECACHE_MODEL("models/v_crossbow_bs.mdl");	// Fograin92
 	PRECACHE_MODEL("models/p_crossbow.mdl");
 
 	PRECACHE_SOUND("weapons/xbow_fire1.wav");
@@ -322,22 +320,6 @@ int CCrossbow::GetItemInfo(ItemInfo *p)
 // Fograin92: The correct model will be deployed
 BOOL CCrossbow::Deploy( )
 {
-	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
-	{
-		if (m_iClip)
-			return DefaultDeploy( "models/v_crossbow_bs.mdl", "models/p_crossbow.mdl", CROSSBOW_DRAW1, "bow" );
-		else
-			return DefaultDeploy( "models/v_crossbow_bs.mdl", "models/p_crossbow.mdl", CROSSBOW_DRAW2, "bow" );
-	}
-	
-	if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
-	{
-		if (m_iClip)
-			return DefaultDeploy( "models/v_crossbow_of.mdl", "models/p_crossbow.mdl", CROSSBOW_DRAW1, "bow" );
-		else
-			return DefaultDeploy( "models/v_crossbow_of.mdl", "models/p_crossbow.mdl", CROSSBOW_DRAW2, "bow" );
-	}
-
 	if (m_iClip)
 		return DefaultDeploy( "models/v_crossbow.mdl", "models/p_crossbow.mdl", CROSSBOW_DRAW1, "bow" );
 	else
@@ -516,6 +498,19 @@ void CCrossbow::Reload( void )
 
 	if ( IsZoomActive() )	// Vit_amiN
 		SecondaryAttack();
+
+
+#ifndef CLIENT_DLL
+	// Fograin92: Drop empty clip
+	if( m_iClip < 2 )
+	{
+		CDropClip *pDropClip = GetClassPtr( (CDropClip *)NULL );
+		pDropClip->Spawn( "models/clip_xbow.mdl", 1);
+		pDropClip->pev->body = 0;
+		pDropClip->pev->owner = m_pPlayer->edict();
+	}
+#endif // CLIENT_DLL
+
 
 	if ( DefaultReload( 5, CROSSBOW_RELOAD, 4.5 ) )
 	{

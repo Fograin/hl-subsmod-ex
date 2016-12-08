@@ -124,7 +124,6 @@ BOOL CGauss::Deploy( )
 {
 	m_pPlayer->m_flPlayAftershock = 0.0;
 
-	// Fograin92: Gauss gun is only used in HL1, we don't need multiple models
 	return DefaultDeploy( "models/v_gauss.mdl", "models/p_gauss.mdl", GAUSS_DRAW, "gauss" );	
 }
 

@@ -20,6 +20,7 @@
 #include "gamerules.h"
 
 // Fograin92: Update MOD stuff
+#include "monsters.h"
 #include "sm_hook_snd.h"	// Vit_amiN
 #include "particle_defs.h"	// BG Particle system
 extern int gmsgParticles;	// BG Particle system
@@ -1172,7 +1173,6 @@ void UTIL_BloodDrips( const Vector &origin, const Vector &direction, int color, 
 	if ( amount > 255 )
 		amount = 255;
 
-
 	// Fograin92: Full particles (high setting)
 	if (CVAR_GET_FLOAT("sm_particles") == 2)
 	{
@@ -1190,7 +1190,18 @@ void UTIL_BloodDrips( const Vector &origin, const Vector &direction, int color, 
 			else
 				WRITE_SHORT(iImpactBloodYellow);
 		MESSAGE_END();
+
+
+		// Fograin92: FX Blood particles
+		if (CVAR_GET_FLOAT("sm_fx_flesh") == 1)
+		{
+			if(color == BLOOD_COLOR_RED)
+				CFXGibs::SpawnFXGibs( origin, FXG_BLOOD_RED, 1);
+			else
+				CFXGibs::SpawnFXGibs( origin, FXG_BLOOD_YELLOW, 1);
+		}
 	}
+
 	// Fograin92: Limited particles (medium setting)
 	else if (CVAR_GET_FLOAT("sm_particles") == 1)
 	{

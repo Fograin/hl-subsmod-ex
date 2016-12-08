@@ -63,8 +63,6 @@ void CEgon::Precache( void )
 {
 	PRECACHE_MODEL("models/w_egon.mdl");
 	PRECACHE_MODEL("models/v_egon.mdl");
-	PRECACHE_MODEL("models/v_egon_bs.mdl");		// Fograin92
-	PRECACHE_MODEL("models/v_egon_of.mdl");		// Fograin92
 	PRECACHE_MODEL("models/p_egon.mdl");
 
 	PRECACHE_MODEL("models/w_9mmclip.mdl");
@@ -89,7 +87,6 @@ BOOL CEgon::Deploy( void )
 	m_deployed = FALSE;
 	m_fireState = FIRE_OFF;
 
-	// Fograin92: Gluon gun is only used in HL1, we don't need multiple models
 	return DefaultDeploy( "models/v_egon.mdl", "models/p_egon.mdl", EGON_DRAW, "egon" );
 }
 

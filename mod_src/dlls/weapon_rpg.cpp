@@ -352,8 +352,6 @@ void CRpg::Precache( void )
 {
 	PRECACHE_MODEL("models/w_rpg.mdl");
 	PRECACHE_MODEL("models/v_rpg.mdl");
-	PRECACHE_MODEL("models/v_rpg_of.mdl");	// Fograin92
-	PRECACHE_MODEL("models/v_rpg_bs.mdl");	// Fograin92
 	PRECACHE_MODEL("models/p_rpg.mdl");
 
 	PRECACHE_SOUND("items/9mmclip1.wav");
@@ -400,23 +398,6 @@ int CRpg::AddToPlayer( CBasePlayer *pPlayer )
 // Fograin92: The correct model will be deployed
 BOOL CRpg::Deploy( )
 {
-
-	if (CVAR_GET_FLOAT("sm_hud") == 1 )	// Blue Shift
-	{
-		if ( m_iClip == 0 )
-			return DefaultDeploy( "models/v_rpg_bs.mdl", "models/p_rpg.mdl", RPG_DRAW_UL, "rpg" );
-		else
-			return DefaultDeploy( "models/v_rpg_bs.mdl", "models/p_rpg.mdl", RPG_DRAW1, "rpg" );
-	}
-	
-	if (CVAR_GET_FLOAT("sm_hud") == 2 )	// Opposing Force
-	{
-		if ( m_iClip == 0 )
-			return DefaultDeploy( "models/v_rpg_of.mdl", "models/p_rpg.mdl", RPG_DRAW_UL, "rpg" );
-		else
-			return DefaultDeploy( "models/v_rpg_of.mdl", "models/p_rpg.mdl", RPG_DRAW1, "rpg" );
-	}
-
 	if ( m_iClip == 0 )
 		return DefaultDeploy( "models/v_rpg.mdl", "models/p_rpg.mdl", RPG_DRAW_UL, "rpg" );
 	else

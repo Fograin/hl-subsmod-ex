@@ -209,6 +209,32 @@ public:
 };
 
 
+// Fograin92: Dropped clip/magazine/item with Gib physics
+class CDropClip : public CFXGibs
+{
+public:
+	void Spawn( const char *szGibModel, float fDelay);
+	int	Classify ( void )
+	{
+		return	CLASS_GIBS;	// Fograin92: Classify as a GIB
+	} 
+
+	void EXPORT WaitTillSpawn( void );	// Fograin92
+	void EXPORT WaitTillLand( void );
+	void EXPORT BounceGibTouch ( CBaseEntity *pOther );
+	
+	// Fograin92: Override this stuff
+	void TraceAttack( entvars_t *pevAttacker, float flDamage, Vector vecDir, TraceResult *ptr, int bitsDamageType);
+	int TakeDamage( entvars_t* pevInflictor, entvars_t* pevAttacker, float flDamage, int bitsDamageType);
+	void Killed( entvars_t *pevAttacker, int iGib );
+
+	int		m_bloodColor;
+	int		m_material;
+	float	m_lifeTime;
+	float	m_DelayedSpawn;
+};
+
+
 
 #define CUSTOM_SCHEDULES\
 		virtual Schedule_t *ScheduleFromName( const char *pName );\
